@@ -21,6 +21,3 @@ cat <<EOF | sudo tee -a ./boot/loader/loader.conf > /dev/null
 timeout  4
 default  arch-tkg
 EOF
-
-# HOOKS
-sudo sed -i'' "s/filesystems keyboard/keyboard zfs filesystems/g" ./etc/mkinitcpio.conf
