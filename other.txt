@@ -5,3 +5,5 @@ other less interesting packages:
 
 other less interesting datasets:
   sudo zfs create -sV 80gb zroot/OSX
+
+dotfiles at: https://github.com/PedroHLC/.dotfiles
