@@ -5,6 +5,9 @@ cd /mnt
 # clear
 yes | sudo arch-chroot . pacman -Scc
 
+# zpool.cache
+sudo cp /etc/zfs/zpool.cache ./etc/zfs/zpool.cache
+
 # umount
 cd /
 sudo umount ./boot
