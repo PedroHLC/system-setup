@@ -1,0 +1,35 @@
+#!/usr/bin/env sh
+# Settings
+export TERMINAL='alacritty'
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_DATA_DIRS="$HOME/.local/share/:/usr/local/share/:/usr/share/"
+export XKB_DEFAULT_LAYOUT='br'
+
+# Native display
+export BEMENU_BACKEND='wayland'
+export MOZ_ENABLE_WAYLAND=1
+export SAL_USE_VCLPLUGIN='gtk3'
+export GDK_BACKEND='wayland'
+export XDG_SESSION_TYPE='wayland'
+export QT_QPA_PLATFORM='wayland'
+export QT_WAYLAND_FORCE_DPI='physical'
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+export CLUTTER_BACKEND='wayland'
+export SDL_VIDEODRIVER='wayland'
+export ECORE_EVAS_ENGINE='wayland_egl'
+export ELM_ENGINE='wayland_egl'
+#export GTK_USE_PORTAL=1
+
+# Bug Fixing
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+# NO NVIDIA
+#sudo rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia
+
+# Pipewire
+#export LD_PRELOAD="/usr/lib/libjack-pw.so" "/usr/lib/libpulse-"{pw,mainloop-glib-pw,simple-pw}".so"
+
+# DE
+export XDG_CURRENT_DESKTOP='sway'
+exec sway

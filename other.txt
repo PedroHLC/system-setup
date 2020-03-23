@@ -1,0 +1,7 @@
+other less interesting packages:
+  fping mesa-demos vulkan-tools opentracker network-manager-applet ovmf ndisc6 dmg2img
+  mktorrent wireshark-qt grub quartus-standard{,-device-cyclonev} iverilog gtkwave
+  mars-mips hplip-plugin osdlyrics-git inkscape pipewire bmon
+
+other less interesting datasets:
+  sudo zfs create -sV 80gb zroot/OSX
