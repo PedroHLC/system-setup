@@ -3,4 +3,4 @@ set -o errexit
 cd /mnt
 
 # home
-cp -av ~/* ./home/pedrohlci
+cp -av ~/* ./home/pedrohlc
