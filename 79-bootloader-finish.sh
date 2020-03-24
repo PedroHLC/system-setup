@@ -2,10 +2,13 @@
 set -o errexit
 cd /mnt
 
-# Bootloader
-sudo arch-chroot . mkinitcpio -Pv
+# Bootloader & its hook
+sudo arch-chroot . /usr/bin/bash <<EOF
+#!/usr/bin/env sh
+set -o errexit
 
-# Hooks
-sudo pacman -S systemd-boot-pacman-hook
+mkinitcpio -Pv
+pacman -S --needed --noconfirm systemd-boot-pacman-hook
+EOF
 
 echo 'Finished'

@@ -4,6 +4,8 @@ cd /mnt
 
 # Hook script
 cat <<EOF | sudo tee ./etc/initcpio/hooks/immutable > /dev/null
+#!/usr/bin/ash
+
 mount -o remount,ro "$${rootmnt}"
 
 mkdir -m 755 /run/rootfs
@@ -14,7 +16,17 @@ mount -n -o move "$${rootmnt}" /run/rootfs/ro
 
 mount -t overlay -o lowerdir=/run/rootfs/ro,upperdir=/run/rootfs/rw,workdir=/run/rootfs/.workdir root "$${rootmnt}"
 EOF
-sudo chmod 644 ./etc/initcpio/hooks/immutable
+
+# Hook installer
+cat <<EOF | sudo tee ./etc/initcpio/install/immutable > /dev/null
+#!/bin/bash
+build() {
+	add_runscript
+}
+EOF
+
+# Perms
+sudo chmod 644 ./etc/initcpio/{hooks,install}/immutable
 
 # Add Hook
 sudo sed -i'' "s/zfs/zfs immutable/g" ./etc/mkinitcpio.conf

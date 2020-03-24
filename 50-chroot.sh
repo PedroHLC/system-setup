@@ -82,6 +82,6 @@ bootctl --path=/boot install
 zgenhostid
 EOF
 
-sudo arch-chroot . 'passwd root; passwd pedrohlc'
+sudo arch-chroot . sh -c 'echo [ROOT] && passwd root && echo [PEDROHLC] && passwd pedrohlc'
 
 echo 'Finished'
