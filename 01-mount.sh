@@ -10,3 +10,5 @@ sudo mkdir ./boot
 
 # mount boot
 sudo mount /dev/sdb1 ./boot
+
+echo 'Finished'

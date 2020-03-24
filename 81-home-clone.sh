@@ -4,3 +4,5 @@ cd /mnt
 
 # home
 cp -av ~/* ./home/pedrohlc
+
+echo 'Finished'

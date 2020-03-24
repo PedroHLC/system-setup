@@ -18,3 +18,5 @@ sudo chmod 644 ./etc/initcpio/hooks/immutable
 
 # Add Hook
 sudo sed -i'' "s/zfs/zfs immutable/g" ./etc/mkinitcpio.conf
+
+echo 'Finished'

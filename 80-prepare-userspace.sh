@@ -12,3 +12,5 @@ cat <<EOF | sudo tee ./etc/NetworkManager/dispatcher.d/vpn-up > /dev/null
 #!/usr/bin/sh
 nmcli connection up home-pedrohlc-self
 EOF
+
+echo 'Finished'

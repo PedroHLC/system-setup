@@ -29,3 +29,5 @@ sudo zfs create -V 8G -b $(getconf PAGESIZE) \
 	-o primarycache=metadata \
 	-o com.sun:auto-snapshot=false zroot/swap
 mkswap -f /dev/zvol/zroot/swap
+
+echo 'Finished'

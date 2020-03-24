@@ -39,3 +39,5 @@ EOF
 
 # google auth
 sudo sed -i'' -e '3i auth required pam_google_authenticator.so' /etc/pam.d/sshd
+
+echo 'Finished'

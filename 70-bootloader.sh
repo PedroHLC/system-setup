@@ -21,3 +21,5 @@ cat <<EOF | sudo tee -a ./boot/loader/loader.conf > /dev/null
 timeout  4
 default  arch-tkg
 EOF
+
+echo 'Finished'

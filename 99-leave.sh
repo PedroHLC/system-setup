@@ -13,3 +13,5 @@ cd /
 sudo umount ./boot
 sudo zfs umount -a
 sudo zpool export zroot
+
+echo 'Finished'

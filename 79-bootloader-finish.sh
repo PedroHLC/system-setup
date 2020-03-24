@@ -7,3 +7,5 @@ sudo arch-chroot . mkinitcpio -Pv
 
 # Hooks
 sudo pacman -S systemd-boot-pacman-hook
+
+echo 'Finished'
