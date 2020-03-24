@@ -45,7 +45,7 @@ pacman -S --noconfirm --needed \
 	cadence jack2 jack_capture \
 	\
 	sway{,bg,idle,lock} grim waybar wofi-hg \
-	intelbacklight-git menu-calc mako wdisplays-git lxappearance \
+	intelbacklight-git mako wdisplays-git plasma-integration \
 	wl-clipboard-x11 qt5-wayland xdg-desktop-portal{,-wlr-git} \
 	\
 	alacritty nomacs pcmanfm-qt qbittorrent telegram-desktop xarchiver \
@@ -59,8 +59,8 @@ pacman -S --noconfirm --needed \
 	wine{_gecko,-mono,-tkg-staging-fsync-git} \
 	xf86-input-libinput \
 	\
-	keybase kbfs qemu sublime-text vinagre yeecli easy-rsa scrcpy-git \
-	gdb dbeaver editorconfig-core-c python-{pip,pynvim} ruby hunspell-{en_US,pt-br} \
+	keybase kbfs qemu sublime-text vinagre scrcpy-git \
+	gdb editorconfig-core-c python-{pip,pynvim} ruby hunspell-{en_US,pt-br} \
 	\
 	gnu-free-fonts otf-font-awesome gnome-icon-theme \
 	ttf-{dejavu,droid,fira-{code,mono,sans},font-awesome-4} \

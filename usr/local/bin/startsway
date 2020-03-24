@@ -30,6 +30,12 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Pipewire
 #export LD_PRELOAD="/usr/lib/libjack-pw.so" "/usr/lib/libpulse-"{pw,mainloop-glib-pw,simple-pw}".so"
 
+# Qt appearance
+#requires plasma-integration (could be qt5ct instead)
+export QT_QPA_PLATFORMTHEME='kde'
+export QT_PLATFORMTHEME='kde'
+export QT_PLATFORM_PLUGIN='kde'
+
 # DE
 export XDG_CURRENT_DESKTOP='sway'
 exec sway
