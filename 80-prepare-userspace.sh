@@ -8,6 +8,9 @@ cd /mnt
 #sudo cp -a /etc/NetworkManager/system-connections/* ./etc/NetworkManager/system-connections/
 #cp -av ~/* ./home/pedrohlc
 
+# if just flashing another bootfs, remove future mountpoints
+#sudo rm -rf ./home ./etc/ssh ./etc/NetworkManager/system-connections ./usr/local
+
 # auto VPN
 cat <<EOF | sudo tee ./etc/NetworkManager/dispatcher.d/vpn-up > /dev/null
 #!/usr/bin/sh

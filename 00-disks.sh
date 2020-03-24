@@ -6,6 +6,8 @@ sudo mkfs.vfat -F32 /dev/sdb1
 
 # create rootfs
 sudo zpool create -f zroot /dev/sdb2
+sudo zpool set compression=lz4 zroot
+sudo zpool set autotrim=on zroot
 sudo zfs set mountpoint=none zroot
 sudo zfs create -o mountpoint=none zroot/data
 sudo zfs create -o mountpoint=none zroot/ROOT
@@ -20,8 +22,6 @@ sudo zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/home/pedrohlc/.mozilla zroot/data/mozilla
 sudo zpool set bootfs=zroot/ROOT/default zroot
 sudo zpool set cachefile=/etc/zfs/zpool.cache zroot
-sudo zpool set autotrim=on zroot
-sudo zpool set compression=lz4 zroot
 
 # swap
 sudo zfs create -V 8G -b $(getconf PAGESIZE) \

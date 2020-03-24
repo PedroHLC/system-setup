@@ -42,7 +42,7 @@ pacman -S --noconfirm --needed --overwrite /boot/\\* \
 	bluez{,-plugins,-utils} \
 	cadence jack2 jack_capture \
 	\
-	sway{,bg,idle,lock} grim waybar wofi-hg \
+	sway{,bg,idle,lock} grim waybar wofi-hg breeze{,-gtk,-icons} \
 	intelbacklight-git mako wdisplays-git plasma-integration \
 	wl-clipboard-x11 qt5-wayland xdg-desktop-portal{,-wlr-git} \
 	\
@@ -61,8 +61,9 @@ pacman -S --noconfirm --needed --overwrite /boot/\\* \
 	gdb editorconfig-core-c python-{pip,pynvim} ruby hunspell-{en_US,pt-br} \
 	\
 	gnu-free-fonts gnome-icon-theme \
-	otf-{fira-{code,mono,sans},font-awesome} \
+	otf-{fira-{code,mono,sans}} \
 	ttf-{dejavu,droid,liberation,ubuntu-font-family,wps-fonts} \
+	ttf-font-awesome-4
 
 chsh root -s /bin/dash
 
