@@ -17,4 +17,7 @@ cat <<EOF | sudo tee ./etc/NetworkManager/dispatcher.d/vpn-up > /dev/null
 nmcli connection up home-pedrohlc-self
 EOF
 
+arch-chroot -u pedrohlc:users curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 echo 'Finished'
