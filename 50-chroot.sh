@@ -19,6 +19,10 @@ pacman-key --lsign-key 1EDDE2CDFC025D17F6DA9EC0ADAE6AD28A8F901A
 pacman-key --keyserver keys.mozilla.org -r 3056513887B78AEB
 pacman-key --lsign-key 3056513887B78AEB
 
+groupmod -g 10 wheel
+groupmod -g 100 users
+useradd -Uu 1000 -m -g users -G wheel pedrohlc
+
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
 	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
@@ -67,14 +71,9 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	ttf-font-awesome-4
 
 chsh root -s /bin/dash
-
-groupmod -g 10 wheel
-groupmod -g 100 users
-useradd -u 1000 -m -G wheel -g users -s /bin/dash pedrohlc
-usermod -aG audio pedrohlc
-usermod -aG bumblebee pedrohlc
-usermod -aG backlight pedrohlc
 chsh pedrohlc -s /bin/dash
+
+usermod -aG audio,bumblebee,backlight pedrohlc
 
 chown pedrohlc:users /home/pedrohlc/.mozilla /media/encrypted
 chmod 700 ./home/pedrohlc/.mozilla ./media/encrypted
