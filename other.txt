@@ -2,7 +2,7 @@ other less interesting packages:
   fping mesa-demos vulkan-tools opentracker network-manager-applet ovmf ndisc6 dmg2img
   mktorrent wireshark-qt quartus-standard{,-device-cyclonev} iverilog gtkwave yeecli easy-rsa dbeaver
   mars-mips hplip-plugin osdlyrics-git inkscape pipewire bmon gpaste alsa-utils nmap tor ddclient
-  gomics-git paprefs yaup-git reason-language-server elm-platform-bin
+  gomics-git paprefs yaup-git reason-language-server elm-platform-bin tldr
 
 # Printer
   cups sane print-manager system-config-printer
@@ -14,3 +14,18 @@ other less interesting datasets:
   sudo zfs create -sV 80gb zroot/OSX
 
 dotfiles at: https://github.com/PedroHLC/.dotfiles
+
+Hey Pedro, don't forget backuping-up:
+~
+	.cert/nm-openvpn
+	.config
+		osdlyrics
+		audacious/plugin-registry
+		keybase
+		spotify #too lazy to login again ;D
+	.local/share
+		keybase
+		TelegramDesktop #clean cache before
+	.lyrics
+	.wallpaper.jpg
+	floobits
