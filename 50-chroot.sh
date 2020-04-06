@@ -40,7 +40,7 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	{,lib32-}mesa {,lib32-}libva intel-media-driver {,lib32-}vulkan-icd-loader \
 	{,lib32-}vulkan-intel intel-ucode \
 	nvidia-dev-dkms-tkg {,lib32-}nvidia-dev-utils-tkg {,lib32-}primus-vk-git \
-	bbswitch-dkms bumblebee libva-vdpau-driver \
+	bbswitch-dkms bumblebee \
 	\
 	bluez{,-plugins,-utils} \
 	cadence jack2 jack_capture \
@@ -73,7 +73,7 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 chsh root -s /bin/dash
 chsh pedrohlc -s /bin/dash
 
-usermod -aG audio,bumblebee,backlight pedrohlc
+usermod -aG audio,bumblebee,backlight,kvm pedrohlc
 
 chown pedrohlc:users /home/pedrohlc/.mozilla /media/encrypted
 chmod 700 ./home/pedrohlc/.mozilla ./media/encrypted

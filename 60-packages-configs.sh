@@ -26,6 +26,13 @@ sudo systemctl --root=. enable zfs-import-cache zfs-import.target
 sudo systemctl --root=. enable zfs.target zfs-mount # better than fstab
 sudo systemctl --root=. enable sshd
 
+# Why Lennart, why? (boost startup)
+sudo systemctl --root=. mask systemd-hostnamed
+
+# disable LVM (boost startup)
+sudo sed -i'' 's/use_lvmetad = 1/use_lvmetad = 0/g' ./etc/lvm/lvm.conf
+sudo systemctl --root=. mask lvm2-{activation{,-early},lvmetad{,.socket},lvmpolld{,.socket},monitor}
+
 # create main user
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' | sudo tee -a ./etc/sudoers > /dev/null
 
