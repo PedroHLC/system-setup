@@ -68,7 +68,8 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	gnu-free-fonts gnome-icon-theme \
 	otf-{fira-{code,mono,sans}} \
 	ttf-{dejavu,droid,liberation,ubuntu-font-family,wps-fonts} \
-	ttf-font-awesome-4
+	ttf-font-awesome-4 \
+	adobe-source-han-sans-jp-fonts
 
 chsh root -s /bin/dash
 chsh pedrohlc -s /bin/dash
