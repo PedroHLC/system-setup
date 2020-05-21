@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+export DXVK_HUD=compiler
+export PROTON_WINEDBG_DISABLE=1
+export WINEESYNC=1
+
+export GAMEMODERUNEXEC="pvkrun nowl env MANGOHUD=1"
+
+exec gamemoderun "$@"

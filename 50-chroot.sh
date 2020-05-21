@@ -39,11 +39,11 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	\
 	{,lib32-}mesa {,lib32-}libva intel-media-driver {,lib32-}vulkan-icd-loader \
 	{,lib32-}vulkan-intel intel-ucode \
-	nvidia-dev-dkms-tkg {,lib32-}nvidia-dev-utils-tkg {,lib32-}primus-vk-git \
-	bbswitch-dkms bumblebee \
+	chaotic-nvidia-dev-dkms-tkg {,lib32-}chaotic-nvidia-dev-utils-tkg \
+	bbswitch-dkms bumblebee {,lib32-}primus-vk-git \
 	\
 	bluez{,-plugins,-utils} \
-	cadence jack2 jack_capture \
+	cadence jack2 jack_capture libffado \
 	\
 	sway{,bg,idle,lock} grim slurp waybar wofi-hg breeze{,-gtk} vimix-icon-theme-git \
 	intelbacklight-git mako wdisplays-git plasma-integration \
@@ -53,12 +53,12 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	firefox-wayland-hg firefox-ublock-origin \
 	wps-office{,-mui-pt-br} ttf-wps-fonts \
 	wps-office-extension-portuguese-brazilian-dictionary \
-	mpv audacious{,-plugins} gst-libav kodi-wayland spotify youtube-dl \
+	mpv audacious{,-plugins} gst-libav kodi-wayland spotify youtube-dl-git \
 	pavucontrol \
 	\
 	{,lib32-}faudio steam steam-native-runtime \
-	wine{_gecko,-mono,-tkg-staging-fsync-git} \
-	xf86-input-libinput proton-tkg-git \
+	wine{_gecko,-mono,-tkg-staging-fsync-git} winetricks-git dxvk-mingw-git \
+	xf86-input-libinput proton-tkg-git {,lib32-}mangohud vkbasalt gamemode \
 	\
 	keybase kbfs qemu sublime-text vinagre scrcpy-git \
 	editorconfig-core-c python-pynvim hunspell-{en_US,pt-br} \
