@@ -27,6 +27,7 @@ EOF
 # add some servers
 cat <<EOF | sudo tee ./etc/pacman.d/mirrorlist > /dev/null
 Server = http://mirror.ufscar.br/archlinux/\$repo/os/\$arch
+Server = http://br.mirror.archlinux-br.org/\$repo/os/\$arch
 Server = http://archlinux.c3sl.ufpr.br/\$repo/os/\$arch
 Server = http://www.caco.ic.unicamp.br/archlinux/\$repo/os/\$arch
 Server = https://www.caco.ic.unicamp.br/archlinux/\$repo/os/\$arch
@@ -34,7 +35,6 @@ Server = http://linorg.usp.br/archlinux/\$repo/os/\$arch
 Server = http://pet.inf.ufsc.br/mirrors/archlinux/\$repo/os/\$arch
 Server = http://archlinux.pop-es.rnp.br/\$repo/os/\$arch
 Server = http://mirror.ufam.edu.br/archlinux/\$repo/os/\$arch
-Server = http://br.mirror.archlinux-br.org/\$repo/os/\$arch
 EOF
 
 # add custom repo

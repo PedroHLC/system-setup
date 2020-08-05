@@ -26,7 +26,7 @@ useradd -Uu 1000 -m -g users -G wheel pedrohlc
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
 	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
-	linux-tkg-pds-broadwell{,-headers} \
+	linux-tkg-pds-broadwell{,-headers} systemd-swap \
 	\
 	zfs{-dkms,-utils} efibootmgr \
 	ntfs-3g dosfstools mtools exfat-utils un{rar,zip} p7zip \
@@ -62,6 +62,7 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	\
 	keybase kbfs qemu sublime-text vinagre scrcpy-git \
 	editorconfig-core-c python-pynvim hunspell-{en_US,pt-br} \
+	podman podman-compose-git \
 	\
 	gdb ruby yarn python-pip \
 	\

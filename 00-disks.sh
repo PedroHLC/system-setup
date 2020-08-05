@@ -24,10 +24,11 @@ sudo zpool set bootfs=zroot/ROOT/default zroot
 sudo zpool set cachefile=/etc/zfs/zpool.cache zroot
 
 # swap
-sudo zfs create -V 8G -b $(getconf PAGESIZE) \
-	-o logbias=throughput -o sync=always\
-	-o primarycache=metadata \
-	-o com.sun:auto-snapshot=false zroot/swap
-mkswap -f /dev/zvol/zroot/swap
+#sudo zfs create -V 8G -b $(getconf PAGESIZE) \
+#	-o logbias=throughput -o sync=always\
+#	-o primarycache=metadata \
+#	-o com.sun:auto-snapshot=false zroot/swap
+#mkswap -f /dev/zvol/zroot/swap
+# NOTE: Don't do a ZFS swap, it's useless, you can't hibernate to it!
 
 echo 'Finished'
