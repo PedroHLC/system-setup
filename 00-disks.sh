@@ -20,15 +20,18 @@ sudo zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/media/encrypted zroot/data/encrypted
 sudo zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/home/pedrohlc/.mozilla zroot/data/mozilla
+sudo zfs create -o compression=zstd-2 \
+    -o mountpoint=/home/pedrohlc/.local/share/Steam zroot/data/steam
 sudo zpool set bootfs=zroot/ROOT/default zroot
 sudo zpool set cachefile=/etc/zfs/zpool.cache zroot
 
+
 # swap
-#sudo zfs create -V 8G -b $(getconf PAGESIZE) \
-#	-o logbias=throughput -o sync=always\
-#	-o primarycache=metadata \
-#	-o com.sun:auto-snapshot=false zroot/swap
-#mkswap -f /dev/zvol/zroot/swap
 # NOTE: Don't do a ZFS swap, it's useless, you can't hibernate to it!
+sudo zfs create -V 2G -b (getconf PAGESIZE) -o compression=zle \
+     -o logbias=throughput -o sync=always \
+     -o primarycache=metadata -o secondarycache=none \
+     -o com.sun:auto-snapshot=false zroot/SWAP
+mkswap -f /dev/zvol/zroot/SWAP
 
 echo 'Finished'

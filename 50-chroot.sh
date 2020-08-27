@@ -16,8 +16,9 @@ pacman-key --populate archlinux
 pacman-key --keyserver hkps://hkps.pool.sks-keyservers.net -r ADAE6AD28A8F901A
 pacman-key --lsign-key 1EDDE2CDFC025D17F6DA9EC0ADAE6AD28A8F901A
 # Chaotic-AUR
-pacman-key --keyserver keys.mozilla.org -r 3056513887B78AEB
+pacman-key --keyserver keys.mozilla.org -r 3056513887B78AEB 8A9E14A07010F7E3
 pacman-key --lsign-key 3056513887B78AEB
+pacman-key --lsign-key 8A9E14A07010F7E3
 
 groupmod -g 10 wheel
 groupmod -g 100 users
@@ -26,7 +27,7 @@ useradd -Uu 1000 -m -g users -G wheel pedrohlc
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
 	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
-	linux-tkg-pds-broadwell{,-headers} systemd-swap \
+	linux-tkg-pds-broadwell{,-headers} \
 	\
 	zfs{-dkms,-utils} efibootmgr \
 	ntfs-3g dosfstools mtools exfat-utils un{rar,zip} p7zip \
@@ -67,10 +68,12 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	gdb ruby yarn python-pip \
 	\
 	gnu-free-fonts gnome-icon-theme \
-	otf-{fira-{code,mono,sans}} \
+	ttf-{fira-{code,mono,sans}} \
 	ttf-{dejavu,droid,liberation,ubuntu-font-family,wps-fonts} \
 	ttf-font-awesome-4 \
 	adobe-source-han-sans-jp-fonts
+	\
+	chaoitc-mirrorlist
 
 chsh root -s /bin/dash
 chsh pedrohlc -s /bin/dash

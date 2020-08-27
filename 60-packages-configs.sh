@@ -24,7 +24,7 @@ sudo systemctl --root=. enable NetworkManager
 sudo systemctl --root=. enable bumblebeed
 sudo systemctl --root=. enable zfs-import-cache zfs-import.target
 sudo systemctl --root=. enable zfs.target zfs-mount # better than fstab
-sudo systemctl --root=. enable sshd
+#sudo systemctl --root=. enable sshd
 
 # Why Lennart, why? (boost startup)
 sudo systemctl --root=. mask systemd-hostnamed

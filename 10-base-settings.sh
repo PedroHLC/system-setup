@@ -44,8 +44,8 @@ cat <<EOF | sudo tee -a ./etc/pacman.conf > /dev/null
 Include = /etc/pacman.d/mirrorlist
 
 [chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist
 Server = https://lonewolf.pedrohlc.com/\$repo/\$arch
-Server = http://chaotic.bangl.de/\$repo/\$arch
 
 [sublime-text]
 Server = https://download.sublimetext.com/arch/stable/\$arch
