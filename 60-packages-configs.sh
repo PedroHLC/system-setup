@@ -20,6 +20,8 @@ sudo sed -i'' "
 " ./etc/powerpill/powerpill.json
 
 # services
+sudo systemctl --root=. enable dbus-broker
+sudo systemctl --root=. --global enable dbus-broker
 sudo systemctl --root=. enable NetworkManager
 sudo systemctl --root=. enable bumblebeed
 sudo systemctl --root=. enable zfs-import-cache zfs-import.target

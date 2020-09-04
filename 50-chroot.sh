@@ -27,7 +27,7 @@ useradd -Uu 1000 -m -g users -G wheel pedrohlc
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
 	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
-	linux-tkg-pds-broadwell{,-headers} \
+	linux-tkg-pds-broadwell{,-headers} dbus-broker \
 	\
 	zfs{-dkms,-utils} efibootmgr \
 	ntfs-3g dosfstools mtools exfat-utils un{rar,zip} p7zip \
@@ -46,9 +46,10 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	bluez{,-plugins,-utils} \
 	cadence jack2 jack_capture libffado \
 	\
-	sway{,bg,idle,lock} grim slurp waybar wofi-hg breeze{,-gtk} vimix-icon-theme-git \
+	sway{,bg,idle,lock} grim slurp waybar breeze{,-gtk} vimix-icon-theme-git \
 	intelbacklight-git mako wdisplays-git plasma-integration \
 	wl-clipboard-x11 qt5-wayland xdg-desktop-portal{,-wlr-git} \
+	sway-launcher-desktop \
 	\
 	alacritty nomacs pcmanfm-qt qbittorrent telegram-desktop xarchiver \
 	firefox-wayland-hg firefox-ublock-origin \
