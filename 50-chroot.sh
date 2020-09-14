@@ -64,7 +64,7 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	\
 	keybase kbfs qemu sublime-text vinagre scrcpy-git \
 	editorconfig-core-c python-pynvim hunspell-{en_US,pt-br} \
-	podman podman-compose-git \
+	podman podman-compose-git trash-cli \
 	\
 	gdb ruby yarn python-pip \
 	\

@@ -31,6 +31,9 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 # Pipewire
 #export LD_PRELOAD="/usr/lib/libjack-pw.so" "/usr/lib/libpulse-"{pw,mainloop-glib-pw,simple-pw}".so"
 
+# Telegram
+export TDESKTOP_DISABLE_GTK_INTEGRATION=1
+
 # Qt appearance
 #requires plasma-integration (could be qt5ct instead)
 export QT_QPA_PLATFORMTHEME='kde'
