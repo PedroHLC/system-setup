@@ -27,7 +27,7 @@ useradd -Uu 1000 -m -g users -G wheel pedrohlc
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
 	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
-	linux-tkg-pds-broadwell{,-headers} dbus-broker \
+	linux-tkg-bmq-broadwell{,-headers} dbus-broker \
 	\
 	zfs{-dkms,-utils} efibootmgr \
 	ntfs-3g dosfstools mtools exfat-utils un{rar,zip} p7zip \

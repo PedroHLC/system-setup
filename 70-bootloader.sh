@@ -12,17 +12,17 @@ _PASSTHROUGH='intel_iommu=on,igfx_off kvm.ignore_msrs=1 module_blacklist=nvidiaf
 # Bootloader
 cat <<EOF | sudo tee -a ./boot/loader/entries/arch-tkg.conf > /dev/null
 title	Arch Linux for frogs
-linux	/vmlinuz-linux-tkg-pds-broadwell
+linux	/vmlinuz-linux-tkg-bmq-broadwell
 initrd	/intel-ucode.img
-initrd	/initramfs-linux-tkg-pds-broadwell.img
+initrd	/initramfs-linux-tkg-bmq-broadwell.img
 options	 ${_DEFAULT} ${_ZFS} ${_NVIDIA_FIX} ${_MAKE_LINUX_FAST_AGAIN}
 EOF
 
 cat <<EOF | sudo tee -a ./boot/loader/entries/arch-tkg-vfio.conf > /dev/null
 title	Arch Linux for frogs with VFIO Passthrough
-linux	/vmlinuz-linux-tkg-pds-broadwell
+linux	/vmlinuz-linux-tkg-bmq-broadwell
 initrd	/intel-ucode.img
-initrd	/initramfs-linux-tkg-pds-broadwell.img
+initrd	/initramfs-linux-tkg-bmq-broadwell.img
 options	${_DEFAULT} ${_ZFS} ${_PASSTHROUGH}
 EOF
 
