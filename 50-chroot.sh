@@ -26,7 +26,7 @@ useradd -Uu 1000 -m -g users -G wheel pedrohlc
 
 pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
-	sudo yay networkmanager pulseaudio-{alsa,bluetooth,jack} \
+	sudo paru networkmanager pipewire-pulse \
 	linux-tkg-bmq-broadwell{,-headers} dbus-broker \
 	\
 	zfs{-dkms,-utils} efibootmgr \
@@ -69,12 +69,12 @@ pacman -Sy --noconfirm --needed --overwrite /boot/\\* \
 	gdb ruby yarn python-pip \
 	\
 	gnu-free-fonts gnome-icon-theme \
-	ttf-{fira-{code,mono,sans}} \
+	ttf-{fira-{code,mono,sans}} ttf-borg-sans-mono \
 	ttf-{dejavu,droid,liberation,ubuntu-font-family,wps-fonts} \
 	ttf-font-awesome-4 \
 	adobe-source-han-sans-jp-fonts
 	\
-	chaoitc-mirrorlist
+	chaotic-mirrorlist chaotic-keyring
 
 chsh root -s /bin/dash
 chsh pedrohlc -s /bin/dash

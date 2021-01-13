@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 export DXVK_HUD=compiler
+export DXVK_LOG_PATH=none
 export PROTON_WINEDBG_DISABLE=1
 export WINEESYNC=1
 

@@ -27,9 +27,12 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 # NO NVIDIA
 #sudo rmmod nvidia_uvm nvidia_drm nvidia_modeset nvidia
+#export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/intel_icd.x86_64.json
 
 # Pipewire
 #export LD_PRELOAD="/usr/lib/libjack-pw.so" "/usr/lib/libpulse-"{pw,mainloop-glib-pw,simple-pw}".so"
+export AE_SINK=ALSA
+export SDL_AUDIODRIVER=alsa
 
 # Telegram
 export TDESKTOP_DISABLE_GTK_INTEGRATION=1
