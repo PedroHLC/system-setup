@@ -3,7 +3,7 @@ set -o errexit
 cd /mnt
 
 # Bootloader & its hook
-sudo arch-chroot . /usr/bin/bash <<EOF
+arch-chroot . /usr/bin/bash <<EOF
 #!/usr/bin/env sh
 set -o errexit
 

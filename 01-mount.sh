@@ -3,7 +3,7 @@ set -o errexit
 
 # mount in /mnt
 sudo zpool export zroot
-sudo zpool import -d /dev/sdb2 -R /mnt zroot
+sudo zpool import -R /mnt zroot
 cd /mnt
 
 sudo mkdir ./boot

@@ -45,7 +45,7 @@ Include = /etc/pacman.d/mirrorlist
 
 [chaotic-aur]
 Include = /etc/pacman.d/chaotic-mirrorlist
-Server = https://lonewolf.pedrohlc.com/\$repo/\$arch
+Server = https://builds.garudalinux.org/repos/\$repo/\$arch
 
 [sublime-text]
 Server = https://download.sublimetext.com/arch/stable/\$arch
