@@ -30,7 +30,7 @@ pacman -Sy --noconfirm --needed powerpill
 
 powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
-	sudo paru networkmanager pipewire-pulse \
+	sudo paru networkmanager pipewire \
 	linux-firmware linux-tkg-bmq-zen2{,-headers} dbus-broker \
 	\
 	zfs{-dkms,-utils} efibootmgr \
@@ -45,7 +45,7 @@ powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	{,lib32-}mesa {,lib32-}libva{,-mesa-driver} {,lib32-}vulkan-{icd-loader,radeon} \
 	\
 	bluez{,-plugins,-utils} \
-	pipewire-jack \
+	pipewire-{alsa,pulse,jack} gst-plugin-pipewire libpipewire02 \
 	\
 	sway{,bg,idle,lock} grim slurp waybar breeze{,-gtk} vimix-icon-theme-git \
 	mako wdisplays-git plasma-integration \
@@ -63,7 +63,7 @@ powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	\
 	keybase kbfs qemu sublime-text vinagre scrcpy-git \
 	editorconfig-core-c python-pynvim hunspell-{en_US,pt-br} \
-	podman podman-compose-git trash-cli \
+	podman podman-compose-git crun trash-cli \
 	\
 	gdb ruby yarn python-pip \
 	\
