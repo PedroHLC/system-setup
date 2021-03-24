@@ -3,7 +3,10 @@ export DXVK_HUD=compiler
 export DXVK_LOG_PATH=none
 export PROTON_WINEDBG_DISABLE=1
 export WINEESYNC=1
+#export RADV_DEBUG=nodcc
 
-export GAMEMODERUNEXEC="pvkrun nowl env MANGOHUD=1"
+#export GAMEMODERUNEXEC="gamescope -r 75 -w 2560 -h 1080 -- nowl mangohud"
+export GAMEMODERUNEXEC="nowl mangohud"
+#env OBS_VKCAPTURE=1
 
 exec gamemoderun "$@"

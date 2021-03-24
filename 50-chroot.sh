@@ -30,7 +30,7 @@ pacman -Sy --noconfirm --needed powerpill
 
 powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	base-devel multilib-devel arch-install-scripts git man{,-pages} \
-	sudo paru networkmanager pipewire \
+	sudo paru networkmanager pipewire amd-ucode \
 	linux-firmware linux-tkg-bmq-zen2{,-headers} dbus-broker \
 	\
 	zfs{-dkms,-utils} efibootmgr \
