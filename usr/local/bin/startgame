@@ -1,12 +1,36 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+# vim: set ts=2 sw=2 et:
 export DXVK_HUD=compiler
 export DXVK_LOG_PATH=none
 export PROTON_WINEDBG_DISABLE=1
 export WINEESYNC=1
-#export RADV_DEBUG=nodcc
 
-#export GAMEMODERUNEXEC="gamescope -r 75 -w 2560 -h 1080 -- nowl mangohud"
-export GAMEMODERUNEXEC="nowl mangohud"
-#env OBS_VKCAPTURE=1
+GAMEMODERUNEXEC='nowl mangohud env'
+
+while true; do
+  case "${1:-}" in
+  '-c')
+    GAMEMODERUNEXEC+=' OBS_VKCAPTURE=1'
+    shift 1
+    ;;
+  '-s')
+    GAMEMODERUNEXEC="gamescope -r 75 -w 2560 -h 1080 -- $GAMEMODERUNEXEC"
+    shift 1
+	;;
+  '--nodcc')
+    GAMEMODERUNEXEC+=' RADV_DEBUG=nodcc'
+    shift 1
+    ;;
+  '--llvm')
+    GAMEMODERUNEXEC+=' RADV_DEBUG=llvm'
+    shift 1
+    ;;
+  *)
+    export GAMEMODERUNEXEC
+    break
+    ;;
+  esac
+done
 
 exec gamemoderun "$@"
+

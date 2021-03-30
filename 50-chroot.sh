@@ -37,7 +37,7 @@ powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	ntfs-3g dosfstools mtools exfat-utils un{rar,zip} p7zip \
 	gvfs-mtp android-udev-git sshfs usbutils \
 	\
-	dash fish libpam-google-authenticator mosh rsync aria2 tmux \
+	dash fish libpam-google-authenticator mosh rsync aria2 tmux dashbinsh \
 	neovim-drop-in openssh htop bridge-utils traceroute wget \
 	android-sdk-platform-tools dnsmasq hostapd inetutils \
 	networkmanager-openvpn nm-eduroam-ufscar ca-certificates-icp_br \
