@@ -32,7 +32,7 @@ systemctl --root=. mask systemd-hostnamed
 
 # disable LVM (boost startup)
 sed -i'' 's/use_lvmetad = 1/use_lvmetad = 0/g' ./etc/lvm/lvm.conf
-systemctl --root=. mask lvm2-{activation{,-early},lvmetad{,.socket},lvmpolld{,.socket},monitor}
+systemctl --root=. mask lvm2-{activation{,-early},lvmetad{,.socket},lvmpolld{,.socket},monitor} systemd-udev-settle
 
 # create main user
 echo '%wheel ALL=(ALL) NOPASSWD: ALL' | tee -a ./etc/sudoers > /dev/null

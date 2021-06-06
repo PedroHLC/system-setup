@@ -50,7 +50,7 @@ powerpill -Su --noconfirm --needed --overwrite /boot/\\* \
 	sway{,bg,idle,lock} grim slurp waybar breeze{,-gtk} vimix-icon-theme-git \
 	mako wdisplays-git plasma-integration \
 	wl-clipboard-x11 qt5-wayland xdg-desktop-portal{,-wlr-git} \
-	sway-launcher-desktop \
+	sway-launcher-desktop gammastep \
 	\
 	alacritty nomacs pcmanfm-qt qbittorrent telegram-desktop xarchiver \
 	firefox-wayland-hg firefox-ublock-origin \

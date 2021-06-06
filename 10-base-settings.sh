@@ -11,7 +11,10 @@ popd
 echo 'en_US.UTF-8 UTF-8' | sudo tee -a ./etc/locale.gen > /dev/null
 echo 'pt_BR.UTF-8 UTF-8' | sudo tee -a ./etc/locale.gen > /dev/null
 
-echo 'LANG=en_US.UTF-8' | sudo cp /dev/stdin ./etc/locale.conf
+cat <<EOF | sudo tee ./etc/locale.conf > /dev/null
+LANG=en_US.UTF-8
+LC_TIME=pt_BR.UTF-8
+EOF
 echo 'KEYMAP=br-abnt2' | sudo cp /dev/stdin ./etc/vconsole.conf
 sudo chmod 644 ./etc/locale.conf
 
