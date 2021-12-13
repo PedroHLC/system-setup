@@ -29,8 +29,9 @@ in
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
 
+  # Network
   networking.hostId = "0f8623ae";
-  networking.hostName = "laptop"; # Define your hostname.
+  networking.hostName = "laptop";
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
 
@@ -50,6 +51,13 @@ in
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
   };
+
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
+  # GPU
+  hardware.bumblebee.enable = true;
 
   # Enable the SwayWM.
   programs.sway = {
@@ -93,17 +101,17 @@ in
     pulse.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # User accounts
   users.users.pedrohlc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed.
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     acpid
+    aria2
     brightnessctl
     elmPackages.elm-format
     firefox
@@ -124,7 +132,6 @@ in
     unzip
     qbittorrent
     vimix-icon-theme
-    vulkan-tools
     wget
     xarchiver
     yambar-wayland
@@ -146,6 +153,9 @@ in
     liberation_ttf
     noto-fonts
     ubuntu_font_family
+    
+    mesa-demos
+    vulkan-tools
   ];
   programs.neovim.enable = true;
   programs.neovim.viAlias = true;
@@ -160,12 +170,18 @@ in
   };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Or disable the firewall altogether.
+  # Disable the firewall altogether.
   networking.firewall.enable = false;
+
+  # Virtualisation
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
