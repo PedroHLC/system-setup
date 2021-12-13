@@ -26,8 +26,13 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Other boot settings 
+  # boot.kernelPackages = pkgs.linuxPackages_5_14;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
+  boot.tmpOnTmpfs = true;
 
   # Network
   networking.hostId = "0f8623ae";
@@ -66,10 +71,6 @@ in
     extraPackages = with pkgs; [
       swaylock
       swayidle
-      alacritty
-      grim
-      mako
-      slurp
       wl-clipboard
     ];
     extraSessionCommands = ''
@@ -110,31 +111,44 @@ in
   # List packages installed.
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    acpid
+    acpi
+    alacritty
     aria2
     brightnessctl
-    elmPackages.elm-format
+    file
     firefox
     fish
+    fzf
     git
+    grim
+    i3status-rust
     killall
+    lm_sensors
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
+    mako
     mpv
     neovim
     nomacs
+    pulseaudio-ctl
     python39Packages.pynvim
+    qbittorrent
     slack
+    slurp
     spotify
-    sublime4
     tdesktop
     tmux
     unzip
-    qbittorrent
     vimix-icon-theme
     wget
     xarchiver
-    yambar-wayland
+    
+    autoconf
+    dbeaver
+    elmPackages.elm-format
+    gnumake
+    python
+    sublime4
     yarn
 
     breeze-gtk
@@ -142,25 +156,30 @@ in
     breeze-qt5
     libsForQt5.plasma-integration
 
+    mesa-demos
+    vulkan-tools
+    mangohud
+  ];
+  programs.neovim.enable = true;
+  programs.neovim.viAlias = true;
+  programs.neovim.vimAlias = true;
+  environment.variables.EDITOR = "nvim";
+
+  # Fonts
+  fonts.fonts = with pkgs; [
     cantarell-fonts
     fira
     fira-code
     fira-code-symbols
     fira-mono
     font-awesome_5
+    font-awesome-ttf
     freefont_ttf
     google-fonts
     liberation_ttf
     noto-fonts
     ubuntu_font_family
-    
-    mesa-demos
-    vulkan-tools
   ];
-  programs.neovim.enable = true;
-  programs.neovim.viAlias = true;
-  programs.neovim.vimAlias = true;
-  environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
