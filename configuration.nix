@@ -58,9 +58,11 @@ in
     extraPackages = with pkgs; [
       swaylock
       swayidle
-      wl-clipboard
-      mako
       alacritty
+      grim
+      mako
+      slurp
+      wl-clipboard
     ];
     extraSessionCommands = ''
       export BEMENU_BACKEND='wayland'
@@ -70,8 +72,8 @@ in
       export GDK_BACKEND='wayland'
       export MOZ_ENABLE_WAYLAND=1
       export QT_AUTO_SCREEN_SCALE_FACTOR=0
-      export QT_PLATFORM_PLUGIN='kde'
       export QT_PLATFORMTHEME='kde'
+      export QT_PLATFORM_PLUGIN='kde'
       export QT_QPA_PLATFORM='wayland-egl'
       export QT_QPA_PLATFORMTHEME='kde'
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
@@ -101,43 +103,54 @@ in
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    firefox
-    tdesktop
-    brightnessctl
-    slack
     acpid
-    breeze-qt5
+    brightnessctl
+    elmPackages.elm-format
+    firefox
+    fish
+    git
+    killall
+    lxqt.pavucontrol-qt
+    lxqt.pcmanfm-qt
+    mpv
+    neovim
+    nomacs
+    python39Packages.pynvim
+    slack
+    spotify
+    sublime4
+    tdesktop
+    tmux
+    unzip
+    qbittorrent
+    vimix-icon-theme
+    vulkan-tools
+    wget
+    xarchiver
+    yambar-wayland
+    yarn
+
     breeze-gtk
     breeze-icons
-    killall
-    vulkan-tools
-    git
-    tmux
-    mpv
+    breeze-qt5
+    libsForQt5.plasma-integration
 
+    cantarell-fonts
     fira
     fira-code
     fira-code-symbols
     fira-mono
-    cantarell-fonts
+    font-awesome_5
     freefont_ttf
-    noto-fonts
-    ubuntu_font_family
     google-fonts
     liberation_ttf
-
-    yambar-wayland
-    sublime4
-    yarn
-    elmPackages.elm-format
-    vimix-icon-theme
-    font-awesome_5
-    lxqt.pavucontrol-qt
-    lxqt.pcmanfm-qt
+    noto-fonts
+    ubuntu_font_family
   ];
-  programs.fish.enable = true;
+  programs.neovim.enable = true;
+  programs.neovim.viAlias = true;
+  programs.neovim.vimAlias = true;
+  environment.variables.EDITOR = "nvim";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
