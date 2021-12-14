@@ -16,6 +16,11 @@ let
     '';
   });
 
+  my-python-packages = python-packages: with python-packages; [
+    pynvim
+  ];
+  python-with-my-packages = pkgs.python3.withPackages my-python-packages;
+
 in
 {
   imports =
@@ -132,7 +137,7 @@ in
     neovim
     nomacs
     pulseaudio-ctl
-    python39Packages.pynvim
+    python-with-my-packages
     qbittorrent
     slack
     slurp
@@ -148,7 +153,6 @@ in
     dbeaver
     elmPackages.elm-format
     gnumake
-    python
     sublime4
     yarn
 
@@ -165,6 +169,7 @@ in
   programs.neovim.enable = true;
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
+  programs.steam.enable = true;
   environment.variables.EDITOR = "nvim";
 
   # Fonts
@@ -212,5 +217,13 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
 
+  # Storage optimization
+  nix.autoOptimiseStore = true;
+  nix.gc = {
+      automatic = true;
+      dates = "monthly";
+      options = "--delete-older-than 7d";
+  };
+  system.autoUpgrade.enable = true;
 }
 
