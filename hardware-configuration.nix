@@ -23,21 +23,6 @@
       fsType = "zfs";
     };
 
-  fileSystems."/etc/ssh" =
-    { device = "zroot/data/ssh";
-      fsType = "zfs";
-    };
-
-  fileSystems."/usr/local" =
-    { device = "zroot/data/usr-local";
-      fsType = "zfs";
-    };
-
-  fileSystems."/etc/NetworkManager/system-connections" =
-    { device = "zroot/data/connections";
-      fsType = "zfs";
-    };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/C4D7-B910";
       fsType = "vfat";

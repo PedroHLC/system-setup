@@ -35,20 +35,20 @@ in
   boot.tmpOnTmpfs = true;
 
   # Network
-  networking.hostId = "0f8623ae";
-  networking.hostName = "laptop";
-  networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
+  networking = {
+    hostId = "0f8623ae";
+    hostName = "laptop";
+  
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
+
+    useDHCP = false;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
-
-  # The global useDHCP flag is deprecated, therefore explicitly set to false here.
-  # Per-interface useDHCP will be mandatory in the future, so this generated config
-  # replicates the default behaviour
-  networking.useDHCP = false;
-  networking.interfaces.enp2s0.useDHCP = true;
-  networking.interfaces.wlo1.useDHCP = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -72,6 +72,8 @@ in
       swaylock
       swayidle
       wl-clipboard
+      libinput
+      libinput-gestures
     ];
     extraSessionCommands = ''
       export BEMENU_BACKEND='wayland'
@@ -105,7 +107,7 @@ in
   # User accounts
   users.users.pedrohlc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ];
   };
 
   # List packages installed.
@@ -117,7 +119,6 @@ in
     brightnessctl
     file
     firefox
-    fish
     fzf
     git
     grim
@@ -160,6 +161,7 @@ in
     vulkan-tools
     mangohud
   ];
+  programs.fish.enable = true;
   programs.neovim.enable = true;
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
