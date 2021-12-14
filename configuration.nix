@@ -27,9 +27,9 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Other boot settings 
+  # Other boot settings
   # boot.kernelPackages = pkgs.linuxPackages_5_14;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.extraModulePackages = [ config.boot.zfs.package.latestCompatibleLinuxPackages ];
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
@@ -63,6 +63,9 @@ in
 
   # GPU
   hardware.bumblebee.enable = true;
+
+  # Steam
+  programs.steam.enable = true;
 
   # Enable the SwayWM.
   programs.sway = {
@@ -131,7 +134,17 @@ in
     neovim
     nomacs
     pulseaudio-ctl
-    python39Packages.pynvim
+
+    # Python
+    (let
+       my-python-packages = python-packages: with python-packages; [
+           pynvim
+        #other python packages you want
+       ];
+       python-with-my-packages = python3.withPackages my-python-packages;
+    in
+       python-with-my-packages)
+
     qbittorrent
     slack
     slurp
@@ -142,7 +155,7 @@ in
     vimix-icon-theme
     wget
     xarchiver
-    
+
     autoconf
     dbeaver
     elmPackages.elm-format
@@ -201,6 +214,16 @@ in
       dockerCompat = true;
     };
   };
+
+  # Storage optimization
+  nix.autoOptimiseStore = true;
+  nix.gc = {
+      automatic = true;
+      dates = "monthly";
+      options = "--delete-older-than 30d";
+  };
+  system.autoUpgrade.enable = true;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
