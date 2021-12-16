@@ -235,11 +235,6 @@ in
     };
   };
 
-  # Discord fix
-  pkgs.discord.override {
-    nss = pkgs.nss_3_73;
-  }
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
