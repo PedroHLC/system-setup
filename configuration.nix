@@ -16,11 +16,6 @@ let
     '';
   });
 
-  my-python-packages = python-packages: with python-packages; [
-    pynvim
-  ];
-  python-with-my-packages = pkgs.python3.withPackages my-python-packages;
-
 in
 {
   imports =
@@ -33,7 +28,7 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Other boot settings 
-  # boot.kernelPackages = pkgs.linuxPackages_5_14;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
@@ -43,13 +38,17 @@ in
   networking = {
     hostId = "0f8623ae";
     hostName = "laptop";
-  
+
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
     };
 
+    usePredictableInterfaceNames = true;
     useDHCP = false;
+
+    # Disable the firewall altogether.
+    firewall.enable = false;
   };
 
   # Set your time zone.
@@ -66,8 +65,12 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
+  # Fans
+  #hardware.fancontrol.enable = true;
+
   # GPU
   hardware.bumblebee.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
 
   # Enable the SwayWM.
   programs.sway = {
@@ -88,14 +91,15 @@ in
       export GDK_BACKEND='wayland'
       export MOZ_ENABLE_WAYLAND=1
       export QT_AUTO_SCREEN_SCALE_FACTOR=0
-      export QT_PLATFORMTHEME='kde'
-      export QT_PLATFORM_PLUGIN='kde'
       export QT_QPA_PLATFORM='wayland-egl'
-      export QT_QPA_PLATFORMTHEME='kde'
       export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
       export SAL_USE_VCLPLUGIN='gtk3'
       export SDL_VIDEODRIVER='wayland'
       export _JAVA_AWT_WM_NONREPARENTING=1
+      
+      export QT_QPA_PLATFORMTHEME='kde'
+      export QT_PLATFORM_PLUGIN='kde'
+      export QT_PLATFORMTHEME='kde'
     '';
   };
   xdg.portal.wlr.enable = true;
@@ -114,6 +118,11 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "networkmanager" ];
   };
+  security.sudo.wheelNeedsPassword = false;
+
+  # Autologin
+  # systemd.services."autovt@tty1".serviceConfig = autoLoginServiceConfig;
+  services.getty.autologinUser = "pedrohlc";
 
   # List packages installed.
   nixpkgs.config.allowUnfree = true;
@@ -121,7 +130,9 @@ in
     acpi
     alacritty
     aria2
+    avell-unofficial-control-center
     brightnessctl
+    discord-canary
     file
     firefox
     fzf
@@ -133,21 +144,25 @@ in
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
     mako
+    mosh
     mpv
     neovim
     nomacs
+    pciutils
     pulseaudio-ctl
-    python-with-my-packages
     qbittorrent
     slack
     slurp
     spotify
     tdesktop
     tmux
+    usbutils
     unzip
     vimix-icon-theme
     wget
     xarchiver
+    xfce.tumbler
+    zoom-us
     
     autoconf
     dbeaver
@@ -160,6 +175,9 @@ in
     breeze-icons
     breeze-qt5
     libsForQt5.plasma-integration
+    libsForQt5.qtstyleplugins
+    oxygen-icons5
+    qqc2-breeze-style
 
     mesa-demos
     vulkan-tools
@@ -179,8 +197,8 @@ in
     fira-code
     fira-code-symbols
     fira-mono
+    font-awesome_4
     font-awesome_5
-    font-awesome-ttf
     freefont_ttf
     google-fonts
     liberation_ttf
@@ -198,9 +216,6 @@ in
   # List services that you want to enable:
   services.openssh.enable = true;
 
-  # Disable the firewall altogether.
-  networking.firewall.enable = false;
-
   # Virtualisation
   virtualisation = {
     podman = {
@@ -208,6 +223,22 @@ in
       dockerCompat = true;
     };
   };
+
+  # RFKILL
+  system.activationScripts = {
+    rfkillInit = {
+      text = ''
+      rfkill unblock wlan
+      rfkill block bluetooth
+      '';
+      deps = [];
+    };
+  };
+
+  # Discord fix
+  pkgs.discord.override {
+    nss = pkgs.nss_3_73;
+  }
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -221,7 +252,7 @@ in
   nix.autoOptimiseStore = true;
   nix.gc = {
       automatic = true;
-      dates = "monthly";
+      dates = "weekly";
       options = "--delete-older-than 7d";
   };
   system.autoUpgrade.enable = true;
