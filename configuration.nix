@@ -16,6 +16,16 @@ let
     '';
   });
 
+  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
+    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __NV_PRIME_RENDER_OFFLOAD=1
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
+    export __VK_LAYER_NV_optimus=NVIDIA_only
+    exec -a "$0" "$@"
+  '';
+
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+
 in
 {
   imports =
@@ -65,12 +75,32 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Fans
-  #hardware.fancontrol.enable = true;
-
   # GPU
-  hardware.bumblebee.enable = true;
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.vulkan_beta;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.prime = {
+    offload.enable = true;
+
+    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
+    intelBusId = "PCI:0:2:0";
+
+    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
+    nvidiaBusId = "PCI:1:0:0";
+  };
+  environment.etc = {
+    "gbm/nvidia-drm_gbm.so".source = "${nvidiaPackage}/lib/libnvidia-allocator.so";
+    "egl/egl_external_platform.d".source = "/run/opengl-driver/share/egl/egl_external_platform.d/";
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+  hardware.opengl.extraPackages = with pkgs; [
+    vaapiVdpau
+    libvdpau-va-gl
+    libva
+  ];
+  powerManagement.enable = false;
 
   # Enable the SwayWM.
   programs.sway = {
@@ -100,7 +130,15 @@ in
       export QT_QPA_PLATFORMTHEME='kde'
       export QT_PLATFORM_PLUGIN='kde'
       export QT_PLATFORMTHEME='kde'
+
+      export __GL_VRR_ALLOWED="1"
+      export __NV_PRIME_RENDER_OFFLOAD="1"
+      export __VK_LAYER_NV_optimus="non_NVIDIA_only"
     '';
+    extraOptions = [
+      "--unsupported-gpu"
+      "--my-next-gpu-wont-be-nvidia"
+    ];
   };
   xdg.portal.wlr.enable = true;
   services.xserver.layout = "br";
@@ -147,7 +185,9 @@ in
     mosh
     mpv
     neovim
+    nix-index
     nomacs
+    nvidia-offload
     pciutils
     pulseaudio-ctl
     qbittorrent
@@ -157,6 +197,7 @@ in
     tdesktop
     tmux
     usbutils
+    unrar
     unzip
     vimix-icon-theme
     wget
@@ -164,7 +205,6 @@ in
     xfce.tumbler
     zoom-us
     
-    autoconf
     dbeaver
     elmPackages.elm-format
     gnumake
