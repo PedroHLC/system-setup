@@ -37,6 +37,7 @@ in
   
   # External binary caches
   nix = {
+    trustedUsers = [ "root" "pedrohlc" ];
     binaryCaches = [ "https://nix-gaming.cachix.org" ];
     binaryCachePublicKeys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
   };
@@ -179,6 +180,7 @@ in
     aria2
     avell-unofficial-control-center
     brightnessctl
+    cachix
     discord-canary
     file
     firefox
@@ -231,7 +233,6 @@ in
     mesa-demos
     nvidia-offload
     vulkan-tools
-    #wineWowPackages.stagingFull
     nix-gaming.packages.x86_64-linux.wine-tkg
     winetricks
   ];
