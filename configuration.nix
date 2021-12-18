@@ -77,6 +77,7 @@ in
 
   # GPU
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.package = nvidiaPackage;
   hardware.nvidia.prime = {
     offload.enable = true;
 
@@ -100,7 +101,6 @@ in
     libvdpau-va-gl
     libva
   ];
-  powerManagement.enable = false;
 
   # Enable the SwayWM.
   programs.sway = {
@@ -134,6 +134,7 @@ in
       export __GL_VRR_ALLOWED="1"
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
+      export GAMEMODERUNEXEC="nvidia-offload mangohud env DXVK_LOG_PATH=none"
     '';
     extraOptions = [
       "--unsupported-gpu"
@@ -187,7 +188,6 @@ in
     neovim
     nix-index
     nomacs
-    nvidia-offload
     pciutils
     pulseaudio-ctl
     qbittorrent
@@ -196,9 +196,9 @@ in
     spotify
     tdesktop
     tmux
-    usbutils
     unrar
     unzip
+    usbutils
     vimix-icon-theme
     wget
     xarchiver
@@ -219,11 +219,15 @@ in
     oxygen-icons5
     qqc2-breeze-style
 
-    mesa-demos
-    vulkan-tools
     mangohud
+    mesa-demos
+    nvidia-offload
+    vulkan-tools
+    wineWowPackages.staging
+    winetricks
   ];
   programs.fish.enable = true;
+  programs.gamemode.enable = true;
   programs.neovim.enable = true;
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
@@ -274,6 +278,21 @@ in
       deps = [];
     };
   };
+
+  # GenshinImpact
+  networking.extraHosts =
+    ''
+    # Genshin logging servers (do not remove!)
+    0.0.0.0 log-upload-os.mihoyo.com
+    0.0.0.0 overseauspider.yuanshen.com
+
+    # Optional Unity proxy/cdn servers
+    0.0.0.0 prd-lender.cdp.internal.unity3d.com
+    0.0.0.0 thind-prd-knob.data.ie.unity3d.com
+    0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
+    0.0.0.0 cdp.cloud.unity3d.com
+    0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
+    '';
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
