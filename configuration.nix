@@ -24,6 +24,20 @@ let
     exec -a "$0" "$@"
   '';
 
+  nowl = pkgs.writeShellScriptBin "nowl" ''
+     unset CLUTTER_BACKEND
+     unset ECORE_EVAS_ENGINE
+     unset ELM_ENGINE
+     unset SDL_VIDEODRIVER
+     unset BEMENU_BACKEND
+     unset GTK_USE_PORTAL
+     export GDK_BACKEND='x11'
+     export XDG_SESSION_TYPE='x11'
+     export QT_QPA_PLATFORM='xcb'
+     export MOZ_ENABLE_WAYLAND=0
+     exec -a "$0" "$@"
+  '';
+
   nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 
   nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
@@ -49,7 +63,7 @@ in
   # Other boot settings 
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
 
@@ -196,6 +210,7 @@ in
     mosh
     mpv
     neovim
+    nowl
     nix-index
     nomacs
     pciutils
@@ -229,6 +244,7 @@ in
     oxygen-icons5
     qqc2-breeze-style
 
+    lutris
     mangohud
     mesa-demos
     nvidia-offload
