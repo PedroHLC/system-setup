@@ -26,20 +26,28 @@ let
 
   nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 
+  nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
+
 in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  # External binary caches
+  nix = {
+    binaryCaches = [ "https://nix-gaming.cachix.org" ];
+    binaryCachePublicKeys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Other boot settings 
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
@@ -134,7 +142,7 @@ in
       export __GL_VRR_ALLOWED="1"
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
-      export GAMEMODERUNEXEC="nvidia-offload mangohud env DXVK_LOG_PATH=none"
+      export GAMEMODERUNEXEC="nvidia-offload mangohud env WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none"
     '';
     extraOptions = [
       "--unsupported-gpu"
@@ -223,7 +231,8 @@ in
     mesa-demos
     nvidia-offload
     vulkan-tools
-    wineWowPackages.staging
+    #wineWowPackages.stagingFull
+    nix-gaming.packages.x86_64-linux.wine-tkg
     winetricks
   ];
   programs.fish.enable = true;
