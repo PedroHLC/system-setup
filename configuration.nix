@@ -15,12 +15,13 @@ let
         --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
     '';
   });
-
+  
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __VK_LAYER_NV_optimus=NVIDIA_only
+    unset VK_ICD_FILENAMES
     exec -a "$0" "$@"
   '';
 
@@ -41,6 +42,14 @@ let
   nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
 
   nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
+
+  loginScript = pkgs.writeText "login-program.sh" ''
+    if [[ "$(tty)" == '/dev/tty1' ]]; then
+      ${pkgs.shadow}/bin/login -f pedrohlc;
+    else
+      ${pkgs.shadow}/bin/login;
+    fi
+  '';
 
 in
 {
@@ -83,6 +92,10 @@ in
     # Disable the firewall altogether.
     firewall.enable = false;
   };
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Sao_Paulo";
@@ -120,10 +133,18 @@ in
     driSupport32Bit = true;
   };
   hardware.opengl.extraPackages = with pkgs; [
+    intel-media-driver
     vaapiVdpau
     libvdpau-va-gl
     libva
   ];
+  # specialisation = {
+  #   external-display.configuration = {
+  #     system.nixos.tags = [ "external-display" ];
+  #     hardware.nvidia.prime.offload.enable = lib.mkForce false;
+  #     hardware.nvidia.powerManagement.enable = lib.mkForce false;
+  #   };
+  # };
 
   # Enable the SwayWM.
   programs.sway = {
@@ -157,6 +178,7 @@ in
       export __GL_VRR_ALLOWED="1"
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
+      export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
       export GAMEMODERUNEXEC="nvidia-offload mangohud env WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none"
     '';
     extraOptions = [
@@ -164,7 +186,12 @@ in
       "--my-next-gpu-wont-be-nvidia"
     ];
   };
-  xdg.portal.wlr.enable = true;
+  xdg.portal = { 
+    wlr.enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+  };
   services.xserver.layout = "br";
 
   # Enable sound.
@@ -174,6 +201,11 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  environment.variables = {
+    AE_SINK="ALSA";
+    SDL_AUDIODRIVER="alsa";
+  };
+  hardware.pulseaudio.enable = false;
 
   # User accounts
   users.users.pedrohlc = {
@@ -184,22 +216,27 @@ in
 
   # Autologin
   # systemd.services."autovt@tty1".serviceConfig = autoLoginServiceConfig;
-  services.getty.autologinUser = "pedrohlc";
+  services.getty = {
+    loginProgram = "${pkgs.bash}/bin/sh";
+    loginOptions = toString loginScript;
+    extraArgs = [ "--skip-login" ];
+  };
 
   # List packages installed.
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     acpi
     alacritty
+    android-tools
     aria2
     avell-unofficial-control-center
     brightnessctl
     cachix
-    discord-canary
     file
     firefox
     fzf
     git
+    gnome.zenity
     grim
     i3status-rust
     killall
@@ -213,8 +250,8 @@ in
     nowl
     nix-index
     nomacs
+    p7zip
     pciutils
-    pulseaudio-ctl
     qbittorrent
     slack
     slurp
@@ -224,25 +261,25 @@ in
     unrar
     unzip
     usbutils
-    vimix-icon-theme
     wget
     xarchiver
+    xdg_utils
     xfce.tumbler
     zoom-us
     
     dbeaver
     elmPackages.elm-format
     gnumake
+    nodejs
     sublime4
     yarn
 
     breeze-gtk
     breeze-icons
     breeze-qt5
-    libsForQt5.plasma-integration
-    libsForQt5.qtstyleplugins
     oxygen-icons5
     qqc2-breeze-style
+    vimix-icon-theme
 
     lutris
     mangohud
@@ -252,6 +289,7 @@ in
     nix-gaming.packages.x86_64-linux.wine-tkg
     winetricks
   ];
+  programs.dconf.enable = true;
   programs.fish.enable = true;
   programs.gamemode.enable = true;
   programs.neovim.enable = true;
@@ -259,6 +297,15 @@ in
   programs.neovim.vimAlias = true;
   programs.steam.enable = true;
   environment.variables.EDITOR = "nvim";
+  services.flatpak.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      nativeOnly = false;
+      extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud ];
+    };
+  };
 
   # Fonts
   fonts.fonts = with pkgs; [
