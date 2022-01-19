@@ -5,7 +5,7 @@ cd /mnt
 # Kernel options
 _DEFAULT='rw quiet iommu=pt btusb.enable_autosuspend=n systemd.unified_cgroup_hierarchy=1 nowatchdog'
 _MAKE_LINUX_FAST_AGAIN='noibrs noibpb nopti nospectre_v2 nospectre_v1 l1tf=off nospec_store_bypass_disable no_stf_barrier mds=off tsx=on tsx_async_abort=off mitigations=off'
-_ZFS='zfs=bootfs zfs_arc_max=8589934592'
+_ZFS='zfs=bootfs zfs_arc_max=8589934592 zfs_vdev_trim_max_active=1'
 
 # Bootloader
 cat <<EOF | tee -a ./boot/loader/entries/arch-tkg-muqss.conf > /dev/null

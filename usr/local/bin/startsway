@@ -32,8 +32,9 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 # Pipewire
 #export LD_PRELOAD="/usr/lib/libjack-pw.so" "/usr/lib/libpulse-"{pw,mainloop-glib-pw,simple-pw}".so"
 export AE_SINK=ALSA
-export SDL_AUDIODRIVER=alsa
+export SDL_AUDIODRIVER=pipewire
 export PIPEWIRE_LATENCY='128/96000'
+export ALSOFT_DRIVERS=pipewire
 
 # Telegram
 export TDESKTOP_DISABLE_GTK_INTEGRATION=1
