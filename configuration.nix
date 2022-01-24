@@ -78,6 +78,7 @@ in
 
   # Other boot settings 
   hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = true;
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
@@ -241,12 +242,14 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     acpi
+    adbfs-rootless
     alacritty
     android-tools
     aria2
     avell-unofficial-control-center
     brightnessctl
     cachix
+    ffmpegthumbnailer
     file
     firefox
     fzf
@@ -279,7 +282,6 @@ in
     wget
     xarchiver
     xdg_utils
-    xfce.tumbler
     zoom-us
 
     nur.repos.plabadens.sway-launcher-desktop
@@ -313,8 +315,10 @@ in
   programs.neovim.vimAlias = true;
   programs.steam.enable = true;
   environment.variables.EDITOR = "nvim";
+  services.gvfs.enable = true;
   services.jellyfin.enable = true;
   services.flatpak.enable = true;
+  services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   nixpkgs.config.packageOverrides = pkgs: {
