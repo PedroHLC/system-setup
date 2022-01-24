@@ -15,7 +15,7 @@ let
         --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
     '';
   });
-  
+
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -26,17 +26,17 @@ let
   '';
 
   nowl = pkgs.writeShellScriptBin "nowl" ''
-     unset CLUTTER_BACKEND
-     unset ECORE_EVAS_ENGINE
-     unset ELM_ENGINE
-     unset SDL_VIDEODRIVER
-     unset BEMENU_BACKEND
-     unset GTK_USE_PORTAL
-     export GDK_BACKEND='x11'
-     export XDG_SESSION_TYPE='x11'
-     export QT_QPA_PLATFORM='xcb'
-     export MOZ_ENABLE_WAYLAND=0
-     exec -a "$0" "$@"
+    unset CLUTTER_BACKEND
+    unset ECORE_EVAS_ENGINE
+    unset ELM_ENGINE
+    unset SDL_VIDEODRIVER
+    unset BEMENU_BACKEND
+    unset GTK_USE_PORTAL
+    export GDK_BACKEND='x11'
+    export XDG_SESSION_TYPE='x11'
+    export QT_QPA_PLATFORM='xcb'
+    export MOZ_ENABLE_WAYLAND=0
+    exec -a "$0" "$@"
   '';
 
   nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -54,10 +54,17 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  
+
+  # Nix package management settings
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+  nix.package = pkgs.nixUnstable;
+
   # External binary caches
   nix = {
     trustedUsers = [ "root" "pedrohlc" ];
@@ -70,11 +77,16 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Other boot settings 
+  hardware.enableRedistributableFirmware = true;
   # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
+  boot.kernel.sysctl = {
+    "dev.i915.perf_stream_paranoid" = false;
+  };
+
 
   # Network
   networking = {
@@ -186,7 +198,7 @@ in
       "--my-next-gpu-wont-be-nvidia"
     ];
   };
-  xdg.portal = { 
+  xdg.portal = {
     wlr.enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
@@ -200,10 +212,13 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    media-session.enable = false;
+    systemWide = false;
   };
+  services.pipewire.wireplumber.enable = true;
   environment.variables = {
-    AE_SINK="ALSA";
-    SDL_AUDIODRIVER="alsa";
+    AE_SINK = "ALSA";
+    SDL_AUDIODRIVER = "alsa";
   };
   hardware.pulseaudio.enable = false;
 
@@ -266,7 +281,9 @@ in
     xdg_utils
     xfce.tumbler
     zoom-us
-    
+
+    nur.repos.plabadens.sway-launcher-desktop
+
     dbeaver
     elmPackages.elm-format
     gnumake
@@ -281,7 +298,6 @@ in
     qqc2-breeze-style
     vimix-icon-theme
 
-    lutris
     mangohud
     mesa-demos
     nvidia-offload
@@ -297,10 +313,14 @@ in
   programs.neovim.vimAlias = true;
   programs.steam.enable = true;
   environment.variables.EDITOR = "nvim";
+  services.jellyfin.enable = true;
   services.flatpak.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
   nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
     steam = pkgs.steam.override {
       nativeOnly = false;
       extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud ];
@@ -341,30 +361,19 @@ in
     };
   };
 
-  # RFKILL
-  system.activationScripts = {
-    rfkillInit = {
-      text = ''
-      rfkill unblock wlan
-      rfkill block bluetooth
-      '';
-      deps = [];
-    };
-  };
-
   # GenshinImpact
   networking.extraHosts =
     ''
-    # Genshin logging servers (do not remove!)
-    0.0.0.0 log-upload-os.mihoyo.com
-    0.0.0.0 overseauspider.yuanshen.com
+      # Genshin logging servers (do not remove!)
+      0.0.0.0 log-upload-os.mihoyo.com
+      0.0.0.0 overseauspider.yuanshen.com
 
-    # Optional Unity proxy/cdn servers
-    0.0.0.0 prd-lender.cdp.internal.unity3d.com
-    0.0.0.0 thind-prd-knob.data.ie.unity3d.com
-    0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
-    0.0.0.0 cdp.cloud.unity3d.com
-    0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
+      # Optional Unity proxy/cdn servers
+      0.0.0.0 prd-lender.cdp.internal.unity3d.com
+      0.0.0.0 thind-prd-knob.data.ie.unity3d.com
+      0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
+      0.0.0.0 cdp.cloud.unity3d.com
+      0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
     '';
 
   # This value determines the NixOS release from which the default
@@ -378,9 +387,9 @@ in
   # Storage optimization
   nix.autoOptimiseStore = true;
   nix.gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
   };
   system.autoUpgrade.enable = true;
 }
