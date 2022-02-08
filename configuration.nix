@@ -1,21 +1,21 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
+# Uses
 { config, lib, pkgs, ... }:
 
+# My user-defined values
 let
-  slack = pkgs.slack.overrideAttrs (old: {
-    installPhase = old.installPhase + ''
-      rm $out/bin/slack
+  # Wayland Slack (broken -- issue #156352).
+  #slack = pkgs.slack.overrideAttrs (old: {
+  #  installPhase = old.installPhase + ''
+  #    rm $out/bin/slack
+  #
+  #    makeWrapper $out/lib/slack/slack $out/bin/slack \
+  #      --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+  #      --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
+  #      --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
+  #  '';
+  #});
 
-      makeWrapper $out/lib/slack/slack $out/bin/slack \
-        --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-        --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-        --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
-    '';
-  });
-
+  # NVIDIA Offloading (ajusted to work on X11 and Wayland).
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -25,6 +25,10 @@ let
     exec -a "$0" "$@"
   '';
 
+  # Preferred NVIDIA Version.
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+
+  # Script to force XWayland (in case something catches fire).
   nowl = pkgs.writeShellScriptBin "nowl" ''
     unset CLUTTER_BACKEND
     unset ECORE_EVAS_ENGINE
@@ -39,10 +43,10 @@ let
     exec -a "$0" "$@"
   '';
 
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
-
+  # An extra gaming repo for wine-tkg.
   nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
 
+  # Script required for autologin (only on TTY1).
   loginScript = pkgs.writeText "login-program.sh" ''
     if [[ "$(tty)" == '/dev/tty1' ]]; then
       ${pkgs.shadow}/bin/login -f pedrohlc;
@@ -51,6 +55,7 @@ let
     fi
   '';
 
+  # NixOS-defined options
 in
 {
   imports =
@@ -59,37 +64,42 @@ in
       ./hardware-configuration.nix
     ];
 
-  # Nix package management settings
+  # Nix package-management settings.
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
   nix.package = pkgs.nixUnstable;
 
-  # External binary caches
-  nix = {
-    trustedUsers = [ "root" "pedrohlc" ];
-    binaryCaches = [ "https://nix-gaming.cachix.org" ];
-    binaryCachePublicKeys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+  # Unofficial binary caches.
+  nix.settings = {
+    trusted-users = [ "root" "pedrohlc" ];
+    substituters = [ "https://nix-gaming.cachix.org" ];
+    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
   };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Other boot settings 
+  # Microcode updates.
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;
-  # boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages; #= pkgs.linuxPackages_zen;
+
+  # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
+
+  # Disable Intel's stream-paranoid for gaming.
   boot.kernel.sysctl = {
     "dev.i915.perf_stream_paranoid" = false;
   };
 
 
-  # Network
+  # Network (NetworkManager & iwd).
   networking = {
     hostId = "0f8623ae";
     hostName = "laptop";
@@ -99,21 +109,26 @@ in
       wifi.backend = "iwd";
     };
 
+    # "enp2s0" instead of "eth0". 
     usePredictableInterfaceNames = true;
+
+    # Disable non-NetworkManager.
     useDHCP = false;
 
     # Disable the firewall altogether.
     firewall.enable = false;
   };
+
+  # LAN discovery.
   services.avahi = {
     enable = true;
     nssmdns = true;
   };
 
-  # Set your time zone.
+  # Default time zone.
   time.timeZone = "America/Sao_Paulo";
 
-  # Select internationalisation properties.
+  # Internationalisation.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
@@ -124,17 +139,13 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # GPU
+  # NVIDIA GPU (PRIME Offloading + Wayland)
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.package = nvidiaPackage;
   hardware.nvidia.prime = {
     offload.enable = true;
-
-    # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
-    intelBusId = "PCI:0:2:0";
-
-    # Bus ID of the NVIDIA GPU. You can find it using lspci, either under 3D or VGA
-    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
+    nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
   };
   environment.etc = {
     "gbm/nvidia-drm_gbm.so".source = "${nvidiaPackage}/lib/libnvidia-allocator.so";
@@ -145,19 +156,14 @@ in
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  # NVIDIA & Intel VAAPI
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
     vaapiVdpau
     libvdpau-va-gl
     libva
   ];
-  # specialisation = {
-  #   external-display.configuration = {
-  #     system.nixos.tags = [ "external-display" ];
-  #     hardware.nvidia.prime.offload.enable = lib.mkForce false;
-  #     hardware.nvidia.powerManagement.enable = lib.mkForce false;
-  #   };
-  # };
 
   # Enable the SwayWM.
   programs.sway = {
@@ -171,6 +177,7 @@ in
       libinput-gestures
     ];
     extraSessionCommands = ''
+      # Force wayland overall.
       export BEMENU_BACKEND='wayland'
       export CLUTTER_BACKEND='wayland'
       export ECORE_EVAS_ENGINE='wayland_egl'
@@ -184,10 +191,12 @@ in
       export SDL_VIDEODRIVER='wayland'
       export _JAVA_AWT_WM_NONREPARENTING=1
       
+      # KDE/Plasma platform for Qt apps.
       export QT_QPA_PLATFORMTHEME='kde'
       export QT_PLATFORM_PLUGIN='kde'
       export QT_PLATFORMTHEME='kde'
 
+      # NVIDIA & Gaming.
       export __GL_VRR_ALLOWED="1"
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
@@ -196,18 +205,22 @@ in
     '';
     extraOptions = [
       "--unsupported-gpu"
-      "--my-next-gpu-wont-be-nvidia"
     ];
   };
+
+  # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-wlr
     ];
   };
+
+  # X11+XWayland keyboard layout.
   services.xserver.layout = "br";
 
-  # Enable sound.
+  # Sound (pipewire & wireplumber).
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -217,30 +230,30 @@ in
     systemWide = false;
   };
   services.pipewire.wireplumber.enable = true;
-  environment.variables = {
-    AE_SINK = "ALSA";
-    SDL_AUDIODRIVER = "alsa";
-  };
   hardware.pulseaudio.enable = false;
+  environment.variables = {
+    AE_SINK = "ALSA"; # For Kodi, better latency/volume under (pipewire-)pulse.
+    SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
+  };
 
-  # User accounts
+  # User accounts.
   users.users.pedrohlc = {
     isNormalUser = true;
     extraGroups = [ "wheel" "video" "networkmanager" ];
   };
   security.sudo.wheelNeedsPassword = false;
 
-  # Autologin
-  # systemd.services."autovt@tty1".serviceConfig = autoLoginServiceConfig;
+  # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
     loginOptions = toString loginScript;
     extraArgs = [ "--skip-login" ];
   };
 
-  # List packages installed.
+  # List packages.
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    # Desktop apps
     acpi
     adbfs-rootless
     alacritty
@@ -249,12 +262,14 @@ in
     avell-unofficial-control-center
     brightnessctl
     cachix
+    discord
     ffmpegthumbnailer
     file
     firefox
     fzf
     git
     gnome.zenity
+    google-chrome-beta
     grim
     i3status-rust
     killall
@@ -280,19 +295,21 @@ in
     unzip
     usbutils
     wget
+    wpsoffice
     xarchiver
     xdg_utils
     zoom-us
 
-    nur.repos.plabadens.sway-launcher-desktop
-
+    # Development apps
     dbeaver
     elmPackages.elm-format
     gnumake
+    nixpkgs-fmt
     nodejs
     sublime4
     yarn
 
+    # Desktop themes
     breeze-gtk
     breeze-icons
     breeze-qt5
@@ -300,6 +317,7 @@ in
     qqc2-breeze-style
     vimix-icon-theme
 
+    # Gaming
     mangohud
     mesa-demos
     nvidia-offload
@@ -307,6 +325,8 @@ in
     nix-gaming.packages.x86_64-linux.wine-tkg
     winetricks
   ];
+
+  # Special apps (requires more than their package to work).
   programs.dconf.enable = true;
   programs.fish.enable = true;
   programs.gamemode.enable = true;
@@ -314,13 +334,8 @@ in
   programs.neovim.viAlias = true;
   programs.neovim.vimAlias = true;
   programs.steam.enable = true;
-  environment.variables.EDITOR = "nvim";
-  services.gvfs.enable = true;
-  services.jellyfin.enable = true;
-  services.flatpak.enable = true;
-  services.tumbler.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+
+  # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
@@ -331,7 +346,23 @@ in
     };
   };
 
-  # Fonts
+  # Enable services (automatically includes their apps' packages).
+  services.gvfs.enable = true;
+  services.jellyfin.enable = true;
+  services.tumbler.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.openssh.enable = true;
+
+  # SSHd requires gnupg that requires SUID.
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  # Default apps.
+  environment.variables.EDITOR = "nvim";
+
+  # Fonts.
   fonts.fonts = with pkgs; [
     cantarell-fonts
     fira
@@ -347,25 +378,16 @@ in
     ubuntu_font_family
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
-  # List services that you want to enable:
-  services.openssh.enable = true;
-
-  # Virtualisation
+  # Virtualisation / Containerization.
   virtualisation = {
     podman = {
       enable = true;
-      dockerCompat = true;
+      dockerCompat = true; # Podman provides docker.
     };
   };
 
-  # GenshinImpact
+  # Required to play GenshinImpact on Linux without banning.
   networking.extraHosts =
     ''
       # Genshin logging servers (do not remove!)
@@ -380,6 +402,17 @@ in
       0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
     '';
 
+  # Automatically removes NixOS' older builds.
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  # Auto-upgrade NixOS.
+  system.autoUpgrade.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -387,14 +420,5 @@ in
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.11"; # Did you read the comment?
-
-  # Storage optimization
-  nix.autoOptimiseStore = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  system.autoUpgrade.enable = true;
 }
 
