@@ -1,7 +1,7 @@
-# Uses
+# The top lambda and it super set of parameters.
 { config, lib, pkgs, ... }:
 
-# My user-defined values
+# My user-named values.
 let
   # Wayland Slack (broken -- issue #156352).
   #slack = pkgs.slack.overrideAttrs (old: {
@@ -55,8 +55,8 @@ let
     fi
   '';
 
-  # NixOS-defined options
 in
+# NixOS-defined options
 {
   imports =
     [
@@ -115,7 +115,7 @@ in
     # Disable non-NetworkManager.
     useDHCP = false;
 
-    # Disable the firewall altogether.
+    # Disable the firewall.
     firewall.enable = false;
   };
 
@@ -135,7 +135,7 @@ in
     keyMap = "br-abnt2";
   };
 
-  # Bluetooth
+  # Bluetooth.
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
@@ -279,10 +279,9 @@ in
     mako
     mosh
     mpv
-    neovim
-    nowl
     nix-index
     nomacs
+    nowl
     p7zip
     pciutils
     qbittorrent
@@ -320,9 +319,9 @@ in
     # Gaming
     mangohud
     mesa-demos
+    nix-gaming.packages.x86_64-linux.wine-tkg
     nvidia-offload
     vulkan-tools
-    nix-gaming.packages.x86_64-linux.wine-tkg
     winetricks
   ];
 
@@ -330,10 +329,14 @@ in
   programs.dconf.enable = true;
   programs.fish.enable = true;
   programs.gamemode.enable = true;
-  programs.neovim.enable = true;
-  programs.neovim.viAlias = true;
-  programs.neovim.vimAlias = true;
   programs.steam.enable = true;
+
+  # Neovim to rule them all.
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+  };
 
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
@@ -349,11 +352,11 @@ in
   # Enable services (automatically includes their apps' packages).
   services.gvfs.enable = true;
   services.jellyfin.enable = true;
+  services.openssh.enable = true;
   services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  services.openssh.enable = true;
 
-  # SSHd requires gnupg that requires SUID.
+  # SSH requires gnupg that requires SUID.
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
