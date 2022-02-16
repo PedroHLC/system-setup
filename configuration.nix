@@ -3,25 +3,13 @@
 
 # My user-named values.
 let
-  # Wayland Slack (broken -- issue #156352).
-  #slack = pkgs.slack.overrideAttrs (old: {
-  #  installPhase = old.installPhase + ''
-  #    rm $out/bin/slack
-  #
-  #    makeWrapper $out/lib/slack/slack $out/bin/slack \
-  #      --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-  #      --prefix PATH : ${lib.makeBinPath [pkgs.xdg-utils]} \
-  #      --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
-  #  '';
-  #});
-
   # NVIDIA Offloading (ajusted to work on X11 and Wayland).
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __VK_LAYER_NV_optimus=NVIDIA_only
-    unset VK_ICD_FILENAMES
+    export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.x86_64.json"
     exec -a "$0" "$@"
   '';
 
@@ -36,6 +24,7 @@ let
     unset SDL_VIDEODRIVER
     unset BEMENU_BACKEND
     unset GTK_USE_PORTAL
+    unset NIXOS_OZONE_WL
     export GDK_BACKEND='x11'
     export XDG_SESSION_TYPE='x11'
     export QT_QPA_PLATFORM='xcb'
@@ -190,6 +179,7 @@ in
       export SAL_USE_VCLPLUGIN='gtk3'
       export SDL_VIDEODRIVER='wayland'
       export _JAVA_AWT_WM_NONREPARENTING=1
+      export NIXOS_OZONE_WL=1
       
       # KDE/Plasma platform for Qt apps.
       export QT_QPA_PLATFORMTHEME='kde'
@@ -201,7 +191,7 @@ in
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
       export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
-      export GAMEMODERUNEXEC="nvidia-offload mangohud env WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none"
+      export GAMEMODERUNEXEC="nvidia-offload mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none"
     '';
     extraOptions = [
       "--unsupported-gpu"
@@ -267,6 +257,7 @@ in
     file
     firefox
     fzf
+    # fx_cast_bridge (broken)
     git
     gnome.zenity
     google-chrome-beta
@@ -276,7 +267,6 @@ in
     lm_sensors
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
-    mako
     mosh
     mpv
     nix-index
@@ -288,6 +278,7 @@ in
     slack
     slurp
     spotify
+    swaynotificationcenter
     tdesktop
     tmux
     unrar
@@ -300,7 +291,6 @@ in
     zoom-us
 
     # Development apps
-    dbeaver
     elmPackages.elm-format
     gnumake
     nixpkgs-fmt
@@ -327,6 +317,7 @@ in
 
   # Special apps (requires more than their package to work).
   programs.dconf.enable = true;
+  programs.droidcam.enable = true;
   programs.fish.enable = true;
   programs.gamemode.enable = true;
   programs.steam.enable = true;
@@ -345,7 +336,7 @@ in
     };
     steam = pkgs.steam.override {
       nativeOnly = false;
-      extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud ];
+      extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
     };
   };
 
