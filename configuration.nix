@@ -250,6 +250,7 @@ in
     android-tools
     aria2
     avell-unofficial-control-center
+    avizo
     brightnessctl
     cachix
     discord
@@ -273,6 +274,7 @@ in
     nomacs
     nowl
     p7zip
+    pamixer # for avizo
     pciutils
     qbittorrent
     slack
@@ -341,6 +343,7 @@ in
   };
 
   # Enable services (automatically includes their apps' packages).
+  services.fwupd.enable = true;
   services.gvfs.enable = true;
   services.jellyfin.enable = true;
   services.openssh.enable = true;
