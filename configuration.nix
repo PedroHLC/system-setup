@@ -9,7 +9,7 @@ let
     export __NV_PRIME_RENDER_OFFLOAD=1
     export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
     export __VK_LAYER_NV_optimus=NVIDIA_only
-    export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.x86_64.json"
+    export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json"
     exec -a "$0" "$@"
   '';
 
@@ -35,10 +35,13 @@ let
   # An extra gaming repo for wine-tkg.
   nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
 
-  # Script required for autologin (only on TTY1).
+  # Script required for autologin (per TTYs).
   loginScript = pkgs.writeText "login-program.sh" ''
-    if [[ "$(tty)" == '/dev/tty1' ]]; then
+    TTY="$(tty)"
+    if [[ "$TTY" == '/dev/tty1' ]]; then
       ${pkgs.shadow}/bin/login -f pedrohlc;
+    elif [[ "$TTY" == '/dev/tty2' ]]; then
+      ${pkgs.shadow}/bin/login -f melinapn;
     else
       ${pkgs.shadow}/bin/login;
     fi
@@ -82,20 +85,22 @@ in
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
 
-  # Disable Intel's stream-paranoid for gaming.
+  # Disable Intel's stream-paranoid for gaming. (NOT WORKING)
   boot.kernel.sysctl = {
     "dev.i915.perf_stream_paranoid" = false;
   };
+  boot.kernelParams = [ "i915.enable_psr=0" ];
 
 
-  # Network (NetworkManager & iwd).
+  # Network (NetworkManager).
   networking = {
     hostId = "0f8623ae";
     hostName = "laptop";
 
     networkmanager = {
       enable = true;
-      wifi.backend = "iwd";
+      wifi.backend = "wpa_supplicant";
+      # IWD seems to race-condition with predictable interfaces and lacks WiFi Direct
     };
 
     # "enp2s0" instead of "eth0". 
@@ -118,7 +123,8 @@ in
   time.timeZone = "America/Sao_Paulo";
 
   # Internationalisation.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_GB.UTF-8";
+  i18n.supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "pt_BR.UTF-8/UTF-8" ];
   console = {
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
@@ -221,15 +227,22 @@ in
   };
   services.pipewire.wireplumber.enable = true;
   hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
   environment.variables = {
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under (pipewire-)pulse.
     SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
   };
 
   # User accounts.
-  users.users.pedrohlc = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
+  users.users = {
+    pedrohlc = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "video" "networkmanager" "rtkit" ];
+    };
+    melinapn = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "video" "networkmanager" ];
+    };
   };
   security.sudo.wheelNeedsPassword = false;
 
@@ -260,6 +273,7 @@ in
     fzf
     # fx_cast_bridge (broken)
     git
+    gnome-network-displays
     gnome.zenity
     google-chrome-beta
     grim
@@ -283,6 +297,7 @@ in
     swaynotificationcenter
     tdesktop
     tmux
+    traceroute
     unrar
     unzip
     usbutils
@@ -319,7 +334,6 @@ in
 
   # Special apps (requires more than their package to work).
   programs.dconf.enable = true;
-  programs.droidcam.enable = true;
   programs.fish.enable = true;
   programs.gamemode.enable = true;
   programs.steam.enable = true;
@@ -337,7 +351,6 @@ in
       inherit pkgs;
     };
     steam = pkgs.steam.override {
-      nativeOnly = false;
       extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
     };
   };
