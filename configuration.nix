@@ -60,7 +60,6 @@ in
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.package = pkgs.nixUnstable;
 
   # Unofficial binary caches.
   nix.settings = {
@@ -78,7 +77,9 @@ in
   hardware.cpu.intel.updateMicrocode = true;
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages; #= pkgs.linuxPackages_zen;
+  boot.kernelPackages =
+    #pkgs.linuxPackages_zen;
+    config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
@@ -197,7 +198,7 @@ in
       export __NV_PRIME_RENDER_OFFLOAD="1"
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
       export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
-      export GAMEMODERUNEXEC="nvidia-offload mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none"
+      export GAMEMODERUNEXEC="nvidia-offload mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa"
     '';
     extraOptions = [
       "--unsupported-gpu"
@@ -229,8 +230,9 @@ in
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   environment.variables = {
-    AE_SINK = "ALSA"; # For Kodi, better latency/volume under (pipewire-)pulse.
+    AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
+    ALSOFT_DRIVERS = "alsa"; # Fixes Telegram, better latency under pw. (waiting stable release of pipewire driver).
   };
 
   # User accounts.
