@@ -3,7 +3,7 @@
 
 # My user-named values.
 let
-  # NVIDIA Offloading (ajusted to work on X11 and Wayland).
+  # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
     export __GLX_VENDOR_LIBRARY_NAME=nvidia
     export __NV_PRIME_RENDER_OFFLOAD=1
@@ -78,19 +78,37 @@ in
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
   boot.kernelPackages =
-    #pkgs.linuxPackages_zen;
-    config.boot.zfs.package.latestCompatibleLinuxPackages;
+    pkgs.linuxPackages_zen;
+  #config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
 
-  # Disable Intel's stream-paranoid for gaming. (NOT WORKING)
-  boot.kernel.sysctl = {
-    "dev.i915.perf_stream_paranoid" = false;
-  };
-  boot.kernelParams = [ "i915.enable_psr=0" ];
+  # Disable Intel's stream-paranoid for gaming.
+  # Alternative solution, see nixpkgs issue 139182.
+  networking.localCommands = ''
+    ${pkgs.procps}/bin/sysctl -w dev.i915.perf_stream_paranoid=0
+  '';
+
+  # Kernel Params
+  boot.kernelParams = [
+    # Disable all mitigations
+    "mitigations=off"
+    "no_stf_barrier"
+    "noibpb"
+    "noibrs"
+    "nopti"
+    "tsx=on"
+
+    # Laptops and dekstops don't need Watchdog
+    "nowatchdog"
+  ];
+  boot.kernel.sysctl =
+    {
+      "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
+    };
 
 
   # Network (NetworkManager).
@@ -124,8 +142,13 @@ in
   time.timeZone = "America/Sao_Paulo";
 
   # Internationalisation.
-  i18n.defaultLocale = "en_GB.UTF-8";
-  i18n.supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "pt_BR.UTF-8/UTF-8" ];
+  i18n = {
+    defaultLocale = "en_GB.UTF-8";
+    supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "pt_BR.UTF-8/UTF-8" ];
+    extraLocaleSettings = {
+      LC_TIME = "pt_BR.UTF-8";
+    };
+  };
   console = {
     font = "Lat2-Terminus16";
     keyMap = "br-abnt2";
@@ -214,7 +237,7 @@ in
     ];
   };
 
-  # X11+XWayland keyboard layout.
+  # XWayland keyboard layout.
   services.xserver.layout = "br";
 
   # Sound (pipewire & wireplumber).
@@ -225,10 +248,11 @@ in
     pulse.enable = true;
     media-session.enable = false;
     systemWide = false;
+
+    wireplumber.enable = true;
   };
-  services.pipewire.wireplumber.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  security.rtkit.enable = true; # OpenAL likes it, but my pipewire is not configure to rt.
   environment.variables = {
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
@@ -243,7 +267,7 @@ in
     };
     melinapn = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "video" "networkmanager" ];
+      extraGroups = [ "video" "networkmanager" ];
     };
   };
   security.sudo.wheelNeedsPassword = false;
@@ -267,6 +291,7 @@ in
     avell-unofficial-control-center
     avizo
     brightnessctl
+    btop
     cachix
     discord
     ffmpegthumbnailer
@@ -279,6 +304,7 @@ in
     gnome.zenity
     google-chrome-beta
     grim
+    helvum
     i3status-rust
     killall
     lm_sensors
@@ -314,6 +340,8 @@ in
     gnumake
     nixpkgs-fmt
     nodejs
+    shellcheck
+    shfmt
     sublime4
     yarn
 
@@ -332,6 +360,10 @@ in
     nvidia-offload
     vulkan-tools
     winetricks
+
+    # GI
+    jq
+    xdelta
   ];
 
   # Special apps (requires more than their package to work).
@@ -361,9 +393,13 @@ in
   services.fwupd.enable = true;
   services.gvfs.enable = true;
   services.jellyfin.enable = true;
+  services.ntp.enable = true;
   services.openssh.enable = true;
   services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+
+  # We are anxiously waiting for PR 122547
+  #services.dbus-broker.enable = true;
 
   # SSH requires gnupg that requires SUID.
   programs.gnupg.agent = {
