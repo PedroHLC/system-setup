@@ -33,7 +33,7 @@ let
   '';
 
   # An extra gaming repo for wine-tkg.
-  nix-gaming = import (builtins.fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
+  nixGaming = import (fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
 
   # Script required for autologin (per TTYs).
   loginScript = pkgs.writeText "login-program.sh" ''
@@ -78,8 +78,8 @@ in
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
   boot.kernelPackages =
+    #config.boot.zfs.package.latestCompatibleLinuxPackages;
     pkgs.linuxPackages_zen;
-  #config.boot.zfs.package.latestCompatibleLinuxPackages;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
@@ -87,10 +87,8 @@ in
   boot.tmpOnTmpfs = true;
 
   # Disable Intel's stream-paranoid for gaming.
-  # Alternative solution, see nixpkgs issue 139182.
-  networking.localCommands = ''
-    ${pkgs.procps}/bin/sysctl -w dev.i915.perf_stream_paranoid=0
-  '';
+  # (not working - see nixpkgs issue 139182)
+  boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
 
   # Kernel Params
   boot.kernelParams = [
@@ -105,10 +103,9 @@ in
     # Laptops and dekstops don't need Watchdog
     "nowatchdog"
   ];
-  boot.kernel.sysctl =
-    {
-      "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
-    };
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
+  };
 
 
   # Network (NetworkManager).
@@ -176,11 +173,9 @@ in
     driSupport32Bit = true;
   };
 
-  # NVIDIA & Intel VAAPI
+  # Intel VAAPI (NVIDIA enable its own)
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
-    vaapiVdpau
-    libvdpau-va-gl
     libva
   ];
 
@@ -264,6 +259,7 @@ in
     pedrohlc = {
       isNormalUser = true;
       extraGroups = [ "wheel" "video" "networkmanager" "rtkit" ];
+      shell = pkgs.dash;
     };
     melinapn = {
       isNormalUser = true;
@@ -296,12 +292,13 @@ in
     discord
     ffmpegthumbnailer
     file
-    firefox
+    firefox-wayland
     fzf
-    # fx_cast_bridge (broken)
+    #fx_cast_bridge # broken
     git
     gnome-network-displays
     gnome.zenity
+    google-authenticator
     google-chrome-beta
     grim
     helvum
@@ -322,6 +319,7 @@ in
     slack
     slurp
     spotify
+    sway-launcher-desktop
     swaynotificationcenter
     tdesktop
     tmux
@@ -356,7 +354,7 @@ in
     # Gaming
     mangohud
     mesa-demos
-    nix-gaming.packages.x86_64-linux.wine-tkg
+    nixGaming.packages.x86_64-linux.wine-tkg
     nvidia-offload
     vulkan-tools
     winetricks
@@ -378,11 +376,15 @@ in
     viAlias = true;
     vimAlias = true;
   };
+  environment.variables.EDITOR = "nvim";
 
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+    nur = import (fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
+    };
+    master = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {
+      config = config.nixpkgs.config;
     };
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
@@ -394,9 +396,12 @@ in
   services.gvfs.enable = true;
   services.jellyfin.enable = true;
   services.ntp.enable = true;
-  services.openssh.enable = true;
+  services.sshd.enable = true; # TODO: Use openssh_hpn
   services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+
+  # Enable google-authenticator
+  security.pam.services.sshd.googleAuthenticator.enable = true;
 
   # We are anxiously waiting for PR 122547
   #services.dbus-broker.enable = true;
@@ -407,11 +412,10 @@ in
     enableSSHSupport = true;
   };
 
-  # Default apps.
-  environment.variables.EDITOR = "nvim";
-
   # Fonts.
   fonts.fonts = with pkgs; [
+    master.borg-sans-mono
+
     cantarell-fonts
     fira
     fira-code
