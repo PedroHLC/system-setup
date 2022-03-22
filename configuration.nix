@@ -5,11 +5,12 @@
 let
   # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
   nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
+    export __GLX_VENDOR_LIBRARY_NAME="nvidia"
     export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __VK_LAYER_NV_optimus=NVIDIA_only
+    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER="NVIDIA-G0"
+    export __VK_LAYER_NV_optimus="NVIDIA_only"
     export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json"
+    export LIBVA_DRIVER_NAME="nvidia"
     exec -a "$0" "$@"
   '';
 
@@ -211,11 +212,14 @@ in
       export QT_PLATFORM_PLUGIN='kde'
       export QT_PLATFORMTHEME='kde'
 
-      # NVIDIA & Gaming.
-      export __GL_VRR_ALLOWED="1"
-      export __NV_PRIME_RENDER_OFFLOAD="1"
+      # Adjust NVIDIA Optimus and use Intel by-default.
+      export __GL_VRR_ALLOWED=1
+      export __NV_PRIME_RENDER_OFFLOAD=1
       export __VK_LAYER_NV_optimus="non_NVIDIA_only"
       export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
+      export LIBVA_DRIVER_NAME="iHD"
+
+      # Gaming
       export GAMEMODERUNEXEC="nvidia-offload mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa"
     '';
     extraOptions = [
@@ -281,7 +285,8 @@ in
     # Desktop apps
     acpi
     adbfs-rootless
-    alacritty
+    nur.repos.misterio.alacritty-ligatures
+    #alacritty
     android-tools
     aria2
     avell-unofficial-control-center
@@ -394,11 +399,15 @@ in
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
   services.gvfs.enable = true;
-  services.jellyfin.enable = true;
   services.ntp.enable = true;
   services.sshd.enable = true; # TODO: Use openssh_hpn
   services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
+  services.minidlna = {
+    enable = true;
+    friendlyName = "laptop";
+    mediaDirs = [ "/home/upnp-shared/Media" ];
+  };
 
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
@@ -414,7 +423,7 @@ in
 
   # Fonts.
   fonts.fonts = with pkgs; [
-    master.borg-sans-mono
+    borg-sans-mono
 
     cantarell-fonts
     fira
