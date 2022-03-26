@@ -6,7 +6,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    
+
     # I use this inputs every once in a while
     #nur.url = "github:nix-community/NUR";
     #master.url = "github:NixOS/nixpkgs/master";
@@ -19,6 +19,8 @@
       specialArgs = attrs;
       modules = [
         ./configuration.nix
+        ./laptop/hardware-configuration.nix
+        ./laptop/configuration.nix
       ];
     };
   };

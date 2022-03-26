@@ -3,20 +3,6 @@
 
 # My user-named values.
 let
-  # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __GLX_VENDOR_LIBRARY_NAME="nvidia"
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER="NVIDIA-G0"
-    export __VK_LAYER_NV_optimus="NVIDIA_only"
-    export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/nvidia_icd.i686.json"
-    export LIBVA_DRIVER_NAME="nvidia"
-    exec -a "$0" "$@"
-  '';
-
-  # Preferred NVIDIA Version.
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
-
   # Script to force XWayland (in case something catches fire).
   nowl = pkgs.writeShellScriptBin "nowl" ''
     unset CLUTTER_BACKEND
@@ -48,22 +34,20 @@ let
 in
 # NixOS-defined options
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
-
   # Nix package-management settings.
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
+  nix = {
+    # Enable flakes and newer CLI features
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings = {
+      # Allow my user to use nix
+      trusted-users = [ "root" "pedrohlc" ];
 
-  # Unofficial binary caches.
-  nix.settings = {
-    trusted-users = [ "root" "pedrohlc" ];
-    substituters = [ "https://nix-gaming.cachix.org" ];
-    trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+      # Unofficial binary caches.
+      substituters = [ "https://nix-gaming.cachix.org" ];
+      trusted-public-keys = [ "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -83,10 +67,6 @@ in
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.tmpOnTmpfs = true;
-
-  # Disable Intel's stream-paranoid for gaming.
-  # (not working - see nixpkgs issue 139182)
-  boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
 
   # Kernel Params
   boot.kernelParams = [
@@ -108,9 +88,6 @@ in
 
   # Network (NetworkManager).
   networking = {
-    hostId = "0f8623ae";
-    hostName = "laptop";
-
     networkmanager = {
       enable = true;
       wifi.backend = "wpa_supplicant";
@@ -153,29 +130,12 @@ in
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # NVIDIA GPU (PRIME Offloading + Wayland)
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.package = nvidiaPackage;
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
-    nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
-  };
-  environment.etc = {
-    "gbm/nvidia-drm_gbm.so".source = "${nvidiaPackage}/lib/libnvidia-allocator.so";
-    "egl/egl_external_platform.d".source = "/run/opengl-driver/share/egl/egl_external_platform.d/";
-  };
+  # GPU
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  # Intel VAAPI (NVIDIA enable its own)
-  hardware.opengl.extraPackages = with pkgs; [
-    intel-media-driver
-    libva
-  ];
 
   # Enable the SwayWM.
   programs.sway = {
@@ -208,20 +168,7 @@ in
       export QT_QPA_PLATFORMTHEME='kde'
       export QT_PLATFORM_PLUGIN='kde'
       export QT_PLATFORMTHEME='kde'
-
-      # Adjust NVIDIA Optimus and use Intel by-default.
-      export __GL_VRR_ALLOWED=1
-      export __NV_PRIME_RENDER_OFFLOAD=1
-      export __VK_LAYER_NV_optimus="non_NVIDIA_only"
-      export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
-      export LIBVA_DRIVER_NAME="iHD"
-
-      # Gaming
-      export GAMEMODERUNEXEC="nvidia-offload mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa"
     '';
-    extraOptions = [
-      "--unsupported-gpu"
-    ];
   };
 
   # XDG-Portal (for dialogs & screensharing).
@@ -253,6 +200,7 @@ in
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
     ALSOFT_DRIVERS = "alsa"; # Fixes Telegram, better latency under pw. (waiting stable release of pipewire driver).
+    GAMEMODERUNEXEC = "mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa";
   };
 
   # User accounts.
@@ -360,7 +308,6 @@ in
     mangohud
     mesa-demos
     nix-gaming.packages.x86_64-linux.wine-tkg
-    nvidia-offload
     vulkan-tools
     winetricks
 
@@ -386,7 +333,7 @@ in
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
+      extraPkgs = pkgs: with pkgs; [ gamemode mangohud ];
     };
   };
 
@@ -399,7 +346,6 @@ in
   services.xserver.desktopManager.plasma5.enable = true;
   services.minidlna = {
     enable = true;
-    friendlyName = "laptop";
     mediaDirs = [ "/home/upnp-shared/Media" ];
   };
 
@@ -467,13 +413,4 @@ in
 
   # Auto-upgrade NixOS.
   system.autoUpgrade.enable = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
 }
-
