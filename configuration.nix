@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, ... }:
+{ nix-gaming, config, lib, pkgs, ... }:
 
 # My user-named values.
 let
@@ -32,9 +32,6 @@ let
     export MOZ_ENABLE_WAYLAND=0
     exec -a "$0" "$@"
   '';
-
-  # An extra gaming repo for wine-tkg.
-  nixGaming = import (fetchTarball "https://github.com/fufexan/nix-gaming/archive/master.tar.gz");
 
   # Script required for autologin (per TTYs).
   loginScript = pkgs.writeText "login-program.sh" ''
@@ -362,7 +359,7 @@ in
     # Gaming
     mangohud
     mesa-demos
-    nixGaming.packages.x86_64-linux.wine-tkg
+    nix-gaming.packages.x86_64-linux.wine-tkg
     nvidia-offload
     vulkan-tools
     winetricks
@@ -388,12 +385,6 @@ in
 
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-    master = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/master.tar.gz") {
-      config = config.nixpkgs.config;
-    };
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
     };
