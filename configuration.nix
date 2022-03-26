@@ -284,12 +284,9 @@ in
   environment.systemPackages = with pkgs; [
     # Desktop apps
     acpi
-    adbfs-rootless
-    nur.repos.misterio.alacritty-ligatures
-    #alacritty
+    alacritty
     android-tools
     aria2
-    avell-unofficial-control-center
     avizo
     brightnessctl
     btop
@@ -306,7 +303,6 @@ in
     google-authenticator
     google-chrome-beta
     grim
-    helvum
     i3status-rust
     killall
     lm_sensors
@@ -314,7 +310,6 @@ in
     lxqt.pcmanfm-qt
     mosh
     mpv
-    nix-index
     nomacs
     nowl
     p7zip
@@ -324,11 +319,11 @@ in
     slack
     slurp
     spotify
+    streamlink
     sway-launcher-desktop
     swaynotificationcenter
     tdesktop
     tmux
-    traceroute
     unrar
     unzip
     usbutils
@@ -347,6 +342,14 @@ in
     shfmt
     sublime4
     yarn
+
+    # Less used
+    adbfs-rootless
+    helvum
+    neofetch
+    nix-index
+    nmap
+    traceroute
 
     # Desktop themes
     breeze-gtk
