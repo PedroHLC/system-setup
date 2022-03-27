@@ -3,33 +3,17 @@
 
 # My user-named values.
 let
-  # Script to force XWayland (in case something catches fire).
-  nowl = pkgs.writeShellScriptBin "nowl" ''
-    unset CLUTTER_BACKEND
-    unset ECORE_EVAS_ENGINE
-    unset ELM_ENGINE
-    unset SDL_VIDEODRIVER
-    unset BEMENU_BACKEND
-    unset GTK_USE_PORTAL
-    unset NIXOS_OZONE_WL
-    export GDK_BACKEND='x11'
-    export XDG_SESSION_TYPE='x11'
-    export QT_QPA_PLATFORM='xcb'
-    export MOZ_ENABLE_WAYLAND=0
-    exec -a "$0" "$@"
-  '';
+  # Script to open my encrypted firefox profile.
+  firefox-gate = (import ./tools/firefox-gate.nix) pkgs;
 
   # Script required for autologin (per TTYs).
-  loginScript = pkgs.writeText "login-program.sh" ''
-    TTY="$(tty)"
-    if [[ "$TTY" == '/dev/tty1' ]]; then
-      ${pkgs.shadow}/bin/login -f pedrohlc;
-    elif [[ "$TTY" == '/dev/tty2' ]]; then
-      ${pkgs.shadow}/bin/login -f melinapn;
-    else
-      ${pkgs.shadow}/bin/login;
-    fi
-  '';
+  loginScript = (import ./tools/login-program.nix) pkgs;
+
+  # Script for swaylock with GIFs on background (requires configuration in sway).
+  my-wscreensaver = (import ./tools/my-wscreensaver.nix) pkgs;
+
+  # Script to force XWayland (in case something catches fire).
+  nowl = (import ./tools/nowl.nix) pkgs;
 
 in
 # NixOS-defined options
@@ -239,6 +223,7 @@ in
     discord
     ffmpegthumbnailer
     file
+    firefox-gate
     firefox-wayland
     fzf
     #fx_cast_bridge # broken
@@ -255,6 +240,7 @@ in
     lxqt.pcmanfm-qt
     mosh
     mpv
+    my-wscreensaver
     nomacs
     nowl
     p7zip
