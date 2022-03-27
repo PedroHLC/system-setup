@@ -14,14 +14,26 @@
 
   # My systems
   outputs = { self, nixpkgs, ... }@attrs: {
-    nixosConfigurations."laptop" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = attrs;
-      modules = [
-        ./configuration.nix
-        ./laptop/hardware-configuration.nix
-        ./laptop/configuration.nix
-      ];
+    nixosConfigurations = {
+      "laptop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = attrs;
+        modules = [
+          ./configuration.nix
+          ./laptop/hardware-configuration.nix
+          ./laptop/configuration.nix
+        ];
+      };
+
+      "desktop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = attrs;
+        modules = [
+          ./configuration.nix
+          ./desktop/hardware-configuration.nix
+          ./desktop/configuration.nix
+        ];
+      };
     };
   };
 }
