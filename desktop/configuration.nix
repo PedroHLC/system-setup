@@ -9,8 +9,22 @@
     hostName = "desktop";
   };
 
+  # Better voltage and temperature
+  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+
+  # Let's use AMD P-State
+  boot.kernelParams = [
+    "initcall_blacklist=acpi_cpufreq_init"
+  ];
   # Services/Programs configurations
   services.minidlna.friendlyName = "desktop";
+
+  # OpenCL
+  hardware.opengl.extraPackages = with pkgs; [
+    rocm-opencl-icd
+    rocm-opencl-runtime
+  ];
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
