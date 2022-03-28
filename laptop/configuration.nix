@@ -76,6 +76,7 @@ in
   };
 
   # Services/Programs configurations
+  services.upower.enable = true;
   services.minidlna.friendlyName = "laptop";
 
   # Override packages' settings.
