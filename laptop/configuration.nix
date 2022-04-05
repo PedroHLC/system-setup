@@ -20,6 +20,9 @@ let
 in
 # NixOS-defined options
 {
+  # Full IOMMU for us
+  boot.kernelParams = [ "intel_iommu=on" ];
+
   # Disable Intel's stream-paranoid for gaming.
   # (not working - see nixpkgs issue 139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;

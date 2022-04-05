@@ -15,6 +15,9 @@ let
   # Script to force XWayland (in case something catches fire).
   nowl = (import ./tools/nowl.nix) pkgs;
 
+  # Allow uutils to replace GNU coreutils.
+  uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
+
 in
 # NixOS-defined options
 {
@@ -35,8 +38,14 @@ in
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      editor = false;
+    };
+    timeout = 1;
+    efi.canTouchEfiVariables = true;
+  };
 
   # Microcode updates.
   hardware.enableRedistributableFirmware = true;
@@ -263,6 +272,7 @@ in
     unrar
     unzip
     usbutils
+    uutils-coreutils
     wget
     wpsoffice
     xarchiver
