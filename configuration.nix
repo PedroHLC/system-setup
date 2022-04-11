@@ -86,8 +86,7 @@ in
   networking = {
     networkmanager = {
       enable = true;
-      wifi.backend = "wpa_supplicant";
-      # IWD seems to race-condition with predictable interfaces and lacks WiFi Direct
+      wifi.backend = "iwd";
     };
 
     # "enp2s0" instead of "eth0". 
