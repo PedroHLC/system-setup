@@ -193,7 +193,7 @@ in
   security.rtkit.enable = true; # OpenAL likes it, but my pipewire is not configure to rt.
   environment.variables = {
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
-    SDL_AUDIODRIVER = "alsa"; # Waiting PR 136166
+    SDL_AUDIODRIVER = "pipewire";
     ALSOFT_DRIVERS = "alsa"; # Fixes Telegram, better latency under pw. (waiting stable release of pipewire driver).
     GAMEMODERUNEXEC = "mangohud WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa";
   };
