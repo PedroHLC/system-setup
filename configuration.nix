@@ -279,6 +279,7 @@ in
     zoom-us
 
     # Development apps
+    deno
     elmPackages.elm-format
     gnumake
     nixpkgs-fmt
