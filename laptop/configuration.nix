@@ -43,7 +43,7 @@ in
       peers = [
         {
           publicKey = "kjVAAeIGsN0r3StYDQ2vnYg6MbclMrPALdm07qZtRCE=";
-          allowedIPs = [ "0.0.0.0/0" ];
+          allowedIPs = [ "10.100.0.0/24" ];
           endpoint = "home.pedrohlc.com:51820";
           persistentKeepalive = 25;
         }
