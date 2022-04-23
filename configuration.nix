@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ nix-gaming, config, lib, pkgs, ... }:
+{ nix-gaming, atila-obsvkcapture, config, lib, pkgs, ... }:
 
 # My user-named values.
 let
@@ -254,6 +254,7 @@ in
     my-wscreensaver
     nomacs
     nowl
+    obs-studio-wrap
     p7zip
     pamixer # for avizo
     pciutils
@@ -333,6 +334,12 @@ in
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [ gamemode mangohud ];
+    };
+    obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+	atila-obsvkcapture.legacyPackages.x86_64-linux.obs-studio-plugins.obs-vkcapture
+      ];
     };
   };
 

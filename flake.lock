@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "atila-obsvkcapture": {
+      "locked": {
+        "lastModified": 1650675301,
+        "narHash": "sha256-vN7Lu3Ny9Jys+fCo3arnlN0PJMmmMKYdzIJ5HUPyUO8=",
+        "owner": "AtilaSaraiva",
+        "repo": "nixpkgs",
+        "rev": "aa534e38696adb411e5c628e8ba1f5ab5fafc03d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AtilaSaraiva",
+        "ref": "obsvkcapture",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nix-gaming": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -35,11 +51,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1650647760,
-        "narHash": "sha256-Ng8CGYLSTxeI+oEux0x+tSRA6K7ydoyfJNQf56ld+Uo=",
+        "lastModified": 1650676489,
+        "narHash": "sha256-8v0qMwq36v/mUGywsJTcfpm9HHMr4v2urYHns1LwPkg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b80f570a92d04e8ace67ff09c34aa48708a5c88c",
+        "rev": "875b41570c41386017d787caefedc008ddb6e31b",
         "type": "github"
       },
       "original": {
@@ -51,6 +67,7 @@
     },
     "root": {
       "inputs": {
+        "atila-obsvkcapture": "atila-obsvkcapture",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_2"
       }
