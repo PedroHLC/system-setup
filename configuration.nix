@@ -202,13 +202,11 @@ in
   users.users = {
     pedrohlc = {
       isNormalUser = true;
-      uid = 1001;
       extraGroups = [ "wheel" "video" "networkmanager" "rtkit" ];
       shell = pkgs.dash;
     };
     melinapn = {
       isNormalUser = true;
-      uid = 1002;
       extraGroups = [ "video" "networkmanager" ];
     };
   };

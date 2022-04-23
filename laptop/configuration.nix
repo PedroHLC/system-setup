@@ -20,6 +20,10 @@ let
 in
 # NixOS-defined options
 {
+  # per-device UID
+  users.users.pedrohlc.uid = 1001;
+  users.users.melinapn.uid = 1002;
+
   # Full IOMMU for us
   boot.kernelParams = [ "intel_iommu=on" ];
 
