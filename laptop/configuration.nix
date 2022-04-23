@@ -35,6 +35,20 @@ in
   networking = {
     hostId = "0f8623ae";
     hostName = "laptop";
+
+    # Wireguard Client
+    wireguard.interfaces.wg0 = {
+      ips = [ "10.100.0.2/24" ];
+      privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
+      peers = [
+        {
+          publicKey = "kjVAAeIGsN0r3StYDQ2vnYg6MbclMrPALdm07qZtRCE=";
+          allowedIPs = [ "0.0.0.0/0" ];
+          endpoint = "home.pedrohlc.com:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
   };
 
   # NVIDIA GPU (PRIME Offloading + Wayland)
