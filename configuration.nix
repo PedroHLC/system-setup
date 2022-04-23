@@ -271,6 +271,7 @@ in
     unzip
     usbutils
     uutils-coreutils
+    waypipe
     wget
     wpsoffice
     xarchiver
@@ -338,7 +339,7 @@ in
     obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
-	atila-obsvkcapture.legacyPackages.x86_64-linux.obs-studio-plugins.obs-vkcapture
+        atila-obsvkcapture.legacyPackages.x86_64-linux.obs-studio-plugins.obs-vkcapture
       ];
     };
   };
