@@ -272,6 +272,7 @@ in
     usbutils
     uutils-coreutils
     waypipe
+    wireguard-tools
     wget
     wpsoffice
     xarchiver

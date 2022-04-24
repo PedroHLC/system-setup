@@ -33,6 +33,7 @@
           ./configuration.nix
           ./desktop/hardware-configuration.nix
           ./desktop/configuration.nix
+          ./desktop/wireguard.nix
         ];
       };
     };
