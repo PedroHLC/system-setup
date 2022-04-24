@@ -262,6 +262,7 @@ in
     slack
     slurp
     spotify
+    sshfs-fuse
     streamlink
     sway-launcher-desktop
     swaynotificationcenter
