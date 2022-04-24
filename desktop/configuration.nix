@@ -21,7 +21,7 @@
     server = "www.duckdns.org";
     username = "nouser";
     passwordFile = "home/pedrohlc/Projects/com.pedrohlc/duckdns.token";
-    ipv6 = true;
+    ipv6 = false; # Does not work for duckdns protocol
   };
 
   # Better voltage and temperature

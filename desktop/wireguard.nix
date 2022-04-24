@@ -14,7 +14,7 @@ in
     wireguard = {
       interfaces = {
         wg0 = {
-          ips = [ "10.100.0.1/24" ];
+          ips = [ "10.100.0.1/24" "fda4:4413:3bb1::1/64" ];
           listenPort = 51820;
           privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
           peers = [
@@ -23,6 +23,7 @@ in
               publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
               allowedIPs = [
                 "10.100.0.2/32"
+		"fda4:4413:3bb1::2/128"
                 # Multicast
                 "224.0.0.251/32"
                 "ff02::fb/128"
