@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ nix-gaming, atila-obsvkcapture, config, lib, pkgs, ... }:
+{ nix-gaming, config, lib, pkgs, ... }:
 
 # My user-named values.
 let
@@ -341,7 +341,7 @@ in
     obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
-        atila-obsvkcapture.legacyPackages.x86_64-linux.obs-studio-plugins.obs-vkcapture
+        obs-vkcapture
       ];
     };
   };

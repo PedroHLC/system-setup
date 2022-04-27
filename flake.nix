@@ -6,7 +6,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    atila-obsvkcapture.url = "github:AtilaSaraiva/nixpkgs/obsvkcapture";
 
     # I use this inputs every once in a while
     #nur.url = "github:nix-community/NUR";
