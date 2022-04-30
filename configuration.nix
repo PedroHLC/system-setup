@@ -38,7 +38,7 @@ in
       ];
       trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        "nix-cache.pedrohlc.com-1:LffNbH46uPoFetK4OPmKWiBOssUG3JA0fXNx98wVK34="
+        "nix-cache.pedrohlc.com:LffNbH46uPoFetK4OPmKWiBOssUG3JA0fXNx98wVK34="
       ];
     };
   };
