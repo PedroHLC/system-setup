@@ -4,12 +4,11 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     # I use this inputs every once in a while
     #nur.url = "github:nix-community/NUR";
-    #master.url = "github:NixOS/nixpkgs/master";
   };
 
   # My systems
@@ -32,7 +31,8 @@
           ./configuration.nix
           ./desktop/hardware-configuration.nix
           ./desktop/configuration.nix
-          ./desktop/wireguard.nix
+          ./desktop/servers/wireguard.nix
+          ./desktop/servers/nix-cache.nix
         ];
       };
     };
