@@ -7,7 +7,7 @@ let
   firefox-gate = (import ./tools/firefox-gate.nix) pkgs;
 
   # Script required for autologin (per TTYs).
-  loginScript = (import ./tools/login-program.nix) pkgs;
+  login-script = (import ./tools/login-program.nix) pkgs;
 
   # Script for swaylock with GIFs on background (requires configuration in sway).
   my-wscreensaver = (import ./tools/my-wscreensaver.nix) pkgs;
@@ -215,7 +215,7 @@ in
   # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
-    loginOptions = toString loginScript;
+    loginOptions = toString login-script;
     extraArgs = [ "--skip-login" ];
   };
 
