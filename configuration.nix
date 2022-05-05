@@ -325,6 +325,7 @@ in
   ];
 
   # Special apps (requires more than their package to work).
+  programs.command-not-found.enable = false;
   programs.dconf.enable = true;
   programs.fish = {
     enable = true;
