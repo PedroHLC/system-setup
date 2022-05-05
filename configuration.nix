@@ -273,7 +273,6 @@ in
     sway-launcher-desktop
     swaynotificationcenter
     tdesktop
-    tmux
     unrar
     unzip
     usbutils
@@ -327,9 +326,19 @@ in
 
   # Special apps (requires more than their package to work).
   programs.dconf.enable = true;
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    vendor = {
+      config.enable = true;
+      completions.enable = true;
+    };
+  };
   programs.gamemode.enable = true;
   programs.steam.enable = true;
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+  };
 
   # Neovim to rule them all.
   programs.neovim = {

@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     # I use this inputs every once in a while

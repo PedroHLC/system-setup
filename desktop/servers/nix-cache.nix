@@ -7,6 +7,7 @@
 
   services.nginx = {
     enable = true;
+    recommendedGzipSettings = true;
     virtualHosts = {
       # ... existing hosts config etc. ...
       "nix-cache.pedrohlc.com" = {
