@@ -21,4 +21,18 @@
       };
     };
   };
+
+  nixpkgs.overlays = [
+    (self: super: {
+      nix-serve = super.nix-serve.overrideAttrs (attrs: {
+        src = self.fetchFromGitHub {
+          owner = "PedroHLC";
+          repo = "nix-serve";
+          rev = "53b65e7250005d742c72d0123e379e7c7fb7d41c";
+          sha256 = "2CylBS0Y50PzxrDQvX368slpU4z1fpaRPK1350yMttg=";
+        };
+        version = "0.2-53b65e7";
+      });
+    })
+  ];
 }
