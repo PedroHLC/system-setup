@@ -366,7 +366,12 @@ in
   services.fwupd.enable = true;
   services.gvfs.enable = true;
   services.ntp.enable = true;
-  services.sshd.enable = true; # TODO: Use openssh_hpn
+  services.openssh = {
+    # TODO: Use openssh_hpn
+    enable = true;
+    forwardX11 = true;
+    permitRootLogin = "no";
+  };
   services.tumbler.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.minidlna = {
