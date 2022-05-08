@@ -418,6 +418,21 @@ in
     };
   };
 
+  # Add purge to sway-launcher-desktop
+  nixpkgs.overlays = [
+    (self: super: {
+      sway-launcher-desktop = super.sway-launcher-desktop.overrideAttrs (attrs: {
+        src = self.fetchFromGitHub {
+          owner = "Biont";
+          repo = "sway-launcher-desktop";
+          rev = "a40da16223698f44f66a5184b28d74ecae3326be";
+          sha256 = "Fm+R5Wkwgvu2hBLzySVz6k6fjF8tpJ5dY5Hiow+Qa8c=";
+        };
+        version = "1.5.4";
+      });
+    })
+  ];
+
   # Required to play GenshinImpact on Linux without banning.
   networking.extraHosts =
     ''
