@@ -1,24 +1,6 @@
 # The top lambda and it super set of parameters.
 { nix-gaming, config, lib, pkgs, ... }:
 
-# My user-named values.
-let
-  # Script to open my encrypted firefox profile.
-  firefox-gate = (import ./tools/firefox-gate.nix) pkgs;
-
-  # Script required for autologin (per TTYs).
-  login-script = (import ./tools/login-program.nix) pkgs;
-
-  # Script for swaylock with GIFs on background (requires configuration in sway).
-  my-wscreensaver = (import ./tools/my-wscreensaver.nix) pkgs;
-
-  # Script to force XWayland (in case something catches fire).
-  nowl = (import ./tools/nowl.nix) pkgs;
-
-  # Allow uutils to replace GNU coreutils.
-  uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
-
-in
 # NixOS-defined options
 {
   # Nix package-management settings.
@@ -34,7 +16,7 @@ in
       # Unofficial binary caches.
       substituters = [
         "https://nix-gaming.cachix.org"
-        "http://nix-cache.pedrohlc.com"
+        # "http://nix-cache.pedrohlc.com"
       ];
       trusted-public-keys = [
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
@@ -221,7 +203,7 @@ in
   # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
-    loginOptions = toString login-script;
+    loginOptions = "${pkgs.login-script}/bin/login-script.sh";
     extraArgs = [ "--skip-login" ];
   };
 
@@ -335,6 +317,11 @@ in
     };
   };
   programs.gamemode.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true; # So I can use GPG through SSH
+    pinentryFlavor = "tty";
+  };
   programs.steam.enable = true;
   programs.tmux = {
     enable = true;
@@ -351,15 +338,33 @@ in
 
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
+    # Steam with gaming-stuff
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [ gamemode mangohud ];
     };
+
+    # Obs with plugins
     obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
       plugins = with pkgs.obs-studio-plugins; [
         wlrobs
         obs-vkcapture
       ];
     };
+
+    # Script to force XWayland (in case something catches fire).
+    nowl = import ./tools/nowl.nix pkgs;
+
+    # Script to open my encrypted firefox profile.
+    firefox-gate = import ./tools/firefox-gate.nix pkgs;
+
+    # Script for swaylock with GIFs on background (requires configuration in sway).
+    my-wscreensaver = import ./tools/my-wscreensaver.nix pkgs;
+
+    # Allow uutils to replace GNU coreutils.
+    uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
+
+    # Script required for autologin (per TTYs).
+    login-script = import ./tools/login-program.nix pkgs;
   };
 
   # Enable services (automatically includes their apps' packages).
@@ -384,12 +389,6 @@ in
 
   # We are anxiously waiting for PR 122547
   #services.dbus-broker.enable = true;
-
-  # SSH requires gnupg that requires SUID.
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   # Fonts.
   fonts.fonts = with pkgs; [
