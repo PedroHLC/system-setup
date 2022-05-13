@@ -13,6 +13,7 @@ with pkgs.lib;
   # My beloved DE
   wayland.windowManager.sway = {
     enable = true;
+    package = null;
     config = {
       inherit modifier terminal menu;
       startup = [
@@ -53,7 +54,7 @@ with pkgs.lib;
         commands = [
           { criteria = { app_id = "firefox"; title = "Picture-in-Picture"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = "firefox"; title = "Firefox — Sharing Indicator"; }; command = "floating enable; sticky enable"; }
-          { criteria = { app_id = ""; title = ".+\(\/run\/current-system\/sw\/bin\/gpg .+"; }; command = "floating enable; sticky enable"; }
+          { criteria = { app_id = ""; title = ".+\\(\\/run\\/current-system\\/sw\\/bin\\/gpg .+"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
           { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
           { criteria = { title = "WScreenSaver@eDP-1"; }; command = "move container to output eDP-1; fullscreen enable; sticky enable"; }
@@ -181,6 +182,7 @@ with pkgs.lib;
   # My simple and humble bar
   programs.i3status-rust = {
     enable = true;
+    package = null;
     bars = {
       main = {
         theme = "solarized-dark";

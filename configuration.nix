@@ -203,7 +203,8 @@
   # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
-    loginOptions = "${pkgs.login-script}/bin/login-script.sh";
+    # Script required for autologin (per TTYs).
+    loginOptions = toString (import ./tools/login-program.nix pkgs);
     extraArgs = [ "--skip-login" ];
   };
 
@@ -363,8 +364,6 @@
     # Allow uutils to replace GNU coreutils.
     uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
 
-    # Script required for autologin (per TTYs).
-    login-script = import ./tools/login-program.nix pkgs;
   };
 
   # Enable services (automatically includes their apps' packages).

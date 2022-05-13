@@ -1,4 +1,4 @@
-pkgs: pkgs.writeShellScriptBin "login-program.sh" ''
+pkgs: pkgs.writeText "login-program.sh" ''
   _TTY="$(tty)"
   if [[ "$_TTY" == '/dev/tty1' ]]; then
     ${pkgs.shadow}/bin/login -f pedrohlc;
