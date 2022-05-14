@@ -62,10 +62,10 @@ with pkgs.lib;
           { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
 
           # So that I have a pop-out for sway-launcher-desktop
-	  { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
-          
-	  # So that "my-wscreensaver" does what it needs on all setups
-	  { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
+          { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
+
+          # So that "my-wscreensaver" does what it needs on all setups
+          { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
           { criteria = { title = "WScreenSaver@eDP-1"; }; command = "move container to output eDP-1; fullscreen enable; sticky enable"; }
           { criteria = { title = "WScreenSaver@DP-1"; }; command = "move container to output DP-1; fullscreen enable; sticky enable"; }
           { criteria = { title = "WScreenSaver@DP-2"; }; command = "move container to output DP-2; fullscreen enable; sticky enable"; }
@@ -74,7 +74,7 @@ with pkgs.lib;
       };
       keybindings = lib.mkOptionDefault ({
         # Window helpers
-	"${modifier}+Shift+f" = "fullscreen toggle global";
+        "${modifier}+Shift+f" = "fullscreen toggle global";
         "${modifier}+Shift+t" = "sticky toggle";
 
         # Volume controls
@@ -88,9 +88,9 @@ with pkgs.lib;
 
         # Notifications tray
         "${modifier}+Shift+n" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
-        
-	# Enter my extra modes
-	"${modifier}+Tab" = "mode \"${modeFavorites}\"";
+
+        # Enter my extra modes
+        "${modifier}+Tab" = "mode \"${modeFavorites}\"";
         "${modifier}+Shift+e" = "mode \"${modePower}\"";
 
         # My extra lot of workspaces
@@ -145,7 +145,7 @@ with pkgs.lib;
         { app_id = "firefox"; title = "Password Required"; }
       ];
 
-      modes = {
+      modes = lib.mkOptionDefault {
         # Power-off menu
         "${modePower}" =
           {
