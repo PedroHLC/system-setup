@@ -7,6 +7,8 @@ let
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
   menu = "${terminal} -t launcher -e ${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
+  modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
+  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
 in
 with pkgs.lib;
 {
@@ -26,7 +28,7 @@ with pkgs.lib;
       ];
       input = {
         # Adjust to Brazilian keyboards
-        "*" = { xkb_variant = "br"; };
+        "*" = { xkb_layout = "br"; };
       } // (attrsets.optionalAttrs (touchpad != null) {
         # Modern touchpad settings
         "${touchpad}" = {
@@ -55,19 +57,24 @@ with pkgs.lib;
           { criteria = { app_id = "firefox"; title = "Picture-in-Picture"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = "firefox"; title = "Firefox — Sharing Indicator"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = ""; title = ".+\\(\\/run\\/current-system\\/sw\\/bin\\/gpg .+"; }; command = "floating enable; sticky enable"; }
-          { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
-          { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
+          { criteria = { title = "Slack \| mini panel"; }; command = "floating enable; stick enable"; }
+          { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
+          { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
+
+          # So that I have a pop-out for sway-launcher-desktop
+	  { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
+          
+	  # So that "my-wscreensaver" does what it needs on all setups
+	  { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
           { criteria = { title = "WScreenSaver@eDP-1"; }; command = "move container to output eDP-1; fullscreen enable; sticky enable"; }
           { criteria = { title = "WScreenSaver@DP-1"; }; command = "move container to output DP-1; fullscreen enable; sticky enable"; }
           { criteria = { title = "WScreenSaver@DP-2"; }; command = "move container to output DP-2; fullscreen enable; sticky enable"; }
           { criteria = { title = "WScreenSaver@HDMI-A-1"; }; command = "move container to output HDMI-A-1; fullscreen enable; sticky enable"; }
-          { criteria = { title = "Slack \| mini panel"; }; command = "floating enable; stick enable"; }
-          { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
-          { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
         ];
       };
       keybindings = lib.mkOptionDefault ({
-        "${modifier}+Shift+f" = "fullscreen toggle global";
+        # Window helpers
+	"${modifier}+Shift+f" = "fullscreen toggle global";
         "${modifier}+Shift+t" = "sticky toggle";
 
         # Volume controls
@@ -81,6 +88,10 @@ with pkgs.lib;
 
         # Notifications tray
         "${modifier}+Shift+n" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+        
+	# Enter my extra modes
+	"${modifier}+Tab" = "mode \"${modeFavorites}\"";
+        "${modifier}+Shift+e" = "mode \"${modePower}\"";
 
         # My extra lot of workspaces
         "${modifier}+Ctrl+1" = "workspace C1";
@@ -117,7 +128,7 @@ with pkgs.lib;
           names = [ "Font Awesome 5 Free" ];
           size = 9.0;
         };
-        command = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-main.toml";
+        statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3status-rust/config-main.toml";
         colors = {
           separator = "#666666";
           background = "#222222dd";
@@ -136,7 +147,7 @@ with pkgs.lib;
 
       modes = {
         # Power-off menu
-        "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend" =
+        "${modePower}" =
           {
             "Shift+l" = "exec ${pkgs.sway}/bin/swaymsg exit";
             "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
@@ -148,7 +159,7 @@ with pkgs.lib;
           };
 
         # Common apps
-        "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify" =
+        "${modeFavorites}" =
           {
             "f" = "exec ${browser}; mode default";
             "Shift+f" = "exec ${pkgs.pcmanfm-qt}/bin/pcmanfm-qt; mode default";
@@ -182,7 +193,6 @@ with pkgs.lib;
   # My simple and humble bar
   programs.i3status-rust = {
     enable = true;
-    package = null;
     bars = {
       main = {
         theme = "solarized-dark";
@@ -201,7 +211,7 @@ with pkgs.lib;
             command_off = "sudo systemctl stop sshd";
             interval = 5;
             #[block.theme_overrides]
-            idle_bg = "#000000";
+            #idle_bg = "#000000";
           }
           {
             block = "toggle";
@@ -211,8 +221,7 @@ with pkgs.lib;
             command_off = "bluetoothctl --timeout 4 power off; sudo systemctl stop bluetooth && sudo rfkill block bluetooth";
             interval = 5;
             #[block.theme_overrides]
-            idle_bg = "#000000";
-
+            #idle_bg = "#000000";
           }
           {
             block = "toggle";
@@ -222,7 +231,7 @@ with pkgs.lib;
             command_off = "nmcli r wifi on";
             interval = 5;
             #[block.theme_overrides]
-            idle_bg = "#000000";
+            #idle_bg = "#000000";
           }
           {
             block = "net";
@@ -230,7 +239,6 @@ with pkgs.lib;
             format = "{ssid} ({signal_strength}) {speed_down;K*b} {speed_up;K*b}";
             hide_inactive = true;
             interval = 5;
-
           }
           {
             block = "disk_space";
@@ -252,7 +260,6 @@ with pkgs.lib;
           {
             block = "cpu";
             interval = 2;
-
           }
           {
             block = "temperature";
