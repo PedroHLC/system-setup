@@ -9,13 +9,20 @@ let
   menu = "${terminal} -t launcher -e ${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
   modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
   modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
+  grep = "${pkgs.ripgrep}/bin/rg";
+  sudo = "${pkgs.sudo}/bin/sudo";
+  date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
 in
 with pkgs.lib;
 {
   # My beloved DE
   wayland.windowManager.sway = {
     enable = true;
-    package = null;
+    wrapperFeatures.gtk = true;
+    extraSessionCommands = ''
+      source ${pkgs.wayland-env}
+    '';
+    
     config = {
       inherit modifier terminal menu;
       startup = [
@@ -152,7 +159,7 @@ with pkgs.lib;
             "Shift+l" = "exec ${pkgs.sway}/bin/swaymsg exit";
             "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
             "Shift+r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
-            "s" = "exec ${pkgs.systemd}/bin/systemctl suspend & ${lock} ; mode default";
+            "s" = "exec ${pkgs.systemd}/bin/systemctl suspend ; mode default";
             "l" = "exec ${lock} ; mode default";
             "Return" = "mode default";
             "Escape" = "mode default";
@@ -183,6 +190,17 @@ with pkgs.lib;
     '';
   };
 
+  # Lock before sleep and after a minute
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = lock; }
+    ];
+    timeouts = [
+      { timeout = 60; command = lock; }
+    ];
+  };
+
   # GTK Setup
   gtk = {
     theme.name = "Breeze-Dark";
@@ -200,15 +218,15 @@ with pkgs.lib;
         blocks = [
           {
             block = "custom";
-            command = "echo -n ' '; who | grep 'pts/' | wc -l | tr '\\n' '/'; who | wc -l";
+            command = "echo -n ' '; who | ${grep} 'pts/' | wc -l | tr '\\n' '/'; who | wc -l";
             interval = 3;
           }
           {
             block = "toggle";
             text = " ";
-            command_state = "systemctl is-active -q sshd && echo a";
-            command_on = "sudo systemctl start sshd";
-            command_off = "sudo systemctl stop sshd";
+            command_state = "${pkgs.systemd}/bin/systemctl is-active -q sshd && echo a";
+            command_on = "${sudo} ${pkgs.systemd}/bin/systemctl start sshd";
+            command_off = "${sudo} ${pkgs.systemd}/bin/systemctl stop sshd";
             interval = 5;
             #[block.theme_overrides]
             #idle_bg = "#000000";
@@ -216,9 +234,9 @@ with pkgs.lib;
           {
             block = "toggle";
             text = "";
-            command_state = "bluetoothctl show | grep 'Powered: yes'";
-            command_on = "sudo rfkill unblock bluetooth && sudo systemctl start bluetooth && bluetoothctl --timeout 4 power on";
-            command_off = "bluetoothctl --timeout 4 power off; sudo systemctl stop bluetooth && sudo rfkill block bluetooth";
+            command_state = "${pkgs.bluez}/bin/bluetoothctl show | ${grep} 'Powered: yes'";
+            command_on = "${sudo} ${pkgs.util-linux}/bin/rfkill unblock bluetooth && ${sudo} ${pkgs.systemd}/bin/systemctl start bluetooth && ${pkgs.bluez}/bin/bluetoothctl --timeout 4 power on";
+            command_off = "${pkgs.bluez}/bin/bluetoothctl --timeout 4 power off; ${sudo} ${pkgs.systemd}/bin/systemctl stop bluetooth && ${sudo} ${pkgs.util-linux}/bin/rfkill block bluetooth";
             interval = 5;
             #[block.theme_overrides]
             #idle_bg = "#000000";
@@ -226,9 +244,9 @@ with pkgs.lib;
           {
             block = "toggle";
             text = "";
-            command_state = "nmcli r wifi | grep '^d'";
-            command_on = "nmcli r wifi off";
-            command_off = "nmcli r wifi on";
+            command_state = "${pkgs.networkmanager}/bin/nmcli r wifi | ${grep} '^d'";
+            command_on = "${pkgs.networkmanager}/bin/nmcli r wifi off";
+            command_off = "${pkgs.networkmanager}/bin/nmcli r wifi on";
             interval = 5;
             #[block.theme_overrides]
             #idle_bg = "#000000";

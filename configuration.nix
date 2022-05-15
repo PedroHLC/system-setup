@@ -120,22 +120,6 @@
     driSupport32Bit = true;
   };
 
-  # Enable the SwayWM.
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      swaylock
-      swayidle
-      wl-clipboard
-      libinput
-      libinput-gestures
-    ];
-    extraSessionCommands = ''
-      source ${pkgs.wayland-env}
-    '';
-  };
-
   # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
@@ -216,6 +200,8 @@
     grim
     i3status-rust
     killall
+    libinput
+    libinput-gestures
     lm_sensors
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
