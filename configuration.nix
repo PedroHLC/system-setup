@@ -304,6 +304,9 @@
   };
   environment.variables.EDITOR = "nvim";
 
+  # Fix swaylock (nixpkgs issue 158025)
+  security.pam.services.swaylock = { };
+
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
     # Steam with gaming-stuff

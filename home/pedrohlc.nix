@@ -1,4 +1,4 @@
-{ touchpad ? null, displayBrightness ? false, cpuSensor, gpuSensor ? null, battery ? null }:
+{ touchpad ? null, displayBrightness ? false, cpuSensor, gpuSensor ? null, battery ? null, nvidiaPrime ? false }:
 { pkgs, lib, ... }:
 let
   modifier = "Mod4";
@@ -19,10 +19,7 @@ with pkgs.lib;
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    extraSessionCommands = ''
-      source ${pkgs.wayland-env}
-    '';
-    
+
     config = {
       inherit modifier terminal menu;
       startup = [
@@ -186,8 +183,24 @@ with pkgs.lib;
     systemdIntegration = false;
     extraConfig = ''
       # Proper way to start portals
-      include /etc/sway/config.d/*
+      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
     '';
+    extraSessionCommands = ''
+      source ${pkgs.wayland-env}
+    '' + (strings.optionalString nvidiaPrime ''
+      # Adjust NVIDIA Optimus and use Intel by-default.
+      export __GL_VRR_ALLOWED=1
+      export __NV_PRIME_RENDER_OFFLOAD=1
+      export __VK_LAYER_NV_optimus="non_NVIDIA_only"
+      export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
+      export LIBVA_DRIVER_NAME="iHD"
+
+      # Gaming
+      export GAMEMODERUNEXEC="nvidia-offload $GAMEMODERUNEXEC"
+    '');
+    extraOptions = mkIf nvidiaPrime [
+      "--unsupported-gpu"
+    ];
   };
 
   # Lock before sleep and after a minute

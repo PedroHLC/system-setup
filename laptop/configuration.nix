@@ -76,24 +76,6 @@ in
     libva
   ];
 
-  # Enable the SwayWM.
-  programs.sway = {
-    extraSessionCommands = ''
-      # Adjust NVIDIA Optimus and use Intel by-default.
-      export __GL_VRR_ALLOWED=1
-      export __NV_PRIME_RENDER_OFFLOAD=1
-      export __VK_LAYER_NV_optimus="non_NVIDIA_only"
-      export VK_ICD_FILENAMES="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json"
-      export LIBVA_DRIVER_NAME="iHD"
-
-      # Gaming
-      export GAMEMODERUNEXEC="nvidia-offload $GAMEMODERUNEXEC"
-    '';
-    extraOptions = [
-      "--unsupported-gpu"
-    ];
-  };
-
   # Services/Programs configurations
   services.upower.enable = true;
   services.minidlna.friendlyName = "laptop";

@@ -31,6 +31,7 @@
               displayBrightness = true;
               cpuSensor = "coretemp-isa-0000";
               battery = "BAT0";
+              nvidiaPrime = true;
             });
           }
         ];
