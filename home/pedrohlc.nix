@@ -12,11 +12,13 @@ let
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
+  videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
 in
 with pkgs.lib;
 {
   home.packages = with pkgs; [
     swaynotificationcenter # Won't work unless here
+    sway-launcher-desktop # So that I can use the "purge" subcommand
   ];
 
   # My beloved DE
@@ -328,6 +330,145 @@ with pkgs.lib;
           interval = 10;
         }];
       };
+    };
+  };
+
+  # Files that I prefer to just specify
+  home.file = {
+    # I Don't really use bash, so I don't want its history...
+    ".bashrc".text = ''
+      unset HISTFILE
+    '';
+    # Don't forget to always load my .profile
+    ".bash_profile".text = ''
+      [[ -f ~/.bashrc ]] && . ~/.bashrc
+      [[ -f ~/.profile ]] && . ~/.profile
+    '';
+    # I use autologin and forever in love with tmux sessions.
+    ".profile".text = ''
+      if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
+        exec ${pkgs.tmux}/bin/tmux
+      elif [ "$(tty)" = '/dev/tty1' ]; then
+        # It doesn't work like this: \${pkgs.sway}/bin/sway
+        ~/.nix-profile/bin/sway
+      fi
+    '';
+    # `programs.tmux` looks bloatware nearby this simplist config
+    ".tmux.conf".text = ''
+      set-option -g default-shell /run/current-system/sw/bin/fish
+      set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
+    '';
+  };
+
+  xdg = {
+    desktopEntries = {
+      "firefox" = {
+        name = "Firefox (Wayland)";
+        genericName = "Web Browser";
+        exec = "${pkgs.firefox-gate}/bin/firefox-gate %U";
+        terminal = false;
+        categories = [ "Application" "Network" "WebBrowser" ];
+        mimeType = [
+          "application/pdf"
+          "application/vnd.mozilla.xul+xml"
+          "application/xhtml+xml"
+          "text/html"
+          "text/xml"
+          "x-scheme-handler/ftp"
+          "x-scheme-handler/http"
+          "x-scheme-handler/https"
+        ];
+        type = "Application";
+      };
+    };
+    mimeApps = {
+      enable = true;
+      associations = {
+        added = {
+          "application/octet-stream" = "sublime_text.desktop";
+        };
+        removed = {
+          "image/png" = "google-chrome-beta.desktop";
+          "image/jpeg" = "google-chrome-beta.desktop";
+        };
+      };
+      defaultApplications = {
+        "image/png" = "org.nomacs.ImageLounge.desktop";
+        "image/jpeg" = "org.nomacs.ImageLounge.desktop";
+        "application/pdf" = "firefox.desktop";
+      };
+    };
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+
+      # Make sure we're using the english ones.
+      desktop = "$HOME/Desktop";
+      documents = "$HOME/Documents";
+      download = "$HOME/Downloads";
+      pictures = "$HOME/Pictures";
+      publicShare = "$HOME/Public";
+      templates = "$HOME/Templates";
+      videos = "$HOME/Videos";
+
+      # I don't usually hear music from local files
+      music = "$HOME/Downloads/Media/Music";
+    };
+  };
+
+  programs.mpv = {
+    enable = true;
+    # For watching animes in 60fps
+    package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { vapoursynthSupport = true; }) {
+      # thanks @thiagokokada
+      extraMakeWrapperArgs = [
+        "--prefix"
+        "LD_LIBRARY_PATH"
+        ":"
+        "${pkgs.vapoursynth-mvtools}/lib/vapoursynth"
+      ];
+    };
+    config = {
+      # Temporary & lossless screenshots
+      screenshot-format = "png";
+      screenshot-directory = "/tmp";
+      # for Pipewire (Let's pray for MPV native solution)
+      ao = "sdl";
+      # I don't usually plug my PC in a home-theater
+      audio-channels = "stereo";
+
+      # So dual-audio anime don't go crazy;
+      alang = "jpn,eng";
+      slang = "eng";
+
+      # GPU & Wayland
+      hwdec = "${videoAcceleration}";
+      vo = "gpu";
+      gpu-context = "waylandvk";
+      gpu-api = "vulkan";
+
+      # YouTube quality
+      ytdl-format = "bestvideo[height<=?1440]+bestaudio/best";
+    };
+    profiles = {
+      # For when I plug the optical-cable
+      "toslink" = {
+        audio-channels = "auto";
+        af = "lavcac3enc";
+        audio-spdif = "ac3";
+      };
+    };
+    bindings = {
+      # Subtitle scalers
+      "P" = "add sub-scale +0.1";
+      "Ctrl+p" = "add sub-scale -0.1";
+
+      # Window helpers
+      "Ctrl+1" = "cycle border";
+      "Alt+3" = "set window-scale 0.5";
+
+      # For watching animes in 60fps
+      "K" = "vf toggle format=yuv420p,vapoursynth=${../assets/motioninterpolation.vpy}:4:4";
     };
   };
 }
