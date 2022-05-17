@@ -92,7 +92,7 @@ with pkgs.lib;
 
         # Lightweight screenshot to cliboard and temporary file
         "Print" = "exec ${pkgs.grim}/bin/grim -t png - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
-        "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
+        "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
 
         # Notifications tray
         "${modifier}+Shift+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
@@ -220,9 +220,10 @@ with pkgs.lib;
 
   # GTK Setup
   gtk = {
+    enable = true;
     theme.name = "Breeze-Dark";
-    iconTheme = "Vimix-Doder-dark";
-    cursorTheme = "Breeze_Snow";
+    iconTheme.name = "Vimix-Doder-dark";
+    cursorTheme.name = "Breeze_Snow";
   };
 
   # My simple and humble bar
