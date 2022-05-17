@@ -181,7 +181,6 @@
     alacritty
     android-tools
     aria2
-    avizo
     brightnessctl
     btop
     cachix
@@ -193,12 +192,8 @@
     fzf
     #fx_cast_bridge # broken
     git
-    gnome-network-displays
-    gnome.zenity
     google-authenticator
     google-chrome-beta
-    grim
-    i3status-rust
     killall
     libinput
     libinput-gestures
@@ -207,7 +202,6 @@
     lxqt.pcmanfm-qt
     mosh
     mpv
-    my-wscreensaver
     nomacs
     nowl
     obs-studio-wrap
@@ -216,12 +210,9 @@
     pciutils
     qbittorrent
     slack
-    slurp
     spotify
     sshfs-fuse
     streamlink
-    sway-launcher-desktop
-    swaynotificationcenter
     tdesktop
     unrar
     unzip

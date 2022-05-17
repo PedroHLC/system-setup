@@ -15,6 +15,10 @@ let
 in
 with pkgs.lib;
 {
+  home.packages = with pkgs; [
+    swaynotificationcenter # Won't work unless here
+  ];
+
   # My beloved DE
   wayland.windowManager.sway = {
     enable = true;
@@ -61,7 +65,7 @@ with pkgs.lib;
           { criteria = { app_id = "firefox"; title = "Picture-in-Picture"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = "firefox"; title = "Firefox — Sharing Indicator"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = ""; title = ".+\\(\\/run\\/current-system\\/sw\\/bin\\/gpg .+"; }; command = "floating enable; sticky enable"; }
-          { criteria = { title = "Slack \| mini panel"; }; command = "floating enable; stick enable"; }
+          { criteria = { title = "Slack \\| mini panel"; }; command = "floating enable; stick enable"; }
           { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
           { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
 
@@ -91,7 +95,7 @@ with pkgs.lib;
         "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
 
         # Notifications tray
-        "${modifier}+Shift+n" = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+        "${modifier}+Shift+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
 
         # Enter my extra modes
         "${modifier}+Tab" = "mode \"${modeFavorites}\"";
