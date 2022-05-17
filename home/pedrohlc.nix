@@ -468,7 +468,7 @@ with pkgs.lib;
       "Alt+3" = "set window-scale 0.5";
 
       # For watching animes in 60fps
-      "K" = "vf toggle format=yuv420p,vapoursynth=${../assets/motioninterpolation.vpy}:4:4";
+      "K" = "vf toggle vapoursynth=${../assets/motioninterpolation.vpy}";
     };
   };
 }
