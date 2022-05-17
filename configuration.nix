@@ -205,6 +205,7 @@
     libinput-gestures
     lm_sensors
     lxmenu-data # For lxqt apps' "Open with" dialogs
+    lxqt.lxqt-sudo
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
     mosh

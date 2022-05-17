@@ -15,6 +15,8 @@ let
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
 
+  iconTheme = "Vimix-Doder-dark";
+
   audaciousConfigGenerator = import ../tools/lib/audacious-config-generator.nix pkgs;
 in
 {
@@ -226,7 +228,7 @@ in
   gtk = {
     enable = true;
     theme.name = "Breeze-Dark";
-    iconTheme.name = "Vimix-Doder-dark";
+    iconTheme.name = iconTheme;
     cursorTheme.name = "Breeze_Snow";
   };
 
@@ -370,7 +372,7 @@ in
           shadeSortColumn = true;
         };
         Icons = {
-          Theme = "Vimix-Doder-dark";
+          Theme = iconTheme;
         };
         KDE = {
           LookAndFeelPackage = "org.kde.breezedark.desktop";
@@ -403,6 +405,31 @@ in
           always_on_top = true;
           playlist_visible = false;
           skin = "${pkgs.audacious-skin-winamp-classic}/source";
+        };
+      };
+    };
+    # Integrate the filemanager with the rest of the system
+    pcmanfm = {
+      target = ".config/pcmanfm-qt/default/settings.conf";
+      text = generators.toINI { } {
+        Behavior = {
+          NoUsbTrash = true;
+          SingleWindowMode = true;
+        };
+        System = {
+          Archiver = "xarchiver";
+          FallbackIconThemeName = iconTheme;
+          Terminal = "${terminal}";
+          SuCommand = "${pkgs.lxqt.lxqt-sudo}/bin/lxqt-sudo %s";
+        };
+        Thumbnail = {
+          ShowThumbnails = true;
+        };
+        Volume = {
+          AutoRun = false;
+          CloseOnUnmount = true;
+          MountOnStartup = false;
+          MountRemovable = false;
         };
       };
     };
