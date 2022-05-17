@@ -368,7 +368,6 @@
   # Fonts.
   fonts.fonts = with pkgs; [
     borg-sans-mono
-
     cantarell-fonts
     fira
     fira-code

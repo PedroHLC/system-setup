@@ -1,5 +1,6 @@
 { touchpad ? null, displayBrightness ? false, cpuSensor, gpuSensor ? null, battery ? null, nvidiaPrime ? false }:
 { pkgs, lib, ... }:
+with pkgs.lib;
 let
   modifier = "Mod4";
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
@@ -13,8 +14,9 @@ let
   sudo = "${pkgs.sudo}/bin/sudo";
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
+
+  audaciousConfigGenerator = import ../tools/lib/audacious-config-generator.nix pkgs;
 in
-with pkgs.lib;
 {
   home.packages = with pkgs; [
     swaynotificationcenter # Won't work unless here
@@ -361,17 +363,15 @@ with pkgs.lib;
     # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
     kdeglobals = {
       target = ".config/kdeglobals";
-      text = generators.toINI {} {
+      text = generators.toINI { } {
         General = {
           ColorScheme = "BreezeDark";
           Name = "Breeze Dark";
           shadeSortColumn = true;
         };
-
         Icons = {
           Theme = "Vimix-Doder-dark";
         };
-
         KDE = {
           LookAndFeelPackage = "org.kde.breezedark.desktop";
           contrast = 4;
@@ -381,16 +381,30 @@ with pkgs.lib;
     };
     kcminputrc = {
       target = ".config/kcminputrc";
-      text = generators.toINI {} {
+      text = generators.toINI { } {
         Mouse = {
           cursorTheme = "Breeze_Snow";
         };
       };
     };
     # Audacious rice
-    audacious-skin-winamp-classic = {
-      source = "${pkgs.audacious-skin-winamp-classic}/source";
-      target = ".local/share/audacious/Skins/135799-winamp_classic";
+    audacious = {
+      target = ".config/audacious/config";
+      text = audaciousConfigGenerator {
+        audacious = {
+          output_bit_depth = 24;
+          shuffle = false;
+        };
+        resample = {
+          default-rate = 96000;
+          method = 0;
+        };
+        skins = {
+          always_on_top = true;
+          playlist_visible = false;
+          skin = "${pkgs.audacious-skin-winamp-classic}/source";
+        };
+      };
     };
   };
 
@@ -540,10 +554,10 @@ with pkgs.lib;
     longitude = -47.480553;
     settings = {
       general = {
-        adjustment-method="wayland";
-        brightness-night=0.8;
-        gamma-night=0.9;
-        location-provider="manual";
+        adjustment-method = "wayland";
+        brightness-night = 0.8;
+        gamma-night = 0.9;
+        location-provider = "manual";
       };
     };
   };
