@@ -27,11 +27,12 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.users.pedrohlc = (import ./home/pedrohlc.nix {
-              touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
-              displayBrightness = true;
-              cpuSensor = "coretemp-isa-0000";
               battery = "BAT0";
+              cpuSensor = "coretemp-isa-0000";
+              displayBrightness = true;
+              gitKey = "F5BFC029DA9A28CE";
               nvidiaPrime = true;
+              touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
             });
           }
         ];
@@ -52,6 +53,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.pedrohlc = (import ./home/pedrohlc.nix {
               cpuSensor = "k10temp-pci-00c3";
+              gitKey = "DF4C6898CBDC6DF5";
               gpuSensor = "amdgpu-pci-0900";
             });
           }

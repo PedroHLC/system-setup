@@ -1,4 +1,11 @@
-{ touchpad ? null, displayBrightness ? false, cpuSensor, gpuSensor ? null, battery ? null, nvidiaPrime ? false }:
+{ battery ? null
+, cpuSensor
+, displayBrightness ? false
+, gitKey
+, gpuSensor ? null
+, nvidiaPrime ? false
+, touchpad ? null
+}:
 { pkgs, lib, ... }:
 with pkgs.lib;
 let
@@ -585,6 +592,34 @@ in
         brightness-night = 0.8;
         gamma-night = 0.9;
         location-provider = "manual";
+      };
+    };
+  };
+
+  # Personal git setings
+  programs.git = {
+    enable = true;
+    signing = {
+      key = gitKey;
+      signByDefault = true;
+    };
+    userEmail = "root@pedrohlc.com";
+    userName = "PedroHLC ☭";
+    extraConfig = {
+      core = {
+        editor = "nvim"; # I won't specify the full path to re-use the wrapped nvim from the system setup
+      };
+      rerere = {
+        enabled = true;
+      };
+      pull = {
+        rebase = true;
+      };
+      tag = {
+        gpgsign = true;
+      };
+      init = {
+        defaultBranch = "main";
       };
     };
   };
