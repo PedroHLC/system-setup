@@ -353,11 +353,45 @@ with pkgs.lib;
         ~/.nix-profile/bin/sway
       fi
     '';
-    # `programs.tmux` looks bloatware nearby this simplist config
+    # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
       set-option -g default-shell /run/current-system/sw/bin/fish
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
     '';
+    # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
+    kdeglobals = {
+      target = ".config/kdeglobals";
+      text = generators.toINI {} {
+        General = {
+          ColorScheme = "BreezeDark";
+          Name = "Breeze Dark";
+          shadeSortColumn = true;
+        };
+
+        Icons = {
+          Theme = "Vimix-Doder-dark";
+        };
+
+        KDE = {
+          LookAndFeelPackage = "org.kde.breezedark.desktop";
+          contrast = 4;
+          widgetStyle = "Breeze";
+        };
+      };
+    };
+    kcminputrc = {
+      target = ".config/kcminputrc";
+      text = generators.toINI {} {
+        Mouse = {
+          cursorTheme = "Breeze_Snow";
+        };
+      };
+    };
+    # Audacious rice
+    audacious-skin-winamp-classic = {
+      source = "${pkgs.audacious-skin-winamp-classic}/source";
+      target = ".local/share/audacious/Skins/135799-winamp_classic";
+    };
   };
 
   xdg = {
@@ -469,6 +503,48 @@ with pkgs.lib;
 
       # For watching animes in 60fps
       "K" = "vf toggle vapoursynth=${../assets/motioninterpolation.vpy}";
+    };
+  };
+
+  # Hardware/softwre OSD indicators while gaming
+  programs.mangohud = {
+    enable = true;
+    settings = {
+      arch = true;
+      background_alpha = "0.05";
+      battery = true;
+      cpu_temp = true;
+      engine_version = true;
+      font_size = 17;
+      fps_limit = mkIf nvidiaPrime 144;
+      gl_vsync = -1;
+      gpu_temp = true;
+      io_read = true;
+      io_write = true;
+      position = "top-right";
+      round_corners = 8;
+      vram = true;
+      vsync = 0;
+      vulkan_driver = true;
+      width = 260;
+      wine = true;
+    };
+  };
+
+  # Color filters for day/night
+  services.gammastep = {
+    enable = true;
+    provider = "manual";
+    temperature.night = 5100;
+    latitude = -21.8631753;
+    longitude = -47.480553;
+    settings = {
+      general = {
+        adjustment-method="wayland";
+        brightness-night=0.8;
+        gamma-night=0.9;
+        location-provider="manual";
+      };
     };
   };
 }

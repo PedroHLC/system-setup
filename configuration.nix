@@ -186,6 +186,7 @@
     alacritty
     android-tools
     aria2
+    audacious
     brightnessctl
     btop
     cachix
@@ -336,6 +337,9 @@
 
     # Script required for autologin (per TTYs).
     login-program = import ./tools/login-program.nix pkgs;
+
+    # Audacious rice
+    audacious-skin-winamp-classic = with pkgs; import ./tools/audacious-skin-winamp-classic.nix { inherit fetchzip stdenv lib; };
   };
 
   # Enable services (automatically includes their apps' packages).
