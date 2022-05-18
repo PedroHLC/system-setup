@@ -20,7 +20,7 @@ stdenv.mkDerivation {
 
   installPhase = ''
     install -dm 755 "$out"
-    cp -dr --no-preserve='ownership' * "$out/"
+    cp -dr --no-preserve='ownership' source/* "$out/"
   '';
 
   meta = {

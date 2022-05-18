@@ -21,6 +21,7 @@ let
   sudo = "${pkgs.sudo}/bin/sudo";
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
+  defaultBrowser = "firefox.desktop";
 
   iconTheme = "Vimix-Doder-dark";
 
@@ -369,81 +370,83 @@ in
       set-option -g default-shell /run/current-system/sw/bin/fish
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
     '';
-    # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
-    kdeglobals = {
-      target = ".config/kdeglobals";
-      text = generators.toINI { } {
-        General = {
-          ColorScheme = "BreezeDark";
-          Name = "Breeze Dark";
-          shadeSortColumn = true;
-        };
-        Icons = {
-          Theme = iconTheme;
-        };
-        KDE = {
-          LookAndFeelPackage = "org.kde.breezedark.desktop";
-          contrast = 4;
-          widgetStyle = "Breeze";
-        };
-      };
-    };
-    kcminputrc = {
-      target = ".config/kcminputrc";
-      text = generators.toINI { } {
-        Mouse = {
-          cursorTheme = "Breeze_Snow";
-        };
-      };
-    };
-    # Audacious rice
-    audacious = {
-      target = ".config/audacious/config";
-      text = audaciousConfigGenerator {
-        audacious = {
-          output_bit_depth = 24;
-          shuffle = false;
-        };
-        resample = {
-          default-rate = 96000;
-          method = 0;
-        };
-        skins = {
-          always_on_top = true;
-          playlist_visible = false;
-          skin = "${pkgs.audacious-skin-winamp-classic}/source";
-        };
-      };
-    };
-    # Integrate the filemanager with the rest of the system
-    pcmanfm = {
-      target = ".config/pcmanfm-qt/default/settings.conf";
-      text = generators.toINI { } {
-        Behavior = {
-          NoUsbTrash = true;
-          SingleWindowMode = true;
-        };
-        System = {
-          Archiver = "xarchiver";
-          FallbackIconThemeName = iconTheme;
-          Terminal = "${terminal}";
-          SuCommand = "${pkgs.lxqt.lxqt-sudo}/bin/lxqt-sudo %s";
-        };
-        Thumbnail = {
-          ShowThumbnails = true;
-        };
-        Volume = {
-          AutoRun = false;
-          CloseOnUnmount = true;
-          MountOnStartup = false;
-          MountRemovable = false;
-        };
-      };
-    };
   };
 
   xdg = {
+    # Config files that I prefer to just specify
+    configFile = {
+      # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
+      kdeglobals = {
+        text = generators.toINI { } {
+          General = {
+            ColorScheme = "BreezeDark";
+            Name = "Breeze Dark";
+            shadeSortColumn = true;
+          };
+          Icons = {
+            Theme = iconTheme;
+          };
+          KDE = {
+            LookAndFeelPackage = "org.kde.breezedark.desktop";
+            contrast = 4;
+            widgetStyle = "Breeze";
+          };
+        };
+      };
+      kcminputrc = {
+        text = generators.toINI { } {
+          Mouse = {
+            cursorTheme = "Breeze_Snow";
+          };
+        };
+      };
+      # Audacious rice
+      audacious = {
+        target = "audacious/config";
+        text = audaciousConfigGenerator {
+          audacious = {
+            output_bit_depth = 24;
+            shuffle = false;
+          };
+          resample = {
+            default-rate = 96000;
+            method = 0;
+          };
+          skins = {
+            always_on_top = true;
+            playlist_visible = false;
+            skin = "${pkgs.audacious-skin-winamp-classic}";
+          };
+        };
+      };
+      # Integrate the filemanager with the rest of the system
+      pcmanfm = {
+        target = "pcmanfm-qt/default/settings.conf";
+        text = generators.toINI { } {
+          Behavior = {
+            NoUsbTrash = true;
+            SingleWindowMode = true;
+          };
+          System = {
+            Archiver = "xarchiver";
+            FallbackIconThemeName = iconTheme;
+            Terminal = "${terminal}";
+            SuCommand = "${pkgs.lxqt.lxqt-sudo}/bin/lxqt-sudo %s";
+          };
+          Thumbnail = {
+            ShowThumbnails = true;
+          };
+          Volume = {
+            AutoRun = false;
+            CloseOnUnmount = true;
+            MountOnStartup = false;
+            MountRemovable = false;
+          };
+        };
+      };
+    };
     desktopEntries = {
+      # Overwrite Firefox with my encryption-wrapper
       "firefox" = {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
@@ -463,6 +466,8 @@ in
         type = "Application";
       };
     };
+
+    # Default apps per file type
     mimeApps = {
       enable = true;
       associations = {
@@ -478,8 +483,21 @@ in
         "image/png" = "org.nomacs.ImageLounge.desktop";
         "image/jpeg" = "org.nomacs.ImageLounge.desktop";
         "application/pdf" = "firefox.desktop";
+
+        "x-scheme-handler/http" = defaultBrowser;
+        "x-scheme-handler/https" = defaultBrowser;
+        "x-scheme-handler/chrome" = defaultBrowser;
+        "text/html" = defaultBrowser;
+        "application/x-extension-htm" = defaultBrowser;
+        "application/x-extension-html" = defaultBrowser;
+        "application/x-extension-shtml" = defaultBrowser;
+        "application/xhtml+xml" = defaultBrowser;
+        "application/x-extension-xhtml" = defaultBrowser;
+        "application/x-extension-xht" = defaultBrowser;
       };
     };
+
+    # Default directories
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -622,5 +640,79 @@ in
         defaultBranch = "main";
       };
     };
+  };
+
+  # My favorite and simple terminal
+  programs.alacritty = {
+    enable = true;
+    settings = lib.mkOptionDefault {
+      font = {
+        normal = {
+          family = "Borg Sans Mono";
+        };
+        size = 11.0;
+      };
+
+      window.opacity = 0.9;
+
+      shell = {
+        program = "/run/current-system/sw/bin/fish";
+        args = [ "--login" ];
+      };
+
+      colors = {
+        primary = {
+          background = "#161821";
+          foreground = "#d2d4de";
+        };
+        normal = {
+          black = "#161821";
+          red = "#e27878";
+          green = "#b4be82";
+          yellow = "#e2a478";
+          blue = "#84a0c6";
+          magenta = "#a093c7";
+          cyan = "#89b8c2";
+          white = "#c6c8d1";
+        };
+        bright = {
+          black = "#6b7089";
+          red = "#e98989";
+          green = "#c0ca8e";
+          yellow = "#e9b189";
+          blue = "#91acd1";
+          magenta = "#ada0d3";
+          cyan = "#95c4ce";
+          white = "#d2d4de";
+        };
+      };
+    };
+  };
+
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      ":q"="exit";
+      "aget"="aria2c -s 16 -x 16 -j 16 -k 1M";
+      "elm"="yarn exec --offline -- elm";
+      "elm-app"="yarn exec --offline -- elm-app";
+      "elm-graphql"="yarn exec --offline -- elm-graphql";
+      "elm-optimize-level-2"="yarn exec --offline -- elm-optimize-level-2";
+      "elm-review"="yarn exec --offline -- elm-review";
+      "elm-test"="yarn exec --offline -- elm-test";
+      "hqmpv"="umpv --profile=gpu-hq";
+      "parcel"="yarn exec --offline -- parcel";
+      "phlc-home"="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+      "phlc-sys"="git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
+    };
+    plugins = [
+      {
+        name = "local-plugin";
+        src = "${../assets/fish}";
+      }
+    ];
+    shellInit = ''
+      set fish_greeting '何でもは知らないわよ。知ってることだけ'
+    '';
   };
 }
