@@ -692,18 +692,18 @@ in
   programs.fish = {
     enable = true;
     shellAliases = {
-      ":q"="exit";
-      "aget"="aria2c -s 16 -x 16 -j 16 -k 1M";
-      "elm"="yarn exec --offline -- elm";
-      "elm-app"="yarn exec --offline -- elm-app";
-      "elm-graphql"="yarn exec --offline -- elm-graphql";
-      "elm-optimize-level-2"="yarn exec --offline -- elm-optimize-level-2";
-      "elm-review"="yarn exec --offline -- elm-review";
-      "elm-test"="yarn exec --offline -- elm-test";
-      "hqmpv"="umpv --profile=gpu-hq";
-      "parcel"="yarn exec --offline -- parcel";
-      "phlc-home"="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
-      "phlc-sys"="git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
+      ":q" = "exit";
+      "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
+      "elm" = "yarn exec --offline -- elm";
+      "elm-app" = "yarn exec --offline -- elm-app";
+      "elm-graphql" = "yarn exec --offline -- elm-graphql";
+      "elm-optimize-level-2" = "yarn exec --offline -- elm-optimize-level-2";
+      "elm-review" = "yarn exec --offline -- elm-review";
+      "elm-test" = "yarn exec --offline -- elm-test";
+      "hqmpv" = "umpv --profile=gpu-hq";
+      "parcel" = "yarn exec --offline -- parcel";
+      "phlc-home" = "git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME";
+      "phlc-sys" = "git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
     };
     plugins = [
       {

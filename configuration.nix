@@ -247,6 +247,7 @@
 
     # Less used
     adbfs-rootless
+    airgeddon
     helvum
     neofetch
     nix-index
@@ -341,6 +342,23 @@
 
     # Audacious rice
     audacious-skin-winamp-classic = with pkgs; import ./tools/audacious-skin-winamp-classic.nix { inherit fetchzip stdenv lib; };
+
+    # Wireless auditing
+    airgeddon = with pkgs; import ./tools/airgeddon.nix {
+      inherit lib stdenv fetchFromGitHub makeWrapper
+        aircrack-ng
+        bash
+        gawk
+        iproute2
+        iw
+        pciutils
+        procps
+        tmux
+        # I want these
+        bully
+        pixiewps;
+      reaverwps = reaverwps-t6x;
+    };
   };
 
   # Enable services (automatically includes their apps' packages).
@@ -399,8 +417,8 @@
         src = self.fetchFromGitHub {
           owner = "Biont";
           repo = "sway-launcher-desktop";
-          rev = "a40da16223698f44f66a5184b28d74ecae3326be";
-          sha256 = "Fm+R5Wkwgvu2hBLzySVz6k6fjF8tpJ5dY5Hiow+Qa8c=";
+          rev = "93b99b250c8668d3cbd17ff7035290787ee80eb1";
+          sha256 = "HCGUFXrj6b9Pb6b5y9yupBumFLQyH1QVMrfoBM4HbMg=";
         };
         version = "1.5.4";
       });
