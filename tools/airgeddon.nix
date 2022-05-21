@@ -1,3 +1,4 @@
+# Hopefully waiting for https://github.com/NixOS/nixpkgs/pull/173885
 { lib
 , stdenv
 , fetchFromGitHub

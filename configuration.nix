@@ -191,6 +191,7 @@
     btop
     cachix
     discord
+    element-desktop-wayland
     ffmpegthumbnailer
     file
     firefox-gate
