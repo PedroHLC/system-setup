@@ -66,6 +66,7 @@ in
       "egl/egl_external_platform.d".source = "/run/opengl-driver/share/egl/egl_external_platform.d/";
     };
     systemPackages = with pkgs; [
+      airgeddon
       nvidia-offload
     ];
   };

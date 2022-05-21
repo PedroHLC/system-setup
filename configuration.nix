@@ -247,7 +247,6 @@
 
     # Less used
     adbfs-rootless
-    airgeddon
     helvum
     neofetch
     nix-index
@@ -348,7 +347,9 @@
       inherit lib stdenv fetchFromGitHub makeWrapper
         aircrack-ng
         bash
+        crunch
         gawk
+        hashcat
         iproute2
         iw
         pciutils
