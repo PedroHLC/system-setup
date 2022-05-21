@@ -200,6 +200,7 @@
     git
     google-authenticator
     google-chrome-beta
+    keybase-gui
     killall
     libinput
     libinput-gestures
@@ -365,6 +366,8 @@
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
   services.gvfs.enable = true;
+  services.keybase.enable = true;
+  services.kbfs.enable = true;
   services.ntp.enable = true;
   services.openssh = {
     # TODO: Use openssh_hpn
