@@ -444,6 +444,108 @@ in
           };
         };
       };
+      # WIP: Sublime Preferences
+      sublimePreferences =
+        let
+          # This will result in a lot of errors until Colorsublime loads.
+          colorSublimeThemes = "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes";
+        in
+        {
+          target = "sublime-text-3/Packages/User/Preferences.sublime-settings";
+          text = generators.toJSON { } {
+            hardware_acceleration = "opengl";
+            close_windows_when_empty = false;
+            rulers = [ 40 80 ];
+            spell_check = false;
+            lsp_format_on_save = true; # Requires LSP
+
+            font_face = "Borg Sans Mono";
+            font_options = [ "subpixel_antialias" ];
+            font_size = 8;
+            fonts_list = [ "Borg Sans Mono" "Fira Code" "JetBrains Mono" ]; # For FontCycler
+
+            # Have both dark & light themes
+            color_scheme = "auto";
+            dark_color_scheme = "${colorSublimeThemes}/Rebecca-dark.tmTheme";
+            light_color_scheme = "${colorSublimeThemes}/Kashmir-Light.tmTheme";
+            theme = "auto";
+            dark_theme = "Darkmatter.sublime-theme";
+            light_theme = "Adaptive.sublime-theme";
+          };
+        };
+      sublimeTerminus = {
+        target = "sublime-text-3/Packages/User/Terminus.sublime-settings";
+        text = generators.toJSON { } {
+          default_config = {
+            linux = "Fish";
+          };
+          shell_configs = [
+            {
+              name = "Fish";
+              cmd = [ "fish" "--login" ];
+              env = { };
+              enable = true;
+              platforms = [ "linux" "osx" ];
+            }
+          ];
+          theme = "auto";
+        };
+      };
+      sublimePackages = {
+        target = "sublime-text-3/Packages/User/Package Control.sublime-settings";
+        text = generators.toJSON { } {
+          installed_packages = [
+            "A File Icon" # Proper icons in the sidebar
+            "Babel" # React JSX syntax
+            "Clang Format" # Format C/C++
+            "CMake" # CMake syntax
+            "Color Convert" # RGB to/from HEX
+            "Colorsublime" # Many colorschemes
+            "Dockerfile Syntax Highlighting" # Dockerfile syntax
+            "EditorConfig" # Per-project cross-IDE preferences
+            "Elixir" # Elixir syntax
+            "Elm Format on Save" # Format Elm
+            "Elm Syntax Highlighting" # Elm syntax
+            "Focus File on Sidebar"
+            "FontCycler" # Fast-change fonts
+            "GitGutter" # Git blame and diff
+            "GraphQL" # Graphql syntax
+            "HexViewer" # View binary files
+            "i3 wm" # i3 and sway syntax
+            "INI" # Ini files syntax
+            "LDIF Syntax Highlighting" # LDAP files syntax
+            "MasmAssembly" # MASM syntax
+            "MDX Syntax Highlighting" # MDX (JSX on Markdown) syntax
+            "MIPS Syntax" # MIPS syntax 
+            "MouseEventListener" # Dependency of some other plugin
+            "NeoVintageous" # Vim modes for sublime
+            "Nix" # Nix syntax
+            "Origami" # Easy split windows into panes
+            "Package Control" # Required for having all the other
+            "PKGBUILD" # Arch's PKGBUILDs syntax
+            "Print to HTML" # Generates colored documents from my code
+            "ProjectManager" # Fast-change projects
+            "Prolog" # Prolog syntax
+            "QML" # Qt's QML syntax
+            "rainbow_csv" # See columns in CSV through coloring
+            "Reason" # Reason syntax (Requires LSP)
+            "RecentTabSort" # Re-sort tabs
+            "RustFmt" # FOrmat Rust
+            "Sass" # Sass syntax
+            "SideBarEnhancements" # Useful commands in the sidebar
+            "SublimeLinter" # Generic linter
+            "Tabnine" # AI-powered auto-complete
+            "Terminus" # Real terminal inside sublime
+            "Terraform" # Terraform syntax
+            "Theme - Darkmatter" # The dark theme I use
+            "Themes Menu Switcher"
+            "Toggle Dark Mode" # Fast-change theme
+            "TOML" # Toml syntax
+            "TypeScript Syntax" # TS Syntax
+            "VimModelines" # Consider "# vim set:" lines
+          ];
+        };
+      };
     };
     desktopEntries = {
       # Overwrite Firefox with my encryption-wrapper
