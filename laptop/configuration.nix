@@ -4,7 +4,7 @@
 # My user-named values.
 let
   # Preferred NVIDIA Version.
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.beta;
 
 in
 # NixOS-defined options
