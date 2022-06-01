@@ -34,7 +34,7 @@ let
   # My wallpapers
   aenami = {
     # { deviation = "A4690F4C-30E1-0484-6B27-6396E17ECF44"; sha256 = "df2cd090f45379875657a6c0a0d656c220ee832c2d36b87bde4e6f19fb0730bc"; };
-    horizon = "~/Pictures/Wallpapers/Aenami-Horizon.jpg";
+    horizon = "~/Pictures/Wallpapers/Aenami-Horizon.png";
     # { deviation = "E562F7C9-7F40-C037-D10A-A26DD714B726"; sha256 = "8185dd896c22d09523bd1d9533c7bacd43b4517ba4d56f45cc9598fb7b4f2cf53"; };
     lostInBetween = "~/Pictures/Wallpapers/Aenami-Lost-in-Between.jpg";
   };
