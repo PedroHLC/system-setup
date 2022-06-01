@@ -189,7 +189,6 @@
     audacious
     brightnessctl
     btop
-    cachix
     discord
     element-desktop-wayland
     ffmpegthumbnailer
@@ -220,6 +219,7 @@
     pciutils
     qbittorrent
     slack
+    space-cadet-pinball
     spotify
     sshfs-fuse
     streamlink
@@ -342,7 +342,7 @@
     login-program = import ./tools/login-program.nix pkgs;
 
     # Audacious rice
-    audacious-skin-winamp-classic = with pkgs; import ./tools/audacious-skin-winamp-classic.nix { inherit fetchzip stdenv lib; };
+    audacious-skin-winamp-classic = import ./tools/audacious-skin-winamp-classic.nix pkgs;
 
     # Wireless auditing
     airgeddon = with pkgs; import ./tools/airgeddon.nix {
@@ -415,7 +415,7 @@
     };
   };
 
-  # Add purge to sway-launcher-desktop
+  # Add purge to sway-launcher-desktop.
   nixpkgs.overlays = [
     (self: super: {
       sway-launcher-desktop = super.sway-launcher-desktop.overrideAttrs (attrs: {
@@ -429,6 +429,9 @@
       });
     })
   ];
+
+  # Change the allocator in hope it will save me 5 ms everyday.
+  environment.memoryAllocator.provider = "jemalloc";
 
   # Required to play GenshinImpact on Linux without banning.
   networking.extraHosts =

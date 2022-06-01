@@ -9,6 +9,7 @@
 { pkgs, lib, ... }:
 with pkgs.lib;
 let
+  # Some stuff that repeats across this file
   modifier = "Mod4";
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
   lock = "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
@@ -20,13 +21,23 @@ let
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
-  videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
   defaultBrowser = "firefox.desktop";
-
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
 
+  # per-GPU values
+  videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
+
+  # To help with Audacious configs
   audaciousConfigGenerator = import ../tools/lib/audacious-config-generator.nix pkgs;
+
+  # My wallpapers
+  aenami = {
+    # { deviation = "A4690F4C-30E1-0484-6B27-6396E17ECF44"; sha256 = "df2cd090f45379875657a6c0a0d656c220ee832c2d36b87bde4e6f19fb0730bc"; };
+    horizon = "~/Pictures/Wallpapers/Aenami-Horizon.jpg";
+    # { deviation = "E562F7C9-7F40-C037-D10A-A26DD714B726"; sha256 = "8185dd896c22d09523bd1d9533c7bacd43b4517ba4d56f45cc9598fb7b4f2cf53"; };
+    lostInBetween = "~/Pictures/Wallpapers/Aenami-Lost-in-Between.jpg";
+  };
 in
 {
   home.packages = with pkgs; [
@@ -48,6 +59,8 @@ in
         { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
         # Volume and Display-brightness OSD
         { command = "${pkgs.avizo}/bin/avizo-service"; }
+        # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
+        { command = "${pkgs.swayidle}/bin/swayidle -w timeout 60 ${lock} before-sleep ${lock}"; }
       ];
       input = {
         # Adjust to Brazilian keyboards
@@ -61,7 +74,8 @@ in
         };
       });
       output = {
-        "*" = { background = "~/.wallpaper.jpg fill"; };
+        "*" = { background = "${aenami.horizon} fill"; };
+        "Unknown 0x0804 0x00000000" = { background = "${aenami.lostInBetween} fill"; };
       };
       focus = {
         followMouse = "yes";
@@ -219,17 +233,6 @@ in
     '');
     extraOptions = mkIf nvidiaPrime [
       "--unsupported-gpu"
-    ];
-  };
-
-  # Lock before sleep and after a minute
-  services.swayidle = {
-    enable = true;
-    events = [
-      { event = "before-sleep"; command = lock; }
-    ];
-    timeouts = [
-      { timeout = 60; command = lock; }
     ];
   };
 
