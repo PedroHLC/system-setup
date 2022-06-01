@@ -56,16 +56,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1652133925,
-        "narHash": "sha256-kfATGChLe9/fQVZkXN9G71JAVMlhePv1qDbaRKklkQs=",
+        "lastModified": 1654104232,
+        "narHash": "sha256-Eg4/WNUJmrMrKn0dflWtFzkncswolZDLg5AfcXGalDA=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "51d859cdab1ef58755bd342d45352fc607f5e59b",
+        "rev": "32b41cf4a6d2c31c2498cb9b45d5043a013ea557",
         "type": "github"
       },
       "original": {
         "owner": "PedroHLC",
-        "ref": "nixpkgs-unstable",
+        "ref": "zfs-unstable-2.1.4.65",
         "repo": "nixpkgs",
         "type": "github"
       }

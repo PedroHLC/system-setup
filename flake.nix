@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:PedroHLC/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:PedroHLC/nixpkgs/zfs-unstable-2.1.4.65";
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     # home-manager for managing my users' home
