@@ -189,7 +189,7 @@
     audacious
     brightnessctl
     btop
-    busybox # this god's gift comes with eth-wake and telnet
+    #busybox # I wish I could use busybox's eth-wake and telnet -- but it replaces "reboot"
     discord
     element-desktop-wayland
     ffmpegthumbnailer
@@ -240,6 +240,7 @@
     # Development apps
     deno
     elmPackages.elm-format
+    gdb # more precious then gcc
     gnumake
     nixpkgs-fmt
     nodejs
