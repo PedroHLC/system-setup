@@ -4,6 +4,7 @@ pkgs: pkgs.writeShellScriptBin "my-wscreensaver" ''
   PIDOF="${pkgs.procps}/bin/pidof"
   SWAYMSG="${pkgs.sway}/bin/swaymsg"
   SWAYLOCK="${pkgs.swaylock}/bin/swaylock"
+  SWAYNC="${pkgs.swaynotificationcenter}/bin/swaync-client"
 
   _HAS_MUSIC=$("$PIDOF" spotify)
 
@@ -21,10 +22,12 @@ pkgs: pkgs.writeShellScriptBin "my-wscreensaver" ''
       _PIDS+=($!)
   }
 
+  [[ "$("$SWAYNC" -D)" == "false" ]] && "$SWAYNC" -d
   for _OUTPUT in $("$SWAYMSG" -t get_outputs -r | "$JQ" -r .[].name); do
     wallpaper "$_OUTPUT" 'horizontal.txt'
   done
 
   "$SWAYLOCK" -c 00000000
   kill "''${_PIDS[@]}"
+  [[ "$("$SWAYNC" -D)" == "true" ]] && "$SWAYNC" -d
 ''

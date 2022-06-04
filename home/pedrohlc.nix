@@ -94,6 +94,7 @@ in
           { criteria = { app_id = "firefox"; title = "Picture-in-Picture"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = "firefox"; title = "Firefox — Sharing Indicator"; }; command = "floating enable; sticky enable"; }
           { criteria = { app_id = ""; title = ".+\\(\\/run\\/current-system\\/sw\\/bin\\/gpg .+"; }; command = "floating enable; sticky enable"; }
+          { criteria = { app_id = "telegramdesktop"; title = "TelegramDesktop"; }; command = "floating enable; stick enable"; } # Main window is called "Telegram (N)", popups are called "TelegramDesktop"
           { criteria = { title = "Slack \\| mini panel"; }; command = "floating enable; stick enable"; }
           { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
           { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }

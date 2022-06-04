@@ -41,8 +41,8 @@
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
   boot.kernelPackages =
-    #config.boot.zfs.package.latestCompatibleLinuxPackages;
-    pkgs.linuxPackages_zen;
+    config.boot.zfs.package.latestCompatibleLinuxPackages;
+  #pkgs.linuxPackages_zen;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
@@ -189,6 +189,7 @@
     audacious
     brightnessctl
     btop
+    busybox # this god's gift comes with eth-wake and telnet
     discord
     element-desktop-wayland
     ffmpegthumbnailer
@@ -415,23 +416,9 @@
     };
   };
 
-  # Add purge to sway-launcher-desktop.
-  nixpkgs.overlays = [
-    (self: super: {
-      sway-launcher-desktop = super.sway-launcher-desktop.overrideAttrs (attrs: {
-        src = self.fetchFromGitHub {
-          owner = "Biont";
-          repo = "sway-launcher-desktop";
-          rev = "93b99b250c8668d3cbd17ff7035290787ee80eb1";
-          sha256 = "HCGUFXrj6b9Pb6b5y9yupBumFLQyH1QVMrfoBM4HbMg=";
-        };
-        version = "1.5.4";
-      });
-    })
-  ];
-
   # Change the allocator in hope it will save me 5 ms everyday.
-  environment.memoryAllocator.provider = "jemalloc";
+  # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
+  # environment.memoryAllocator.provider = "jemalloc";
 
   # Required to play GenshinImpact on Linux without banning.
   networking.extraHosts =
