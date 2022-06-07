@@ -41,8 +41,9 @@
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
   boot.kernelPackages =
-    config.boot.zfs.package.latestCompatibleLinuxPackages;
-  #pkgs.linuxPackages_zen;
+    #config.boot.zfs.package.latestCompatibleLinuxPackages;
+    pkgs.linuxPackages_zen;
+  boot.zfs.enableUnstable = true;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
@@ -348,8 +349,8 @@
 
     # Busybox without applets
     busyboxWithoutAppletSymlinks = pkgs.busybox.override {
-     enableAppletSymlinks = false;
-   };
+      enableAppletSymlinks = false;
+    };
   };
 
   # Enable services (automatically includes their apps' packages).
@@ -402,6 +403,26 @@
       dockerCompat = true; # Podman provides docker.
     };
   };
+
+  # Patch some packages
+  nixpkgs.overlays = [
+    (self: super: {
+      linuxPackages_zen = super.linuxPackages_zen.extend
+        (lpSelf: lpSuper: {
+          zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (attrs: {
+            version = "2.1.5";
+
+            src = self.fetchFromGitHub {
+              owner = "tonyhutter";
+              repo = "zfs";
+              sha256 = "sha256-zHwcZ6fNg0XHpEGoA0My6ItEV7R/OBiMQVrvlZwuHEg=";
+              rev = "338188562bdc1500ea8775084260c5f2f1d8e2be"; #zfs-2.1.5-hutter
+            };
+            meta.broken = false;
+          });
+        });
+    })
+  ];
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
