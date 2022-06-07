@@ -410,8 +410,6 @@
       linuxPackages_zen = super.linuxPackages_zen.extend
         (lpSelf: lpSuper: {
           zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (attrs: {
-            version = "2.1.5";
-
             src = self.fetchFromGitHub {
               owner = "tonyhutter";
               repo = "zfs";

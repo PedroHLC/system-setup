@@ -58,6 +58,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.users.pedrohlc = (import ./home/pedrohlc.nix {
               cpuSensor = "k10temp-pci-00c3";
+              dangerousAlone = false;
               gitKey = "DF4C6898CBDC6DF5";
               gpuSensor = "amdgpu-pci-0900";
             });

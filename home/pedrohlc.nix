@@ -1,5 +1,6 @@
 { battery ? null
 , cpuSensor
+, dangerousAlone ? true
 , displayBrightness ? false
 , gitKey
 , gpuSensor ? null
@@ -38,6 +39,9 @@ let
     # { deviation = "E562F7C9-7F40-C037-D10A-A26DD714B726"; sha256 = "8185dd896c22d09523bd1d9533c7bacd43b4517ba4d56f45cc9598fb7b4f2cf53"; };
     lostInBetween = "~/Pictures/Wallpapers/Aenami-Lost-in-Between.jpg";
   };
+
+  # Different timeouts for locking screens in desktop/laptop
+  lockTimeout = if dangerousAlone then "60" else "300";
 in
 {
   home.packages = with pkgs; [
@@ -60,7 +64,7 @@ in
         # Volume and Display-brightness OSD
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
-        { command = "${pkgs.swayidle}/bin/swayidle -w timeout 60 ${lock} before-sleep ${lock}"; }
+        { command = "${pkgs.swayidle}/bin/swayidle -w timeout ${lockTimeout} ${lock} before-sleep ${lock}"; }
       ];
       input = {
         # Adjust to Brazilian keyboards
