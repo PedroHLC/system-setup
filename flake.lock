@@ -21,9 +21,29 @@
         "type": "github"
       }
     },
+    "nbfc-linux": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1653990045,
+        "narHash": "sha256-6xCeE/E+h6Wg6ybendHQxKslrOukWWvcs8IoeANSJmQ=",
+        "owner": "nbfc-linux",
+        "repo": "nbfc-linux",
+        "rev": "6676be9566840ff1caa184dbfe018d0df0ce53ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nbfc-linux",
+        "ref": "main",
+        "repo": "nbfc-linux",
+        "type": "github"
+      }
+    },
     "nix-gaming": {
       "inputs": {
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1654096541,
@@ -41,6 +61,21 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1646811357,
+        "narHash": "sha256-JJdz8QJ8Gz9ZChGfl4P9Cm8C9mYJLRGVsXcY9gNPtuI=",
+        "owner": "nixOS",
+        "repo": "nixpkgs",
+        "rev": "e1f52cabc3cf7e22015f6ef940d3fb31ef1f0d40",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1653307806,
         "narHash": "sha256-VPej3GE4IBMwYnXRfbiVqMWKa32+ysuvbHRkQXD0gTw=",
         "owner": "NixOS",
@@ -54,7 +89,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1654245945,
         "narHash": "sha256-PV6MZ+HuNnyLxQGa2rwt0BmCRkQS2xqhc+SeJLQM+WU=",
@@ -73,8 +108,24 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "nbfc-linux": "nbfc-linux",
         "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     }
   },

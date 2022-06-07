@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ nix-gaming, config, lib, pkgs, ... }:
+{ config, lib, pkgs, nix-gaming, ... }:
 
 # NixOS-defined options
 {
@@ -189,7 +189,7 @@
     audacious
     brightnessctl
     btop
-    #busybox # I wish I could use busybox's eth-wake and telnet -- but it replaces "reboot"
+    busyboxWithoutAppletSymlinks
     discord
     element-desktop-wayland
     ffmpegthumbnailer
@@ -346,24 +346,10 @@
     # Audacious rice
     audacious-skin-winamp-classic = import ./tools/audacious-skin-winamp-classic.nix pkgs;
 
-    # Wireless auditing
-    airgeddon = with pkgs; import ./tools/airgeddon.nix {
-      inherit lib stdenv fetchFromGitHub makeWrapper
-        aircrack-ng
-        bash
-        crunch
-        gawk
-        hashcat
-        iproute2
-        iw
-        pciutils
-        procps
-        tmux
-        # I want these
-        bully
-        pixiewps;
-      reaverwps = reaverwps-t6x;
-    };
+    # Busybox without applets
+    busyboxWithoutAppletSymlinks = pkgs.busybox.override {
+     enableAppletSymlinks = false;
+   };
   };
 
   # Enable services (automatically includes their apps' packages).

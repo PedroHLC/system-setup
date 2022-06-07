@@ -10,6 +10,9 @@
     # home-manager for managing my users' home
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Cooler fan service
+    nbfc-linux.url = "github:nbfc-linux/nbfc-linux/main";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {

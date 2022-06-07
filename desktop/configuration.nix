@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ nix-gaming, config, lib, pkgs, ... }:
+{ config, lib, pkgs, nix-gaming, ... }:
 
 # NixOS-defined options
 {
