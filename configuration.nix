@@ -426,9 +426,14 @@
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";
 
-  # Required to play GenshinImpact on Linux without banning.
+  # Some internet shortcuts
   networking.extraHosts =
     ''
+      # Github sometimes is a turtle
+      20.201.28.148 api.github.com
+
+      # - Required to play GenshinImpact on Linux without banning.
+
       # Genshin logging servers (do not remove!)
       0.0.0.0 log-upload-os.mihoyo.com
       0.0.0.0 overseauspider.yuanshen.com
