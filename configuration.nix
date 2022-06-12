@@ -198,7 +198,7 @@
     firefox-gate
     firefox-wayland
     fzf
-    #fx_cast_bridge # broken
+    fx_cast_bridge
     git
     google-authenticator
     google-chrome-beta
@@ -426,12 +426,12 @@
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";
 
-  # Some internet shortcuts
+  # Hardcodes some address resolving
   networking.extraHosts =
     ''
-      # Github sometimes is a turtle
-      20.201.28.148 api.github.com
-
+      10.100.0.1 desktop.vpn
+      192.168.100.194 desktop.local
+      
       # - Required to play GenshinImpact on Linux without banning.
 
       # Genshin logging servers (do not remove!)
