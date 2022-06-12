@@ -40,6 +40,11 @@
     rocm-opencl-runtime
   ];
 
+  # Current ZFS is broken with 5.18
+  # and the branch I set-up as unstable does not work with this device
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.zfs.enableUnstable = false;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

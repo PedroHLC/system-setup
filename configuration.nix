@@ -7,7 +7,7 @@
   nix = {
     # Enable flakes and newer CLI features
     extraOptions = ''
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes ca-derivations
     '';
     settings = {
       # Allow my user to use nix
@@ -40,10 +40,11 @@
   hardware.cpu.intel.updateMicrocode = true;
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
-  boot.kernelPackages =
+  # (lib.mKDefault so I can revert this per-device)
+  boot.kernelPackages = lib.mkDefault
     #config.boot.zfs.package.latestCompatibleLinuxPackages;
     pkgs.linuxPackages_zen;
-  boot.zfs.enableUnstable = true;
+  boot.zfs.enableUnstable = lib.mkDefault true;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ntfs" ];
