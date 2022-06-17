@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, nbfc-linux, ... }:
+{ config, lib, pkgs, nix-gaming, ... }:
 
 # My user-named values.
 let
@@ -59,18 +59,21 @@ in
       intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
       nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
     };
+
+    powerManagement = {
+      enable = true;
+      finegrained = true;
+    };
   };
   environment = {
-    etc = {
-      "gbm/nvidia-drm_gbm.so".source = "${nvidiaPackage}/lib/libnvidia-allocator.so";
-      "egl/egl_external_platform.d".source = "/run/opengl-driver/share/egl/egl_external_platform.d/";
-    };
     systemPackages = with pkgs; [
       airgeddon
-      dmidecode # for nbfc
-      nbfc-linux.packages.x86_64-linux.nbfc-client-c
       nvidia-offload
     ];
+    variables = {
+      "VK_ICD_FILENAMES"="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/in
+tel_icd.i686.json";
+    };
   };
 
   # Intel VAAPI (NVIDIA enable its own)

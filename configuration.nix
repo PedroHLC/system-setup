@@ -254,6 +254,7 @@
     # Less used
     adbfs-rootless
     helvum
+    libva-utils
     neofetch
     nix-index
     nmap
