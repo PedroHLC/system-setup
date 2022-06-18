@@ -413,7 +413,7 @@
             src = self.fetchFromGitHub {
               owner = "tonyhutter";
               repo = "zfs";
-              sha256 = "sha256-000cZ6fNg0XHpEGoA0My6ItEV7R/OBiMQVrvlZwuHEg=";
+              sha256 = "sha256-0sNMGFx/Nb2UoJljL/8bHbtHm0/U2aBvdymcSXsIGvg=";
               rev = "543b84c329dfc73d73293447b7dbc4d0755cb901"; #zfs-2.1.5-hutter
             };
             meta.broken = false;
