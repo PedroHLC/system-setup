@@ -40,14 +40,12 @@
   hardware.cpu.intel.updateMicrocode = true;
 
   # Kernel versions (I prefer Zen, when it's not broken for ZFS).
-  # (lib.mKDefault so I can revert this per-device)
-  boot.kernelPackages = lib.mkDefault
-    #config.boot.zfs.package.latestCompatibleLinuxPackages;
-    pkgs.linuxPackages_zen;
+  # (lib.mkDefault so I can revert this in a specialisation)
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
   boot.zfs.enableUnstable = lib.mkDefault true;
 
   # Filesytems settings.
-  boot.supportedFilesystems = [ "zfs" "ntfs" ];
+  boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
 
   # I like /tmp on RAM.
@@ -423,6 +421,13 @@
         });
     })
   ];
+
+  # Creates a second boot entry with LTS kernel and stable ZFS
+  specialisation.safe.configuration = {
+    system.nixos.tags = [ "lts" "zfs-stable" ];
+    boot.kernelPackages = pkgs.linuxPackages;
+    boot.zfs.enableUnstable = false;
+  };
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.

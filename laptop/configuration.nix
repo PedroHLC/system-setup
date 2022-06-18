@@ -71,7 +71,7 @@ in
       nvidia-offload
     ];
     variables = {
-      "VK_ICD_FILENAMES"="/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/in
+      "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/in
 tel_icd.i686.json";
     };
   };
@@ -90,7 +90,7 @@ tel_icd.i686.json";
   nixpkgs.config.packageOverrides = pkgs: {
     # Steam with (more) gaming-stuff
     steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [ gamemode nvidia-offload mangohud nvidiaPackage ];
+      extraPkgs = pkgs: with pkgs; [ nvidia-offload ];
     };
 
     # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
