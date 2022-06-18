@@ -40,6 +40,11 @@
     rocm-opencl-runtime
   ];
 
+  # This desktop is affected by this bug https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
+  # Looks like you can't have two identical NVMes right now.
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.zfs.enableUnstable = false;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
