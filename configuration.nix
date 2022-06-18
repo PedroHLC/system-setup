@@ -39,11 +39,6 @@
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;
 
-  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
-  # (lib.mkDefault so I can revert this in a specialisation)
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
-  boot.zfs.enableUnstable = lib.mkDefault true;
-
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;

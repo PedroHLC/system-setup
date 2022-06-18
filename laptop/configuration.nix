@@ -49,6 +49,11 @@ in
     };
   };
 
+  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
+  # (lib.mkDefault because I also have a safer specialisation)
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.zfs.enableUnstable = lib.mkDefault true;
+
   # NVIDIA GPU (PRIME Offloading + Wayland)
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
