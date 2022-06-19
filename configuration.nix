@@ -59,6 +59,9 @@
 
     # Laptops and dekstops don't need Watchdog
     "nowatchdog"
+
+    # https://github.com/NixOS/nixpkgs/issues/35681#issuecomment-370202008
+    "systemd.gpt_auto=0"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
