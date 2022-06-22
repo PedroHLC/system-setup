@@ -1,4 +1,5 @@
-pkgs: pkgs.writeText "wayland-env.sh" ''
+{ writeText }:
+writeText "wayland-env.sh" ''
   # Force wayland overall.
   export BEMENU_BACKEND='wayland'
   export CLUTTER_BACKEND='wayland'

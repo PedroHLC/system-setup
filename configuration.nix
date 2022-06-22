@@ -325,25 +325,25 @@
     };
 
     # Script to force XWayland (in case something catches fire).
-    nowl = import ./tools/nowl.nix pkgs;
+    nowl = pkgs.callPackage ./tools/nowl.nix { };
 
     # Script to open my encrypted firefox profile.
-    firefox-gate = import ./tools/firefox-gate.nix pkgs;
+    firefox-gate = pkgs.callPackage ./tools/firefox-gate.nix { };
 
     # Script for swaylock with GIFs on background (requires configuration in sway).
-    my-wscreensaver = import ./tools/my-wscreensaver.nix pkgs;
+    my-wscreensaver = pkgs.callPackage ./tools/my-wscreensaver.nix { };
 
     # Allow uutils to replace GNU coreutils.
     uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
 
     # Environment to properly (and force) use wayland.
-    wayland-env = import ./tools/wayland-env.nix pkgs;
+    wayland-env = pkgs.callPackage ./tools/wayland-env.nix { };
 
     # Script required for autologin (per TTYs).
-    login-program = import ./tools/login-program.nix pkgs;
+    login-program = pkgs.callPackage ./tools/login-program.nix { };
 
     # Audacious rice
-    audacious-skin-winamp-classic = import ./tools/audacious-skin-winamp-classic.nix pkgs;
+    audacious-skin-winamp-classic = pkgs.callPackage ./tools/audacious-skin-winamp-classic.nix { };
 
     # Busybox without applets
     busyboxWithoutAppletSymlinks = pkgs.busybox.override {
@@ -409,10 +409,10 @@
         (lpSelf: lpSuper: {
           zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (attrs: {
             src = self.fetchFromGitHub {
-              owner = "tonyhutter";
+              owner = "openzfs";
               repo = "zfs";
-              sha256 = "sha256-0sNMGFx/Nb2UoJljL/8bHbtHm0/U2aBvdymcSXsIGvg=";
-              rev = "543b84c329dfc73d73293447b7dbc4d0755cb901"; #zfs-2.1.5-hutter
+              sha256 = "111MGFx/Nb2UoJljL/8bHbtHm0/U2aBvdymcSXsIGvg=";
+              rev = "zfs-2.1.5"; #zfs-2.1.5-hutter
             };
             meta.broken = false;
           });

@@ -1,9 +1,10 @@
-pkgs: pkgs.writeShellScriptBin "firefox-gate" ''
+{ writeShellScriptBin, userFirefox ? firefox-wayland, firefox-wayland, zenity ? gnome.zenity, gnome, zfs }:
+writeShellScriptBin "firefox-gate" ''
   set -o errexit
 
-  FIREFOX="${pkgs.firefox-wayland}/bin/firefox"
-  ZENITY="${pkgs.gnome.zenity}/bin/zenity"
-  ZFS="${pkgs.zfs}/bin/zfs"
+  FIREFOX="${userFirefox}/bin/firefox"
+  ZENITY="${zenity}/bin/zenity"
+  ZFS="${zfs}/bin/zfs"
 
   echo 'Handling encrypted .mozilla'
   if [ "$USER" != 'pedrohlc' ] || [ -f "$HOME/.mozilla/firefox/profiles.ini" ]; then

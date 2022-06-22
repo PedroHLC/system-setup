@@ -99,7 +99,7 @@ tel_icd.i686.json";
     };
 
     # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-    nvidia-offload = import ../tools/nvidia-offload.nix pkgs;
+    nvidia-offload = pkgs.callPackage ../tools/nvidia-offload.nix { };
   };
 
   # This value determines the NixOS release from which the default

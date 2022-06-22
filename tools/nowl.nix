@@ -1,5 +1,5 @@
-pkgs:
-pkgs.writeShellScriptBin "nowl" ''
+{ writeShellScriptBin }:
+writeShellScriptBin "nowl" ''
   unset CLUTTER_BACKEND
   unset ECORE_EVAS_ENGINE
   unset ELM_ENGINE

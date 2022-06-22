@@ -1,4 +1,5 @@
-pkgs: with pkgs.lib; generators.toINI {
+{lib}:
+with lib; generators.toINI {
   mkKeyValue = generators.mkKeyValueDefault
     {
       mkValueString = v:

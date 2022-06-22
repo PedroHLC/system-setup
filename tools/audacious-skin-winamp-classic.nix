@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchzip, ... }:
+{ lib, stdenv, fetchzip }:
 let
   fileId = "1460751560";
   fileName = "135799-winamp_classic.wsz";

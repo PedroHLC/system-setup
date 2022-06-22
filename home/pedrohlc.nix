@@ -30,7 +30,7 @@ let
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = import ../tools/lib/audacious-config-generator.nix pkgs;
+  audaciousConfigGenerator = pkgs.callPackage ../tools/lib/audacious-config-generator.nix { };
 
   # My wallpapers
   aenami = {

@@ -1,10 +1,11 @@
-pkgs: pkgs.writeShellScriptBin "my-wscreensaver" ''
-  JQ="${pkgs.jq}/bin/jq"
-  MPV="${pkgs.mpv}/bin/mpv"
-  PIDOF="${pkgs.procps}/bin/pidof"
-  SWAYMSG="${pkgs.sway}/bin/swaymsg"
-  SWAYLOCK="${pkgs.swaylock}/bin/swaylock"
-  SWAYNC="${pkgs.swaynotificationcenter}/bin/swaync-client"
+{ writeShellScriptBin, jq, mpv, procps, sway, swaylock, swaynotificationcenter }:
+writeShellScriptBin "my-wscreensaver" ''
+  JQ="${jq}/bin/jq"
+  MPV="${mpv}/bin/mpv"
+  PIDOF="${procps}/bin/pidof"
+  SWAYMSG="${sway}/bin/swaymsg"
+  SWAYLOCK="${swaylock}/bin/swaylock"
+  SWAYNC="${swaynotificationcenter}/bin/swaync-client"
 
   _HAS_MUSIC=$("$PIDOF" spotify)
 
