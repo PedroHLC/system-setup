@@ -411,8 +411,8 @@
             src = self.fetchFromGitHub {
               owner = "openzfs";
               repo = "zfs";
-              sha256 = "111MGFx/Nb2UoJljL/8bHbtHm0/U2aBvdymcSXsIGvg=";
-              rev = "zfs-2.1.5"; #zfs-2.1.5-hutter
+              sha256 = "a9rmuPO8R8UfxdHvwjfFuYRGn97a1MPmLZRvr3l0swE=";
+              rev = "zfs-2.1.5";
             };
             meta.broken = false;
           });
