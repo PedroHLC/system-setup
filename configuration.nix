@@ -461,4 +461,7 @@
 
   # Auto-upgrade NixOS.
   system.autoUpgrade.enable = true;
+
+  # Global adjusts to home-manager
+  home-manager.useGlobalPkgs = true;
 }
