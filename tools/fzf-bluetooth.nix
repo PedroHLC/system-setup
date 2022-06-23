@@ -34,11 +34,12 @@ resholve.mkDerivation rec {
       scripts = [ "bin/${pname}" ];
       interpreter = "${bash}/bin/bash";
       inputs = [ bluez coreutils fzf gnugrep less procps util-linux ];
-      keep = {
-        "$fzf_command" = true;
+      fix = {
+        "$fzf_command" = [ "fzf --prompt=" ];
       };
       execer = [
         "cannot:${procps}/bin/pgrep"
+        "cannot:${fzf}/bin/fzf"
       ];
     };
   };
