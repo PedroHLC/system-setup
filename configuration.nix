@@ -311,11 +311,6 @@
 
   # Override packages' settings.
   nixpkgs.config.packageOverrides = pkgs: {
-    # Steam with gaming-stuff
-    steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [ gamemode mangohud ];
-    };
-
     # Obs with plugins
     obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
       plugins = with pkgs.obs-studio-plugins; [
@@ -349,6 +344,9 @@
     busyboxWithoutAppletSymlinks = pkgs.busybox.override {
       enableAppletSymlinks = false;
     };
+
+    # Allow bluetooth management easily in sway
+    fzf-bluetooth = pkgs.callPackage ./tools/fzf-bluetooth.nix { };
   };
 
   # Enable services (automatically includes their apps' packages).

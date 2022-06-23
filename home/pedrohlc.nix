@@ -17,8 +17,11 @@ let
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
   menu = "${terminal} -t launcher -e ${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
+  menuBluetooth = "${terminal} -t launcher -e ${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
+  menuNetwork = "${terminal} -t launcher -e ${pkgs.networkmanager}/bin/nmtui";
   modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
   modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
+  modeOtherMenus = "[b]luetooth | [n]etwork";
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
   date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
@@ -46,7 +49,8 @@ in
 {
   home.packages = with pkgs; [
     swaynotificationcenter # Won't work unless here
-    sway-launcher-desktop # So that I can use the "purge" subcommand
+    sway-launcher-desktop
+    fzf-bluetooth
   ];
 
   # My beloved DE
@@ -134,6 +138,7 @@ in
         # Enter my extra modes
         "${modifier}+Tab" = "mode \"${modeFavorites}\"";
         "${modifier}+Shift+e" = "mode \"${modePower}\"";
+        "${modifier}+Shift+d" = "mode \"${modeOtherMenus}\"";
 
         # My extra lot of workspaces
         "${modifier}+Ctrl+1" = "workspace C1";
@@ -214,6 +219,13 @@ in
             "Shift+s" = "exec ((pidof spotify) || ${pkgs.spotify}/bin/spotify); mode default";
             "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
             "Escape" = "mode default";
+          };
+
+        # Network + Bluetooth
+        "${modeOtherMenus}" =
+          {
+            "b" = "exec ${menuBluetooth}; mode default";
+            "n" = "exec ${menuNetwork}; mode default";
           };
       };
     };
