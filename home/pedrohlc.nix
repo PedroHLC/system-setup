@@ -239,7 +239,7 @@ in
       source ${pkgs.wayland-env}
     '' + (strings.optionalString nvidiaPrime ''
       # Gaming
-      export GAMEMODERUNEXEC="nvidia-offload $GAMEMODERUNEXEC"
+      export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${pkgs.uutils-coreutils}/bin/env $GAMEMODERUNEXEC"
     '');
     extraOptions = mkIf nvidiaPrime [
       "--unsupported-gpu"
