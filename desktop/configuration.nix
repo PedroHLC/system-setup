@@ -43,9 +43,13 @@
   # This desktop is affected by this bug:
   #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
   #  - Looks like you can't have two identical NVMes right now.
-  # (lib.mkDefault because I also have a safer specialisation)
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages;
-  boot.zfs.enableUnstable = lib.mkDefault false;
+  boot.kernelPatches = lib.mkDefault [{
+    name = "nvme-pci_smi-has-bogus-namespace-ids";
+    patch = pkgs.fetchurl ({
+      url = "https://git.infradead.org/nvme.git/patch/c98a879312caf775c9768faed25ce1c013b4df04?hp=2cf7a77ed5f8903606f4f7833d02d67b08650442";
+      sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
+    });
+  }];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

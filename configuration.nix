@@ -67,6 +67,9 @@
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
   };
 
+  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
+  # (lib.mkDefault because I also have a safer specialisation)
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   # Network (NetworkManager).
   networking = {
@@ -412,6 +415,7 @@
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = pkgs.linuxPackages;
     boot.zfs.enableUnstable = false;
+    boot.kernelPatches = [ ];
   };
 
   # Change the allocator in hope it will save me 5 ms everyday.
