@@ -11,5 +11,5 @@ writeShellScriptBin "nowl" ''
   export XDG_SESSION_TYPE='x11'
   export QT_QPA_PLATFORM='xcb'
   export MOZ_ENABLE_WAYLAND=0
-  exec -a "$0" "$@"
+  exec "$@"
 ''
