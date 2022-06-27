@@ -91,16 +91,20 @@ tel_icd.i686.json";
   services.upower.enable = true;
   services.minidlna.friendlyName = "laptop";
 
-  # Override packages' settings.
-  nixpkgs.config.packageOverrides = pkgs: {
-    # Steam with (more) gaming-stuff
-    steam = pkgs.steam.override {
-      extraPkgs = pkgs: with pkgs; [ nvidia-offload ];
-    };
+  # Override some packages' settings, sources, etc...
+  nixpkgs.overlays =
+    let
+      thisConfigsOverlay = self: super: {
+        # Steam with (more) gaming-stuff
+        steam = super.steam.override {
+          extraPkgs = pkgs: with pkgs; [ nvidia-offload ];
+        };
 
-    # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-    nvidia-offload = pkgs.callPackage ../tools/nvidia-offload.nix { };
-  };
+        # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
+        nvidia-offload = self.callPackage ../tools/nvidia-offload.nix { };
+      };
+    in
+    [ thisConfigsOverlay ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

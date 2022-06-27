@@ -309,48 +309,52 @@
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };
 
-  # Override packages' settings.
-  nixpkgs.config.packageOverrides = pkgs: {
-    # Obs with plugins
-    obs-studio-wrap = pkgs.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
-      plugins = with pkgs.obs-studio-plugins; [
-        wlrobs
-        obs-vkcapture
-      ];
-    };
+  # Override some packages' settings, sources, etc...
+  nixpkgs.overlays =
+    let
+      thisConfigsOverlay = self: super: {
+        # Obs with plugins
+        obs-studio-wrap = super.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
+          plugins = with pkgs.obs-studio-plugins; [
+            wlrobs
+            obs-vkcapture
+          ];
+        };
 
-    # Script to force XWayland (in case something catches fire).
-    nowl = pkgs.callPackage ./tools/nowl.nix { };
+        # Script to force XWayland (in case something catches fire).
+        nowl = self.callPackage ./tools/nowl.nix { };
 
-    # Script to open my encrypted firefox profile.
-    firefox-gate = pkgs.callPackage ./tools/firefox-gate.nix { };
+        # Script to open my encrypted firefox profile.
+        firefox-gate = self.callPackage ./tools/firefox-gate.nix { };
 
-    # Script for swaylock with GIFs on background (requires configuration in sway).
-    my-wscreensaver = pkgs.callPackage ./tools/my-wscreensaver.nix { };
+        # Script for swaylock with GIFs on background (requires configuration in sway).
+        my-wscreensaver = self.callPackage ./tools/my-wscreensaver.nix { };
 
-    # Allow uutils to replace GNU coreutils.
-    uutils-coreutils = pkgs.uutils-coreutils.override { prefix = ""; };
+        # Allow uutils to replace GNU coreutils.
+        uutils-coreutils = super.uutils-coreutils.override { prefix = ""; };
 
-    # Environment to properly (and force) use wayland.
-    wayland-env = pkgs.callPackage ./tools/wayland-env.nix { };
+        # Environment to properly (and force) use wayland.
+        wayland-env = self.callPackage ./tools/wayland-env.nix { };
 
-    # Script required for autologin (per TTYs).
-    login-program = pkgs.callPackage ./tools/login-program.nix { };
+        # Script required for autologin (per TTYs).
+        login-program = self.callPackage ./tools/login-program.nix { };
 
-    # Audacious rice
-    audacious-skin-winamp-classic = pkgs.callPackage ./tools/audacious-skin-winamp-classic.nix { };
+        # Audacious rice
+        audacious-skin-winamp-classic = self.callPackage ./tools/audacious-skin-winamp-classic.nix { };
 
-    # Busybox without applets
-    busyboxWithoutAppletSymlinks = pkgs.busybox.override {
-      enableAppletSymlinks = false;
-    };
+        # Busybox without applets
+        busyboxWithoutAppletSymlinks = super.busybox.override {
+          enableAppletSymlinks = false;
+        };
 
-    # Allow bluetooth management easily in sway
-    fzf-bluetooth = pkgs.callPackage ./tools/fzf-bluetooth.nix { };
+        # Allow bluetooth management easily in sway
+        fzf-bluetooth = self.callPackage ./tools/fzf-bluetooth.nix { };
 
-    # Allow uutils to replace GNU coreutils.
-    discord = pkgs.discord.override { withOpenASAR = true; };
-  };
+        # Allow uutils to replace GNU coreutils.
+        discord = super.discord.override { withOpenASAR = true; };
+      };
+    in
+    [ thisConfigsOverlay ];
 
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
