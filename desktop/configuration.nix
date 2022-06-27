@@ -44,7 +44,7 @@
   #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
   #  - Looks like you can't have two identical NVMes right now.
   # (lib.mkDefault because I also have a safer specialisation)
-  boot.kernelPackages = lib.mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages;
   boot.zfs.enableUnstable = lib.mkDefault false;
 
   # This value determines the NixOS release from which the default
