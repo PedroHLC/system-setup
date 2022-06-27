@@ -347,6 +347,9 @@
 
     # Allow bluetooth management easily in sway
     fzf-bluetooth = pkgs.callPackage ./tools/fzf-bluetooth.nix { };
+
+    # Allow uutils to replace GNU coreutils.
+    discord = pkgs.discord.override { withOpenASAR = true; };
   };
 
   # Enable services (automatically includes their apps' packages).
@@ -399,24 +402,6 @@
       dockerCompat = true; # Podman provides docker.
     };
   };
-
-  # Patch some packages
-  nixpkgs.overlays = [
-    (self: super: {
-      linuxPackages_zen = super.linuxPackages_zen.extend
-        (lpSelf: lpSuper: {
-          zfsUnstable = lpSuper.zfsUnstable.overrideAttrs (attrs: {
-            src = self.fetchFromGitHub {
-              owner = "openzfs";
-              repo = "zfs";
-              sha256 = "a9rmuPO8R8UfxdHvwjfFuYRGn97a1MPmLZRvr3l0swE=";
-              rev = "zfs-2.1.5";
-            };
-            meta.broken = false;
-          });
-        });
-    })
-  ];
 
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {
