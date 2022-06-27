@@ -40,16 +40,25 @@
     rocm-opencl-runtime
   ];
 
-  # This desktop is affected by this bug:
-  #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
-  #  - Looks like you can't have two identical NVMes right now.
-  boot.kernelPatches = lib.mkDefault [{
-    name = "nvme-pci_smi-has-bogus-namespace-ids";
-    patch = pkgs.fetchurl ({
-      url = "https://git.infradead.org/nvme.git/patch/c98a879312caf775c9768faed25ce1c013b4df04?hp=2cf7a77ed5f8903606f4f7833d02d67b08650442";
-      sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
-    });
-  }];
+  # Override some packages' settings, sources, etc...
+  nixpkgs.overlays =
+    let
+      thisConfigsOverlay = self: super: {
+        # This desktop is affected by this bug:
+        #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
+        #  - Looks like you can't have two identical NVMes right now.
+        linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
+          kernelPatches = (lpSuper.kernelPatches or [ ]) ++ {
+            name = "nvme-pci_smi-has-bogus-namespace-ids";
+            patch = self.fetchurl {
+              url = "https://git.infradead.org/nvme.git/patch/c98a879312caf775c9768faed25ce1c013b4df04?hp=2cf7a77ed5f8903606f4f7833d02d67b08650442";
+              sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
+            };
+          };
+        });
+      };
+    in
+    [ thisConfigsOverlay ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

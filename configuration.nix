@@ -415,7 +415,6 @@
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = pkgs.linuxPackages;
     boot.zfs.enableUnstable = false;
-    boot.kernelPatches = [ ];
   };
 
   # Change the allocator in hope it will save me 5 ms everyday.
