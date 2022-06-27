@@ -90,9 +90,9 @@ tel_icd.i686.json";
   nixpkgs.overlays =
     let
       thisConfigsOverlay = self: super: {
-        # Steam with (more) gaming-stuff
+        # Allow steam to find nvidia-offload script
         steam = super.steam.override {
-          extraPkgs = pkgs: with pkgs; [ nvidia-offload ];
+          extraPkgs = pkgs: [ self.nvidia-offload ];
         };
 
         # NVIDIA Offloading (ajusted to work on Wayland and XWayland).

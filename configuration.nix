@@ -317,8 +317,8 @@
     let
       thisConfigsOverlay = self: super: {
         # Obs with plugins
-        obs-studio-wrap = super.wrapOBS.override { obs-studio = pkgs.obs-studio; } {
-          plugins = with pkgs.obs-studio-plugins; [
+        obs-studio-wrap = self.wrapOBS.override { obs-studio = self.obs-studio; } {
+          plugins = with self.obs-studio-plugins; [
             wlrobs
             obs-vkcapture
           ];
