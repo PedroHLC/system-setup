@@ -353,7 +353,7 @@
         # Allow bluetooth management easily in sway
         fzf-bluetooth = self.callPackage ./tools/fzf-bluetooth.nix { };
 
-        # Allow uutils to replace GNU coreutils.
+        # Add OpenAsar to Discord
         discord = super.discord.override { withOpenASAR = true; };
       };
     in
@@ -430,8 +430,8 @@
       # - Required to play GenshinImpact on Linux without banning.
 
       # Genshin logging servers (do not remove!)
-      0.0.0.0 log-upload-os.mihoyo.com
       0.0.0.0 overseauspider.yuanshen.com
+      0.0.0.0 log-upload-os.hoyoverse.com
 
       # Optional Unity proxy/cdn servers
       0.0.0.0 prd-lender.cdp.internal.unity3d.com

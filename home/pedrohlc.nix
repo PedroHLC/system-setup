@@ -28,6 +28,7 @@ let
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
+  cursorSize = 32;
 
   # per-GPU values
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
@@ -251,6 +252,10 @@ in
     enable = true;
     theme.name = "Breeze-Dark";
     iconTheme.name = iconTheme;
+    cursorTheme = {
+      size = cursorSize;
+      name = cursorTheme;
+    };
   };
 
   # Cursor setup
@@ -258,6 +263,7 @@ in
     name = cursorTheme;
     package = pkgs.libsForQt5.breeze-qt5;
     gtk.enable = true;
+    size = cursorSize;
   };
 
   # My simple and humble bar
@@ -416,7 +422,7 @@ in
       kcminputrc = {
         text = generators.toINI { } {
           Mouse = {
-            cursorTheme = "Breeze_Snow";
+            cursorTheme = cursorTheme;
           };
         };
       };
