@@ -28,7 +28,7 @@ let
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
-  cursorSize = 32;
+  cursorSize = 16;
 
   # per-GPU values
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
@@ -423,6 +423,7 @@ in
         text = generators.toINI { } {
           Mouse = {
             cursorTheme = cursorTheme;
+            cursorSize = cursorSize;
           };
         };
       };
