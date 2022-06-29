@@ -10,10 +10,6 @@
     # home-manager for managing my users' home
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    # I like to have the lastest mesa in my desktop
-    mesa-git-src.url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz";
-    mesa-git-src.flake = false;
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {

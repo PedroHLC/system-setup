@@ -22,18 +22,6 @@
         "type": "github"
       }
     },
-    "mesa-git-src": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-wlv8em0fYV+g259t8rS5WN4hsSlc+mHGrkLuwed/wG8=",
-        "type": "tarball",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
-      }
-    },
     "nix-gaming": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -87,7 +75,6 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_2"
       }
