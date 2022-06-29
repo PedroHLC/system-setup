@@ -1,6 +1,23 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ... }:
+{ config, lib, pkgs, nix-gaming, mesa-git-src, ... }:
 
+# User-defined values
+let
+  mesa-git-derivation = prev: {
+    version = "22.2-dev";
+    src = mesa-git-src;
+    patches = [ ];
+    mesonFlags = (lib.lists.partition (x: lib.strings.hasPrefix "-Ddisk-cache-key=" x || lib.strings.hasPrefix "-Dclang-libdir=" x) prev.mesonFlags).wrong;
+    buildInputs = prev.buildInputs ++ (with pkgs; [ shaderc ]);
+  };
+
+  mesa-git-input = prev: {
+    enableOpenCL = false;
+  };
+
+  mesa-git = ((pkgs.mesa.override mesa-git-input).overrideAttrs mesa-git-derivation);
+  multilib-mesa-git = ((pkgs.pkgsi686Linux.mesa.override mesa-git-input).overrideAttrs mesa-git-derivation);
+in
 # NixOS-defined options
 {
   # per-device UID
@@ -59,6 +76,10 @@
       };
     in
     [ thisConfigsOverlay ];
+
+  # Latest mesa from git because I like it!
+  hardware.opengl.package = mesa-git.drivers;
+  hardware.opengl.package32 = multilib-mesa-git.drivers;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
