@@ -243,6 +243,7 @@
     elmPackages.elm-format
     gdb # more precious then gcc
     gnumake
+    logstalgia
     nixpkgs-fmt
     nixpkgs-review
     nodejs
