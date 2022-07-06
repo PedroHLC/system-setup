@@ -1,6 +1,26 @@
 # The top lambda and it super set of parameters.
 { config, lib, pkgs, nix-gaming, ... }:
 
+# My-defined terms
+let
+  mesa-attrs = super: {
+    nativeBuildInputs = super.nativeBuildInputs ++ [ pkgs.glslang ];
+    mesonFlags = super.mesonFlags ++ [ "-Dvulkan-layers=device-select,overlay" ];
+    postInstall = super.postInstall + ''
+      mv $out/lib/libVkLayer* $drivers/lib
+      layer=VkLayer_MESA_device_select
+      substituteInPlace $drivers/share/vulkan/implicit_layer.d/''${layer}.json \
+        --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
+      layer=VkLayer_MESA_overlay
+      substituteInPlace $drivers/share/vulkan/explicit_layer.d/''${layer}.json \
+        --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
+    '';
+  };
+  mesa-params = _: {
+    galliumDrivers = [ "radeonsi" "zink" "virgl" "swrast" ];
+    vulkanDrivers = [ "amd" "virtio-experimental" "swrast" ];
+  };
+in
 # NixOS-defined options
 {
   # per-device UID
@@ -39,6 +59,8 @@
     rocm-opencl-icd
     rocm-opencl-runtime
   ];
+  hardware.opengl.package = ((pkgs.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
+  hardware.opengl.package32 = ((pkgs.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
