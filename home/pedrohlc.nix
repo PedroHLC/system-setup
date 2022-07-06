@@ -743,6 +743,8 @@ in
       vram = true;
       vsync = 0;
       vulkan_driver = true;
+      gpu_name = true;
+      engine_version = true;
       width = 260;
       wine = true;
     };
