@@ -731,7 +731,6 @@ in
       background_alpha = "0.05";
       battery = true;
       cpu_temp = true;
-      engine_version = true;
       font_size = 17;
       fps_limit = mkIf nvidiaPrime 144;
       gl_vsync = -1;
