@@ -244,6 +244,7 @@
     gdb # more precious then gcc
     gnumake
     nixpkgs-fmt
+    nixpkgs-review
     nodejs
     shellcheck
     shfmt
