@@ -1,4 +1,5 @@
 { writeShellScriptBin }:
+# Run stuff in the NVIDIA GPU in a prime-offload setup.
 writeShellScriptBin "nvidia-offload" ''
   export __GLX_VENDOR_LIBRARY_NAME="nvidia"
   export __NV_PRIME_RENDER_OFFLOAD=1

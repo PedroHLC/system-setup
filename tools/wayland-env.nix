@@ -1,5 +1,6 @@
-{ writeText }:
-writeText "wayland-env.sh" ''
+{ writeShellScriptBin }:
+# This is a script to force things to run in wayland with the right Qt platform
+writeShellScriptBin "wayland-env" ''
   # Force wayland overall.
   export BEMENU_BACKEND='wayland'
   export CLUTTER_BACKEND='wayland'
@@ -19,4 +20,7 @@ writeText "wayland-env.sh" ''
   export QT_QPA_PLATFORMTHEME='kde'
   export QT_PLATFORM_PLUGIN='kde'
   export QT_PLATFORMTHEME='kde'
+
+  # If not sourced, run params
+  (return 0 2>/dev/null) || exec "$@"
 ''

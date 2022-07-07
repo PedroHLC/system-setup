@@ -1,4 +1,6 @@
 { writeShellScriptBin, jq, mpv, procps, sway, swaylock, swaynotificationcenter }:
+# In sway, this is my "screensaver", it's transparent swaylock, with mpv running GIFs behind it.
+# A different MPV is launched per-display.
 writeShellScriptBin "my-wscreensaver" ''
   JQ="${jq}/bin/jq"
   MPV="${mpv}/bin/mpv"

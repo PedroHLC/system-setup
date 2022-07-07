@@ -1,4 +1,5 @@
 { lib, stdenv, fetchzip }:
+# This is my favorite skin for Audacious, a clone of the classic Winamp
 let
   fileId = "1460751560";
   fileName = "135799-winamp_classic.wsz";

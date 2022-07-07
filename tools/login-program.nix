@@ -1,4 +1,6 @@
-{ writeText, shadow }: writeText "login-program.sh" ''
+{ writeText, shadow }:
+# Auto-logins with pedrohlc in TTY1, and melinapn in TTY2
+writeText "login-program.sh" ''
   _TTY="$(tty)"
   if [[ "$_TTY" == '/dev/tty1' ]]; then
     ${shadow}/bin/login -f pedrohlc;

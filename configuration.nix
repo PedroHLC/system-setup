@@ -195,7 +195,6 @@
     element-desktop-wayland
     ffmpegthumbnailer
     file
-    firefox-gate
     firefox-wayland
     fzf
     fx_cast_bridge
@@ -214,7 +213,6 @@
     mosh
     mpv
     nomacs
-    nowl
     obs-studio-wrap
     p7zip
     pamixer # for avizo
@@ -237,6 +235,11 @@
     xarchiver
     xdg_utils
     zoom-us
+
+    # My scripts
+    firefox-gate
+    nowl
+    wayland-env
 
     # Development apps
     deno

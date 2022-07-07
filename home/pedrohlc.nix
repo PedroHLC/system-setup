@@ -237,7 +237,7 @@ in
       exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
     '';
     extraSessionCommands = ''
-      source ${pkgs.wayland-env}
+      source ${pkgs.wayland-env}/bin/wayland-env
     '' + (strings.optionalString nvidiaPrime ''
       # Gaming
       export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${pkgs.uutils-coreutils}/bin/env $GAMEMODERUNEXEC"
