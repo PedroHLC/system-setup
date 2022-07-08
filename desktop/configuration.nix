@@ -28,10 +28,6 @@ let
 in
 # NixOS-defined options
 {
-  # per-device UID
-  users.users.pedrohlc.uid = 1001;
-  users.users.melinapn.uid = 1000;
-
   # Network.
   networking = {
     hostId = "7116ddca";

@@ -9,11 +9,7 @@ let
 in
 # NixOS-defined options
 {
-  # per-device UID
-  users.users.pedrohlc.uid = 1001;
-  users.users.melinapn.uid = 1002;
-
-  # Full IOMMU for us
+  # Force full IOMMU
   boot.kernelParams = [ "intel_iommu=on" ];
 
   # Disable Intel's stream-paranoid for gaming.
@@ -85,6 +81,16 @@ tel_icd.i686.json";
   # Services/Programs configurations
   services.upower.enable = true;
   services.minidlna.friendlyName = "laptop";
+
+  # Melina may also use this machine
+  users.users.melinapn = {
+    uid = 1002;
+    isNormalUser = true;
+    extraGroups = [ "video" "networkmanager" ];
+  };
+
+  # Plasma for Melina
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =

@@ -15,11 +15,6 @@ writeShellScriptBin "wayland-env" ''
   export SDL_VIDEODRIVER='wayland'
   export _JAVA_AWT_WM_NONREPARENTING=1
   export NIXOS_OZONE_WL=1
-  
-  # KDE/Plasma platform for Qt apps.
-  export QT_QPA_PLATFORMTHEME='kde'
-  export QT_PLATFORM_PLUGIN='kde'
-  export QT_PLATFORMTHEME='kde'
 
   # If not sourced, run params
   (return 0 2>/dev/null) || exec "$@"
