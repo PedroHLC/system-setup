@@ -25,12 +25,13 @@ writeShellScriptBin "my-wscreensaver" ''
       _PIDS+=($!)
   }
 
-  [[ "$("$SWAYNC" -D)" == "false" ]] && "$SWAYNC" -d
+  _DND_NOW=""
+  [[ "$("$SWAYNC" -D)" == "false" ]] && "$SWAYNC" -d && _DND_NOW=1
   for _OUTPUT in $("$SWAYMSG" -t get_outputs -r | "$JQ" -r .[].name); do
     wallpaper "$_OUTPUT" 'horizontal.txt'
   done
 
   "$SWAYLOCK" -c 00000000
   kill "''${_PIDS[@]}"
-  [[ "$("$SWAYNC" -D)" == "true" ]] && "$SWAYNC" -d
+  [[ "x$_DND_NOW" != "x" ]] && "$SWAYNC" -d
 ''

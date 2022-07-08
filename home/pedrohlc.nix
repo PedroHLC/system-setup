@@ -52,6 +52,9 @@ in
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop
     fzf-bluetooth
+
+    # My scripts
+    my-wscreensaver
   ];
 
   # My beloved DE
