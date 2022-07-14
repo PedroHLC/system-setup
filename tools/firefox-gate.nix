@@ -11,8 +11,12 @@ writeShellScriptBin "firefox-gate" ''
   if [ "$USER" != 'pedrohlc' ] || [ -f "$HOME/.mozilla/firefox/profiles.ini" ]; then
     exec "$FIREFOX" "$@"
   else
-    "$ZENITY" --password | sudo "$ZFS" load-key zroot/data/mozilla
-    sudo "$ZFS" mount zroot/data/mozilla
+    "$ZENITY" --title=firefox-gate --password |\
+      (sudo "$ZFS" load-key zroot/data/mozilla \
+      || ("$ZENITY" --title=firefox-gate --error --text='Unable to load-key' && false) \
+      )
+    sudo "$ZFS" mount zroot/data/mozilla \
+      || ("$ZENITY" --title=firefox-gate --error --text='Unable to mount' && false)
 
     "$FIREFOX" "$@"
 
