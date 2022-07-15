@@ -360,8 +360,8 @@
         # Allow bluetooth management easily in sway
         fzf-bluetooth = self.callPackage ./tools/fzf-bluetooth.nix { };
 
-        # Add OpenAsar to Discord
-        discord = super.discord.override { withOpenASAR = true; };
+        # Add OpenAsar to Discord and fix clicking in links for firefox
+        discord = super.discord.override { withOpenASAR = true; nss = self.nss_latest; };
       };
     in
     [ thisConfigsOverlay ];
