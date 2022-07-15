@@ -38,6 +38,7 @@
   # Microcode updates.
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.cpu.amd.updateMicrocode = true;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" ];
