@@ -241,6 +241,7 @@
     elmPackages.elm-format
     gdb # more precious then gcc
     gnumake
+    heroku
     logstalgia
     nixpkgs-fmt
     nixpkgs-review
