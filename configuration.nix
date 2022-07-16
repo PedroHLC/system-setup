@@ -241,6 +241,7 @@
     deno
     elmPackages.elm-format
     gdb # more precious then gcc
+    gh
     gnumake
     heroku
     logstalgia

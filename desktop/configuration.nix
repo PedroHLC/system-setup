@@ -63,6 +63,9 @@ in
   hardware.opengl.package = ((pkgs.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
   hardware.opengl.package32 = ((pkgs.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
 
+  # Allow to cross-compile to aarch64
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
     let
