@@ -60,6 +60,16 @@
           }
         ];
       };
+
+      "vps-lab" = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
+          ./vps-lab/oci-options.nix
+          ./vps-lab/oci-common.nix
+          ./vps-lab/configuration.nix
+        ];
+      };
     };
   };
 }
