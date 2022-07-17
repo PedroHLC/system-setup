@@ -69,7 +69,7 @@
           ./shared/lib/oci-common.nix
           ./systems/core-configuration.nix
           ./systems/vps-lab/configuration.nix
-          ./systems/desktop/servers/wireguard.nix
+          ./systems/vps-lab/servers/wireguard.nix
           # home-manager
           home-manager.nixosModules.home-manager
           {
