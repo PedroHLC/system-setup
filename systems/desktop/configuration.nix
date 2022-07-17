@@ -15,10 +15,10 @@ let
       substituteInPlace $drivers/share/vulkan/explicit_layer.d/''${layer}.json \
         --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
     '';
-    version = "22.1.3";
+    version = "22.1.4";
     src = pkgs.fetchurl {
       url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/mesa-${version}/mesa-mesa-${version}.tar.gz";
-      sha256 = "CR7we79giAock8w977zhCvZdZ6UR3sBP49Sunu9rSr0=";
+      sha256 = "ZQrNeD23Kpks29WOwxGmNGv9wfKVfpevYsK4Pun7MjE=";
     };
   };
   mesa-params = _: {
