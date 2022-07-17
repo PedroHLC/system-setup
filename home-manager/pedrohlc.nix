@@ -391,11 +391,14 @@ in
     # I use autologin and forever in love with tmux sessions.
     ".profile".text = ''
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-        exec ${pkgs.tmux}/bin/tmux''
-    + (strings.optionalString seat ''elif [ "$(tty)" = '/dev/tty1' ]; then
+        exec ${pkgs.tmux}/bin/tmux
+    '' + (strings.optionalString seat ''
+      elif [ "$(tty)" = '/dev/tty1' ]; then
         # It doesn't work like this: \${pkgs.sway}/bin/sway
-        ~/.nix-profile/bin/sway'')
-    + ''fi'';
+        ~/.nix-profile/bin/sway
+    '') + ''
+      fi
+    '';
     # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
       set-option -g default-shell /run/current-system/sw/bin/fish
