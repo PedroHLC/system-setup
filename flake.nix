@@ -48,8 +48,6 @@
           ./systems/seat-configuration.nix
           ./systems/desktop/hardware-configuration.nix
           ./systems/desktop/configuration.nix
-          ./systems/desktop/servers/wireguard.nix
-          ./systems/desktop/servers/nix-cache.nix
           # home-manager
           home-manager.nixosModules.home-manager
           {
@@ -71,6 +69,7 @@
           ./shared/lib/oci-common.nix
           ./systems/core-configuration.nix
           ./systems/vps-lab/configuration.nix
+          ./systems/desktop/servers/wireguard.nix
           # home-manager
           home-manager.nixosModules.home-manager
           {

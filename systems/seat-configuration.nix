@@ -63,9 +63,6 @@
       wifi.backend = "iwd";
     };
 
-    # "enp2s0" instead of "eth0". 
-    usePredictableInterfaceNames = true;
-
     # Disable non-NetworkManager.
     useDHCP = false;
   };

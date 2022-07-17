@@ -36,6 +36,9 @@
   # Disable the firewall.
   networking.firewall.enable = false;
 
+  # "enp2s0" instead of "eth0".
+  networking.usePredictableInterfaceNames = true;
+
   # Default time zone.
   time.timeZone = "America/Sao_Paulo";
 
