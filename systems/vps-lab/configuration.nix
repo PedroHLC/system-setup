@@ -8,7 +8,7 @@
 
   # Network.
   networking = {
-    hostId = "be2568e";
+    hostId = "be2568e1";
     hostName = "lab";
   };
 
