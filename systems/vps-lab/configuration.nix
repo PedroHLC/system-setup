@@ -9,7 +9,7 @@
   # Network.
   networking = {
     hostId = "be2568e1";
-    hostName = "lab";
+    hostName = "vps-lab";
   };
 
   # This value determines the NixOS release from which the default
