@@ -6,6 +6,12 @@
   # OCI-related config
   oci.efi = true;
 
+  # Network.
+  networking = {
+    hostId = "be2568e";
+    hostName = "lab";
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
