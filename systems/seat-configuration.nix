@@ -5,14 +5,7 @@
 {
   # Nix package-management settings.
   nix = {
-    # Enable flakes and newer CLI features
-    extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations
-    '';
     settings = {
-      # Allow my user to use nix
-      trusted-users = [ "root" "pedrohlc" ];
-
       # Unofficial binary caches.
       substituters = [
         "https://nix-gaming.cachix.org"
@@ -36,17 +29,12 @@
   };
 
   # Microcode updates.
-  hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = true;
   hardware.cpu.amd.updateMicrocode = true;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
-
-  # I like /tmp on RAM.
-  boot.tmpOnTmpfs = true;
-  boot.tmpOnTmpfsSize = "100%";
 
   # Kernel Params
   boot.kernelParams = [
@@ -67,10 +55,6 @@
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
   };
-
-  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
-  # (lib.mkDefault because I also have a safer specialisation)
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   # Network (NetworkManager).
   networking = {
@@ -93,22 +77,6 @@
   services.avahi = {
     enable = true;
     nssmdns = true;
-  };
-
-  # Default time zone.
-  time.timeZone = "America/Sao_Paulo";
-
-  # Internationalisation.
-  i18n = {
-    defaultLocale = "en_GB.UTF-8";
-    supportedLocales = [ "en_GB.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "pt_BR.UTF-8/UTF-8" ];
-    extraLocaleSettings = {
-      LC_TIME = "pt_BR.UTF-8";
-    };
-  };
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "br-abnt2";
   };
 
   # Bluetooth.
@@ -134,6 +102,9 @@
   # XWayland keyboard layout.
   services.xserver.layout = "br";
 
+  # Console keyboard layout.
+  console.keyMap = "br-abnt2";
+
   # Sound (pipewire & wireplumber).
   services.pipewire = {
     enable = true;
@@ -154,20 +125,6 @@
     GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa";
   };
 
-  # User accounts.
-  users.users.pedrohlc = {
-    uid = 1001;
-    isNormalUser = true;
-    extraGroups = [ "wheel" "video" "networkmanager" "rtkit" ];
-    shell = pkgs.dash;
-    openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+XO1v27sZQO2yV8q2AfYS/I/l9pHK33a4IjjrNDhV+YBlLbR2iB+L5iNu7x8tKDXYscynxJPHB3vWwerZXOh35SXdh5TE9Lez02Ck466fJnTjNxX63FvppXmMx8HaVYzymojDi+xTXMO4DxNFFrJTUIagWs8WNxEbYdGAaIKRQHB0ZWMSsyaY2XkR9RkV3I9QwKNrTnkC5h8bVn63LvTuORlTvY/Iu202M2toxOKWDQ5qdSrLfNaPl7kxWUVTCpyZ8Hza75sH3SB3/m8Queeq+E48nqjL7s9ZyO1TGf6ojaf2EGfx6H8jFwycXUD2QNLvsZcWmamyLPNbHY63jjOb pedrohlc@desktop"
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/vOidQLdDQ+vCet6trM5RRZJ6xujf4YJOve4vAdzBCUk30JQ3g3Kbkkdq3AWmvwRpUEkMxMiIGweiFXphvfIJvyHdSXaFoury8Va1n6I5bUS7ntaQI5R2SKBh2WHW1q/tzP5W7UxS4DwYg3kEXZp0V7sqTbw+4t8ctcS51Wam6LuUidqikukYQwKoz9DI9q0B3+U6qTl21jXwpZtqpvcTeC3ElqrkhgN4h4hNgWyjHGmfiB9NpGwPhwyfreRRiyVPXgGU9M9vI7D95ga+6eDS04aQph/MrEWgAh8jDvPzJW4PIQumhTtJdw/8v+vPqPM6+aAlwDoEKnZg1INsBb4R pedrohlc@poco-x3"
-      "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDe+j0odZ7Mk0p8Q9lv0HWFt62ZW6uN4wi+pp7YD8BquU8cKYlh1yk5kQxzwhEpsrIgyiOYU5CxYWkdblh+h/oLBk7seCzYF+ZZnhR5AJdbUvz8FNPbDqd81tphjntRphNArYVgdpIz0pwvYz9yvDwNXaaPfJuLTIecmIM1PaVnQOTKR6zNhwWad9bXWr4NdS2LN5rl8Yg083BKu36kcdnj8bQi7viNhbpHrwYhDUiMuysUdAd/atNJGwyFehmRckhC/Jv65eJtwR/asXTsEB9KaRAqnuThAR9bGwlMdHP/zZOhB3Bb/M+HTafOlVvBv30iJXg426EUpoMg+X0C0ZOM+wddSDRTmf2z6m/tOxguG0DNwfug1lWjZUlLeevkauBywKo1TlqQEZ9BDFgI/J34YGELJV6hUYe+rQfzcTZwQ9nLx2bcZA877Sf7sAu4ajw+p2Vcz4gypwpdT6vNfDt15w9HKJM/PCAl9Y2OxXOqogrwL1zG9P7tX5adiXp3QW8= pedrohlc@laptop"
-    ];
-  };
-  security.sudo.wheelNeedsPassword = false;
-
   # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
@@ -176,29 +133,20 @@
   };
 
   # List packages.
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     # Desktop apps
     acpi
     alacritty
     android-tools
-    aria2
     audacious
     brightnessctl
-    btop
-    busyboxWithoutAppletSymlinks
     discord
     element-desktop-wayland
     ffmpegthumbnailer
-    file
     firefox-wayland
-    fzf
     fx_cast_bridge
-    git
-    google-authenticator
     google-chrome-beta
     keybase-gui
-    killall
     libinput
     libinput-gestures
     lm_sensors
@@ -206,27 +154,18 @@
     lxqt.lxqt-sudo
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
-    mosh
     mpv
     nomacs
     obs-studio-wrap
-    p7zip
     pamixer # for avizo
-    pciutils
     qbittorrent
     slack
     space-cadet-pinball
     spotify
-    sshfs-fuse
     streamlink
     tdesktop
-    unrar
-    unzip
     usbutils
-    uutils-coreutils
     waypipe
-    wireguard-tools
-    wget
     wpsoffice
     xarchiver
     xdg_utils
@@ -258,9 +197,6 @@
     helvum
     libva-utils
     neofetch
-    nix-index
-    nmap
-    traceroute
 
     # Desktop themes
     breeze-gtk
@@ -289,34 +225,8 @@
   };
 
   # Special apps (requires more than their package to work).
-  programs.command-not-found.enable = false;
-  programs.dconf.enable = true;
-  programs.fish = {
-    enable = true;
-    vendor = {
-      config.enable = true;
-      completions.enable = true;
-    };
-  };
   programs.gamemode.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true; # So I can use GPG through SSH
-    pinentryFlavor = "tty";
-  };
   programs.steam.enable = true;
-  programs.tmux = {
-    enable = true;
-    clock24 = true;
-  };
-
-  # Neovim to rule them all.
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-  };
-  environment.variables.EDITOR = "nvim";
 
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };
@@ -342,9 +252,6 @@
         # Script for swaylock with GIFs on background (requires configuration in sway).
         my-wscreensaver = self.callPackage ../shared/pkgs/my-wscreensaver.nix { };
 
-        # Allow uutils to replace GNU coreutils.
-        uutils-coreutils = super.uutils-coreutils.override { prefix = ""; };
-
         # Environment to properly (and force) use wayland.
         wayland-env = self.callPackage ../shared/pkgs/wayland-env.nix { };
 
@@ -353,11 +260,6 @@
 
         # Audacious rice
         audacious-skin-winamp-classic = self.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
-
-        # Busybox without applets
-        busyboxWithoutAppletSymlinks = super.busybox.override {
-          enableAppletSymlinks = false;
-        };
 
         # Allow bluetooth management easily in sway
         fzf-bluetooth = self.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
@@ -373,24 +275,11 @@
   services.gvfs.enable = true;
   services.keybase.enable = true;
   services.kbfs.enable = true;
-  services.ntp.enable = true;
-  services.openssh = {
-    # TODO: Use openssh_hpn
-    enable = true;
-    forwardX11 = true;
-    permitRootLogin = "no";
-  };
   services.tumbler.enable = true;
   services.minidlna = {
     enable = true;
     mediaDirs = [ "/home/upnp-shared/Media" ];
   };
-
-  # Enable google-authenticator
-  security.pam.services.sshd.googleAuthenticator.enable = true;
-
-  # We are anxiously waiting for PR 122547
-  #services.dbus-broker.enable = true;
 
   # Fonts.
   fonts.fonts = with pkgs; [
@@ -448,17 +337,6 @@
       0.0.0.0 cdp.cloud.unity3d.com
       0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
     '';
-
-  # Automatically removes NixOS' older builds.
-  nix.settings.auto-optimise-store = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-
-  # Auto-upgrade NixOS.
-  system.autoUpgrade.enable = true;
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
