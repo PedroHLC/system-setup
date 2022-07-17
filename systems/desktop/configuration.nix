@@ -76,7 +76,7 @@ in
     "initcall_blacklist=acpi_cpufreq_init"
   ];
   # Services/Programs configurations
-  services.minidlna.friendlyName = "desktop";
+  services.minidlna.settings.friendlyName = "desktop";
 
   # OpenCL
   hardware.opengl.extraPackages = with pkgs; [

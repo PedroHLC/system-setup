@@ -271,7 +271,7 @@
   services.tumbler.enable = true;
   services.minidlna = {
     enable = true;
-    mediaDirs = [ "/home/upnp-shared/Media" ];
+    settings.mediaDirs = [ "/home/upnp-shared/Media" ];
   };
 
   # Fonts.
