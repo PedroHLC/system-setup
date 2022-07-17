@@ -190,7 +190,6 @@
     adbfs-rootless
     helvum
     libva-utils
-    neofetch
 
     # Desktop themes
     breeze-gtk

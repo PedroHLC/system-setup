@@ -80,6 +80,7 @@
     jq
     killall
     mosh
+    neofetch
     nix-index
     nmap
     p7zip
