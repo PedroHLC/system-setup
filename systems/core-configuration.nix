@@ -146,4 +146,7 @@
 
   # We are anxiously waiting for PR 122547
   #services.dbus-broker.enable = true;
+
+  # Global adjusts to home-manager
+  home-manager.useGlobalPkgs = true;
 }

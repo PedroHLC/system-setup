@@ -71,8 +71,16 @@
           ./shared/lib/oci-common.nix
           ./systems/core-configuration.nix
           ./systems/vps-lab/configuration.nix
+          # home-manager
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
+              seat = false;
+            });
+          }
         ];
       };
+
     };
   };
 }

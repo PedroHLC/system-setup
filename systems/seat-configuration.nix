@@ -334,7 +334,4 @@
       0.0.0.0 cdp.cloud.unity3d.com
       0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
     '';
-
-  # Global adjusts to home-manager
-  home-manager.useGlobalPkgs = true;
 }

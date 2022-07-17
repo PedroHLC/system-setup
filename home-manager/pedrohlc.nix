@@ -1,10 +1,11 @@
 { battery ? null
-, cpuSensor
+, cpuSensor ? null
 , dangerousAlone ? true
 , displayBrightness ? false
-, gitKey
+, gitKey ? null
 , gpuSensor ? null
 , nvidiaPrime ? false
+, seat ? true
 , touchpad ? null
 }:
 { pkgs, lib, ... }:
@@ -48,7 +49,7 @@ let
   lockTimeout = if dangerousAlone then "60" else "300";
 in
 {
-  home.packages = with pkgs; [
+  home.packages = with pkgs; lists.optionals seat [
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop
     fzf-bluetooth
@@ -58,7 +59,7 @@ in
   ];
 
   # My beloved DE
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway = mkIf seat {
     enable = true;
     wrapperFeatures.gtk = true;
 
@@ -252,7 +253,7 @@ in
   };
 
   # GTK Setup
-  gtk = {
+  gtk = mkIf seat {
     enable = true;
     theme.name = "Breeze-Dark";
     iconTheme.name = iconTheme;
@@ -263,7 +264,7 @@ in
   };
 
   # Cursor setup
-  home.pointerCursor = {
+  home.pointerCursor = mkIf seat {
     name = cursorTheme;
     package = pkgs.libsForQt5.breeze-qt5;
     gtk.enable = true;
@@ -271,7 +272,7 @@ in
   };
 
   # My simple and humble bar
-  programs.i3status-rust = {
+  programs.i3status-rust = mkIf seat {
     enable = true;
     bars = {
       main = {
@@ -341,6 +342,7 @@ in
             block = "cpu";
             interval = 2;
           }
+        ] ++ (lists.optional (cpuSensor != null)
           {
             block = "temperature";
             collapsed = false;
@@ -348,7 +350,7 @@ in
             chip = cpuSensor;
             interval = 5;
           }
-        ] ++ (lists.optional (gpuSensor != null)
+        ) ++ (lists.optional (gpuSensor != null)
           {
             block = "temperature";
             collapsed = false;
@@ -389,12 +391,11 @@ in
     # I use autologin and forever in love with tmux sessions.
     ".profile".text = ''
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-        exec ${pkgs.tmux}/bin/tmux
-      elif [ "$(tty)" = '/dev/tty1' ]; then
+        exec ${pkgs.tmux}/bin/tmux''
+    + (strings.optionalString seat ''elif [ "$(tty)" = '/dev/tty1' ]; then
         # It doesn't work like this: \${pkgs.sway}/bin/sway
-        ~/.nix-profile/bin/sway
-      fi
-    '';
+        ~/.nix-profile/bin/sway'')
+    + ''fi'';
     # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
       set-option -g default-shell /run/current-system/sw/bin/fish
@@ -406,7 +407,7 @@ in
     # Config files that I prefer to just specify
     configFile = {
       # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
-      kdeglobals = {
+      kdeglobals = mkIf seat {
         text = generators.toINI { } {
           General = {
             ColorScheme = "BreezeDark";
@@ -423,7 +424,7 @@ in
           };
         };
       };
-      kcminputrc = {
+      kcminputrc = mkIf seat {
         text = generators.toINI { } {
           Mouse = {
             cursorTheme = cursorTheme;
@@ -432,7 +433,7 @@ in
         };
       };
       # Audacious rice
-      audacious = {
+      audacious = mkIf seat {
         target = "audacious/config";
         text = audaciousConfigGenerator {
           audacious = {
@@ -451,7 +452,7 @@ in
         };
       };
       # Integrate the filemanager with the rest of the system
-      pcmanfm = {
+      pcmanfm = mkIf seat {
         target = "pcmanfm-qt/default/settings.conf";
         text = generators.toINI { } {
           Behavior = {
@@ -480,7 +481,7 @@ in
           # This will result in a lot of errors until Colorsublime loads.
           colorSublimeThemes = "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes";
         in
-        {
+        mkIf seat {
           target = "sublime-text-3/Packages/home-manager/Preferences.sublime-settings";
           text = generators.toJSON { } {
             hardware_acceleration = "opengl";
@@ -507,7 +508,7 @@ in
             vintageous_use_super_keys = null;
           };
         };
-      sublimeTerminus = {
+      sublimeTerminus = mkIf seat {
         target = "sublime-text-3/Packages/home-manager/Terminus.sublime-settings";
         text = generators.toJSON { } {
           default_config = {
@@ -524,7 +525,7 @@ in
           ];
         };
       };
-      sublimeKeybindings = {
+      sublimeKeybindings = mkIf seat {
         target = "sublime-text-3/Packages/home-manager/Default (Linux).sublime-keymap";
         text = generators.toJSON { } [
           { keys = [ "ctrl+k" "ctrl+z" ]; command = "zoom_pane"; args = { "fraction" = 0.9; }; }
@@ -541,7 +542,7 @@ in
           }
         ];
       };
-      sublimePackages = {
+      sublimePackages = mkIf seat {
         target = "sublime-text-3/Packages/User/Package Control.sublime-settings";
         text = generators.toJSON { } {
           installed_packages = [
@@ -602,7 +603,7 @@ in
     };
     desktopEntries = {
       # Overwrite Firefox with my encryption-wrapper
-      "firefox" = {
+      "firefox" = mkIf seat {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
         exec = "${pkgs.firefox-gate}/bin/firefox-gate %U";
@@ -623,7 +624,7 @@ in
     };
 
     # Default apps per file type
-    mimeApps = {
+    mimeApps = mkIf seat {
       enable = true;
       associations = {
         added = {
@@ -671,7 +672,7 @@ in
     };
   };
 
-  programs.mpv = {
+  programs.mpv = mkIf seat {
     enable = true;
     # For watching animes in 60fps
     package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { vapoursynthSupport = true; }) {
@@ -728,7 +729,7 @@ in
   };
 
   # Hardware/softwre OSD indicators while gaming
-  programs.mangohud = {
+  programs.mangohud = mkIf seat {
     enable = true;
     settings = {
       arch = true;
@@ -754,7 +755,7 @@ in
   };
 
   # Color filters for day/night
-  services.gammastep = {
+  services.gammastep = mkIf seat {
     enable = true;
     provider = "manual";
     temperature.night = 5100;
@@ -773,7 +774,7 @@ in
   # Personal git setings
   programs.git = {
     enable = true;
-    signing = {
+    signing = mkIf (gitKey != null) {
       key = gitKey;
       signByDefault = true;
     };
@@ -790,7 +791,7 @@ in
         rebase = true;
       };
       tag = {
-        gpgsign = true;
+        gpgsign = (gitKey != null);
       };
       init = {
         defaultBranch = "main";
@@ -799,7 +800,7 @@ in
   };
 
   # My favorite and simple terminal
-  programs.alacritty = {
+  programs.alacritty = mkIf seat {
     enable = true;
     settings = lib.mkOptionDefault {
       font = {
@@ -849,11 +850,13 @@ in
     enable = true;
     shellAliases =
       let
-        jsRun = "yarn exec --offline --";
+        jsRun = "${pkgs.yarn}/bin/yarn exec --offline --";
       in
       {
         ":q" = "exit";
-        "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
+        "aget" = "${pkgs.aria2}/bin/aria2c -s 16 -x 16 -j 16 -k 1M";
+        "phlc-sys" = "${pkgs.git}/bin/git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
+      } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
         "elm-graphql" = "${jsRun} elm-graphql";
@@ -861,7 +864,6 @@ in
         "elm-review" = "${jsRun} elm-review";
         "elm-test" = "${jsRun} elm-test";
         "parcel" = "${jsRun} parcel";
-        "phlc-sys" = "git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
       };
     plugins = [
       {
