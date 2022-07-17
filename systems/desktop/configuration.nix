@@ -32,6 +32,29 @@ in
   networking = {
     hostId = "7116ddca";
     hostName = "desktop";
+
+    # Wireguard Client
+    wireguard.interfaces.wg0 = {
+      ips = [ "10.100.0.2/24" "fda4:4413:3bb1::2/64" ];
+      privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
+      peers = [
+        {
+          publicKey = "kjVAAeIGsN0r3StYDQ2vnYg6MbclMrPALdm07qZtRCE=";
+          allowedIPs = [
+            "10.100.0.0/24"
+            "fda4:4413:3bb1::/64"
+            # Multicast IPs
+            "224.0.0.251/32"
+            "ff02::fb/128"
+          ];
+          endpoint = "lab.pedrohlc.com:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+      postSetup = ''
+        ip link set wg0 multicast on
+      '';
+    };
   };
 
   # DuckDNS

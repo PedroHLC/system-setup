@@ -3,7 +3,7 @@
   networking = {
     nat = {
       enable = true;
-      externalInterface = "eth0";
+      externalInterface = "enp0s3";
       internalInterfaces = [ "wg0" ];
     };
 
@@ -14,6 +14,17 @@
           listenPort = 51820;
           privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
           peers = [
+            # Desktop
+            {
+              publicKey = "cU6dpSqyloVRf6Jjb84TygJO94NOCy+LnMYv6/QAbBs=";
+              allowedIPs = [
+                "10.100.0.2/32"
+                "fda4:4413:3bb1::2/128"
+                # Multicast
+                "224.0.0.251/32"
+                "ff02::fb/128"
+              ];
+            }
             # Laptop
             {
               publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
