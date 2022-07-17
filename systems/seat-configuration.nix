@@ -68,9 +68,6 @@
 
     # Disable non-NetworkManager.
     useDHCP = false;
-
-    # Disable the firewall.
-    firewall.enable = false;
   };
 
   # LAN discovery.

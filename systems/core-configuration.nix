@@ -33,6 +33,9 @@
   # (lib.mkDefault because I also have a safer specialisation)
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
+  # Disable the firewall.
+  networking.firewall.enable = false;
+
   # Default time zone.
   time.timeZone = "America/Sao_Paulo";
 
