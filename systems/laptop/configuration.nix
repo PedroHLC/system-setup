@@ -102,7 +102,7 @@ tel_icd.i686.json";
         };
 
         # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-        nvidia-offload = self.callPackage ../tools/nvidia-offload.nix { };
+        nvidia-offload = self.callPackage ../../shared/pkgs/nvidia-offload.nix { };
       };
     in
     [ thisConfigsOverlay ];
