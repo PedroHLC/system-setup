@@ -1,3 +1,4 @@
+# Adapted from the open-PR https://github.com/NixOS/nixpkgs/pull/119856
 { config, lib, pkgs, ... }:
 {
   options = {

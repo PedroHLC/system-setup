@@ -1,5 +1,5 @@
 { writeShellScriptBin, userFirefox ? firefox-wayland, firefox-wayland, zenity ? gnome.zenity, gnome, zfs }:
-# This is a wrapperto run firefox with a zfs-encrypted profile, requires sudo
+# This is a wrapper to run firefox with a zfs-encrypted profile, requires sudo
 writeShellScriptBin "firefox-gate" ''
   set -o errexit
 

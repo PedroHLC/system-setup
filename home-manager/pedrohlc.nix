@@ -34,7 +34,7 @@ let
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = pkgs.callPackage ../tools/lib/audacious-config-generator.nix { };
+  audaciousConfigGenerator = pkgs.callPackage ../shared/lib/audacious-config-generator.nix { };
 
   # My wallpapers
   aenami = {
@@ -110,6 +110,7 @@ in
           { criteria = { title = "Slack \\| mini panel"; }; command = "floating enable; stick enable"; }
           { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
           { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
+          { criteria = { app_id = "zenity"; title = "firefox-gate"; }; command = "floating enable; stick enable"; }
 
           # So that I have a pop-out for sway-launcher-desktop
           { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
@@ -722,7 +723,7 @@ in
       "Alt+3" = "set window-scale 0.5";
 
       # For watching animes in 60fps
-      "K" = "vf toggle vapoursynth=${../assets/motioninterpolation.vpy}";
+      "K" = "vf toggle vapoursynth=${../shared/assets/motioninterpolation.vpy}";
     };
   };
 
@@ -865,7 +866,7 @@ in
     plugins = [
       {
         name = "local-plugin";
-        src = "${../assets/fish}";
+        src = "${../shared/assets/fish}";
       }
     ];
     shellInit = ''

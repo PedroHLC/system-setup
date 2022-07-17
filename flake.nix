@@ -21,13 +21,14 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
-          ./configuration.nix
-          ./laptop/hardware-configuration.nix
-          ./laptop/configuration.nix
+          ./systems/core-configuration.nix
+          ./systems/seat-configuration.nix
+          ./systems/laptop/hardware-configuration.nix
+          ./systems/laptop/configuration.nix
           # home-manager
           home-manager.nixosModules.home-manager
           {
-            home-manager.users.pedrohlc = (import ./home/pedrohlc.nix {
+            home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
               battery = "BAT0";
               cpuSensor = "coretemp-isa-0000";
               displayBrightness = true;
@@ -43,15 +44,16 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
-          ./configuration.nix
-          ./desktop/hardware-configuration.nix
-          ./desktop/configuration.nix
-          ./desktop/servers/wireguard.nix
-          ./desktop/servers/nix-cache.nix
+          ./systems/core-configuration.nix
+          ./systems/seat-configuration.nix
+          ./systems/desktop/hardware-configuration.nix
+          ./systems/desktop/configuration.nix
+          ./systems/desktop/servers/wireguard.nix
+          ./systems/desktop/servers/nix-cache.nix
           # home-manager
           home-manager.nixosModules.home-manager
           {
-            home-manager.users.pedrohlc = (import ./home/pedrohlc.nix {
+            home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
               cpuSensor = "k10temp-pci-00c3";
               dangerousAlone = false;
               gitKey = "DF4C6898CBDC6DF5";
@@ -65,9 +67,10 @@
         system = "aarch64-linux";
         modules = [
           (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
-          ./vps-lab/oci-options.nix
-          ./vps-lab/oci-common.nix
-          ./vps-lab/configuration.nix
+          ./shared/lib/oci-options.nix
+          ./shared/lib/oci-common.nix
+          ./systems/core-configuration.nix
+          ./systems/vps-lab/configuration.nix
         ];
       };
     };

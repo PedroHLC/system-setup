@@ -334,25 +334,25 @@
         };
 
         # Script to force XWayland (in case something catches fire).
-        nowl = self.callPackage ./tools/nowl.nix { };
+        nowl = self.callPackage ../shared/pkgs/nowl.nix { };
 
         # Script to open my encrypted firefox profile.
-        firefox-gate = self.callPackage ./tools/firefox-gate.nix { };
+        firefox-gate = self.callPackage ../shared/pkgs/firefox-gate.nix { };
 
         # Script for swaylock with GIFs on background (requires configuration in sway).
-        my-wscreensaver = self.callPackage ./tools/my-wscreensaver.nix { };
+        my-wscreensaver = self.callPackage ../shared/pkgs/my-wscreensaver.nix { };
 
         # Allow uutils to replace GNU coreutils.
         uutils-coreutils = super.uutils-coreutils.override { prefix = ""; };
 
         # Environment to properly (and force) use wayland.
-        wayland-env = self.callPackage ./tools/wayland-env.nix { };
+        wayland-env = self.callPackage ../shared/pkgs/wayland-env.nix { };
 
         # Script required for autologin (per TTYs).
-        login-program = self.callPackage ./tools/login-program.nix { };
+        login-program = self.callPackage ../shared/pkgs/login-program.nix { };
 
         # Audacious rice
-        audacious-skin-winamp-classic = self.callPackage ./tools/audacious-skin-winamp-classic.nix { };
+        audacious-skin-winamp-classic = self.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
 
         # Busybox without applets
         busyboxWithoutAppletSymlinks = super.busybox.override {
@@ -360,7 +360,7 @@
         };
 
         # Allow bluetooth management easily in sway
-        fzf-bluetooth = self.callPackage ./tools/fzf-bluetooth.nix { };
+        fzf-bluetooth = self.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = super.discord.override { withOpenASAR = true; nss = self.nss_latest; };
