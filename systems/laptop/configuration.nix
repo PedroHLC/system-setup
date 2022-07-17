@@ -23,7 +23,7 @@ in
 
     # Wireguard Client
     wireguard.interfaces.wg0 = {
-      ips = [ "10.100.0.2/24" "fda4:4413:3bb1::2/64" ];
+      ips = [ "10.100.0.3/24" "fda4:4413:3bb1::3/64" ];
       privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
       peers = [
         {
@@ -35,7 +35,7 @@ in
             "224.0.0.251/32"
             "ff02::fb/128"
           ];
-          endpoint = "home.pedrohlc.com:51820";
+          endpoint = "lab.pedrohlc.com:51820";
           persistentKeepalive = 25;
         }
       ];

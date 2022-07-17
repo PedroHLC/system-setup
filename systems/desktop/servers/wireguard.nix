@@ -18,8 +18,8 @@
             {
               publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
               allowedIPs = [
-                "10.100.0.2/32"
-                "fda4:4413:3bb1::2/128"
+                "10.100.0.3/32"
+                "fda4:4413:3bb1::3/128"
                 # Multicast
                 "224.0.0.251/32"
                 "ff02::fb/128"
@@ -29,8 +29,8 @@
             {
               publicKey = "j6bZsZZoWfN4SaJuCxP2ndqWGc75A2JH3gxNwSbIDEM=";
               allowedIPs = [
-                "10.100.0.3/32"
-                "fda4:4413:3bb1::3/128"
+                "10.100.0.4/32"
+                "fda4:4413:3bb1::4/128"
                 # Multicast
                 "224.0.0.251/32"
                 "ff02::fb/128"

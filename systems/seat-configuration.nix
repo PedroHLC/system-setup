@@ -318,8 +318,13 @@
   # Hardcodes some address resolving
   networking.extraHosts =
     ''
-      10.100.0.1 desktop.vpn
-      192.168.100.194 desktop.local
+      # - My machines
+
+      10.100.0.1 vps-lab.vpn
+      10.100.0.2 desktop.vpn
+      10.100.0.3 laptop.vpn
+      192.168.100.194 desktop.family-lan
+      192.168.100.136 laptop.family-lan
       
       # - Required to play GenshinImpact on Linux without banning.
 
