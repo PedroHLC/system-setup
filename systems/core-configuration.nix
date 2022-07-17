@@ -62,6 +62,7 @@
     ];
   };
   security.sudo.wheelNeedsPassword = false;
+  security.polkit.enable = true;
 
   # List packages.
   nixpkgs.config.allowUnfree = true;
