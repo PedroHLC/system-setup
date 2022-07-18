@@ -17,15 +17,20 @@ let
   lock = "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
-  menu = "${terminal} -t launcher -e ${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
-  menuBluetooth = "${terminal} -t launcher -e ${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
-  menuNetwork = "${terminal} -t launcher -e ${pkgs.networkmanager}/bin/nmtui";
+  terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
+  menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
+  menuBluetooth = terminalLauncher "${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
+  menuNetwork = terminalLauncher "${pkgs.networkmanager}/bin/nmtui";
   modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
   modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
   modeOtherMenus = "[b]luetooth | [n]etwork";
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
-  date = "${pkgs.uutils-coreutils}/bin/${pkgs.uutils-coreutils.prefix}date";
+  coreutilsBin = exe: "${pkgs.uutils-coreutils}/bin/${exe}";
+  date = coreutilsBin "date";
+  tr = coreutilsBin "tr";
+  wc = coreutilsBin "wc";
+  who = coreutilsBin "who";
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
@@ -285,7 +290,7 @@ in
         blocks = [
           {
             block = "custom";
-            command = "echo -n ' '; who | ${grep} 'pts/' | wc -l | tr '\\n' '/'; who | wc -l";
+            command = "echo -n ' '; ${who} | ${grep} 'pts/' | ${wc} -l | ${tr} '\\n' '/'; ${who} | ${wc} -l";
             interval = 3;
           }
           {
@@ -374,7 +379,12 @@ in
           }) ++
         [{
           block = "custom";
-          command = "(date +'%d/%m'; TZ='America/Sao_Paulo' date +'BR{%H:%M}'; TZ='Europe/Madrid' date +'ES{%H:%M}') | tr '\\n' ' '";
+          command =
+            let
+              localDay = "${date} +'%d/%m'";
+              braziliansTime = "TZ='America/Sao_Paulo' ${date} +'BR{%H:%M}'";
+            in
+            "(${localDay}; ${braziliansTime}) | ${tr} '\\n' ' '";
           interval = 10;
         }];
       };
