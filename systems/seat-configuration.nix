@@ -233,6 +233,7 @@
           plugins = with self.obs-studio-plugins; [
             wlrobs
             obs-vkcapture
+            obs-pipewire-audio-capture
           ];
         };
 
