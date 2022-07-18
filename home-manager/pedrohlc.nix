@@ -198,48 +198,52 @@ in
         { app_id = "firefox"; title = "Password Required"; }
       ];
 
-      modes = lib.mkOptionDefault {
-        # Power-off menu
-        "${modePower}" =
-          {
-            "Shift+l" = "exec ${pkgs.sway}/bin/swaymsg exit";
-            "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
-            "Shift+r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
-            "s" = "exec ${pkgs.systemd}/bin/systemctl suspend ; mode default";
-            "l" = "exec ${lock} ; mode default";
+      modes =
+        let
+          withLeaveOptions = attrs: attrs // {
             "Return" = "mode default";
             "Escape" = "mode default";
           };
+        in
+        lib.mkOptionDefault {
+          # Power-off menu
+          "${modePower}" =
+            withLeaveOptions {
+              "Shift+l" = "exec ${pkgs.sway}/bin/swaymsg exit";
+              "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
+              "Shift+r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
+              "s" = "exec ${pkgs.systemd}/bin/systemctl suspend ; mode default";
+              "l" = "exec ${lock} ; mode default";
+            };
 
-        # Common apps
-        "${modeFavorites}" =
-          {
-            "f" = "exec ${browser}; mode default";
-            "Shift+f" = "exec ${pkgs.pcmanfm-qt}/bin/pcmanfm-qt; mode default";
-            "v" = "exec ${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt; mode default";
-            "b" = "exec ${pkgs.qbittorrent}/bin/qbittorrent; mode default";
-            "e" = "exec ${editor}; mode default";
-            "s" = "exec ${pkgs.slack}/bin/slack; mode default";
-            "shift+o" = "exec ${pkgs.obs-studio-wrap}/bin/obs; mode default";
-            "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
-            "Shift+s" = "exec ((pidof spotify) || ${pkgs.spotify}/bin/spotify); mode default";
-            "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
-            "Escape" = "mode default";
-          };
+          # Common apps
+          "${modeFavorites}" =
+            withLeaveOptions {
+              "f" = "exec ${browser}; mode default";
+              "Shift+f" = "exec ${pkgs.pcmanfm-qt}/bin/pcmanfm-qt; mode default";
+              "v" = "exec ${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt; mode default";
+              "b" = "exec ${pkgs.qbittorrent}/bin/qbittorrent; mode default";
+              "e" = "exec ${editor}; mode default";
+              "s" = "exec ${pkgs.slack}/bin/slack; mode default";
+              "shift+o" = "exec ${pkgs.obs-studio-wrap}/bin/obs; mode default";
+              "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
+              "Shift+s" = "exec ((pidof spotify) || ${pkgs.spotify}/bin/spotify); mode default";
+              "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
+            };
 
-        # Network + Bluetooth
-        "${modeOtherMenus}" =
-          {
-            "b" = "exec ${menuBluetooth}; mode default";
-            "n" = "exec ${menuNetwork}; mode default";
-          };
-      };
+          # Network + Bluetooth
+          "${modeOtherMenus}" =
+            withLeaveOptions {
+              "b" = "exec ${menuBluetooth}; mode default";
+              "n" = "exec ${menuNetwork}; mode default";
+            };
+        };
     };
 
     systemdIntegration = false;
     extraConfig = ''
       # Proper way to start portals
-      exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
+      exec ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
     '';
     extraSessionCommands = ''
       source ${pkgs.wayland-env}/bin/wayland-env
@@ -393,7 +397,7 @@ in
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
         exec ${pkgs.tmux}/bin/tmux
     '' + (strings.optionalString seat ''
-      elif [ "$(tty)" = '/dev/tty1' ]; then
+      elif [ "$(${pkgs.coreutils}/bin/tty)" = '/dev/tty1' ]; then
         # It doesn't work like this: \${pkgs.sway}/bin/sway
         ~/.nix-profile/bin/sway
     '') + ''
@@ -401,7 +405,7 @@ in
     '';
     # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
-      set-option -g default-shell /run/current-system/sw/bin/fish
+      set-option -g default-shell ${pkgs.fish}/bin/fish
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
     '';
   };
@@ -816,7 +820,7 @@ in
       window.opacity = 0.9;
 
       shell = {
-        program = "/run/current-system/sw/bin/fish";
+        program = "${pkgs.fish}/bin/fish";
         args = [ "--login" ];
       };
 
