@@ -71,10 +71,11 @@ in
   # Better voltage and temperature
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
-  # Let's use AMD P-State
-  boot.kernelParams = [
-    "initcall_blacklist=acpi_cpufreq_init"
-  ];
+  # Let's use AMD P-State (Used to work, one day I was without cpufreq)
+  #boot.kernelParams = [
+  #  "initcall_blacklist=acpi_cpufreq_init"
+  #];
+
   # Services/Programs configurations
   services.minidlna.settings.friendlyName = "desktop";
 
