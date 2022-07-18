@@ -8,7 +8,7 @@
 , seat ? true
 , touchpad ? null
 }:
-{ pkgs, lib, ... }:
+{ config, lib, pkgs, ... }:
 with pkgs.lib;
 let
   # Some stuff that repeats across this file
@@ -398,8 +398,8 @@ in
         exec ${pkgs.tmux}/bin/tmux
     '' + (strings.optionalString seat ''
       elif [ "$(${pkgs.coreutils}/bin/tty)" = '/dev/tty1' ]; then
-        # It doesn't work like this: \${pkgs.sway}/bin/sway
-        ~/.nix-profile/bin/sway
+        # It doesn't work like this: $\{pkgs.sway}/bin/sway
+        ${config.wayland.windowManager.sway.package}/bin/sway # The same one from ~/.nix-profile/bin/sway
     '') + ''
       fi
     '';
