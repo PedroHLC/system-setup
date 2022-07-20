@@ -71,10 +71,10 @@ in
   # Better voltage and temperature
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
-  # Let's use AMD P-State (Used to work, one day I was without cpufreq)
-  #boot.kernelParams = [
-  #  "initcall_blacklist=acpi_cpufreq_init"
-  #];
+  # Let's use AMD P-State (Needs patching in 5.18.12)
+  boot.kernelParams = [
+    "initcall_blacklist=acpi_cpufreq_init"
+  ];
 
   # Services/Programs configurations
   services.minidlna.settings.friendlyName = "desktop";
@@ -98,13 +98,22 @@ in
         #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
         #  - Looks like you can't have two identical NVMes right now.
         linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
-          kernelPatches = (lpSuper.kernelPatches or [ ]) ++ {
-            name = "nvme-pci_smi-has-bogus-namespace-ids";
-            patch = self.fetchurl {
-              url = "https://git.infradead.org/nvme.git/patch/c98a879312caf775c9768faed25ce1c013b4df04?hp=2cf7a77ed5f8903606f4f7833d02d67b08650442";
-              sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
-            };
-          };
+          kernelPatches = (lpSuper.kernelPatches or [ ]) ++ [
+            {
+              name = "nvme-pci_smi-has-bogus-namespace-ids";
+              patch = self.fetchurl {
+                url = "https://git.infradead.org/nvme.git/patch/c98a879312caf775c9768faed25ce1c013b4df04?hp=2cf7a77ed5f8903606f4f7833d02d67b08650442";
+                sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
+              };
+            }
+            {
+              name = "acpi-fix-enabling-cppc";
+              patch = self.fetchurl {
+                url = "https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/patch/?id=fbd74d16890b9f5d08ea69b5282b123c894f8860";
+                sha256 = "0rmyiwdcclkpxbrpj0gisvz8cqyyi8klr2mq97cig93lvmgn4kw0";
+              };
+            }
+          ];
         });
       };
     in
