@@ -72,9 +72,9 @@ in
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
   # Let's use AMD P-State (Needs patching in 5.18.12)
-  boot.kernelParams = [
-    "initcall_blacklist=acpi_cpufreq_init"
-  ];
+  #boot.kernelParams = [
+  #  "initcall_blacklist=acpi_cpufreq_init"
+  #];
 
   # Services/Programs configurations
   services.minidlna.settings.friendlyName = "desktop";
@@ -94,11 +94,11 @@ in
   nixpkgs.overlays =
     let
       thisConfigsOverlay = self: super: {
-        # This desktop is affected by this bug:
-        #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
-        #  - Looks like you can't have two identical NVMes right now.
         linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
           kernelPatches = (lpSuper.kernelPatches or [ ]) ++ [
+            # This desktop is affected by this regression:
+            #  - https://bugzilla.kernel.org/show_bug.cgi?id=216096 in kernel 5.18
+            #  - Looks like you can't have two identical NVMes right now.
             {
               name = "nvme-pci_smi-has-bogus-namespace-ids";
               patch = self.fetchurl {
@@ -106,6 +106,8 @@ in
                 sha256 = "522d3e539e77bb4bdab32b436c0f83c038536aab56d6dd04e943f27c829c06de";
               };
             }
+            # This kernel version is affected by this regression:
+            # - https://bugzilla.kernel.org/show_bug.cgi?id=216248
             {
               name = "acpi-fix-enabling-cppc";
               patch = self.fetchurl {
