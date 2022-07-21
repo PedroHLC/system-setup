@@ -272,7 +272,10 @@
   services.tumbler.enable = true;
   services.minidlna = {
     enable = true;
-    settings.mediaDirs = [ "/home/upnp-shared/Media" ];
+    settings = {
+      media_dir = [ "/home/upnp-shared/Media" ];
+      inotify = "yes";
+    };
   };
 
   # Fonts.

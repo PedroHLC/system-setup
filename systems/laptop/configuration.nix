@@ -80,7 +80,7 @@ tel_icd.i686.json";
 
   # Services/Programs configurations
   services.upower.enable = true;
-  services.minidlna.settings.friendlyName = "laptop";
+  services.minidlna.settings.friendly_name = "laptop";
 
   # Melina may also use this machine
   users.users.melinapn = {

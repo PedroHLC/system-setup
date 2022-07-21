@@ -77,7 +77,7 @@ in
   #];
 
   # Services/Programs configurations
-  services.minidlna.settings.friendlyName = "desktop";
+  services.minidlna.settings.friendly_name = "desktop";
 
   # OpenCL
   hardware.opengl.extraPackages = with pkgs; [
