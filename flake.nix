@@ -21,6 +21,7 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
+          ./shared/lib/lucasew-gc-hold.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/laptop/hardware-configuration.nix
@@ -44,6 +45,7 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
+          ./shared/lib/lucasew-gc-hold.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/desktop/hardware-configuration.nix

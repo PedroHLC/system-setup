@@ -3,6 +3,7 @@
 
 # My-defined terms
 let
+  # Functions to construct my custom build of mesa
   mesa-attrs = super: rec {
     nativeBuildInputs = super.nativeBuildInputs ++ [ pkgs.glslang ];
     mesonFlags = super.mesonFlags ++ [ "-Dvulkan-layers=device-select,overlay" ];
@@ -84,8 +85,8 @@ in
     rocm-opencl-icd
     rocm-opencl-runtime
   ];
-  hardware.opengl.package = ((pkgs.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
-  hardware.opengl.package32 = ((pkgs.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
+  hardware.opengl.package = pkgs.mesa-bleeding;
+  hardware.opengl.package32 = pkgs.lib32-mesa-bleeding;
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -94,6 +95,11 @@ in
   nixpkgs.overlays =
     let
       thisConfigsOverlay = self: super: {
+        # Latest mesa with more specific drivers
+        mesa-bleeding = ((super.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
+        lib32-mesa-bleeding = ((super.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
+
+        # Kernel
         linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
           kernelPatches = (lpSuper.kernelPatches or [ ]) ++ [
             # This desktop is affected by this regression:
@@ -120,6 +126,9 @@ in
       };
     in
     [ thisConfigsOverlay ];
+
+  # Keep some devivations's sources around so we don't have to re-download them between updates.
+  lucasew.gc-hold = with pkgs; [ nvidiaPackage mesa-bleeding lib32-mesa-bleeding linuxPackages_zen ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

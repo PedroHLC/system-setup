@@ -107,6 +107,9 @@ tel_icd.i686.json";
     in
     [ thisConfigsOverlay ];
 
+  # Keep some devivations's sources around so we don't have to re-download them between updates.
+  lucasew.gc-hold = with pkgs; [ nvidiaPackage ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
