@@ -128,7 +128,7 @@ in
     [ thisConfigsOverlay ];
 
   # Keep some devivations's sources around so we don't have to re-download them between updates.
-  lucasew.gc-hold = with pkgs; [ nvidiaPackage mesa-bleeding lib32-mesa-bleeding linuxPackages_zen ];
+  lucasew.gc-hold = with pkgs; [ mesa-bleeding lib32-mesa-bleeding ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
