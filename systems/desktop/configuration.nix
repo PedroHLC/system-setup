@@ -127,24 +127,6 @@ in
     in
     [ thisConfigsOverlay ];
 
-  # Boost my system
-  #nixpkgs.localSystem = {
-  #  gcc.arch = "x86-64-v3";
-  #  gcc.tune = "generic";
-  #  system = "x86_64-linux";
-  #};
-
-  # Nix does not know its own stuff
-  nix.settings.system-features = [
-    "benchmark"
-    "big-parallel"
-    "ca-derivations"
-    "gccarch-x86-64-v3"
-    "gccarch-zenver3"
-    "kvm"
-    "nixos-test"
-  ];
-
   # Keep some devivations's sources around so we don't have to re-download them between updates.
   lucasew.gc-hold = with pkgs; [ mesa-bleeding lib32-mesa-bleeding ];
 
