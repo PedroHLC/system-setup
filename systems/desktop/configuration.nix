@@ -99,6 +99,13 @@ in
         mesa-bleeding = ((super.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
         lib32-mesa-bleeding = ((super.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
 
+        # Booost my entire stack
+        stdenv = super.stdenvAdapters.addAttrsToDerivation
+          {
+            NIX_CFLAGS_COMPILE = "-march=x86-64-v3 -mtune=generic -O3";
+          }
+          super.stdenv;
+
         # Kernel
         linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
           kernelPatches = (lpSuper.kernelPatches or [ ]) ++ [
