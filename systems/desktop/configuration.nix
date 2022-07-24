@@ -99,13 +99,6 @@ in
         mesa-bleeding = ((super.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
         lib32-mesa-bleeding = ((super.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
 
-        # Booost my entire stack
-        stdenv = super.stdenvAdapters.addAttrsToDerivation
-          {
-            NIX_CFLAGS_COMPILE = "-march=x86-64-v3 -mtune=generic -O3";
-          }
-          super.stdenv;
-
         # Kernel
         linuxPackages_zen = super.linuxPackages_zen.extend (lpSelf: lpSuper: {
           kernelPatches = (lpSuper.kernelPatches or [ ]) ++ [
@@ -133,6 +126,24 @@ in
       };
     in
     [ thisConfigsOverlay ];
+
+  # Boost my system
+  #nixpkgs.localSystem = {
+  #  gcc.arch = "x86-64-v3";
+  #  gcc.tune = "generic";
+  #  system = "x86_64-linux";
+  #};
+
+  # Nix does not know its own stuff
+  nix.settings.system-features = [
+    "benchmark"
+    "big-parallel"
+    "ca-derivations"
+    "gccarch-x86-64-v3"
+    "gccarch-zenver3"
+    "kvm"
+    "nixos-test"
+  ];
 
   # Keep some devivations's sources around so we don't have to re-download them between updates.
   lucasew.gc-hold = with pkgs; [ mesa-bleeding lib32-mesa-bleeding ];
