@@ -86,7 +86,7 @@ tel_icd.i686.json";
   users.users.melinapn = {
     uid = 1002;
     isNormalUser = true;
-    extraGroups = [ "video" "networkmanager" ];
+    extraGroups = [ "users" "audio" "video" "input" "networkmanager" ];
   };
 
   # Plasma for Melina

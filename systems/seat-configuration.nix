@@ -302,6 +302,13 @@
       enable = true;
       dockerCompat = true; # Podman provides docker.
     };
+    containers.storage.settings = {
+      storage = {
+        driver = "zfs";
+        graphroot = "/var/lib/containers/storage";
+        runroot = "/run/containers/storage";
+      };
+    };
   };
 
   # Creates a second boot entry with LTS kernel and stable ZFS
