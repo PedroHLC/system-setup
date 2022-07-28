@@ -115,8 +115,8 @@
   environment.variables = {
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "pipewire";
-    ALSOFT_DRIVERS = "alsa"; # Fixes Telegram, better latency under pw. (waiting stable release of pipewire driver).
-    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler ALSOFT_DRIVERS=alsa";
+    ALSOFT_DRIVERS = "pipewire";
+    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler";
   };
 
   # Autologin.

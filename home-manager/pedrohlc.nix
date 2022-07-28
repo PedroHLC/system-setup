@@ -706,7 +706,7 @@ in
       screenshot-format = "png";
       screenshot-directory = "/tmp";
       # for Pipewire (Let's pray for MPV native solution)
-      ao = "sdl";
+      ao = "openal";
       # I don't usually plug my PC in a home-theater
       audio-channels = "stereo";
 
