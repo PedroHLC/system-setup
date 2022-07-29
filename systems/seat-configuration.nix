@@ -202,7 +202,7 @@
     # Gaming
     mangohud
     mesa-demos
-    nix-gaming.packages.x86_64-linux.wine-tkg
+    nix-gaming.packages.x86_64-linux.wine-ge
     vulkan-tools
     winetricks
 
