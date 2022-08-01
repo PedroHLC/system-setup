@@ -70,6 +70,7 @@ in
 
     config = {
       inherit modifier terminal menu;
+      defaultWorkspace = "1";
       startup = [
         # Start locked because I use autologin
         { command = lock; }
@@ -151,6 +152,10 @@ in
         "${modifier}+Shift+e" = "mode \"${modePower}\"";
         "${modifier}+Shift+d" = "mode \"${modeOtherMenus}\"";
 
+        # The missing workspace
+        "${modifier}+0" = "workspace 0";
+        "${modifier}+Shift+0" = "move container to workspace 0";
+
         # My extra lot of workspaces
         "${modifier}+Ctrl+1" = "workspace C1";
         "${modifier}+Ctrl+2" = "workspace C2";
@@ -161,7 +166,7 @@ in
         "${modifier}+Ctrl+7" = "workspace C7";
         "${modifier}+Ctrl+8" = "workspace C8";
         "${modifier}+Ctrl+9" = "workspace C9";
-        "${modifier}+Ctrl+0" = "workspace C10";
+        "${modifier}+Ctrl+0" = "workspace C0";
         "${modifier}+Shift+Ctrl+1" = "move container to workspace C1";
         "${modifier}+Shift+Ctrl+2" = "move container to workspace C2";
         "${modifier}+Shift+Ctrl+3" = "move container to workspace C3";
@@ -171,7 +176,7 @@ in
         "${modifier}+Shift+Ctrl+7" = "move container to workspace C7";
         "${modifier}+Shift+Ctrl+8" = "move container to workspace C8";
         "${modifier}+Shift+Ctrl+9" = "move container to workspace C9";
-        "${modifier}+Shift+Ctrl+0" = "move container to workspace C10";
+        "${modifier}+Shift+Ctrl+0" = "move container to workspace C0";
       } // (attrsets.optionalAttrs displayBrightness {
         # Display controls
         "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl up";
