@@ -70,7 +70,7 @@ in
 
     config = {
       inherit modifier terminal menu;
-      defaultWorkspace = "1";
+      defaultWorkspace = "workspace number 1";
       startup = [
         # Start locked because I use autologin
         { command = lock; }
