@@ -231,9 +231,10 @@
         # Obs with plugins
         obs-studio-wrap = self.wrapOBS.override { obs-studio = self.obs-studio; } {
           plugins = with self.obs-studio-plugins; [
-            wlrobs
-            obs-vkcapture
+            obs-gstreamer
             obs-pipewire-audio-capture
+            obs-vkcapture
+            wlrobs
           ];
         };
 
