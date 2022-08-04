@@ -320,7 +320,12 @@
   };
 
   # Keep some devivations's sources around so we don't have to re-download them between updates.
-  lucasew.gc-hold = with pkgs; [ sublime4 wpsoffice ];
+  lucasew.gc-hold = with pkgs; [
+    google-chrome-beta
+    sublime4
+    wpsoffice
+    zoom-us
+  ];
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
