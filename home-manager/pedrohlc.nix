@@ -95,6 +95,12 @@ in
       output = {
         "*" = { background = "${aenami.horizon} fill"; };
         "Unknown 0x0804 0x00000000" = { background = "${aenami.lostInBetween} fill"; };
+        "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
+          # 75Hz + 1ms + FreeSync
+          adaptive_sync = "on";
+          max_render_time = "1";
+          mode = "2560x1080@75Hz";
+        };
       };
       focus = {
         followMouse = "yes";
