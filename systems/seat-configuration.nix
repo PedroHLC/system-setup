@@ -261,6 +261,9 @@
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = super.discord.override { withOpenASAR = true; nss = self.nss_latest; };
+
+        # Add pipewire-output to Audacious
+        audacious = import ../shared/lib/audacious-overlay.nix self super;
       };
     in
     [ thisConfigsOverlay ];
