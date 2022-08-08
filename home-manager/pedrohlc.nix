@@ -462,11 +462,15 @@ in
       };
       # Audacious rice
       audacious = mkIf seat {
-        target = "audacious/config";
+         # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".
+        target = "audacious/config.template";
         text = audaciousConfigGenerator {
           audacious = {
-            output_bit_depth = 24;
             shuffle = false;
+          };
+          pipewire = {
+            volume_left = 100;
+            volume_right = 100;
           };
           resample = {
             default-rate = 96000;
