@@ -227,10 +227,10 @@
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
     let
-      thisConfigsOverlay = self: super: {
+      thisConfigsOverlay = final: prev: {
         # Obs with plugins
-        obs-studio-wrap = self.wrapOBS.override { obs-studio = self.obs-studio; } {
-          plugins = with self.obs-studio-plugins; [
+        obs-studio-wrap = final.wrapOBS.override { obs-studio = final.obs-studio; } {
+          plugins = with final.obs-studio-plugins; [
             obs-gstreamer
             obs-pipewire-audio-capture
             obs-vkcapture
@@ -239,31 +239,31 @@
         };
 
         # Script to force XWayland (in case something catches fire).
-        nowl = self.callPackage ../shared/pkgs/nowl.nix { };
+        nowl = final.callPackage ../shared/pkgs/nowl.nix { };
 
         # Script to open my encrypted firefox profile.
-        firefox-gate = self.callPackage ../shared/pkgs/firefox-gate.nix { };
+        firefox-gate = final.callPackage ../shared/pkgs/firefox-gate.nix { };
 
         # Script for swaylock with GIFs on background (requires configuration in sway).
-        my-wscreensaver = self.callPackage ../shared/pkgs/my-wscreensaver.nix { };
+        my-wscreensaver = final.callPackage ../shared/pkgs/my-wscreensaver.nix { };
 
         # Environment to properly (and force) use wayland.
-        wayland-env = self.callPackage ../shared/pkgs/wayland-env.nix { };
+        wayland-env = final.callPackage ../shared/pkgs/wayland-env.nix { };
 
         # Script required for autologin (per TTYs).
-        login-program = self.callPackage ../shared/pkgs/login-program.nix { };
+        login-program = final.callPackage ../shared/pkgs/login-program.nix { };
 
         # Audacious rice
-        audacious-skin-winamp-classic = self.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
+        audacious-skin-winamp-classic = final.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
 
         # Allow bluetooth management easily in sway
-        fzf-bluetooth = self.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
+        fzf-bluetooth = final.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
-        discord = super.discord.override { withOpenASAR = true; nss = self.nss_latest; };
+        discord = prev.discord.override { withOpenASAR = true; nss = final.nss_latest; };
 
         # Add pipewire-output to Audacious
-        audacious = import ../shared/lib/audacious-overlay.nix self super;
+        audacious = import ../shared/lib/audacious-overlay.nix final prev;
       };
     in
     [ thisConfigsOverlay ];

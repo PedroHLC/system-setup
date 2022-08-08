@@ -125,12 +125,12 @@
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
     let
-      thisConfigsOverlay = self: super: {
+      thisConfigsOverlay = _: prev: {
         # Allow uutils to replace GNU coreutils.
-        uutils-coreutils = super.uutils-coreutils.override { prefix = ""; };
+        uutils-coreutils = prev.uutils-coreutils.override { prefix = ""; };
 
         # Busybox without applets
-        busyboxWithoutAppletSymlinks = super.busybox.override {
+        busyboxWithoutAppletSymlinks = prev.busybox.override {
           enableAppletSymlinks = false;
         };
       };
