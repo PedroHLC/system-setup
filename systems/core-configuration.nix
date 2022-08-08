@@ -29,9 +29,9 @@
   boot.tmpOnTmpfs = true;
   boot.tmpOnTmpfsSize = "100%";
 
-  # Kernel versions (I prefer Zen, when it's not broken for ZFS).
+  # Kernel versions (I prefer Lqx, when it's not broken for ZFS).
   # (lib.mkDefault because I also have a safer specialisation)
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_lqx;
 
   # Disable the firewall.
   networking.firewall.enable = false;
