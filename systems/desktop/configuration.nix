@@ -16,11 +16,11 @@ let
       substituteInPlace $drivers/share/vulkan/explicit_layer.d/''${layer}.json \
         --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
     '';
-    #version = "22.1.4";
-    #src = pkgs.fetchurl {
-    #  url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/mesa-${version}/mesa-mesa-${version}.tar.gz";
-    #  sha256 = "ZQrNeD23Kpks29WOwxGmNGv9wfKVfpevYsK4Pun7MjE=";
-    #};
+    version = "22.1.5";
+    src = pkgs.fetchurl {
+      url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/mesa-${version}/mesa-mesa-${version}.tar.gz";
+      hash = "sha256-s60+oF2PY2zeFzjMh0qIY7XaUZlHdBw4PK2+/81OFN4=";
+    };
   };
   mesa-params = _: {
     galliumDrivers = [ "radeonsi" "zink" "virgl" "swrast" ];
