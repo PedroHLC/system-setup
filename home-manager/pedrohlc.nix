@@ -462,7 +462,7 @@ in
       };
       # Audacious rice
       audacious = mkIf seat {
-         # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".
+        # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".
         target = "audacious/config.template";
         text = audaciousConfigGenerator {
           audacious = {
