@@ -131,7 +131,6 @@
     # Desktop apps
     acpi
     alacritty
-    android-tools
     audacious
     brightnessctl
     discord
@@ -218,6 +217,7 @@
   };
 
   # Special apps (requires more than their package to work).
+  programs.adb.enable = true;
   programs.gamemode.enable = true;
   programs.steam.enable = true;
 
@@ -298,7 +298,6 @@
     noto-fonts
     ubuntu_font_family
   ];
-
 
   # Virtualisation / Containerization.
   virtualisation = {
