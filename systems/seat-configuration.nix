@@ -189,6 +189,7 @@
     adbfs-rootless
     helvum
     libva-utils
+    vulkan-caps-viewer
 
     # Desktop themes
     breeze-gtk
@@ -264,6 +265,9 @@
 
         # Add pipewire-output to Audacious
         audacious = import ../shared/lib/audacious-overlay.nix final prev;
+
+        # Disable XWayland for vulkan-caps-viewer
+        vulkan-caps-viewer = prev.vulkan-caps-viewer.override { withX11 = false; };
       };
     in
     [ thisConfigsOverlay ];
