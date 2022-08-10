@@ -79,8 +79,13 @@ tel_icd.i686.json";
   ];
 
   # Services/Programs configurations
-  services.upower.enable = true;
   services.minidlna.settings.friendly_name = "laptop";
+
+  # Useful services for power-saving
+  services.auto-cpufreq.enable = true;
+  services.power-profiles-daemon.enable = false; # replaced by tlp
+  services.tlp.enable = true;
+  services.upower.enable = true;
 
   # Melina may also use this machine
   users.users.melinapn = {
