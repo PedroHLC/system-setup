@@ -125,6 +125,9 @@ in
           { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
           { criteria = { app_id = "zenity"; title = "firefox-gate"; }; command = "floating enable; stick enable"; }
 
+          # Don't lock my screen if there is anything fullscreen, I may be gaiming
+          { criteria = { app_id = ".*"; }; command = "inhibit_idle fullscreen"; }
+
           # So that I have a pop-out for sway-launcher-desktop
           { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
 
