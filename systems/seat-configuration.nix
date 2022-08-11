@@ -304,17 +304,11 @@
   ];
 
   # Virtualisation / Containerization.
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true; # Podman provides docker.
-    };
-    containers.storage.settings = {
-      storage = {
-        driver = "zfs";
-        graphroot = "/var/lib/containers/storage";
-        runroot = "/run/containers/storage";
-      };
+  virtualisation.containers.storage.settings = {
+    storage = {
+      driver = "zfs";
+      graphroot = "/var/lib/containers/storage";
+      runroot = "/run/containers/storage";
     };
   };
 

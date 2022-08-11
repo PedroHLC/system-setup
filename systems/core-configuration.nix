@@ -149,6 +149,15 @@
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
 
+  # Disable nixos-containers (conflicts with virtualisation.containers)
+  boot.enableContainers = false;
+
+  # Virtualisation / Containerization.
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true; # Podman provides docker.
+  };
+
   # We are anxiously waiting for PR 122547
   #services.dbus-broker.enable = true;
 
