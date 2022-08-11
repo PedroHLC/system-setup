@@ -267,7 +267,8 @@
         audacious = import ../shared/lib/audacious-overlay.nix final prev;
 
         # Disable XWayland for vulkan-caps-viewer
-        vulkan-caps-viewer = prev.vulkan-caps-viewer.override { withX11 = false; };
+        # FIXME: Surface capturing seems broken on Wayland
+        #vulkan-caps-viewer = prev.vulkan-caps-viewer.override { withX11 = false; };
       };
     in
     [ thisConfigsOverlay ];
