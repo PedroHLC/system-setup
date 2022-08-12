@@ -189,6 +189,7 @@
     adbfs-rootless
     helvum
     libva-utils
+    ripgrep
     vulkan-caps-viewer
 
     # Desktop themes
