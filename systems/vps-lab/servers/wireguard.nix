@@ -69,6 +69,17 @@
                 "ff02::fb/128"
               ];
             }
+            # kotaro (atila)
+            {
+              publicKey = "sJgsAYeBx0aE8es0Yfps0f7fBRpUvcxgyB19EM7wi1M=";
+              allowedIPs = [
+                "10.100.0.204/32"
+                "fda4:4413:3bb1::204/128"
+                # Multicast
+                "224.0.0.251/32"
+                "ff02::fb/128"
+              ];
+            }
           ];
           postSetup = ''
             ip link set wg0 multicast on
