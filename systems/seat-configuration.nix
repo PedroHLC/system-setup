@@ -150,6 +150,7 @@
     mpv
     nomacs
     obs-studio-wrap
+    obs-studio-plugins.obs-vkcapture
     pamixer # for avizo
     qbittorrent
     slack
