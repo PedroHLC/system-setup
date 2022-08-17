@@ -326,6 +326,7 @@
   # Keep some devivations's sources around so we don't have to re-download them between updates.
   lucasew.gc-hold = with pkgs; [
     google-chrome-beta
+    google-fonts
     sublime4
     wpsoffice
     zoom-us
