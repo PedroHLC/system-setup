@@ -80,8 +80,8 @@ in
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
         { command = "${pkgs.swayidle}/bin/swayidle -w timeout ${lockTimeout} ${lock} before-sleep ${lock}"; }
-	# A tmux session that knows about DE environment
-	{ command = "${pkgs.tmux}/bin/tmux new-session -s DE"; }
+        # A tmux session that knows about DE environment
+        { command = "${pkgs.tmux}/bin/tmux new-session -s DE"; }
       ];
       input = {
         # Adjust to Brazilian keyboards

@@ -188,6 +188,7 @@
 
     # Less used
     adbfs-rootless
+    bluez-tools
     helvum
     libva-utils
     ripgrep

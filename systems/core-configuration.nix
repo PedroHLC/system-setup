@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, nixpkgs, ... }:
 
 # NixOS-defined options
 {
@@ -163,4 +163,11 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
+
+  # Set $NIX_PATH entry for nixpkgs.
+  # This is for reusing flakes inputs for old commands.
+  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+
+  # Always uses system's flakes instead of downloading or updating.
+  nix.registry.nixpkgs.flake = nixpkgs;
 }
