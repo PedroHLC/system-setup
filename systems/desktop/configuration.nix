@@ -72,10 +72,12 @@ in
   # Better voltage and temperature
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
-  # Let's use AMD P-State (Needs patching in 5.18.12)
-  #boot.kernelParams = [
-  #  "initcall_blacklist=acpi_cpufreq_init"
-  #];
+  # Let's use AMD P-State
+  boot.kernelParams = [
+    "initcall_blacklist=acpi_cpufreq_init"
+    "amd_pstate.shared_mem=1"
+  ];
+  boot.kernelModules = [ "amd_pstate" ];
 
   # Services/Programs configurations
   services.minidlna.settings.friendly_name = "desktop";

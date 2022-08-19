@@ -97,6 +97,7 @@ in
       output = {
         "*" = { background = "${aenami.horizon} fill"; };
         "Unknown 0x0804 0x00000000" = {
+          # Laptop's display
           background = "${aenami.lostInBetween} fill";
         };
         "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
@@ -106,14 +107,14 @@ in
           mode = "2560x1080@75Hz";
         };
         "Samsung Electric Company LU28R55 HX5R701479" = {
-          adaptive_sync = "on";
+          adaptive_sync = "off"; # In this display, this makes electron apps laggy
           max_render_time = "1";
           mode = "3840x2160@60Hz";
         };
       };
       focus = {
         followMouse = "yes";
-        mouseWarping = true; # I want "container" -- home-manager issue #2956;
+        mouseWarping = "container";
       };
       fonts = {
         names = [ "Fira Sans Mono" "monospace" ];

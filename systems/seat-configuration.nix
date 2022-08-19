@@ -190,6 +190,7 @@
     adbfs-rootless
     bluez-tools
     helvum
+    libnotify
     libva-utils
     ripgrep
     vulkan-caps-viewer
