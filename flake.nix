@@ -65,6 +65,7 @@
 
       "vps-lab" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = attrs;
         modules = [
           (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
           ./shared/lib/oci-options.nix
