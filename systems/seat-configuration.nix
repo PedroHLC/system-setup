@@ -36,6 +36,9 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
 
+  # Temporarily move to ZFS-staging for 5.19
+  boot.zfs.enableUnstable = true;
+
   # Kernel Params
   boot.kernelParams = [
     # Disable all mitigations
@@ -270,9 +273,21 @@
         # Add pipewire-output to Audacious
         audacious = import ../shared/lib/audacious-overlay.nix final prev;
 
-        # Disable XWayland for vulkan-caps-viewer
-        # FIXME: Surface capturing seems broken on Wayland
-        #vulkan-caps-viewer = prev.vulkan-caps-viewer.override { withX11 = false; };
+        # Bump zfs-unstable in linux-lqx
+        linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
+          zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (fa: {
+            src = final.fetchFromGitHub {
+              owner = "openzfs";
+              repo = "zfs";
+              rev = "zfs-2.1.6-staging";
+              hash = "sha256-a3pyO3hE+hAS4c2vbtia2YbUoPY2uRyyx9caR9pzrx8=";
+            };
+            version = "2.1.6-staging";
+            kernelCompatible = lpFinal.kernelOlder "5.20";
+            passthru.latestCompatibleLinuxPackages = final.linuxKernel.packages.linuxPackages_5_19;
+            meta.broken = false;
+          });
+        });
       };
     in
     [ thisConfigsOverlay ];
@@ -320,8 +335,8 @@
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {
     system.nixos.tags = [ "lts" "zfs-stable" ];
-    boot.kernelPackages = pkgs.linuxPackages;
-    boot.zfs.enableUnstable = false;
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+    boot.zfs.enableUnstable = lib.mkForce false;
   };
 
   # Keep some devivations's sources around so we don't have to re-download them between updates.
