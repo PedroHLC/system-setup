@@ -4,7 +4,7 @@
 # My user-named values.
 let
   # Preferred NVIDIA Version.
-  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.stable;
+  nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.latest;
 
 in
 # NixOS-defined options
@@ -49,6 +49,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     package = nvidiaPackage;
+    # open = true; # Kernel Panic at boot.
 
     prime = {
       offload.enable = true;
