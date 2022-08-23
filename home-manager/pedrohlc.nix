@@ -256,7 +256,7 @@ in
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
               "shift+o" = "exec ${pkgs.obs-studio-wrap}/bin/obs; mode default";
               "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
-              "Shift+s" = "exec ((pidof spotify) || ${pkgs.spotify}/bin/spotify); mode default";
+              "Shift+s" = "exec ((pidof ${pkgs.spotify-unwrapped}/share/spotify/.spotify-wrapped) || ${pkgs.spotify}/bin/spotify); mode default";
               "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
             };
 

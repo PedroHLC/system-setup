@@ -8,16 +8,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1660822890,
-        "narHash": "sha256-kUWmPr2zpP10x7fLfynlpdtNMTtKqKsRm2i6z6lGGCU=",
+        "lastModified": 1661223339,
+        "narHash": "sha256-l7JUSRx77/spOibVcCpmXteBs2f3Gr5seWNdno+t3oU=",
         "owner": "PedroHLC",
         "repo": "home-manager",
-        "rev": "af4c500cb07d9b6d8976bf0e6dd25f3e9816b51a",
+        "rev": "20375a7851c985c7bdfb2f14d7e89a150df9d676",
         "type": "github"
       },
       "original": {
         "owner": "PedroHLC",
-        "ref": "sway-mouseWarping-container",
+        "ref": "waiting-room",
         "repo": "home-manager",
         "type": "github"
       }

@@ -8,7 +8,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     # home-manager for managing my users' home
-    home-manager.url = "github:PedroHLC/home-manager/sway-mouseWarping-container"; # Fix-me: Revert to "github:nix-community/home-manager/master"
+    home-manager.url = "github:PedroHLC/home-manager/waiting-room"; # Fix-me: Revert to "github:nix-community/home-manager/master"
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
