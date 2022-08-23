@@ -18,6 +18,7 @@ let
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
   terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
+  swayncClient = "${pkgs.swaynotificationcenter}/bin/swaync-client";
   menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
   menuBluetooth = terminalLauncher "${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
   menuNetwork = terminalLauncher "${pkgs.networkmanager}/bin/nmtui";
@@ -164,7 +165,7 @@ in
         "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
 
         # Notifications tray
-        "${modifier}+Shift+n" = "exec ${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw";
+        "${modifier}+Shift+n" = "exec ${swayncClient} -t -sw";
 
         # Enter my extra modes
         "${modifier}+Tab" = "mode \"${modeFavorites}\"";
@@ -312,6 +313,11 @@ in
         theme = "solarized-dark";
         icons = "awesome5";
         blocks = [
+          {
+            block = "custom";
+            command = "echo -n ' '; ${swayncClient} -c";
+            interval = 3;
+          }
           {
             block = "custom";
             command = "echo -n ' '; ${who} | ${grep} 'pts/' | ${wc} -l | ${tr} '\\n' '/'; ${who} | ${wc} -l";
