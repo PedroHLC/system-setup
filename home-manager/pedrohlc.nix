@@ -315,7 +315,7 @@ in
         blocks = [
           {
             block = "custom";
-            command = "echo -n ' '; ${swayncClient} -c";
+            command = ''echo -n ' '; ${swayncClient} -c; [ "x$(${swayncClient} -D)" = 'xtrue' ] && echo " (DND)"'';
             interval = 3;
           }
           {
