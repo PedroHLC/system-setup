@@ -7,10 +7,8 @@ stdenv.mkDerivation (rec {
   pname = "anime4k";
 
   src = fetchzip {
-    #url = "https://dl.opendesktop.org/api/files/download/id/${fileId}/${fileName}";
     url = "https://github.com/bloc97/Anime4K/releases/download/v${version}/Anime4K_v${modversion}.zip";
     hash = "sha256-9B6U+KEVlhUIIOrDauIN3aVUjZ/gQHjFArS4uf/BpaM=";
-    #stripRoot = false;
   };
 
   dontBuild = true;
