@@ -154,6 +154,7 @@
     nomacs
     obs-studio-wrap
     obs-studio-plugins.obs-vkcapture
+    osdlyrics
     pamixer # for avizo
     qbittorrent
     slack
@@ -264,6 +265,9 @@
         # Audacious rice
         audacious-skin-winamp-classic = final.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
 
+        # Anim4K shaders
+        anime4k = final.callPackage ../shared/pkgs/anime4k.nix { };
+
         # Allow bluetooth management easily in sway
         fzf-bluetooth = final.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
 
@@ -288,6 +292,16 @@
             meta.broken = false;
           });
         });
+
+        # Latest OSD Lyrics
+        osdlyrics = prev.osdlyrics.overrideAttrs (oldAttrs: {
+          src = final.fetchFromGitHub {
+            owner = "osdlyrics";
+            repo = "osdlyrics";
+            rev = "cdae5d04aa3d058a86922e1011d0b90da2e91f42";
+            hash = "sha256-5w+zZqcsZkmz8hiCTVpoKI1dFd/c1mOiUb2QV+HnnIk=";
+          };
+        });
       };
     in
     [ thisConfigsOverlay ];
@@ -304,6 +318,10 @@
       media_dir = [ "/home/upnp-shared/Media" ];
       inotify = "yes";
     };
+  };
+  services.dbus = {
+    enable = true;
+    packages = with pkgs; [ osdlyrics ];
   };
 
   # Fonts.

@@ -4,11 +4,11 @@ final: prev:
 prev.audacious.override (oi: {
   audacious-plugins = oi.audacious-plugins.overrideAttrs (oa: {
     buildInputs = oa.buildInputs ++ [ final.pipewire ];
-    patches = (oa.patches or [ ]) ++ [
-      (final.fetchpatch {
-        url = "https://github.com/audacious-media-player/audacious-plugins/pull/104/commits/ceeb649b8b8b5e6028db744aefaba7c59c798950.patch";
-        hash = "sha256-YJxw9mdCQn9l9WbDuDLlQlIAwb3wZS/VLEzXUZGHctM=";
-      })
-    ];
+    src = final.fetchFromGitHub {
+      owner = "audacious-media-player";
+      repo = "audacious-plugins";
+      rev = "5a4a5783c2e9c3a08a766aa6e96c8d616f80f444";
+      hash = "sha256-WleMEsVY64RLtTGozdNw8n8wZI14a7btBt0NHV4gkDM=";
+    };
   });
 })
