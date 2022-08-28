@@ -46,6 +46,7 @@
         specialArgs = attrs;
         modules = [
           ./shared/lib/lucasew-gc-hold.nix
+          ./shared/lib/graphics-stack-bleeding.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/desktop/hardware-configuration.nix

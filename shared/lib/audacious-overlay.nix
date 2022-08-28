@@ -1,9 +1,9 @@
 final: prev:
 
 # Add pipewire-output
-prev.audacious.override (oi: {
-  audacious-plugins = oi.audacious-plugins.overrideAttrs (oa: {
-    buildInputs = oa.buildInputs ++ [ final.pipewire ];
+prev.audacious.override (oldInputs: {
+  audacious-plugins = oldInputs.audacious-plugins.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ [ final.pipewire ];
     src = final.fetchFromGitHub {
       owner = "audacious-media-player";
       repo = "audacious-plugins";

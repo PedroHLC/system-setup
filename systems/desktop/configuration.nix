@@ -1,32 +1,6 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ... }:
+{ config, pkgs, nix-gaming, ... }:
 
-# My-defined terms
-let
-  # Functions to construct my custom build of mesa
-  mesa-attrs = prev: rec {
-    nativeBuildInputs = prev.nativeBuildInputs ++ [ pkgs.glslang ];
-    mesonFlags = prev.mesonFlags ++ [ "-Dvulkan-layers=device-select,overlay" ];
-    postInstall = prev.postInstall + ''
-      mv $out/lib/libVkLayer* $drivers/lib
-      layer=VkLayer_MESA_device_select
-      substituteInPlace $drivers/share/vulkan/implicit_layer.d/''${layer}.json \
-        --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
-      layer=VkLayer_MESA_overlay
-      substituteInPlace $drivers/share/vulkan/explicit_layer.d/''${layer}.json \
-        --replace "lib''${layer}" "$drivers/lib/lib''${layer}"
-    '';
-    version = "22.1.7";
-    src = pkgs.fetchurl {
-      url = "https://mesa.freedesktop.org/archive/mesa-${version}.tar.xz";
-      sha256 = "da838eb2cf11d0e08d0e9944f6bd4d96987fdc59ea2856f8c70a31a82b355d89";
-    };
-  };
-  mesa-params = _: {
-    galliumDrivers = [ "radeonsi" "zink" "virgl" "swrast" ];
-    vulkanDrivers = [ "amd" "virtio-experimental" "swrast" ];
-  };
-in
 # NixOS-defined options
 {
   # Network.
@@ -87,25 +61,9 @@ in
     rocm-opencl-icd
     rocm-opencl-runtime
   ];
-  hardware.opengl.package = pkgs.mesa-bleeding;
-  hardware.opengl.package32 = pkgs.lib32-mesa-bleeding;
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-
-  # Override some packages' settings, sources, etc...
-  nixpkgs.overlays =
-    let
-      thisConfigsOverlay = final: prev: {
-        # Latest mesa with more specific drivers
-        mesa-bleeding = ((prev.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
-        lib32-mesa-bleeding = ((prev.pkgsi686Linux.mesa.override mesa-params).overrideAttrs mesa-attrs).drivers;
-      };
-    in
-    [ thisConfigsOverlay ];
-
-  # Keep some devivations's sources around so we don't have to re-download them between updates.
-  lucasew.gc-hold = with pkgs; [ mesa-bleeding lib32-mesa-bleeding ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

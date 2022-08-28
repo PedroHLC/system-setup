@@ -279,7 +279,7 @@
 
         # Bump zfs-unstable in linux-lqx
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
-          zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (fa: {
+          zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (oldAttrs: {
             src = final.fetchFromGitHub {
               owner = "openzfs";
               repo = "zfs";
