@@ -32,6 +32,7 @@ let
   tr = coreutilsBin "tr";
   wc = coreutilsBin "wc";
   who = coreutilsBin "who";
+  tmux = "${pkgs.tmux}/bin/tmux";
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
@@ -82,7 +83,7 @@ in
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
         { command = "${pkgs.swayidle}/bin/swayidle -w timeout ${lockTimeout} ${lock} before-sleep ${lock}"; }
         # A tmux session that knows about DE environment
-        { command = "${pkgs.tmux}/bin/tmux new-session -s DE"; }
+        { command = "${tmux} new-session -ds DE"; }
       ];
       input = {
         # Adjust to Brazilian keyboards
@@ -886,8 +887,8 @@ in
       window.opacity = 0.9;
 
       shell = {
-        program = "${pkgs.fish}/bin/fish";
-        args = [ "--login" ];
+        program = "${tmux}";
+        args = [ "-l" ];
       };
 
       colors = {
