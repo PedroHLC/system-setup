@@ -325,21 +325,30 @@
   };
 
   # Fonts.
-  fonts.fonts = with pkgs; [
-    borg-sans-mono
-    cantarell-fonts
-    fira
-    fira-code
-    fira-code-symbols
-    fira-mono
-    font-awesome_4
-    font-awesome_5
-    freefont_ttf
-    google-fonts
-    liberation_ttf
-    noto-fonts
-    ubuntu_font_family
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      borg-sans-mono
+      cantarell-fonts
+      fira
+      fira-code
+      fira-code-symbols
+      font-awesome_4
+      font-awesome_5
+      noto-fonts
+      noto-fonts-cjk
+      open-fonts
+      roboto
+      ubuntu_font_family
+    ];
+    fontconfig = {
+      cache32Bit = true;
+      defaultFonts = {
+        serif = [ "Noto Serif" ];
+        sansSerif = [ "Roboto" ];
+        monospace = [ "Fira Code" ];
+      };
+    };
+  };
 
   # Virtualisation / Containerization.
   virtualisation.containers.storage.settings = {
@@ -360,7 +369,6 @@
   # Keep some devivations's sources around so we don't have to re-download them between updates.
   lucasew.gc-hold = with pkgs; [
     google-chrome-beta
-    google-fonts
     sublime4
     wpsoffice
     zoom-us

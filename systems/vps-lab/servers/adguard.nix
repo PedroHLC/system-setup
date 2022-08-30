@@ -14,7 +14,7 @@
     createHome = false;
     isSystemUser = true;
   };
-  users.groups.adguard = {};
+  users.groups.adguard = { };
 
   services.adguardhome = {
     enable = true;

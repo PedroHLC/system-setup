@@ -498,7 +498,7 @@ in
           skins = {
             always_on_top = true;
             playlist_visible = false;
-            skin = "${pkgs.audacious-skin-winamp-classic}";
+            skin = "/home/pedrohlc/.local/share/audacious/Skins/135799-winamp_classic";
           };
         };
       };
@@ -650,6 +650,13 @@ in
           bootstrapped = true;
           in_process_packages = [ ];
         };
+      };
+    };
+    # Other data files
+    dataFile = {
+      audaciousSkinWinampClassic = {
+        source = pkgs.audacious-skin-winamp-classic;
+        target = "audacious/Skins/135799-winamp_classic";
       };
     };
     desktopEntries = {
