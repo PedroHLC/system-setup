@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, pkgs, nix-gaming, ... }:
+{ lib, config, pkgs, nix-gaming, ... }:
 
 # NixOS-defined options
 {
@@ -61,6 +61,12 @@
     rocm-opencl-icd
     rocm-opencl-runtime
   ];
+
+  # My mono-mic Focusrite
+  environment.etc.pw-focusrite-mono-input = {
+    source = pkgs.pw-focusrite-mono-input;
+    target = "pipewire/pipewire.conf.d/focusrite-mono-input.conf";
+  };
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

@@ -277,6 +277,9 @@
         # Add pipewire-output to Audacious
         audacious = import ../shared/lib/audacious-overlay.nix final prev;
 
+        # Focusire mono-mic
+        pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
+
         # Bump zfs-unstable in linux-lqx
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
           zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (oldAttrs: {
