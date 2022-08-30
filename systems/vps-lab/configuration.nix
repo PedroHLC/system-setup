@@ -12,6 +12,13 @@
     hostName = "vps-lab";
   };
 
+  # Let's Encrypt
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "root@pedrohlc.com";
+    certs."lab.pedrohlc.com".extraDomainNames = [ "zeta.pedrohlc.com" ];
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
