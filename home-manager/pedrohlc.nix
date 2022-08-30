@@ -447,7 +447,13 @@ in
     # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
       set-option -g default-shell ${pkgs.fish}/bin/fish
+      # Full color range
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
+      # Control scrolling with wheel and PgUp/PgDown/Home/End
+      set -g mouse on
+      bind -n PPage copy-mode -eu
+      bind -T copy-mode Home send-keys -X history-top
+      bind -T copy-mode End copy-mode -q
     '';
   };
 
@@ -690,13 +696,17 @@ in
           "application/octet-stream" = "sublime_text.desktop";
         };
         removed = {
-          "image/png" = "google-chrome-beta.desktop";
+          "image/gif" = "google-chrome-beta.desktop";
           "image/jpeg" = "google-chrome-beta.desktop";
+          "image/png" = "google-chrome-beta.desktop";
+          "image/webp" = "google-chrome-beta.desktop";
         };
       };
       defaultApplications = {
-        "image/png" = "org.nomacs.ImageLounge.desktop";
+        "image/gif" = "org.nomacs.ImageLounge.desktop";
         "image/jpeg" = "org.nomacs.ImageLounge.desktop";
+        "image/png" = "org.nomacs.ImageLounge.desktop";
+        "image/webp" = "org.nomacs.ImageLounge.desktop";
         "application/pdf" = "firefox.desktop";
 
         "x-scheme-handler/http" = defaultBrowser;
