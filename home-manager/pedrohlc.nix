@@ -9,7 +9,7 @@
 , touchpad ? null
 }:
 { config, lib, pkgs, ... }:
-with pkgs.lib;
+with lib;
 let
   # Some stuff that repeats across this file
   modifier = "Mod4";
@@ -151,7 +151,7 @@ in
           { criteria = { title = "WScreenSaver@HDMI-A-1"; }; command = "move container to output HDMI-A-1; fullscreen enable; sticky enable"; }
         ];
       };
-      keybindings = lib.mkOptionDefault ({
+      keybindings = mkOptionDefault ({
         # Window helpers
         "${modifier}+Shift+f" = "fullscreen toggle global";
         "${modifier}+Shift+t" = "sticky toggle";
@@ -236,7 +236,7 @@ in
             "Escape" = "mode default";
           };
         in
-        lib.mkOptionDefault {
+        mkOptionDefault {
           # Power-off menu
           "${modePower}" =
             withLeaveOptions {
@@ -886,7 +886,7 @@ in
   # My favorite and simple terminal
   programs.alacritty = mkIf seat {
     enable = true;
-    settings = lib.mkOptionDefault {
+    settings = mkOptionDefault {
       font = {
         normal = {
           family = "Borg Sans Mono";
