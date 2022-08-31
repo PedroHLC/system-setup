@@ -55,6 +55,17 @@ let
 
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then "60" else "300";
+
+  # nixpkgs-review in the right directory, in a tmux session
+  nrpr = pkgs.writeShellScriptBin "nrpr" ''
+    tmux new-session ${pkgs.writeShellScript "nrpr-inside" ''
+      cd  ~/Projects/com.pedrohlc/nixpkgs
+      export NIXPKGS_ALLOW_UNFREE=1
+      ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr "$@"
+      echo "Exited with code " "$?"
+      read
+    ''} "$@"
+  '';
 in
 {
   home.packages = with pkgs; lists.optionals seat [
@@ -64,6 +75,7 @@ in
 
     # My scripts
     my-wscreensaver
+    nrpr
   ];
 
   # My beloved DE
@@ -940,7 +952,6 @@ in
         "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
         "phlc-sys" = "git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
         "mpv-hq" = "mpv --profile=hq";
-        "nrpr" = "cd  ~/Projects/com.pedrohlc/nixpkgs && tmux new-session ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
