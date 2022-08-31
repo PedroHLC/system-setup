@@ -33,6 +33,7 @@ let
   wc = coreutilsBin "wc";
   who = coreutilsBin "who";
   tmux = "${pkgs.tmux}/bin/tmux";
+  fish = "${pkgs.fish}/bin/fish";
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
@@ -446,14 +447,11 @@ in
     '';
     # `programs.tmux` looks bloatware nearby this simplist config,
     ".tmux.conf".text = ''
-      set-option -g default-shell ${pkgs.fish}/bin/fish
+      set-option -g default-shell ${fish}
       # Full color range
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
-      # Control scrolling with wheel and PgUp/PgDown/Home/End
+      # Expect mouse
       set -g mouse on
-      bind -n PPage copy-mode -eu
-      bind -T copy-mode Home send-keys -X history-top
-      bind -T copy-mode End copy-mode -q
     '';
   };
 
@@ -575,7 +573,7 @@ in
           shell_configs = [
             {
               name = "Fish";
-              cmd = [ "fish" "--login" ];
+              cmd = [ "${fish}" "--login" ];
               env = { };
               enable = true;
               platforms = [ "linux" "osx" ];
@@ -897,8 +895,8 @@ in
       window.opacity = 0.9;
 
       shell = {
-        program = "${tmux}";
-        args = [ "-l" ];
+        program = "${fish}";
+        args = [ "--login" ];
       };
 
       colors = {
@@ -933,14 +931,16 @@ in
   programs.fish = {
     enable = true;
     shellAliases =
+      # NOTE: Always use $PATH-relative in alias, for user hacks
       let
-        jsRun = "${pkgs.yarn}/bin/yarn exec --offline --";
+        jsRun = "yarn exec --offline --";
       in
       {
         ":q" = "exit";
-        "aget" = "${pkgs.aria2}/bin/aria2c -s 16 -x 16 -j 16 -k 1M";
-        "phlc-sys" = "${pkgs.git}/bin/git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
+        "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
+        "phlc-sys" = "git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
         "mpv-hq" = "mpv --profile=hq";
+        "nrpr" = "cd  ~/Projects/com.pedrohlc/nixpkgs && tmux new-session ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
