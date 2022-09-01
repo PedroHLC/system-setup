@@ -671,7 +671,7 @@ in
     };
     # Other data files
     dataFile = {
-      audaciousSkinWinampClassic = {
+      audaciousSkinWinampClassic = mkIf seat {
         source = pkgs.audacious-skin-winamp-classic;
         target = "audacious/Skins/135799-winamp_classic";
       };
