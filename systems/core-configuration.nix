@@ -145,9 +145,6 @@
     permitRootLogin = "no";
   };
 
-  # Default fonts
-  fonts.enableDefaultFonts = true;
-
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
 

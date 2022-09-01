@@ -329,6 +329,7 @@
 
   # Fonts.
   fonts = {
+    enableDefaultFonts = true; # Those fonts you expect every distro to have.
     fonts = with pkgs; [
       borg-sans-mono
       cantarell-fonts
