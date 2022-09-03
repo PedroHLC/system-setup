@@ -119,7 +119,7 @@
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "pipewire";
     ALSOFT_DRIVERS = "pipewire";
-    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler";
+    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none";
   };
 
   # Autologin.
@@ -153,7 +153,6 @@
     mpv
     nomacs
     obs-studio-wrap
-    obs-studio-plugins.obs-vkcapture
     osdlyrics
     pamixer # for avizo
     qbittorrent

@@ -832,14 +832,14 @@ in
       cpu_temp = true;
       font_size = 17;
       fps_limit = mkIf nvidiaPrime 144;
-      gl_vsync = -1;
+      gl_vsync =  0;
       gpu_temp = true;
       io_read = true;
       io_write = true;
       position = "top-right";
       round_corners = 8;
       vram = true;
-      vsync = 0;
+      vsync =  1;
       vulkan_driver = true;
       gpu_name = true;
       engine_version = true;
