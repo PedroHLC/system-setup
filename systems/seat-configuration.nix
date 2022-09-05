@@ -145,6 +145,7 @@
     keybase-gui
     libinput
     libinput-gestures
+    libsForQt5.kio # Fixes "Unknown protocol 'file'."
     lm_sensors
     lxmenu-data # For lxqt apps' "Open with" dialogs
     lxqt.lxqt-sudo
@@ -352,6 +353,9 @@
       };
     };
   };
+
+  # For out-of-box gaming with Heroic Game Launcher
+  services.flatpak.enable = true;
 
   # Virtualisation / Containerization.
   virtualisation.containers.storage.settings = {
