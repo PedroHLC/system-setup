@@ -40,6 +40,7 @@
 , enableOpenCL ? stdenv.isLinux && stdenv.isx86_64
 , libclc
 , jdupes
+, mesa-git-src
 }:
 
 /** Packaging design:
@@ -58,23 +59,14 @@ with lib;
 let
   # Release calendar: https://www.mesa3d.org/release-calendar.html
   # Release frequency: https://www.mesa3d.org/releasing.html#schedule
-  version = "22.2.0-rc3";
+  version = "22.2.0";
   branch = versions.major version;
 
   self = stdenv.mkDerivation {
     pname = "mesa";
     inherit version;
 
-    src = fetchurl {
-      urls = [
-        "https://archive.mesa3d.org/mesa-${version}.tar.xz"
-        "https://mesa.freedesktop.org/archive/mesa-${version}.tar.xz"
-        "ftp://ftp.freedesktop.org/pub/mesa/mesa-${version}.tar.xz"
-        "ftp://ftp.freedesktop.org/pub/mesa/${version}/mesa-${version}.tar.xz"
-        "ftp://ftp.freedesktop.org/pub/mesa/older-versions/${branch}.x/${version}/mesa-${version}.tar.xz"
-      ];
-      sha256 = "db392307a02f97b7a8237809e28b627306356a2b27bb911bf9f4344b66313e39";
-    };
+    src = mesa-git-src;
 
     # TODO:
     #  revive ./dricore-gallium.patch when it gets ported (from Ubuntu), as it saved
