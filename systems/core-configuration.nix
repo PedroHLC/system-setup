@@ -5,9 +5,12 @@
 {
   # Nix package-management settings.
   nix = {
-    # Enable flakes and newer CLI features
+    # Enable flakes, newer CLI features, CA, and keep sources around for offline-building
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
+
+      keep-outputs = true
+      keep-derivations = true
     '';
 
     # Allow my user to use nix
