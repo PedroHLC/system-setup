@@ -80,6 +80,18 @@
                 "ff02::fb/128"
               ];
             }
+            # celular de sabrina (atila)
+            {
+              publicKey = "VIDFaQvPJKkE6Ppc/PSjXt1TuzQMFhF5wL6qytKi5zk=";
+              allowedIPs = [
+                "10.100.0.205/32"
+                "fda4:4413:3bb1::205/128"
+                # Multicast
+                "224.0.0.251/32"
+                "ff02::fb/128"
+              ];
+            }
+
           ];
           postSetup = ''
             ip link set wg0 multicast on
