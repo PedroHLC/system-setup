@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1662396970,
-        "narHash": "sha256-N1LKxBqKmWSM/YFSROAmhotZVTUt0d6yF3opFc/XcN8=",
+        "lastModified": 1663099612,
+        "narHash": "sha256-ucokjFDRwCFWbcGiqxz0mfHv82UqwyW7RXY6ZgKSl80=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "583a99f0166e3e5df9539b972091830bb9faf6b8",
+        "rev": "60c6bfe322944d04bb38e76b64effcbd01258824",
         "type": "github"
       },
       "original": {
@@ -25,7 +25,7 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-/4gQt9fe9wau66vkhGY/VMi6MnLZDrYBuzW4joRxLMA=",
+        "narHash": "sha256-8/0ZqKCyPweDHb9wtBakBoxf9RQMdxWn93IgLEzV11U=",
         "type": "tarball",
         "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
       },
@@ -39,11 +39,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1662158202,
-        "narHash": "sha256-3WnsVErhiJ4IWhgaiXU6KlAa9M+42qj3PwE30oFdqPY=",
+        "lastModified": 1662742160,
+        "narHash": "sha256-zamqdHF0Pp0AkgfDnZdLnAZTfgrTV11dYO9rDsfqfW8=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "39836e019480c2fee5e7b0b1cd671139e233ae43",
+        "rev": "a37f98a7a81d5ffac328fac06c3f6ad17f90c7d7",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1662096612,
-        "narHash": "sha256-R+Q8l5JuyJryRPdiIaYpO5O3A55rT+/pItBrKcy7LM4=",
+        "lastModified": 1663087123,
+        "narHash": "sha256-cNIRkF/J4mRxDtNYw+9/fBNq/NOA2nCuPOa3EdIyeDs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "21de2b973f9fee595a7a1ac4693efff791245c34",
+        "rev": "9608ace7009ce5bc3aeb940095e01553e635cbc7",
         "type": "github"
       },
       "original": {

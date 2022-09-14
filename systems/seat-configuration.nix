@@ -284,10 +284,10 @@
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
           zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (oldAttrs: {
             src = final.fetchFromGitHub {
-              owner = "openzfs";
+              owner = "tonyhutter";
               repo = "zfs";
-              rev = "zfs-2.1.6-staging";
-              hash = "sha256-a3pyO3hE+hAS4c2vbtia2YbUoPY2uRyyx9caR9pzrx8=";
+              rev = "zfs-2.1.6-hutter";
+              hash = "sha256-Lig93eTmgLl3a7AzKpuyErtVPQVGdBeMprrJ4ob7i6o=";
             };
             version = "2.1.6-staging";
             kernelCompatible = lpFinal.kernelOlder "5.20";
