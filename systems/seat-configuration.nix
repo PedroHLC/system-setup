@@ -265,7 +265,7 @@
         # Audacious rice
         audacious-skin-winamp-classic = final.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
 
-        # Anim4K shaders
+        # Anime4K shaders
         anime4k = final.callPackage ../shared/pkgs/anime4k.nix { };
 
         # Allow bluetooth management easily in sway
@@ -287,7 +287,7 @@
               owner = "tonyhutter";
               repo = "zfs";
               rev = "zfs-2.1.6-hutter";
-              hash = "sha256-Lig93eTmgLl3a7AzKpuyErtVPQVGdBeMprrJ4ob7i6o=";
+              hash = "sha256-Lig93eTmgLl3a7AzKpuyErtVPQVGdBeMprrJ4ob7i6o="; # 8131a96
             };
             version = "2.1.6-staging";
             kernelCompatible = lpFinal.kernelOlder "5.20";
@@ -296,15 +296,8 @@
           });
         });
 
-        # Latest OSD Lyrics
-        osdlyrics = prev.osdlyrics.overrideAttrs (oldAttrs: {
-          src = final.fetchFromGitHub {
-            owner = "osdlyrics";
-            repo = "osdlyrics";
-            rev = "cdae5d04aa3d058a86922e1011d0b90da2e91f42";
-            hash = "sha256-5w+zZqcsZkmz8hiCTVpoKI1dFd/c1mOiUb2QV+HnnIk=";
-          };
-        });
+        # Waiting for nixpkgs#191379
+        sublime4 = prev.sublime4.override { openssl = final.openssl_1_1; };
       };
     in
     [ thisConfigsOverlay ];

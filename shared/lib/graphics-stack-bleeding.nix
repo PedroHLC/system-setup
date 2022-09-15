@@ -37,21 +37,21 @@
           version = "1.3.224.1";
         });
         vulkan-headers = prev.vulkan-headers.overrideAttrs (oldAttrs: rec {
-          version = "1.3.227";
+          version = "1.3.228";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Headers";
             rev = "v${version}";
-            hash = "sha256-eZ53a1XhDpdr1hMRITdR8ZZmefbfqXhx1EywfDPPsjI=";
+            hash = "sha256-PpFjKrbsveJe9YJkWrjTv6FaRlI1b+XlWbEmdz0y44s";
           };
         });
         vulkan-loader = prev.vulkan-loader.overrideAttrs (oldAttrs: rec {
-          version = "1.3.227";
+          version = "1.3.228";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Loader";
             rev = "v${version}";
-            hash = "sha256-iBIjIbqbxakTSWLU+2jKTy7pNt6rq7cTAx67gNtOE1M=";
+            hash = "sha256-ILcIJ/4rGPh0qqrRteID/m6IfoUILqJ5MrRhcIxQyOo=";
           };
         });
         spirv-tools = prev.spirv-tools.overrideAttrs (oldAttrs: rec {
@@ -73,12 +73,12 @@
           };
         });
         vulkan-tools = prev.vulkan-tools.overrideAttrs (oldAttrs: rec {
-          version = "1.3.227";
+          version = "1.3.228";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Tools";
             rev = "v${version}";
-            hash = "sha256-i7DtuXmrSjj9BfWA33mYJS9WiQXRa3pl3Jhq69ZNvFQ=";
+            hash = "sha256-oFxFOi4iLilU9VA1tUE4/lHsbXT+q/lPSMvmOI7ewds=";
           };
         });
       };
