@@ -287,7 +287,7 @@
               owner = "tonyhutter";
               repo = "zfs";
               rev = "zfs-2.1.6-hutter";
-              hash = "sha256-Lig93eTmgLl3a7AzKpuyErtVPQVGdBeMprrJ4ob7i6o="; # 8131a96
+              hash = "sha256-Wtm1VNjl0LhIMonBrOhJssA8nJXxN097+hvqx8OrNVs="; # cde04ba
             };
             version = "2.1.6-staging";
             kernelCompatible = lpFinal.kernelOlder "5.20";
@@ -295,9 +295,6 @@
             meta.broken = false;
           });
         });
-
-        # Waiting for nixpkgs#191379
-        sublime4 = prev.sublime4.override { openssl = final.openssl_1_1; };
       };
     in
     [ thisConfigsOverlay ];
