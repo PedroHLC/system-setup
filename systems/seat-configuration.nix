@@ -141,7 +141,6 @@
     ffmpegthumbnailer
     firefox-wayland
     fx_cast_bridge
-    google-chrome-beta
     keybase-gui
     libinput
     libinput-gestures
@@ -162,6 +161,7 @@
     spotify
     streamlink
     tdesktop
+    ungoogled-chromium
     usbutils
     waypipe
     wpsoffice

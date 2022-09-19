@@ -5,15 +5,24 @@
   # My main channel and extra repositories
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-gaming.url = "github:fufexan/nix-gaming";
+
+    # Wine with patches
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # home-manager for managing my users' home
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Smooth-criminal bleeding-edge Mesa3D
-    mesa-git-src.url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz";
-    mesa-git-src.flake = false;
+    mesa-git-src = {
+      url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {
