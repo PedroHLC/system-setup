@@ -176,6 +176,7 @@
 
     # Development apps
     deno
+    elixir
     elmPackages.elm-format
     gdb # more precious then gcc
     gh

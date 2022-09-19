@@ -550,7 +550,7 @@ in
           colorSublimeThemes = "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes";
         in
         mkIf seat {
-          target = "sublime-text-3/Packages/home-manager/Preferences.sublime-settings";
+          target = "sublime-text/Packages/home-manager/Preferences.sublime-settings";
           text = generators.toJSON { } {
             hardware_acceleration = "opengl";
             close_windows_when_empty = false;
@@ -577,7 +577,7 @@ in
           };
         };
       sublimeTerminus = mkIf seat {
-        target = "sublime-text-3/Packages/home-manager/Terminus.sublime-settings";
+        target = "sublime-text/Packages/home-manager/Terminus.sublime-settings";
         text = generators.toJSON { } {
           default_config = {
             linux = "Fish";
@@ -594,7 +594,7 @@ in
         };
       };
       sublimeKeybindings = mkIf seat {
-        target = "sublime-text-3/Packages/home-manager/Default (Linux).sublime-keymap";
+        target = "sublime-text/Packages/home-manager/Default (Linux).sublime-keymap";
         text = generators.toJSON { } [
           { keys = [ "ctrl+k" "ctrl+z" ]; command = "zoom_pane"; args = { "fraction" = 0.9; }; }
           { keys = [ "ctrl+k" "ctrl+shift+z" ]; command = "unzoom_pane"; args = { }; }
@@ -611,7 +611,7 @@ in
         ];
       };
       sublimePackages = mkIf seat {
-        target = "sublime-text-3/Packages/User/Package Control.sublime-settings";
+        target = "sublime-text/Packages/User/Package Control.sublime-settings";
         text = generators.toJSON { } {
           installed_packages = [
             "A File Icon" # Proper icons in the sidebar
@@ -622,7 +622,8 @@ in
             "Colorsublime" # Many colorschemes
             "Dockerfile Syntax Highlighting" # Dockerfile syntax
             "EditorConfig" # Per-project cross-IDE preferences
-            "Elixir" # Elixir syntax
+            "ElixirFormatter" # "mix fmt" on save
+            "ElixirSyntax" # Elixir syntax
             "Elm Format on Save" # Format Elm
             "Elm Syntax Highlighting" # Elm syntax
             "Focus File on Sidebar"

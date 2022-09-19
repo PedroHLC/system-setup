@@ -17,5 +17,8 @@
         };
       };
     };
+    appendHttpConfig = ''
+      aio threads;
+    '';
   };
 }
