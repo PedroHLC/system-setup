@@ -175,6 +175,7 @@
     wayland-env
 
     # Development apps
+    awscli2
     deno
     elixir
     elmPackages.elm-format
@@ -182,10 +183,13 @@
     gh
     gnumake
     heroku
+    k9s
+    kubectl
     logstalgia
     nixpkgs-fmt
     nixpkgs-review
     nodejs
+    rebar3
     shellcheck
     shfmt
     sublime4
@@ -288,7 +292,7 @@
               owner = "tonyhutter";
               repo = "zfs";
               rev = "zfs-2.1.6-hutter";
-              hash = "sha256-Wtm1VNjl0LhIMonBrOhJssA8nJXxN097+hvqx8OrNVs="; # cde04ba
+              hash = "sha256-86s09kTr7nHuk9DGyGwWiCy47aRLWn1XbgMHyb7vFGc="; # c5bdc6c
             };
             version = "2.1.6-staging";
             kernelCompatible = lpFinal.kernelOlder "5.20";

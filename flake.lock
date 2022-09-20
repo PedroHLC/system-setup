@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1663617778,
-        "narHash": "sha256-uXjoNxbIhTtQ+X3m2FAukWDmmmfnmx3IU4tMhiBtQdE=",
+        "lastModified": 1663629861,
+        "narHash": "sha256-CjfQUyPfG/hkE4jnMcTvVJ0ubc84u8ySruZL+emXMjw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "95559181518533741c516826ae377a51814569c3",
+        "rev": "41790ba656bafc023f48ccdbbe7816d30fd52d76",
         "type": "github"
       },
       "original": {
@@ -25,7 +25,7 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-TZLnFbdEv3xAJ4CZ8Tl4FfY9ZXuWk8EMlWwOwoXndoI=",
+        "narHash": "sha256-J7SmxE/VDgExI5YyUDjlwwLK8hzLbEs2avzEAMmMcDk=",
         "type": "tarball",
         "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
       },
