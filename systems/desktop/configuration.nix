@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ lib, config, pkgs, nix-gaming, ... }:
+{ lib, config, pkgs, nix-gaming-edge, ... }:
 
 # NixOS-defined options
 {
@@ -67,6 +67,16 @@
     source = pkgs.pw-focusrite-mono-input;
     target = "pipewire/pipewire.conf.d/focusrite-mono-input.conf";
   };
+
+  # Overlay
+  nixpkgs.overlays =
+    let
+      thisConfigsOverlay = final: prev: {
+        # Add the right GE for this machine
+        wine-ge = nix-gaming-edge.packages.x86_64-linux.wine-ge;
+      };
+    in
+    [ thisConfigsOverlay ];
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

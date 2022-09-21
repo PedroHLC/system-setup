@@ -177,6 +177,7 @@
     # Development apps
     awscli2
     deno
+    eksctl
     elixir
     elmPackages.elm-format
     gdb # more precious then gcc
@@ -215,7 +216,7 @@
     # Gaming
     mangohud
     mesa-demos
-    nix-gaming.packages.x86_64-linux.wine-ge
+    wine-ge
     vulkan-tools
     winetricks
 
@@ -284,6 +285,9 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
+
+        # Add the Wine-GE for any machine
+        wine-ge = nix-gaming.packages.x86_64-linux.wine-ge;
 
         # Bump zfs-unstable in linux-lqx
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {

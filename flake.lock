@@ -25,7 +25,7 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-J7SmxE/VDgExI5YyUDjlwwLK8hzLbEs2avzEAMmMcDk=",
+        "narHash": "sha256-gIX/TA0KaoF4xDl4NFpITyD3CDbRYB7uHESXaZE2zmQ=",
         "type": "tarball",
         "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
       },
@@ -35,6 +35,24 @@
       }
     },
     "nix-gaming": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1663594116,
+        "narHash": "sha256-ZeQp58YNgPyl2qV+oBc/zjSxe23qvx6dIuCH2Wf7aMM=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "387e2f02db13f2932489add396ac514d0a222d57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
+    "nix-gaming-edge": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -56,11 +74,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1663578619,
-        "narHash": "sha256-kNgJXZIr4pi2NbDUfjj4APa+LlCmRUM4Ly2Xf70PVaw=",
+        "lastModified": 1663491030,
+        "narHash": "sha256-MVsfBhE9US5DvLtBAaTRjwYdv1tLO8xjahM8qLXTgTo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a13d59408da1108fc6c9ffe4750ab7a33c581d24",
+        "rev": "767542707d394ff15ac1981e903e005ba69528b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1663669617,
+        "narHash": "sha256-yUrzkRDc6P3hsI5TdQ5+q8gnyjadNvaM3MMEsEVS8qk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "41ac0bd371618db6dd67fd952cc5b3d6a9955a15",
         "type": "github"
       },
       "original": {
@@ -75,7 +109,8 @@
         "home-manager": "home-manager",
         "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs"
+        "nix-gaming-edge": "nix-gaming-edge",
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "utils": {
