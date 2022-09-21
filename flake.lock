@@ -25,7 +25,7 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-gIX/TA0KaoF4xDl4NFpITyD3CDbRYB7uHESXaZE2zmQ=",
+        "narHash": "sha256-PsO4O7LqaPdjrSfPY0ja4ko/pif5pL9MhnvfuVntQBY=",
         "type": "tarball",
         "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
       },

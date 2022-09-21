@@ -1,4 +1,4 @@
-{ writeShellScriptBin, jq, mpv, procps, sway, swaylock, swaynotificationcenter }:
+{ writeShellScriptBin, jq, mpv, procps, sway, swaylock, spotify-unwrapped, swaynotificationcenter }:
 # In sway, this is my "screensaver", it's transparent swaylock, with mpv running GIFs behind it.
 # A different MPV is launched per-display.
 writeShellScriptBin "my-wscreensaver" ''
@@ -9,7 +9,7 @@ writeShellScriptBin "my-wscreensaver" ''
   SWAYLOCK="${swaylock}/bin/swaylock"
   SWAYNC="${swaynotificationcenter}/bin/swaync-client"
 
-  _HAS_MUSIC=$("$PIDOF" spotify)
+  _HAS_MUSIC=$("$PIDOF" ${spotify-unwrapped}/share/spotify/.spotify-wrapped)
 
   cd ~/Videos
   _PIDS=()
@@ -33,5 +33,7 @@ writeShellScriptBin "my-wscreensaver" ''
 
   "$SWAYLOCK" -c 00000000
   kill "''${_PIDS[@]}"
-  [[ "x$_DND_NOW" != "x" ]] && "$SWAYNC" -d
+  if [[ "x$_DND_NOW" != "x" ]] || [[ "x$1" == "x--first-run" ]]; then
+    "$SWAYNC" -d
+  fi
 ''

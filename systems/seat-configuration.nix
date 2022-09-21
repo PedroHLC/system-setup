@@ -186,6 +186,7 @@
     heroku
     k9s
     kubectl
+    kubernetes-helm
     logstalgia
     nixpkgs-fmt
     nixpkgs-review

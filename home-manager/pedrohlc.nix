@@ -88,7 +88,7 @@ in
       defaultWorkspace = "workspace number 1";
       startup = [
         # Start locked because I use autologin
-        { command = lock; }
+        { command = "${lock} --first-run"; }
         # Notification daemon
         { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
         # Volume and Display-brightness OSD
