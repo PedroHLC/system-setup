@@ -25,7 +25,7 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-g7Mkbo7bmuSFpU3Knswt8tQMaBZZlDtiTeAw58BilJA=",
+        "narHash": "sha256-nYFGcDedH8U65tsSFD8kUaF4uuWzPc/66NsbMsmT+lI=",
         "type": "tarball",
         "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
       },
@@ -92,7 +92,8 @@
         "nix-gaming-edge": [
           "nix-gaming"
         ],
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "zfs-staging": "zfs-staging"
       }
     },
     "utils": {
@@ -107,6 +108,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "zfs-staging": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1663801934,
+        "narHash": "sha256-XEZ1A5u9eHgXLdxo+29EZYwLlEz3x6a+PDL0DDfkMJU=",
+        "owner": "tonyhutter",
+        "repo": "zfs",
+        "rev": "e4d970cb65adb922b603e2cee2b9764e584e1fc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tonyhutter",
+        "ref": "zfs-2.1.6-hutter",
+        "repo": "zfs",
         "type": "github"
       }
     }

@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ... }:
+{ config, lib, pkgs, nix-gaming, zfs-staging, ... }:
 
 # NixOS-defined options
 {
@@ -293,12 +293,7 @@
         # Bump zfs-unstable in linux-lqx
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
           zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (oldAttrs: {
-            src = final.fetchFromGitHub {
-              owner = "tonyhutter";
-              repo = "zfs";
-              rev = "zfs-2.1.6-hutter";
-              hash = "sha256-86s09kTr7nHuk9DGyGwWiCy47aRLWn1XbgMHyb7vFGc="; # c5bdc6c
-            };
+            src = zfs-staging;
             version = "2.1.6-staging";
             kernelCompatible = lpFinal.kernelOlder "5.20";
             passthru.latestCompatibleLinuxPackages = final.linuxKernel.packages.linuxPackages_5_19;

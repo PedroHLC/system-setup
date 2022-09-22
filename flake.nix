@@ -24,6 +24,12 @@
       url = "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz";
       flake = false;
     };
+
+    # Pre-release ZFS
+    zfs-staging = {
+      url = "github:tonyhutter/zfs/zfs-2.1.6-hutter";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {
