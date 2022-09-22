@@ -9,7 +9,7 @@
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-gaming-edge = {
-      url = "github:fufexan/nix-gaming";
+      follows = "nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
