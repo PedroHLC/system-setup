@@ -3,6 +3,9 @@
 
 # NixOS-defined options
 {
+  # For debugging ZFS
+  boot.crashDump.enable = true;
+
   # Nix package-management settings.
   nix = {
     settings = {
@@ -166,7 +169,7 @@
     waypipe
     wpsoffice
     xarchiver
-    xdg_utils
+    xdg-utils
     zoom-us
 
     # My scripts
@@ -175,27 +178,28 @@
     wayland-env
 
     # Development apps
-    awscli2
-    deno
-    eksctl
-    elixir
-    elmPackages.elm-format
+    awscli2 # AWS
+    dbeaver
+    deno # Front-dev
+    eksctl # AWS
+    elixir # Elixir-dev
+    elmPackages.elm-format # Elm-dev
     gdb # more precious then gcc
     gh
     gnumake
     heroku
-    k9s
-    kubectl
-    kubernetes-helm
-    logstalgia
-    nixpkgs-fmt
-    nixpkgs-review
-    nodejs
-    rebar3
-    shellcheck
-    shfmt
+    k9s # Kubernets
+    kubectl # Kubernets
+    kubernetes-helm # HELM
+    logstalgia # Chaotic
+    nixpkgs-fmt # Nix
+    nixpkgs-review # Nix
+    nodejs # Front-dev
+    rebar3 # Elixir-dev
+    shellcheck # Bash-dev
+    shfmt # Bash-dev
     sublime4
-    yarn
+    yarn # Front-dev
 
     # Less used
     adbfs-rootless
@@ -360,6 +364,13 @@
       runroot = "/run/containers/storage";
     };
   };
+
+  # For development, but disabled to start service on-demand
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql; # always the latest
+  };
+  systemd.services.postgresql.wantedBy = lib.mkForce []; # don't start with system
 
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {

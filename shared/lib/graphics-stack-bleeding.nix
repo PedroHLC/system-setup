@@ -33,25 +33,22 @@
             hash = "sha256-VEOENuy/VhYBBX52O4QHJFXUjsj6jL4vDD4cLDlQcIA=";
           };
         });
-        spirv-headers = prev.spirv-headers.overrideAttrs (oldAttrs: {
-          version = "1.3.224.1";
-        });
         vulkan-headers = prev.vulkan-headers.overrideAttrs (oldAttrs: rec {
-          version = "1.3.228";
+          version = "1.3.229";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Headers";
             rev = "v${version}";
-            hash = "sha256-PpFjKrbsveJe9YJkWrjTv6FaRlI1b+XlWbEmdz0y44s";
+            hash = "sha256-WSo33mFblBULyzBhYMtHNTu8LVzRjhwBIHpfINTEqEg=";
           };
         });
         vulkan-loader = prev.vulkan-loader.overrideAttrs (oldAttrs: rec {
-          version = "1.3.228";
+          version = "1.3.229";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Loader";
             rev = "v${version}";
-            hash = "sha256-ILcIJ/4rGPh0qqrRteID/m6IfoUILqJ5MrRhcIxQyOo=";
+            hash = "sha256-UaP8L583RFHd46nk4U+4jD7fwrE2/7VrLcD9qPAjdJI=";
           };
         });
         spirv-tools = prev.spirv-tools.overrideAttrs (oldAttrs: rec {
@@ -63,22 +60,13 @@
             hash = "sha256-B1FOZ6Q8HEgmuin2yvw2uFJy6B5NHkUHrLSlJmTH/kk=";
           };
         });
-        vulkan-extension-layers = prev.vulkan-extension-layers.overrideAttrs (oldAttrs: rec {
-          version = "1.3.225";
-          src = final.fetchFromGitHub {
-            owner = "KhronosGroup";
-            repo = "Vulkan-ExtensionLayer";
-            rev = "v${version}";
-            hash = "sha256-555wtfuAYWzUFtf0NOJCNzWW+/ogRUgkaWw8NdW2vb8=";
-          };
-        });
         vulkan-tools = prev.vulkan-tools.overrideAttrs (oldAttrs: rec {
-          version = "1.3.228";
+          version = "1.3.229";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Tools";
             rev = "v${version}";
-            hash = "sha256-oFxFOi4iLilU9VA1tUE4/lHsbXT+q/lPSMvmOI7ewds=";
+            hash = "sha256-reP4XioJ3sPl1YQOCzqhWyM4wb/3w5SusbIcUtEZLNU=";
           };
         });
       };
