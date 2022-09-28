@@ -496,6 +496,15 @@ in
           };
         };
       };
+      # Notifications
+      swaync = mkIf seat {
+        target = "swaync/config.json";
+        text = generators.toJSON { } {
+          "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
+          positionX = "center";
+          positionY = "bottom";
+        };
+      };
       # Audacious rice
       audacious = mkIf seat {
         # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".

@@ -65,6 +65,7 @@
         specialArgs = attrs;
         modules = [
           ./shared/lib/graphics-stack-bleeding.nix
+          ./shared/lib/journal-upload.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/desktop/hardware-configuration.nix
@@ -92,6 +93,7 @@
           ./systems/core-configuration.nix
           ./systems/vps-lab/configuration.nix
           ./systems/vps-lab/servers/adguard.nix
+          ./systems/vps-lab/servers/journal-remote.nix
           ./systems/vps-lab/servers/nginx.nix
           ./systems/vps-lab/servers/wireguard.nix
           # home-manager

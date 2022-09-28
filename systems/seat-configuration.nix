@@ -370,7 +370,7 @@
     enable = true;
     package = pkgs.postgresql; # always the latest
   };
-  systemd.services.postgresql.wantedBy = lib.mkForce []; # don't start with system
+  systemd.services.postgresql.wantedBy = lib.mkForce [ ]; # don't start with system
 
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {
