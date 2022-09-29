@@ -182,7 +182,6 @@
     dbeaver
     deno # Front-dev
     eksctl # AWS
-    elixir # Elixir-dev
     elmPackages.elm-format # Elm-dev
     gdb # more precious then gcc
     gh
@@ -195,7 +194,6 @@
     nixpkgs-fmt # Nix
     nixpkgs-review # Nix
     nodejs # Front-dev
-    rebar3 # Elixir-dev
     shellcheck # Bash-dev
     shfmt # Bash-dev
     sublime4
