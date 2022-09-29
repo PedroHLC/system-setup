@@ -19,6 +19,12 @@
     certs."lab.pedrohlc.com".extraDomainNames = [ "zeta.pedrohlc.com" ];
   };
 
+  # Changing the congestion algorithm to bbr in order to reduce packet loss at low throughput
+  boot.kernel.sysctl = {
+    "net.core.default_qdisc" = "fq";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
