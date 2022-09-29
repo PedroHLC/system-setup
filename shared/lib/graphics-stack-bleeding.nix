@@ -23,7 +23,7 @@
           inherit mesa-git-src;
         }).drivers;
 
-        # Latest vulkan-sdk (waiting for https://nixpk.gs/pr-tracker.html?pr=187918)
+        # Latest vulkan-sdk (waiting for https://nixpk.gs/pr-tracker.html?pr=189290)
         glslang = prev.glslang.overrideAttrs (oldAttrs: rec {
           version = "1.3.224.1";
           src = final.fetchFromGitHub {
@@ -34,21 +34,21 @@
           };
         });
         vulkan-headers = prev.vulkan-headers.overrideAttrs (oldAttrs: rec {
-          version = "1.3.229";
+          version = "1.3.230";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Headers";
             rev = "v${version}";
-            hash = "sha256-WSo33mFblBULyzBhYMtHNTu8LVzRjhwBIHpfINTEqEg=";
+            hash = "sha256-lIe8zd0iUjPS0k2qjO1Zrl1Gbtty9uluCzHkWeVqv0A=";
           };
         });
         vulkan-loader = prev.vulkan-loader.overrideAttrs (oldAttrs: rec {
-          version = "1.3.229";
+          version = "1.3.230";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Loader";
             rev = "v${version}";
-            hash = "sha256-UaP8L583RFHd46nk4U+4jD7fwrE2/7VrLcD9qPAjdJI=";
+            hash = "sha256-KO6RRv1SibaCA2ZVDcV/0KR8+YJ6kJQurdQtjqWFxjM=";
           };
         });
         spirv-tools = prev.spirv-tools.overrideAttrs (oldAttrs: rec {
@@ -61,12 +61,12 @@
           };
         });
         vulkan-tools = prev.vulkan-tools.overrideAttrs (oldAttrs: rec {
-          version = "1.3.229";
+          version = "1.3.230";
           src = final.fetchFromGitHub {
             owner = "KhronosGroup";
             repo = "Vulkan-Tools";
             rev = "v${version}";
-            hash = "sha256-reP4XioJ3sPl1YQOCzqhWyM4wb/3w5SusbIcUtEZLNU=";
+            hash = "sha256-eWT/ADApEUJYHWmRQp86lo1bOjr0tTPQJakfJWeClOw=";
           };
         });
       };
