@@ -302,6 +302,11 @@
             meta.broken = false;
           });
         });
+
+        # Hotfix for MiniDLNA (waiting for nixpgks#193758)
+        minidlna = prev.minidlna.overrideAttrs (oldAttrs: {
+          buildInputs = oldAttrs.buildInputs ++ [ final.zlib ];
+        });
       };
     in
     [ thisConfigsOverlay ];
