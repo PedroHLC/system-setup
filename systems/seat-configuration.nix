@@ -359,6 +359,9 @@
   # For out-of-box gaming with Heroic Game Launcher
   services.flatpak.enable = true;
 
+  # Allow to cross-compile to aarch64
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Virtualisation / Containerization.
   virtualisation.containers.storage.settings = {
     storage = {
