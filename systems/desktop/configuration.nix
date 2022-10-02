@@ -3,6 +3,10 @@
 
 # NixOS-defined options
 {
+  # For debugging ZFS
+  # NOTE: This options adds a patch for the kernel, so expect rebuilds.
+  boot.crashDump.enable = true;
+
   # Network.
   networking = {
     hostId = "7116ddca";

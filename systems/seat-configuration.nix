@@ -3,9 +3,6 @@
 
 # NixOS-defined options
 {
-  # For debugging ZFS
-  boot.crashDump.enable = true;
-
   # Nix package-management settings.
   nix = {
     settings = {

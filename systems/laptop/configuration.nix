@@ -113,6 +113,12 @@ tel_icd.i686.json";
     in
     [ thisConfigsOverlay ];
 
+  # Creates a second boot entry with nvidia-open
+  specialisation.safe.configuration = {
+    system.nixos.tags = [ "nvidia-open" ];
+    hardware.nvidia.open = lib.mkForce true;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
