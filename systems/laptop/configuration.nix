@@ -49,7 +49,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     package = nvidiaPackage;
-    # open = true; # Kernel Panic at boot.
+    open = true;
 
     prime = {
       offload.enable = true;
@@ -113,10 +113,10 @@ tel_icd.i686.json";
     in
     [ thisConfigsOverlay ];
 
-  # Creates a second boot entry with nvidia-open
-  specialisation.safe.configuration = {
-    system.nixos.tags = [ "nvidia-open" ];
-    hardware.nvidia.open = lib.mkForce true;
+  # Creates a second boot entry without nvidia-open
+  specialisation.nvidia-proprietary.configuration = {
+    system.nixos.tags = [ "nvidia-proprietary" ];
+    hardware.nvidia.open = lib.mkForce false;
   };
 
   # This value determines the NixOS release from which the default

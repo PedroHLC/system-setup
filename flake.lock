@@ -70,16 +70,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1664676151,
-        "narHash": "sha256-Z1SgO3HP2yGVkOne67Tv7BtGDC7oXw2cbDwVP8KjyT0=",
-        "owner": "NixOS",
+        "lastModified": 1664715514,
+        "narHash": "sha256-D5H12DBxaQbDeTWKzSMaID21DeoVfzDnxLKjnMYvTxU=",
+        "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "8e0f159ff2d17faabbce0d60b14f50710e882eab",
+        "rev": "2bc280d30e910d56f7d47075bc0e8ac3272be01d",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "PedroHLC",
+        "ref": "nvidia-dont-compress-firmware",
         "repo": "nixpkgs",
         "type": "github"
       }

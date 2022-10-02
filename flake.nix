@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:PedroHLC/nixpkgs/nvidia-dont-compress-firmware";
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
