@@ -118,7 +118,6 @@ let
 
       "-Ddri-drivers-path=${placeholder "drivers"}/lib/dri"
       "-Dvdpau-libs-path=${placeholder "drivers"}/lib/vdpau"
-      "-Dxvmc-libs-path=${placeholder "drivers"}/lib"
       "-Domx-libs-path=${placeholder "drivers"}/lib/bellagio"
       "-Dva-libs-path=${placeholder "drivers"}/lib/dri"
       "-Dd3d-drivers-path=${placeholder "drivers"}/lib/d3d"

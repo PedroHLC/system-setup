@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664573442,
-        "narHash": "sha256-AovlSIuJfMf8n9QLNUVtsCul+NVHIoen7APH2fLls3k=",
+        "lastModified": 1664783440,
+        "narHash": "sha256-KlMwR7mUf5h8MPnzV7nGFUAt6ih/euW5xgvZ5x+hwvI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a7f0cc2d7b271b4a5df9b9e351d556c172f7e903",
+        "rev": "e4e639dd4dc3e431aa5b5f95325f9a66ac7e0dd9",
         "type": "github"
       },
       "original": {
@@ -25,13 +25,18 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-l+pns10kNJrrzubvlYh4EHDMUqKQl1on9HDHEUcVDRk=",
-        "type": "tarball",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
+        "lastModified": 1664796651,
+        "narHash": "sha256-VJL5tRrJaI8ka0WfLlBxDu1K7SobQ5nsUZAGmN67zOY=",
+        "owner": "Mesa3D",
+        "repo": "mesa",
+        "rev": "3047195c62ed18b1d08a1a440bfe4ae4b66685b6",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa/-/archive/main/mesa-main.tar.gz"
+        "owner": "Mesa3D",
+        "ref": "main",
+        "repo": "mesa",
+        "type": "github"
       }
     },
     "nix-gaming": {
@@ -39,11 +44,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1663865889,
-        "narHash": "sha256-SThS7lsMhxca0yL49o+iOKKEnQYnujkVy98xxMQAw3o=",
+        "lastModified": 1664735521,
+        "narHash": "sha256-+IWo/yZJB29y1ySijHM5qqmN0d5/BmyJpe9CCAEHM80=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "da708ebb8bf5689582442f108470383e1de10e95",
+        "rev": "e1c0c8935e7f278f137be83718735348136962fa",
         "type": "github"
       },
       "original": {
@@ -70,11 +75,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1664715514,
-        "narHash": "sha256-D5H12DBxaQbDeTWKzSMaID21DeoVfzDnxLKjnMYvTxU=",
+        "lastModified": 1664799780,
+        "narHash": "sha256-qQjHXd1g6sHlxopvv1k4VG/kktUjJeWdOuuiU5p3/2s=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "2bc280d30e910d56f7d47075bc0e8ac3272be01d",
+        "rev": "01c0807172829deb6ec7458b3edb5f2499dc1210",
         "type": "github"
       },
       "original": {
