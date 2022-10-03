@@ -6,7 +6,7 @@ mkfs.vfat -F32 /dev/nvme0n1p1
 
 # Create pool.
 zpool create -f zroot /dev/nvme{0n1p2,1n1p1}
-zpool set autotrim=on zroot
+zpool set autotrim=off zroot # avoid d3cold bug
 zfs set compression=lz4 zroot
 zfs set mountpoint=none zroot
 

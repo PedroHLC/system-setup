@@ -3,9 +3,9 @@
 
 # NixOS-defined options
 {
-  # For debugging ZFS
-  # NOTE: This options adds a patch for the kernel, so expect rebuilds.
-  boot.crashDump.enable = true;
+  # ZFS
+  # This is to avoid "nvme: Unable to change power state from D3cold to D0" as much as possible
+  services.zfs.trim.enable = false;
 
   # Network.
   networking = {
