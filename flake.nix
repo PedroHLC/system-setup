@@ -35,6 +35,7 @@
         system = "x86_64-linux";
         specialArgs = attrs;
         modules = [
+          ./shared/lib/wireguard-client.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/laptop/hardware-configuration.nix
@@ -60,6 +61,7 @@
         modules = [
           ./shared/lib/graphics-stack-bleeding.nix
           ./shared/lib/journal-upload.nix
+          ./shared/lib/wireguard-client.nix
           ./systems/core-configuration.nix
           ./systems/seat-configuration.nix
           ./systems/desktop/hardware-configuration.nix
