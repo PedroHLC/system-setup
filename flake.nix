@@ -24,12 +24,6 @@
       url = "github:Mesa3D/mesa/main";
       flake = false;
     };
-
-    # Pre-release ZFS
-    zfs-staging = {
-      url = "github:tonyhutter/zfs/zfs-2.1.6-hutter";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs: {

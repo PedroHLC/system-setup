@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, zfs-staging, ... }:
+{ config, lib, pkgs, nix-gaming, ... }:
 
 # NixOS-defined options
 {
@@ -179,6 +179,7 @@
     dbeaver
     deno # Front-dev
     eksctl # AWS
+    elixir_1_11 # Elixir-dev, I need it here for "mix format"
     elmPackages.elm-format # Elm-dev
     gdb # more precious then gcc
     gh
@@ -292,8 +293,13 @@
         # Bump zfs-unstable in linux-lqx
         linuxPackages_lqx = prev.linuxPackages_lqx.extend (lpFinal: lpPrev: {
           zfsUnstable = lpPrev.zfsUnstable.overrideAttrs (oldAttrs: {
-            src = zfs-staging;
-            version = "2.1.6-staging";
+            src = pkgs.fetchFromGitHub {
+              owner = "openzfs";
+              repo = "zfs";
+              rev = "zfs-2.1.6";
+              hash = "sha256-gd5WlNtnoSiVj4sKUGf0WhR7Z1GPebwu3Z1mkNsoC/I=";
+            };
+            version = "2.1.6";
             kernelCompatible = lpFinal.kernelOlder "5.20";
             passthru.latestCompatibleLinuxPackages = final.linuxKernel.packages.linuxPackages_5_19;
             meta.broken = false;

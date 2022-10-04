@@ -97,8 +97,7 @@
         "nix-gaming-edge": [
           "nix-gaming"
         ],
-        "nixpkgs": "nixpkgs_2",
-        "zfs-staging": "zfs-staging"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "utils": {
@@ -113,23 +112,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "zfs-staging": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664411110,
-        "narHash": "sha256-gd5WlNtnoSiVj4sKUGf0WhR7Z1GPebwu3Z1mkNsoC/I=",
-        "owner": "tonyhutter",
-        "repo": "zfs",
-        "rev": "6a6bd493988c75331deab06e5352a9bed035a87d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tonyhutter",
-        "ref": "zfs-2.1.6-hutter",
-        "repo": "zfs",
         "type": "github"
       }
     }
