@@ -164,7 +164,6 @@
     ungoogled-chromium
     usbutils
     waypipe
-    wpsoffice
     xarchiver
     xdg-utils
     zoom-us
@@ -192,6 +191,7 @@
     nixpkgs-fmt # Nix
     nixpkgs-review # Nix
     nodejs # Front-dev
+    python3Minimal
     shellcheck # Bash-dev
     shfmt # Bash-dev
     sublime4
@@ -205,6 +205,13 @@
     libva-utils
     ripgrep
     vulkan-caps-viewer
+
+    # Office-stuff
+    calligra
+    inkscape
+    gimp
+    texlive.combined.scheme-medium
+    wpsoffice
 
     # Desktop themes
     breeze-gtk

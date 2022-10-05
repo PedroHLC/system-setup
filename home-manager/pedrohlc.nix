@@ -642,6 +642,7 @@ in
             "HexViewer" # View binary files
             "i3 wm" # i3 and sway syntax
             "INI" # Ini files syntax
+            "LaTeXTools" # Texlive recommended companion
             "LDIF Syntax Highlighting" # LDAP files syntax
             "MasmAssembly" # MASM syntax
             "MDX Syntax Highlighting" # MDX (JSX on Markdown) syntax
