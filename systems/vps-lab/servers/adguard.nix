@@ -25,7 +25,7 @@
       #beta_bind_port = 0;
       users = [{
         name = "admin";
-        password = "$2a$10$/iTNZImokYkvBVBR8Xe44.a4Kb7NiEI6V7M25w0yIwcqPrUrkniWu";
+        password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin
       }];
       #auth_attempts = 5;
       #block_auth_min = 15;
