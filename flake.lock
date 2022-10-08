@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1664783440,
-        "narHash": "sha256-KlMwR7mUf5h8MPnzV7nGFUAt6ih/euW5xgvZ5x+hwvI=",
+        "lastModified": 1665226338,
+        "narHash": "sha256-P+A9MEClkeZSaS4zZvrpfVfUUqU5mmdZgEz/FGDSgno=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e4e639dd4dc3e431aa5b5f95325f9a66ac7e0dd9",
+        "rev": "3b5a8d3dc79e05213d3c428a0b8777e21cb0c6b8",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1664924352,
-        "narHash": "sha256-3cX/VnqmqLl+L1+a/OqFlcHIOfd9FPtIFsVR5f6dus4=",
+        "lastModified": 1665239129,
+        "narHash": "sha256-HL+5JaWddSh2kUBCLBkpjiumxAZKJnde5s5OCfe4FEM=",
         "owner": "Mesa3D",
         "repo": "mesa",
-        "rev": "537176181ec2a6ba05dc6be2f2c82c0e19de0c5b",
+        "rev": "27aa1720120e96bdf1d69aee1b9e2c4338bbaa0c",
         "type": "github"
       },
       "original": {
@@ -75,16 +75,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1664968172,
-        "narHash": "sha256-w1/m/gMPzxAjWYyqs0Ap5bpGg2YMYMncDEl6jb01cg0=",
-        "owner": "PedroHLC",
+        "lastModified": 1665197809,
+        "narHash": "sha256-dRUzv/zNYV2EYtnxFG31pPBk0nErT+MBTu6ZJHm1o2A=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "632e510edcb7f43ebf6de1b7e4ab977b7fddb32e",
+        "rev": "7b06206fa24198912cea58de690aa4943f238fbf",
         "type": "github"
       },
       "original": {
-        "owner": "PedroHLC",
-        "ref": "nvidia-dont-compress-firmware",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
