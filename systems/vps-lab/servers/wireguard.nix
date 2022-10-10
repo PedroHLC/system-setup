@@ -3,7 +3,7 @@ let
   eth0 = "enp0s3";
 
   wgPrefixV4 = "10.100.0";
-  wgPrefixV6 = "fda4:4413:3bb1:";
+  wgPrefixV6 = "fda4:4413:3bb1:"; # generated using `subnetcalc fd00:: 48 -uniquelocal`
 in
 {
   networking = {
