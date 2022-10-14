@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ... }:
+{ config, lib, pkgs, nix-gaming, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -64,10 +64,17 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
+      dns = "systemd-resolved";
     };
 
     # Disable non-NetworkManager.
     useDHCP = false;
+  };
+
+  # DNS
+  services.resolved = {
+    enable = true;
+    fallbackDns = [ vpn.zeta.v4 vpn.zeta.v6 ];
   };
 
   # LAN discovery.

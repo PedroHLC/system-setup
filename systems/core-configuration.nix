@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nixpkgs, ... }:
+{ config, lib, pkgs, nixpkgs, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -175,15 +175,20 @@
 
   networking.extraHosts =
     ''
-      # - Required for my VPN
+      # - My Network
 
-      144.22.182.122 lab.pedrohlc.com
-      2603:c021:c001:4e00:ebff:9275:c660:f6e1 lab.pedrohlc.com
+      ${web.lab.v4} ${web.lab.addr}
+      ${web.lab.v6} ${web.lab.addr}
+      ${web.zeta.v4} ${web.zeta.addr}
+      ${web.zeta.v6} ${web.zeta.addr}
 
       # - My VPN
 
-      10.100.0.1 vps-lab.vpn
-      10.100.0.2 desktop.vpn
-      10.100.0.3 laptop.vpn
+      ${vpn.lab.v4} ${vpn.lab.addr}
+      ${vpn.lab.v6} ${vpn.lab.addr}
+      ${vpn.desktop.v4} ${vpn.desktop.addr}
+      ${vpn.desktop.v6} ${vpn.desktop.addr}
+      ${vpn.laptop.v4} ${vpn.laptop.addr}
+      ${vpn.laptop.v6} ${vpn.laptop.addr}
     '';
 }

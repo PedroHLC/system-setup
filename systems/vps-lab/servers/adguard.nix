@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, ssot, ... }: with ssot;
 {
   systemd.services.adguardhome = {
     serviceConfig.User = "adguard";
@@ -101,9 +101,9 @@
       };
       tls = {
         enabled = true;
-        server_name = "zeta.pedrohlc.com";
+        server_name = web.zeta.addr;
         force_https = false;
-        port_https = 3334;
+        port_https = vpn.lab.adguardPort;
         port_dns_over_tls = 853;
         port_dns_over_quic = 853;
         #port_dnscrypt = 0;
@@ -112,8 +112,8 @@
         #strict_sni_check = false;
         #certificate_chain = "";
         #private_key = "";
-        certificate_path = "/var/lib/acme/lab.pedrohlc.com/cert.pem";
-        private_key_path = "/var/lib/acme/lab.pedrohlc.com/key.pem";
+        certificate_path = "/var/lib/acme/${web.lab.addr}/cert.pem";
+        private_key_path = "/var/lib/acme/${web.lab.addr}/key.pem";
       };
       filters = [
         {

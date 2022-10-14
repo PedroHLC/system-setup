@@ -1,5 +1,5 @@
 # Adapted from: https://gitlab.com/distrosync/nixos/-/blob/14138e076ba2eb03105cb5733d723f1e98a3d9d3/modules/journal/journal-upload.nix
-{ config, pkgs, ... }:
+{ config, pkgs, ssot, ... }: with ssot;
 {
   users.users.systemd-journal-upload = {
     isSystemUser = true;
@@ -15,7 +15,7 @@
 
     serviceConfig = {
       DynamicUser = "yes";
-      ExecStart = "/run/current-system/systemd/lib/systemd/systemd-journal-upload --save-state -u http://10.100.0.1:19532";
+      ExecStart = "/run/current-system/systemd/lib/systemd/systemd-journal-upload --save-state -u http://${vpn.lab.addr}:19532";
       LockPersonality = "yes";
       MemoryDenyWriteExecute = "yes";
       PrivateDevices = "yes";

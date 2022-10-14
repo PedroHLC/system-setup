@@ -1,4 +1,5 @@
-{ battery ? null
+{ ssot
+, battery ? null
 , cpuSensor ? null
 , dangerousAlone ? true
 , displayBrightness ? false
@@ -8,8 +9,7 @@
 , seat ? true
 , touchpad ? null
 }:
-{ config, lib, pkgs, ... }:
-with lib;
+{ config, lib, pkgs, ... }: with lib; with ssot;
 let
   # Some stuff that repeats across this file
   modifier = "Mod4";
@@ -883,8 +883,8 @@ in
       key = gitKey;
       signByDefault = true;
     };
-    userEmail = "root@pedrohlc.com";
-    userName = "PedroHLC ☭";
+    userEmail = contact.email;
+    userName = "${contact.nickname} ☭";
     extraConfig = {
       core = {
         editor = "nvim"; # I won't specify the full path to re-use the wrapped nvim from the system setup

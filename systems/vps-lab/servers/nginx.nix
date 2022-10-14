@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, ssot, ... }: with ssot;
 {
   services.nginx = {
     enable = true;
@@ -6,19 +6,19 @@
     recommendedTlsSettings = true;
     package = pkgs.nginxQuic;
     virtualHosts = {
-      "lab.pedrohlc.com" = {
+      "${web.lab.addr}" = {
         forceSSL = true;
         enableACME = true;
         http3 = true;
         locations."/".root = ../../../shared/assets/http-root/lab;
       };
-      "zeta.pedrohlc.com" = {
+      "${web.zeta.addr}" = {
         forceSSL = true;
-        useACMEHost = "lab.pedrohlc.com";
+        useACMEHost = web.lab.addr;
         http3 = true;
         locations = {
           "/".root = ../../../shared/assets/http-root/zeta;
-          "/dns-query".proxyPass = "https://127.0.0.1:3334/dns-query";
+          "/dns-query".proxyPass = "https://127.0.0.1:${toString vpn.lab.adguardPort}/dns-query";
         };
       };
     };

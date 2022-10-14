@@ -1,4 +1,4 @@
-{ ... }:
+{ ssot, ... }: with ssot;
 {
   networking = {
     wireguard.interfaces.wg0 =
@@ -11,7 +11,7 @@
               "0.0.0.0/0"
               "::/0"
             ];
-            endpoint = "lab.pedrohlc.com:51820";
+            endpoint = "${web.lab.addr}:${toString vpn.port}";
             persistentKeepalive = 25;
           }
         ];
@@ -20,12 +20,12 @@
         allowedIPsAsRoutes = false;
         postSetup = ''
           ip link set wg0 multicast on
-          ip route replace "10.100.0.0/24" dev wg0 table main
-          ip route replace "fda4:4413:3bb1::/64" dev wg0 table main
+          ip route replace "${vpn.subnet.v4}" dev wg0 table main
+          ip route replace "${vpn.subnet.v6}" dev wg0 table main
         '';
         postShutdown = ''
-          ip route del "10.100.0.0/24" dev wg0
-          ip route del "fda4:4413:3bb1::/64" dev wg0
+          ip route del "${vpn.subnet.v4}" dev wg0
+          ip route del "${vpn.subnet.v6}" dev wg0
         '';
       };
   };

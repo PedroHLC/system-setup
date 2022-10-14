@@ -1,16 +1,16 @@
 # The top lambda and it super set of parameters.
-{ lib, config, pkgs, nix-gaming-edge, ... }:
+{ lib, config, pkgs, nix-gaming-edge, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
   # Network.
   networking = {
     hostId = "7116ddca";
-    hostName = "desktop";
+    hostName = vpn.desktop.hostname;
 
     # Wireguard Client
     wireguard.interfaces.wg0 = {
-      ips = [ "10.100.0.2/24" "fda4:4413:3bb1::2/64" ];
+      ips = [ "${vpn.desktop.v4}/${vpn.mask.v4}" "${vpn.desktop.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
     };
   };
@@ -18,7 +18,7 @@
   # DuckDNS
   services.ddclient = {
     enable = true;
-    domains = [ "desk-pedrohlc.duckdns.org" ];
+    domains = [ web.desktop.addr ];
     protocol = "duckdns";
     server = "www.duckdns.org";
     username = "nouser";

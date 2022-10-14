@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ... }:
+{ config, lib, pkgs, nix-gaming, ssot, ... }: with ssot;
 
 # My user-named values.
 let
@@ -19,11 +19,11 @@ in
   # Network.
   networking = {
     hostId = "0f8623ae";
-    hostName = "laptop";
+    hostName = vpn.laptop.hostname;
 
     # Wireguard Client
     wireguard.interfaces.wg0 = {
-      ips = [ "10.100.0.3/24" "fda4:4413:3bb1::3/64" ];
+      ips = [ "${vpn.laptop.v4}/${vpn.mask.v4}" "${vpn.laptop.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
     };
   };

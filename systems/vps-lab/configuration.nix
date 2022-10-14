@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -9,14 +9,14 @@
   # Network.
   networking = {
     hostId = "be2568e1";
-    hostName = "vps-lab";
+    hostName = vpn.lab.hostname;
   };
 
   # Let's Encrypt
   security.acme = {
     acceptTerms = true;
-    defaults.email = "root@pedrohlc.com";
-    certs."lab.pedrohlc.com".extraDomainNames = [ "zeta.pedrohlc.com" ];
+    defaults.email = contact.email;
+    certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr ];
   };
 
   # Changing the congestion algorithm to bbr in order to reduce packet loss at low throughput
