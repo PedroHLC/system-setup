@@ -3,10 +3,6 @@
 
 # NixOS-defined options
 {
-  # ZFS
-  # This is to avoid "nvme: Unable to change power state from D3cold to D0" as much as possible
-  services.zfs.trim.enable = false;
-
   # Network.
   networking = {
     hostId = "7116ddca";
@@ -37,6 +33,10 @@
   boot.kernelParams = [
     "initcall_blacklist=acpi_cpufreq_init"
     "amd_pstate.shared_mem=1"
+    # Fix "controller is down" (probably)
+    "nvme_core.default_ps_max_latency_us=0" # this didn't do it
+    "pcie_aspm=off" # this didn't do it
+    "iommu=pt" # this did it, like a 2014 computer
   ];
   boot.kernelModules = [ "amd_pstate" ];
 

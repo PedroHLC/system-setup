@@ -172,4 +172,18 @@
 
   # Always uses system's flakes instead of downloading or updating.
   nix.registry.nixpkgs.flake = nixpkgs;
+
+  networking.extraHosts =
+    ''
+      # - Required for my VPN
+
+      144.22.182.122 lab.pedrohlc.com
+      2603:c021:c001:4e00:ebff:9275:c660:f6e1 lab.pedrohlc.com
+
+      # - My VPN
+
+      10.100.0.1 vps-lab.vpn
+      10.100.0.2 desktop.vpn
+      10.100.0.3 laptop.vpn
+    '';
 }

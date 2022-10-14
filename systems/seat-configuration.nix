@@ -178,7 +178,7 @@
     dbeaver
     deno # Front-dev
     eksctl # AWS
-    elixir_1_11 # Elixir-dev, I need it here for "mix format"
+    elixir_1_14 # Elixir-dev, I need it here for "mix format"
     elmPackages.elm-format # Elm-dev
     gdb # more precious then gcc
     gh
@@ -381,15 +381,7 @@
   # Hardcodes some address resolving
   networking.extraHosts =
     ''
-      # - My machines
-
-      10.100.0.1 vps-lab.vpn
-      10.100.0.2 desktop.vpn
-      10.100.0.3 laptop.vpn
-      192.168.100.194 desktop.family-lan
-      192.168.100.136 laptop.family-lan
-      
-      # - Required to play GenshinImpact on Linux without banning.
+      # - Required to play GI on Linux without banning.
 
       # Genshin logging servers (do not remove!)
       0.0.0.0 overseauspider.yuanshen.com
