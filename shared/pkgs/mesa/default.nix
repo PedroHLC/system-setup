@@ -232,6 +232,11 @@ let
       # move libOSMesa to $osmesa, as it's relatively big
       mkdir -p $osmesa/lib
       mv -t $osmesa/lib/ $out/lib/libOSMesa*
+    '' + lib.optionalString (vulkanLayers != [ ]) ''
+      mv -t $drivers/lib $out/lib/libVkLayer*
+      for js in $drivers/share/vulkan/{im,ex}plicit_layer.d/*.json; do
+        substituteInPlace "$js" --replace '"libVkLayer_' '"'"$drivers/lib/libVkLayer_"
+      done
     '';
 
     postFixup = optionalString stdenv.isLinux ''
