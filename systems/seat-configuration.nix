@@ -391,8 +391,9 @@
       # - Required to play GI on Linux without banning.
 
       # Genshin logging servers (do not remove!)
-      0.0.0.0 overseauspider.yuanshen.com
+      0.0.0.0 sg-public-data-api.hoyoverse.com
       0.0.0.0 log-upload-os.hoyoverse.com
+      0.0.0.0 overseauspider.yuanshen.com
 
       # Optional Unity proxy/cdn servers
       0.0.0.0 prd-lender.cdp.internal.unity3d.com
