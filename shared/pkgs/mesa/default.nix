@@ -32,6 +32,7 @@
 , vulkanDrivers ? [ "auto" ]
 , videoCodecs ? [ "h264dec" "h264enc" "h265dec" "h265enc" "vc1dec" ]
 , eglPlatforms ? [ "x11" ] ++ lib.optionals stdenv.isLinux [ "wayland" ]
+, vulkanLayers ? [ "device-select" "overlay" ]
 , OpenGL
 , Xplugin
 , withValgrind ? lib.meta.availableOn stdenv.hostPlatform valgrind-light && !valgrind-light.meta.broken
@@ -114,7 +115,6 @@ let
       "-Dplatforms=${concatStringsSep "," eglPlatforms}"
       "-Dgallium-drivers=${concatStringsSep "," galliumDrivers}"
       "-Dvulkan-drivers=${concatStringsSep "," vulkanDrivers}"
-      "-Dvideo-codecs=${concatStringsSep "," videoCodecs}"
 
       "-Ddri-drivers-path=${placeholder "drivers"}/lib/dri"
       "-Dvdpau-libs-path=${placeholder "drivers"}/lib/vdpau"
@@ -132,7 +132,10 @@ let
     ] ++ optionals enableOpenCL [
       "-Dgallium-opencl=icd" # Enable the gallium OpenCL frontend
       "-Dclang-libdir=${llvmPackages.clang-unwrapped.lib}/lib"
-    ];
+    ] ++ optional (videoCodecs != [ ])
+      "-Dvideo-codecs=${concatStringsSep "," videoCodecs}"
+    ++ optional (vulkanLayers != [ ])
+      "-D vulkan-layers=${builtins.concatStringsSep "," vulkanLayers}";
 
     buildInputs = with xorg; [
       expat
