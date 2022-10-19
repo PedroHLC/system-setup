@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1665949352,
-        "narHash": "sha256-zqy93cQosUIrs/EKdZw8As7G/aWNEwSG/zlb2q+R6/8=",
+        "lastModified": 1666080735,
+        "narHash": "sha256-4YWYJgzt9mGuAvXAuEziYms+bYlk/1spyt3iLizRL5I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "da3b8049fd3a98fbe5d2e82d217f415e6f01d45e",
+        "rev": "42f81ac107c5a9a177888080107094dba57f134e",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1665938200,
-        "narHash": "sha256-5ykdPIbI2MKrROJEgNAHGvJm5Sw8GtBzkXboOxFIEec=",
+        "lastModified": 1666162934,
+        "narHash": "sha256-e1uYeNcaCJUUex3+eK8vYvT4tsI/wqNxGb4x7vD0Kf0=",
         "owner": "Mesa3D",
         "repo": "mesa",
-        "rev": "70fef476334297c51ed237aa3044e3003ffd5a5e",
+        "rev": "65e4b440c991d7f7c20238e3657915ca2e44a9e0",
         "type": "github"
       },
       "original": {
@@ -44,11 +44,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1665770290,
-        "narHash": "sha256-sVG7WBlHipev+B1Nj+j+D+OqhUwYIpJrEvBxi5Yd41w=",
+        "lastModified": 1665951041,
+        "narHash": "sha256-YK4cWVHsP/OhMWhO/n9s7QkziAVetPkNHtIEhwlBmGc=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "fb7e1ebe0eb44628c353e1d13923f602c8d8f784",
+        "rev": "05534322548e7bd6b2318bad0fbf2ae904a30c11",
         "type": "github"
       },
       "original": {
@@ -75,16 +75,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1665922128,
-        "narHash": "sha256-D2+U5xF4AiSMPTBZ6V+wudrxmxM+Fnw8pW7PUWC1yPo=",
-        "owner": "NixOS",
+        "lastModified": 1666177189,
+        "narHash": "sha256-VNQ1Jdr2Ju+U5Dmru/krGvbqRwJFda/xzdNKGKIBqOM=",
+        "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "d7c3a973c7f20cfeca999d03e3da7344e0bb55f1",
+        "rev": "591a26f411c567527506039a7c286ad3acbdcc9d",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "PedroHLC",
+        "ref": "contingency-channel",
         "repo": "nixpkgs",
         "type": "github"
       }

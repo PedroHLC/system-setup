@@ -644,6 +644,9 @@ in
             "INI" # Ini files syntax
             "LaTeXTools" # Texlive recommended companion
             "LDIF Syntax Highlighting" # LDAP files syntax
+            "LSP" # It's really dump to have a daemon running a JSON-RPC server to have language support
+            "LSP-Deno" # Urgh
+            "LSP-elixir" # But damm, I need this dialyzer integration
             "MasmAssembly" # MASM syntax
             "MDX Syntax Highlighting" # MDX (JSX on Markdown) syntax
             "MIPS Syntax" # MIPS syntax 
