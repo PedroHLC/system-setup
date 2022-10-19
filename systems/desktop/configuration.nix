@@ -55,6 +55,10 @@
     target = "pipewire/pipewire.conf.d/focusrite-mono-input.conf";
   };
 
+  environment.systemPackages = with pkgs; [
+    vkBasalt
+  ];
+
   # Overlay
   nixpkgs.overlays =
     let

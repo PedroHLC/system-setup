@@ -23,6 +23,16 @@
           inherit mesa-git-src;
         }).drivers;
 
+        vkBasalt = prev.vkBasalt.overrideAttrs (oldAttrs: rec {
+         version = "0.3.2.6";
+         src = final.fetchFromGitHub {
+           owner = "DadSchoorse";
+           repo = "vkBasalt";
+           rev = "v${version}";
+           hash = "sha256-wk/bmbwdE1sBZPlD+EqXfQWDITIfCelTpoFBtNtZV8Q=";
+         };
+        });
+
         # Latest vulkan-sdk (waiting for https://nixpk.gs/pr-tracker.html?pr=189290)
         # glslang = prev.glslang.overrideAttrs (oldAttrs: rec {
         #   version = "1.3.224.1";
