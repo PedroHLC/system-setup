@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nixpkgs, ssot, ... }: with ssot;
+{ config, lib, pkgs, nixpkgs, ssot, pedrochrome-css, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -165,6 +165,7 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
+  home-manager.extraSpecialArgs = { inherit ssot pedrochrome-css; };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.

@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666080735,
-        "narHash": "sha256-4YWYJgzt9mGuAvXAuEziYms+bYlk/1spyt3iLizRL5I=",
+        "lastModified": 1666253070,
+        "narHash": "sha256-MtaNgghmfp+ywh5mv9FcspFT4ACaYINSN+D98PCkrP0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "42f81ac107c5a9a177888080107094dba57f134e",
+        "rev": "c485669ca529e01c1505429fa9017c9a93f15559",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1666162934,
-        "narHash": "sha256-e1uYeNcaCJUUex3+eK8vYvT4tsI/wqNxGb4x7vD0Kf0=",
+        "lastModified": 1666299169,
+        "narHash": "sha256-vng6KghkEEzdtJUkoAbOhIM+DLzUfI8aDbPjPn6NKOE=",
         "owner": "Mesa3D",
         "repo": "mesa",
-        "rev": "65e4b440c991d7f7c20238e3657915ca2e44a9e0",
+        "rev": "db2c14887bb52ec6fd05c5f8b5363f1689b4b45c",
         "type": "github"
       },
       "original": {
@@ -75,11 +75,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1666177189,
-        "narHash": "sha256-VNQ1Jdr2Ju+U5Dmru/krGvbqRwJFda/xzdNKGKIBqOM=",
+        "lastModified": 1666300386,
+        "narHash": "sha256-f5tUZEZF4epau+6XsagRimwTO3UESFV/avtSMMNFtBM=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "591a26f411c567527506039a7c286ad3acbdcc9d",
+        "rev": "caa6b826cf5b17dc1b0b9c210985861820aada70",
         "type": "github"
       },
       "original": {
@@ -87,6 +87,22 @@
         "ref": "contingency-channel",
         "repo": "nixpkgs",
         "type": "github"
+      }
+    },
+    "pedrochrome-css": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666181022,
+        "narHash": "sha256-Pt1vCLB8dGREPzbbbpls9KrioJlGI8ecz0vcsLu6OTs=",
+        "ref": "refs/heads/master",
+        "rev": "8d3bb4a9e95eb312bb64dffbac0278f4ec7e071a",
+        "revCount": 3,
+        "type": "git",
+        "url": "https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git"
       }
     },
     "root": {
@@ -97,7 +113,8 @@
         "nix-gaming-edge": [
           "nix-gaming"
         ],
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "pedrochrome-css": "pedrochrome-css"
       }
     },
     "utils": {

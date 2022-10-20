@@ -24,6 +24,12 @@
       url = "github:Mesa3D/mesa/main";
       flake = false;
     };
+
+    # My FFx userChrome.css
+    pedrochrome-css = {
+      url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@attrs:
@@ -49,7 +55,6 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
-                inherit ssot;
                 battery = "BAT0";
                 cpuSensor = "coretemp-isa-0000";
                 displayBrightness = true;
@@ -76,7 +81,6 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
-                inherit ssot;
                 cpuSensor = "k10temp-pci-00c3";
                 dangerousAlone = false;
                 gitKey = "DF4C6898CBDC6DF5";
@@ -103,7 +107,6 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
-                inherit ssot;
                 seat = false;
               });
             }

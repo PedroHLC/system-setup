@@ -1,5 +1,4 @@
-{ ssot
-, battery ? null
+{ battery ? null
 , cpuSensor ? null
 , dangerousAlone ? true
 , displayBrightness ? false
@@ -9,7 +8,7 @@
 , seat ? true
 , touchpad ? null
 }:
-{ config, lib, pkgs, ... }: with lib; with ssot;
+{ config, lib, pkgs, ssot, pedrochrome-css, ... }: with lib; with ssot;
 let
   # Some stuff that repeats across this file
   modifier = "Mod4";
@@ -688,6 +687,11 @@ in
       audaciousSkinWinampClassic = mkIf seat {
         source = pkgs.audacious-skin-winamp-classic;
         target = "audacious/Skins/135799-winamp_classic";
+      };
+
+      userChromeCss = mkIf seat {
+        source = "${pedrochrome-css}/userChrome.css";
+        target = "userChrome.css";
       };
     };
     desktopEntries = {
