@@ -1,8 +1,5 @@
 { stdenv
 , lib
-, fetchurl
-, fetchpatch
-, buildPackages
 , meson
 , pkg-config
 , ninja
@@ -62,7 +59,6 @@ let
   # Release calendar: https://www.mesa3d.org/release-calendar.html
   # Release frequency: https://www.mesa3d.org/releasing.html#schedule
   version = "22.2.99";
-  branch = versions.major version;
 
   self = stdenv.mkDerivation {
     pname = "mesa";

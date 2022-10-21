@@ -32,7 +32,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@attrs:
+  outputs = { nixpkgs, home-manager, ... }@attrs:
     let
       ssot = import ./shared/ssot.nix attrs;
       specialArgs = attrs // { inherit ssot; };
@@ -54,14 +54,14 @@
             # home-manager
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
+              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
                 battery = "BAT0";
                 cpuSensor = "coretemp-isa-0000";
                 displayBrightness = true;
                 gitKey = "F5BFC029DA9A28CE";
                 nvidiaPrime = true;
                 touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
-              });
+              };
             }
           ];
         };
@@ -80,12 +80,12 @@
             # home-manager
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
+              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
                 cpuSensor = "k10temp-pci-00c3";
                 dangerousAlone = false;
                 gitKey = "DF4C6898CBDC6DF5";
                 gpuSensor = "amdgpu-pci-0900";
-              });
+              };
             }
           ];
         };
@@ -106,9 +106,9 @@
             # home-manager
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.pedrohlc = (import ./home-manager/pedrohlc.nix {
+              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
                 seat = false;
-              });
+              };
             }
           ];
         };

@@ -1,5 +1,5 @@
 # Adapted from: https://gitlab.com/distrosync/nixos/-/blob/14138e076ba2eb03105cb5733d723f1e98a3d9d3/modules/journal/journal-remote.nix
-{ config, pkgs, ... }:
+_:
 {
   # https://github.com/systemd/systemd/issues/5242
   systemd.timers.remote-journal-rotation = {

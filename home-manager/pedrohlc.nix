@@ -448,7 +448,7 @@ in
     # I use autologin and forever in love with tmux sessions.
     ".profile".text = ''
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-        exec ${pkgs.tmux}/bin/tmux
+        exec ${tmux}
     '' + (strings.optionalString seat ''
       elif [ "$(${pkgs.coreutils}/bin/tty)" = '/dev/tty1' ]; then
         # It doesn't work like this: $\{pkgs.sway}/bin/sway
@@ -489,10 +489,7 @@ in
       };
       kcminputrc = mkIf seat {
         text = generators.toINI { } {
-          Mouse = {
-            cursorTheme = cursorTheme;
-            cursorSize = cursorSize;
-          };
+          Mouse = { inherit cursorTheme cursorSize; };
         };
       };
       # Notifications
@@ -630,7 +627,6 @@ in
             "Colorsublime" # Many colorschemes
             "Dockerfile Syntax Highlighting" # Dockerfile syntax
             "EditorConfig" # Per-project cross-IDE preferences
-            "ElixirFormatter" # "mix fmt" on save
             "ElixirSyntax" # Elixir syntax
             "Elm Format on Save" # Format Elm
             "Elm Syntax Highlighting" # Elm syntax
@@ -903,7 +899,7 @@ in
         rebase = true;
       };
       tag = {
-        gpgsign = (gitKey != null);
+        gpgsign = gitKey != null;
       };
       init = {
         defaultBranch = "main";

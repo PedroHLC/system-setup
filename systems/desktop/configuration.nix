@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ lib, config, pkgs, nix-gaming-edge, ssot, ... }: with ssot;
+{ config, pkgs, nix-gaming-edge, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -62,9 +62,9 @@
   # Overlay
   nixpkgs.overlays =
     let
-      thisConfigsOverlay = final: prev: {
+      thisConfigsOverlay = _: _: {
         # Add the right GE for this machine
-        wine-ge = nix-gaming-edge.packages.x86_64-linux.wine-ge;
+        inherit (nix-gaming-edge.packages.x86_64-linux) wine-ge;
       };
     in
     [ thisConfigsOverlay ];

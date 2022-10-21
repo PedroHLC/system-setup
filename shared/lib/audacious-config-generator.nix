@@ -3,8 +3,9 @@ with lib; generators.toINI {
   mkKeyValue = generators.mkKeyValueDefault
     {
       mkValueString = v:
-        if v == true then ''TRUE''
-        else if v == false then ''FALSE''
+        if isBool v then
+          if v then ''TRUE''
+          else ''FALSE''
         else if isString v then ''${v}''
         else generators.mkValueStringDefault { } v;
     } "=";

@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ssot, ... }: with ssot;
+{ lib, pkgs, nix-gaming, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -259,7 +259,7 @@
     let
       thisConfigsOverlay = final: prev: {
         # Obs with plugins
-        obs-studio-wrap = final.wrapOBS.override { obs-studio = final.obs-studio; } {
+        obs-studio-wrap = final.wrapOBS.override { inherit (final) obs-studio; } {
           plugins = with final.obs-studio-plugins; [
             obs-gstreamer
             obs-pipewire-audio-capture
@@ -302,7 +302,7 @@
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
 
         # Add the Wine-GE for any machine
-        wine-ge = nix-gaming.packages.x86_64-linux.wine-ge;
+        inherit (nix-gaming.packages.x86_64-linux) wine-ge;
       };
     in
     [ thisConfigsOverlay ];

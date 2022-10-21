@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nix-gaming, ssot, ... }: with ssot;
+{ config, lib, pkgs, ssot, ... }: with ssot;
 
 # My user-named values.
 let
@@ -87,7 +87,7 @@ tel_icd.i686.json";
       thisConfigsOverlay = final: prev: {
         # Allow steam to find nvidia-offload script
         steam = prev.steam.override {
-          extraPkgs = pkgs: [ final.nvidia-offload ];
+          extraPkgs = _: [ final.nvidia-offload ];
         };
 
         # NVIDIA Offloading (ajusted to work on Wayland and XWayland).

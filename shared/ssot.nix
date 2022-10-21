@@ -1,5 +1,5 @@
 # Single source of thruth.
-{ ... }:
+_:
 
 rec {
   vpn = {
@@ -51,8 +51,7 @@ rec {
     };
     zeta = {
       addr = "zeta.${contact.domain}";
-      v4 = web.lab.v4;
-      v6 = web.lab.v6;
+      inherit (web.lab) v4 v6;
     };
     desktop = {
       addr = "desk-pedrohlc.duckdns.org";

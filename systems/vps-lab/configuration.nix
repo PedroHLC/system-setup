@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, ssot, ... }: with ssot;
+{ ssot, ... }: with ssot;
 
 # NixOS-defined options
 {

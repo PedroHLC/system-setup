@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, nixpkgs, ssot, pedrochrome-css, ... }: with ssot;
+{ pkgs, nixpkgs, ssot, pedrochrome-css, ... }: with ssot;
 
 # NixOS-defined options
 {
