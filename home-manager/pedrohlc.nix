@@ -239,6 +239,13 @@ in
       floating.criteria = [
         { app_id = "firefox"; title = "moz-extension:.+"; }
         { app_id = "firefox"; title = "Password Required"; }
+        # Zoom is messy
+        { app_id = ""; title = "Settings"; }
+        { app_id = ""; title = "[zZ]oom"; }
+        { app_id = ""; title = "Zoom .+"; }
+        { app_id = ""; title = "Advanced .*Options…"; }
+        { app_id = ""; title = "Participants \\(.+\\)"; }
+        { app_id = ""; title = "Create Breakout Rooms"; }
       ];
 
       modes =
@@ -561,7 +568,7 @@ in
             close_windows_when_empty = false;
             rulers = [ 40 80 ];
             spell_check = false;
-            lsp_format_on_save = true; # Requires LSP
+            lsp_format_on_save = false; # S|_|cks a lot, I prefer plugins with REAL language support
 
             font_face = "Borg Sans Mono";
             font_options = [ "subpixel_antialias" ];
@@ -628,6 +635,7 @@ in
             "Dockerfile Syntax Highlighting" # Dockerfile syntax
             "EditorConfig" # Per-project cross-IDE preferences
             "ElixirSyntax" # Elixir syntax
+            "ElixirFormatter" # Elixir format-on-save
             "Elm Format on Save" # Format Elm
             "Elm Syntax Highlighting" # Elm syntax
             "Focus File on Sidebar"

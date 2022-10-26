@@ -35,8 +35,8 @@
     "amd_pstate.shared_mem=1"
     # Fix "controller is down" (probably)
     "nvme_core.default_ps_max_latency_us=0" # this didn't do it
-    "pcie_aspm=off" # this didn't do it
-    "iommu=pt" # this did it, like a 2014 computer
+    #"pcie_aspm=off" # this didn't do it
+    #"iommu=pt" # this didn't do it
   ];
   boot.kernelModules = [ "amd_pstate" ];
 

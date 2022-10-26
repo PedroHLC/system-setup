@@ -36,7 +36,7 @@
       dns = {
         bind_hosts = [ "0.0.0.0" ];
         #port = 53;
-        #statistics_interval = 1;
+        statistics_interval = 90;
         #querylog_enabled = true;
         #querylog_file_enabled = true;
         #querylog_interval = "2160h";
