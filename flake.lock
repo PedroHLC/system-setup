@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666649150,
-        "narHash": "sha256-kINnLxC0KFalUk4tVO/H5hUU7FVAOYYcUSWrsBpnl+I=",
+        "lastModified": 1666887363,
+        "narHash": "sha256-+bs3z5wk57MHmqTELsx62jrySYJbiWfQIW+Tj79oNGI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7dc4e4ebd71280842b4d30975439980baaac9db8",
+        "rev": "d3f21617acace32097a53b0b74fb5000d333d094",
         "type": "github"
       },
       "original": {
@@ -75,16 +75,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1666753130,
-        "narHash": "sha256-Wff1dGPFSneXJLI2c0kkdWTgxnQ416KE6X4KnFkgPYQ=",
-        "owner": "NixOS",
+        "lastModified": 1666888761,
+        "narHash": "sha256-AZrqXGOdPgAhwSGkOBku6vcbLCBnmBR2yYTITJr3azk=",
+        "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "f540aeda6f677354f1e7144ab04352f61aaa0118",
+        "rev": "d72e27b31f5a4da95f3683bc55087495f608e0fc",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "PedroHLC",
+        "ref": "contingency-channel",
         "repo": "nixpkgs",
         "type": "github"
       }

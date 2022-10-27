@@ -237,15 +237,15 @@ in
       }];
 
       floating.criteria = [
-        { app_id = "firefox"; title = "moz-extension:.+"; }
-        { app_id = "firefox"; title = "Password Required"; }
+        { app_id = "firefox"; title = "^moz-extension:"; }
+        { app_id = "firefox"; title = "^Password Required"; }
         # Zoom is messy
-        { app_id = ""; title = "Settings"; }
-        { app_id = ""; title = "[zZ]oom"; }
-        { app_id = ""; title = "Zoom .+"; }
-        { app_id = ""; title = "Advanced .*Options…"; }
-        { app_id = ""; title = "Participants \\(.+\\)"; }
-        { app_id = ""; title = "Create Breakout Rooms"; }
+        { app_id = ""; title = "^Settings$"; }
+        { app_id = ""; title = "^[zZ]oom$"; }
+        { app_id = ""; title = "^Zoom "; }
+        { app_id = ""; title = "^Advanced .*Options…$"; }
+        { app_id = ""; title = "^Participants \\(.+\\)$"; }
+        { app_id = ""; title = "^Create Breakout Rooms$"; }
       ];
 
       modes =
@@ -611,6 +611,7 @@ in
           { keys = [ "ctrl+k" "ctrl+z" ]; command = "zoom_pane"; args = { "fraction" = 0.9; }; }
           { keys = [ "ctrl+k" "ctrl+shift+z" ]; command = "unzoom_pane"; args = { }; }
           { keys = [ "ctrl+shift+m" ]; command = "new_window_for_project"; }
+          { keys = [ "ctrl+'" ]; command = "show_panel"; args = { panel = "console"; toggle = true; }; }
           {
             keys = [ "ctrl+alt+t" ];
             command = "terminus_open";

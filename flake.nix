@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; #"github:PedroHLC/nixpkgs/contingency-channel";
+    nixpkgs.url = "github:PedroHLC/nixpkgs/contingency-channel"; #"github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -35,7 +35,10 @@
   outputs = { nixpkgs, home-manager, ... }@attrs:
     let
       ssot = import ./shared/ssot.nix attrs;
-      specialArgs = attrs // { inherit ssot; };
+      specialArgs = {
+        inherit ssot;
+        inherit (attrs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
+      };
     in
     {
       # Defines a formatter for "nix fmt"
