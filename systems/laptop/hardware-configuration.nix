@@ -50,13 +50,13 @@
 
   fileSystems."/mnt/var/cache" =
     {
-      device = "zroot/ROOT/cache";
+      device = "zroot/ROOT/var-cache";
       fsType = "zfs";
     };
 
   fileSystems."/mnt/var/log" =
     {
-      device = "zroot/ROOT/log";
+      device = "zroot/ROOT/var-log";
       fsType = "zfs";
     };
 
@@ -121,7 +121,7 @@
 
   fileSystems."/mnt/home/pedrohlc/.gnupg" =
     {
-      device = "zroot/data/my-cache";
+      device = "zroot/data/my-gnupg";
       fsType = "zfs";
     };
 
@@ -164,6 +164,14 @@
   fileSystems."/mnt/home/pedrohlc/Projects" =
     {
       device = "zroot/data/my-projects";
+      fsType = "zfs";
+    };
+
+  # Guests' homes
+
+  fileSystems."/mnt/home/melinapn" =
+    {
+      device = "zroot/guests/melinapn";
       fsType = "zfs";
     };
 
