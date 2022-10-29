@@ -36,6 +36,7 @@ in
   fileSystems."/mnt/var/lib/bluetooth" = zfsFs "data/bluetooth";
   fileSystems."/mnt/var/lib/containers" = zfsFs "data/containers";
   fileSystems."/mnt/var/lib/flatpak" = zfsFs "data/flatpak";
+  fileSystems."/mnt/var/lib/postgres" = zfsFs "data/postgres";
   fileSystems."/mnt/var/lib/systemd" = zfsFs "data/systemd";
   fileSystems."/mnt/var/lib/upower" = zfsFs "data/upower";
 

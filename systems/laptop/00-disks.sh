@@ -97,4 +97,8 @@ sudo chown -R 1001:100 /home/pedrohlc
 sudo chown -R 1002:100 /home/melinapn
 sudo chmod -R -077 /home/{pedrohlc,melinapn} /root
 
+# Later on
+# sudo chown -R postgres:postgres /var/lib/postgresql
+# sudo chmod 750 /var/lib/postgresql
+
 echo 'Finished. After installing NixOS, change every mountpoint to legacy.'
