@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666887363,
-        "narHash": "sha256-+bs3z5wk57MHmqTELsx62jrySYJbiWfQIW+Tj79oNGI=",
+        "lastModified": 1666903647,
+        "narHash": "sha256-sFI1Gh9DTGzHnBINondupUGYbe+T0wZcpcZjkW0qffM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d3f21617acace32097a53b0b74fb5000d333d094",
+        "rev": "213a06295dff96668a1d673b9fd1c03ce1de6745",
         "type": "github"
       },
       "original": {
@@ -25,11 +25,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1666803785,
-        "narHash": "sha256-5ZCAoIoF0ugorruNBiCYTn+9Otdt6YnLckRuH+FWj1k=",
+        "lastModified": 1667046530,
+        "narHash": "sha256-UQvTym5iX3e93HSxNsbWpkABYwV0//DA/rx9D+0Mhic=",
         "owner": "Mesa3D",
         "repo": "mesa",
-        "rev": "16e0702ec7103c06f2f33654b6e41498e2eabf8e",
+        "rev": "27c8cddec1ab456fc69ba22d686071207a07204a",
         "type": "github"
       },
       "original": {
@@ -75,16 +75,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1666888761,
-        "narHash": "sha256-AZrqXGOdPgAhwSGkOBku6vcbLCBnmBR2yYTITJr3azk=",
-        "owner": "PedroHLC",
+        "lastModified": 1666926733,
+        "narHash": "sha256-+gYfOEnQVISPDRNoWm2VJD5OEuTUySt48RchLpvm61o=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d72e27b31f5a4da95f3683bc55087495f608e0fc",
+        "rev": "f44ba1be526c8da9e79a5759feca2365204003f6",
         "type": "github"
       },
       "original": {
-        "owner": "PedroHLC",
-        "ref": "contingency-channel",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
