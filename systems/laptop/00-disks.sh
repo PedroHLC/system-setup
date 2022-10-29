@@ -35,7 +35,7 @@ zfs create -o mountpoint=/etc/ssh zroot/data/sshd
 zfs create -o mountpoint=/var/lib/bluetooth zroot/data/bluetooth
 zfs create -o mountpoint=/var/lib/containers zroot/data/containers
 zfs create -o mountpoint=/var/lib/flatpak zroot/data/flatpak
-zfs create -o mountpoint=/var/lib/postgres \
+zfs create -o mountpoint=/var/lib/postgresql \
 	-o recordsize=16K -o primarycache=metadata \
 	zroot/data/postgres
 zfs create -o mountpoint=/var/lib/systemd zroot/data/systemd
