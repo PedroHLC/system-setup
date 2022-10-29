@@ -3,6 +3,13 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, modulesPath, ... }:
 
+let
+  zfsFs = path:
+    {
+      device = "zroot/${path}";
+      fsType = "zfs";
+    };
+in
 {
   imports =
     [
@@ -15,165 +22,70 @@
   boot.extraModulePackages = [ ];
 
   # Legacy
-  fileSystems."/" =
-    {
-      device = "zroot/ROOT/default";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    {
-      device = "zroot/data/home";
-      fsType = "zfs";
-    };
-
-  fileSystems."/home/pedrohlc/.cache/btdownloads" =
-    {
-      device = "zroot/data/btdownloads";
-      fsType = "zfs";
-    };
-
-
+  fileSystems."/" = zfsFs "ROOT/default";
+  fileSystems."/home" = zfsFs "data/home";
+  fileSystems."/home/pedrohlc/.cache/btdownloads" = zfsFs "data/btdownloads";
 
   # System's filesystem
-  fileSystems."/mnt" =
-    {
-      device = "zroot/ROOT/empty";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/nix" =
-    {
-      device = "zroot/ROOT/nix";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/cache" =
-    {
-      device = "zroot/ROOT/var-cache";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/log" =
-    {
-      device = "zroot/ROOT/var-log";
-      fsType = "zfs";
-    };
+  fileSystems."/mnt" = zfsFs "ROOT/empty";
+  fileSystems."/mnt/nix" = zfsFs "ROOT/nix";
+  fileSystems."/mnt/var/cache" = zfsFs "ROOT/var-cache";
+  fileSystems."/mnt/var/log" = zfsFs "ROOT/var-log";
 
   # System's data
+  fileSystems."/mnt/etc/NetworkManager/system-connections" = zfsFs "data/connections";
+  fileSystems."/mnt/etc/nixos" = zfsFs "data/setup";
+  fileSystems."/mnt/etc/ssh" = zfsFs "data/sshd";
+  fileSystems."/mnt/var/lib/bluetooth" = zfsFs "data/bluetooth";
+  fileSystems."/mnt/var/lib/containers" = zfsFs "data/containers";
+  fileSystems."/mnt/var/lib/flatpak" = zfsFs "data/flatpak";
+  fileSystems."/mnt/var/lib/systemd" = zfsFs "data/systemd";
+  fileSystems."/mnt/var/lib/upower" = zfsFs "data/upower";
 
-  fileSystems."/mnt/etc/NetworkManager/system-connections" =
-    {
-      device = "zroot/data/connections";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/etc/nixos" =
-    {
-      device = "zroot/data/setup";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/etc/ssh" =
-    {
-      device = "zroot/data/sshd";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/lib/bluetooth" =
-    {
-      device = "zroot/data/bluetooth";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/lib/containers" =
-    {
-      device = "zroot/data/containers";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/lib/flatpak" =
-    {
-      device = "zroot/data/flatpak";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/lib/systemd" =
-    {
-      device = "zroot/data/systemd";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/var/lib/upower" =
-    {
-      device = "zroot/data/upower";
-      fsType = "zfs";
-    };
-
+  # Root's home
+  fileSystems."/mnt/root/.cache" = zfsFs "data/root-cache";
+  fileSystems."/mnt/root/.gnupg" = zfsFs "data/root-gnupg";
+  fileSystems."/mnt/root/.persistent" = zfsFs "data/root-files";
+  fileSystems."/mnt/root/.ssh" = zfsFs "data/root-ssh";
 
   # Pedro's home
+  fileSystems."/mnt/home/pedrohlc/.cache" = zfsFs "data/my-cache";
+  fileSystems."/mnt/home/pedrohlc/.gnupg" = zfsFs "data/my-gnupg";
+  fileSystems."/mnt/home/pedrohlc/.local/share/containers" = zfsFs "data/my-containers";
+  fileSystems."/mnt/home/pedrohlc/.local/share/Trash" = zfsFs "data/my-trash";
+  fileSystems."/mnt/home/pedrohlc/.persistent" = zfsFs "data/my-files";
+  fileSystems."/mnt/home/pedrohlc/.ssh" = zfsFs "data/my-ssh";
+  fileSystems."/mnt/home/pedrohlc/Downloads" = zfsFs "data/btdownloads";
+  fileSystems."/mnt/home/pedrohlc/Projects" = zfsFs "data/my-projects";
 
-  fileSystems."/mnt/home/pedrohlc/.cache" =
-    {
-      device = "zroot/data/my-cache";
-      fsType = "zfs";
-    };
+  # Pedro's apps
+  fileSystems."/mnt/home/pedrohlc/.aws" = zfsFs "apps/aws";
+  fileSystems."/mnt/home/pedrohlc/.config/btop" = zfsFs "apps/btop";
+  fileSystems."/mnt/home/pedrohlc/.config/discord" = zfsFs "apps/discord";
+  fileSystems."/mnt/home/pedrohlc/.config/Element" = zfsFs "apps/element";
+  fileSystems."/mnt/home/pedrohlc/.config/Keybase" = zfsFs "apps/keybase-gui";
+  fileSystems."/mnt/home/pedrohlc/.config/keybase" = zfsFs "apps/keybase-core";
+  fileSystems."/mnt/home/pedrohlc/.config/nvim" = zfsFs "apps/nvim";
+  fileSystems."/mnt/home/pedrohlc/.config/obs-studio" = zfsFs "apps/obs-studio";
+  fileSystems."/mnt/home/pedrohlc/.config/qBittorrent" = zfsFs "apps/qbittorrent";
+  fileSystems."/mnt/home/pedrohlc/.config/spotify" = zfsFs "apps/spotify";
+  fileSystems."/mnt/home/pedrohlc/.config/sublime-text" = zfsFs "apps/subl";
+  fileSystems."/mnt/home/pedrohlc/.config/TabNine" = zfsFs "apps/tabnine";
+  fileSystems."/mnt/home/pedrohlc/.kube" = zfsFs "apps/kube";
+  fileSystems."/mnt/home/pedrohlc/.local/share/DBeaverData" = zfsFs "apps/dbeaver";
+  fileSystems."/mnt/home/pedrohlc/.local/share/fish" = zfsFs "apps/fish";
+  fileSystems."/mnt/home/pedrohlc/.local/share/keybase" = zfsFs "apps/keybase-data";
+  fileSystems."/mnt/home/pedrohlc/.local/share/Steam" = zfsFs "apps/steam";
+  fileSystems."/mnt/home/pedrohlc/.local/share/TelegramDesktop" = zfsFs "apps/tdesktop";
+  fileSystems."/mnt/home/pedrohlc/.local/share/Terraria" = zfsFs "apps/terraria-saves";
+  fileSystems."/mnt/home/pedrohlc/.zoom" = zfsFs "apps/zoom";
 
-  fileSystems."/mnt/home/pedrohlc/.gnupg" =
-    {
-      device = "zroot/data/my-gnupg";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/home/pedrohlc/.local/share/steam" =
-    {
-      device = "zroot/apps/steam";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/home/pedrohlc/.local/share/Steam/steamapps/common" =
-    {
-      device = "zroot/games/steam";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/home/pedrohlc/.persistent" =
-    {
-      device = "zroot/data/my-files";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/home/pedrohlc/.ssh" =
-    {
-      device = "zroot/data/my-ssh";
-      fsType = "zfs";
-    };
-
-  #fileSystems."/mnt/home/pedrohlc/Downloads" =
-  #  {
-  #    device = "zroot/data/btdownloads";
-  #    fsType = "zfs";
-  #  };
-
-  fileSystems."/mnt/home/pedrohlc/Games" =
-    {
-      device = "zroot/games/home";
-      fsType = "zfs";
-    };
-
-  fileSystems."/mnt/home/pedrohlc/Projects" =
-    {
-      device = "zroot/data/my-projects";
-      fsType = "zfs";
-    };
+  # Pedro's games
+  fileSystems."/mnt/home/pedrohlc/.local/share/Steam/steamapps/common" = zfsFs "games/steam";
+  fileSystems."/mnt/home/pedrohlc/Games" = zfsFs "games/home";
 
   # Guests' homes
-
-  fileSystems."/mnt/home/melinapn" =
-    {
-      device = "zroot/guests/melinapn";
-      fsType = "zfs";
-    };
+  fileSystems."/mnt/home/melinapn" = zfsFs "guests/melinapn";
 
   # ...
 
