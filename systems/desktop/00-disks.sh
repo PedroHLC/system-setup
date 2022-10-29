@@ -20,6 +20,7 @@ zfs create -o mountpoint=/etc/NetworkManager/system-connections zroot/data/conne
 #zfs create -o mountpoint=/nix zroot/nix (TODO)
 
 # Different recordsize
+zfs create -o mountpoint=/home/pedrohlc/.cache/btdownloads -o recordsize=16K zroot/data/btdownloads
 zfs create -o mountpoint=none -o recordsize=1M zroot/games
 zfs create -o mountpoint=/home/pedrohlc/.local/share/Steam/steamapps/common zroot/games/steam
 zfs create -o mountpoint=/home/pedrohlc/Games zroot/games/home
@@ -29,8 +30,6 @@ zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/media/encrypted zroot/data/encrypted
 zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/home/pedrohlc/.mozilla zroot/data/mozilla
-
-zfs create -o mountpoint=/home/pedrohlc/.cache/btdownloads -o recordsize=16K zroot/data/btdownloads
 
 # Swaps.
 mkswap /dev/nvme0n1p3

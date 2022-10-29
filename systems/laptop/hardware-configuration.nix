@@ -14,6 +14,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
+  # Legacy
   fileSystems."/" =
     {
       device = "zroot/ROOT/default";
@@ -31,6 +32,142 @@
       device = "zroot/data/btdownloads";
       fsType = "zfs";
     };
+
+
+
+  # System's filesystem
+  fileSystems."/mnt" =
+    {
+      device = "zroot/ROOT/empty";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/nix" =
+    {
+      device = "zroot/ROOT/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/cache" =
+    {
+      device = "zroot/ROOT/cache";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/log" =
+    {
+      device = "zroot/ROOT/log";
+      fsType = "zfs";
+    };
+
+  # System's data
+
+  fileSystems."/mnt/etc/NetworkManager/system-connections" =
+    {
+      device = "zroot/data/connections";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/etc/nixos" =
+    {
+      device = "zroot/data/setup";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/etc/ssh" =
+    {
+      device = "zroot/data/sshd";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/lib/bluetooth" =
+    {
+      device = "zroot/data/bluetooth";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/lib/containers" =
+    {
+      device = "zroot/data/containers";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/lib/flatpak" =
+    {
+      device = "zroot/data/flatpak";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/lib/systemd" =
+    {
+      device = "zroot/data/systemd";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/var/lib/upower" =
+    {
+      device = "zroot/data/upower";
+      fsType = "zfs";
+    };
+
+
+  # Pedro's home
+
+  fileSystems."/mnt/home/pedrohlc/.cache" =
+    {
+      device = "zroot/data/my-cache";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/.gnupg" =
+    {
+      device = "zroot/data/my-cache";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/.local/share/steam" =
+    {
+      device = "zroot/apps/steam";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/.local/share/Steam/steamapps/common" =
+    {
+      device = "zroot/games/steam";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/.persistent" =
+    {
+      device = "zroot/data/my-files";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/.ssh" =
+    {
+      device = "zroot/data/my-ssh";
+      fsType = "zfs";
+    };
+
+  #fileSystems."/mnt/home/pedrohlc/Downloads" =
+  #  {
+  #    device = "zroot/data/btdownloads";
+  #    fsType = "zfs";
+  #  };
+
+  fileSystems."/mnt/home/pedrohlc/Games" =
+    {
+      device = "zroot/games/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/mnt/home/pedrohlc/Projects" =
+    {
+      device = "zroot/data/my-projects";
+      fsType = "zfs";
+    };
+
+  # ...
 
   fileSystems."/boot" =
     {
