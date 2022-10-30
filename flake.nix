@@ -13,6 +13,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # reset rootfs every reboot
+    impermanence.url = "github:nix-community/impermanence";
+
     # home-manager for managing my users' home
     home-manager = {
       url = "github:nix-community/home-manager/master";
@@ -32,12 +35,12 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }@attrs:
+  outputs = { nixpkgs, home-manager, impermanence, ... }@inputs:
     let
-      ssot = import ./shared/ssot.nix attrs;
+      ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
         inherit ssot;
-        inherit (attrs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
+        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge impermanence mesa-git-src pedrochrome-css;
       };
     in
     {
@@ -49,6 +52,7 @@
           inherit specialArgs;
           system = "x86_64-linux";
           modules = [
+            "${impermanence}/nixos.nix"
             ./shared/lib/wireguard-client.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix

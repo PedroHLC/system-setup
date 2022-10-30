@@ -15,11 +15,32 @@
     {
       device = "zroot/ROOT/default";
       fsType = "zfs";
+      neededForBoot = true;
+    };
+
+  fileSystems."/nix" =
+    {
+      device = "zroot/ROOT/nix";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+
+  fileSystems."/var/persistent" =
+    {
+      device = "zroot/data/persistent";
+      fsType = "zfs";
+      neededForBoot = true;
     };
 
   fileSystems."/home" =
     {
       device = "zroot/data/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home/melinapn" =
+    {
+      device = "zroot/data/melina";
       fsType = "zfs";
     };
 

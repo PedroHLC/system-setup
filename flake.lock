@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1666903647,
-        "narHash": "sha256-sFI1Gh9DTGzHnBINondupUGYbe+T0wZcpcZjkW0qffM=",
+        "lastModified": 1666990295,
+        "narHash": "sha256-JPMTX8W36IPV1jmKV1qEhNBI4MbIPYsnccWyTUlSiG0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "213a06295dff96668a1d673b9fd1c03ce1de6745",
+        "rev": "423211401c245934db5052e3867cac704f658544",
         "type": "github"
       },
       "original": {
@@ -22,14 +22,29 @@
         "type": "github"
       }
     },
+    "impermanence": {
+      "locked": {
+        "lastModified": 1661933071,
+        "narHash": "sha256-RFgfzldpbCvS+H2qwH+EvNejvqs+NhPVD5j1I7HQQPY=",
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "rev": "def994adbdfc28974e87b0e4c949e776207d5557",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "impermanence",
+        "type": "github"
+      }
+    },
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1667046530,
-        "narHash": "sha256-UQvTym5iX3e93HSxNsbWpkABYwV0//DA/rx9D+0Mhic=",
+        "lastModified": 1667076317,
+        "narHash": "sha256-EC0qx6rNHvB8BAag0fhSO+hhw7fnaLB8HxNuRJWLyvQ=",
         "owner": "Mesa3D",
         "repo": "mesa",
-        "rev": "27c8cddec1ab456fc69ba22d686071207a07204a",
+        "rev": "3f282b54fa305e3ae22490b02dd7aa91f88f59ce",
         "type": "github"
       },
       "original": {
@@ -75,11 +90,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1666926733,
-        "narHash": "sha256-+gYfOEnQVISPDRNoWm2VJD5OEuTUySt48RchLpvm61o=",
+        "lastModified": 1667055375,
+        "narHash": "sha256-xfSTHYxuKRiqF4dcuAFdti1OUvrC2lHpQqCHWUK5/JA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f44ba1be526c8da9e79a5759feca2365204003f6",
+        "rev": "7f9be6a505a31f88499c5d20d11f98accf5ae6ba",
         "type": "github"
       },
       "original": {
@@ -108,6 +123,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "impermanence": "impermanence",
         "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
         "nix-gaming-edge": [

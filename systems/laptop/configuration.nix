@@ -81,6 +81,35 @@ tel_icd.i686.json";
   # Plasma for Melina
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # Persistent files
+  environment.persistence."/var/persistent" = {
+    hideMounts = true;
+    directories = [
+      "/var/cache"
+      "/var/log"
+      "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
+      "/etc/ssh"
+      "/var/lib/bluetooth"
+      "/var/lib/containers"
+      "/var/lib/flatpak"
+      { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
+      "/var/lib/systemd"
+      "/var/lib/upower"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
+    users.root = {
+      home = "/root";
+      directories = [
+        { directory = ".gnupg"; mode = "0700"; }
+        { directory = ".ssh"; mode = "0700"; }
+      ];
+    };
+  };
+
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
     let
