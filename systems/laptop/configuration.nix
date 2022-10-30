@@ -85,18 +85,18 @@ tel_icd.i686.json";
   environment.persistence."/var/persistent" = {
     hideMounts = true;
     directories = [
-      "/var/cache"
-      "/var/log"
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       "/etc/ssh"
+      "/var/cache"
       "/var/lib/bluetooth"
+      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
       "/var/lib/containers"
       "/var/lib/flatpak"
       { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
       "/var/lib/systemd"
       "/var/lib/upower"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+      "/var/log"
     ];
     files = [
       "/etc/machine-id"
@@ -109,6 +109,19 @@ tel_icd.i686.json";
       ];
     };
   };
+
+  # Shadow can't be added to persistent
+  users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
+  users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
+  users.users."melinapn".passwordFile = "/var/persistent/secrets/shadow/melinapn";
+
+  # Use ZFS for persistance
+  systemd.services.zfs-mount.enable = false;
+  boot.initrd.postDeviceCommands = ''
+    zpool import -Nf zroot
+    zfs rollback -r zroot/ROOT/empty@start
+    zpool export -a
+  '';
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =

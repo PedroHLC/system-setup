@@ -13,7 +13,7 @@
 
   fileSystems."/" =
     {
-      device = "zroot/ROOT/default";
+      device = "zroot/ROOT/empty";
       fsType = "zfs";
       neededForBoot = true;
     };
