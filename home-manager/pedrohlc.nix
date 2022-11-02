@@ -4,11 +4,12 @@
 , displayBrightness ? false
 , gitKey ? null
 , gpuSensor ? null
+, persistence ? false
 , nvidiaPrime ? false
 , seat ? true
 , touchpad ? null
 }:
-{ config, lib, pkgs, ssot, pedrochrome-css, ... }: with lib; with ssot;
+{ config, lib, pkgs, ssot, pedrochrome-css, impermanence, ... }: with lib; with ssot;
 let
   # Some stuff that repeats across this file
   modifier = "Mod4";
@@ -65,8 +66,51 @@ let
       read
     ''} "$@"
   '';
+
+  private = path: { directory = path; mode = "0700"; };
 in
 {
+  imports = [ impermanence.nixosModules.home-manager.impermanence ];
+  home.persistence."/var/persistent/home/pedrohlc" = mkIf persistence {
+    directories = [
+      ".cache"
+      (private ".gnupg")
+      ".local/share/containers"
+      ".local/share/Trash"
+      (private ".ssh")
+      (private ".aws")
+      ".config/btop"
+      ".config/discord"
+      (private ".config/Element")
+      (private ".config/Keybase")
+      (private ".config/keybase")
+      ".config/nvim"
+      ".config/obs-studio"
+      ".config/qBittorrent"
+      ".config/spotify"
+      ".config/sublime-text"
+      ".config/TabNine"
+      ".kube"
+      (private ".local/share/DBeaverData")
+      ".local/share/fish"
+      (private ".local/share/keybase")
+      ".local/share/Steam"
+      (private ".local/share/TelegramDesktop")
+      ".local/share/Terraria"
+      ".zoom"
+      "Documents"
+      "Downloads"
+      (private "Projects")
+      "Pictures"
+      "Videos"
+      # "Games" # Moved to its own volume
+    ];
+    files = [
+      ".google_authenticator"
+    ];
+    allowOther = true;
+  };
+
   home.packages = with pkgs; lists.optionals seat [
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop

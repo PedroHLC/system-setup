@@ -39,8 +39,8 @@
     let
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
-        inherit ssot;
-        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge impermanence mesa-git-src pedrochrome-css;
+        inherit ssot impermanence;
+        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
       };
     in
     {
@@ -52,7 +52,7 @@
           inherit specialArgs;
           system = "x86_64-linux";
           modules = [
-            "${impermanence}/nixos.nix"
+            impermanence.nixosModules.impermanence
             ./shared/lib/wireguard-client.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix

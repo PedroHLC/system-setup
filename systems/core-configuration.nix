@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ pkgs, nixpkgs, ssot, pedrochrome-css, ... }: with ssot;
+{ pkgs, nixpkgs, ssot, ... }@attrs: with ssot;
 
 # NixOS-defined options
 {
@@ -91,7 +91,6 @@
     traceroute
     unrar
     unzip
-    uutils-coreutils
     wget
     wireguard-tools
   ];
@@ -128,9 +127,6 @@
   nixpkgs.overlays =
     let
       thisConfigsOverlay = _: prev: {
-        # Allow uutils to replace GNU coreutils.
-        uutils-coreutils = prev.uutils-coreutils.override { prefix = ""; };
-
         # Busybox without applets
         busyboxWithoutAppletSymlinks = prev.busybox.override {
           enableAppletSymlinks = false;
@@ -165,7 +161,10 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = { inherit ssot pedrochrome-css; };
+  home-manager.extraSpecialArgs = {
+    inherit ssot;
+    inherit (attrs) impermanence pedrochrome-css;
+  };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.

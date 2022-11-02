@@ -50,6 +50,12 @@
       fsType = "zfs";
     };
 
+  fileSystems."/home/pedrohlc/Games" =
+    {
+      device = "zroot/games/home";
+      fsType = "zfs";
+    };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/C4D7-B910";

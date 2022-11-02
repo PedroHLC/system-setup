@@ -21,6 +21,8 @@ zfs snapshot zroot/ROOT/empty@start
 
 # Different recordsize
 zfs create -o mountpoint=legacy -o recordsize=16K zroot/data/btdownloads
+zfs create -o mountpoint=none -o recordsize=1M zroot/games
+zfs create -o mountpoint=legacy zroot/games/home
 
 # Encrypted volumes.
 zfs create -o encryption=on -o keyformat=passphrase \
@@ -32,13 +34,17 @@ zfs create -o encryption=on -o keyformat=passphrase \
 #mkswap /dev/nvme0n1p3 # (TODO)
 #swapon /dev/nvme0n1p3 # (TODO)
 
-# Mount
+# Mount & Permissions
 mount -t zfs zroot/ROOT/empty /mnt
-mkdir -p /mnt/nix /mnt/home/melinapn /mnt/var/persistent
+mkdir -p /mnt/nix /mnt/home/melinapn /mnt/home/pedrohlc /mnt/var/persistent
 mount -t zfs zroot/ROOT/nix /mnt/nix
 mount -t zfs zroot/data/melina /mnt/home/melinapn
 chown 1002:100 /mnt/home/melinapn
 chmod 0700 /mnt/home/melinapn
+mount -t zfs zroot/games/home /mnt/home/pedrohlc/Games
+chown -R 1001:100 /mnt/home/pedrohlc
+chmod 0700 /mnt/home/pedrohlc
+chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 
 echo 'Finished. After installing NixOS, change every mountpoint to legacy.'

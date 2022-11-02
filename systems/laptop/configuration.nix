@@ -93,6 +93,7 @@ tel_icd.i686.json";
       { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
       "/var/lib/containers"
       "/var/lib/flatpak"
+      { directory = "/var/lib/iwd"; mode = "u=rwx,g=,o="; }
       { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
       "/var/lib/systemd"
       "/var/lib/upower"
