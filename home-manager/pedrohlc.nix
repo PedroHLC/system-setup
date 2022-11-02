@@ -66,24 +66,28 @@ let
       read
     ''} "$@"
   '';
-
-  private = path: { directory = path; mode = "0700"; };
 in
 {
   imports = [ impermanence.nixosModules.home-manager.impermanence ];
   home.persistence."/var/persistent/home/pedrohlc" = mkIf persistence {
     directories = [
-      ".cache"
-      (private ".gnupg")
+      ".cache/keybase"
+      ".cache/mesa_shader_cache"
+      ".cache/mozilla"
+      ".cache/nix-index"
+      ".cache/nvidia"
+      ".cache/spotify"
+      ".cache/sublime-text"
+      ".gnupg"
       ".local/share/containers"
       ".local/share/Trash"
-      (private ".ssh")
-      (private ".aws")
+      ".ssh"
+      ".aws"
       ".config/btop"
       ".config/discord"
-      (private ".config/Element")
-      (private ".config/Keybase")
-      (private ".config/keybase")
+      ".config/Element"
+      ".config/Keybase"
+      ".config/keybase"
       ".config/nvim"
       ".config/obs-studio"
       ".config/qBittorrent"
@@ -91,24 +95,25 @@ in
       ".config/sublime-text"
       ".config/TabNine"
       ".kube"
-      (private ".local/share/DBeaverData")
+      ".local/share/DBeaverData"
       ".local/share/fish"
-      (private ".local/share/keybase")
+      ".local/share/keybase"
       ".local/share/Steam"
-      (private ".local/share/TelegramDesktop")
+      ".local/share/TelegramDesktop"
       ".local/share/Terraria"
       ".zoom"
       "Documents"
       "Downloads"
-      (private "Projects")
+      "Projects"
       "Pictures"
       "Videos"
       # "Games" # Moved to its own volume
     ];
     files = [
+      ".cache/keybasekeybase.app.serverConfig"
       ".google_authenticator"
     ];
-    allowOther = true;
+    # allowOther = true;
   };
 
   home.packages = with pkgs; lists.optionals seat [
@@ -802,7 +807,7 @@ in
     # Default directories
     userDirs = {
       enable = true;
-      createDirectories = true;
+      # createDirectories = true;
 
       # Make sure we're using the english ones.
       desktop = "$HOME/Desktop";
