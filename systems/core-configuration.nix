@@ -23,6 +23,9 @@
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+
+    # Use all cores for building (defaults to one in PR 199491)
+    settings.max-jobs = "auto";
   };
 
   # Enable all the firmwares
