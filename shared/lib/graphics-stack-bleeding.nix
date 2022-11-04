@@ -33,52 +33,6 @@
           };
         });
 
-        # Latest vulkan-sdk (waiting for https://nixpk.gs/pr-tracker.html?pr=189290)
-        # glslang = prev.glslang.overrideAttrs (_: rec {
-        #   version = "1.3.224.1";
-        #   src = final.fetchFromGitHub {
-        #     owner = "KhronosGroup";
-        #     repo = "glslang";
-        #     rev = "sdk-${version}";
-        #     hash = "sha256-VEOENuy/VhYBBX52O4QHJFXUjsj6jL4vDD4cLDlQcIA=";
-        #   };
-        # });
-        # vulkan-headers = prev.vulkan-headers.overrideAttrs (_: rec {
-        #   version = "1.3.230";
-        #   src = final.fetchFromGitHub {
-        #     owner = "KhronosGroup";
-        #     repo = "Vulkan-Headers";
-        #     rev = "v${version}";
-        #     hash = "sha256-lIe8zd0iUjPS0k2qjO1Zrl1Gbtty9uluCzHkWeVqv0A=";
-        #   };
-        # });
-        # vulkan-loader = prev.vulkan-loader.overrideAttrs (_: rec {
-        #   version = "1.3.230";
-        #   src = final.fetchFromGitHub {
-        #     owner = "KhronosGroup";
-        #     repo = "Vulkan-Loader";
-        #     rev = "v${version}";
-        #     hash = "sha256-KO6RRv1SibaCA2ZVDcV/0KR8+YJ6kJQurdQtjqWFxjM=";
-        #   };
-        # });
-        # spirv-tools = prev.spirv-tools.overrideAttrs (_: rec {
-        #   version = "2022.3";
-        #   src = final.fetchFromGitHub {
-        #     owner = "KhronosGroup";
-        #     repo = "SPIRV-Tools";
-        #     rev = "v${version}";
-        #     hash = "sha256-B1FOZ6Q8HEgmuin2yvw2uFJy6B5NHkUHrLSlJmTH/kk=";
-        #   };
-        # });
-        # vulkan-tools = prev.vulkan-tools.overrideAttrs (_: rec {
-        #   version = "1.3.230";
-        #   src = final.fetchFromGitHub {
-        #     owner = "KhronosGroup";
-        #     repo = "Vulkan-Tools";
-        #     rev = "v${version}";
-        #     hash = "sha256-eWT/ADApEUJYHWmRQp86lo1bOjr0tTPQJakfJWeClOw=";
-        #   };
-        # });
       };
     in
     [ thisConfigsOverlay ];

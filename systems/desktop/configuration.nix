@@ -81,6 +81,7 @@
       ".cache/sublime-text"
       ".local/share/containers"
       ".local/share/Trash"
+      ".config/asciinema"
       ".config/btop"
       ".config/discord"
       ".config/Element"
@@ -101,6 +102,7 @@
       ".local/share/TelegramDesktop"
       ".local/share/Terraria"
       { directory = ".ssh"; mode = "0700"; }
+      ".var/app"
       ".zoom"
       "Documents"
       "Downloads"
