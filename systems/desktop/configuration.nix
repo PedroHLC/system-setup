@@ -69,13 +69,58 @@
     in
     [ thisConfigsOverlay ];
 
+  # Persistent files
+  environment.persistence."/var/persistent".users.pedrohlc = {
+    directories = [
+      { directory = ".aws"; mode = "0700"; }
+      ".cache/keybase"
+      ".cache/mesa_shader_cache"
+      ".cache/mozilla"
+      ".cache/nix-index"
+      ".cache/spotify"
+      ".cache/sublime-text"
+      ".local/share/containers"
+      ".local/share/Trash"
+      ".config/btop"
+      ".config/discord"
+      ".config/Element"
+      { directory = ".config/Keybase"; mode = "0700"; }
+      { directory = ".config/keybase"; mode = "0700"; }
+      ".config/nvim"
+      ".config/obs-studio"
+      ".config/qBittorrent"
+      ".config/spotify"
+      ".config/sublime-text"
+      ".config/TabNine"
+      { directory = ".gnupg"; mode = "0700"; }
+      { directory = ".kube"; mode = "0700"; }
+      ".local/share/DBeaverData"
+      ".local/share/fish"
+      { directory = ".local/share/keybase"; mode = "0700"; }
+      ".local/share/Steam"
+      ".local/share/TelegramDesktop"
+      ".local/share/Terraria"
+      { directory = ".ssh"; mode = "0700"; }
+      ".zoom"
+      "Documents"
+      "Downloads"
+      "Projects"
+      "Pictures"
+      "Videos"
+    ];
+  };
+  files = [
+    ".cache/keybasekeybase.app.serverConfig"
+    ".google_authenticator"
+  ];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
-  home-manager.users.pedrohlc.home.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "22.05"; # Did you read the comment?
+  home-manager.users.pedrohlc.home.stateVersion = "22.05"; # Did you read the comment?
 }
 

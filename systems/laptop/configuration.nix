@@ -82,34 +82,9 @@ tel_icd.i686.json";
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Persistent files
-  environment.persistence."/var/persistent" = {
-    hideMounts = true;
-    directories = [
-      "/etc/NetworkManager/system-connections"
-      "/etc/nixos"
-      "/etc/ssh"
-      "/var/cache"
-      "/var/lib/bluetooth"
-      { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-      "/var/lib/containers"
-      "/var/lib/flatpak"
-      { directory = "/var/lib/iwd"; mode = "u=rwx,g=,o="; }
-      { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
-      "/var/lib/systemd"
-      "/var/lib/upower"
-      "/var/log"
-    ];
-    files = [
-      "/etc/machine-id"
-    ];
-    users.root = {
-      home = "/root";
-      directories = [
-        { directory = ".gnupg"; mode = "0700"; }
-        { directory = ".ssh"; mode = "0700"; }
-      ];
-    };
-  };
+  environment.persistence."/var/persistent".directories = [
+    { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+  ];
 
   # Shadow can't be added to persistent
   users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";

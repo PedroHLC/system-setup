@@ -4,7 +4,6 @@
 , displayBrightness ? false
 , gitKey ? null
 , gpuSensor ? null
-, persistence ? false
 , nvidiaPrime ? false
 , seat ? true
 , touchpad ? null
@@ -68,54 +67,6 @@ let
   '';
 in
 {
-  imports = [ impermanence.nixosModules.home-manager.impermanence ];
-  home.persistence."/var/persistent/home/pedrohlc" = mkIf persistence {
-    directories = [
-      ".cache/keybase"
-      ".cache/mesa_shader_cache"
-      ".cache/mozilla"
-      ".cache/nix-index"
-      ".cache/nvidia"
-      ".cache/spotify"
-      ".cache/sublime-text"
-      ".gnupg"
-      ".local/share/containers"
-      ".local/share/Trash"
-      ".ssh"
-      ".aws"
-      ".config/btop"
-      ".config/discord"
-      ".config/Element"
-      ".config/Keybase"
-      ".config/keybase"
-      ".config/nvim"
-      ".config/obs-studio"
-      ".config/qBittorrent"
-      ".config/spotify"
-      ".config/sublime-text"
-      ".config/TabNine"
-      ".kube"
-      ".local/share/DBeaverData"
-      ".local/share/fish"
-      ".local/share/keybase"
-      ".local/share/Steam"
-      ".local/share/TelegramDesktop"
-      ".local/share/Terraria"
-      ".zoom"
-      "Documents"
-      "Downloads"
-      "Projects"
-      "Pictures"
-      "Videos"
-      # "Games" # Moved to its own volume
-    ];
-    files = [
-      ".cache/keybasekeybase.app.serverConfig"
-      ".google_authenticator"
-    ];
-    # allowOther = true;
-  };
-
   home.packages = with pkgs; lists.optionals seat [
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop

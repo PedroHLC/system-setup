@@ -381,6 +381,35 @@
     boot.zfs.enableUnstable = lib.mkForce false;
   };
 
+  # Persistent files
+  environment.persistence."/var/persistent" = {
+    hideMounts = true;
+    directories = [
+      "/etc/NetworkManager/system-connections"
+      "/etc/nixos"
+      "/etc/ssh"
+      "/var/cache"
+      "/var/lib/bluetooth"
+      "/var/lib/containers"
+      "/var/lib/flatpak"
+      { directory = "/var/lib/iwd"; mode = "u=rwx,g=,o="; }
+      { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
+      "/var/lib/systemd"
+      "/var/lib/upower"
+      "/var/log"
+    ];
+    files = [
+      "/etc/machine-id"
+    ];
+    users.root = {
+      home = "/root";
+      directories = [
+        { directory = ".gnupg"; mode = "0700"; }
+        { directory = ".ssh"; mode = "0700"; }
+      ];
+    };
+  };
+
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";
