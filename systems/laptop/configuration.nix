@@ -87,17 +87,7 @@ tel_icd.i686.json";
   ];
 
   # Shadow can't be added to persistent
-  users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
-  users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
   users.users."melinapn".passwordFile = "/var/persistent/secrets/shadow/melinapn";
-
-  # Use ZFS for persistance
-  systemd.services.zfs-mount.enable = false;
-  boot.initrd.postDeviceCommands = ''
-    zpool import -Nf zroot
-    zfs rollback -r zroot/ROOT/empty@start
-    zpool export -a
-  '';
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =

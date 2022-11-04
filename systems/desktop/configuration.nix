@@ -108,11 +108,11 @@
       "Pictures"
       "Videos"
     ];
+    files = [
+      ".cache/keybasekeybase.app.serverConfig"
+      ".google_authenticator"
+    ];
   };
-  files = [
-    ".cache/keybasekeybase.app.serverConfig"
-    ".google_authenticator"
-  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

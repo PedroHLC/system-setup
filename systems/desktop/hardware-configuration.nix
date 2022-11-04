@@ -13,49 +13,40 @@
 
   fileSystems."/" =
     {
-      device = "zroot/ROOT/nixos";
+      device = "zroot/ROOT/empty";
       fsType = "zfs";
+      neededForBoot = true;
     };
 
-  fileSystems."/home" =
+  fileSystems."/nix" =
     {
-      device = "zroot/data/home";
+      device = "zroot/ROOT/nix";
       fsType = "zfs";
+      neededForBoot = true;
     };
 
-  fileSystems."/home/pedrohlc/.cache/btdownloads" =
+  fileSystems."/var/persistent" =
     {
-      device = "zroot/data/btdownloads";
+      device = "zroot/data/persistent";
       fsType = "zfs";
+      neededForBoot = true;
     };
 
-  fileSystems."/home/pedrohlc/.local/share/Steam/steamapps/common" =
+  fileSystems."/home/pedrohlc/Games" =
     {
-      device = "zroot/games/steam";
-      fsType = "zfs";
-    };
-
-  fileSystems."/etc/NetworkManager/system-connections" =
-    {
-      device = "zroot/data/connections";
-      fsType = "zfs";
-    };
-
-  fileSystems."/etc/ssh" =
-    {
-      device = "zroot/data/ssh";
+      device = "zroot/games/home";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/CE37-1D5C";
+      device = "/dev/disk/by-uuid/AD2E-1931";
       fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/11da3712-e7a2-442b-9077-c74d72c84a95"; }
-      { device = "/dev/disk/by-uuid/2340157f-8dd9-493c-8db3-df3eac3031b6"; }];
+    [{ device = "/dev/disk/by-uuid/bf97699c-1ac8-45dd-bfa1-07fbf9a75e32"; }
+      { device = "/dev/disk/by-uuid/b29154e2-96dc-4771-9692-143995e9e4fe"; }];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display

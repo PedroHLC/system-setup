@@ -410,6 +410,18 @@
     };
   };
 
+  # Use ZFS for persistance
+  systemd.services.zfs-mount.enable = false;
+  boot.initrd.postDeviceCommands = ''
+    zpool import -Nf zroot
+    zfs rollback -r zroot/ROOT/empty@start
+    zpool export -a
+  '';
+
+  # Shadow can't be added to persistent
+  users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
+  users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
+
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";

@@ -79,7 +79,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
-            ./shared/lib/graphics-stack-bleeding.nix
+            # ./shared/lib/graphics-stack-bleeding.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
             ./systems/core-configuration.nix
