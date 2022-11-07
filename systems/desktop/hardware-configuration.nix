@@ -32,10 +32,26 @@
       neededForBoot = true;
     };
 
+  fileSystems."/var/residues" =
+    # Like "persistent", but for cache and stuff I'll never need to backup.
+    {
+      device = "zroot/data/residues";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
+
   fileSystems."/home/pedrohlc/Games" =
     {
       device = "zroot/games/home";
       fsType = "zfs";
+      options = [ "x-gvfs-hide" ];
+    };
+
+  fileSystems."/home/pedrohlc/Torrents" =
+    {
+      device = "zroot/data/btdownloads";
+      fsType = "zfs";
+      options = [ "x-gvfs-hide" ];
     };
 
   fileSystems."/boot" =

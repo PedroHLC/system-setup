@@ -37,11 +37,13 @@ zfs create -o encryption=on -o keyformat=passphrase \
 
 # Mount & Permissions
 mount -t zfs zroot/ROOT/empty /mnt
-mkdir -p /mnt/nix /mnt/home/pedrohlc/Games /mnt/var/persistent
+mkdir -p /mnt/nix /mnt/home/pedrohlc/Games /mnt/home/pedrohlc/Torrents /mnt/var/persistent /mnt/var/residues
 mount -t zfs zroot/ROOT/nix /mnt/nix
 mount -t zfs zroot/games/home /mnt/home/pedrohlc/Games
+mount -t zfs zroot/data/btdownloads /mnt/home/pedrohlc/Torrents
 chown -R 1001:100 /mnt/home/pedrohlc
 chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
+mount -t zfs zroot/data/residues /mnt/var/residues
 
 echo 'Finished. After installing NixOS, change every mountpoint to legacy.'

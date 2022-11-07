@@ -73,14 +73,7 @@
   environment.persistence."/var/persistent".users.pedrohlc = {
     directories = [
       { directory = ".aws"; mode = "0700"; }
-      ".cache/keybase"
-      ".cache/mesa_shader_cache"
-      ".cache/mozilla"
-      ".cache/nix-index"
-      ".cache/spotify"
-      ".cache/sublime-text"
       ".local/share/containers"
-      ".local/share/Trash"
       ".config/asciinema"
       ".config/btop"
       ".config/discord"
@@ -98,6 +91,7 @@
       ".local/share/DBeaverData"
       ".local/share/fish"
       { directory = ".local/share/keybase"; mode = "0700"; }
+      ".local/share/qBittorrent"
       ".local/share/Steam"
       ".local/share/TelegramDesktop"
       ".local/share/Terraria"
@@ -113,6 +107,21 @@
     files = [
       ".cache/keybasekeybase.app.serverConfig"
       ".google_authenticator"
+    ];
+  };
+
+  # Not important but persistent files
+  environment.persistence."/var/residues".users.pedrohlc = {
+    directories = [
+      ".cache/keybase"
+      ".cache/mesa_shader_cache"
+      ".cache/mozilla"
+      ".cache/nix-index"
+      ".cache/spotify"
+      ".cache/sublime-text"
+      ".local/share/Trash"
+      ".mix"
+      ".steam"
     ];
   };
 

@@ -187,6 +187,7 @@
     eksctl # AWS
     elixir_1_14 # Elixir-dev, I need it here for "mix format"
     elmPackages.elm-format # Elm-dev
+    gcc # C-dev but using it for Elixir-dev, since rebar3 needs it to build iconv
     gdb # more precious then gcc
     gh
     gnumake
@@ -199,6 +200,7 @@
     nixpkgs-review # Nix
     nodejs # Front-dev
     python3Minimal
+    rebar3 # Elixir-dev
     shellcheck # Bash-dev
     shfmt # Bash-dev
     sublime4
@@ -388,7 +390,6 @@
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       "/etc/ssh"
-      "/var/cache"
       "/var/lib/bluetooth"
       "/var/lib/containers"
       "/var/lib/flatpak"
@@ -396,7 +397,6 @@
       { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; }
       "/var/lib/systemd"
       "/var/lib/upower"
-      "/var/log"
     ];
     files = [
       "/etc/machine-id"
@@ -421,6 +421,15 @@
   # Shadow can't be added to persistent
   users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
   users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
+
+  # Not important but persistent files
+  environment.persistence."/var/residues" = {
+    hideMounts = true;
+    directories = [
+      "/var/cache"
+      "/var/log"
+    ];
+  };
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.

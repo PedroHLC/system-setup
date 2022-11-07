@@ -22,17 +22,6 @@
           inherit galliumDrivers vulkanDrivers;
           inherit mesa-git-src;
         }).drivers;
-
-        vkBasalt = prev.vkBasalt.overrideAttrs (_: rec {
-          version = "0.3.2.6";
-          src = final.fetchFromGitHub {
-            owner = "DadSchoorse";
-            repo = "vkBasalt";
-            rev = "v${version}";
-            hash = "sha256-wk/bmbwdE1sBZPlD+EqXfQWDITIfCelTpoFBtNtZV8Q=";
-          };
-        });
-
       };
     in
     [ thisConfigsOverlay ];
