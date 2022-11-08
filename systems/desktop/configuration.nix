@@ -120,6 +120,7 @@
       ".cache/spotify"
       ".cache/sublime-text"
       ".local/share/Trash"
+      ".local/state/wireplumber"
       ".mix"
       ".steam"
     ];
