@@ -182,6 +182,7 @@
 
     # Development apps
     awscli2 # AWS
+    bind.dnsutils # "dig"
     dbeaver
     deno # Front-dev
     eksctl # AWS

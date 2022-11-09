@@ -26,7 +26,7 @@ let
   modeOtherMenus = "[b]luetooth | [n]etwork";
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
-  coreutilsBin = exe: "${pkgs.uutils-coreutils}/bin/${exe}";
+  coreutilsBin = exe: "${pkgs.uutils-coreutils}/bin/uutils-${exe}";
   date = coreutilsBin "date";
   tr = coreutilsBin "tr";
   wc = coreutilsBin "wc";
@@ -758,7 +758,7 @@ in
     # Default directories
     userDirs = {
       enable = true;
-      # createDirectories = true;
+      createDirectories = true;
 
       # Make sure we're using the english ones.
       desktop = "$HOME/Desktop";
