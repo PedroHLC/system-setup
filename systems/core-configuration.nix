@@ -139,7 +139,7 @@
     [ thisConfigsOverlay ];
 
   # Enable services (automatically includes their apps' packages).
-  services.ntp.enable = true;
+  services.timesyncd.enable = true;
   services.openssh = {
     # TODO: Use openssh_hpn
     enable = true;
