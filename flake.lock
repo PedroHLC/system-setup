@@ -37,26 +37,29 @@
         "type": "github"
       }
     },
-    "mesa-git-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1668091892,
-        "narHash": "sha256-YZ8GqHDe6nQ6Oqj7fMKAAReuPLRQ74c7r6Hgke1lgdY=",
-        "owner": "Mesa3D",
-        "repo": "mesa",
-        "rev": "68fd9d28294ee91033690b2288c55480c4125577",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mesa3D",
-        "ref": "main",
-        "repo": "mesa",
-        "type": "github"
-      }
-    },
     "nix-gaming": {
       "inputs": {
         "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1667666664,
+        "narHash": "sha256-MKtN2/8E22SGRf8wroj3qYvhQEBVcsZJjYeX9eu+bt0=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "cc8ece45d1987d5187e2528b59f9136f6aa8f465",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
+    "nix-gaming-edge": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1667666664,
@@ -90,11 +93,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1668058645,
-        "narHash": "sha256-vHAXeYfKVO6ZbDN0GquEPVFZ42LzlYoX4ZWuKteFzj0=",
+        "lastModified": 1668086072,
+        "narHash": "sha256-msFoXI5ThCmhTTqgl27hpCXWhaeqxphBaleJAgD8JYM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d01cb18be494e3d860fcfe6be4ad63614360333c",
+        "rev": "72d8853228c9758820c39b8659415b6d89279493",
         "type": "github"
       },
       "original": {
@@ -124,11 +127,8 @@
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
-        "nix-gaming-edge": [
-          "nix-gaming"
-        ],
+        "nix-gaming-edge": "nix-gaming-edge",
         "nixpkgs": "nixpkgs_2",
         "pedrochrome-css": "pedrochrome-css"
       }

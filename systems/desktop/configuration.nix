@@ -55,6 +55,12 @@
     target = "pipewire/pipewire.conf.d/focusrite-mono-input.conf";
   };
 
+  # B550I AORUS PRO AX issue with suspension
+  system.activationScripts.fix_acpi_wakeup.text = ''
+    echo GPP0 > /proc/acpi/wakeup
+  '';
+
+  # Extra packages
   environment.systemPackages = with pkgs; [
     vkBasalt
   ];

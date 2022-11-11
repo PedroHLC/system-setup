@@ -9,7 +9,7 @@
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-gaming-edge = {
-      follows = "nix-gaming";
+      url = "github:fufexan/nix-gaming";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,10 +23,10 @@
     };
 
     # Smooth-criminal bleeding-edge Mesa3D
-    mesa-git-src = {
-      url = "github:Mesa3D/mesa/main";
-      flake = false;
-    };
+    # mesa-git-src = {
+    #   url = "github:Mesa3D/mesa/main";
+    #   flake = false;
+    # };
 
     # My FFx userChrome.css
     pedrochrome-css = {
@@ -79,7 +79,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
-            ./shared/lib/graphics-stack-bleeding.nix
+            # ./shared/lib/graphics-stack-bleeding.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
             ./systems/core-configuration.nix

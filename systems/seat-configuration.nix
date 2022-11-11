@@ -296,7 +296,10 @@
         fzf-bluetooth = final.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
-        discord = prev.discord.override { withOpenASAR = true; nss = final.nss_latest; };
+        discord = prev.discord.override {
+          # withOpenASAR = true; # latest version is capping video features
+          nss = final.nss_latest;
+        };
 
         # Add pipewire-output to Audacious
         audacious = import ../shared/lib/audacious-overlay.nix final prev;
