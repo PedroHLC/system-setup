@@ -51,8 +51,7 @@ in
       nvidia-offload
     ];
     variables = {
-      "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/in
-tel_icd.i686.json";
+      "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
     };
   };
 
@@ -84,6 +83,10 @@ tel_icd.i686.json";
   # Persistent files
   environment.persistence."/var/persistent".directories = [
     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
+  ];
+
+  environment.persistence."/var/residues".users.pedrohlc.directories = [
+    ".cache/nvidia"
   ];
 
   # Shadow can't be added to persistent
