@@ -32,11 +32,19 @@
       neededForBoot = true;
     };
 
-  fileSystems."/home" =
+  fileSystems."/var/residues" =
+    # Like "persistent", but for cache and stuff I'll never need to backup.
     {
-      device = "zroot/data/home";
+      device = "zroot/ROOT/residues";
       fsType = "zfs";
+      neededForBoot = true;
     };
+
+  # fileSystems."/home" =
+  #   {
+  #     device = "zroot/data/home";
+  #     fsType = "zfs";
+  #   };
 
   fileSystems."/home/melinapn" =
     {
@@ -44,7 +52,7 @@
       fsType = "zfs";
     };
 
-  fileSystems."/home/pedrohlc/.cache/btdownloads" =
+  fileSystems."/home/pedrohlc/Torrents" =
     {
       device = "zroot/data/btdownloads";
       fsType = "zfs";

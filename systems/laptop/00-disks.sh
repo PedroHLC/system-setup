@@ -19,6 +19,7 @@ zfs create -o mountpoint=none zroot/data
 zfs create -o mountpoint=none zroot/ROOT
 zfs create -o mountpoint=legacy zroot/ROOT/empty
 zfs create -o mountpoint=legacy zroot/ROOT/nix
+zfs create -o mountpoint=legacy zroot/ROOT/residues # TODO: Move to zroot/ROOT
 zfs create -o mountpoint=legacy zroot/data/persistent
 zfs create -o mountpoint=legacy zroot/data/melina
 zfs create -o mountpoint=/home zroot/data/home # (TODO: Get rid)

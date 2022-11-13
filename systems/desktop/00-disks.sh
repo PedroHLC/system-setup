@@ -21,6 +21,7 @@ zfs create -o mountpoint=none zroot/data
 zfs create -o mountpoint=none zroot/ROOT
 zfs create -o mountpoint=legacy zroot/ROOT/empty
 zfs create -o mountpoint=legacy zroot/ROOT/nix
+zfs create -o mountpoint=legacy zroot/data/residues # TODO: Move to zroot/ROOT
 zfs create -o mountpoint=legacy zroot/data/persistent
 zfs snapshot zroot/ROOT/empty@start
 

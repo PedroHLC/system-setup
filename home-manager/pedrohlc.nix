@@ -758,7 +758,7 @@ in
     # Default directories
     userDirs = {
       enable = true;
-      createDirectories = true;
+      # createDirectories = true; # conflicts with impermanence
 
       # Make sure we're using the english ones.
       desktop = "$HOME/Desktop";

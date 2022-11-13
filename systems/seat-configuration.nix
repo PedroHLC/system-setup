@@ -412,6 +412,69 @@
         { directory = ".ssh"; mode = "0700"; }
       ];
     };
+    users.pedrohlc = {
+      directories = [
+        { directory = ".aws"; mode = "0700"; }
+        ".local/share/containers"
+        ".config/asciinema"
+        ".config/btop"
+        ".config/discord"
+        ".config/Element"
+        { directory = ".config/Keybase"; mode = "0700"; }
+        { directory = ".config/keybase"; mode = "0700"; }
+        ".config/nvim"
+        ".config/obs-studio"
+        ".config/qBittorrent"
+        ".config/spotify"
+        ".config/sublime-text"
+        ".config/TabNine"
+        { directory = ".gnupg"; mode = "0700"; }
+        { directory = ".kube"; mode = "0700"; }
+        ".local/share/DBeaverData"
+        ".local/share/fish"
+        { directory = ".local/share/keybase"; mode = "0700"; }
+        ".local/share/qBittorrent"
+        ".local/share/Steam"
+        ".local/share/TelegramDesktop"
+        ".local/share/Terraria"
+        { directory = ".ssh"; mode = "0700"; }
+        ".var/app"
+        ".zoom"
+        "Documents"
+        "Downloads"
+        "Projects"
+        "Pictures"
+        "Videos"
+      ];
+      files = [
+        ".cache/keybasekeybase.app.serverConfig"
+        ".google_authenticator"
+      ];
+    };
+  };
+
+  # Not important but persistent files
+  environment.persistence."/var/residues" = {
+    hideMounts = true;
+    directories = [
+      "/var/cache"
+      "/var/log"
+    ];
+
+    users.pedrohlc = {
+      directories = [
+        ".cache/keybase"
+        ".cache/mesa_shader_cache"
+        ".cache/mozilla"
+        ".cache/nix-index"
+        ".cache/spotify"
+        ".cache/sublime-text"
+        ".local/share/Trash"
+        ".local/state/wireplumber"
+        ".mix"
+        ".steam"
+      ];
+    };
   };
 
   # Use ZFS for persistance
@@ -425,15 +488,6 @@
   # Shadow can't be added to persistent
   users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
   users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
-
-  # Not important but persistent files
-  environment.persistence."/var/residues" = {
-    hideMounts = true;
-    directories = [
-      "/var/cache"
-      "/var/log"
-    ];
-  };
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.

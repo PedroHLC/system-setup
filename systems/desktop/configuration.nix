@@ -75,63 +75,6 @@
     in
     [ thisConfigsOverlay ];
 
-  # Persistent files
-  environment.persistence."/var/persistent".users.pedrohlc = {
-    directories = [
-      { directory = ".aws"; mode = "0700"; }
-      ".local/share/containers"
-      ".config/asciinema"
-      ".config/btop"
-      ".config/discord"
-      ".config/Element"
-      { directory = ".config/Keybase"; mode = "0700"; }
-      { directory = ".config/keybase"; mode = "0700"; }
-      ".config/nvim"
-      ".config/obs-studio"
-      ".config/qBittorrent"
-      ".config/spotify"
-      ".config/sublime-text"
-      ".config/TabNine"
-      { directory = ".gnupg"; mode = "0700"; }
-      { directory = ".kube"; mode = "0700"; }
-      ".local/share/DBeaverData"
-      ".local/share/fish"
-      { directory = ".local/share/keybase"; mode = "0700"; }
-      ".local/share/qBittorrent"
-      ".local/share/Steam"
-      ".local/share/TelegramDesktop"
-      ".local/share/Terraria"
-      { directory = ".ssh"; mode = "0700"; }
-      ".var/app"
-      ".zoom"
-      "Documents"
-      "Downloads"
-      "Projects"
-      "Pictures"
-      "Videos"
-    ];
-    files = [
-      ".cache/keybasekeybase.app.serverConfig"
-      ".google_authenticator"
-    ];
-  };
-
-  # Not important but persistent files
-  environment.persistence."/var/residues".users.pedrohlc = {
-    directories = [
-      ".cache/keybase"
-      ".cache/mesa_shader_cache"
-      ".cache/mozilla"
-      ".cache/nix-index"
-      ".cache/spotify"
-      ".cache/sublime-text"
-      ".local/share/Trash"
-      ".local/state/wireplumber"
-      ".mix"
-      ".steam"
-    ];
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
