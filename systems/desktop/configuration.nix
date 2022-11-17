@@ -59,6 +59,10 @@
   system.activationScripts.fix_acpi_wakeup.text = ''
     echo GPP0 > /proc/acpi/wakeup
   '';
+  system.activationScripts.rfkill_reset.text = ''
+    ${pkgs.util-linux}/bin/rfkill block 0
+    ${pkgs.util-linux}/bin/rfkill block 1
+  '';
 
   # Extra packages
   environment.systemPackages = with pkgs; [
