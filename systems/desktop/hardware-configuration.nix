@@ -35,7 +35,7 @@
   fileSystems."/var/residues" =
     # Like "persistent", but for cache and stuff I'll never need to backup.
     {
-      device = "zroot/data/residues";
+      device = "zroot/ROOT/residues";
       fsType = "zfs";
       neededForBoot = true;
     };

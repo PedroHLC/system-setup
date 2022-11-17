@@ -22,7 +22,6 @@ zfs create -o mountpoint=legacy zroot/ROOT/nix
 zfs create -o mountpoint=legacy zroot/ROOT/residues # TODO: Move to zroot/ROOT
 zfs create -o mountpoint=legacy zroot/data/persistent
 zfs create -o mountpoint=legacy zroot/data/melina
-zfs create -o mountpoint=/home zroot/data/home # (TODO: Get rid)
 zfs snapshot zroot/ROOT/empty@start
 
 # Different recordsize
@@ -43,12 +42,12 @@ mount -t zfs zroot/ROOT/nix /mnt/nix
 mount -t zfs zroot/data/melina /mnt/home/melinapn
 chown 1002:100 /mnt/home/melinapn
 chmod 0700 /mnt/home/melinapn
-mount -t zfs zroot/data/home /mnt/home/pedrohlc # (TODO: Get rid)
 mkdir /mnt/home/pedrohlc/Games
 mount -t zfs zroot/games/home /mnt/home/pedrohlc/Games
 chown -R 1001:100 /mnt/home/pedrohlc
 chmod 0700 /mnt/home/pedrohlc
 chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
+mount -t zfs zroot/ROOT/residues /mnt/var/residues
 
 echo 'Finished. After installing NixOS, change every mountpoint to legacy.'

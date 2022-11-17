@@ -40,12 +40,6 @@
       neededForBoot = true;
     };
 
-  # fileSystems."/home" =
-  #   {
-  #     device = "zroot/data/home";
-  #     fsType = "zfs";
-  #   };
-
   fileSystems."/home/melinapn" =
     {
       device = "zroot/data/melina";
