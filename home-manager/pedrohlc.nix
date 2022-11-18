@@ -992,10 +992,7 @@ in
     ];
     shellInit = ''
       set fish_greeting '何でもは知らないわよ。知ってることだけ'
+      set -g SHELL "${config.programs.fish.package}/bin/fish"
     '';
-  };
-
-  home.sessionVariables = {
-    SHELL = "${config.programs.fish.package}/bin/fish";
   };
 }
