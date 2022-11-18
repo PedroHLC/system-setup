@@ -61,8 +61,7 @@
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/34e7ca32-40da-4742-9bc5-7d055ece3002"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/34e7ca32-40da-4742-9bc5-7d055ece3002"; }];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # high-resolution display

@@ -108,6 +108,7 @@
       completions.enable = true;
     };
   };
+  environment.variables.SHELL = "${pkgs.fish}/bin/fish";
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true; # So I can use GPG through SSH

@@ -994,4 +994,8 @@ in
       set fish_greeting '何でもは知らないわよ。知ってることだけ'
     '';
   };
+
+  home.sessionVariables = {
+    SHELL = "${config.programs.fish.package}/bin/fish";
+  };
 }
