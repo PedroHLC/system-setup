@@ -34,9 +34,7 @@
     "initcall_blacklist=acpi_cpufreq_init"
     "amd_pstate.shared_mem=1"
     # Fix "controller is down" (probably)
-    "nvme_core.default_ps_max_latency_us=0" # this didn't do it
-    #"pcie_aspm=off" # this didn't do it
-    #"iommu=pt" # this didn't do it
+    "nvme_core.default_ps_max_latency_us=0"
   ];
   boot.kernelModules = [ "amd_pstate" ];
 
@@ -58,10 +56,6 @@
   # B550I AORUS PRO AX issue with suspension
   system.activationScripts.fix_acpi_wakeup.text = ''
     echo GPP0 > /proc/acpi/wakeup
-  '';
-  system.activationScripts.rfkill_reset.text = ''
-    ${pkgs.util-linux}/bin/rfkill block 0
-    ${pkgs.util-linux}/bin/rfkill block 1
   '';
 
   # Extra packages

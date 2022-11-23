@@ -15,6 +15,7 @@ zpool create -f zroot /dev/nvme{1n1p2,0n1p3}
 zpool set autotrim=on zroot
 zfs set compression=lz4 zroot
 zfs set mountpoint=none zroot
+zfs create -o refreservation=10G -o mountpoint=none zroot/reserved
 
 # System volumes.
 zfs create -o mountpoint=none zroot/data

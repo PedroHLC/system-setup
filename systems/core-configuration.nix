@@ -159,8 +159,8 @@
     dockerCompat = true; # Podman provides docker.
   };
 
-  # We are anxiously waiting for PR 122547
-  #services.dbus-broker.enable = true;
+  # Let's recover our long lost dogs (PR 122547)
+  #services.dbus.implementation = "broker";
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;

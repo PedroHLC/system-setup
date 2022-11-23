@@ -126,7 +126,7 @@
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "pipewire";
     ALSOFT_DRIVERS = "pipewire";
-    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none";
+    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,gpl";
   };
 
   # Autologin.
@@ -217,7 +217,7 @@
     vulkan-caps-viewer
 
     # Office-stuff
-    calligra
+    # calligra # Broken, using qtwebkit
     inkscape
     gimp
     texlive.combined.scheme-medium
