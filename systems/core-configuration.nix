@@ -160,7 +160,7 @@
   };
 
   # Let's recover our long lost dogs (PR 122547)
-  #services.dbus.implementation = "broker";
+  services.dbus.implementation = "broker";
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;

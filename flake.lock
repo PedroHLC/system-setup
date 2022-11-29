@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1669328018,
-        "narHash": "sha256-aJRMobnNDEXKwoSZFS4hGjGU1WDNxkQ82BVKAEohOfY=",
+        "lastModified": 1669724748,
+        "narHash": "sha256-lXt0GnHogW63B8EQGME9ERkoCPqwUQtOG/qF20clfUw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "62cb5bcf93896e4dd6b4507dac7ba2e2e3abc9d7",
+        "rev": "cd2a826f33ee96f705e8c07b01fd1346b2eccbc0",
         "type": "github"
       },
       "original": {
@@ -34,6 +34,23 @@
       "original": {
         "owner": "nix-community",
         "repo": "impermanence",
+        "type": "github"
+      }
+    },
+    "mesa-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669716616,
+        "narHash": "sha256-AsOYwLjTl1d/xU7KfQhnXWEMiyclQhFqKGmzJVvZuvs=",
+        "owner": "Mesa3D",
+        "repo": "mesa",
+        "rev": "2673d0f8b2a97bbe775f0de1c240c69164371bfd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mesa3D",
+        "ref": "main",
+        "repo": "mesa",
         "type": "github"
       }
     },
@@ -93,11 +110,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1669387357,
-        "narHash": "sha256-z1azVj/5Em5kGhh9OgBOsjTEgMab7hXL/aRilH9tzyI=",
+        "lastModified": 1669597967,
+        "narHash": "sha256-R+2NaDkXsYkOpFOhmVR8jBZ77Pq55Z6ilaqwFLLn000=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "55b3f68bda6d4f4dc6092eed0508063f154fa4fd",
+        "rev": "be9e3762e719211368d186f547f847737baad720",
         "type": "github"
       },
       "original": {
@@ -127,6 +144,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
         "nix-gaming-edge": "nix-gaming-edge",
         "nixpkgs": "nixpkgs_2",

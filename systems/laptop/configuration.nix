@@ -58,7 +58,6 @@ in
   # Intel VAAPI (NVIDIA enable its own)
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
-    libva
   ];
 
   # Services/Programs configurations
