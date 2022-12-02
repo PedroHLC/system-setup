@@ -11,7 +11,7 @@
     # Wireguard Client
     wireguard.interfaces.wg0 = {
       ips = [ "${vpn.desktop.v4}/${vpn.mask.v4}" "${vpn.desktop.v6}/${vpn.mask.v6}" ];
-      privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
+      privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
   };
 
@@ -22,7 +22,7 @@
     protocol = "duckdns";
     server = "www.duckdns.org";
     username = "nouser";
-    passwordFile = "home/pedrohlc/Projects/com.pedrohlc/duckdns.token";
+    passwordFile = "/var/persistent/secrets/duckdns.token";
     ipv6 = false; # Does not work for duckdns protocol
   };
 

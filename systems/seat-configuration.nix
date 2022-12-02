@@ -437,6 +437,7 @@
         ".local/share/Steam"
         ".local/share/TelegramDesktop"
         ".local/share/Terraria"
+        { directory = ".secrets"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         ".var/app"
         ".zoom"
@@ -470,6 +471,7 @@
         ".cache/nix-index"
         ".cache/spotify"
         ".cache/sublime-text"
+        ".system.git"
         ".local/share/Trash"
         ".local/state/wireplumber"
         ".mix"

@@ -973,7 +973,7 @@ in
       {
         ":q" = "exit";
         "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
-        "phlc-sys" = "git --git-dir=$HOME/Projects/com.pedrohlc/my-mkrootfs --work-tree=/etc/nixos";
+        "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         "mpv-hq" = "mpv --profile=hq";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
