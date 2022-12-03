@@ -24,7 +24,7 @@ in
     # Wireguard Client
     wireguard.interfaces.wg0 = {
       ips = [ "${vpn.laptop.v4}/${vpn.mask.v4}" "${vpn.laptop.v6}/${vpn.mask.v6}" ];
-      privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
+      privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
   };
 

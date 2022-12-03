@@ -60,6 +60,7 @@ let
     tmux new-session ${pkgs.writeShellScript "nrpr-inside" ''
       cd  ~/Projects/com.pedrohlc/nixpkgs
       export NIXPKGS_ALLOW_UNFREE=1
+      source ~/.secrets/github.nixpkgs-review.env
       ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr "$@"
       echo "Exited with code " "$?"
       read
