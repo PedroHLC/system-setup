@@ -2,8 +2,8 @@
 {
   nixpkgs.overlays =
     let
-      galliumDrivers = [ "auto" "zink" "virgl" ];
-      vulkanDrivers = [ "auto" "virtio-experimental" ];
+      galliumDrivers = [ "swrast" "radeonsi" "zink" "virgl" ];
+      vulkanDrivers = [ "swrast" "amd" "virtio-experimental" ];
 
       thisConfigsOverlay = final: prev: {
 

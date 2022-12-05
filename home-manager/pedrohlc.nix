@@ -974,8 +974,9 @@ in
       {
         ":q" = "exit";
         "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
+        "gpff" = "git pull --ff-only";
+        "gprb" = "git pull --rebase";
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
-        "mpv-hq" = "mpv --profile=hq";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
@@ -983,6 +984,7 @@ in
         "elm-optimize-level-2" = "${jsRun} elm-optimize-level-2";
         "elm-review" = "${jsRun} elm-review";
         "elm-test" = "${jsRun} elm-test";
+        "mpv-hq" = "mpv --profile=hq";
         "parcel" = "${jsRun} parcel";
       };
     plugins = [

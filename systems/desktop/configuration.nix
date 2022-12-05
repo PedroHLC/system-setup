@@ -54,9 +54,14 @@
   };
 
   # B550I AORUS PRO AX issue with suspension
-  system.activationScripts.fix_acpi_wakeup.text = ''
-    echo GPP0 > /proc/acpi/wakeup
-  '';
+  systemd.services.fix-b550i-acpi-wakeup = {
+    description = "Disable misbehaving device from waking-up computer from sleep.";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      echo GPP0 > /proc/acpi/wakeup
+    '';
+  };
 
   # Extra packages
   environment.systemPackages = with pkgs; [
