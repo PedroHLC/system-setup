@@ -277,9 +277,6 @@
         # Script to open my encrypted firefox profile.
         firefox-gate = final.callPackage ../shared/pkgs/firefox-gate.nix { };
 
-        # Script for swaylock with GIFs on background (requires configuration in sway).
-        my-wscreensaver = final.callPackage ../shared/pkgs/my-wscreensaver.nix { };
-
         # Environment to properly (and force) use wayland.
         wayland-env = final.callPackage ../shared/pkgs/wayland-env.nix { };
 
@@ -408,12 +405,14 @@
     users.root = {
       home = "/root";
       directories = [
+        ".android" # adb keys
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
       ];
     };
     users.pedrohlc = {
       directories = [
+        ".android" # adb keys
         { directory = ".aws"; mode = "0700"; }
         ".local/share/containers"
         ".config/asciinema"

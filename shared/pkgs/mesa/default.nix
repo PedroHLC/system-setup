@@ -1,5 +1,6 @@
 { stdenv
 , lib
+, fetchurl
 , meson
 , pkg-config
 , ninja
@@ -26,10 +27,10 @@
 , vulkan-loader
 , glslang
 , galliumDrivers ? [ "auto" ]
-, vulkanDrivers ? [ "auto" ]
-, videoCodecs ? [ "h264dec" "h264enc" "h265dec" "h265enc" "vc1dec" ]
+  # upstream Mesa defaults to only enabling swrast (aka lavapipe) on aarch64 for some reason, so force building the others
+, vulkanDrivers ? [ "auto" ] ++ lib.optionals (stdenv.isLinux && stdenv.isAarch64) [ "broadcom" "freedreno" "panfrost" ]
 , eglPlatforms ? [ "x11" ] ++ lib.optionals stdenv.isLinux [ "wayland" ]
-, vulkanLayers ? [ "device-select" "overlay" ]
+, vulkanLayers ? lib.optionals (!stdenv.isDarwin) [ "device-select" "overlay" ] # No Vulkan support on Darwin
 , OpenGL
 , Xplugin
 , withValgrind ? lib.meta.availableOn stdenv.hostPlatform valgrind-light && !valgrind-light.meta.broken
@@ -37,8 +38,13 @@
 , enableGalliumNine ? stdenv.isLinux
 , enableOSMesa ? stdenv.isLinux
 , enableOpenCL ? stdenv.isLinux && stdenv.isx86_64
+, enablePatentEncumberedCodecs ? true
 , libclc
 , jdupes
+, cmake
+, rustc
+, rust-bindgen
+, spirv-llvm-translator_14
 , mesa-git-src
 }:
 
@@ -58,7 +64,13 @@ with lib;
 let
   # Release calendar: https://www.mesa3d.org/release-calendar.html
   # Release frequency: https://www.mesa3d.org/releasing.html#schedule
-  version = "22.99.99";
+  version = "22.3.99";
+
+  rust-bindgen' = rust-bindgen.override {
+    rust-bindgen-unwrapped = rust-bindgen.unwrapped.override {
+      clang = llvmPackages.clang;
+    };
+  };
 
   self = stdenv.mkDerivation {
     pname = "mesa";
@@ -84,6 +96,8 @@ let
       substituteInPlace src/util/xmlconfig.c --replace \
         'DATADIR "/drirc.d"' '"${placeholder "out"}/share/drirc.d"'
       substituteInPlace src/util/meson.build --replace \
+        "get_option('datadir')" "'${placeholder "out"}/share'"
+      substituteInPlace src/amd/vulkan/meson.build --replace \
         "get_option('datadir')" "'${placeholder "out"}/share'"
     '';
 
@@ -127,11 +141,12 @@ let
       "-Dglvnd=true"
     ] ++ optionals enableOpenCL [
       "-Dgallium-opencl=icd" # Enable the gallium OpenCL frontend
+      "-Dgallium-rusticl=true"
+      "-Drust_std=2021"
       "-Dclang-libdir=${llvmPackages.clang-unwrapped.lib}/lib"
-    ] ++ optional (videoCodecs != [ ])
-      "-Dvideo-codecs=${concatStringsSep "," videoCodecs}"
-    ++ optional (vulkanLayers != [ ])
-      "-D vulkan-layers=${builtins.concatStringsSep "," vulkanLayers}";
+    ] ++ optional enablePatentEncumberedCodecs
+      "-Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec"
+    ++ optional (vulkanLayers != [ ]) "-D vulkan-layers=${builtins.concatStringsSep "," vulkanLayers}";
 
     buildInputs = with xorg; [
       expat
@@ -154,7 +169,7 @@ let
     ] ++ lib.optionals (elem "wayland" eglPlatforms) [ wayland wayland-protocols ]
     ++ lib.optionals stdenv.isLinux [ libomxil-bellagio libva-minimal ]
     ++ lib.optionals stdenv.isDarwin [ libunwind ]
-    ++ lib.optionals enableOpenCL [ libclc llvmPackages.clang llvmPackages.clang-unwrapped ]
+    ++ lib.optionals enableOpenCL [ libclc llvmPackages.clang llvmPackages.clang-unwrapped rustc rust-bindgen' spirv-llvm-translator_14 ]
     ++ lib.optional withValgrind valgrind-light
     # Mesa will not build zink when gallium-drivers=auto
     ++ lib.optional (elem "zink" galliumDrivers) vulkan-loader;
@@ -218,12 +233,13 @@ let
       mkdir -p $opencl/lib
       mv -t "$opencl/lib/"     \
         $out/lib/gallium-pipe   \
-        $out/lib/libMesaOpenCL*
+        $out/lib/lib*OpenCL*
 
-      # We construct our own .icd file that contains an absolute path.
+      # We construct our own .icd files that contain absolute paths.
       rm -r $out/etc/OpenCL
       mkdir -p $opencl/etc/OpenCL/vendors/
       echo $opencl/lib/libMesaOpenCL.so > $opencl/etc/OpenCL/vendors/mesa.icd
+      echo $opencl/lib/libRusticlOpenCL.so > $opencl/etc/OpenCL/vendors/rusticl.icd
     '' + lib.optionalString enableOSMesa ''
       # move libOSMesa to $osmesa, as it's relatively big
       mkdir -p $osmesa/lib

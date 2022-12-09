@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:PedroHLC/nixpkgs/contingency-channel";
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -24,7 +24,7 @@
 
     # Smooth-criminal bleeding-edge Mesa3D
     mesa-git-src = {
-      url = "github:Mesa3D/mesa/main";
+      url = "git+https://gitlab.freedesktop.org/mesa/mesa.git?ref=22.3";
       flake = false;
     };
 
@@ -33,6 +33,10 @@
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
     };
+
+    # For outer-world binaries
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-ld.url = "github:Mic92/nix-ld/main";
   };
 
   outputs = { nixpkgs, home-manager, impermanence, ... }@inputs:
@@ -40,7 +44,7 @@
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
         inherit ssot impermanence;
-        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
+        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css nix-alien nix-ld;
       };
     in
     {
@@ -80,6 +84,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
+            ./shared/lib/nix-alien-activate.nix
             ./shared/lib/graphics-stack-bleeding.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix

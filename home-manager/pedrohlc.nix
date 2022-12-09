@@ -13,7 +13,7 @@ let
   # Some stuff that repeats across this file
   modifier = "Mod4";
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
-  lock = "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
+  lock = "${pkgs.swaylock}/bin/swaylock -c 018281";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
   terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
@@ -74,7 +74,6 @@ in
     fzf-bluetooth
 
     # My scripts
-    my-wscreensaver
     nrpr
   ];
 
@@ -88,7 +87,7 @@ in
       defaultWorkspace = "workspace number 1";
       startup = [
         # Start locked because I use autologin
-        { command = "${lock} --first-run"; }
+        { command = "${lock}"; }
         # Notification daemon
         { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
         # Volume and Display-brightness OSD
@@ -155,13 +154,6 @@ in
 
           # So that I have a pop-out for sway-launcher-desktop
           { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
-
-          # So that "my-wscreensaver" does what it needs on all setups
-          { criteria = { title = "WScreenSaver@Global"; }; command = "fullscreen enable global; sticky enable"; }
-          { criteria = { title = "WScreenSaver@eDP-1"; }; command = "move container to output eDP-1; fullscreen enable; sticky enable"; }
-          { criteria = { title = "WScreenSaver@DP-1"; }; command = "move container to output DP-1; fullscreen enable; sticky enable"; }
-          { criteria = { title = "WScreenSaver@DP-2"; }; command = "move container to output DP-2; fullscreen enable; sticky enable"; }
-          { criteria = { title = "WScreenSaver@HDMI-A-1"; }; command = "move container to output HDMI-A-1; fullscreen enable; sticky enable"; }
         ];
       };
       keybindings = mkOptionDefault ({
