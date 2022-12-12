@@ -55,17 +55,21 @@ let
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then "60" else "300";
 
-  # nixpkgs-review in the right directory, in a tmux session
+  # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
   nrpr = pkgs.writeShellScriptBin "nrpr" ''
     tmux new-session ${pkgs.writeShellScript "nrpr-inside" ''
       cd  ~/Projects/com.pedrohlc/nixpkgs
       export NIXPKGS_ALLOW_UNFREE=1
       source ~/.secrets/github.nixpkgs-review.env
-      ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr "$@"
+      ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr --run "${pkgs.writeShellScript "nrpr-notify-and-shell" ''
+        notify-send "$(basename $PWD) finished building"
+        exec ${fish}
+      ''}" "$@"
       echo "Exited with code " "$?"
       read
     ''} "$@"
   '';
+
 in
 {
   home.packages = with pkgs; lists.optionals seat [
