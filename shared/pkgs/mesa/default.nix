@@ -39,6 +39,7 @@
 , enableOSMesa ? stdenv.isLinux
 , enableOpenCL ? stdenv.isLinux && stdenv.isx86_64
 , enablePatentEncumberedCodecs ? true
+, enableRust ? withValgrind && enableOpenCL
 , libclc
 , jdupes
 , cmake
@@ -64,7 +65,7 @@ with lib;
 let
   # Release calendar: https://www.mesa3d.org/release-calendar.html
   # Release frequency: https://www.mesa3d.org/releasing.html#schedule
-  version = "22.3.99";
+  version = "22.99.99";
 
   rust-bindgen' = rust-bindgen.override {
     rust-bindgen-unwrapped = rust-bindgen.unwrapped.override {
@@ -139,12 +140,13 @@ let
       "-Dgbm-backends-path=${libglvnd.driverLink}/lib/gbm:${placeholder "out"}/lib/gbm"
     ] ++ optionals stdenv.isLinux [
       "-Dglvnd=true"
-    ] ++ optionals enableOpenCL [
+    ] ++ optionals enableOpenCL ([
       "-Dgallium-opencl=icd" # Enable the gallium OpenCL frontend
+      "-Dclang-libdir=${llvmPackages.clang-unwrapped.lib}/lib"
+    ] ++ optionals enableRust [
       "-Dgallium-rusticl=true"
       "-Drust_std=2021"
-      "-Dclang-libdir=${llvmPackages.clang-unwrapped.lib}/lib"
-    ] ++ optional enablePatentEncumberedCodecs
+    ]) ++ optional enablePatentEncumberedCodecs
       "-Dvideo-codecs=h264dec,h264enc,h265dec,h265enc,vc1dec"
     ++ optional (vulkanLayers != [ ]) "-D vulkan-layers=${builtins.concatStringsSep "," vulkanLayers}";
 
@@ -228,7 +230,7 @@ let
       for js in $drivers/share/vulkan/icd.d/*.json; do
         substituteInPlace "$js" --replace "$out" "$drivers"
       done
-    '' + optionalString enableOpenCL ''
+    '' + optionalString enableOpenCL (''
       # Move OpenCL stuff
       mkdir -p $opencl/lib
       mv -t "$opencl/lib/"     \
@@ -236,11 +238,11 @@ let
         $out/lib/lib*OpenCL*
 
       # We construct our own .icd files that contain absolute paths.
-      rm -r $out/etc/OpenCL
       mkdir -p $opencl/etc/OpenCL/vendors/
       echo $opencl/lib/libMesaOpenCL.so > $opencl/etc/OpenCL/vendors/mesa.icd
+    '' + optionalString enableRust ''
       echo $opencl/lib/libRusticlOpenCL.so > $opencl/etc/OpenCL/vendors/rusticl.icd
-    '' + lib.optionalString enableOSMesa ''
+    '') + lib.optionalString enableOSMesa ''
       # move libOSMesa to $osmesa, as it's relatively big
       mkdir -p $osmesa/lib
       mv -t $osmesa/lib/ $out/lib/libOSMesa*

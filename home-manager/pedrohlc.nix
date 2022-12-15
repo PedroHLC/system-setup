@@ -57,7 +57,7 @@ let
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
   nrpr = pkgs.writeShellScriptBin "nrpr" ''
-    tmux new-session ${pkgs.writeShellScript "nrpr-inside" ''
+    ${tmux} new-session ${pkgs.writeShellScript "nrpr-inside" ''
       cd  ~/Projects/com.pedrohlc/nixpkgs
       export NIXPKGS_ALLOW_UNFREE=1
       source ~/.secrets/github.nixpkgs-review.env

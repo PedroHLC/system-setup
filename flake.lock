@@ -23,11 +23,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1670513770,
-        "narHash": "sha256-muL74fsbGA8K8WlZSPNWddOiuBnC54kAajncX6nXrh4=",
+        "lastModified": 1670970889,
+        "narHash": "sha256-TWJo3/X3Q3r+HeX16QN4FE6ddBpGtAboymSEF+4Nnc0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "054d9e3187ca00479e8036dc0e92900a384f30fd",
+        "rev": "e412025fffdcd6219ddd21c65d9a1b90005ce508",
         "type": "github"
       },
       "original": {
@@ -55,18 +55,18 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1669843731,
-        "narHash": "sha256-CkMJsb1lFR3rQWB2z7sqD8rJ5lmw2DK5ohZ5qeL1JzA=",
-        "ref": "22.3",
-        "rev": "32552010d1e0243948aebd6b6642ba9aeb979004",
-        "revCount": 162521,
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+        "lastModified": 1670987124,
+        "narHash": "sha256-KF+3Ssf14uq88JLzynhnMXIIHY4TeaFri2ZkKqjX06s=",
+        "owner": "Mesa3D",
+        "repo": "mesa",
+        "rev": "e4e4ba23047a0f2f2578691456e487fba2013f43",
+        "type": "github"
       },
       "original": {
-        "ref": "22.3",
-        "type": "git",
-        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+        "owner": "Mesa3D",
+        "ref": "main",
+        "repo": "mesa",
+        "type": "github"
       }
     },
     "nix-alien": {
@@ -75,11 +75,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1668504894,
-        "narHash": "sha256-Q/URqJtTONNEoVfat+UMZq8rl7MvMwLEKF1uPFQm/cs=",
+        "lastModified": 1671096219,
+        "narHash": "sha256-DFpD0CQU+/vvBYLYad/XpMNC4IGgG/i1ev56Z4JG5QU=",
         "owner": "thiagokokada",
         "repo": "nix-alien",
-        "rev": "ec6dabeaddecab75794bfa1070989371b2636b70",
+        "rev": "cc77180e74ad9a7e6c6c8912ce14870846008072",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1668443372,
-        "narHash": "sha256-lXNlVyNWwO22/JUdBtUWz68jZB3DM+Jq/irlsbwncI0=",
+        "lastModified": 1671007632,
+        "narHash": "sha256-1uxNTBOa0SMypJKOWeUqrz2VfmwQ1hVgWckPdgDNip4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "dad4de1694cd92d9a0e123bfdf134d0047b836a5",
+        "rev": "b9a0cd40ede905f554399f3f165895dccfd35f3b",
         "type": "github"
       },
       "original": {
@@ -195,11 +195,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1670842808,
-        "narHash": "sha256-BrFSU6Wr64FA9h9/vL3YcwTiqAuFtx71zd/Zwg1yzUI=",
+        "lastModified": 1671113458,
+        "narHash": "sha256-hmPxfhlATY6xvpNM36unS6jsfl7rsMuGdFqsDUKQYZw=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "f756909204d0935f761373bd57bebb7cefc89b93",
+        "rev": "0f86aec9816162a02ba12a16ce44f5e0cc2d4278",
         "type": "github"
       },
       "original": {

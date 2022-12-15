@@ -43,9 +43,6 @@
   boot.kernelParams = [
     # Disable all mitigations
     "mitigations=off"
-    "no_stf_barrier"
-    "noibpb"
-    "noibrs"
     "nopti"
     "tsx=on"
 
@@ -54,6 +51,9 @@
 
     # https://github.com/NixOS/nixpkgs/issues/35681#issuecomment-370202008
     "systemd.gpt_auto=0"
+
+    # https://www.phoronix.com/news/Linux-Splitlock-Hurts-Gaming
+    "split_lock_detect=off"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
@@ -127,6 +127,7 @@
     SDL_AUDIODRIVER = "pipewire";
     ALSOFT_DRIVERS = "pipewire";
     GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,gpl,ngg_streamout";
+    WINEPREFIX = "/dev/null";
   };
 
   # Autologin.
@@ -142,6 +143,7 @@
     acpi
     alacritty
     audacious
+    btop
     brightnessctl
     discord
     element-desktop-wayland
@@ -485,6 +487,14 @@
 
   # More modern stage 1 in boot
   boot.initrd.systemd.enable = true;
+
+  # Limit resources used by nix-daemon to fix memleaks in some Python and Java derivations.
+  # I always need at least 24G of RAM because of ZFS.
+  systemd.services.nix-daemon.serviceConfig = {
+    AllowedCPUs = "3-23";
+    MemoryMax = "40G";
+    MemorySwapMax = "40G";
+  };
 
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.

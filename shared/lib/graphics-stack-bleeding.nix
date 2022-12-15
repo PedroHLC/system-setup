@@ -15,6 +15,7 @@
           inherit galliumDrivers vulkanDrivers;
           inherit mesa-git-src;
           libclc = final.libclc_14;
+          enableRust = false;
         });
         lib32-mesa-bleeding = (final.pkgsi686Linux.callPackage ../pkgs/mesa {
           llvmPackages = final.pkgsi686Linux.llvmPackages_latest;
@@ -23,6 +24,7 @@
           inherit galliumDrivers vulkanDrivers;
           inherit mesa-git-src;
           libclc = final.libclc_14;
+          enableRust = false;
         });
 
         libclc_14 = (final.callPackage ../pkgs/libclc {
