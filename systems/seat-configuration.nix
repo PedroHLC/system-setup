@@ -426,6 +426,7 @@
         { directory = ".config/keybase"; mode = "0700"; }
         ".config/nvim"
         ".config/obs-studio"
+        ".config/osdlyrics"
         ".config/qBittorrent"
         ".config/spotify"
         ".config/sublime-text"
@@ -477,6 +478,7 @@
         ".local/share/Trash"
         ".local/state/wireplumber"
         ".mix"
+        ".lyrics"
         ".steam"
       ];
     };
