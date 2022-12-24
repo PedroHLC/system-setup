@@ -63,6 +63,9 @@
     '';
   };
 
+  # Limit resources used by nix-daemon.
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "3-23";
+
   # Extra packages
   environment.systemPackages = with pkgs; [
     vkBasalt

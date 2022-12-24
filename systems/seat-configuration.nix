@@ -150,6 +150,7 @@
     ffmpegthumbnailer
     firefox-wayland
     fx_cast_bridge
+    google-chrome
     keybase-gui
     libinput
     libinput-gestures
@@ -170,7 +171,6 @@
     spotify
     streamlink
     tdesktop
-    ungoogled-chromium
     usbutils
     waypipe
     xarchiver
@@ -219,7 +219,7 @@
     vulkan-caps-viewer
 
     # Office-stuff
-    # calligra # Broken, using qtwebkit
+    # calligra (struggling with qtwebkit)
     inkscape
     gimp
     texlive.combined.scheme-medium
@@ -266,6 +266,7 @@
         # Obs with plugins
         obs-studio-wrap = final.wrapOBS.override { inherit (final) obs-studio; } {
           plugins = with final.obs-studio-plugins; [
+            # obs-backgroundremoval (struggling with onnxruntime)
             obs-gstreamer
             obs-pipewire-audio-capture
             obs-vkcapture
@@ -491,7 +492,6 @@
   # Limit resources used by nix-daemon to fix memleaks in some Python and Java derivations.
   # I always need at least 24G of RAM because of ZFS.
   systemd.services.nix-daemon.serviceConfig = {
-    AllowedCPUs = "3-23";
     MemoryMax = "40G";
     MemorySwapMax = "40G";
   };

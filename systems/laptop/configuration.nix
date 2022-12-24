@@ -69,6 +69,9 @@ in
   services.tlp.enable = true;
   services.upower.enable = true;
 
+  # Limit resources used by nix-daemon.
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "3-15";
+
   # Melina may also use this machine
   users.users.melinapn = {
     uid = 1002;
