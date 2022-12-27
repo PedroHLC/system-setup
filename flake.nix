@@ -35,8 +35,10 @@
     };
 
     # For outer-world binaries
-    nix-alien.url = "github:thiagokokada/nix-alien";
-    nix-ld.url = "github:Mic92/nix-ld/main";
+    nix-alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, impermanence, ... }@inputs:
@@ -44,7 +46,7 @@
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
         inherit ssot impermanence;
-        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css nix-alien nix-ld;
+        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css nix-alien;
       };
     in
     {
@@ -57,6 +59,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
+            ./shared/lib/nix-alien-activate.nix
             ./shared/lib/wireguard-client.nix
             ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix

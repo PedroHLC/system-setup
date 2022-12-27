@@ -31,6 +31,8 @@ let
   tr = coreutilsBin "tr";
   wc = coreutilsBin "wc";
   who = coreutilsBin "who";
+  env = coreutilsBin "env";
+  tty = coreutilsBin "tty";
   tmux = "${pkgs.tmux}/bin/tmux";
   fish = "${pkgs.fish}/bin/fish";
   defaultBrowser = "firefox.desktop";
@@ -296,7 +298,7 @@ in
       source ${pkgs.wayland-env}/bin/wayland-env
     '' + (strings.optionalString nvidiaPrime ''
       # Gaming
-      export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${pkgs.uutils-coreutils}/bin/env $GAMEMODERUNEXEC"
+      export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${env} $GAMEMODERUNEXEC"
     '');
     extraOptions = mkIf nvidiaPrime [
       "--unsupported-gpu"
@@ -454,7 +456,7 @@ in
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
         exec ${tmux}
     '' + (strings.optionalString seat ''
-      elif [ "$(${pkgs.coreutils}/bin/tty)" = '/dev/tty1' ]; then
+      elif [ "$(${tty})" = '/dev/tty1' ]; then
         # It doesn't work like this: $\{pkgs.sway}/bin/sway
         ${config.wayland.windowManager.sway.package}/bin/sway # The same one from ~/.nix-profile/bin/sway
     '') + ''

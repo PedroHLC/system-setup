@@ -1,10 +1,6 @@
-({ nix-alien, nix-ld, pkgs, ... }: {
+({ nix-alien, pkgs, ... }: {
   nixpkgs.overlays = [
     nix-alien.overlays.default
-  ];
-  imports = [
-    # Optional, but this is needed for `nix-alien-ld` command
-    nix-ld.nixosModules.nix-ld
   ];
   environment.systemPackages = [
     pkgs.nix-alien
