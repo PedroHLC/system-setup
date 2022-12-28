@@ -11,6 +11,7 @@
         enableACME = true;
         http3 = true;
         locations."/".root = ../../../shared/assets/http-root/lab;
+        locations."/bucket/".root = "/srv/http";
       };
       "${web.zeta.addr}" = {
         forceSSL = true;

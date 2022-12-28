@@ -500,7 +500,7 @@
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";
 
-  # Hardcodes some address resolving
+  # Necessary for playing GI
   networking.extraHosts =
     ''
       # - Required to play GI on Linux without banning.
