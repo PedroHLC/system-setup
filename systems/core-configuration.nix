@@ -123,8 +123,8 @@
     enable = true;
     viAlias = true;
     vimAlias = true;
+    defaultEditor = true;
   };
-  environment.variables.EDITOR = "nvim";
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
@@ -179,17 +179,15 @@
   networking.hosts = {
     # - My Network
 
-    "${web.lab.v4}" = web.lab.addr;
-    "${web.lab.v6}" = web.lab.addr;
-    "${web.zeta.v4}" = web.zeta.addr;
-    "${web.zeta.v6}" = web.zeta.addr;
+    "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
+    "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
 
     # - My VPN
-    "${vpn.lab.v4}" = vpn.lab.addr;
-    "${vpn.lab.v6}" = vpn.lab.addr;
-    "${vpn.desktop.v4}" = vpn.desktop.addr;
-    "${vpn.desktop.v6}" = vpn.desktop.addr;
-    "${vpn.laptop.v4}" = vpn.laptop.addr;
-    "${vpn.laptop.v6}" = vpn.laptop.addr;
+    "${vpn.lab.v4}" = [ vpn.lab.addr ];
+    "${vpn.lab.v6}" = [ vpn.lab.addr ];
+    "${vpn.desktop.v4}" = [ vpn.desktop.addr ];
+    "${vpn.desktop.v6}" = [ vpn.desktop.addr ];
+    "${vpn.laptop.v4}" = [ vpn.laptop.addr ];
+    "${vpn.laptop.v6}" = [ vpn.laptop.addr ];
   };
 }
