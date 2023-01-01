@@ -503,8 +503,8 @@ in
         target = "swaync/config.json";
         text = generators.toJSON { } {
           "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
-          positionX = "center";
-          positionY = "bottom";
+          positionX = if nvidiaPrime then "right" else "center";
+          positionY = if nvidiaPrime then "top" else "bottom";
         };
       };
       # Audacious rice
