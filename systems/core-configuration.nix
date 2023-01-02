@@ -141,11 +141,11 @@
   # Enable services (automatically includes their apps' packages).
   services.timesyncd.enable = true;
   services.openssh = {
-    # TODO: Use openssh_hpn
     enable = true;
     forwardX11 = true;
     permitRootLogin = "no";
   };
+  programs.ssh.package = pkgs.openssh_hpn;
 
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
