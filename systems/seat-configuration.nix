@@ -195,6 +195,7 @@
     gh
     gnumake
     heroku
+    inotify-tools # watching files
     k9s # Kubernets
     kubectl # Kubernets
     kubernetes-helm # HELM

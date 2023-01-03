@@ -16,10 +16,10 @@
       # But I prefer to specify which routes to access
       allowedIPsAsRoutes = false;
       postSetup = ''
-        ip route replace 17.16.0.2/31 dev wg1 table main
+        ip route replace 172.16.0.2/31 dev wg1 table main
       '';
       postShutdown = ''
-        ip route del 17.16.0.2/31 dev wg1
+        ip route del 172.16.0.2/31 dev wg1
       '';
     };
     hosts."162.159.192.1" = [ "engage.cloudflareclient.com" ];
