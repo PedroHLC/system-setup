@@ -13,11 +13,14 @@
       ips = [ "${vpn.desktop.v4}/${vpn.mask.v4}" "${vpn.desktop.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
+
+    wireguard.interfaces.wg1.privateKeyFile = "/var/persistent/secrets/wgcf-teams/private";
   };
+
 
   # DuckDNS
   services.ddclient = {
-    enable = true;
+    enable = false; # currently broken
     domains = [ web.desktop.addr ];
     protocol = "duckdns";
     server = "www.duckdns.org";

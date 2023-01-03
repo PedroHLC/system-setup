@@ -91,6 +91,7 @@
             ./shared/lib/graphics-stack-bleeding.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
+            ./shared/lib/wgcf-teams.nix
             ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
