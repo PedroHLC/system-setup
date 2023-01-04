@@ -36,8 +36,9 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.requestEncryptionCredentials = false;
 
-  # Temporarily move to ZFS-staging for 5.19
+  # ZFS being out-of-tree is super head-aches
   boot.zfs.enableUnstable = true;
+  boot.kernelPackages = pkgs.callPackage ../shared/pkgs/pinned-linux-lqx.nix { };
 
   # Kernel Params
   boot.kernelParams = [
