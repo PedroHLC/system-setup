@@ -28,7 +28,7 @@
         http3 = true;
         locations."/" = {
           recommendedProxySettings = true;
-          proxyPass = "https://127.0.0.1:${toString vpn.lab.libredditPort}/";
+          proxyPass = "http://127.0.0.1:${toString vpn.lab.libredditPort}/";
         };
       };
     };
