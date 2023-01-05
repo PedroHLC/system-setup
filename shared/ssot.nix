@@ -23,11 +23,15 @@ rec {
       v4 = "${vpn.prefix.v4}.1";
       v6 = "${vpn.prefix.v6}:1";
       adguardPort = 3334;
+      libredditPort = 3380;
     };
     zeta = rec {
       addr = "zeta.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.1";
-      v6 = "${vpn.prefix.v6}:1";
+      inherit (vpn.lab) v4 v6;
+    };
+    libreddit = rec {
+      addr = "reddit.${vpn.tld}";
+      inherit (vpn.lab) v4 v6;
     };
     desktop = rec {
       hostname = "desktop";
@@ -51,6 +55,10 @@ rec {
     };
     zeta = {
       addr = "zeta.${contact.domain}";
+      inherit (web.lab) v4 v6;
+    };
+    libreddit = rec {
+      addr = "reddit.${contact.domain}";
       inherit (web.lab) v4 v6;
     };
     desktop = {

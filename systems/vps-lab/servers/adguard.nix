@@ -19,9 +19,9 @@
   services.adguardhome = {
     enable = true;
     mutableSettings = false;
-    host = "0.0.0.0"; # bind_host
-    port = 3000; # bind_port
     settings = {
+      bind_host = "0.0.0.0"; # bind_host
+      bind_port = 3000; # bind_port
       #beta_bind_port = 0;
       users = [{
         name = "admin";

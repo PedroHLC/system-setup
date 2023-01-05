@@ -24,7 +24,7 @@
 
     # Smooth-criminal bleeding-edge Mesa3D
     mesa-git-src = {
-      url = "github:Mesa3D/mesa/main";
+      url = "git+https://gitlab.freedesktop.org/mesa/mesa.git";
       flake = false;
     };
 
@@ -121,6 +121,7 @@
             ./systems/vps-lab/configuration.nix
             ./systems/vps-lab/servers/adguard.nix
             ./systems/vps-lab/servers/journal-remote.nix
+            ./systems/vps-lab/servers/libreddit.nix
             ./systems/vps-lab/servers/nginx.nix
             ./systems/vps-lab/servers/wireguard.nix
             # home-manager

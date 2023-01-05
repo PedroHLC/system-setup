@@ -55,18 +55,17 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1670987124,
-        "narHash": "sha256-KF+3Ssf14uq88JLzynhnMXIIHY4TeaFri2ZkKqjX06s=",
-        "owner": "Mesa3D",
-        "repo": "mesa",
-        "rev": "e4e4ba23047a0f2f2578691456e487fba2013f43",
-        "type": "github"
+        "lastModified": 1672913221,
+        "narHash": "sha256-s8qVa4VzLvA06zQrCWzUnl0w2iOYdUy91qDwk+h8DlE=",
+        "ref": "refs/heads/main",
+        "rev": "5449b6927a951b8ce42927a24a78d84b91c99542",
+        "revCount": 164817,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       },
       "original": {
-        "owner": "Mesa3D",
-        "ref": "main",
-        "repo": "mesa",
-        "type": "github"
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       }
     },
     "nix-alien": {

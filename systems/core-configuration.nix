@@ -179,8 +179,8 @@
   networking.hosts = {
     # - My Network
 
-    "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
-    "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
+    "${web.lab.v4}" = [ web.lab.addr web.zeta.addr web.libreddit.addr ];
+    "${web.lab.v6}" = [ web.lab.addr web.zeta.addr web.libreddit.addr ];
 
     # - My VPN
     "${vpn.lab.v4}" = [ vpn.lab.addr ];
