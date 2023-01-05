@@ -16,7 +16,7 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = contact.email;
-    certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr ];
+    certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr web.libreddit.addr ];
   };
 
   # Changing the congestion algorithm to bbr in order to reduce packet loss at low throughput
