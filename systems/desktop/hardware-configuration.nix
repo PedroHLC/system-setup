@@ -40,6 +40,13 @@
       neededForBoot = true;
     };
 
+  fileSystems."/var/lib/postgresql" =
+    {
+      device = "zroot/data/postgres";
+      fsType = "zfs";
+      options = [ "x-gvfs-hide" ];
+    };
+
   fileSystems."/home/pedrohlc/Games" =
     {
       device = "zroot/games/home";

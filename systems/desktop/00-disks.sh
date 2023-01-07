@@ -30,6 +30,8 @@ zfs snapshot zroot/ROOT/empty@start
 zfs create -o mountpoint=legacy -o recordsize=16K zroot/data/btdownloads
 zfs create -o mountpoint=none -o recordsize=1M zroot/games
 zfs create -o mountpoint=legacy zroot/games/home
+zfs create -o mountpoint=legacy -o recordsize=16K \
+	-o logbias=latency zroot/data/postgres
 
 # Encrypted volumes.
 zfs create -o encryption=on -o keyformat=passphrase \
@@ -49,4 +51,4 @@ chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 mount -t zfs zroot/ROOT/residues /mnt/var/residues
 
-echo 'Finished. After installing NixOS, change every mountpoint to legacy.'
+echo "Finished. But you\'ll need to set the postgresql volume permission and ownership eventually."

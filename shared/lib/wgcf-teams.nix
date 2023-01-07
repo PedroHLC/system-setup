@@ -10,6 +10,7 @@
           publicKey = "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo=";
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
           endpoint = "engage.cloudflareclient.com:2408";
+          persistentKeepalive = 15;
         }
       ];
       # I have access to all the network through allowedIPs
