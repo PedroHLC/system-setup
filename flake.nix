@@ -124,6 +124,7 @@
             ./systems/vps-lab/servers/libreddit.nix
             ./systems/vps-lab/servers/nginx.nix
             ./systems/vps-lab/servers/wireguard.nix
+            ./systems/vps-lab/services/mesa-mirror
             # home-manager
             home-manager.nixosModules.home-manager
             {

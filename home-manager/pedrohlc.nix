@@ -468,7 +468,7 @@ in
       # Full color range
       set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
       # Expect mouse
-      set -g mouse on
+      set -g mouse off
     '';
   };
 
