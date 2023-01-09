@@ -60,9 +60,6 @@ in
     intel-media-driver
   ];
 
-  # Services/Programs configurations
-  services.minidlna.settings.friendly_name = "laptop";
-
   # Useful services for power-saving
   services.auto-cpufreq.enable = true;
   services.power-profiles-daemon.enable = false; # replaced by tlp

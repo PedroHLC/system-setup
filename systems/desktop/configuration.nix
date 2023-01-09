@@ -41,9 +41,6 @@
   ];
   boot.kernelModules = [ "amd_pstate" ];
 
-  # Services/Programs configurations
-  services.minidlna.settings.friendly_name = "desktop";
-
   # OpenCL
   hardware.opengl.extraPackages = with pkgs; [
     rocm-opencl-icd

@@ -321,13 +321,6 @@
   services.keybase.enable = true;
   services.kbfs.enable = true;
   services.tumbler.enable = true;
-  services.minidlna = {
-    enable = true;
-    settings = {
-      media_dir = [ "/home/pedrohlc/Torrents" ];
-      inotify = "yes";
-    };
-  };
   services.dbus = {
     enable = true;
     packages = with pkgs; [ osdlyrics ];

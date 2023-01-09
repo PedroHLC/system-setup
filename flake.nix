@@ -24,7 +24,7 @@
 
     # Smooth-criminal bleeding-edge Mesa3D
     mesa-git-src = {
-      url = "git+https://gitlab.freedesktop.org/mesa/mesa.git";
+      url = "github:chaotic-aur/mesa-mirror/main";
       flake = false;
     };
 
