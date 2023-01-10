@@ -23,11 +23,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1673211936,
-        "narHash": "sha256-ba7jhl5BhLtpSooDHllgC0Y29vc0AiYWWsxQVtjlc7o=",
+        "lastModified": 1673343300,
+        "narHash": "sha256-5Xdj6kpXYMie0MlnGwqK5FaMdsedxvyuakWtyKB3zaQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "684bdb386cec7d4f16e0da9f694c8ab50ad2cf2a",
+        "rev": "176e455371a8371586e8a3ff0d56ee9f3ca2324e",
         "type": "github"
       },
       "original": {
@@ -55,11 +55,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1673212366,
-        "narHash": "sha256-mkT178gOk0BUCFKh9G2+DvZnUOGZV5Q1CTT0iYkzLoo=",
+        "lastModified": 1673355756,
+        "narHash": "sha256-nZZUfk4jWpOtvfW4fpp7/omOF+VByLvRTwQ5W5Lay0U=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "84527093c40f832e71b39225aeefe1276670f37b",
+        "rev": "6481805e0007d2bf53390e1af25c75b1507c2a92",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1673180965,
-        "narHash": "sha256-gMhL6w9RVluvPs+irJ9n0Q1BphZm+Ek4XGn5Ow7YQ3k=",
+        "lastModified": 1673301451,
+        "narHash": "sha256-0IvOqAXZ+dHjOV7dQl4iEcCUmzqg8VvGg+UZ68ONDIg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0c9aadc8eff6daaa5149d2df9e6c49baaf44161c",
+        "rev": "35f1f865c03671a4f75a6996000f03ac3dc3e472",
         "type": "github"
       },
       "original": {

@@ -890,6 +890,7 @@ in
   # Personal git setings
   programs.git = {
     enable = true;
+    lfs.enable = true;
     signing = mkIf (gitKey != null) {
       key = gitKey;
       signByDefault = true;

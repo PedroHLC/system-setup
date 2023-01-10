@@ -19,6 +19,7 @@ in
       Group = "users";
       ExecStart = script;
     };
+    path = [ pkgs.openssh ]; # needed for git
   };
 
   systemd.timers.mesa-mirror = {

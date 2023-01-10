@@ -79,7 +79,6 @@
     busyboxWithoutAppletSymlinks
     file
     fzf
-    git
     google-authenticator
     htop
     jq
@@ -116,6 +115,10 @@
   programs.tmux = {
     enable = true;
     clock24 = true;
+  };
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
   };
 
   # Neovim to rule them all.
