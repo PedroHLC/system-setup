@@ -40,6 +40,14 @@
       neededForBoot = true;
     };
 
+  fileSystems."/var/lib/postgresql" =
+    {
+      device = "zroot/data/postgres";
+      fsType = "zfs";
+      options = [ "x-gvfs-hide" ];
+    };
+
+
   fileSystems."/home/melinapn" =
     {
       device = "zroot/data/melina";

@@ -55,11 +55,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1673355756,
-        "narHash": "sha256-nZZUfk4jWpOtvfW4fpp7/omOF+VByLvRTwQ5W5Lay0U=",
+        "lastModified": 1673452532,
+        "narHash": "sha256-xjTN6cOlcOEXSsiWlixN1UJ0uDRjlEOobTN+ILImQIY=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "6481805e0007d2bf53390e1af25c75b1507c2a92",
+        "rev": "e11e68b56b149c1663616620090205551e725a62",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1673301451,
-        "narHash": "sha256-0IvOqAXZ+dHjOV7dQl4iEcCUmzqg8VvGg+UZ68ONDIg=",
+        "lastModified": 1673363027,
+        "narHash": "sha256-nuPLEsEUvERI+gwmqknerUVHhdzDiZHKZ18Ibkvo7VQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "35f1f865c03671a4f75a6996000f03ac3dc3e472",
+        "rev": "d3b4150929d4fed7eb626695c4f78881cfcbeb9e",
         "type": "github"
       },
       "original": {

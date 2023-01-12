@@ -82,7 +82,6 @@ in
   # Persistent files
   environment.persistence."/var/persistent".directories = [
     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }
-    { directory = "/var/lib/postgresql"; user = "postgres"; group = "postgres"; mode = "u=rwx,g=rx,o="; } # TODO: Move it to its own volume
   ];
 
   environment.persistence."/var/residues".users.pedrohlc.directories = [

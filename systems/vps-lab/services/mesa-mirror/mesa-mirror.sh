@@ -17,7 +17,7 @@ mkdir -p "$cache_dir"
 echo "# Starting branches iterations"
 for branch in $branches; do
   local_branch="${branch##origin/}"
-  git branch -qf --track "$branch" "$local_branch"
+  git branch -qf "$local_branch" "$branch"
   commit_hash=$(git rev-parse "$local_branch")
   cache_file="$cache_dir/branch_${local_branch//\//_}"
   if [ ! -f "$cache_file" ] || [ "$(cat "$cache_file")" != "$commit_hash" ]; then
