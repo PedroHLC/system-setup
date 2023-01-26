@@ -805,7 +805,12 @@ in
       gpu-api = "vulkan";
 
       # YouTube quality
-      ytdl-format = "bestvideo[height<=?1440]+bestaudio/best";
+      ytdl-format =
+        if nvidiaPrime then
+          "bestvideo[height<=?1440]+bestaudio/best"
+        else
+          "bestvideo[height<=?2160]+bestaudio/best";
+
     };
     profiles = {
       # For when I plug the optical-cable
