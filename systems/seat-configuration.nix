@@ -38,7 +38,7 @@
 
   # ZFS being out-of-tree is super head-aches
   boot.zfs.enableUnstable = true;
-  boot.kernelPackages = pkgs.callPackage ../shared/pkgs/pinned-linux-lqx.nix { };
+  boot.kernelPackages = pkgs.linuxPackages_lqx; # pkgs.callPackage ../shared/pkgs/pinned-linux-lqx.nix { };
 
   # Kernel Params
   boot.kernelParams = [
@@ -248,7 +248,7 @@
   ];
 
   # The base GUI toolkit in my setup.
-  qt5 = {
+  qt = {
     enable = true;
     platformTheme = "kde";
   };

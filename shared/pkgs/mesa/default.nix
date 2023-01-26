@@ -26,6 +26,8 @@
 , libunwind
 , vulkan-loader
 , glslang
+, zstd
+, lm_sensors
 , galliumDrivers ? [ "auto" ]
   # upstream Mesa defaults to only enabling swrast (aka lavapipe) on aarch64 for some reason, so force building the others
 , vulkanDrivers ? [ "auto" ] ++ lib.optionals (stdenv.isLinux && stdenv.isAarch64) [ "broadcom" "freedreno" "panfrost" ]
@@ -163,14 +165,16 @@ let
       libxshmfence
       libXrandr
       libffi
+      libunwind
       libvdpau
       libelf
       libXvMC
       libpthreadstubs
+      zstd
+      lm_sensors
       openssl /*or another sha1 provider*/
     ] ++ lib.optionals (elem "wayland" eglPlatforms) [ wayland wayland-protocols ]
     ++ lib.optionals stdenv.isLinux [ libomxil-bellagio libva-minimal ]
-    ++ lib.optionals stdenv.isDarwin [ libunwind ]
     ++ lib.optionals enableOpenCL [ libclc llvmPackages.clang llvmPackages.clang-unwrapped rustc rust-bindgen' spirv-llvm-translator_14 ]
     ++ lib.optional withValgrind valgrind-light
     # Mesa will not build zink when gallium-drivers=auto

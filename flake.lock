@@ -1,20 +1,5 @@
 {
   "nodes": {
-    "flake-utils": {
-      "locked": {
-        "lastModified": 1667395993,
-        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -23,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1673343300,
-        "narHash": "sha256-5Xdj6kpXYMie0MlnGwqK5FaMdsedxvyuakWtyKB3zaQ=",
+        "lastModified": 1674556204,
+        "narHash": "sha256-HCRmkZsq01h2Evch08zpgE9jeHdMtGdT1okWotyvuhY=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "176e455371a8371586e8a3ff0d56ee9f3ca2324e",
+        "rev": "c59f0eac51da91c6989fd13a68e156f63c0e60b6",
         "type": "github"
       },
       "original": {
@@ -55,11 +40,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1673452532,
-        "narHash": "sha256-xjTN6cOlcOEXSsiWlixN1UJ0uDRjlEOobTN+ILImQIY=",
+        "lastModified": 1674730127,
+        "narHash": "sha256-ShD+7/XWpRyfwoUbq9K5598WLhyj6gkQFleOmwKP010=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "e11e68b56b149c1663616620090205551e725a62",
+        "rev": "5bc91550d1d78d3d35251e0080e74733530ee25d",
         "type": "github"
       },
       "original": {
@@ -69,37 +54,16 @@
         "type": "github"
       }
     },
-    "nix-alien": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1672257991,
-        "narHash": "sha256-y8PXQLfbHqutORvr4VutOhxAAlx3rVT/Bcnvv8nS76E=",
-        "owner": "thiagokokada",
-        "repo": "nix-alien",
-        "rev": "967735b1f9bdc12f24e7b1ac336e499d12896988",
-        "type": "github"
-      },
-      "original": {
-        "owner": "thiagokokada",
-        "repo": "nix-alien",
-        "type": "github"
-      }
-    },
     "nix-gaming": {
       "inputs": {
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1672665710,
-        "narHash": "sha256-kK9DB+J7zDSs5H0X0AxEn85VKROLKYnUbPijtZEPrYY=",
+        "lastModified": 1674646471,
+        "narHash": "sha256-MRKHX3woN7yJ0A5zj1ZyJNQJ30TDggDusrqJGvFLxxA=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "66c8cbbde08af5a7e87cd3aa4fb4725f20966db2",
+        "rev": "e57cc786848fa1d1af001ffd9387aac04c3577b0",
         "type": "github"
       },
       "original": {
@@ -115,11 +79,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1672665710,
-        "narHash": "sha256-kK9DB+J7zDSs5H0X0AxEn85VKROLKYnUbPijtZEPrYY=",
+        "lastModified": 1674646471,
+        "narHash": "sha256-MRKHX3woN7yJ0A5zj1ZyJNQJ30TDggDusrqJGvFLxxA=",
         "owner": "fufexan",
         "repo": "nix-gaming",
-        "rev": "66c8cbbde08af5a7e87cd3aa4fb4725f20966db2",
+        "rev": "e57cc786848fa1d1af001ffd9387aac04c3577b0",
         "type": "github"
       },
       "original": {
@@ -146,16 +110,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1673363027,
-        "narHash": "sha256-nuPLEsEUvERI+gwmqknerUVHhdzDiZHKZ18Ibkvo7VQ=",
-        "owner": "NixOS",
+        "lastModified": 1674731543,
+        "narHash": "sha256-T0g5AgXJPiWJVV3FuVqeq4c4BVrJCoDnCtuKKsRDQYM=",
+        "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "d3b4150929d4fed7eb626695c4f78881cfcbeb9e",
+        "rev": "520cb88f9e2487dfcadb17631f7610961f0190b9",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "owner": "PedroHLC",
+        "ref": "contingency-channel",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -181,7 +145,6 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "mesa-git-src": "mesa-git-src",
-        "nix-alien": "nix-alien",
         "nix-gaming": "nix-gaming",
         "nix-gaming-edge": "nix-gaming-edge",
         "nixpkgs": "nixpkgs_2",

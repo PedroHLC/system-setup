@@ -146,7 +146,7 @@
   services.openssh = {
     enable = true;
     forwardX11 = true;
-    permitRootLogin = "no";
+    settings.PermitRootLogin = "no";
   };
   programs.ssh.package = pkgs.openssh_hpn;
 
