@@ -268,9 +268,9 @@
         # Obs with plugins
         obs-studio-wrap = final.wrapOBS.override { inherit (final) obs-studio; } {
           plugins = with final.obs-studio-plugins; [
-            # obs-backgroundremoval (struggling with onnxruntime)
             obs-gstreamer
             obs-pipewire-audio-capture
+            obs-vaapi
             obs-vkcapture
             wlrobs
           ];

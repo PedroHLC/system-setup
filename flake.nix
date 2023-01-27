@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:PedroHLC/nixpkgs/contingency-channel";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
