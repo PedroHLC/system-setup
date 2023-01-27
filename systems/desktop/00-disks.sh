@@ -27,7 +27,8 @@ zfs create -o mountpoint=legacy zroot/data/persistent
 zfs snapshot zroot/ROOT/empty@start
 
 # Different recordsize
-zfs create -o mountpoint=legacy -o recordsize=16K zroot/data/btdownloads
+zfs create -o mountpoint=legacy -o recordsize=16K \
+	-o compression=off zroot/data/btdownloads
 zfs create -o mountpoint=none -o recordsize=1M zroot/games
 zfs create -o mountpoint=legacy zroot/games/home
 zfs create -o mountpoint=legacy -o recordsize=16K \
