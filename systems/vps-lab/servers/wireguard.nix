@@ -81,9 +81,9 @@ in
                 multicastV6
               ];
             }
-            # celular de sabrina (atila)
+            # notebook de sabrina (atila)
             {
-              publicKey = "VIDFaQvPJKkE6Ppc/PSjXt1TuzQMFhF5wL6qytKi5zk=";
+              publicKey = "4BtCrkUKDU5MAgUk3PFtnvxvT8KUNztaexej0eKjuks=";
               allowedIPs = [
                 "${vpn.prefix.v4}.205/32"
                 "${vpn.prefix.v6}:205/128"
