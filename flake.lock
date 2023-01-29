@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1674771519,
-        "narHash": "sha256-U0W3S1nX6yEvLh3Vq70EORbmXecAKXfmEfCfaA4A+I8=",
+        "lastModified": 1674928308,
+        "narHash": "sha256-elVU4NUZEl11BdT4gC+lrpLYM8Ccxqxs19Ix84HTI9o=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bb4b25b302dbf0f527f190461b080b5262871756",
+        "rev": "08a778d80308353f4f65c9dcd3790b5da02d6306",
         "type": "github"
       },
       "original": {
@@ -40,11 +40,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1674913710,
-        "narHash": "sha256-IJUFvbJV8MA83GjL+tnHYJCGLQ1KuwVln6KdMUQbvFQ=",
+        "lastModified": 1675009608,
+        "narHash": "sha256-YOgr7CqgRAkD8TClHeJey1E1ryiYc7RzpTh20GgU9AY=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "196882a1477a69ba1593db8bdaaf6726fe914fca",
+        "rev": "4a675f93b9f8a51e6d48f1e2914ec1ef94990020",
         "type": "github"
       },
       "original": {
@@ -110,15 +110,15 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1674899129,
-        "narHash": "sha256-6LGae8WbdCN4S9+o2wfYDJPpfxC2EnXEvoopVkguNtc=",
-        "owner": "nixos",
+        "lastModified": 1674958881,
+        "narHash": "sha256-p1E20TGSgzs+EUhRPMe6fyZIxUV6CbcwilZEzy+XmAk=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6b9c27b4c9c1c329b27a44ed1fa8935df79f9a8b",
+        "rev": "a0feb36dc510bfa8f8809980a8230617fb9eb618",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -148,7 +148,24 @@
         "nix-gaming": "nix-gaming",
         "nix-gaming-edge": "nix-gaming-edge",
         "nixpkgs": "nixpkgs_2",
-        "pedrochrome-css": "pedrochrome-css"
+        "pedrochrome-css": "pedrochrome-css",
+        "staging-next": "staging-next"
+      }
+    },
+    "staging-next": {
+      "locked": {
+        "lastModified": 1674993680,
+        "narHash": "sha256-0tpPkWIvYyscv+p8L17sX/fYdMw+r4bvpwH/+Y59Imo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2019d6632b1c59530c292a202ddc50a907118d63",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "staging-next",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "utils": {

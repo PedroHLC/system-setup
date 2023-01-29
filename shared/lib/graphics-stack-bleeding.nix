@@ -1,44 +1,21 @@
-{ pkgs, lib, mesa-git-src, ... }:
-{
-  nixpkgs.overlays =
-    let
-      galliumDrivers = [ "swrast" "radeonsi" "zink" "virgl" "svga" ];
-      vulkanDrivers = [ "swrast" "amd" "virtio-experimental" ];
+{ pkgs, lib, mesa-git-src, staging-next, ... }:
+let
+  future = staging-next.legacyPackages.${pkgs.system};
 
-      thisConfigsOverlay = final: prev: {
+  mesaGitApplier = base: base.mesa.overrideAttrs (fa: {
+    version = "23.0.99";
+    src = mesa-git-src;
+    buildInputs = fa.buildInputs ++ [ base.zstd base.libunwind base.lm_sensors ];
+    mesonFlags = lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags; # fails to find "valgrind.h"
+  });
 
-        # Latest mesa with more drivers
-        mesa-bleeding = (final.callPackage ../pkgs/mesa {
-          llvmPackages = final.llvmPackages_latest;
-          inherit (final.darwin.apple_sdk.frameworks) OpenGL;
-          inherit (final.darwin.apple_sdk.libs) Xplugin;
-          inherit galliumDrivers vulkanDrivers;
-          inherit mesa-git-src;
-          libclc = final.libclc_14;
-          enableRust = false;
-        });
-        lib32-mesa-bleeding = (final.pkgsi686Linux.callPackage ../pkgs/mesa {
-          llvmPackages = final.pkgsi686Linux.llvmPackages_latest;
-          inherit (final.pkgsi686Linux.darwin.apple_sdk.frameworks) OpenGL;
-          inherit (final.pkgsi686Linux.darwin.apple_sdk.libs) Xplugin;
-          inherit galliumDrivers vulkanDrivers;
-          inherit mesa-git-src;
-          libclc = final.libclc_14;
-          enableRust = false;
-        });
-
-        libclc_14 = (final.callPackage ../pkgs/libclc {
-          llvmPackages = final.llvmPackages_latest;
-          spirv-llvm-translator = final.spirv-llvm-translator_14;
-        });
-      };
-    in
-    [ thisConfigsOverlay ];
-
+  mesa-bleeding = mesaGitApplier future;
+  lib32-mesa-bleeding = mesaGitApplier future.pkgsi686Linux;
+in {
   # Apply latest mesa in the system
-  hardware.opengl.package = pkgs.mesa-bleeding.drivers;
-  hardware.opengl.package32 = pkgs.lib32-mesa-bleeding.drivers;
-  hardware.opengl.extraPackages = [ pkgs.mesa-bleeding.opencl ];
+  hardware.opengl.package = mesa-bleeding.drivers;
+  hardware.opengl.package32 = lib32-mesa-bleeding.drivers;
+  hardware.opengl.extraPackages = [ mesa-bleeding.opencl ];
 
   # Creates a second boot entry without latest drivers
   specialisation.stable-mesa.configuration = {
