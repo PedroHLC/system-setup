@@ -5,7 +5,6 @@
   # My main channel and extra repositories
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    staging-next.url = "github:NixOS/nixpkgs/staging-next";
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -41,7 +40,7 @@
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
         inherit ssot impermanence;
-        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css staging-next;
+        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
       };
     in
     {

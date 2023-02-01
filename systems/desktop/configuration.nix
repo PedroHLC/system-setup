@@ -81,6 +81,13 @@
     in
     [ thisConfigsOverlay ];
 
+  # One-button virtualization for some tests of mine
+  virtualisation.libvirtd.enable = true;
+  users.extraUsers.pedrohlc.extraGroups = [ "libvirtd" ];
+  boot.extraModprobeConfig = ''
+    options kvm ignore_msrs=1
+  '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

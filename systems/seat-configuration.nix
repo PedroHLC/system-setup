@@ -214,7 +214,7 @@
     # Less used
     adbfs-rootless
     bluez-tools
-    helvum
+    # helvum (struggling with pipewire-rs)
     libnotify
     libva-utils
     ripgrep
@@ -429,6 +429,7 @@
         { directory = ".kube"; mode = "0700"; }
         ".local/share/DBeaverData"
         ".local/share/fish"
+        ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
         ".local/share/qBittorrent"
         ".local/share/Steam"

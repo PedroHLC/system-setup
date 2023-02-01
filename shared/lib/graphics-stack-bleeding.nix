@@ -1,6 +1,6 @@
-{ pkgs, lib, mesa-git-src, staging-next, ... }:
+{ pkgs, lib, mesa-git-src, ... }:
 let
-  future = staging-next.legacyPackages.${pkgs.system};
+  # future = nixpkgs-staging.legacyPackages.${pkgs.system};
 
   mesaGitApplier = base: base.mesa.overrideAttrs (fa: {
     version = "23.0.99";
@@ -9,9 +9,10 @@ let
     mesonFlags = lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags; # fails to find "valgrind.h"
   });
 
-  mesa-bleeding = mesaGitApplier future;
-  lib32-mesa-bleeding = mesaGitApplier future.pkgsi686Linux;
-in {
+  mesa-bleeding = mesaGitApplier pkgs;
+  lib32-mesa-bleeding = mesaGitApplier pkgs.pkgsi686Linux;
+in
+{
   # Apply latest mesa in the system
   hardware.opengl.package = mesa-bleeding.drivers;
   hardware.opengl.package32 = lib32-mesa-bleeding.drivers;
