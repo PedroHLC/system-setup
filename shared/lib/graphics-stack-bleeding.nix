@@ -6,7 +6,9 @@ let
     version = "23.0.99";
     src = mesa-git-src;
     buildInputs = fa.buildInputs ++ [ base.zstd base.libunwind base.lm_sensors ];
-    mesonFlags = lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags; # fails to find "valgrind.h"
+    mesonFlags =
+      lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags # fails to find "valgrind.h"
+      ++ [ "-Dandroid-libbacktrace=disabled" ];
   });
 
   mesa-bleeding = mesaGitApplier pkgs;
