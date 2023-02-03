@@ -448,6 +448,7 @@
       files = [
         ".cache/keybasekeybase.app.serverConfig"
         ".google_authenticator"
+        ".netrc"
       ];
     };
   };
