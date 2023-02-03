@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ lib, pkgs, nix-gaming, ssot, ... }: with ssot;
+{ lib, pkgs, ssot, flakeInputs, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -310,7 +310,7 @@
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
 
         # Add the Wine-GE for any machine
-        inherit (nix-gaming.packages.x86_64-linux) wine-ge;
+        inherit (flakeInputs.nix-gaming.packages.x86_64-linux) wine-ge;
       };
     in
     [ thisConfigsOverlay ];

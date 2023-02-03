@@ -8,7 +8,7 @@
 , seat ? true
 , touchpad ? null
 }:
-{ config, lib, pkgs, ssot, pedrochrome-css, impermanence, ... }: with lib; with ssot;
+{ config, lib, pkgs, ssot, flakeInputs, ... }: with lib; with ssot;
 let
   # Some stuff that repeats across this file
   modifier = "Mod4";
@@ -694,7 +694,7 @@ in
       };
 
       userChromeCss = mkIf seat {
-        source = "${pedrochrome-css}/userChrome.css";
+        source = "${flakeInputs.pedrochrome-css}/userChrome.css";
         target = "userChrome.css";
       };
     };

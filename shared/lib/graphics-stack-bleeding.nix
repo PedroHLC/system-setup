@@ -1,10 +1,10 @@
-{ pkgs, lib, mesa-git-src, ... }:
+{ pkgs, lib, flakeInputs, ... }:
 let
   # future = nixpkgs-staging.legacyPackages.${pkgs.system};
 
   mesaGitApplier = base: base.mesa.overrideAttrs (fa: {
     version = "23.0.99";
-    src = mesa-git-src;
+    src = flakeInputs.mesa-git-src;
     buildInputs = fa.buildInputs ++ [ base.zstd base.libunwind base.lm_sensors ];
     mesonFlags =
       lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags # fails to find "valgrind.h"

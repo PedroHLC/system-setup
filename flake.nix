@@ -8,10 +8,6 @@
 
     # Wine with patches
     nix-gaming.url = "github:fufexan/nix-gaming";
-    nix-gaming-edge = {
-      url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
@@ -39,8 +35,8 @@
     let
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
-        inherit ssot impermanence;
-        inherit (inputs) nixpkgs nix-gaming nix-gaming-edge mesa-git-src pedrochrome-css;
+        inherit ssot;
+        flakeInputs = inputs;
       };
     in
     {

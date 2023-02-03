@@ -40,11 +40,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1675417194,
-        "narHash": "sha256-jLcqggRHU+JmypX1+rnC9BP2zzeztaVk5BeEsmzQsDU=",
+        "lastModified": 1675434319,
+        "narHash": "sha256-xWBCB+ayEPUnkUIYzeEjNbmpkp+qILQaR2zT0cR8ewc=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "9af3a31744db8140ccb17e8e9131c5dc4dc186df",
+        "rev": "4397c166c01b641c57348d9e0d881a4a1f351455",
         "type": "github"
       },
       "original": {
@@ -57,26 +57,6 @@
     "nix-gaming": {
       "inputs": {
         "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1675100158,
-        "narHash": "sha256-B8Nhm28gfhjKQQJC3Za34pNrrgG0wCdrSwMwXq4W95k=",
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "rev": "60c20c3c8682aaf55022e168b5b91f4dbd69849a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "type": "github"
-      }
-    },
-    "nix-gaming-edge": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
       },
       "locked": {
         "lastModified": 1675100158,
@@ -146,7 +126,6 @@
         "impermanence": "impermanence",
         "mesa-git-src": "mesa-git-src",
         "nix-gaming": "nix-gaming",
-        "nix-gaming-edge": "nix-gaming-edge",
         "nixpkgs": "nixpkgs_2",
         "pedrochrome-css": "pedrochrome-css"
       }

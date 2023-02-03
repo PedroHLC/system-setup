@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, pkgs, nix-gaming-edge, ssot, ... }: with ssot;
+{ config, pkgs, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -70,16 +70,6 @@
   environment.systemPackages = with pkgs; [
     vkBasalt
   ];
-
-  # Overlay
-  nixpkgs.overlays =
-    let
-      thisConfigsOverlay = _: _: {
-        # Add the right GE for this machine
-        inherit (nix-gaming-edge.packages.x86_64-linux) wine-ge;
-      };
-    in
-    [ thisConfigsOverlay ];
 
   # One-button virtualization for some tests of mine
   virtualisation.libvirtd.enable = true;

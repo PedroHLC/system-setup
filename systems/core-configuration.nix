@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ pkgs, nixpkgs, lib, ssot, ... }@attrs: with ssot;
+{ pkgs, lib, ssot, flakeInputs, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -168,16 +168,15 @@
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
-    inherit ssot;
-    inherit (attrs) impermanence pedrochrome-css;
+    inherit ssot flakeInputs;
   };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
-  nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+  nix.nixPath = [ "nixpkgs=${flakeInputs.nixpkgs}" ];
 
   # Always uses system's flakes instead of downloading or updating.
-  nix.registry.nixpkgs.flake = nixpkgs;
+  nix.registry.nixpkgs.flake = flakeInputs.nixpkgs;
 
   networking.hosts = {
     # - My Network
