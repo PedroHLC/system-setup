@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, pkgs, ssot, ... }: with ssot;
+{ config, pkgs, lib, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -34,7 +34,7 @@
 
   # Let's use AMD P-State
   boot.kernelParams = [
-    "initcall_blacklist=acpi_cpufreq_init"
+    #"initcall_blacklist=acpi_cpufreq_init"
     "amd_pstate.shared_mem=1"
     # Fix "controller is down" (probably)
     "nvme_core.default_ps_max_latency_us=0"
@@ -46,6 +46,7 @@
     rocm-opencl-icd
     rocm-opencl-runtime
   ];
+  environment.variables.RADV_VIDEO_DECODE = "1";
 
   # My mono-mic Focusrite
   environment.etc.pw-focusrite-mono-input = {
@@ -77,6 +78,18 @@
   boot.extraModprobeConfig = ''
     options kvm ignore_msrs=1
   '';
+
+  # GameScope session
+  programs.gamescope.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+
+  # Creates a second boot entry with HDR
+  specialisation.hdr.configuration = {
+    system.nixos.tags = [ "hdr" ];
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_hdr;
+    environment.variables.ENABLE_GAMESCOPE_WSI = "1";
+    programs.gamescope.args = lib.mkForce [ "--rt" "--prefer-vk-device 8086:9bc4" "--hdr-enabled" ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

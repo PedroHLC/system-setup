@@ -274,7 +274,7 @@ in
               "b" = "exec ${pkgs.qbittorrent}/bin/qbittorrent; mode default";
               "e" = "exec ${editor}; mode default";
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
-              "shift+o" = "exec ${pkgs.obs-studio-wrap}/bin/obs; mode default";
+              "shift+o" = "exec ${pkgs.obs-studio-wrapped}/bin/obs; mode default";
               "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
               "Shift+s" = "exec ((pidof ${pkgs.spotify-unwrapped}/share/spotify/.spotify-wrapped) || ${pkgs.spotify}/bin/spotify); mode default";
               "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
@@ -634,8 +634,8 @@ in
             "Colorsublime" # Many colorschemes
             "Dockerfile Syntax Highlighting" # Dockerfile syntax
             "EditorConfig" # Per-project cross-IDE preferences
-            "ElixirSyntax" # Elixir syntax
             "ElixirFormatter" # Elixir format-on-save
+            "ElixirSyntax" # Elixir syntax
             "Elm Format on Save" # Format Elm
             "Elm Syntax Highlighting" # Elm syntax
             "Focus File on Sidebar"

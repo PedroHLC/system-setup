@@ -145,8 +145,10 @@
   services.timesyncd.enable = true;
   services.openssh = {
     enable = true;
-    forwardX11 = true;
-    settings.PermitRootLogin = "no";
+    settings = {
+      X11Forwarding = true;
+      PermitRootLogin = "no";
+    };
   };
   programs.ssh.package = pkgs.openssh_hpn;
 

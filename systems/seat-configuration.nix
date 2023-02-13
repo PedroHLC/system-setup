@@ -58,6 +58,7 @@
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
+    "vm.max_map_count" = 16777216; # helps with Wine ESYNC/FSYNC
   };
 
   # Network (NetworkManager).
@@ -163,7 +164,7 @@
     lxqt.pcmanfm-qt
     mpv
     nomacs
-    obs-studio-wrap
+    obs-studio-wrapped
     osdlyrics
     pamixer # for avizo
     qbittorrent
@@ -199,7 +200,7 @@
     inotify-tools # watching files
     k9s # Kubernets
     kubectl # Kubernets
-    kubernetes-helm # HELM
+    kubernetes-helm-wrapped # HELM
     logstalgia # Chaotic
     nixpkgs-fmt # Nix
     nixpkgs-review # Nix
@@ -266,7 +267,7 @@
     let
       thisConfigsOverlay = final: prev: {
         # Obs with plugins
-        obs-studio-wrap = final.wrapOBS.override { inherit (final) obs-studio; } {
+        obs-studio-wrapped = final.wrapOBS.override { inherit (final) obs-studio; } {
           plugins = with final.obs-studio-plugins; [
             obs-gstreamer
             obs-pipewire-audio-capture
@@ -275,6 +276,18 @@
             wlrobs
           ];
         };
+
+        # Helm with plugins
+        kubernetes-helm-wrapped = final.wrapHelm
+          (prev.kubernetes-helm.overrideDerivation (oa: {
+            patches = [
+              (final.fetchpatch {
+                url = "https://github.com/PedroHLC/helm/commit/0144b70c0ef66877637c37a4211cb430f1e61e33.patch";
+                hash = "sha256-2BHv8QvVijlN7UVC6zoLsTI1o7HQlafuDeoGb2WpVGw=";
+              })
+            ] ++ oa.patches;
+          }))
+          { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
 
         # Script to force XWayland (in case something catches fire).
         nowl = final.callPackage ../shared/pkgs/nowl.nix { };
