@@ -6,9 +6,6 @@
   inputs = {
     nixpkgs.url = "github:PedroHLC/nixpkgs/gamescope-hdr-rebased";
 
-    # Wine with patches
-    nix-gaming.url = "github:fufexan/nix-gaming";
-
     # reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
 

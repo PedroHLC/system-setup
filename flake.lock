@@ -8,11 +8,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1675935446,
-        "narHash": "sha256-WajulTn7QdwC7QuXRBavrANuIXE5z+08EdxdRw1qsNs=",
+        "lastModified": 1676367705,
+        "narHash": "sha256-un5UbRat9TwruyImtwUGcKF823rCEp4fQxnsaLFL7CM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "2dce7f1a55e785a22d61668516df62899278c9e4",
+        "rev": "da72e6fc6b7dc0c3f94edbd310aae7cd95c678b5",
         "type": "github"
       },
       "original": {
@@ -40,11 +40,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1676390180,
-        "narHash": "sha256-QpQuNiSEE9qXEOybS1lMaA0GFifBR1u4XjeVtF6Nlvk=",
+        "lastModified": 1676564676,
+        "narHash": "sha256-Lhm+J3f4fkXH/u6nRciwfDEu1P4zLFHEiLU5Zm/VazE=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "e8091a65933938171a1e310c91aabac416180f50",
+        "rev": "e050a00b9f4d057e93f61f79019b5cf8bcd04e49",
         "type": "github"
       },
       "original": {
@@ -54,47 +54,13 @@
         "type": "github"
       }
     },
-    "nix-gaming": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1676147016,
-        "narHash": "sha256-yqweqPk/gMsT2d1GHdaEYomzs+Xyor4uDIAKw6/VeJs=",
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "rev": "3596f678f0b7b410981343eb9aa3d5850e4617be",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "repo": "nix-gaming",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1675614288,
-        "narHash": "sha256-i3Rc/ENnz62BcrSloeVmAyPicEh4WsrEEYR+INs9TYw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d25de6654a34d99dceb02e71e6db516b3b545be6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1676392383,
-        "narHash": "sha256-tCFj8vdRnxjCMKikiSOcrFCS5EFkjq4sXkGMVTEN2/k=",
+        "lastModified": 1676567312,
+        "narHash": "sha256-pC9LjYyt7dumnY7h6VJmzEmGEWX6aJoV7EnziZTPnqU=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "54c6187f35dd194b3a2cab2a9a59d0fa850ee882",
+        "rev": "bb3272301e1721cf9962cad9f50b747d7b25040b",
         "type": "github"
       },
       "original": {
@@ -125,8 +91,7 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "mesa-git-src": "mesa-git-src",
-        "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "pedrochrome-css": "pedrochrome-css"
       }
     },

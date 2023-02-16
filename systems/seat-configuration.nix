@@ -3,21 +3,6 @@
 
 # NixOS-defined options
 {
-  # Nix package-management settings.
-  nix = {
-    settings = {
-      # Unofficial binary caches.
-      substituters = [
-        "https://nix-gaming.cachix.org"
-        # "http://nix-cache.pedrohlc.com"
-      ];
-      trusted-public-keys = [
-        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        "nix-cache.pedrohlc.com:LffNbH46uPoFetK4OPmKWiBOssUG3JA0fXNx98wVK34="
-      ];
-    };
-  };
-
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {
@@ -239,7 +224,7 @@
     # Gaming
     mangohud
     mesa-demos
-    wine-ge
+    wine-staging
     vulkan-tools
     winetricks
 
@@ -321,9 +306,6 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
-
-        # Add the Wine-GE for any machine
-        inherit (flakeInputs.nix-gaming.packages.x86_64-linux) wine-ge;
       };
     in
     [ thisConfigsOverlay ];

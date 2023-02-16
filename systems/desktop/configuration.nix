@@ -80,7 +80,10 @@
   '';
 
   # GameScope session
-  programs.gamescope.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
   programs.steam.gamescopeSession.enable = true;
 
   # Creates a second boot entry with HDR
@@ -88,7 +91,7 @@
     system.nixos.tags = [ "hdr" ];
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_hdr;
     environment.variables.ENABLE_GAMESCOPE_WSI = "1";
-    programs.gamescope.args = lib.mkForce [ "--rt" "--prefer-vk-device 8086:9bc4" "--hdr-enabled" ];
+    programs.gamescope.args = lib.mkForce [ "--rt" "--hdr-enabled" ];
   };
 
   # This value determines the NixOS release from which the default
