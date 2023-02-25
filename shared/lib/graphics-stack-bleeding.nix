@@ -2,13 +2,16 @@
 let
   # future = nixpkgs-staging.legacyPackages.${pkgs.system};
 
+  dropN = n: list: lib.lists.take (builtins.length list - n) list;
+
   mesaGitApplier = base: base.mesa.overrideAttrs (fa: {
     version = "23.0.99";
     src = flakeInputs.mesa-git-src;
-    buildInputs = fa.buildInputs ++ [ base.zstd base.libunwind base.lm_sensors ];
+    buildInputs = fa.buildInputs ++ [ base.libunwind base.lm_sensors ];
     mesonFlags =
       lib.lists.remove "-Dgallium-rusticl=true" fa.mesonFlags # fails to find "valgrind.h"
       ++ [ "-Dandroid-libbacktrace=disabled" ];
+    patches = dropN 1 fa.patches ++ [ ../pkgs/mesa/disk_cache-include-dri-driver-path-in-cache-key.patch ];
   });
 
   mesa-bleeding = mesaGitApplier pkgs;

@@ -200,7 +200,7 @@
     # Less used
     adbfs-rootless
     bluez-tools
-    # helvum (struggling with pipewire-rs)
+    helvum
     libnotify
     libva-utils
     ripgrep
