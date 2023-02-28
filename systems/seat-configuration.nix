@@ -361,6 +361,11 @@
       graphroot = "/var/lib/containers/storage";
       runroot = "/run/containers/storage";
     };
+
+    storage.options.zfs = {
+      fsname = "zroot/containers";
+      mountopt = "nodev";
+    };
   };
 
   # For development, but disabled to start service on-demand

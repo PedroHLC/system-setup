@@ -52,4 +52,7 @@ chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 mount -t zfs zroot/ROOT/residues /mnt/var/residues
 
+# Podman
+sudo zfs create -o mountpoint=none -o canmount=on zroot/containers
+
 echo "Finished. But you\'ll need to set the postgresql volume permission and ownership eventually."
