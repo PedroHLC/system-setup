@@ -242,7 +242,14 @@
   # Special apps (requires more than their package to work).
   programs.adb.enable = true;
   programs.gamemode.enable = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };

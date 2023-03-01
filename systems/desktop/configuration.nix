@@ -79,13 +79,6 @@
     options kvm ignore_msrs=1
   '';
 
-  # GameScope session
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
-  programs.steam.gamescopeSession.enable = true;
-
   # Creates a second boot entry with HDR
   specialisation.hdr.configuration = {
     system.nixos.tags = [ "hdr" ];
