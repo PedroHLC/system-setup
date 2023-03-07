@@ -981,6 +981,8 @@ in
         "gpff" = "git pull --ff-only";
         "gprb" = "git pull --rebase";
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
+        "@system" = "cd /etc/nixos";
+        "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
@@ -990,6 +992,7 @@ in
         "elm-test" = "${jsRun} elm-test";
         "mpv-hq" = "mpv --profile=hq";
         "parcel" = "${jsRun} parcel";
+        "@apollo" = "cd ~/Projects/br.com.mindlab/apollo";
       };
     plugins = [
       {

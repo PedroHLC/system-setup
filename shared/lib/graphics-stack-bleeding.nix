@@ -5,7 +5,7 @@ let
   dropN = n: list: lib.lists.take (builtins.length list - n) list;
 
   mesaGitApplier = base: base.mesa.overrideAttrs (fa: {
-    version = "23.0.99";
+    version = "23.1.99";
     src = flakeInputs.mesa-git-src;
     buildInputs = fa.buildInputs ++ [ base.libunwind base.lm_sensors ];
     mesonFlags =
