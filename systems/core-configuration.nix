@@ -110,7 +110,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true; # So I can use GPG through SSH
-    pinentryFlavor = "tty";
+    pinentryFlavor = "curses";
   };
   programs.tmux = {
     enable = true;
@@ -120,6 +120,9 @@
     enable = true;
     lfs.enable = true;
   };
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
 
   # Neovim to rule them all.
   programs.neovim = {
