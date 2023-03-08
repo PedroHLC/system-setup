@@ -389,6 +389,14 @@
     boot.zfs.enableUnstable = lib.mkForce false;
   };
 
+  # Change my MOUSE4 and MOUSE5 behavior
+  services.udev.extraHwdb = ''
+    evdev:name:Logitech G603:*
+      ID_INPUT_KEY=1
+      KEYBOARD_KEY_90005=btn_forward
+      KEYBOARD_KEY_90004=btn_back
+  '';
+
   # Persistent files
   environment.persistence."/var/persistent" = {
     hideMounts = true;
