@@ -26,6 +26,10 @@
 
     # Use all cores for building (defaults to one in PR 199491)
     settings.max-jobs = "auto";
+
+    # github:nix-community/* cache
+    settings.extra-substituters = [ "https://nix-community.cachix.org" ];
+    settings.extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
   # Enable all the firmwares
