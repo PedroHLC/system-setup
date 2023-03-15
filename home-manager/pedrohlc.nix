@@ -329,8 +329,10 @@ in
     enable = true;
     bars = {
       main = {
-        theme = "solarized-dark";
-        icons = "awesome5";
+        settings = {
+          theme.theme = "solarized-dark";
+          icons.icons = "awesome5";
+        };
         blocks = [
           {
             block = "custom";

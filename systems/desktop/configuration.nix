@@ -70,8 +70,9 @@
   # Extra packages
   environment.systemPackages = with pkgs; [
     devilutionx
-    vkBasalt
     openrct2
+    vcmi
+    vkBasalt
   ];
 
   # One-button virtualization for some tests of mine
@@ -82,9 +83,18 @@
   '';
 
   # Not important but persistent files
-  environment.persistence."/var/residues".users.pedrohlc.directories = [
-    ".config/OpenRCT2"
-  ];
+  environment.persistence = {
+    "/var/persistent".users.pedrohlc.directories = [
+      ".local/share/diasurgical"
+      ".local/share/vcmi"
+    ];
+    "/var/residues".users.pedrohlc.directories = [
+      ".cache/vcmi"
+      ".config/OpenRCT2"
+      ".config/vcmi"
+      ".config/VCMI Team"
+    ];
+  };
 
   # Creates a second boot entry with HDR
   specialisation.hdr.configuration = {
