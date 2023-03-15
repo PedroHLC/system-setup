@@ -406,6 +406,7 @@
       "/etc/ssh"
       "/var/lib/bluetooth"
       "/var/lib/containers"
+      "/var/lib/cups"
       "/var/lib/flatpak"
       { directory = "/var/lib/iwd"; mode = "u=rwx,g=,o="; }
       "/var/lib/systemd"
@@ -474,6 +475,7 @@
     directories = [
       "/var/cache"
       "/var/log"
+      "/var/spool"
     ];
 
     users.pedrohlc = {
@@ -507,6 +509,12 @@
   systemd.services.nix-daemon.serviceConfig = {
     MemoryMax = "40G";
     MemorySwapMax = "40G";
+  };
+
+  # Printer
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ epson-escpr ];
   };
 
   # Change the allocator in hope it will save me 5 ms everyday.

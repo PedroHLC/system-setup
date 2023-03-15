@@ -69,7 +69,9 @@
 
   # Extra packages
   environment.systemPackages = with pkgs; [
+    devilutionx
     vkBasalt
+    openrct2
   ];
 
   # One-button virtualization for some tests of mine
@@ -78,6 +80,11 @@
   boot.extraModprobeConfig = ''
     options kvm ignore_msrs=1
   '';
+
+  # Not important but persistent files
+  environment.persistence."/var/residues".users.pedrohlc.directories = [
+    ".config/OpenRCT2"
+  ];
 
   # Creates a second boot entry with HDR
   specialisation.hdr.configuration = {

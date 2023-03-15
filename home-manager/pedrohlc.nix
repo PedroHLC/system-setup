@@ -344,57 +344,46 @@ in
           }
           {
             block = "toggle";
-            text = " ";
+            format = " $icon";
             command_state = "${pkgs.systemd}/bin/systemctl is-active -q sshd && echo a";
             command_on = "${sudo} ${pkgs.systemd}/bin/systemctl start sshd";
             command_off = "${sudo} ${pkgs.systemd}/bin/systemctl stop sshd";
             interval = 5;
-            #[block.theme_overrides]
-            #idle_bg = "#000000";
           }
           {
             block = "toggle";
-            text = "";
+            format = " $icon";
             command_state = "${pkgs.bluez}/bin/bluetoothctl show | ${grep} 'Powered: yes'";
             command_on = "${sudo} ${pkgs.util-linux}/bin/rfkill unblock bluetooth && ${sudo} ${pkgs.systemd}/bin/systemctl start bluetooth && ${pkgs.bluez}/bin/bluetoothctl --timeout 4 power on";
             command_off = "${pkgs.bluez}/bin/bluetoothctl --timeout 4 power off; ${sudo} ${pkgs.systemd}/bin/systemctl stop bluetooth && ${sudo} ${pkgs.util-linux}/bin/rfkill block bluetooth";
             interval = 5;
-            #[block.theme_overrides]
-            #idle_bg = "#000000";
           }
           {
             block = "toggle";
-            text = "";
+            format = " $icon";
             command_state = "${pkgs.networkmanager}/bin/nmcli r wifi | ${grep} '^d'";
             command_on = "${pkgs.networkmanager}/bin/nmcli r wifi off";
             command_off = "${pkgs.networkmanager}/bin/nmcli r wifi on";
             interval = 5;
-            #[block.theme_overrides]
-            #idle_bg = "#000000";
           }
           {
             block = "net";
             device = "wlan0";
-            format = "{ssid} ({signal_strength}) {speed_down;K*b} {speed_up;K*b}";
-            hide_inactive = true;
+            format = "$icon $ssid ($signal_strength) ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K)";
+            missing_format = "";
             interval = 5;
           }
           {
             block = "disk_space";
             path = "/";
-            alias = "HD";
-            info_type = "available";
-            unit = "GB";
+            format = "$icon $available";
             interval = 20;
             warning = 20.0;
             alert = 10.0;
-            format = "{icon} {available}";
           }
           {
             block = "memory";
-            display_type = "memory";
-            format_mem = "{mem_used_percents}";
-            clickable = false;
+            format = "$icon $mem_used_percents";
           }
           {
             block = "cpu";
@@ -403,16 +392,14 @@ in
         ] ++ (lists.optional (cpuSensor != null)
           {
             block = "temperature";
-            collapsed = false;
-            format = "{average}";
+            format = "$icon $average";
             chip = cpuSensor;
             interval = 5;
           }
         ) ++ (lists.optional (gpuSensor != null)
           {
             block = "temperature";
-            collapsed = false;
-            format = "{average}";
+            format = "$icon $average";
             chip = gpuSensor;
             interval = 5;
           }) ++
