@@ -100,7 +100,11 @@
   specialisation.hdr.configuration = {
     system.nixos.tags = [ "hdr" ];
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_hdr;
-    environment.variables.ENABLE_GAMESCOPE_WSI = "1";
+    environment.variables =
+      {
+        DXVK_HDR = "1";
+        ENABLE_GAMESCOPE_WSI = "1";
+      };
     programs.gamescope.args = lib.mkForce [ "--rt" "--hdr-enabled" ];
   };
 
