@@ -614,6 +614,7 @@ in
       sublimePackages = mkIf seat {
         target = "sublime-text/Packages/User/Package Control.sublime-settings";
         text = generators.toJSON { } {
+          # As this list is being updated since 2014, it may contain some obsolete packages.
           installed_packages = [
             "A File Icon" # Proper icons in the sidebar
             "Babel" # React JSX syntax
@@ -636,9 +637,9 @@ in
             "INI" # Ini files syntax
             "LaTeXTools" # Texlive recommended companion
             "LDIF Syntax Highlighting" # LDAP files syntax
-            "LSP" # It's really dump to have a daemon running a JSON-RPC server to have language support
-            "LSP-Deno" # Urgh
-            "LSP-elixir" # But damm, I need this dialyzer integration
+            "LSP" # I really hate having a socket-server that duplicates the entire editor's state, but...
+            "LSP-Deno" # ...urgh, no alternative
+            "LSP-elixir" # ...damm, I really need this dialyzer integration
             "MasmAssembly" # MASM syntax
             "MDX Syntax Highlighting" # MDX (JSX on Markdown) syntax
             "MIPS Syntax" # MIPS syntax 
@@ -648,14 +649,12 @@ in
             "Origami" # Easy split windows into panes
             "Package Control" # Required for having all the other
             "PKGBUILD" # Arch's PKGBUILDs syntax
-            "Print to HTML" # Generates colored documents from my code
             "ProjectManager" # Fast-change projects
             "Prolog" # Prolog syntax
             "QML" # Qt's QML syntax
             "rainbow_csv" # See columns in CSV through coloring
-            "Reason" # Reason syntax (Requires LSP)
             "RecentTabSort" # Re-sort tabs
-            "RustFmt" # FOrmat Rust
+            "RustFmt" # Format Rust
             "Sass" # Sass syntax
             "SideBarEnhancements" # Useful commands in the sidebar
             "SublimeLinter" # Generic linter
