@@ -52,13 +52,12 @@
         #ratelimit = 20;
         #ratelimit_whitelist = [ ];
         #refuse_any = true;
-        upstream_dns = [ "https://cloudflare-dns.com/dns-query" ];
+        upstream_dns = [ "tls://qx1jz8jm5c.cloudflare-gateway.com" ];
         upstream_dns_file = "";
         bootstrap_dns = [
-          "1.1.1.1"
-          "1.0.0.1"
-          "2606:4700:4700::1111"
-          "2606:4700:4700::1001"
+          "172.64.36.1"
+          "172.64.36.2"
+          "2a06:98c1:54::1:ce11"
         ];
         #all_servers = false;
         #fastest_addr = false;
