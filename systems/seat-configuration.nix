@@ -312,9 +312,6 @@
           nss = final.nss_latest;
         };
 
-        # Add pipewire-output to Audacious
-        audacious = import ../shared/lib/audacious-overlay.nix final prev;
-
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
 
