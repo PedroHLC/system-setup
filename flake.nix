@@ -26,6 +26,18 @@
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
     };
+
+    # Bleeding-edge Waynergy
+    waynergy-git-src = {
+      url = "github:r-c-f/waynergy/master";
+      flake = false;
+    };
+
+    # Bleeding-edge input-leap
+    input-leap-git-src = {
+      url = "github:input-leap/input-leap/master";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, impermanence, ... }@inputs:

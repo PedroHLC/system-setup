@@ -231,6 +231,10 @@
     # GI
     jq
     xdelta
+
+    # KVM
+    input-leap
+    waynergy
   ];
 
   # The base GUI toolkit in my setup.
@@ -313,6 +317,15 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
+
+        # Latest waynergy
+        waynergy = prev.waynergy.overrideAttrs (_: { src = flakeInputs.waynergy-git-src; });
+
+        # Latest input-leap through barrier
+        input-leap = final.callPackage ../shared/pkgs/input-leap.nix {
+          input-leap-git-src = flakeInputs.input-leap-git-src;
+          qttools = final.libsForQt5.qt5.qttools;
+        };
       };
     in
     [ thisConfigsOverlay ];

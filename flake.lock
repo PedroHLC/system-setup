@@ -37,6 +37,23 @@
         "type": "github"
       }
     },
+    "input-leap-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1678233125,
+        "narHash": "sha256-Xu6koWqI9nW3xhlbQw57n2gRlp4MCp/jPRuCY86Wgow=",
+        "owner": "input-leap",
+        "repo": "input-leap",
+        "rev": "09eebd619c5858d61e956fdb87f7cfabf7823b86",
+        "type": "github"
+      },
+      "original": {
+        "owner": "input-leap",
+        "ref": "master",
+        "repo": "input-leap",
+        "type": "github"
+      }
+    },
     "mesa-git-src": {
       "flake": false,
       "locked": {
@@ -56,11 +73,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1679662499,
-        "narHash": "sha256-9TBYpfcZmet5yutmN+TslECrvNMKQWzb10zTq8hDTak=",
+        "lastModified": 1679878099,
+        "narHash": "sha256-SSSOW3YRdZ9G61DG1wRF+69PTMUS//1uxHVAWwmkY94=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "78e583d50ac18240095fd041651cc602f2610253",
+        "rev": "7660fc4686ef4ce0ade86af21439cfeeea8ab1c4",
         "type": "github"
       },
       "original": {
@@ -90,9 +107,11 @@
       "inputs": {
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "input-leap-git-src": "input-leap-git-src",
         "mesa-git-src": "mesa-git-src",
         "nixpkgs": "nixpkgs",
-        "pedrochrome-css": "pedrochrome-css"
+        "pedrochrome-css": "pedrochrome-css",
+        "waynergy-git-src": "waynergy-git-src"
       }
     },
     "utils": {
@@ -107,6 +126,23 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "waynergy-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679543297,
+        "narHash": "sha256-cluYBMNqtnZoXkOlGSUJ3cfRmArHD82h8tIYtc81ddE=",
+        "owner": "r-c-f",
+        "repo": "waynergy",
+        "rev": "dde9b5b3e7d0f1ee8e246b5cdf800e31d669347f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "r-c-f",
+        "ref": "master",
+        "repo": "waynergy",
         "type": "github"
       }
     }
