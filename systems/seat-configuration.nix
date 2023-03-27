@@ -322,10 +322,13 @@
         waynergy = prev.waynergy.overrideAttrs (_: { src = flakeInputs.waynergy-git-src; });
 
         # Latest input-leap through barrier
+        # NOTE: Still missing the bits in wlroots, xdg-desktop-portal, and xdg-desktop-portal-wlr
         input-leap = final.callPackage ../shared/pkgs/input-leap.nix {
           input-leap-git-src = flakeInputs.input-leap-git-src;
           qttools = final.libsForQt5.qt5.qttools;
         };
+
+        libei = final.callPackage ../shared/pkgs/libei.nix { };
       };
     in
     [ thisConfigsOverlay ];
