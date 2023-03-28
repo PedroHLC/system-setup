@@ -233,8 +233,8 @@
     xdelta
 
     # KVM
-    input-leap
-    waynergy
+    input-leap-git
+    waynergy-git
   ];
 
   # The base GUI toolkit in my setup.
@@ -314,21 +314,9 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
-
-        # Latest waynergy
-        waynergy = prev.waynergy.overrideAttrs (_: { src = flakeInputs.waynergy-git-src; });
-
-        # Latest input-leap through barrier
-        # NOTE: Still missing the bits in wlroots, xdg-desktop-portal, and xdg-desktop-portal-wlr
-        input-leap = final.callPackage ../shared/pkgs/input-leap.nix {
-          input-leap-git-src = flakeInputs.input-leap-git-src;
-          qttools = final.libsForQt5.qt5.qttools;
-        };
-
-        libei = final.callPackage ../shared/pkgs/libei.nix { };
       };
     in
-    [ thisConfigsOverlay ];
+    [ thisConfigsOverlay flakeInputs.chaotic-nyx.overlays.default ];
 
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;

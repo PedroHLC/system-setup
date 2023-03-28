@@ -96,17 +96,15 @@
     ];
   };
 
-  # Creates a second boot entry with HDR
+  # Add a second boot entry with HDR
+  chaotic.linux_hdr.specialisation.enable = true;
+  programs.gamescope.package = pkgs.gamescope-git;
   specialisation.hdr.configuration = {
-    system.nixos.tags = [ "hdr" ];
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_testing_hdr;
-    environment.variables =
-      {
-        DXVK_HDR = "1";
-        ENABLE_GAMESCOPE_WSI = "1";
-      };
     programs.gamescope.args = lib.mkForce [ "--rt" "--hdr-enabled" ];
   };
+
+  # Smooth-criminal bleeding-edge Mesa3D
+  chaotic.mesa-git.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

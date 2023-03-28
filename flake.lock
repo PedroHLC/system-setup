@@ -1,5 +1,45 @@
 {
   "nodes": {
+    "chaotic-nyx": {
+      "inputs": {
+        "gamescope-git-src": "gamescope-git-src",
+        "input-leap-git-src": "input-leap-git-src",
+        "mesa-git-src": "mesa-git-src",
+        "nixpkgs": "nixpkgs",
+        "waynergy-git-src": "waynergy-git-src"
+      },
+      "locked": {
+        "lastModified": 1679962623,
+        "narHash": "sha256-PVJaNw7Y4MY+0jjK4JEV56a6Rcvdm4MIMVxHB1TLs8s=",
+        "owner": "chaotic-aur",
+        "repo": "nyx",
+        "rev": "e9dd79ac9369e2afa60d98de521287acc3b82681",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chaotic-aur",
+        "ref": "main",
+        "repo": "nyx",
+        "type": "github"
+      }
+    },
+    "gamescope-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679448083,
+        "narHash": "sha256-1Ya59k60YmrJ1AWQ3eoWYBFjiz+RENBNc4FxK3GcgIQ=",
+        "owner": "Plagman",
+        "repo": "gamescope",
+        "rev": "5d9ecd462e6d5939fc2697509f53bcb6aba7eb92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Plagman",
+        "ref": "master",
+        "repo": "gamescope",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -57,11 +97,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1679860008,
-        "narHash": "sha256-asJ5QaOVEc87kk2O4qu7d+90qvfwIy9TyfLIp57pMAs=",
+        "lastModified": 1679958941,
+        "narHash": "sha256-72GC3P5VGXI8xqlE8JI1ZFog+DxyE2EtV6bwNaEEov4=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "04bfb71fa1c3e9a2e36ed4c25d1466a2280f3119",
+        "rev": "fa6ecd00327774541b55286ff9dd99d8e50f57eb",
         "type": "github"
       },
       "original": {
@@ -72,6 +112,22 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1679878099,
+        "narHash": "sha256-SSSOW3YRdZ9G61DG1wRF+69PTMUS//1uxHVAWwmkY94=",
+        "owner": "PedroHLC",
+        "repo": "nixpkgs",
+        "rev": "7660fc4686ef4ce0ade86af21439cfeeea8ab1c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PedroHLC",
+        "ref": "gamescope-hdr-rebased",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1679878099,
         "narHash": "sha256-SSSOW3YRdZ9G61DG1wRF+69PTMUS//1uxHVAWwmkY94=",
@@ -105,13 +161,11 @@
     },
     "root": {
       "inputs": {
+        "chaotic-nyx": "chaotic-nyx",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
-        "input-leap-git-src": "input-leap-git-src",
-        "mesa-git-src": "mesa-git-src",
-        "nixpkgs": "nixpkgs",
-        "pedrochrome-css": "pedrochrome-css",
-        "waynergy-git-src": "waynergy-git-src"
+        "nixpkgs": "nixpkgs_2",
+        "pedrochrome-css": "pedrochrome-css"
       }
     },
     "utils": {

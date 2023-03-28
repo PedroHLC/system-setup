@@ -15,32 +15,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Smooth-criminal bleeding-edge Mesa3D
-    mesa-git-src = {
-      url = "github:chaotic-aur/mesa-mirror/main";
-      flake = false;
-    };
+    # Smooth-criminal bleeding-edge packages
+    chaotic-nyx.url = "github:chaotic-aur/nyx/main";
 
     # My FFx userChrome.css
     pedrochrome-css = {
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
     };
-
-    # Bleeding-edge Waynergy
-    waynergy-git-src = {
-      url = "github:r-c-f/waynergy/master";
-      flake = false;
-    };
-
-    # Bleeding-edge input-leap
-    input-leap-git-src = {
-      url = "github:input-leap/input-leap/master";
-      flake = false;
-    };
   };
 
-  outputs = { nixpkgs, home-manager, impermanence, ... }@inputs:
+  outputs = { nixpkgs, home-manager, impermanence, chaotic-nyx, ... }@inputs:
     let
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
@@ -58,6 +43,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
+            chaotic-nyx.nixosModules.default
             ./shared/lib/wireguard-client.nix
             ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix
@@ -85,8 +71,8 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
+            chaotic-nyx.nixosModules.default
             ./shared/lib/4k-nohidpi.nix
-            ./shared/lib/graphics-stack-bleeding.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
             ./shared/lib/wgcf-teams.nix
