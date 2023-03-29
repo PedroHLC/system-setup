@@ -102,7 +102,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    media-session.enable = false;
     systemWide = false;
 
     wireplumber.enable = true;
@@ -390,9 +389,9 @@
     boot.zfs.enableUnstable = lib.mkForce false;
   };
 
-  # Change my MOUSE4 and MOUSE5 behavior
+  # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")
   services.udev.extraHwdb = ''
-    evdev:name:Logitech G603:*
+    evdev:name:Corsair CORSAIR KATAR PRO Wireless Gaming Dongle:*
       ID_INPUT_KEY=1
       KEYBOARD_KEY_90005=btn_forward
       KEYBOARD_KEY_90004=btn_back
