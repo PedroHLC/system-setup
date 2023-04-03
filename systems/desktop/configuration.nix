@@ -98,7 +98,7 @@
 
   # Add a second boot entry with HDR
   chaotic.linux_hdr.specialisation.enable = true;
-  programs.gamescope.package = pkgs.gamescope-git;
+  #programs.gamescope.package = pkgs.gamescope-git; # Borked option
   specialisation.hdr.configuration = {
     programs.gamescope.args = lib.mkForce [ "--rt" "--hdr-enabled" ];
   };

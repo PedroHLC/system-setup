@@ -11,11 +11,11 @@
         "wlroots-git-src": "wlroots-git-src"
       },
       "locked": {
-        "lastModified": 1680175700,
-        "narHash": "sha256-mVK0xcvTbEurIbhu1SkW99CCf7AHpHZ5997cykF3bfU=",
+        "lastModified": 1680528522,
+        "narHash": "sha256-kkbY8CTMvChNUi3uuuPnkE6F5clQSj48Yp/sARu19wo=",
         "owner": "chaotic-aur",
         "repo": "nyx",
-        "rev": "aedd0e19459a53e7874e2bfb18c253e89f76d9bc",
+        "rev": "c2bd62502449ae573134948b613ff515b37a5cae",
         "type": "github"
       },
       "original": {
@@ -30,13 +30,13 @@
       "locked": {
         "lastModified": 1679448083,
         "narHash": "sha256-1Ya59k60YmrJ1AWQ3eoWYBFjiz+RENBNc4FxK3GcgIQ=",
-        "owner": "Plagman",
+        "owner": "ValveSoftware",
         "repo": "gamescope",
         "rev": "5d9ecd462e6d5939fc2697509f53bcb6aba7eb92",
         "type": "github"
       },
       "original": {
-        "owner": "Plagman",
+        "owner": "ValveSoftware",
         "ref": "master",
         "repo": "gamescope",
         "type": "github"
@@ -50,11 +50,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1680114304,
-        "narHash": "sha256-XymtLu8G2nzenjDUWI7XV2MMHztvPkEZUFpwmZFcxVM=",
+        "lastModified": 1680389554,
+        "narHash": "sha256-+8FUmS4GbDMynQErZGXKg+wU76rq6mI5fprxFXFWKSM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "0e065e1b6f0776ebbacea9dcbc977af7bc9eddc0",
+        "rev": "ddd8866c0306c48f465e7f48432e6f1ecd1da7f8",
         "type": "github"
       },
       "original": {
@@ -82,11 +82,11 @@
     "input-leap-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1678233125,
-        "narHash": "sha256-Xu6koWqI9nW3xhlbQw57n2gRlp4MCp/jPRuCY86Wgow=",
+        "lastModified": 1680481014,
+        "narHash": "sha256-ji3/bz0MkG0QxnpDMoVfqzsEUiM/gbsBqJsw6gb8udg=",
         "owner": "input-leap",
         "repo": "input-leap",
-        "rev": "09eebd619c5858d61e956fdb87f7cfabf7823b86",
+        "rev": "a75aec07f863d32b833ec2bd89beb00a5fbb9b9c",
         "type": "github"
       },
       "original": {
@@ -99,11 +99,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1680171271,
-        "narHash": "sha256-N2tBXvFFGLhf0LUBhabdqRhRqKmCSiimnMnPozqD5T8=",
+        "lastModified": 1680511568,
+        "narHash": "sha256-fVAMP1OVzch84PReAwW4eux/dBblgojbCvykJtT/qAo=",
         "owner": "chaotic-aur",
         "repo": "mesa-mirror",
-        "rev": "9c90deefb2356c970520a404375b0e1796df1535",
+        "rev": "7fe469d6c809eaacbdb5a04bdcd8a5b0d7fc557b",
         "type": "github"
       },
       "original": {
@@ -115,11 +115,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1680121753,
-        "narHash": "sha256-rB3ZnNodA4o8Rq0sKZ0t/YdY/MRon4V+bW1b20adgr4=",
+        "lastModified": 1680487167,
+        "narHash": "sha256-9FNIqrxDZgSliGGN2XJJSvcDYmQbgOANaZA4UWnTdg4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e779e17ebdf3907ce08c75c7c1b2dc8a1c5038c9",
+        "rev": "53dad94e874c9586e71decf82d972dfb640ef044",
         "type": "github"
       },
       "original": {
@@ -131,11 +131,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1680175973,
-        "narHash": "sha256-WHuT916E2ls+C8EFwhCdrHiKzMgROhyHiHkSPWr2GS4=",
+        "lastModified": 1680528566,
+        "narHash": "sha256-fP3Ps0KBz6APT/6mrYwSo7lKcp57EBmy0GvYJVN+Xjo=",
         "owner": "PedroHLC",
         "repo": "nixpkgs",
-        "rev": "f5cb6f664ce1a09d707db15b9452358a4dc4cdc3",
+        "rev": "f8ff69704c158bebee05caac4b5e7b886e07d4ee",
         "type": "github"
       },
       "original": {
@@ -173,11 +173,11 @@
     "sway-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1679907376,
-        "narHash": "sha256-AfpDl7hQIRbFbni6pQMpoEAj1F5ocX3Y6PhkiSqtAMY=",
+        "lastModified": 1680393482,
+        "narHash": "sha256-x2W5tX6CbSr2wXvboYNXsPeFRssxX6E20z2zSBhYFyg=",
         "owner": "swaywm",
         "repo": "sway",
-        "rev": "dee032d0a0ecd958c902b88302dc59703d703c7f",
+        "rev": "9cf66e8c7cfc06680a1af055bafd7e5cc01d6fe2",
         "type": "github"
       },
       "original": {

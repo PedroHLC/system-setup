@@ -554,7 +554,7 @@ in
           text = generators.toJSON { } {
             hardware_acceleration = "opengl";
             close_windows_when_empty = false;
-            rulers = [ 40 80 ];
+            rulers = [ 45 90 ];
             spell_check = false;
             lsp_format_on_save = false; # S|_|cks a lot, I prefer plugins with REAL language support
 
@@ -971,6 +971,7 @@ in
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         "@system" = "cd /etc/nixos";
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
+        "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";

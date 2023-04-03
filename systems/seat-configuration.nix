@@ -307,7 +307,7 @@
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = prev.discord.override {
-          # withOpenASAR = true; # latest version is capping video features
+          withOpenASAR = true;
           nss = final.nss_latest;
         };
 

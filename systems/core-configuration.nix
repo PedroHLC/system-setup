@@ -157,7 +157,7 @@
       PermitRootLogin = "no";
     };
   };
-  programs.ssh.package = pkgs.openssh_hpn;
+  #programs.ssh.package = pkgs.openssh_hpn; # Current vulnerable
 
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
