@@ -4,7 +4,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:PedroHLC/nixpkgs/gamescope-hdr-rebased";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     # reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
@@ -59,7 +59,6 @@
                 displayBrightness = true;
                 gitKey = "F5BFC029DA9A28CE";
                 nvidiaPrime = true;
-                # persistence = true;
                 touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
               };
             }

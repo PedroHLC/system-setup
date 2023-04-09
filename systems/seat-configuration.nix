@@ -81,6 +81,9 @@
     driSupport32Bit = true;
   };
 
+  # Smooth-criminal bleeding-edge Mesa3D
+  chaotic.mesa-git.enable = true;
+
   # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
@@ -245,13 +248,12 @@
   # Special apps (requires more than their package to work).
   programs.adb.enable = true;
   programs.gamemode.enable = true;
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
-  programs.gamescope = {
+  programs.steam.enable = true;
+  chaotic.gamescope = {
     enable = true;
     capSysNice = true;
+    args = [ "--rt" ];
+    package = pkgs.gamescope-git;
   };
 
   # Fix swaylock (nixpkgs issue 158025)
@@ -393,8 +395,13 @@
   };
 
   # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")
+  # - on both Dongle and Bluetooth mode
   services.udev.extraHwdb = ''
     evdev:name:Corsair CORSAIR KATAR PRO Wireless Gaming Dongle:*
+      ID_INPUT_KEY=1
+      KEYBOARD_KEY_90005=btn_forward
+      KEYBOARD_KEY_90004=btn_back
+    evdev:name:KATAR PRO Wireless Mouse:*
       ID_INPUT_KEY=1
       KEYBOARD_KEY_90005=btn_forward
       KEYBOARD_KEY_90004=btn_back
@@ -433,6 +440,7 @@
         ".local/share/containers"
         ".config/asciinema"
         ".config/btop"
+        { directory = ".config/cachix"; mode = "0700"; }
         ".config/discord"
         ".config/Element"
         { directory = ".config/Keybase"; mode = "0700"; }

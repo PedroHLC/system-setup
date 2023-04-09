@@ -98,13 +98,9 @@
 
   # Add a second boot entry with HDR
   chaotic.linux_hdr.specialisation.enable = true;
-  #programs.gamescope.package = pkgs.gamescope-git; # Borked option
-  specialisation.hdr.configuration = {
-    programs.gamescope.args = lib.mkForce [ "--rt" "--hdr-enabled" ];
-  };
 
-  # Smooth-criminal bleeding-edge Mesa3D
-  chaotic.mesa-git.enable = true;
+  # Gamescope session is better for AAA gaming
+  chaotic.gamescope.session.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
