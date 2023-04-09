@@ -39,6 +39,7 @@ let
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
   cursorSize = 16;
+  path = config.home.homeDirectory;
 
   # per-GPU values
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
@@ -78,6 +79,7 @@ in
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop
     fzf-bluetooth
+    pokemmo-launcher
 
     # My scripts
     nrpr
@@ -515,7 +517,7 @@ in
           skins = {
             always_on_top = true;
             playlist_visible = false;
-            skin = "/home/pedrohlc/.local/share/audacious/Skins/135799-winamp_classic";
+            skin = "${path}/.local/share/audacious/Skins/135799-winamp_classic";
           };
         };
       };
@@ -705,6 +707,15 @@ in
           "x-scheme-handler/https"
         ];
         type = "Application";
+      };
+      "pokemmo" = mkIf seat {
+        name = "PokeMMO";
+        genericName = "MMORPG abou leveling up and discovering new monsters";
+        exec = "${pkgs.pokemmo-launcher}/bin/pokemmo";
+        terminal = false;
+        categories = [ "Game" ];
+        type = "Application";
+        icon = "${path}/Games/PokeMMO/data/icons/128x128.png";
       };
     };
 
@@ -905,6 +916,15 @@ in
       };
       init = {
         defaultBranch = "main";
+      };
+      # pull with rebase on everything except main/master
+      "branch \"main\"" = {
+        rebase = false;
+        ff-only = true;
+      };
+      "branch \"master\"" = {
+        rebase = false;
+        ff-only = true;
       };
     };
   };

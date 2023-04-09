@@ -313,6 +313,9 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
+
+        # PokeMMO mutable launcher
+        pokemmo-launcher = final.callPackage ../shared/pkgs/pokemmo-launcher.nix { };
       };
     in
     [ thisConfigsOverlay flakeInputs.chaotic-nyx.overlays.default ];
