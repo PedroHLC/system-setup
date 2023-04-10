@@ -115,7 +115,7 @@
     AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
     SDL_AUDIODRIVER = "pipewire";
     ALSOFT_DRIVERS = "pipewire";
-    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,gpl,ngg_streamout";
+    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,ngg_streamout";
     WINEPREFIX = "/dev/null";
   };
 
@@ -251,7 +251,6 @@
   programs.steam.enable = true;
   chaotic.gamescope = {
     enable = true;
-    capSysNice = true;
     args = [ "--rt" ];
     package = pkgs.gamescope-git;
   };
