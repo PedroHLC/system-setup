@@ -316,6 +316,13 @@ in
       size = cursorSize;
       name = cursorTheme;
     };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+  };
+
+  # GTK4 Setup
+  dconf.settings."org/gnome/desktop/interface" = {
+    gtk-theme = lib.mkForce "Breeze";
+    color-scheme = "prefer-dark";
   };
 
   # Cursor setup

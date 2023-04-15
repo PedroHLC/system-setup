@@ -16,7 +16,7 @@
     };
 
     # Smooth-criminal bleeding-edge packages
-    chaotic-nyx.url = "github:chaotic-aur/nyx/main";
+    chaotic.url = "github:chaotic-cx/nyx/main";
 
     # My FFx userChrome.css
     pedrochrome-css = {
@@ -25,7 +25,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, impermanence, chaotic-nyx, ... }@inputs:
+  outputs = { nixpkgs, home-manager, impermanence, chaotic, ... }@inputs:
     let
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
@@ -43,7 +43,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
-            chaotic-nyx.nixosModules.default
+            chaotic.nixosModules.default
             ./shared/lib/wireguard-client.nix
             ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix
@@ -70,7 +70,7 @@
           system = "x86_64-linux";
           modules = [
             impermanence.nixosModules.impermanence
-            chaotic-nyx.nixosModules.default
+            chaotic.nixosModules.default
             ./shared/lib/4k-nohidpi.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix

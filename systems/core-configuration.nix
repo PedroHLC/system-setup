@@ -43,8 +43,10 @@
   hardware.enableRedistributableFirmware = true;
 
   # I like /tmp on RAM.
-  boot.tmpOnTmpfs = true;
-  boot.tmpOnTmpfsSize = "100%";
+  boot.tmp = {
+    useTmpfs = true;
+    tmpfsSize = "100%";
+  };
 
   # Kernel versions (I prefer Liquorix).
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_lqx;
@@ -66,8 +68,8 @@
     # For apps using LC_*:
     extraLocaleSettings = {
       LC_MESSAGES = "en_US.UTF-8";
+      LC_CTYPE = "en_US.UTF-8"; # "pt_BR.UTF8" borks xkbcommon
 
-      LC_CTYPE = "pt_BR.UTF8";
       LC_NUMERIC = "pt_BR.UTF8";
       LC_TIME = "pt_BR.UTF8";
       LC_COLLATE = "pt_BR.UTF8";

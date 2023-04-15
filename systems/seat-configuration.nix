@@ -111,13 +111,10 @@
   };
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true; # OpenAL likes it, but my pipewire is not configure to rt.
-  environment.variables = {
-    AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
-    SDL_AUDIODRIVER = "pipewire";
-    ALSOFT_DRIVERS = "pipewire";
-    GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,ngg_streamout";
-    WINEPREFIX = "/dev/null";
-  };
+  environment.variables.AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
+  environment.variables.SDL_AUDIODRIVER = "pipewire";
+  environment.variables.ALSOFT_DRIVERS = "pipewire";
+
 
   # Autologin.
   services.getty = {
@@ -235,8 +232,8 @@
     xdelta
 
     # KVM
-    input-leap-git
-    waynergy-git
+    input-leap_git
+    waynergy_git
   ];
 
   # The base GUI toolkit in my setup.
@@ -252,11 +249,16 @@
   chaotic.gamescope = {
     enable = true;
     args = [ "--rt" ];
-    package = pkgs.gamescope-git;
+    package = pkgs.gamescope_git;
   };
 
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };
+
+  # Other preferences
+  environment.variables.GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,ngg_streamout";
+  environment.variables.WINEPREFIX = "/dev/null";
+  environment.variables.GTK_THEME = "Breeze-Dark";
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
@@ -319,7 +321,7 @@
         pokemmo-launcher = final.callPackage ../shared/pkgs/pokemmo-launcher.nix { };
       };
     in
-    [ thisConfigsOverlay flakeInputs.chaotic-nyx.overlays.default ];
+    [ thisConfigsOverlay ];
 
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
