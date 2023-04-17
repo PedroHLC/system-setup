@@ -910,7 +910,7 @@ in
     userName = "${contact.nickname} ☭";
     extraConfig = {
       core = {
-        editor = "nvim"; # I won't specify the full path to re-use the wrapped nvim from the system setup
+        editor = "hx"; # I won't specify the full path to re-use the package from system setup
       };
       rerere = {
         enabled = true;

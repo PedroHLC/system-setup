@@ -108,6 +108,7 @@
     file
     fzf
     google-authenticator
+    helix
     htop
     jq
     killall
@@ -152,13 +153,9 @@
     Defaults pwfeedback
   '';
 
-  # Neovim to rule them all.
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    defaultEditor = true;
-  };
+  # Put Helix as default editor.
+  environment.variables.EDITOR = "hx";
+
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
