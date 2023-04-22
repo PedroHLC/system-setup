@@ -73,6 +73,7 @@
     openrct2
     vcmi
     vkBasalt
+    yuzu-early-access_git
   ];
 
   # One-button virtualization for some tests of mine
