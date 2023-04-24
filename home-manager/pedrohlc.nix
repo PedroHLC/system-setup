@@ -875,7 +875,7 @@ in
       background_alpha = "0.05";
 
       # additional features
-      battery = mkIf battery true;
+      battery = (battery != null);
       cpu_temp = true;
       gpu_temp = true;
       io_read = true;
