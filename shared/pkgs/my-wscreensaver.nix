@@ -9,9 +9,8 @@
 let
   screensaver = writeShellScript "my-wscreensaver-bg" ''
     ${mpvpaper}/bin/mpvpaper \
-      -o '--ao=none --shuffle --loop-file=inf --scale=oversampl' \
-      '*' \
-      "''$@"
+      -o '--ao=none --shuffle --loop-file=inf --scale=oversample' \
+      '*' "''$@"
   '';
 in
 writeShellScriptBin "my-wscreensaver" ''
