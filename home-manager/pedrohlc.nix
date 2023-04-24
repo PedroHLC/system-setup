@@ -13,7 +13,7 @@ let
   # Some stuff that repeats across this file
   modifier = "Mod4";
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
-  lock = "${pkgs.swaylock}/bin/swaylock -c 018281";
+  lock = "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
   terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";

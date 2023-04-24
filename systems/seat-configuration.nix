@@ -165,6 +165,7 @@
 
     # My scripts
     firefox-gate
+    my-wscreensaver
     nowl
     wayland-env
 
@@ -254,6 +255,7 @@
 
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };
+  security.pam.services.swaylock-plugin = { };
 
   # Other preferences
   environment.variables.GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,ngg_streamout";
@@ -319,6 +321,9 @@
 
         # PokeMMO mutable launcher
         pokemmo-launcher = final.callPackage ../shared/pkgs/pokemmo-launcher.nix { };
+
+        # swaylock with GIFs
+        my-wscreensaver = final.callPackage ../shared/pkgs/my-wscreensaver.nix { };
       };
     in
     [ thisConfigsOverlay ];

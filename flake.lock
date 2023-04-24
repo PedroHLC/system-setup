@@ -2,21 +2,23 @@
   "nodes": {
     "chaotic": {
       "inputs": {
+        "compare-to": "compare-to",
         "gamescope-git-src": "gamescope-git-src",
         "input-leap-git-src": "input-leap-git-src",
         "mesa-git-src": "mesa-git-src",
         "nixpkgs": "nixpkgs",
         "sway-git-src": "sway-git-src",
+        "swaylock-plugin-git-src": "swaylock-plugin-git-src",
         "waynergy-git-src": "waynergy-git-src",
         "wlroots-git-src": "wlroots-git-src",
         "yuzu-ea-git-src": "yuzu-ea-git-src"
       },
       "locked": {
-        "lastModified": 1682184857,
-        "narHash": "sha256-6QATHaxwNmyzeXwxQoJeYBy5zexUHvd6TAxvRvSuP3c=",
+        "lastModified": 1682338243,
+        "narHash": "sha256-kNJnP2u22uhmU6aWw8i0OZIXjVLQ/V11Ipvr1z7TQbI=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "ae84f5719516b0c0d042d6f06c750e47afba273d",
+        "rev": "683823d6d1f8097c40475caf8e92c2c41e097e4e",
         "type": "github"
       },
       "original": {
@@ -26,14 +28,29 @@
         "type": "github"
       }
     },
+    "compare-to": {
+      "locked": {
+        "lastModified": 1682262834,
+        "narHash": "sha256-kailVn8ZiJ6yaHTLOTDtJKj8MFp/U/ncqYjNUrpryJ8=",
+        "owner": "chaotic-cx",
+        "repo": "nix-empty-flake",
+        "rev": "211c8624d05494ab24993a59e7ddc2fad58305b3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chaotic-cx",
+        "repo": "nix-empty-flake",
+        "type": "github"
+      }
+    },
     "gamescope-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1682127989,
-        "narHash": "sha256-MbXbhqcyw2GuoJCF+CGvdWy5VJqeykDHNskKjDhrHgE=",
+        "lastModified": 1682273344,
+        "narHash": "sha256-Nu+Bai+0m+LRg+voFnda5wuB6V3BbMmJOoRTNT7sEyo=",
         "owner": "ValveSoftware",
         "repo": "gamescope",
-        "rev": "50925d9a119e235804b75f523c4e9245615a2f5a",
+        "rev": "d5440c6fca44a407a44159ffcb5a481e15569f2c",
         "type": "github"
       },
       "original": {
@@ -50,11 +67,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1682176386,
-        "narHash": "sha256-xwYjQ8PjfdHlggi8Dq0PXWby/1oXegSUuNuBvoTcnpA=",
+        "lastModified": 1682333170,
+        "narHash": "sha256-yrJIk5/ONaX0QVQoq67DzNPW7epOuiwAM9FY9xFrE8k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "6169690ae38175295605d521bd778d999fbd85cd",
+        "rev": "6f9781b1b0cf3fedbe9d2d0a785aeec4d6085c10",
         "type": "github"
       },
       "original": {
@@ -66,11 +83,11 @@
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1675359654,
-        "narHash": "sha256-FPxzuvJkcO49g4zkWLSeuZkln54bLoTtrggZDJBH90I=",
+        "lastModified": 1682268411,
+        "narHash": "sha256-ICDKQ7tournRVtfM8C2II0qHiOZOH1b3dXVOCsgr11o=",
         "owner": "nix-community",
         "repo": "impermanence",
-        "rev": "6138eb8e737bffabd4c8fc78ae015d4fd6a7e2fd",
+        "rev": "df1692e2d9f1efc4300b1ea9201831730e0b817d",
         "type": "github"
       },
       "original": {
@@ -99,11 +116,11 @@
     "mesa-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1682126918,
-        "narHash": "sha256-InjCfxv6/QbcpKEXxFG/dfimbDQ3sSh53OfeMFByQLE=",
+        "lastModified": 1682330460,
+        "narHash": "sha256-pun5jOJX+EiutJMIiUhjhGZ58k9pbmpita37d6UNtFU=",
         "owner": "chaotic-cx",
         "repo": "mesa-mirror",
-        "rev": "068738eea9e14490a42897923d1f5a3213827459",
+        "rev": "8b791c24eae200c86b32fac215b4ff2f30bf0bf5",
         "type": "github"
       },
       "original": {
@@ -187,6 +204,23 @@
         "type": "github"
       }
     },
+    "swaylock-plugin-git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1681470168,
+        "narHash": "sha256-iSX8/shh3oT0JaEcwyJUezVl14MqQJG54LWSnwXDmW4=",
+        "owner": "mstoeckl",
+        "repo": "swaylock-plugin",
+        "rev": "9629e58a7a9d6f063451527e7da547b0cb1d97c6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mstoeckl",
+        "ref": "main",
+        "repo": "swaylock-plugin",
+        "type": "github"
+      }
+    },
     "waynergy-git-src": {
       "flake": false,
       "locked": {
@@ -224,11 +258,11 @@
     "yuzu-ea-git-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1682177268,
-        "narHash": "sha256-Ld4chW2yxpFDtZvZIWmps0GBtiGWbS0FZjGieDzg1e8=",
+        "lastModified": 1682330541,
+        "narHash": "sha256-sbjnE4kZmMnG+ht0LnIdWjmp0aa4lys4MWnapYLepno=",
         "owner": "pineappleEA",
         "repo": "pineapple-src",
-        "rev": "ab28951bc09ca5ac85760a19ad1b7ea34803e1a9",
+        "rev": "b31b4e3caa2ff49cd256b7ab8342e3369d507d9e",
         "type": "github"
       },
       "original": {
