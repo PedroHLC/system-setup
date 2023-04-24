@@ -97,6 +97,9 @@
     ];
   };
 
+  # Smooth-criminal bleeding-edge Mesa3D
+  chaotic.mesa-git.enable = true;
+
   # Add a second boot entry with HDR
   chaotic.linux_hdr.specialisation.enable = true;
 

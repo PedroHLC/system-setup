@@ -81,9 +81,6 @@
     driSupport32Bit = true;
   };
 
-  # Smooth-criminal bleeding-edge Mesa3D
-  chaotic.mesa-git.enable = true;
-
   # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
