@@ -861,25 +861,34 @@ in
   programs.mangohud = mkIf seat {
     enable = true;
     settings = {
-      arch = true;
-      background_alpha = "0.05";
-      battery = true;
-      cpu_temp = true;
-      font_size = 17;
-      fps_limit = mkIf nvidiaPrime 144;
+      # functionality
+      fps_limit = if nvidiaPrime then 144 else 60;
       gl_vsync = 0;
+      vsync = 1;
+
+      # appearance
+      horizontal = true;
+      hud_compact = true;
+      hud_no_margin = true;
+      table_columns = 19;
+      font_size = 16;
+      background_alpha = "0.05";
+
+      # additional features
+      battery = mkIf battery true;
+      cpu_temp = true;
       gpu_temp = true;
       io_read = true;
       io_write = true;
-      position = "top-right";
-      round_corners = 8;
       vram = true;
-      vsync = 1;
-      vulkan_driver = true;
-      gpu_name = true;
-      engine_version = true;
-      width = 260;
       wine = true;
+
+      # cool, but not always necessary
+      # keeping here for remembering
+      # arch = true;
+      # vulkan_driver = true;
+      # gpu_name = true;
+      # engine_version = true;
     };
   };
 
