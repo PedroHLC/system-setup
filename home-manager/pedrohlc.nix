@@ -14,7 +14,8 @@ let
   modifier = "Mod4";
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
   lock =
-    if nvidiaPrime then "${pkgs.swaylock}/bin/swaylock"
+    # https://github.com/GhostNaN/mpvpaper/issues/38
+    if nvidiaPrime then "${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg"
     else "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
