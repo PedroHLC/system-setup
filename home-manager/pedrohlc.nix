@@ -995,6 +995,14 @@ in
     };
   };
 
+  # Text editor
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "base16_terminal";
+    };
+  };
+
   programs.fish = {
     enable = true;
     shellAliases =
