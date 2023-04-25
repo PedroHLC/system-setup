@@ -3,6 +3,9 @@
 
 # NixOS-defined options
 {
+  # Latest nix on phisically-accessible machines
+  nix.package = pkgs.nixVersions.unstable;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {
@@ -43,7 +46,7 @@
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
-    "vm.max_map_count" = 16777216; # helps with Wine ESYNC/FSYNC
+    "vm.max_map_count" = 2147483642; # helps with Wine ESYNC/FSYNC
   };
 
   # Network (NetworkManager).
