@@ -195,6 +195,9 @@
   # Let's recover our long lost dogs (PR 122547)
   services.dbus.implementation = "broker";
 
+  # Help our friends worldwide
+  services.snowflake-proxy.enable = true;
+
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
