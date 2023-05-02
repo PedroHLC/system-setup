@@ -573,7 +573,7 @@ in
             font_face = "Borg Sans Mono";
             font_options = [ "subpixel_antialias" ];
             font_size = 8;
-            fonts_list = [ "Borg Sans Mono" "Fira Code" "JetBrains Mono" ]; # For FontCycler
+            fonts_list = [ "Borg Sans Mono" "DroidSansMono Nerd Font" "Fira Code" "JetBrains Mono" ]; # For FontCycler
 
             # Have both dark & light themes
             color_scheme = "auto";

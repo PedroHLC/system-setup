@@ -345,6 +345,7 @@
     fonts = with pkgs; [
       borg-sans-mono
       cantarell-fonts
+      droid-sans-mono-nerdfont
       fira
       fira-code
       fira-code-symbols
