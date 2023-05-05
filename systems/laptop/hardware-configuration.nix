@@ -11,13 +11,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    {
-      device = "zroot/ROOT/empty";
-      fsType = "zfs";
-      neededForBoot = true;
-    };
-
   fileSystems."/nix" =
     {
       device = "zroot/ROOT/nix";

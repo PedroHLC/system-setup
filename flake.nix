@@ -48,7 +48,6 @@
             impermanence.nixosModules.impermanence
             chaotic.nixosModules.default
             ./shared/lib/wireguard-client.nix
-            ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
             ./systems/laptop/hardware-configuration.nix
@@ -78,7 +77,6 @@
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
             ./shared/lib/wgcf-teams.nix
-            ./shared/lib/zfs-impermanence-on-shutdown.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
             ./systems/desktop/hardware-configuration.nix
@@ -89,6 +87,7 @@
               home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
                 cpuSensor = "k10temp-pci-00c3";
                 dangerousAlone = false;
+                dlnaName = "pedrohlc@desktop";
                 gitKey = "DF4C6898CBDC6DF5";
                 gpuSensor = "amdgpu-pci-0900";
               };

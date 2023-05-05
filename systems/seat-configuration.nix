@@ -49,6 +49,13 @@
     "vm.max_map_count" = 2147483642; # helps with Wine ESYNC/FSYNC
   };
 
+  # ZFS-based impermanence
+  chaotic.zfs-impermanence-on-shutdown = {
+    enable = true;
+    volume = "zroot/ROOT/empty";
+    snapshot = "start";
+  };
+
   # Network (NetworkManager).
   networking = {
     networkmanager = {
@@ -76,6 +83,7 @@
   # Bluetooth.
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+  services.joycond.enable = true;
 
   # GPU
   hardware.opengl = {
@@ -222,7 +230,7 @@
     vimix-icon-theme
 
     # Gaming
-    mangohud
+    mangohud_git
     mesa-demos
     wine-staging
     vulkan-tools

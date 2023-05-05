@@ -2,6 +2,7 @@
 , cpuSensor ? null
 , dangerousAlone ? true
 , displayBrightness ? false
+, dlnaName ? null
 , gitKey ? null
 , gpuSensor ? null
 , nvidiaPrime ? false
@@ -861,6 +862,7 @@ in
   # Hardware/softwre OSD indicators while gaming
   programs.mangohud = mkIf seat {
     enable = true;
+    package = pkgs.mangohud_git;
     settings = {
       # functionality
       fps_limit = if nvidiaPrime then 144 else 60;
@@ -1019,6 +1021,7 @@ in
         "@system" = "cd /etc/nixos";
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
         "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
+        "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
       } // attrsets.optionalAttrs seat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
@@ -1041,4 +1044,28 @@ in
       set -g SHELL "${config.programs.fish.package}/bin/fish"
     '';
   };
+
+  # DLNA
+  systemd.user.services.minidlna =
+    let
+      minidlnaConf = pkgs.writeTextFile {
+        name = "minidlna.conf";
+        text = ''
+          media_dir=V,/home/pedrohlc/Torrents
+          friendly_name=${dlnaName}
+          inotify=yes
+          db_dir=/tmp
+        '';
+      };
+    in
+    mkIf (dlnaName != null) {
+      Unit = {
+        Description = "MiniDLNA service";
+        After = [ "network.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v";
+      };
+      Install = { WantedBy = [ "default.target" ]; };
+    };
 }
