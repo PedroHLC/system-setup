@@ -786,15 +786,7 @@ in
   programs.mpv = mkIf seat {
     enable = true;
     # For watching animes in 60fps
-    package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { vapoursynthSupport = true; }) {
-      # thanks @thiagokokada
-      extraMakeWrapperArgs = [
-        "--prefix"
-        "LD_LIBRARY_PATH"
-        ":"
-        "${pkgs.vapoursynth-mvtools}/lib/vapoursynth"
-      ];
-    };
+    package = pkgs.mpv-vapoursynth;
     config = {
       # Temporary & lossless screenshots
       screenshot-format = "png";
