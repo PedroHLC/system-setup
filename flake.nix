@@ -59,6 +59,7 @@
                 battery = "BAT0";
                 cpuSensor = "coretemp-isa-0000";
                 displayBrightness = true;
+                dlnaName = "pedrohlc@laptop";
                 gitKey = "F5BFC029DA9A28CE";
                 nvidiaPrime = true;
                 touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
