@@ -70,6 +70,7 @@
   # Extra packages
   environment.systemPackages = with pkgs; [
     devilutionx
+    latencyflex-vulkan
     openrct2
     vcmi
     vkBasalt
@@ -104,7 +105,10 @@
   chaotic.linux_hdr.specialisation.enable = true;
 
   # Gamescope session is better for AAA gaming
-  chaotic.gamescope.session.enable = true;
+  chaotic.gamescope.session = {
+    enable = true;
+    steamArgs = [ "-tenfoot" "-pipewire-dmabuf" "-pipewire" ];
+  };
 
   # More Classics' gaming
   chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
