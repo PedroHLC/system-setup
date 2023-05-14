@@ -26,7 +26,7 @@
 
   # ZFS being out-of-tree is super head-aches
   boot.zfs.enableUnstable = true;
-  boot.kernelPackages = pkgs.linuxPackages_lqx; # pkgs.callPackage ../shared/pkgs/pinned-linux-lqx.nix { };
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   # Kernel Params
   boot.kernelParams = [
