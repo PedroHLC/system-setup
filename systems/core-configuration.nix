@@ -206,14 +206,19 @@
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
-  nix.nixPath = [ "nixpkgs=${flakeInputs.nixpkgs}" ];
+  nix.nixPath = [
+    "nixpkgs=${flakeInputs.nixpkgs}"
+    "chaotic=${flakeInputs.chaotic}"
+  ];
 
   # Always uses system's flakes instead of downloading or updating.
-  nix.registry.nixpkgs.flake = flakeInputs.nixpkgs;
+  nix.registry = {
+    nixpkgs.flake = flakeInputs.nixpkgs;
+    chaotic.flake = flakeInputs.chaotic;
+  };
 
   networking.hosts = {
     # - My Network
-
     "${web.lab.v4}" = [ web.lab.addr web.zeta.addr web.libreddit.addr ];
     "${web.lab.v6}" = [ web.lab.addr web.zeta.addr web.libreddit.addr ];
 

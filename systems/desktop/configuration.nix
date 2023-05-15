@@ -42,9 +42,10 @@
   boot.kernelModules = [ "amd_pstate" ];
 
   # OpenCL
-  hardware.opengl.extraPackages = with pkgs; [
+  chaotic.mesa-git.extraPackages = with pkgs; [
     rocm-opencl-icd
     rocm-opencl-runtime
+    mesa_git.opencl
   ];
   environment.variables.RADV_VIDEO_DECODE = "1";
 
