@@ -19,7 +19,7 @@ in
         "wg0" = {
           ips = [ "${vpn.lab.v4}/${vpn.mask.v4}" "${vpn.lab.v6}/${vpn.mask.v6}" ];
           listenPort = vpn.port;
-          privateKeyFile = "/home/pedrohlc/Projects/com.pedrohlc/wireguard-keys/private";
+          privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
           peers = [
             # Desktop
             {

@@ -31,6 +31,15 @@
           proxyPass = "http://127.0.0.1:${toString vpn.lab.libredditPort}/";
         };
       };
+      "${web.nyx.addr}" = {
+        forceSSL = true;
+        useACMEHost = web.lab.addr;
+        http3 = true;
+        locations."/" = {
+          recommendedProxySettings = true;
+          proxyPass = "http://127.0.0.1:${toString vpn.lab.atticPort}/";
+        };
+      };
     };
     appendHttpConfig = ''
       aio threads;
