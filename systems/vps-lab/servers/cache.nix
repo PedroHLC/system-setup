@@ -8,10 +8,13 @@
 
     settings = {
       listen = "[::]:${builtins.toString vpn.lab.atticPort}";
+      api-endpoint = "https://${web.nyx.addr}/";
 
       storage = {
         type = "s3";
-        endpoint = "https://583868f726db11a0c95b74acef15f386.r2.cloudflarestorage.com/chaotic-nyx";
+        region = "";
+        bucket = "chaotic-nyx";
+        endpoint = "https://583868f726db11a0c95b74acef15f386.r2.cloudflarestorage.com";
       };
 
       # WARNING: Once set, never change it.

@@ -63,7 +63,7 @@ rec {
       inherit (web.lab) v4 v6;
     };
     nyx = rec {
-      addr = "nyx.chaotic.cx";
+      addr = "nyx-cache.chaotic.cx";
       inherit (web.lab) v4 v6;
     };
     desktop = {
