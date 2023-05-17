@@ -23,7 +23,6 @@ rec {
       v4 = "${vpn.prefix.v4}.1";
       v6 = "${vpn.prefix.v6}:1";
       adguardPort = 3334;
-      atticPort = 3388;
       libredditPort = 3380;
     };
     zeta = rec {
@@ -60,10 +59,6 @@ rec {
     };
     libreddit = rec {
       addr = "reddit.${contact.domain}";
-      inherit (web.lab) v4 v6;
-    };
-    nyx = rec {
-      addr = "nyx-cache.chaotic.cx";
       inherit (web.lab) v4 v6;
     };
     desktop = {

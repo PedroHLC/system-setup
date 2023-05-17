@@ -65,6 +65,9 @@
     '';
   };
 
+  # Gaming mouse stuff
+  services.ratbagd.enable = true;
+
   # Limit resources used by nix-daemon.
   systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "3-23";
 

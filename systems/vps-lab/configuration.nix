@@ -17,7 +17,6 @@
     acceptTerms = true;
     defaults.email = contact.email;
     certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr web.libreddit.addr ];
-    certs."${web.nyx.addr}" = {};
   };
 
   # Changing the congestion algorithm to bbr in order to reduce packet loss at low throughput

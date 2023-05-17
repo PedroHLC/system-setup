@@ -26,12 +26,9 @@
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
     };
-
-    # vps-lab managed cache
-    attic.url = "github:zhaofengli/attic";
   };
 
-  outputs = { nixpkgs, home-manager, impermanence, chaotic, attic, ... }@inputs:
+  outputs = { nixpkgs, home-manager, impermanence, chaotic, ... }@inputs:
     let
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
@@ -104,13 +101,11 @@
           system = "aarch64-linux";
           modules = [
             (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
-            attic.nixosModules.atticd
             ./shared/lib/oci-options.nix
             ./shared/lib/oci-common.nix
             ./systems/core-configuration.nix
             ./systems/vps-lab/configuration.nix
             ./systems/vps-lab/servers/adguard.nix
-            ./systems/vps-lab/servers/cache.nix
             ./systems/vps-lab/servers/journal-remote.nix
             ./systems/vps-lab/servers/libreddit.nix
             ./systems/vps-lab/servers/nginx.nix
