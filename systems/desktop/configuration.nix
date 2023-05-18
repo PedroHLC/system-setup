@@ -76,6 +76,7 @@
     devilutionx
     latencyflex-vulkan
     openrct2
+    piper
     vcmi
     vkBasalt
     yuzu-early-access_git
