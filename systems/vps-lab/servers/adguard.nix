@@ -85,7 +85,15 @@
         #filtering_enabled = true;
         filters_update_interval = 1;
         #parental_enabled = false;
-        #safesearch_enabled = false;
+        safe_search = {
+          enabled = false;
+          bing = false;
+          duckduckgo = false;
+          google = false;
+          pixabay = false;
+          yandex = false;
+          youtube = false;
+        };
         #safebrowsing_enabled = false;
         #safebrowsing_cache_size = 1048576;
         #safesearch_cache_size = 1048576;
