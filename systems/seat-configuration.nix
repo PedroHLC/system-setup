@@ -548,6 +548,11 @@
   # and there is a ".socket" trigger that starts it when opening printing dialogs.
   systemd.services.cups.wantedBy = lib.mkForce [ ];
 
+  # Some packages have some legacy leftovers
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1t"
+  ];
+
   # Change the allocator in hope it will save me 5 ms everyday.
   # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
   # environment.memoryAllocator.provider = "jemalloc";
