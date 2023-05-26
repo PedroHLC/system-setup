@@ -48,6 +48,7 @@
             impermanence.nixosModules.impermanence
             chaotic.nixosModules.default
             ./shared/lib/wireguard-client.nix
+            ./shared/lib/wgcf-teams.nix
             ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
             ./systems/laptop/hardware-configuration.nix

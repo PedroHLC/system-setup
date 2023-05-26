@@ -26,6 +26,8 @@ in
       ips = [ "${vpn.laptop.v4}/${vpn.mask.v4}" "${vpn.laptop.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
+
+    wireguard.interfaces.wg1.privateKeyFile = "/var/persistent/secrets/wgcf-teams/private";
   };
 
   # NVIDIA GPU (PRIME Offloading + Wayland)
