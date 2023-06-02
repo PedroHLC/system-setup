@@ -33,12 +33,7 @@
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
   # Let's use AMD P-State
-  boot.kernelParams = [
-    #"initcall_blacklist=acpi_cpufreq_init"
-    "amd_pstate.shared_mem=1"
-    # Fix "controller is down" (probably)
-    "nvme_core.default_ps_max_latency_us=0"
-  ];
+  boot.kernelParams = [ "amd-pstate=guided" ];
   boot.kernelModules = [ "amd_pstate" ];
 
   # OpenCL

@@ -550,7 +550,7 @@
 
   # Some packages have some legacy leftovers
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1t"
+    "openssl-1.1.1u"
   ];
 
   # Change the allocator in hope it will save me 5 ms everyday.
