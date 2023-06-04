@@ -96,9 +96,6 @@ in
   # Proper output to gamescope
   chaotic.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];
 
-  # https://github.com/chaotic-cx/nyx/issues/142
-  chaotic.nyx.overlay.onTopOf = "user-pkgs";
-
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
     let
