@@ -5,6 +5,7 @@
 , dlnaName ? null
 , gitKey ? null
 , gpuSensor ? null
+, mainNetworkInterface ? "eno1"
 , nvidiaPrime ? false
 , seat ? true
 , touchpad ? null
@@ -384,7 +385,14 @@ in
           {
             block = "net";
             device = "wlan0";
-            format = "$icon $ssid ($signal_strength) ^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K)";
+            format = "$icon $ssid ($signal_strength)";
+            missing_format = "";
+            interval = 5;
+          }
+          {
+            block = "net";
+            device = mainNetworkInterface;
+            format = "^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K)";
             missing_format = "";
             interval = 5;
           }
