@@ -1043,6 +1043,9 @@ in
       set fish_greeting '何でもは知らないわよ。知ってることだけ'
       set -g SHELL "${config.programs.fish.package}/bin/fish"
     '';
+    functions = {
+      "ghpr-as" = "git fetch origin pull/$argv[1]/head:$argv[2]";
+    };
   };
 
   # DLNA
