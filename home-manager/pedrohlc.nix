@@ -296,11 +296,7 @@ in
         };
     };
 
-    systemdIntegration = false;
-    extraConfig = ''
-      # Proper way to start portals
-      exec ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
-    '';
+    systemd.enable = true;
     extraSessionCommands = ''
       source ${pkgs.wayland-env}/bin/wayland-env
     '' + (strings.optionalString nvidiaPrime ''
