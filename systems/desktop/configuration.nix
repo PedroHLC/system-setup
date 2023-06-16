@@ -17,6 +17,15 @@
     wireguard.interfaces.wg1.privateKeyFile = "/var/persistent/secrets/wgcf-teams/private";
   };
 
+  # UPS
+  power.ups = {
+    enable = true;
+    ups.tsshara = {
+      driver = "nutdrv_qx";
+      description = "tsshara";
+      port = "/dev/ttyACM0";
+    };
+  };
 
   # DuckDNS
   services.ddclient = {
@@ -26,7 +35,6 @@
     server = "www.duckdns.org";
     username = "nouser";
     passwordFile = "/var/persistent/secrets/duckdns.token";
-    ipv6 = false; # Does not work for duckdns protocol
   };
 
   # Better voltage and temperature
@@ -86,16 +94,28 @@
 
   # Not important but persistent files
   environment.persistence = {
-    "/var/persistent".users.pedrohlc.directories = [
-      ".local/share/diasurgical"
-      ".local/share/vcmi"
-    ];
-    "/var/residues".users.pedrohlc.directories = [
-      ".cache/vcmi"
-      ".config/OpenRCT2"
-      ".config/vcmi"
-      ".config/VCMI Team"
-    ];
+    "/var/persistent" = {
+      users.pedrohlc.directories = [
+        ".local/share/diasurgical"
+        ".local/share/vcmi"
+      ];
+      files = [
+        "/etc/nut/upsd.conf"
+        "/etc/nut/upsd.users"
+        "/etc/nut/upsmon.conf"
+      ];
+    };
+    "/var/residues" = {
+      users.pedrohlc.directories = [
+        ".cache/vcmi"
+        ".config/OpenRCT2"
+        ".config/vcmi"
+        ".config/VCMI Team"
+      ];
+      directories = [
+        "/var/lib/nut"
+      ];
+    };
   };
 
   # Smooth-criminal bleeding-edge Mesa3D
