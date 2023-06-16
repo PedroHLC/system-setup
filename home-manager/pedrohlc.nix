@@ -896,8 +896,8 @@ in
     enable = true;
     provider = "manual";
     temperature.night = 5100;
-    latitude = -21.8631753;
-    longitude = -47.480553;
+    latitude = -23.438343565214307;
+    longitude = -47.06493998075002;
     settings = {
       general = {
         adjustment-method = "wayland";
