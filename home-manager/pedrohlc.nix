@@ -1041,6 +1041,7 @@ in
     '';
     functions = {
       "ghpr-as" = "git fetch origin pull/$argv[1]/head:$argv[2]";
+      "ghupr-as" = "git fetch upstream pull/$argv[1]/head:$argv[2]";
     };
   };
 
