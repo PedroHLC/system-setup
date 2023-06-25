@@ -1013,6 +1013,7 @@ in
         "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
         "gpff" = "git pull --ff-only";
         "gprb" = "git pull --rebase";
+        "gp@main" = "git fetch origin && git branch -f main origin/main && git checkout main";
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         "@system" = "cd /etc/nixos";
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";

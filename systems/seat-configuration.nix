@@ -320,7 +320,7 @@
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = prev.discord.override {
-          withOpenASAR = true;
+          #withOpenASAR = true; # broken since somewhere in june
           nss = final.nss_latest;
         };
 
