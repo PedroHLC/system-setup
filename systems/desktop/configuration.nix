@@ -83,6 +83,7 @@
     vcmi
     vkBasalt
     yuzu-early-access_git
+    (cfwarp-add.override { gatewayIP = "192.168.18.1"; })
   ];
 
   # One-button virtualization for some tests of mine

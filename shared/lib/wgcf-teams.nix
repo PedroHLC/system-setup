@@ -1,4 +1,19 @@
 { ... }:
+let
+  fixedRoutes = [
+    # required
+    "172.16.0.2/31"
+    # cache.nixos.org
+    "151.101.2.217"
+    "151.101.66.217"
+    "151.101.130.217"
+    "151.101.194.217"
+  ];
+
+  routesLines = mapper: ''
+    ${builtins.concatStringsSep "\n" (builtins.map mapper fixedRoutes)}
+  '';
+in
 {
   networking = {
     wireguard.interfaces.wg1 = {
@@ -16,12 +31,8 @@
       # I have access to all the network through allowedIPs
       # But I prefer to specify which routes to access
       allowedIPsAsRoutes = false;
-      postSetup = ''
-        ip route replace 172.16.0.2/31 dev wg1 table main
-      '';
-      postShutdown = ''
-        ip route del 172.16.0.2/31 dev wg1
-      '';
+      postSetup = routesLines (t: "ip route replace ${t} dev wg1 table main");
+      postShutdown = routesLines (t: "ip route del ${t} dev wg1");
     };
     hosts."162.159.192.1" = [ "engage.cloudflareclient.com" ];
   };

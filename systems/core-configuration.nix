@@ -5,12 +5,19 @@
 {
   # Nix package-management settings.
   nix = {
-    # Enable flakes, newer CLI features, CA, and keep sources around for offline-building
+    # - Enable flakes
+    # - newer CLI features
+    # - content-aware
+    # - keep sources around for offline-building
+    # - tank more of my internet connection
     extraOptions = ''
       experimental-features = nix-command flakes ca-derivations
 
       keep-outputs = true
       keep-derivations = true
+
+      max-substitution-jobs = 64
+      http-connections = 96
     '';
 
     # Allow my user to use nix

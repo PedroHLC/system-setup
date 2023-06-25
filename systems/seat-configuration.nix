@@ -332,6 +332,9 @@
 
         # swaylock with GIFs
         my-wscreensaver = final.callPackage ../shared/pkgs/my-wscreensaver.nix { };
+
+        # helps me adding routes to CF WARP
+        cfwarp-add = final.callPackage ../shared/pkgs/cfwarp-add.nix { };
       };
     in
     [ thisConfigsOverlay ];
