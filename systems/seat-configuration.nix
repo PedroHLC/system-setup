@@ -3,9 +3,6 @@
 
 # NixOS-defined options
 {
-  # Latest nix on phisically-accessible machines
-  nix.package = pkgs.nixVersions.unstable;
-
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {

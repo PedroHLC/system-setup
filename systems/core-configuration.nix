@@ -5,6 +5,9 @@
 {
   # Nix package-management settings.
   nix = {
+    # Latest nix
+    package = pkgs.nixVersions.unstable;
+
     # - Enable flakes
     # - newer CLI features
     # - content-aware
