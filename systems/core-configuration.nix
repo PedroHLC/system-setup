@@ -110,7 +110,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     aria2
-    busyboxWithoutAppletSymlinks
+    busybox_appletless
     cachix
     file
     fzf
@@ -162,19 +162,6 @@
 
   # Put Helix as default editor.
   environment.variables.EDITOR = "hx";
-
-
-  # Override some packages' settings, sources, etc...
-  nixpkgs.overlays =
-    let
-      thisConfigsOverlay = _: prev: {
-        # Busybox without applets
-        busyboxWithoutAppletSymlinks = prev.busybox.override {
-          enableAppletSymlinks = false;
-        };
-      };
-    in
-    [ thisConfigsOverlay ];
 
   # Enable services (automatically includes their apps' packages).
   services.timesyncd.enable = true;
