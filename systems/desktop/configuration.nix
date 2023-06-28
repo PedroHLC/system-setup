@@ -76,7 +76,7 @@
 
   # Extra packages
   environment.systemPackages = with pkgs; [
-    devilutionx
+    (devilutionx.override { fmt = fmt_9; }) # waiting for nixpkgs#240289
     latencyflex-vulkan
     openrct2
     piper

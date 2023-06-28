@@ -3,7 +3,7 @@ let
   fixedRoutes = [
     # required
     "172.16.0.2/31"
-    # cache.nixos.org
+    # cache.nixos.org (US)
     "151.101.2.217"
     "151.101.66.217"
     "151.101.130.217"
