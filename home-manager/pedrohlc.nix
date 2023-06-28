@@ -319,6 +319,7 @@ in
     systemd.enable = true;
     extraSessionCommands = ''
       source ${pkgs.wayland-env}/bin/wayland-env
+      export STEAM_FORCE_DESKTOPUI_SCALING=1
     '' + (strings.optionalString nvidiaPrime ''
       # Gaming
       export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${env} $GAMEMODERUNEXEC"
