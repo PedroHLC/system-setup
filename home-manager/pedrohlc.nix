@@ -31,6 +31,9 @@ let
   modeOtherMenus = "[b]luetooth | [n]etwork";
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
+  sed = "${pkgs.gnused}/bin/sed";
+  jq = "${pkgs.jq}/bin/jq";
+  swaymsg = "${pkgs.sway}/bin/swaymsg";
   coreutilsBin = exe: "${pkgs.uutils-coreutils}/bin/uutils-${exe}";
   date = coreutilsBin "date";
   tr = coreutilsBin "tr";
@@ -40,6 +43,7 @@ let
   tty = coreutilsBin "tty";
   tmux = "${pkgs.tmux}/bin/tmux";
   fish = "${pkgs.fish}/bin/fish";
+
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
@@ -78,6 +82,11 @@ let
     ''} "$@"
   '';
 
+  visual-fzf = pkgs.writeShellScript "visual-fzf" ''
+    ${terminalLauncher "/bin/sh"} -c \
+      "exec ${pkgs.fzf}/bin/fzf \"\$@\" < /proc/$$/fd/0 > /proc/$$/fd/1" \
+      -- "$@" 2>/dev/null
+  '';
 in
 {
   home.packages = with pkgs; lists.optionals seat [
@@ -126,6 +135,7 @@ in
         "Unknown 0x0804 0x00000000" = {
           # Laptop's display
           background = "${aenami.lostInBetween} fill";
+          position = "0,0";
         };
         "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
           # 75Hz + 1ms + FreeSync
@@ -137,8 +147,18 @@ in
           adaptive_sync = "off"; # In this display, this makes electron apps laggy
           max_render_time = "1";
           mode = "3840x2160@60Hz";
+          position = "0,0";
+        };
+        "HEADLESS-1" = {
+          resolution = "1600x900";
+          position = if nvidiaPrime then "1920,1072" else "3840,2152";
+          bg = "#008080 solid_color";
         };
       };
+      workspaceOutputAssign = [
+        { output = "HEADLESS-1"; workspace = "0"; }
+        { output = "HEADLESS-1"; workspace = "C0"; }
+      ];
       focus = {
         followMouse = "yes";
         mouseWarping = "container";
@@ -265,7 +285,7 @@ in
           # Power-off menu
           "${modePower}" =
             withLeaveOptions {
-              "Shift+l" = "exec ${pkgs.sway}/bin/swaymsg exit";
+              "Shift+l" = "exec ${swaymsg} exit";
               "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
               "Shift+r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
               "s" = "exec ${pkgs.systemd}/bin/systemctl suspend ; mode default";
@@ -481,6 +501,18 @@ in
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
+      wlrPortal = mkIf seat {
+        target = "xdg-desktop-portal-wlr/config";
+        text = generators.toINI { } {
+          screencast = {
+            chooser_type = "dmenu";
+            chooser_cmd =
+              pkgs.writeShellScript "output-chooser" ''
+                ${swaymsg} -t get_outputs | ${jq} '.[] | .name' | ${sed} 's/\"//g' | ${visual-fzf}
+              '';
+          };
+        };
+      };
       # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
       kdeglobals = mkIf seat {
         text = generators.toINI { } {

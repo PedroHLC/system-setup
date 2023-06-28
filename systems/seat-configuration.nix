@@ -164,6 +164,7 @@
     tdesktop
     usbutils
     waypipe
+    wl-mirror
     xarchiver
     xdg-utils
     zoom-us
@@ -401,6 +402,12 @@
     package = pkgs.postgresql; # always the latest
   };
   systemd.services.postgresql.wantedBy = lib.mkForce [ ]; # don't start with system
+
+  # Have my portal settings created through users' files
+  systemd.user.services.xdg-desktop-portal-wlr.serviceConfig.ExecStart = lib.mkForce [
+    ""
+    "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr"
+  ];
 
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {
