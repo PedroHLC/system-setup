@@ -52,8 +52,8 @@
     tmpfsSize = "100%";
   };
 
-  # Kernel versions (I prefer Liquorix).
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_lqx;
+  # Kernel versions.
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
   # Disable the firewall.
   networking.firewall.enable = false;
