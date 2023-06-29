@@ -7,7 +7,7 @@
 , mainNetworkInterface ? "eno1"
 , seat ? null
 }:
-{ config, lib, pkgs, ssot, flakeInputs, ... }: with lib; with ssot;
+{ config, lib, pkgs, ssot, flakes, ... }: with lib; with ssot;
 let
   # Expand specs
   hasBattery = battery != null;
@@ -738,7 +738,7 @@ in
       };
 
       userChromeCss = mkIf hasSeat {
-        source = "${flakeInputs.pedrochrome-css}/userChrome.css";
+        source = "${flakes.pedrochrome-css}/userChrome.css";
         target = "userChrome.css";
       };
     };

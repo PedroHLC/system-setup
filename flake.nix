@@ -30,7 +30,7 @@
       ssot = import ./shared/ssot.nix inputs;
       specialArgs = {
         inherit ssot;
-        flakeInputs = inputs;
+        flakes = inputs;
       };
       homeManagerModules = specsFile:
         let

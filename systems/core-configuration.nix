@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ pkgs, lib, ssot, flakeInputs, ... }: with ssot;
+{ pkgs, lib, ssot, flakes, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -195,20 +195,20 @@
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = {
-    inherit ssot flakeInputs;
+    inherit ssot flakes;
   };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
   nix.nixPath = [
-    "nixpkgs=${flakeInputs.nixpkgs}"
-    "chaotic=${flakeInputs.chaotic}"
+    "nixpkgs=${flakes.nixpkgs}"
+    "chaotic=${flakes.chaotic}"
   ];
 
   # Always uses system's flakes instead of downloading or updating.
   nix.registry = {
-    nixpkgs.flake = flakeInputs.nixpkgs;
-    chaotic.flake = flakeInputs.chaotic;
+    nixpkgs.flake = flakes.nixpkgs;
+    chaotic.flake = flakes.chaotic;
   };
 
   networking.hosts = {
