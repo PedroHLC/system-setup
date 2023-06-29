@@ -1,34 +1,30 @@
 { battery ? null
 , cpuSensor ? null
 , dangerousAlone ? true
-, displayBrightness ? false
 , dlnaName ? null
 , gitKey ? null
 , gpuSensor ? null
 , mainNetworkInterface ? "eno1"
-, nvidiaPrime ? false
-, seat ? true
-, touchpad ? null
+, seat ? null
 }:
 { config, lib, pkgs, ssot, flakeInputs, ... }: with lib; with ssot;
 let
-  # Some stuff that repeats across this file
-  modifier = "Mod4";
+  # Expand specs
+  hasBattery = battery != null;
+  hasGitKey = gitKey != null;
+  hasSeat = seat != null;
+  hasTouchpad = touchpad != null;
+  displayBrightness = if hasSeat then seat.displayBrightness else false;
+  nvidiaPrime = if hasSeat then seat.nvidiaPrime else false;
+  touchpad = if hasSeat then seat.touchpad else null;
+
+  # Preferred executables
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
-  lock =
-    # https://github.com/GhostNaN/mpvpaper/issues/38
-    if nvidiaPrime then "${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg"
-    else "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty}/bin/alacritty";
-  terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
+
+  # Simple executable shortcuts
   swayncClient = "${pkgs.swaynotificationcenter}/bin/swaync-client";
-  menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
-  menuBluetooth = terminalLauncher "${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
-  menuNetwork = terminalLauncher "${pkgs.networkmanager}/bin/nmtui";
-  modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
-  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
-  modeOtherMenus = "[b]luetooth | [n]etwork";
   grep = "${pkgs.ripgrep}/bin/rg";
   sudo = "${pkgs.sudo}/bin/sudo";
   sed = "${pkgs.gnused}/bin/sed";
@@ -44,11 +40,28 @@ let
   tmux = "${pkgs.tmux}/bin/tmux";
   fish = "${pkgs.fish}/bin/fish";
 
+  # Complex exutables
+  lock =
+    # https://github.com/GhostNaN/mpvpaper/issues/38
+    if nvidiaPrime then "${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg"
+    else "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
+  terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
+  menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
+  menuBluetooth = terminalLauncher "${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
+  menuNetwork = terminalLauncher "${pkgs.networkmanager}/bin/nmtui";
+
+  # Repeating settings
+  modifier = "Mod4";
   defaultBrowser = "firefox.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
   cursorSize = 16;
   path = config.home.homeDirectory;
+
+  # Sway modes
+  modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
+  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
+  modeOtherMenus = "[b]luetooth | [n]etwork";
 
   # per-GPU values
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
@@ -68,20 +81,9 @@ let
   lockTimeout = if dangerousAlone then "60" else "300";
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
-  nrpr = pkgs.writeShellScriptBin "nrpr" ''
-    ${tmux} new-session ${pkgs.writeShellScript "nrpr-inside" ''
-      cd  ~/Projects/com.pedrohlc/nixpkgs
-      export NIXPKGS_ALLOW_UNFREE=1
-      source ~/.secrets/github.nixpkgs-review.env
-      ${pkgs.nixpkgs-review}/bin/nixpkgs-review pr --run "${pkgs.writeShellScript "nrpr-notify-and-shell" ''
-        notify-send "$(basename $PWD) finished building"
-        exec ${fish}
-      ''}" "$@"
-      echo "Exited with code " "$?"
-      read
-    ''} "$@"
-  '';
+  nrpr = pkgs.callPackage ../shared/pkgs/nixpkgs-review-in-tmux.nix { };
 
+  # a way to call FZF with GUI
   visual-fzf = pkgs.writeShellScript "visual-fzf" ''
     ${terminalLauncher "/bin/sh"} -c \
       "exec ${pkgs.fzf}/bin/fzf \"\$@\" < /proc/$$/fd/0 > /proc/$$/fd/1" \
@@ -89,7 +91,7 @@ let
   '';
 in
 {
-  home.packages = with pkgs; lists.optionals seat [
+  home.packages = with pkgs; lists.optionals hasSeat [
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop
     fzf-bluetooth
@@ -100,7 +102,7 @@ in
   ];
 
   # My beloved DE
-  wayland.windowManager.sway = mkIf seat {
+  wayland.windowManager.sway = mkIf hasSeat {
     enable = true;
     wrapperFeatures.gtk = true;
 
@@ -122,7 +124,7 @@ in
       input = {
         # Adjust to Brazilian keyboards
         "*" = { xkb_layout = "br"; };
-      } // (attrsets.optionalAttrs (touchpad != null) {
+      } // (attrsets.optionalAttrs hasTouchpad {
         # Modern touchpad settings
         "${touchpad}" = {
           tap = "enable";
@@ -140,21 +142,20 @@ in
         "Unknown 0x0804 0x00000000" = {
           # Laptop's display
           background = "${aenami.lostInBetween} fill";
-          position = "0,0";
         };
         "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
           # FreeSync looks good with 75Hz
           adaptive_sync = "on";
           mode = "2560x1080@75Hz";
         };
-        "Samsung Electric Company LU28R55 HX5R701479" = {
-          mode = "3840x2160@60Hz";
-          position = "0,0";
-        };
         "HEADLESS-1" = {
           resolution = "1600x900";
-          position = if nvidiaPrime then "1920,1072" else "3840,2152";
+          position = "${toString seat.displayWidth},${toString (seat.displayHeight - 10)}";
           bg = "#008080 solid_color";
+        };
+        "${seat.displayId}" = with seat; {
+          position = "0,0";
+          mode = "${toString displayWidth}x${toString displayHeight}@${toString displayRefresh}Hz";
         };
       };
       workspaceOutputAssign = [
@@ -242,7 +243,7 @@ in
         # Display controls
         "XF86MonBrightnessUp" = "exec ${pkgs.avizo}/bin/lightctl up";
         "XF86MonBrightnessDown" = "exec ${pkgs.avizo}/bin/lightctl down";
-      }) // (attrsets.optionalAttrs (touchpad != null) {
+      }) // (attrsets.optionalAttrs hasTouchpad {
         # Allow toggling DWT (since it breaks gaming experience)
         "${modifier}+b" = "input ${touchpad} dwt enable";
         "${modifier}+Shift+b" = "input ${touchpad} dwt disable";
@@ -262,6 +263,9 @@ in
           inactiveWorkspace = { background = "#333333"; border = "#333333"; text = "#888888"; };
           urgentWorkspace = { background = "#2f343a"; border = "#900000"; text = "#ffffff"; };
         };
+        extraConfig = ''
+          output "${seat.displayId}"
+        '';
       }];
 
       floating.criteria = [
@@ -332,7 +336,7 @@ in
   };
 
   # GTK Setup
-  gtk = mkIf seat {
+  gtk = mkIf hasSeat {
     enable = true;
     theme.name = "Breeze-Dark";
     iconTheme.name = iconTheme;
@@ -350,7 +354,7 @@ in
   };
 
   # Cursor setup
-  home.pointerCursor = mkIf seat {
+  home.pointerCursor = mkIf hasSeat {
     name = cursorTheme;
     package = pkgs.libsForQt5.breeze-qt5;
     gtk.enable = true;
@@ -358,7 +362,7 @@ in
   };
 
   # My simple and humble bar
-  programs.i3status-rust = mkIf seat {
+  programs.i3status-rust = mkIf hasSeat {
     enable = true;
     bars = {
       main = {
@@ -449,7 +453,7 @@ in
           {
             block = "sound";
           }
-        ] ++ (lists.optional (battery != null)
+        ] ++ (lists.optional hasBattery
           {
             block = "battery";
             interval = 5;
@@ -484,7 +488,7 @@ in
     ".profile".text = ''
       if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
         exec ${tmux}
-    '' + (strings.optionalString seat ''
+    '' + (strings.optionalString hasSeat ''
       elif [ "$(${tty})" = '/dev/tty1' ]; then
         # It doesn't work like this: $\{pkgs.sway}/bin/sway
         ${config.wayland.windowManager.sway.package}/bin/sway # The same one from ~/.nix-profile/bin/sway
@@ -504,7 +508,7 @@ in
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
-      wlrPortal = mkIf seat {
+      wlrPortal = mkIf hasSeat {
         target = "xdg-desktop-portal-wlr/config";
         text = generators.toINI { } {
           screencast = {
@@ -517,7 +521,7 @@ in
         };
       };
       # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
-      kdeglobals = mkIf seat {
+      kdeglobals = mkIf hasSeat {
         text = generators.toINI { } {
           General = {
             ColorScheme = "BreezeDark";
@@ -534,22 +538,22 @@ in
           };
         };
       };
-      kcminputrc = mkIf seat {
+      kcminputrc = mkIf hasSeat {
         text = generators.toINI { } {
           Mouse = { inherit cursorTheme cursorSize; };
         };
       };
       # Notifications
-      swaync = mkIf seat {
+      swaync = mkIf hasSeat {
         target = "swaync/config.json";
         text = generators.toJSON { } {
           "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
-          positionX = if nvidiaPrime then "right" else "center";
-          positionY = if nvidiaPrime then "top" else "bottom";
+          positionX = seat.notificationX;
+          positionY = seat.notificationY;
         };
       };
-      # Audacious rice
-      audacious = mkIf seat {
+      # Audacious rice (TODO: NEEDS REWORK)
+      audacious = mkIf hasSeat {
         # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".
         target = "audacious/config.template";
         text = audaciousConfigGenerator {
@@ -572,7 +576,7 @@ in
         };
       };
       # Integrate the filemanager with the rest of the system
-      pcmanfm = mkIf seat {
+      pcmanfm = mkIf hasSeat {
         target = "pcmanfm-qt/default/settings.conf";
         text = generators.toINI { } {
           Behavior = {
@@ -601,7 +605,7 @@ in
           # This will result in a lot of errors until Colorsublime loads.
           colorSublimeThemes = "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes";
         in
-        mkIf seat {
+        mkIf hasSeat {
           target = "sublime-text/Packages/home-manager/Preferences.sublime-settings";
           text = generators.toJSON { } {
             hardware_acceleration = "opengl";
@@ -628,7 +632,7 @@ in
             vintageous_use_super_keys = null;
           };
         };
-      sublimeTerminus = mkIf seat {
+      sublimeTerminus = mkIf hasSeat {
         target = "sublime-text/Packages/home-manager/Terminus.sublime-settings";
         text = generators.toJSON { } {
           default_config = {
@@ -645,7 +649,7 @@ in
           ];
         };
       };
-      sublimeKeybindings = mkIf seat {
+      sublimeKeybindings = mkIf hasSeat {
         target = "sublime-text/Packages/home-manager/Default (Linux).sublime-keymap";
         text = generators.toJSON { } [
           { keys = [ "ctrl+k" "ctrl+z" ]; command = "zoom_pane"; args = { "fraction" = 0.9; }; }
@@ -663,7 +667,7 @@ in
           }
         ];
       };
-      sublimePackages = mkIf seat {
+      sublimePackages = mkIf hasSeat {
         target = "sublime-text/Packages/User/Package Control.sublime-settings";
         text = generators.toJSON { } {
           # As this list is being updated since 2014, it may contain some obsolete packages.
@@ -728,19 +732,19 @@ in
     };
     # Other data files
     dataFile = {
-      audaciousSkinWinampClassic = mkIf seat {
+      audaciousSkinWinampClassic = mkIf hasSeat {
         source = pkgs.audacious-skin-winamp-classic;
         target = "audacious/Skins/135799-winamp_classic";
       };
 
-      userChromeCss = mkIf seat {
+      userChromeCss = mkIf hasSeat {
         source = "${flakeInputs.pedrochrome-css}/userChrome.css";
         target = "userChrome.css";
       };
     };
     desktopEntries = {
       # Overwrite Firefox with my encryption-wrapper
-      "firefox" = mkIf seat {
+      "firefox" = mkIf hasSeat {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
         exec = "${pkgs.firefox-gate}/bin/firefox-gate %U";
@@ -758,7 +762,7 @@ in
         ];
         type = "Application";
       };
-      "pokemmo" = mkIf seat {
+      "pokemmo" = mkIf hasSeat {
         name = "PokeMMO";
         genericName = "MMORPG abou leveling up and discovering new monsters";
         exec = "${pkgs.pokemmo-launcher}/bin/pokemmo";
@@ -770,7 +774,7 @@ in
     };
 
     # Default apps per file type
-    mimeApps = mkIf seat {
+    mimeApps = mkIf hasSeat {
       enable = true;
       associations = {
         added = {
@@ -822,7 +826,7 @@ in
     };
   };
 
-  programs.mpv = mkIf seat {
+  programs.mpv = mkIf hasSeat {
     enable = true;
     # For watching animes in 60fps
     package = pkgs.mpv-vapoursynth;
@@ -847,7 +851,7 @@ in
 
       # YouTube quality
       ytdl-format =
-        if nvidiaPrime then
+        if seat.displayHeight <= 1080 then
           "bestvideo[height<=?1440]+bestaudio/best"
         else
           "bestvideo[height<=?2160]+bestaudio/best";
@@ -891,12 +895,12 @@ in
   };
 
   # Hardware/softwre OSD indicators while gaming
-  programs.mangohud = mkIf seat {
+  programs.mangohud = mkIf hasSeat {
     enable = true;
     package = pkgs.mangohud_git;
     settings = {
       # functionality
-      fps_limit = if nvidiaPrime then 144 else 60;
+      fps_limit = seat.displayRefresh;
       gl_vsync = 0;
       vsync = 1;
 
@@ -909,7 +913,7 @@ in
       background_alpha = "0.05";
 
       # additional features
-      battery = (battery != null);
+      battery = hasBattery;
       cpu_temp = true;
       gpu_temp = true;
       io_read = true;
@@ -927,7 +931,7 @@ in
   };
 
   # Color filters for day/night
-  services.gammastep = mkIf seat {
+  services.gammastep = mkIf hasSeat {
     enable = true;
     provider = "manual";
     temperature.night = 5100;
@@ -947,7 +951,7 @@ in
   programs.git = {
     enable = true;
     lfs.enable = true;
-    signing = mkIf (gitKey != null) {
+    signing = mkIf hasGitKey {
       key = gitKey;
       signByDefault = true;
     };
@@ -964,7 +968,7 @@ in
         rebase = true;
       };
       tag = {
-        gpgsign = gitKey != null;
+        gpgsign = hasGitKey;
       };
       init = {
         defaultBranch = "main";
@@ -982,7 +986,7 @@ in
   };
 
   # My favorite and simple terminal
-  programs.alacritty = mkIf seat {
+  programs.alacritty = mkIf hasSeat {
     enable = true;
     settings = mkOptionDefault {
       font = {
@@ -1054,7 +1058,7 @@ in
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
         "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
         "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
-      } // attrsets.optionalAttrs seat {
+      } // attrsets.optionalAttrs hasSeat {
         "elm" = "${jsRun} elm";
         "elm-app" = "${jsRun} elm-app";
         "elm-graphql" = "${jsRun} elm-graphql";

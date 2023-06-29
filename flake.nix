@@ -32,6 +32,15 @@
         inherit ssot;
         flakeInputs = inputs;
       };
+      homeManagerModules = specsFile:
+        let
+          specs = (import specsFile);
+          pedrohlc = import ./home-manager/pedrohlc.nix specs;
+        in
+        [
+          home-manager.nixosModules.home-manager
+          { home-manager.users = { inherit pedrohlc; }; }
+        ];
     in
     {
       # Defines a formatter for "nix fmt"
@@ -50,21 +59,7 @@
             ./systems/seat-configuration.nix
             ./systems/laptop/hardware-configuration.nix
             ./systems/laptop/configuration.nix
-            # home-manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
-                battery = "BAT0";
-                cpuSensor = "coretemp-isa-0000";
-                displayBrightness = true;
-                dlnaName = "pedrohlc@laptop";
-                gitKey = "F5BFC029DA9A28CE";
-                nvidiaPrime = true;
-                touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
-                mainNetworkInterface = "wlan0";
-              };
-            }
-          ];
+          ] ++ (homeManagerModules ./systems/laptop/specs.nix);
         };
 
         "${ssot.vpn.desktop.hostname}" = nixpkgs.lib.nixosSystem {
@@ -81,18 +76,7 @@
             ./systems/seat-configuration.nix
             ./systems/desktop/hardware-configuration.nix
             ./systems/desktop/configuration.nix
-            # home-manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
-                cpuSensor = "k10temp-pci-00c3";
-                dangerousAlone = false;
-                dlnaName = "pedrohlc@desktop";
-                gitKey = "DF4C6898CBDC6DF5";
-                gpuSensor = "amdgpu-pci-0900";
-              };
-            }
-          ];
+          ] ++ (homeManagerModules ./systems/desktop/specs.nix);
         };
 
         "${ssot.vpn.lab.hostname}" = nixpkgs.lib.nixosSystem {
@@ -110,16 +94,8 @@
             ./systems/vps-lab/servers/nginx.nix
             ./systems/vps-lab/servers/wireguard.nix
             ./systems/vps-lab/services/mesa-mirror
-            # home-manager
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.pedrohlc = import ./home-manager/pedrohlc.nix {
-                seat = false;
-              };
-            }
-          ];
+          ] ++ (homeManagerModules ./systems/vps-lab/specs.nix);
         };
-
       };
     };
 }
