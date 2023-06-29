@@ -131,21 +131,23 @@ in
         };
       });
       output = {
-        "*" = { background = "${aenami.horizon} fill"; };
+        "*" = {
+          background = "${aenami.horizon} fill";
+          max_render_time = "1";
+          # In 60Hz display, "adaptive_sync" makes electron apps laggy
+          adaptive_sync = "off";
+        };
         "Unknown 0x0804 0x00000000" = {
           # Laptop's display
           background = "${aenami.lostInBetween} fill";
           position = "0,0";
         };
         "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
-          # 75Hz + 1ms + FreeSync
+          # FreeSync looks good with 75Hz
           adaptive_sync = "on";
-          max_render_time = "1";
           mode = "2560x1080@75Hz";
         };
         "Samsung Electric Company LU28R55 HX5R701479" = {
-          adaptive_sync = "off"; # In this display, this makes electron apps laggy
-          max_render_time = "1";
           mode = "3840x2160@60Hz";
           position = "0,0";
         };
