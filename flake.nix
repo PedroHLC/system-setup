@@ -41,6 +41,11 @@
           home-manager.nixosModules.home-manager
           { home-manager.users = { inherit pedrohlc; }; }
         ];
+      commonModules =
+        [
+          chaotic.nixosModules.default
+          ./systems/core-configuration.nix
+        ];
     in
     {
       # Defines a formatter for "nix fmt"
@@ -50,12 +55,10 @@
         "${ssot.vpn.laptop.hostname}" = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "x86_64-linux";
-          modules = [
+          modules = commonModules ++ [
             impermanence.nixosModules.impermanence
-            chaotic.nixosModules.default
             ./shared/lib/wireguard-client.nix
             ./shared/lib/wgcf-teams.nix
-            ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
             ./systems/laptop/hardware-configuration.nix
             ./systems/laptop/configuration.nix
@@ -65,14 +68,12 @@
         "${ssot.vpn.desktop.hostname}" = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "x86_64-linux";
-          modules = [
+          modules = commonModules ++ [
             impermanence.nixosModules.impermanence
-            chaotic.nixosModules.default
             ./shared/lib/4k-nohidpi.nix
             ./shared/lib/journal-upload.nix
             ./shared/lib/wireguard-client.nix
             ./shared/lib/wgcf-teams.nix
-            ./systems/core-configuration.nix
             ./systems/seat-configuration.nix
             ./systems/desktop/hardware-configuration.nix
             ./systems/desktop/configuration.nix
@@ -82,11 +83,10 @@
         "${ssot.vpn.lab.hostname}" = nixpkgs.lib.nixosSystem {
           inherit specialArgs;
           system = "aarch64-linux";
-          modules = [
+          modules = commonModules ++ [
             (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
             ./shared/lib/oci-options.nix
             ./shared/lib/oci-common.nix
-            ./systems/core-configuration.nix
             ./systems/vps-lab/configuration.nix
             ./systems/vps-lab/servers/adguard.nix
             ./systems/vps-lab/servers/journal-remote.nix
