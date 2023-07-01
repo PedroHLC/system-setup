@@ -1053,6 +1053,8 @@ in
         "gpff" = "git pull --ff-only";
         "gprb" = "git pull --rebase";
         "gp@main" = "git fetch origin && git branch -f main origin/main && git checkout main";
+        "gp@master" = "git fetch origin && git branch -f master origin/master && git checkout master";
+        "gp@nixpkgs" = "git fetch upstream && git branch -f nixpkgs-unstable origin/nixpkgs-unstable && git checkout nixpkgs-unstable";
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         "@system" = "cd /etc/nixos";
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
