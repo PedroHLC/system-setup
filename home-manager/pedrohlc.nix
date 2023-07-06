@@ -89,6 +89,15 @@ let
       "exec ${pkgs.fzf}/bin/fzf \"\$@\" < /proc/$$/fd/0 > /proc/$$/fd/1" \
       -- "$@" 2>/dev/null
   '';
+
+  # turn off the screen before locking, turn it back on after any input
+  ilde-script = pkgs.writeShellScript "idle-script" ''
+    exec ${pkgs.swayidle}/bin/swayidle -w \
+      timeout ${lockTimeout} \
+        'swaymsg output "${seat.displayId}" power off; ${lock} &' \
+        resume 'swaymsg output "${seat.displayId}" power on' \
+      before-sleep '${lock}'
+  '';
 in
 {
   home.packages = with pkgs; lists.optionals hasSeat [
@@ -117,7 +126,7 @@ in
         # Volume and Display-brightness OSD
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
-        { command = "${pkgs.swayidle}/bin/swayidle -w timeout ${lockTimeout} '${lock}' before-sleep '${lock}'"; }
+        { command = "${ilde-script}"; }
         # A tmux session that knows about DE environment
         { command = "${tmux} new-session -ds DE"; }
       ];
