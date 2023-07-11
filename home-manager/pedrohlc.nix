@@ -93,10 +93,15 @@ let
   # turn off the screen before locking, turn it back on after any input
   ilde-script = pkgs.writeShellScript "idle-script" ''
     exec ${pkgs.swayidle}/bin/swayidle -w \
-      timeout ${lockTimeout} \
-        'swaymsg output "${seat.displayId}" power off; ${lock} &' \
-        resume 'swaymsg output "${seat.displayId}" power on' \
+      timeout ${lockTimeout} ${idle-script-timeout}
+      resume 'swaymsg output "${seat.displayId}" power on' \
       before-sleep '${lock}'
+  '';
+
+  # it's easier to debug when they're separated
+  idle-script-timeout = pkgs.writeShellScript "idle-script-timeout" ''
+    swaymsg output "${seat.displayId}" power off
+    ${lock} &
   '';
 in
 {
@@ -1063,7 +1068,7 @@ in
         "gprb" = "git pull --rebase";
         "gp@main" = "git fetch origin && git branch -f main origin/main && git checkout main";
         "gp@master" = "git fetch origin && git branch -f master origin/master && git checkout master";
-        "gp@nixpkgs" = "git fetch upstream && git branch -f nixpkgs-unstable origin/nixpkgs-unstable && git checkout nixpkgs-unstable";
+        "gp@nixpkgs" = "git fetch upstream && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
         "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         "@system" = "cd /etc/nixos";
         "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";

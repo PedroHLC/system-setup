@@ -28,7 +28,7 @@
   };
 
   # DuckDNS
-  services.ddclient = {
+  services.ddclient = lib.mkIf false {
     enable = false; # currently broken
     domains = [ web.desktop.addr ];
     protocol = "duckdns";
