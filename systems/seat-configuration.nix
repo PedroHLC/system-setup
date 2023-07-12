@@ -522,6 +522,7 @@
         ".cache/sublime-text"
         ".config/yuzu"
         ".system.git"
+        ".local/share/duckstation"
         ".local/share/Trash"
         ".local/state/wireplumber"
         ".local/share/yuzu"
