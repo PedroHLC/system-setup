@@ -253,8 +253,9 @@
   programs.adb.enable = true;
   programs.gamemode.enable = true;
   programs.steam.enable = true;
-  chaotic.gamescope = {
+  programs.gamescope = {
     enable = true;
+    capSysNice = false; # capSysNice freezes gamescopeSession for me
     args = [ "--rt" ];
     package = pkgs.gamescope_git;
   };
@@ -521,7 +522,7 @@
         ".cache/spotify"
         ".cache/sublime-text"
         ".config/yuzu"
-        ".system.git"
+        ".kodi"
         ".local/share/duckstation"
         ".local/share/Trash"
         ".local/state/wireplumber"
@@ -529,6 +530,7 @@
         ".mix"
         ".lyrics"
         ".steam"
+        ".system.git"
       ];
     };
   };

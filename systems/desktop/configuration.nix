@@ -127,10 +127,7 @@
   chaotic.linux_hdr.specialisation.enable = true;
 
   # Gamescope session is better for AAA gaming
-  chaotic.gamescope.session = {
-    enable = true;
-    steamArgs = [ "-tenfoot" "-pipewire-dmabuf" "-pipewire" ];
-  };
+  programs.steam.gamescopeSession.enable = true;
 
   # More Classics' gaming
   chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
