@@ -42,6 +42,9 @@
   tty = coreutilsBin "tty";
   tmux = "${pkgs.tmux}/bin/tmux";
   fish = "${pkgs.fish}/bin/fish";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
+  bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
+  nmcli = "${pkgs.networkmanager}/bin/nmcli";
 
   # Complex executables
   lock =

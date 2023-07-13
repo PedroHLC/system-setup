@@ -197,9 +197,9 @@ mkIf hasSeat {
           "${modePower}" =
             withLeaveOptions {
               "Shift+l" = "exec ${swaymsg} exit";
-              "Shift+s" = "exec ${pkgs.systemd}/bin/systemctl poweroff";
-              "Shift+r" = "exec ${pkgs.systemd}/bin/systemctl reboot";
-              "s" = "exec ${pkgs.systemd}/bin/systemctl suspend ; mode default";
+              "Shift+s" = "exec ${systemctl} poweroff";
+              "Shift+r" = "exec ${systemctl} reboot";
+              "s" = "exec ${systemctl} suspend ; mode default";
               "l" = "exec ${lock} ; mode default";
             };
 

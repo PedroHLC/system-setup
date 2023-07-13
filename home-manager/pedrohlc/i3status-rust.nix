@@ -24,25 +24,25 @@ mkIf hasSeat {
           {
             block = "toggle";
             format = " $icon";
-            command_state = "${pkgs.systemd}/bin/systemctl is-active -q sshd && echo a";
-            command_on = "${sudo} ${pkgs.systemd}/bin/systemctl start sshd";
-            command_off = "${sudo} ${pkgs.systemd}/bin/systemctl stop sshd";
+            command_state = "${systemctl} is-active -q sshd && echo a";
+            command_on = "${sudo} ${systemctl} start sshd";
+            command_off = "${sudo} ${systemctl} stop sshd";
             interval = 5;
           }
           {
             block = "toggle";
             format = " $icon";
-            command_state = "${pkgs.bluez}/bin/bluetoothctl show | ${grep} 'Powered: yes'";
-            command_on = "${sudo} ${pkgs.util-linux}/bin/rfkill unblock bluetooth && ${sudo} ${pkgs.systemd}/bin/systemctl start bluetooth && ${pkgs.bluez}/bin/bluetoothctl --timeout 4 power on";
-            command_off = "${pkgs.bluez}/bin/bluetoothctl --timeout 4 power off; ${sudo} ${pkgs.systemd}/bin/systemctl stop bluetooth && ${sudo} ${pkgs.util-linux}/bin/rfkill block bluetooth";
+            command_state = "${bluetoothctl} show | ${grep} 'Powered: yes'";
+            command_on = "${sudo} ${pkgs.util-linux}/bin/rfkill unblock bluetooth && ${sudo} ${systemctl} start bluetooth && ${bluetoothctl} --timeout 4 power on";
+            command_off = "${bluetoothctl} --timeout 4 power off; ${sudo} ${systemctl} stop bluetooth && ${sudo} ${pkgs.util-linux}/bin/rfkill block bluetooth";
             interval = 5;
           }
           {
             block = "toggle";
             format = " $icon";
-            command_state = "${pkgs.networkmanager}/bin/nmcli r wifi | ${grep} '^d'";
-            command_on = "${pkgs.networkmanager}/bin/nmcli r wifi off";
-            command_off = "${pkgs.networkmanager}/bin/nmcli r wifi on";
+            command_state = "${nmcli} r wifi | ${grep} '^d'";
+            command_on = "${nmcli} r wifi off";
+            command_off = "${nmcli} r wifi on";
             interval = 5;
           }
           {
