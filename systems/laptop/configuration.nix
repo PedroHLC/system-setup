@@ -95,7 +95,7 @@ in
   users.users."melinapn".passwordFile = "/var/persistent/secrets/shadow/melinapn";
 
   # Proper output to gamescope
-  chaotic.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];
+  programs.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];
 
   # Override some packages' settings, sources, etc...
   nixpkgs.overlays =
