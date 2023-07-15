@@ -107,7 +107,7 @@
     in
     pkgs.writeShellScript "idle-script" ''
       exec ${pkgs.swayidle}/bin/swayidle -w \
-        timeout ${lockTimeout} ${timeout-script}
+        timeout ${lockTimeout} ${timeout-script} \
         resume 'swaymsg output "${seat.displayId}" power on' \
         before-sleep '${lock}'
     '';

@@ -43,8 +43,9 @@ with common; {
           exec ${tmux}
       '' + (strings.optionalString hasSeat ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
-          # It doesn't work like this: $\{pkgs.sway}/bin/sway
-          ${config.wayland.windowManager.sway.package}/bin/sway # The same one from ~/.nix-profile/bin/sway
+          # It has to be the one from home manager.
+          ${config.wayland.windowManager.sway.package}/bin/sway
+          ${tmux} send-keys -t DE 'C-c' 'C-d' || true
       '') + ''
         fi
       '';
