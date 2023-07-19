@@ -522,6 +522,7 @@
         ".cache/spotify"
         ".cache/sublime-text"
         ".config/yuzu"
+        { directory = ".gdfuse"; mode = "0700"; }
         ".kodi"
         ".local/share/duckstation"
         ".local/share/Trash"

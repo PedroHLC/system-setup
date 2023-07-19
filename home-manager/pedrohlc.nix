@@ -71,6 +71,9 @@ with common; {
     };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
   };
+  dconf.settings."org/gtk/settings/file-chooser" = {
+    sort-directories-first = true;
+  };
 
   # GTK4 Setup
   dconf.settings."org/gnome/desktop/interface" = {
@@ -346,7 +349,6 @@ with common; {
       package = pkgs.mangohud_git;
       settings = {
         # functionality
-        fps_limit = seat.displayRefresh;
         gl_vsync = 0;
         vsync = 1;
 
