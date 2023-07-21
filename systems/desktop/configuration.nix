@@ -40,9 +40,15 @@
   # Better voltage and temperature
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
 
-  # Let's use AMD P-State
-  boot.kernelParams = [ "amd-pstate=guided" ];
-  boot.kernelModules = [ "amd_pstate" ];
+  boot.kernelParams = [
+    # nvme1: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0xffff
+    #   Unable to change power state from D3cold to D0, device inaccessible
+    # nvme1: Disabling device after reset failure: -19
+    "nvme_core.default_ps_max_latency_us=0"
+    "pcie_aspm=off"
+    # Let's use AMD P-State
+    "amd-pstate=guided"
+  ];
 
   # OpenCL
   chaotic.mesa-git.extraPackages = with pkgs; [

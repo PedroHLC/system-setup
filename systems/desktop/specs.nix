@@ -6,7 +6,7 @@
   gitKey = "DF4C6898CBDC6DF5";
   gpuSensor = "amdgpu-pci-0900";
   seat = {
-    displayId = "Samsung Electric Company LU28R55 HX5R701479";
+    displayId = "DP-2";
     displayWidth = 3840;
     displayHeight = 2160;
     displayRefresh = 60;
