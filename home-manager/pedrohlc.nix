@@ -561,6 +561,6 @@ with common; {
       Service = {
         ExecStart = "${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v";
       };
-      Install.WantedBy = [];
+      Install.WantedBy = [ ];
     };
 }

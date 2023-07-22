@@ -39,6 +39,7 @@
 
   # Better voltage and temperature
   boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+  boot.blacklistedKernelModules = [ "k10temp" ];
 
   boot.kernelParams = [
     # nvme1: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0xffff

@@ -1,6 +1,6 @@
 # For the unique home-manager module
 {
-  cpuSensor = "k10temp-pci-00c3";
+  cpuSensor = "zenpower-pci-00c3";
   dangerousAlone = false;
   dlnaName = "pedrohlc@desktop";
   gitKey = "DF4C6898CBDC6DF5";
