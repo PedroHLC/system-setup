@@ -521,6 +521,15 @@ with common; {
         "ghupr-as" = "git fetch upstream pull/$argv[1]/head:$argv[2]";
       };
     };
+    # Crunchyroll and SAMSUNG Tizen don't mix, so I have to DLNA-it.
+    yt-dlp = {
+      enable = true;
+      package = pkgs.yt-dlp_git;
+      settings = {
+        netrc = true;
+        extractor-args = "crunchyrollbeta:hardsub=en-US";
+      };
+    };
   };
 
   # Color filters for day/night
