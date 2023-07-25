@@ -100,7 +100,6 @@
 
   # XWayland keyboard layout.
   services.xserver.layout = "br";
-
   # Console keyboard layout.
   console.keyMap = "br-abnt2";
 
@@ -120,6 +119,8 @@
   environment.variables.SDL_AUDIODRIVER = "pipewire";
   environment.variables.ALSOFT_DRIVERS = "pipewire";
 
+  # Workaround for nixpkgs#238025.
+  environment.variables.TZ = ":/etc/localtime";
 
   # Autologin.
   services.getty = {

@@ -57,6 +57,11 @@ with common; {
         # Expect mouse
         set -g mouse off
       '';
+      # OpenMoHAA
+      ".moh/OpenMoHAA" = {
+        recursive = true;
+        source = pkgs.openmohaa;
+      };
     };
   };
 
@@ -529,6 +534,15 @@ with common; {
         netrc = true;
         extractor-args = "crunchyrollbeta:hardsub=en-US";
       };
+    };
+
+    # dev env for my projects
+    direnv = {
+      enable = true;
+      # Fish-only
+      enableBashIntegration = false;
+      enableNushellIntegration = false;
+      enableZshIntegration = false;
     };
   };
 
