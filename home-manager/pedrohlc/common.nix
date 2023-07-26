@@ -88,7 +88,7 @@
 
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then 60 else 300;
-  dpmsTimeout = lockTimeout + 200;
+  dpmsTimeout = lockTimeout * 2;
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
   nrpr = pkgs.callPackage ../../shared/pkgs/nixpkgs-review-in-tmux.nix { };
