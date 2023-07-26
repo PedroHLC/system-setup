@@ -22,7 +22,8 @@ mkIf hasSeat {
         # Volume and Display-brightness OSD
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
-        { command = "${idle-script}"; }
+        { command = "${idle-lock-script}"; }
+        { command = "${idle-dpms-script}"; }
         # A tmux session that knows about DE environment
         { command = "${tmux} new-session -ds DE"; }
       ];

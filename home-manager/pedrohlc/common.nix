@@ -49,7 +49,10 @@
   # Complex executables
   lock =
     # https://github.com/GhostNaN/mpvpaper/issues/38
-    if nvidiaPrime then "${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg"
+    if nvidiaPrime then
+      pkgs.writeShellScript "nvidia-meme" ''
+        exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
+      ''
     else "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
   terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
   menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
@@ -84,7 +87,8 @@
   };
 
   # Different timeouts for locking screens in desktop/laptop
-  lockTimeout = if dangerousAlone then "60" else "300";
+  lockTimeout = if dangerousAlone then 60 else 300;
+  dpmsTimeout = lockTimeout + 200;
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
   nrpr = pkgs.callPackage ../../shared/pkgs/nixpkgs-review-in-tmux.nix { };
@@ -96,19 +100,20 @@
       -- "$@" 2>/dev/null
   '';
 
-  # turn off the screen before locking, turn it back on after any input
-  idle-script =
-    let
-      # it's easier to debug when they're separated
-      timeout-script = pkgs.writeShellScript "idle-script-timeout" ''
-        swaymsg output "${seat.displayId}" power off
-        ${lock} &
-      '';
-    in
-    pkgs.writeShellScript "idle-script" ''
+  # lock the screen
+  idle-lock-script =
+    pkgs.writeShellScript "idle-lock-script" ''
       exec ${pkgs.swayidle}/bin/swayidle -w \
-        timeout ${lockTimeout} ${timeout-script} \
-        resume 'swaymsg output "${seat.displayId}" power on' \
+        timeout ${toString lockTimeout} ${lock} \
         before-sleep '${lock}'
+    '';
+
+  # turn off the screen, turn it back on after any input
+  idle-dpms-script =
+    pkgs.writeShellScript "idle-dpms-script" ''
+      exec ${pkgs.swayidle}/bin/swayidle -w \
+        timeout ${toString dpmsTimeout} \
+          'swaymsg output ${seat.displayId} power off' \
+        resume 'swaymsg output ${seat.displayId} power on'
     '';
 })
