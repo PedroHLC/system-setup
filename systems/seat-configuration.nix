@@ -231,7 +231,6 @@
     # Gaming
     mangohud_git
     mesa-demos
-    wine-staging
     vulkan-tools
     winetricks
 
@@ -352,8 +351,8 @@
 
   # Fonts.
   fonts = {
-    enableDefaultFonts = true; # Those fonts you expect every distro to have.
-    fonts = with pkgs; [
+    enableDefaultPackages = true; # Those fonts you expect every distro to have.
+    packages = with pkgs; [
       borg-sans-mono
       cantarell-fonts
       droid-sans-mono-nerdfont
