@@ -54,6 +54,13 @@
       options = [ "x-gvfs-hide" ];
     };
 
+  fileSystems."/mnt" =
+    {
+      device = "/dev/nvme1n1p1";
+      fsType = "f2fs";
+      options = [ "nofail" ];
+    };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/AD2E-1931";
