@@ -521,6 +521,7 @@
         ".cache/nix-index"
         ".cache/spotify"
         ".cache/sublime-text"
+        ".config/Slack"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
         ".kodi"
