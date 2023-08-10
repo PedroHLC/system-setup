@@ -485,7 +485,7 @@ with common; {
       shellAliases =
         # NOTE: Always use $PATH-relative in alias, for user hacks
         let
-          jsRun = "yarn exec --offline --";
+          jsRun = "yarn exec --prefer-offline --";
         in
         {
           ":q" = "exit";
@@ -501,6 +501,7 @@ with common; {
           "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
           "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
         } // attrsets.optionalAttrs hasSeat {
+          "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "elm" = "${jsRun} elm";
           "elm-app" = "${jsRun} elm-app";
           "elm-graphql" = "${jsRun} elm-graphql";
