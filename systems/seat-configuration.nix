@@ -179,6 +179,7 @@
     # Development apps
     awscli2 # AWS
     bind.dnsutils # "dig"
+    bytecode-viewer_git
     dbeaver
     deno # Front-dev
     eksctl # AWS
@@ -496,6 +497,8 @@
         "Videos"
       ];
       files = [
+        ".Bytecode-Viewer/recentfiles.json"
+        ".Bytecode-Viewer/settings.bcv"
         ".cache/keybasekeybase.app.serverConfig"
         ".google_authenticator"
         ".netrc"
