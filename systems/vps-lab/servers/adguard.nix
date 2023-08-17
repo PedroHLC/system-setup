@@ -19,6 +19,7 @@
   services.adguardhome = {
     enable = true;
     mutableSettings = false;
+    # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file
     settings = {
       bind_host = "0.0.0.0";
       bind_port = 3000;
@@ -70,6 +71,10 @@
           name = "AdGuard DNS filter";
           id = 1;
         }
+      ];
+      user_rules = [
+        # GloboPlay breaks otherwise
+        "@@||pubads.g.doubleclick.net^$important"
       ];
       schema_version = 20;
     };
