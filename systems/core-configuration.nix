@@ -223,6 +223,8 @@
     "${vpn.desktop.v6}" = [ vpn.desktop.addr ];
     "${vpn.laptop.v4}" = [ vpn.laptop.addr ];
     "${vpn.laptop.v6}" = [ vpn.laptop.addr ];
+    "${vpn.beacon.v4}" = [ vpn.beacon.addr ];
+    "${vpn.beacon.v6}" = [ vpn.beacon.addr ];
 
     # Lock cache to GRU (Brazil)
     "151.101.250.217" = [ "cache.nixos.org" ];

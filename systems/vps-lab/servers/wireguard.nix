@@ -51,6 +51,16 @@ in
                 multicastV6
               ];
             }
+            # Beacon
+            {
+              publicKey = "Hsw40VXOzD202Yf/FIoGRd+XdYJjdorPaR7imPy502c==";
+              allowedIPs = [
+                "${vpn.beacon.v4}/32"
+                "${vpn.beacon.v6}/128"
+                multicastV4
+                multicastV6
+              ];
+            }
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";

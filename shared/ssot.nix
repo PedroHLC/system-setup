@@ -45,6 +45,12 @@ rec {
       v4 = "${vpn.prefix.v4}.3";
       v6 = "${vpn.prefix.v6}:3";
     };
+    beacon = rec {
+      hostname = "beacon";
+      addr = "${hostname}.${vpn.tld}";
+      v4 = "${vpn.prefix.v4}.5";
+      v6 = "${vpn.prefix.v6}:5";
+    };
   };
 
   web = {
