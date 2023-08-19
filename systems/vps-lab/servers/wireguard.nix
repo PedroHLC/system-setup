@@ -53,7 +53,7 @@ in
             }
             # Beacon
             {
-              publicKey = "Hsw40VXOzD202Yf/FIoGRd+XdYJjdorPaR7imPy502c==";
+              publicKey = "Hsw40VXOzD202Yf/FIoGRd+XdYJjdorPaR7imPy502c=";
               allowedIPs = [
                 "${vpn.beacon.v4}/32"
                 "${vpn.beacon.v6}/128"
