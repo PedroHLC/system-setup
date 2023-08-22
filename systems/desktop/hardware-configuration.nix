@@ -54,21 +54,16 @@
       options = [ "x-gvfs-hide" ];
     };
 
-  fileSystems."/mnt" =
-    {
-      device = "/dev/nvme1n1p1";
-      fsType = "f2fs";
-      options = [ "nofail" ];
-    };
-
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-uuid/AD2E-1931";
       fsType = "vfat";
     };
 
-  swapDevices =
-    [{ device = "/dev/disk/by-uuid/34e7ca32-40da-4742-9bc5-7d055ece3002"; }];
+  swapDevices = [
+    { device = "/dev/disk/by-uuid/34e7ca32-40da-4742-9bc5-7d055ece3002"; }
+    { device = "/dev/disk/by-uuid/2d9a907f-767c-4424-b0c5-603c1d5d018e"; }
+  ];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
