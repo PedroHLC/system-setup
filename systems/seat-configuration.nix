@@ -139,6 +139,7 @@
     brightnessctl
     discord
     element-desktop-wayland
+    ethtool
     ffmpegthumbnailer
     firefox-wayland
     fx_cast_bridge
@@ -161,7 +162,6 @@
     slack
     space-cadet-pinball
     spotify
-    streamlink
     tdesktop
     usbutils
     waypipe
