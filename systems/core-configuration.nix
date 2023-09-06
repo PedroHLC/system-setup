@@ -125,6 +125,7 @@
     nmap
     p7zip
     pciutils
+    ripgrep
     sshfs-fuse
     traceroute
     unrar

@@ -133,10 +133,13 @@
   environment.systemPackages = with pkgs; [
     # Desktop apps
     acpi
+    adbfs-rootless
     alacritty
     audacious
-    btop
+    bind.dnsutils # "dig"
+    bluez-tools
     brightnessctl
+    btop
     discord
     element-desktop-wayland
     ethtool
@@ -144,10 +147,13 @@
     firefox-wayland
     fx_cast_bridge
     google-chrome
+    helvum
     keybase-gui
     libinput
     libinput-gestures
+    libnotify
     libsForQt5.kio # Fixes "Unknown protocol 'file'."
+    libva-utils
     lm_sensors
     lxmenu-data # For lxqt apps' "Open with" dialogs
     lxqt.lxqt-sudo
@@ -177,48 +183,25 @@
     wayland-env
 
     # Development apps
-    awscli2 # AWS
-    bind.dnsutils # "dig"
     bytecode-viewer_git
     dbeaver
-    deno # Front-dev
-    eksctl # AWS
-    elixir_1_14 # Elixir-dev, I need it here for "mix format"
     elmPackages.elm-format # Elm-dev
-    gcc # C-dev but using it for Elixir-dev, since rebar3 needs it to build iconv
     gdb # more precious then gcc
     gh
     gnumake
     heroku
     inotify-tools # watching files
-    k9s # Kubernets
-    kubectl # Kubernets
-    kubernetes-helm-wrapped # HELM
     logstalgia # Chaotic
     nixpkgs-fmt # Nix
     nixpkgs-review # Nix
-    nodejs # Front-dev
     python3Minimal
-    rebar3 # Elixir-dev
-    shellcheck # Bash-dev
-    shfmt # Bash-dev
     sublime4
-    yarn # Front-dev
 
     # Less used
-    adbfs-rootless
-    bluez-tools
-    helvum
-    libnotify
-    libva-utils
-    ripgrep
-    vulkan-caps-viewer
 
     # Office-stuff
-    # calligra (struggling with qtwebkit)
     inkscape
     gimp
-    texlive.combined.scheme-medium
     wpsoffice
 
     # Desktop themes
@@ -232,16 +215,13 @@
     # Gaming
     mangohud_git
     mesa-demos
+    vulkan-caps-viewer
     vulkan-tools
     winetricks
 
     # GI
     jq
     xdelta
-
-    # KVM
-    input-leap_git
-    waynergy_git
   ];
 
   # The base GUI toolkit in my setup.

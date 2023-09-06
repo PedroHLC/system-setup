@@ -87,12 +87,11 @@
     duckstation
     latencyflex-vulkan
     openrct2
-    piper
     vcmi
     vkBasalt
     yuzu-early-access_git
     (cfwarp-add.override { gatewayIP = "192.168.18.1"; })
-    virtiofsd
+    virtiofsd # for libvirtd
   ];
 
   # One-button virtualization for some tests of mine
