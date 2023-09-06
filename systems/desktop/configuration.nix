@@ -92,10 +92,15 @@
     vkBasalt
     yuzu-early-access_git
     (cfwarp-add.override { gatewayIP = "192.168.18.1"; })
+    virtiofsd
   ];
 
   # One-button virtualization for some tests of mine
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    onBoot = "ignore";
+    onShutdown = "shutdown";
+  };
   users.extraUsers.pedrohlc.extraGroups = [ "libvirtd" ];
   boot.extraModprobeConfig = ''
     options kvm ignore_msrs=1
@@ -123,6 +128,7 @@
       ];
       directories = [
         "/var/lib/nut"
+        "/var/lib/libvirt"
       ];
     };
   };

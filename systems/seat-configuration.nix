@@ -258,6 +258,7 @@
     enable = true;
     capSysNice = false; # capSysNice freezes gamescopeSession for me
     args = [ "--rt" ];
+    env.ENABLE_GAMESCOPE_WSI = "1";
     package = pkgs.gamescope_git;
   };
 
