@@ -58,7 +58,7 @@ with utils; {
         set -g mouse off
       '';
       # OpenMoHAA
-      ".moh/OpenMoHAA" = {
+      ".moh/OpenMoHAA" = mkIf hasSeat {
         recursive = true;
         source = pkgs.openmohaa;
       };
