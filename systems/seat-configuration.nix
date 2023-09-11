@@ -144,7 +144,7 @@
     element-desktop-wayland
     ethtool
     ffmpegthumbnailer
-    firefox-wayland
+    firefox_nightly
     fx_cast_bridge
     google-chrome
     helvum
@@ -302,7 +302,7 @@
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = prev.discord.override {
           #withOpenASAR = true; # broken since somewhere in june
-          nss = final.nss_latest;
+          nss = final.nss_git;
         };
 
         # Focusire mono-mic
