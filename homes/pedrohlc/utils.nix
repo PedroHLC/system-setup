@@ -76,7 +76,7 @@
   videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = pkgs.callPackage ../../shared/lib/audacious-config-generator.nix { };
+  audaciousConfigGenerator = pkgs.callPackage ../../shared/config/audacious-config-generator.nix { };
 
   # My wallpapers
   aenami = {
@@ -91,7 +91,7 @@
   dpmsTimeout = lockTimeout * 2;
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
-  nrpr = pkgs.callPackage ../../shared/pkgs/nixpkgs-review-in-tmux.nix { };
+  nrpr = pkgs.callPackage ../../shared/drvs/nixpkgs-review-in-tmux.nix { };
 
   # a way to call FZF with GUI
   visual-fzf = pkgs.writeShellScript "visual-fzf" ''

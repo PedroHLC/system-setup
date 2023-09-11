@@ -1,13 +1,13 @@
 specs: { config, lib, pkgs, ssot, flakes, ... }@inputs:
 let
-  common = import ./pedrohlc/common.nix specs inputs;
+  utils = import ./utils.nix specs inputs;
 in
-with common; {
+with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
-    (import ./pedrohlc/sway.nix common)
-    (import ./pedrohlc/i3status-rust.nix common)
-    (import ./pedrohlc/sublime-text.nix common)
+    (import ./giants/sway.nix utils)
+    (import ./giants/i3status-rust.nix utils)
+    (import ./giants/sublime-text.nix utils)
   ];
 
   home = {
@@ -335,7 +335,7 @@ with common; {
         "Alt+4" = "cycle border";
 
         # For watching animes in 60fps
-        "K" = "vf toggle vapoursynth=${../shared/assets/motioninterpolation.vpy}";
+        "K" = "vf toggle vapoursynth=${../../shared/assets/motioninterpolation.vpy}";
 
         # For anime 4k
         "CTRL+1" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
@@ -515,7 +515,7 @@ with common; {
       plugins = [
         {
           name = "local-plugin";
-          src = "${../shared/assets/fish}";
+          src = "${../../shared/assets/fish}";
         }
       ];
       shellInit = ''

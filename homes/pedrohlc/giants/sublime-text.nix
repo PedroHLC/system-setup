@@ -1,4 +1,4 @@
-common: with common;
+utils: with utils;
 
 mkIf hasSeat {
   xdg.configFile = {

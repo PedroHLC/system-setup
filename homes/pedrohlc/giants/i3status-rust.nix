@@ -1,4 +1,4 @@
-common: with common;
+utils: with utils;
 
 # My simple and humble bar
 mkIf hasSeat {

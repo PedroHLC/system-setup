@@ -107,7 +107,7 @@ in
         };
 
         # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-        nvidia-offload = final.callPackage ../../shared/pkgs/nvidia-offload.nix { };
+        nvidia-offload = final.callPackage ../../shared/drvs/nvidia-offload.nix { };
       };
     in
     [ thisConfigsOverlay ];

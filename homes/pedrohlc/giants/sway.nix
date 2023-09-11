@@ -1,4 +1,4 @@
-common: with common;
+utils: with utils;
 
 # My beloved DE
 mkIf hasSeat {

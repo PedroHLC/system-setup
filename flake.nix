@@ -35,7 +35,7 @@
       homeManagerModules = specsFile:
         let
           specs = (import specsFile);
-          pedrohlc = import ./home-manager/pedrohlc.nix specs;
+          pedrohlc = import ./homes/pedrohlc specs;
         in
         [
           home-manager.nixosModules.home-manager
@@ -57,8 +57,8 @@
           system = "x86_64-linux";
           modules = commonModules ++ [
             impermanence.nixosModules.impermanence
-            ./shared/lib/wireguard-client.nix
-            ./shared/lib/wgcf-teams.nix
+            ./shared/config/wireguard-client.nix
+            ./shared/config/wgcf-teams.nix
             ./systems/seat-configuration.nix
             ./systems/laptop/hardware-configuration.nix
             ./systems/laptop/configuration.nix
@@ -70,10 +70,10 @@
           system = "x86_64-linux";
           modules = commonModules ++ [
             impermanence.nixosModules.impermanence
-            ./shared/lib/4k-nohidpi.nix
-            ./shared/lib/journal-upload.nix
-            ./shared/lib/wireguard-client.nix
-            ./shared/lib/wgcf-teams.nix
+            ./shared/config/4k-nohidpi.nix
+            ./shared/config/journal-upload.nix
+            ./shared/config/wireguard-client.nix
+            ./shared/config/wgcf-teams.nix
             ./systems/seat-configuration.nix
             ./systems/desktop/hardware-configuration.nix
             ./systems/desktop/configuration.nix
@@ -85,8 +85,8 @@
           system = "aarch64-linux";
           modules = commonModules ++ [
             (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
-            ./shared/lib/oci-options.nix
-            ./shared/lib/oci-common.nix
+            ./shared/config/oci-options.nix
+            ./shared/config/oci-common.nix
             ./systems/vps-lab/configuration.nix
             ./systems/vps-lab/servers/adguard.nix
             ./systems/vps-lab/servers/journal-remote.nix

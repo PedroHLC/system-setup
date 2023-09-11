@@ -279,25 +279,25 @@
           { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
 
         # Script to force XWayland (in case something catches fire).
-        nowl = final.callPackage ../shared/pkgs/nowl.nix { };
+        nowl = final.callPackage ../shared/drvs/nowl.nix { };
 
         # Script to open my encrypted firefox profile.
-        firefox-gate = final.callPackage ../shared/pkgs/firefox-gate.nix { };
+        firefox-gate = final.callPackage ../shared/drvs/firefox-gate.nix { };
 
         # Environment to properly (and force) use wayland.
-        wayland-env = final.callPackage ../shared/pkgs/wayland-env.nix { };
+        wayland-env = final.callPackage ../shared/drvs/wayland-env.nix { };
 
         # Script required for autologin (per TTYs).
-        login-program = final.callPackage ../shared/pkgs/login-program.nix { };
+        login-program = final.callPackage ../shared/drvs/login-program.nix { };
 
         # Audacious rice
-        audacious-skin-winamp-classic = final.callPackage ../shared/pkgs/audacious-skin-winamp-classic.nix { };
+        audacious-skin-winamp-classic = final.callPackage ../shared/drvs/audacious-skin-winamp-classic.nix { };
 
         # Anime4K shaders
-        anime4k = final.callPackage ../shared/pkgs/anime4k.nix { };
+        anime4k = final.callPackage ../shared/drvs/anime4k.nix { };
 
         # Allow bluetooth management easily in sway
-        fzf-bluetooth = final.callPackage ../shared/pkgs/fzf-bluetooth.nix { };
+        fzf-bluetooth = final.callPackage ../shared/drvs/fzf-bluetooth.nix { };
 
         # Add OpenAsar to Discord and fix clicking in links for firefox
         discord = prev.discord.override {
@@ -306,16 +306,16 @@
         };
 
         # Focusire mono-mic
-        pw-focusrite-mono-input = final.callPackage ../shared/pkgs/pw-focusrite-mono-input.nix { };
+        pw-focusrite-mono-input = final.callPackage ../shared/drvs/pw-focusrite-mono-input.nix { };
 
         # PokeMMO mutable launcher
-        pokemmo-launcher = final.callPackage ../shared/pkgs/pokemmo-launcher.nix { };
+        pokemmo-launcher = final.callPackage ../shared/drvs/pokemmo-launcher.nix { };
 
         # swaylock with GIFs
-        my-wscreensaver = final.callPackage ../shared/pkgs/my-wscreensaver.nix { };
+        my-wscreensaver = final.callPackage ../shared/drvs/my-wscreensaver.nix { };
 
         # helps me adding routes to CF WARP
-        cfwarp-add = final.callPackage ../shared/pkgs/cfwarp-add.nix { };
+        cfwarp-add = final.callPackage ../shared/drvs/cfwarp-add.nix { };
       };
     in
     [ thisConfigsOverlay ];
