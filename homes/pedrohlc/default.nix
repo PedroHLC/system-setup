@@ -528,7 +528,7 @@ with utils; {
       };
     };
     # Crunchyroll and SAMSUNG Tizen don't mix, so I have to DLNA-it.
-    yt-dlp = {
+    yt-dlp = mkIf hasSeat {
       enable = true;
       package = pkgs.yt-dlp_git;
       settings = {
