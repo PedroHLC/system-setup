@@ -18,7 +18,7 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   # Filesytems settings.
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ext4" "f2fs" "xfs" "btrfs" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
 
   # ZFS being out-of-tree is super head-aches
@@ -237,7 +237,7 @@
   programs.gamescope = {
     enable = true;
     capSysNice = false; # capSysNice freezes gamescopeSession for me
-    args = [ "--rt" ];
+    args = [ ];
     env.ENABLE_GAMESCOPE_WSI = "1";
     package = pkgs.gamescope_git;
   };
@@ -397,6 +397,7 @@
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
     boot.zfs.enableUnstable = lib.mkForce false;
+    chaotic.mesa-git.enable = lib.mkForce false;
   };
 
   # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")
