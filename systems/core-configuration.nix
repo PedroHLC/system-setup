@@ -58,6 +58,10 @@
   # Kernel versions.
   boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
 
+  # Remove unused features.
+  services.lvm.enable = false;
+  boot.swraid.enable = false;
+
   # Disable the firewall.
   networking.firewall.enable = false;
 
