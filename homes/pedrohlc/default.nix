@@ -153,7 +153,7 @@ with utils; {
       audacious = mkIf hasSeat {
         target = "audacious/config.public";
         onChange = ''
-          rm $HOME/.config/audacious/config
+          [[ -f "$HOME/.config/audacious/config" ]] && rm "$HOME/.config/audacious/config"
         '';
         text = audaciousConfigGenerator {
           audacious = {
