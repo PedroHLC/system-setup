@@ -30,7 +30,10 @@
       dns = {
         bind_hosts = [ "0.0.0.0" ];
         statistics_interval = 90;
-        upstream_dns = [ "h3://qx1jz8jm5c.cloudflare-gateway.com/dns-query" ];
+        upstream_dns = [
+          "h3://qx1jz8jm5c.cloudflare-gateway.com/dns-query"
+          "[/gov.br/]tls://dns.google.com" # inmet.gov.br is broken in CF
+        ];
         upstream_dns_file = "";
         bootstrap_dns = [
           "172.64.36.1"
