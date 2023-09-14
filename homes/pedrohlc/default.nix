@@ -89,6 +89,11 @@ with utils; {
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
+      # Newer format for Alacritty's config
+      alacritty = mkIf hasSeat {
+        target = "alacritty/alacritty.toml";
+        source = (pkgs.formats.toml { }).generate "alacritty.toml" config.programs.alacritty.settings;
+      };
       # Allow me to choose which display to share in a list.
       wlrPortal = mkIf hasSeat {
         target = "xdg-desktop-portal-wlr/config";
@@ -427,7 +432,7 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = mkIf hasSeat {
-      enable = true;
+      enable = false; # Module is using "yml" which isn't compatible with newer version.
       settings = mkOptionDefault {
         font = {
           normal = {

@@ -138,7 +138,7 @@
     # Desktop apps
     acpi
     adbfs-rootless
-    alacritty
+    alacritty_git
     audacious
     bind.dnsutils # "dig"
     bluez-tools

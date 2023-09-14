@@ -24,7 +24,7 @@
   # Preferred executables
   browser = "${pkgs.firefox-gate}/bin/firefox-gate";
   editor = "${pkgs.sublime4}/bin/subl";
-  terminal = "${pkgs.alacritty}/bin/alacritty";
+  terminal = "${pkgs.alacritty_git}/bin/alacritty";
 
   # Simple executable shortcuts
   swayncClient = "${pkgs.swaynotificationcenter}/bin/swaync-client";

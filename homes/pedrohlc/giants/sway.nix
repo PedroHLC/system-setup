@@ -10,6 +10,7 @@ mkIf hasSeat {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    package = pkgs.sway_git;
 
     config = {
       inherit modifier terminal menu;
@@ -53,6 +54,9 @@ mkIf hasSeat {
           # FreeSync looks good with 75Hz
           adaptive_sync = "on";
           mode = "2560x1080@75Hz";
+        };
+        "Samsung Electric Company LU28R55 HX5R701479" = {
+          render_bit_depth = "10";
         };
         "HEADLESS-1" = {
           resolution = "1600x900";
