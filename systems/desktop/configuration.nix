@@ -28,13 +28,10 @@
   };
 
   # DuckDNS
-  services.ddclient = lib.mkIf false {
-    enable = false; # currently broken
-    domains = [ web.desktop.addr ];
-    protocol = "duckdns";
-    server = "www.duckdns.org";
-    username = "nouser";
-    passwordFile = "/var/persistent/secrets/duckdns.token";
+  chaotic.duckdns = {
+    enable = true;
+    domain = web.desktop.addr;
+    environmentFile = "/var/persistent/secrets/duckdns.env";
   };
 
   # Better voltage and temperature

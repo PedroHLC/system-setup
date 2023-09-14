@@ -78,7 +78,11 @@
   };
 
   # Bluetooth.
-  hardware.bluetooth.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    package = pkgs.bluez5-experimental;
+    settings.General.Experimental = true;
+  };
   services.blueman.enable = true;
   services.joycond.enable = true;
 
