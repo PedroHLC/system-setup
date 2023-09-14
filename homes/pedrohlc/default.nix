@@ -63,6 +63,16 @@ with utils; {
         source = pkgs.openmohaa;
       };
     };
+    # Merge Audacious public config with the secrets
+    activation.mergeAudacious = mkIf hasSeat (lib.hm.dag.entryAfter [ "onFilesChange" ] ''
+      finalFile="$HOME/.config/audacious/config"
+      if [[ ! -e "$finalFile" ]]; then
+        $DRY_RUN_CMD touch "$finalFile"
+        $DRY_RUN_CMD chmod 600 "$finalFile"
+        $DRY_RUN_CMD cat "$HOME/.config/audacious/config.public" > "$finalFile"
+        $DRY_RUN_CMD cat "$HOME/.secrets/audacious.config" >> "$finalFile"
+      fi
+    '');
   };
 
   # GTK Setup
@@ -139,10 +149,12 @@ with utils; {
           positionY = seat.notificationY;
         };
       };
-      # Audacious rice (TODO: NEEDS REWORK)
+      # Audacious rice
       audacious = mkIf hasSeat {
-        # Right now I need to find a way to insert scrobler token here, so I'll keep it as a "template".
-        target = "audacious/config.template";
+        target = "audacious/config.public";
+        onChange = ''
+          rm $HOME/.config/audacious/config
+        '';
         text = audaciousConfigGenerator {
           audacious = {
             shuffle = false;
