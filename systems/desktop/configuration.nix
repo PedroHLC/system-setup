@@ -59,8 +59,27 @@
   # My mono-mic Focusrite
   environment.etc.pw-focusrite-mono-input = {
     source = pkgs.pw-focusrite-mono-input;
-    target = "pipewire/pipewire.conf.d/focusrite-mono-input.conf";
+    target = "pipewire/pipewire.conf.d/99-focusrite-mono-input.conf";
   };
+
+  # Up-to 192kHz in the Focusrite
+  environment.etc.pw-96khz = {
+    target = "pipewire/pipewire.conf.d/99-playback-96khz.conf";
+    text = ''
+      context.properties = {
+        default.clock.rate = 96000
+        default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 ]
+      }
+    '';
+  };
+
+  # Up-to 192kHz in the Focusrite (thanks to https://another.maple4ever.net/archives/2994/)
+  # and virtualization MSRS
+  boot.extraModprobeConfig = ''
+    options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1 quirk_flags=0x1
+    options kvm ignore_msrs=1
+  '';
+
 
   # B550I AORUS PRO AX issue with suspension
   systemd.services.fix-b550i-acpi-wakeup = {
@@ -98,9 +117,6 @@
     onShutdown = "shutdown";
   };
   users.extraUsers.pedrohlc.extraGroups = [ "libvirtd" ];
-  boot.extraModprobeConfig = ''
-    options kvm ignore_msrs=1
-  '';
 
   # Not important but persistent files
   environment.persistence = {
