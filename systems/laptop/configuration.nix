@@ -92,7 +92,7 @@ in
   ];
 
   # Shadow can't be added to persistent
-  users.users."melinapn".passwordFile = "/var/persistent/secrets/shadow/melinapn";
+  users.users."melinapn".hashedPasswordFile = "/var/persistent/secrets/shadow/melinapn";
 
   # Proper output to gamescope
   programs.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];

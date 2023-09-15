@@ -527,8 +527,8 @@
   };
 
   # Shadow can't be added to persistent
-  users.users."root".passwordFile = "/var/persistent/secrets/shadow/root";
-  users.users."pedrohlc".passwordFile = "/var/persistent/secrets/shadow/pedrohlc";
+  users.users."root".hashedPasswordFile = "/var/persistent/secrets/shadow/root";
+  users.users."pedrohlc".hashedPasswordFile = "/var/persistent/secrets/shadow/pedrohlc";
 
   # More modern stage 1 in boot
   boot.initrd.systemd.enable = true;
