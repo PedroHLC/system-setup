@@ -149,7 +149,10 @@
   chaotic.mesa-git.enable = true;
 
   # Add a second boot entry with HDR
-  chaotic.linux_hdr.specialisation.enable = true;
+  chaotic.hdr = {
+    enable = true;
+    specialisation.enable = false;
+  };
 
   # Gamescope session is better for AAA gaming
   programs.steam.gamescopeSession.enable = true;

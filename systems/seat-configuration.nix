@@ -23,7 +23,7 @@
 
   # ZFS being out-of-tree is super head-aches
   boot.zfs.enableUnstable = true;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
 
   # Kernel Params
   boot.kernelParams = [
@@ -399,7 +399,7 @@
   # Creates a second boot entry with LTS kernel and stable ZFS
   specialisation.safe.configuration = {
     system.nixos.tags = [ "lts" "zfs-stable" ];
-    boot.kernelPackages = lib.mkForce pkgs.linuxPackages;
+    boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
     boot.zfs.enableUnstable = lib.mkForce false;
     chaotic.mesa-git.enable = lib.mkForce false;
   };
@@ -551,7 +551,7 @@
 
   # Some packages have some legacy leftovers
   nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1v"
+    "openssl-1.1.1w"
   ];
 
   # Change the allocator in hope it will save me 5 ms everyday.

@@ -56,7 +56,7 @@
   };
 
   # Kernel versions.
-  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Remove unused features.
   services.lvm.enable = false;
