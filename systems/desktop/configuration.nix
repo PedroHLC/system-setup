@@ -151,14 +151,11 @@
     fallbackSpecialisation = false;
   };
 
-  # Add a second boot entry with HDR
+  # Allows HDR gaming (AMD-GPU only).
   chaotic.hdr = {
     enable = true;
     specialisation.enable = false;
   };
-
-  # Gamescope session is better for AAA gaming
-  programs.steam.gamescopeSession.enable = true;
 
   # More Classics' gaming
   chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];

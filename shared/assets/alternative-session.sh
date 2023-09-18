@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
-read -r -d '' OPTIONS <<EOF
-nixpkgs-steam-hdr
-nixpkgs-steam-sdr
-flatpak-steam-hdr
+OPTIONS="nixpkgs-steam-sdr
 flatpak-steam-sdr
-flatpak-heroic-hdr
 flatpak-heroic-sdr
 tmux
 fish
 bash
-poweroff
-EOF
+poweroff"
+
+OPTIONS_HDR=""
+if lsmod | grep -wq "amdgpu"; then
+  OPTIONS_HDR="nixpkgs-steam-hdr
+flatpak-steam-hdr
+flatpak-heroic-hdr
+"
+fi
 
 function flatpak-steam() {
   _OVERRIDES=$(flatpak override --user --show com.valvesoftware.Steam)
@@ -26,38 +29,45 @@ function flatpak-heroic() {
   env -u LD_PRELOAD "${_PRE[@]}" flatpak run com.heroicgameslauncher.hgl "${@}"
 }
 
-while true; do case $(fzf <<<"$OPTIONS") in
-  nixpkgs-steam-sdr)
-    gamescope --steam -- steam -tenfoot -pipewire-dmabuf
-    ;;
-  nixpkgs-steam-hdr)
-    steam-gamescope
-    ;;
-  flatpak-steam-sdr)
-    _PRE=(gamescope --steam) flatpak-steam
-    ;;
-  flatpak-steam-hdr)
-    _PRE=(gamescope --steam --hdr-enabled) flatpak-steam
-    ;;
-  flatpak-heroic-sdr)
-    _PRE=(gamescope) flatpak-heroic
-    ;;
-  flatpak-heroic-hdr)
-    _PRE=(gamescope --hdr-enabled) flatpak-heroic
-    ;;
-  tmux)
-    tmux -l
-    ;;
-  fish)
-    fish -l
-    ;;
-  bash)
-    bash -l
-    ;;
-  poweroff)
-    exec systemctl poweroff
-    ;;
-  *)
-    break
-    ;;
-esac; done
+while true; do
+  _PRE=()
+  case $(fzf <<<"${OPTIONS_HDR}${OPTIONS}") in
+    nixpkgs-steam-sdr)
+      gamescope --steam -- steam -tenfoot -pipewire-dmabuf
+      ;;
+    nixpkgs-steam-hdr)
+      DXVK_HDR=1 steam-gamescope
+      ;;
+    flatpak-steam-sdr)
+      _PRE=(gamescope --steam --)
+      flatpak-steam
+      ;;
+    flatpak-steam-hdr)
+      _PRE=(DXVK_HDR=1 gamescope --steam --hdr-enabled --)
+      flatpak-steam
+      ;;
+    flatpak-heroic-sdr)
+      _PRE=(gamescope --)
+      flatpak-heroic
+      ;;
+    flatpak-heroic-hdr)
+      _PRE=(DXVK_HDR=1 gamescope --hdr-enabled --)
+      flatpak-heroic
+      ;;
+    tmux)
+      tmux -l
+      ;;
+    fish)
+      fish -l
+      ;;
+    bash)
+      bash -l
+      ;;
+    poweroff)
+      exec systemctl poweroff
+      ;;
+    *)
+      break
+      ;;
+  esac;
+done

@@ -245,12 +245,18 @@
   # Special apps (requires more than their package to work).
   programs.adb.enable = true;
   programs.gamemode.enable = true;
-  programs.steam.enable = true;
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true; # Gamescope session is better for AAA gaming.
+  };
   programs.gamescope = {
     enable = true;
-    capSysNice = false; # capSysNice freezes gamescopeSession for me
+    capSysNice = false; # capSysNice freezes gamescopeSession for me.
     args = [ ];
-    env.ENABLE_GAMESCOPE_WSI = "1";
+    env = lib.mkForce {
+      # I set DXVK_HDR in the alternative-sessions script.
+      ENABLE_GAMESCOPE_WSI = "1";
+    };
     package = pkgs.gamescope_git;
   };
 
@@ -401,7 +407,7 @@
     "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr"
   ];
 
-  # Creates a second boot entry with LTS kernel and stable ZFS
+  # Creates a second boot entry with LTS kernel, stable ZFS, stable Mesa3D.
   specialisation.safe.configuration = {
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
