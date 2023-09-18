@@ -47,6 +47,8 @@ with utils; {
           ${config.wayland.windowManager.sway.package}/bin/sway
           # Leave the deattached tmux session we have started inside sway.
           ${tmux} send-keys -t DE 'C-c' 'C-d' || true
+          # Alternative sessions I might wanna run
+          exec bash "${../../shared/assets/alternative-session.sh}"
       '') + ''
         fi
       '';
