@@ -43,8 +43,9 @@ with utils; {
           exec ${tmux}
       '' + (strings.optionalString hasSeat ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
-          # It has to be the one from home manager.
+          # It has to be sway from home manager.
           ${config.wayland.windowManager.sway.package}/bin/sway
+          # Leave the deattached tmux session we have started inside sway.
           ${tmux} send-keys -t DE 'C-c' 'C-d' || true
       '') + ''
         fi
@@ -110,10 +111,7 @@ with utils; {
         text = generators.toINI { } {
           screencast = {
             chooser_type = "dmenu";
-            chooser_cmd =
-              pkgs.writeShellScript "output-chooser" ''
-                ${swaymsg} -t get_outputs | ${jq} '.[] | .name' | ${sed} 's/\"//g' | ${visual-fzf}
-              '';
+            chooser_cmd = output-chooser;
           };
         };
       };

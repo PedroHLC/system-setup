@@ -129,7 +129,15 @@
   # Autologin.
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";
-    loginOptions = toString pkgs.login-program;
+    loginOptions =
+      let
+        programScript = pkgs.callPackage ../shared/drvs/login-program.nix {
+          loginsPerTTY = {
+            "/dev/tty1" = "pedrohlc";
+          };
+        };
+      in
+      toString programScript;
     extraArgs = [ "--skip-login" ];
   };
 
@@ -290,9 +298,6 @@
 
         # Environment to properly (and force) use wayland.
         wayland-env = final.callPackage ../shared/drvs/wayland-env.nix { };
-
-        # Script required for autologin (per TTYs).
-        login-program = final.callPackage ../shared/drvs/login-program.nix { };
 
         # Audacious rice
         audacious-skin-winamp-classic = final.callPackage ../shared/drvs/audacious-skin-winamp-classic.nix { };

@@ -82,6 +82,18 @@ in
   # Plasma for Melina
   services.xserver.desktopManager.plasma5.enable = true;
 
+  # Autologin (with Melina).
+  services.getty.loginOptions =
+    let
+      programScript = pkgs.callPackage ../shared/drvs/login-program.nix {
+        loginsPerTTY = {
+          "/dev/tty1" = "pedrohlc";
+          "/dev/tty2" = "melinapn";
+        };
+      };
+    in
+    toString programScript;
+
   # Persistent files
   environment.persistence."/var/persistent".directories = [
     { directory = "/var/lib/colord"; user = "colord"; group = "colord"; mode = "u=rwx,g=rx,o="; }

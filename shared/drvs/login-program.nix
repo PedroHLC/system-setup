@@ -1,12 +1,20 @@
-{ writeText, shadow }:
-# Auto-logins with pedrohlc in TTY1, and melinapn in TTY2
+{ lib, writeText, coreutils, shadow, loginsPerTTY }:
+# Handle auto-logins in the most lightweight way.
+# Make sure to set loginProgram to "bash"!
+let
+  whens = lib.attrsets.mapAttrsToList
+    (devfs: user: ''
+      ${devfs})
+        ${shadow}/bin/login -f ${user}
+        ;;
+    '')
+    loginsPerTTY;
+in
 writeText "login-program.sh" ''
-  _TTY="$(tty)"
-  if [[ "$_TTY" == '/dev/tty1' ]]; then
-    ${shadow}/bin/login -f pedrohlc;
-  elif [[ "$_TTY" == '/dev/tty2' ]]; then
-    ${shadow}/bin/login -f melinapn;
-  else
-    ${shadow}/bin/login;
-  fi
+  case "$(${coreutils}/bin/tty)" in
+    ${builtins.concatStringsSep "\n" whens}
+    *)
+      ${shadow}/bin/login
+      ;;
+  esac
 ''

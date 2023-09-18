@@ -116,4 +116,9 @@
           'swaymsg output ${seat.displayId} power off' \
         resume 'swaymsg output ${seat.displayId} power on'
     '';
+
+  # allows to choose the output in a GUI list
+  output-chooser = pkgs.writeShellScript "output-chooser" ''
+    ${swaymsg} -t get_outputs | ${jq} '.[] | .name' | ${sed} 's/\"//g' | ${visual-fzf}
+  '';
 })
