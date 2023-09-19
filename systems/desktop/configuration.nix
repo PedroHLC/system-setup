@@ -104,7 +104,7 @@
     latencyflex-vulkan
     openrct2
     vcmi
-    vkBasalt
+    vkshade_git
     yuzu-early-access_git
     (cfwarp-add.override { gatewayIP = "192.168.18.1"; })
     virtiofsd # for libvirtd
