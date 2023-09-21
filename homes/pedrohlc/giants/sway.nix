@@ -10,7 +10,15 @@ mkIf hasSeat {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
-    package = pkgs.sway_git;
+    package =
+      let
+        cfg = config.wayland.windowManager.sway;
+      in
+      pkgs.sway_git.override {
+        inherit (cfg) extraSessionCommands extraOptions;
+        withBaseWrapper = cfg.wrapperFeatures.base;
+        withGtkWrapper = cfg.wrapperFeatures.gtk;
+      };
 
     config = {
       inherit modifier terminal menu;

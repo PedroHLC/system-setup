@@ -85,14 +85,14 @@ in
   # Autologin (with Melina).
   services.getty.loginOptions =
     let
-      programScript = pkgs.callPackage ../shared/drvs/login-program.nix {
+      programScript = pkgs.callPackage ../../shared/drvs/login-program.nix {
         loginsPerTTY = {
           "/dev/tty1" = "pedrohlc";
           "/dev/tty2" = "melinapn";
         };
       };
     in
-    toString programScript;
+    lib.mkForce (toString programScript);
 
   # Persistent files
   environment.persistence."/var/persistent".directories = [
