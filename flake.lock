@@ -8,11 +8,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "narHash": "sha256-WGYQif7hHtwPrkJq8GvvxX16dUPS0tdNsrsJfmFoMqA=",
-        "rev": "58aa8bf723013a018b0dc118c3ed2353444da6d8",
-        "revCount": 566,
+        "narHash": "sha256-hZSjkAX0NibxLOZKOs/MTOnscArruQTcuFME31wGi68=",
+        "rev": "e9e4e603686917822a53d39b6bff34d2131bb500",
+        "revCount": 569,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.566%2Brev-58aa8bf723013a018b0dc118c3ed2353444da6d8/018aba5a-80fa-7452-8f03-7f8038b250b8/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.569%2Brev-e9e4e603686917822a53d39b6bff34d2131bb500/018abe97-cb1d-73fe-9c3c-af283418c894/source.tar.gz"
       },
       "original": {
         "type": "tarball",

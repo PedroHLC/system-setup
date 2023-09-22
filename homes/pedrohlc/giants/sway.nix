@@ -228,7 +228,7 @@ mkIf hasSeat {
               "shift+o" = "exec ${pkgs.obs-studio-wrapped}/bin/obs; mode default";
               "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
               "Shift+s" = "exec ((pidof ${pkgs.spotify-unwrapped}/share/spotify/.spotify-wrapped) || ${pkgs.spotify}/bin/spotify); mode default";
-              "Shift+t" = "exec ${pkgs.tdesktop}/bin/telegram-desktop; mode default";
+              "Shift+t" = "exec ${pkgs.telegram-desktop_git}/bin/telegram-desktop; mode default";
             };
 
           # Network + Bluetooth

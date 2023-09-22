@@ -180,7 +180,7 @@
     slack
     space-cadet-pinball
     spotify
-    tdesktop
+    telegram-desktop_git
     usbutils
     waypipe
     wl-mirror
