@@ -4,19 +4,19 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
 
     # reset rootfs every reboot
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.0.tar.gz";
 
     # home-manager for managing my users' home
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Smooth-criminal bleeding-edge packages
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.0.tar.gz";
 
     # My FFx userChrome.css
     pedrochrome-css = {

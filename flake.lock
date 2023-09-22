@@ -3,22 +3,20 @@
     "chaotic": {
       "inputs": {
         "compare-to": "compare-to",
+        "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1695223075,
-        "narHash": "sha256-JeGZUn5S80gtqT6nUEYONXN0kNxYcQh6Nyl73DIK6TU=",
-        "owner": "chaotic-cx",
-        "repo": "nyx",
-        "rev": "ef402f73cb75a0eb812de54f57b1bcb5cae990e0",
-        "type": "github"
+        "narHash": "sha256-xGem7e2rWw4qpzkqWX9hCKBZsoUeJNxbUlHG19/Z6Xk=",
+        "rev": "df148a88bbd14c054d91480c8139d93cb85c0b5a",
+        "revCount": 564,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.564%2Brev-df148a88bbd14c054d91480c8139d93cb85c0b5a/018ab9cf-68c8-7bfc-9403-c66029d15d99/source.tar.gz"
       },
       "original": {
-        "owner": "chaotic-cx",
-        "ref": "nyxpkgs-unstable",
-        "repo": "nyx",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/chaotic-cx/nyx/0.1.0.tar.gz"
       }
     },
     "compare-to": {
@@ -33,6 +31,21 @@
       "original": {
         "owner": "chaotic-cx",
         "repo": "nix-empty-flake",
+        "type": "github"
+      }
+    },
+    "flake-schemas": {
+      "locked": {
+        "lastModified": 1693615523,
+        "narHash": "sha256-LeyH24etXCxNJviWptyLy2DPT9xt+oOs/zE66To1iPY=",
+        "owner": "DeterminateSystems",
+        "repo": "flake-schemas",
+        "rev": "8940e872c4f8c7cd7d0a1ec169fa0a24697b1f1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DeterminateSystems",
+        "repo": "flake-schemas",
         "type": "github"
       }
     },
@@ -64,42 +77,37 @@
         ]
       },
       "locked": {
-        "lastModified": 1695224363,
         "narHash": "sha256-+hfjJLUMck5G92RVFDZA7LWkR3kOxs5zQ7RPW9t3eM8=",
-        "owner": "nix-community",
-        "repo": "home-manager",
         "rev": "408ba13188ff9ce309fa2bdd2f81287d79773b00",
-        "type": "github"
+        "revCount": 3026,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3026%2Brev-408ba13188ff9ce309fa2bdd2f81287d79773b00/018ab63a-64c3-7df2-b944-409c2f99bdaf/source.tar.gz"
       },
       "original": {
-        "owner": "nix-community",
-        "ref": "master",
-        "repo": "home-manager",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz"
       }
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1694622745,
         "narHash": "sha256-z397+eDhKx9c2qNafL1xv75lC0Q4nOaFlhaU1TINqb8=",
-        "owner": "nix-community",
-        "repo": "impermanence",
         "rev": "e9643d08d0d193a2e074a19d4d90c67a874d932e",
-        "type": "github"
+        "revCount": 113,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/nix-community/impermanence/0.1.113%2Brev-e9643d08d0d193a2e074a19d4d90c67a874d932e/018a8f9a-6f82-7276-a0cb-30101b000792/source.tar.gz"
       },
       "original": {
-        "owner": "nix-community",
-        "repo": "impermanence",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/nix-community/impermanence/0.1.0.tar.gz"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694959747,
-        "narHash": "sha256-CXQ2MuledDVlVM5dLC4pB41cFlBWxRw4tCBsFrq3cRk=",
+        "lastModified": 1695145219,
+        "narHash": "sha256-Eoe9IHbvmo5wEDeJXKFOpKUwxYJIOxKUesounVccNYk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "970a59bd19eff3752ce552935687100c46e820a5",
+        "rev": "5ba549eafcf3e33405e5f66decd1a72356632b96",
         "type": "github"
       },
       "original": {
@@ -111,18 +119,15 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1694959747,
-        "narHash": "sha256-CXQ2MuledDVlVM5dLC4pB41cFlBWxRw4tCBsFrq3cRk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "970a59bd19eff3752ce552935687100c46e820a5",
-        "type": "github"
+        "narHash": "sha256-Eoe9IHbvmo5wEDeJXKFOpKUwxYJIOxKUesounVccNYk=",
+        "rev": "5ba549eafcf3e33405e5f66decd1a72356632b96",
+        "revCount": 527133,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.527133%2Brev-5ba549eafcf3e33405e5f66decd1a72356632b96/018ab8cd-cfca-7844-b541-87460903f5ea/source.tar.gz"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
+        "type": "tarball",
+        "url": "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz"
       }
     },
     "pedrochrome-css": {
