@@ -1,6 +1,20 @@
 specs: { config, lib, pkgs, ssot, flakes, ... }@inputs:
 let
   utils = import ./utils.nix specs inputs;
+
+  minidlnaConf = pkgs.writeTextFile {
+    name = "minidlna.conf";
+    text = ''
+      media_dir=V,/home/pedrohlc/Torrents
+      friendly_name=${specs.dlnaName}
+      inotify=yes
+      db_dir=/tmp
+    '';
+  };
+
+  minidlna-launcher = pkgs.writeShellScriptBin "minidlna-start" ''
+    exec ${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v
+  '';
 in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
@@ -16,6 +30,7 @@ with utils; {
     ] ++ [
       # My scripts
       nrpr
+      minidlna-launcher
     ]);
 
     # Cursor setup
@@ -580,28 +595,4 @@ with utils; {
       };
     };
   };
-
-  # DLNA
-  systemd.user.services.minidlna =
-    let
-      minidlnaConf = pkgs.writeTextFile {
-        name = "minidlna.conf";
-        text = ''
-          media_dir=V,/home/pedrohlc/Torrents
-          friendly_name=${dlnaName}
-          inotify=yes
-          db_dir=/tmp
-        '';
-      };
-    in
-    mkIf (dlnaName != null) {
-      Unit = {
-        Description = "MiniDLNA service";
-        After = [ "network.target" ];
-      };
-      Service = {
-        ExecStart = "${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v";
-      };
-      Install.WantedBy = [ ];
-    };
 }
