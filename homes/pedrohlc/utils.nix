@@ -22,7 +22,7 @@
   touchpad = if hasSeat then seat.touchpad else null;
 
   # Preferred executables
-  browser = "${pkgs.firefox-gate}/bin/firefox-gate";
+  browser = "${firefox-gate}/bin/firefox-gate";
   editor = "${pkgs.sublime4}/bin/subl";
   terminal = "${pkgs.alacritty_git}/bin/alacritty";
 
@@ -53,7 +53,7 @@
       pkgs.writeShellScript "nvidia-meme" ''
         exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
       ''
-    else "${pkgs.my-wscreensaver}/bin/my-wscreensaver";
+    else "${my-wscreensaver}/bin/my-wscreensaver";
   terminalLauncher = cmd: "${terminal} -t launcher -e ${cmd}";
   menu = terminalLauncher "${pkgs.sway-launcher-desktop}/bin/sway-launcher-desktop";
   menuBluetooth = terminalLauncher "${pkgs.fzf-bluetooth}/bin/fzf-bluetooth";
@@ -91,7 +91,16 @@
   dpmsTimeout = lockTimeout * 2;
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
-  nrpr = pkgs.callPackage ../../shared/drvs/nixpkgs-review-in-tmux.nix { };
+  nrpr = pkgs.callPackage ./drvs/nixpkgs-review-in-tmux.nix { };
+
+  # Script to open my encrypted firefox profile.
+  firefox-gate = pkgs.callPackage ./drvs/firefox-gate.nix { };
+
+  # swaylock with GIFs
+  my-wscreensaver = pkgs.callPackage ./drvs/my-wscreensaver.nix { };
+
+  # PokeMMO mutable launcher
+  pokemmo-launcher = pkgs.callPackage ./drvs/pokemmo-launcher.nix { };
 
   # a way to call FZF with GUI
   visual-fzf = pkgs.writeShellScript "visual-fzf" ''
@@ -120,5 +129,31 @@
   # allows to choose the output in a GUI list
   output-chooser = pkgs.writeShellScript "output-chooser" ''
     ${swaymsg} -t get_outputs | ${jq} '.[] | .name' | ${sed} 's/\"//g' | ${visual-fzf}
+  '';
+
+  # DLNA the KISS way
+  minidlna-launcher =
+    let
+      minidlnaConf = pkgs.writeTextFile {
+        name = "minidlna.conf";
+        text = ''
+          media_dir=V,/home/pedrohlc/Torrents
+          friendly_name=${dlnaName}
+          inotify=yes
+          db_dir=/tmp
+        '';
+      };
+    in
+    pkgs.writeShellScriptBin "minidlna-start" ''
+      exec ${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v
+    '';
+
+  # I want to pick this with file managers
+  mpv-hq-entry = pkgs.runCommand "mpv-hq.desktop" { } ''
+    mkdir -p $out/share/applications
+    cp ${config.programs.mpv.package}/share/applications/mpv.desktop $out/share/applications/mpv-hq.desktop
+    substituteInPlace $out/share/applications/mpv-hq.desktop \
+      --replace "Exec=mpv --" "Exec=mpv --profile=hq --" \
+      --replace "Name=mpv" "Name=mpv-hq"
   '';
 })

@@ -189,8 +189,6 @@
     zoom-us
 
     # My scripts
-    firefox-gate
-    my-wscreensaver
     nowl
     wayland-env
 
@@ -299,9 +297,6 @@
         # Script to force XWayland (in case something catches fire).
         nowl = final.callPackage ../shared/drvs/nowl.nix { };
 
-        # Script to open my encrypted firefox profile.
-        firefox-gate = final.callPackage ../shared/drvs/firefox-gate.nix { };
-
         # Environment to properly (and force) use wayland.
         wayland-env = final.callPackage ../shared/drvs/wayland-env.nix { };
 
@@ -322,12 +317,6 @@
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/drvs/pw-focusrite-mono-input.nix { };
-
-        # PokeMMO mutable launcher
-        pokemmo-launcher = final.callPackage ../shared/drvs/pokemmo-launcher.nix { };
-
-        # swaylock with GIFs
-        my-wscreensaver = final.callPackage ../shared/drvs/my-wscreensaver.nix { };
 
         # helps me adding routes to CF WARP
         cfwarp-add = final.callPackage ../shared/drvs/cfwarp-add.nix { };

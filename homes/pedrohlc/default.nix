@@ -1,20 +1,6 @@
 specs: { config, lib, pkgs, ssot, flakes, ... }@inputs:
 let
   utils = import ./utils.nix specs inputs;
-
-  minidlnaConf = pkgs.writeTextFile {
-    name = "minidlna.conf";
-    text = ''
-      media_dir=V,/home/pedrohlc/Torrents
-      friendly_name=${specs.dlnaName}
-      inotify=yes
-      db_dir=/tmp
-    '';
-  };
-
-  minidlna-launcher = pkgs.writeShellScriptBin "minidlna-start" ''
-    exec ${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v
-  '';
 in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
@@ -25,13 +11,17 @@ with utils; {
   ];
 
   home = {
-    packages = with pkgs; (lists.optionals hasSeat [
-      pokemmo-launcher
-    ] ++ [
-      # My scripts
-      nrpr
-      minidlna-launcher
-    ]);
+    packages =
+      with pkgs; (lists.optionals hasSeat [
+        firefox-gate
+        minidlna-launcher
+        mpv-hq-entry
+        my-wscreensaver
+        pokemmo-launcher
+      ] ++ [
+        # My scripts
+        nrpr
+      ]);
 
     # Cursor setup
     pointerCursor = mkIf hasSeat {
@@ -216,23 +206,23 @@ with utils; {
       };
     };
     # Other data files
-    dataFile = {
-      audaciousSkinWinampClassic = mkIf hasSeat {
-        source = pkgs.audacious-skin-winamp-classic;
+    dataFile = mkIf hasSeat {
+      audaciousSkinWinampClassic = {
         target = "audacious/Skins/135799-winamp_classic";
+        source = pkgs.audacious-skin-winamp-classic;
       };
 
-      userChromeCss = mkIf hasSeat {
-        source = "${flakes.pedrochrome-css}/userChrome.css";
+      userChromeCss = {
         target = "userChrome.css";
+        source = "${flakes.pedrochrome-css}/userChrome.css";
       };
     };
-    desktopEntries = {
+    desktopEntries = mkIf hasSeat {
       # Overwrite Firefox with my encryption-wrapper
-      "firefox" = mkIf hasSeat {
+      "firefox" = {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
-        exec = "${pkgs.firefox-gate}/bin/firefox-gate %U";
+        exec = "${firefox-gate}/bin/firefox-gate %U";
         terminal = false;
         categories = [ "Application" "Network" "WebBrowser" ];
         mimeType = [
@@ -247,10 +237,10 @@ with utils; {
         ];
         type = "Application";
       };
-      "pokemmo" = mkIf hasSeat {
+      "pokemmo" = {
         name = "PokeMMO";
         genericName = "MMORPG abou leveling up and discovering new monsters";
-        exec = "${pkgs.pokemmo-launcher}/bin/pokemmo";
+        exec = "${pokemmo-launcher}/bin/pokemmo";
         terminal = false;
         categories = [ "Game" ];
         type = "Application";
