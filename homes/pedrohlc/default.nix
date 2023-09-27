@@ -390,7 +390,7 @@ with utils; {
         # additional features
         battery = hasBattery;
         cpu_temp = true;
-        gpu_temp = true;
+        gpu_junction_temp = true;
         io_read = true;
         io_write = true;
         vram = true;
@@ -514,9 +514,9 @@ with utils; {
           "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
           "gpff" = "git pull --ff-only";
           "gprb" = "git pull --rebase";
-          "gp@main" = "git fetch origin && git branch -f main origin/main && git checkout main";
-          "gp@master" = "git fetch origin && git branch -f master origin/master && git checkout master";
-          "gp@nixpkgs" = "git fetch upstream && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
+          "gp@main" = "git fetch origin main && git branch -f main origin/main && git checkout main";
+          "gp@master" = "git fetch origin master && git branch -f master origin/master && git checkout master";
+          "gp@nixpkgs" = "git fetch upstream nixpkgs-unstable && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
           "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
           "@system" = "cd /etc/nixos";
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";

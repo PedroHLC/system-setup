@@ -33,13 +33,13 @@ while true; do
   _PRE=()
   case $(fzf <<<"${OPTIONS_HDR}${OPTIONS}") in
     nixpkgs-steam-sdr)
-      gamescope --steam -- steam -tenfoot -pipewire-dmabuf
+      gamescope --steam --disable-color-management -- steam -tenfoot -pipewire-dmabuf
       ;;
     nixpkgs-steam-hdr)
       DXVK_HDR=1 steam-gamescope
       ;;
     flatpak-steam-sdr)
-      _PRE=(gamescope --steam --)
+      _PRE=(gamescope --steam --disable-color-management --)
       flatpak-steam
       ;;
     flatpak-steam-hdr)
