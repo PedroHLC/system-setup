@@ -85,8 +85,7 @@
           system = "aarch64-linux";
           modules = commonModules ++ [
             (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
-            ./shared/config/oci-options.nix
-            ./shared/config/oci-common.nix
+            (nixpkgs + "/nixos/modules/virtualisation/oci-common.nix")
             ./systems/vps-lab/configuration.nix
             ./systems/vps-lab/servers/adguard.nix
             ./systems/vps-lab/servers/journal-remote.nix
