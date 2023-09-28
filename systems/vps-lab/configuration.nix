@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ ssot, ... }: with ssot;
+{ ssot, lib, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -10,6 +10,7 @@
   networking = {
     hostId = "be2568e1";
     hostName = vpn.lab.hostname;
+    useNetworkd = lib.mkForce false;
   };
 
   # Let's Encrypt
