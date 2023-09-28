@@ -95,7 +95,7 @@
   services.ratbagd.enable = true;
 
   # Limit resources used by nix-daemon.
-  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "3-23";
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "4-23";
 
   # Extra packages
   environment.systemPackages = with pkgs; [
