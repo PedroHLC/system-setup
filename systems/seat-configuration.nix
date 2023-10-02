@@ -409,12 +409,12 @@
   services.udev.extraHwdb = ''
     evdev:name:Corsair CORSAIR KATAR PRO Wireless Gaming Dongle:*
       ID_INPUT_KEY=1
-      KEYBOARD_KEY_90005=btn_forward
-      KEYBOARD_KEY_90004=btn_back
+      KEYBOARD_KEY_90005=key_pageup
+      KEYBOARD_KEY_90004=key_pagedown
     evdev:name:KATAR PRO Wireless Mouse:*
       ID_INPUT_KEY=1
-      KEYBOARD_KEY_90005=btn_forward
-      KEYBOARD_KEY_90004=btn_back
+      KEYBOARD_KEY_90005=key_pageup
+      KEYBOARD_KEY_90004=key_pagedown
   '';
 
   # Persistent files

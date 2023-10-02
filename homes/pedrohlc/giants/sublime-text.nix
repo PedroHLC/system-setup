@@ -4,8 +4,8 @@ mkIf hasSeat {
   xdg.configFile = {
     sublimePreferences =
       let
-        # This will result in a lot of errors until Colorsublime loads.
-        colorSublimeThemes = "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes";
+        # This will result in a lot of errors until Catppuccin loads.
+        colorScheme = flavor: "Packages/Catppuccin color schemes/Catppuccin ${flavor}.sublime-color-scheme";
       in
       {
         target = "sublime-text/Packages/home-manager/Preferences.sublime-settings";
@@ -23,10 +23,10 @@ mkIf hasSeat {
 
           # Have both dark & light themes
           color_scheme = "auto";
-          dark_color_scheme = "${colorSublimeThemes}/Rebecca-dark.tmTheme";
-          light_color_scheme = "${colorSublimeThemes}/Kashmir-Light.tmTheme";
+          dark_color_scheme = colorScheme "Mocha";
+          light_color_scheme = colorScheme "Latte";
           theme = "auto";
-          dark_theme = "Darkmatter.sublime-theme";
+          dark_theme = "Adaptive.sublime-theme";
           light_theme = "Adaptive.sublime-theme";
 
           # Constraint NeoVintageous to a much smaller keybindings set
@@ -78,8 +78,8 @@ mkIf hasSeat {
           "Babel" # React JSX syntax
           "Clang Format" # Format C/C++
           "CMake" # CMake syntax
+          "Catppuccin color schemes" # Modern color scheme
           "Color Convert" # RGB to/from HEX
-          "Colorsublime" # Many colorschemes
           "Dockerfile Syntax Highlighting" # Dockerfile syntax
           "EditorConfig" # Per-project cross-IDE preferences
           "ElixirFormatter" # Elixir format-on-save

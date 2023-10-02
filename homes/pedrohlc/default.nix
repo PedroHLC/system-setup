@@ -517,8 +517,8 @@ with utils; {
           "gp@main" = "git fetch origin main && git branch -f main origin/main && git checkout main";
           "gp@master" = "git fetch origin master && git branch -f master origin/master && git checkout master";
           "gp@nixpkgs" = "git fetch upstream nixpkgs-unstable && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
-          "phlc-sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
-          "@system" = "cd /etc/nixos";
+          "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
+          "@sys" = "cd /etc/nixos";
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
           "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
           "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
