@@ -6,7 +6,7 @@
   # Nix package-management settings.
   nix = {
     # Latest nix
-    package = pkgs.nixVersions.unstable;
+    package = pkgs.nixVersions.nix_2_17;
 
     # - Enable flakes
     # - newer CLI features

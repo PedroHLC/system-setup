@@ -10,7 +10,6 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1695926842,
         "narHash": "sha256-gCaPtzG3Z+I2yau1bZOeZhuqCk0LRXHCODkSh0fPGac=",
         "rev": "76f6298ae9df27bbdc387b5e187f398949655517",
         "revCount": 588,
@@ -74,7 +73,6 @@
         ]
       },
       "locked": {
-        "lastModified": 1695738267,
         "narHash": "sha256-LTNAbTQ96xSj17xBfsFrFS9i56U2BMLpD0BduhrsVkU=",
         "rev": "0f4e5b4999fd6a42ece5da8a3a2439a50e48e486",
         "revCount": 3035,
@@ -88,7 +86,6 @@
     },
     "impermanence": {
       "locked": {
-        "lastModified": 1694622745,
         "narHash": "sha256-z397+eDhKx9c2qNafL1xv75lC0Q4nOaFlhaU1TINqb8=",
         "rev": "e9643d08d0d193a2e074a19d4d90c67a874d932e",
         "revCount": 113,
@@ -115,7 +112,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1695644571,
         "narHash": "sha256-asS9dCCdlt1lPq0DLwkVBbVoEKuEuz+Zi3DG7pR/RxA=",
         "rev": "6500b4580c2a1f3d0f980d32d285739d8e156d92",
         "revCount": 528952,
@@ -130,7 +126,6 @@
     "pedrochrome-css": {
       "flake": false,
       "locked": {
-        "lastModified": 1666181022,
         "narHash": "sha256-Pt1vCLB8dGREPzbbbpls9KrioJlGI8ecz0vcsLu6OTs=",
         "ref": "refs/heads/master",
         "rev": "8d3bb4a9e95eb312bb64dffbac0278f4ec7e071a",
