@@ -152,7 +152,6 @@
     bluez-tools
     brightnessctl
     btop
-    discord
     element-desktop-wayland
     ethtool
     ffmpegthumbnailer
@@ -197,17 +196,13 @@
     dbeaver
     elmPackages.elm-format # Elm-dev
     gdb # more precious then gcc
-    gh
     gnumake
     heroku
     inotify-tools # watching files
     logstalgia # Chaotic
     nixpkgs-fmt # Nix
-    nixpkgs-review # Nix
     python3Minimal
     sublime4
-
-    # Less used
 
     # Office-stuff
     inkscape
@@ -308,12 +303,6 @@
 
         # Allow bluetooth management easily in sway
         fzf-bluetooth = final.callPackage ../shared/drvs/fzf-bluetooth.nix { };
-
-        # Add OpenAsar to Discord and fix clicking in links for firefox
-        discord = prev.discord.override {
-          #withOpenASAR = true; # broken since somewhere in june
-          nss = final.nss_git;
-        };
 
         # Focusire mono-mic
         pw-focusrite-mono-input = final.callPackage ../shared/drvs/pw-focusrite-mono-input.nix { };

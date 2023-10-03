@@ -505,10 +505,7 @@ with utils; {
     fish = {
       enable = true;
       shellAliases =
-        # NOTE: Always use $PATH-relative in alias, for user hacks
-        let
-          jsRun = "yarn exec --prefer-offline --";
-        in
+        # NOTE: Always use $PATH-relative executables in shellAliases, for user's hacks
         {
           ":q" = "exit";
           "aget" = "aria2c -s 16 -x 16 -j 16 -k 1M";
@@ -524,14 +521,7 @@ with utils; {
           "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
         } // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
-          "elm" = "${jsRun} elm";
-          "elm-app" = "${jsRun} elm-app";
-          "elm-graphql" = "${jsRun} elm-graphql";
-          "elm-optimize-level-2" = "${jsRun} elm-optimize-level-2";
-          "elm-review" = "${jsRun} elm-review";
-          "elm-test" = "${jsRun} elm-test";
           "mpv-hq" = "mpv --profile=hq";
-          "parcel" = "${jsRun} parcel";
           "@apollo" = "cd ~/Projects/br.com.mindlab/apollo";
         };
       plugins = [
