@@ -68,7 +68,7 @@ with utils; {
       # OpenMoHAA
       ".moh/OpenMoHAA" = mkIf hasSeat {
         recursive = true;
-        source = pkgs.openmohaa;
+        source = pkgs.openmohaa_git;
       };
     };
     # Merge Audacious public config with the secrets
@@ -522,7 +522,9 @@ with utils; {
         } // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";
-          "@apollo" = "cd ~/Projects/br.com.mindlab/apollo";
+          # TODO: Move to services
+          "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o DP-2";
+          "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";
         };
       plugins = [
         {
