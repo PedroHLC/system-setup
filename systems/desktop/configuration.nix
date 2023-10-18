@@ -50,11 +50,11 @@
 
   # OpenCL
   chaotic.mesa-git.extraPackages = with pkgs; [
-    rocm-opencl-icd
-    rocm-opencl-runtime
+    rocmPackages.clr.icd
+    rocmPackages.clr
     mesa_git.opencl
   ];
-  environment.variables.RADV_VIDEO_DECODE = "1";
+  environment.variables.RADV_PERFTEST = "ngg_streamout,sam,video_decode";
 
   # My mono-mic Focusrite
   environment.etc.pw-focusrite-mono-input = {

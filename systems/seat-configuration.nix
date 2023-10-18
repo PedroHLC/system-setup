@@ -258,7 +258,7 @@
   security.pam.services.swaylock-plugin = { };
 
   # Other preferences
-  environment.variables.GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none RADV_PERFTEST=rt,ngg_streamout";
+  environment.variables.GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none";
   environment.variables.WINEPREFIX = "/dev/null";
   environment.variables.GTK_THEME = "Breeze-Dark";
 
