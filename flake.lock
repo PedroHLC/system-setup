@@ -10,11 +10,11 @@
         "yafas": "yafas"
       },
       "locked": {
-        "narHash": "sha256-qn7+5toxoGs7cFTU36KXcPiipYsxym859cEhD2zw648=",
-        "rev": "f272bc8c09864a6b5abd9f960bc5a69fa0f7a6f7",
-        "revCount": 652,
+        "narHash": "sha256-Yr1/WuI317Y5Iv0XxjKPoNPaFwLFKlvjVHZN3LQB9D0=",
+        "rev": "8e83594774cf1e0dba9d800811af71a082d88419",
+        "revCount": 659,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.652%2Brev-f272bc8c09864a6b5abd9f960bc5a69fa0f7a6f7/018b4081-16f9-7cdb-abbe-dfb15f836bb5/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.659%2Brev-8e83594774cf1e0dba9d800811af71a082d88419/018b529e-7eba-744b-af39-b755efd7f072/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -55,11 +55,11 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-nsq8A+adEdN7bvVdz09LFyrHkTW5GtOzo/ctlHhyaaE=",
-        "rev": "b3acf1dc78b38a2fe03b287fead44d7ad25ac7c5",
-        "revCount": 3069,
+        "narHash": "sha256-hwVlO+st8vWJO6iy3/JbMHrUyY4Ak7xUSmffoWqBPUg=",
+        "rev": "ae631b0b20f06f7d239d160723d228891ddb2fe0",
+        "revCount": 3079,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3069%2Brev-b3acf1dc78b38a2fe03b287fead44d7ad25ac7c5/018b3e31-66d0-7ebc-935e-6f738ea16b2a/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3079%2Brev-ae631b0b20f06f7d239d160723d228891ddb2fe0/018b4f1b-9882-77de-8b7d-5c64d1b23728/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -73,11 +73,11 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-nsq8A+adEdN7bvVdz09LFyrHkTW5GtOzo/ctlHhyaaE=",
-        "rev": "b3acf1dc78b38a2fe03b287fead44d7ad25ac7c5",
-        "revCount": 3069,
+        "narHash": "sha256-hwVlO+st8vWJO6iy3/JbMHrUyY4Ak7xUSmffoWqBPUg=",
+        "rev": "ae631b0b20f06f7d239d160723d228891ddb2fe0",
+        "revCount": 3079,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3069%2Brev-b3acf1dc78b38a2fe03b287fead44d7ad25ac7c5/018b3e31-66d0-7ebc-935e-6f738ea16b2a/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/nix-community/home-manager/0.1.3079%2Brev-ae631b0b20f06f7d239d160723d228891ddb2fe0/018b4f1b-9882-77de-8b7d-5c64d1b23728/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -99,11 +99,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "narHash": "sha256-roiSnrqb5r+ehnKCauPLugoU8S36KgmWraHgRqVYndo=",
-        "rev": "ca012a02bf8327be9e488546faecae5e05d7d749",
-        "revCount": 536534,
+        "narHash": "sha256-SaTWPkI8a5xSHX/rrKzUe+/uVNy6zCGMXgoeMb7T9rg=",
+        "rev": "7c9cc5a6e5d38010801741ac830a3f8fd667a7a0",
+        "revCount": 537656,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.536534%2Brev-ca012a02bf8327be9e488546faecae5e05d7d749/018b3f36-b511-7e80-9e18-764e17d65d0b/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.537656%2Brev-7c9cc5a6e5d38010801741ac830a3f8fd667a7a0/018b4ec7-e0c9-7ea9-a1f5-99bbf0f721a9/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -112,11 +112,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "narHash": "sha256-roiSnrqb5r+ehnKCauPLugoU8S36KgmWraHgRqVYndo=",
-        "rev": "ca012a02bf8327be9e488546faecae5e05d7d749",
-        "revCount": 536534,
+        "narHash": "sha256-SaTWPkI8a5xSHX/rrKzUe+/uVNy6zCGMXgoeMb7T9rg=",
+        "rev": "7c9cc5a6e5d38010801741ac830a3f8fd667a7a0",
+        "revCount": 537656,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.536534%2Brev-ca012a02bf8327be9e488546faecae5e05d7d749/018b3f36-b511-7e80-9e18-764e17d65d0b/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/NixOS/nixpkgs/0.1.537656%2Brev-7c9cc5a6e5d38010801741ac830a3f8fd667a7a0/018b4ec7-e0c9-7ea9-a1f5-99bbf0f721a9/source.tar.gz"
       },
       "original": {
         "type": "tarball",
