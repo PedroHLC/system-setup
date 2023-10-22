@@ -5,8 +5,8 @@
 {
   # Nix package-management settings.
   nix = {
-    # Latest nix
-    package = pkgs.nixVersions.nix_2_17;
+    # Latest nix (letting it bump automatically is madness)
+    package = pkgs.nixVersions.nix_2_18;
 
     # - Enable flakes
     # - newer CLI features
