@@ -120,7 +120,6 @@
     fzf
     google-authenticator
     helix
-    htop
     jq
     killall
     mosh
@@ -138,7 +137,7 @@
     wireguard-tools
   ];
 
-  # Special apps (requires more than their package to work).
+  # Configurable programs
   programs.command-not-found.enable = false;
   programs.dconf.enable = true;
   programs.fish = {
@@ -164,6 +163,10 @@
   security.sudo.extraConfig = ''
     Defaults pwfeedback
   '';
+  programs.htop = {
+    enable = true;
+    settings = import ../shared/assets/htop-settings.nix;
+  };
 
   # Put Helix as default editor.
   environment.variables.EDITOR = "hx";
@@ -177,7 +180,7 @@
       PermitRootLogin = "no";
     };
   };
-  #programs.ssh.package = pkgs.openssh_hpn; # Current vulnerable
+  programs.ssh.package = pkgs.openssh_hpn;
 
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;
