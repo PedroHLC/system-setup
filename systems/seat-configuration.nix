@@ -240,7 +240,10 @@
   programs.gamemode.enable = true;
   programs.steam = {
     enable = true;
-    gamescopeSession.enable = true; # Gamescope session is better for AAA gaming.
+    gamescopeSession = {
+      enable = true; # Gamescope session is better for AAA gaming.
+      args = [ "--immediate-flips" ];
+    };
   };
   programs.gamescope = {
     enable = true;
