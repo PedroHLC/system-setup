@@ -20,16 +20,28 @@
     enable = true;
     mutableSettings = false;
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file
-    settings = {
+    settings = let
+      goodGuys = [
+        { name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
+        { name = "VPS"; ids = [ web.lab.v4 web.lab.v6 ]; tags = [ "user_admin" ]; }
+        { name = "Velonic"; ids = [ "168.227.216.0/22" ]; tags = [ "user_admin" ]; }
+        { name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" ]; tags = [ "user_regular" ]; }
+        { name = "VivoWap"; ids = [ "177.67.24.0/21" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
+        { name = "Nextel"; ids = [ "191.39.128.0/17" ]; tags = [ "user_regular" ]; }
+        { name = "THS"; ids = [ "177.223.240.0/21" ]; tags = [ "user_regular" ]; }
+      ];
+      badGuys = [ { name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; } ];
+    in {
       bind_host = "0.0.0.0";
       bind_port = 3000;
       users = [{
         name = "admin";
         password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin
       }];
+      querylog.interval = "2160h";
+      statistics.interval = "2160h";
       dns = {
         bind_hosts = [ "0.0.0.0" ];
-        statistics_interval = 90;
         upstream_dns = [
           "h3://qx1jz8jm5c.cloudflare-gateway.com/dns-query"
           "[/gov.br/]tls://dns.google.com" # inmet.gov.br is broken in CF
@@ -53,6 +65,8 @@
           yandex = false;
           youtube = false;
         };
+        allowed_clients = builtins.concatLists (map ({ids, ...}: ids) goodGuys);
+        disallowed_clients = builtins.concatLists (map ({ids, ...}: ids) badGuys);
       };
       tls = {
         enabled = true;
@@ -78,8 +92,12 @@
       user_rules = [
         # GloboPlay breaks otherwise
         "@@||pubads.g.doubleclick.net^$important"
+        # In case of fire, break the glass
+        "# ||*^$ctag=user_child,dnsrewrite=REFUSED;;"
+        "# ||*^$ctag=~user_admin|~user_regular,dnsrewrite=REFUSED;;"
       ];
-      schema_version = 20;
+      clients.persistent = goodGuys ++ badGuys;
+      schema_version = 24;
     };
   };
 }
