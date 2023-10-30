@@ -227,7 +227,13 @@
     # GI
     jq
     xdelta
+
+    # Experimenting (1/2)
+    input-leap_git
   ];
+
+  # Experimenting (2/2)
+  services.xserver.desktopManager.plasma5.enable = true;
 
   # The base GUI toolkit in my setup.
   qt = {
