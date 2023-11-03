@@ -256,10 +256,10 @@ with utils; {
           "application/octet-stream" = "sublime_text.desktop";
         };
         removed = {
-          "image/gif" = "google-chrome-beta.desktop";
-          "image/jpeg" = "google-chrome-beta.desktop";
-          "image/png" = "google-chrome-beta.desktop";
-          "image/webp" = "google-chrome-beta.desktop";
+          "image/gif" = "google-chrome.desktop";
+          "image/jpeg" = "google-chrome.desktop";
+          "image/png" = "google-chrome.desktop";
+          "image/webp" = "google-chrome.desktop";
         };
       };
       defaultApplications = {

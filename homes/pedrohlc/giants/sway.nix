@@ -226,7 +226,7 @@ mkIf hasSeat {
               "e" = "exec ${editor}; mode default";
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
               "shift+o" = "exec ${pkgs.obs-studio-wrapped}/bin/obs; mode default";
-              "shift+c" = "exec ${pkgs.google-chrome-beta}/bin/google-chrome-stable; mode default";
+              "shift+c" = "exec ${pkgs.google-chrome}/bin/google-chrome-stable; mode default";
               "Shift+s" = "exec ((pidof ${pkgs.spotify-unwrapped}/share/spotify/.spotify-wrapped) || ${pkgs.spotify}/bin/spotify); mode default";
               "Shift+t" = "exec ${pkgs.telegram-desktop_git}/bin/telegram-desktop; mode default";
             };
