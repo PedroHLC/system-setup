@@ -135,7 +135,19 @@
     unzip
     wget
     wireguard-tools
+
+    # my scripts
+    nixos-clear
   ];
+
+  # Override some packages' settings, sources, etc...
+  nixpkgs.overlays =
+    let
+      thisConfiguration = final: _prev: {
+        nixos-clear = final.callPackage ../shared/drvs/nixos-clear.nix { };
+      };
+    in
+    [ thisConfiguration ];
 
   # Configurable programs
   programs.command-not-found.enable = false;

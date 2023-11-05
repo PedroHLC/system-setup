@@ -32,6 +32,12 @@
           youtube = false;
         };
 
+        archive = {
+          enabled = true;
+          interval = "2160h";
+          ignored = [ "cisco.com" "apple.com" "atlassian.com" ];
+        };
+
         goodGuys = [
           { name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
           { name = "VPS"; ids = [ web.lab.v4 web.lab.v6 ]; tags = [ "user_admin" ]; }
@@ -42,6 +48,8 @@
           { name = "THS"; ids = [ "177.223.240.0/21" ]; tags = [ "user_regular" ]; }
         ];
         badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
+
+        goodGuysIds = builtins.concatLists (map ({ ids, ... }: ids) goodGuys);
 
         normalizeClient = { name, ids, tags }: {
           # Sadly, I didn't find which of this is required which is optional
@@ -68,8 +76,8 @@
           name = "admin";
           password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin
         }];
-        querylog.interval = "2160h";
-        statistics.interval = "2160h";
+        querylog = archive;
+        statistics = archive;
         dns = {
           bind_hosts = [ "0.0.0.0" ];
           upstream_dns = [
@@ -86,9 +94,12 @@
             "127.0.0.1"
           ];
           filters_update_interval = 1;
+          ratelimit = 10;
+          ratelimit_whitelist = goodGuysIds;
           inherit safe_search;
-          allowed_clients = builtins.concatLists (map ({ ids, ... }: ids) goodGuys);
-          disallowed_clients = builtins.concatLists (map ({ ids, ... }: ids) badGuys);
+          # In case of fire, break the glass
+          # allowed_clients = goodGuysIds;
+          # disallowed_clients = builtins.concatLists (map ({ ids, ... }: ids) badGuys);
         };
         tls = {
           enabled = true;
@@ -114,9 +125,10 @@
         user_rules = [
           # GloboPlay breaks otherwise
           "@@||pubads.g.doubleclick.net^$important"
-          # In case of fire, break the glass
-          "# ||*^$ctag=user_child,dnsrewrite=REFUSED;;"
-          "# ||*^$ctag=~user_admin|~user_regular,dnsrewrite=REFUSED;;"
+          # Blocks most of the amplications I was having
+          "|atlassian.com^$important,dnsrewrite=REFUSED;;"
+          "|apple.com^$important,dnsrewrite=REFUSED;;"
+          "|cisco.com^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {
