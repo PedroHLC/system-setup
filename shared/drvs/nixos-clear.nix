@@ -1,6 +1,6 @@
 { writeShellScriptBin }:
 # Clean-up root entries before GCing
-writeShellScriptBin "wayland-env" ''
+writeShellScriptBin "nixos-clear" ''
   set -euo pipefail
 
   nix-store --gc --print-roots |\
