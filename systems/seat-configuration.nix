@@ -312,6 +312,9 @@
 
         # helps me adding routes to CF WARP
         cfwarp-add = final.callPackage ../shared/drvs/cfwarp-add.nix { };
+
+        # includes newer protocols
+        xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
       };
     in
     [ thisConfigsOverlay ];
@@ -319,6 +322,7 @@
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
   services.gvfs.enable = true;
+  programs.kdeconnect.enable = true;
   services.keybase.enable = true;
   services.kbfs.enable = true;
   services.tumbler.enable = true;
