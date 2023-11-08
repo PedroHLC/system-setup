@@ -181,6 +181,7 @@
     spotify
     telegram-desktop_git
     usbutils
+    vesktop
     waypipe
     wl-mirror
     xarchiver
@@ -452,6 +453,7 @@
         { directory = ".config/Keybase"; mode = "0700"; }
         { directory = ".config/keybase"; mode = "0700"; }
         ".config/nvim"
+        { directory = ".config/kdeconnect"; mode = "0700"; }
         ".config/obs-studio"
         ".config/osdlyrics"
         ".config/qBittorrent"
@@ -506,6 +508,7 @@
         ".cache/nix-index"
         ".cache/spotify"
         ".cache/sublime-text"
+        ".config/VencordDesktop"
         ".config/Slack"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
