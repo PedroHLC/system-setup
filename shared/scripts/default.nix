@@ -28,4 +28,11 @@ stdenvNoCC.mkDerivation {
 
     runHook postInstall
   '';
+  checkPhase = ''
+    runHook preCheck
+
+    bash -n -O extglob "$out/bin"/*
+
+    runHook postCheck
+  '';
 }
