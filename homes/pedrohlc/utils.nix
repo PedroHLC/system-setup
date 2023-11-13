@@ -94,13 +94,28 @@
   nrpr = pkgs.callPackage ./drvs/nixpkgs-review-in-tmux.nix { };
 
   # Script to open my encrypted firefox profile.
-  firefox-gate = pkgs.callPackage ./drvs/firefox-gate.nix { };
+  # This is a wrapper to run firefox with a zfs-encrypted profile, requires sudo
+  firefox-gate = with pkgs; callPackage ../../shared/scripts {
+    scriptName = "firefox-gate";
+    substitutions = {
+      "$(which firefox)" = "${firefox_nightly}/bin/firefox";
+      "$(which zenity)" = "${gnome.zenity}/bin/zenity";
+      "$(which zfs)" ="${zfs}/bin/zfs";
+    };
+  };
 
   # swaylock with GIFs
   my-wscreensaver = pkgs.callPackage ./drvs/my-wscreensaver.nix { };
 
   # PokeMMO mutable launcher
-  pokemmo-launcher = pkgs.callPackage ./drvs/pokemmo-launcher.nix { };
+  pokemmo-launcher =with pkgs; callPackage ../../shared/scripts {
+    scriptName = "pokemmo";
+    substitutions = {
+      "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsaLib}";
+      "$(which java)" = "${jdk17}/bin/java";
+      "$(which gamemoderun)" = "${gamemode}/bin/gamemoderun";
+    };
+  };
 
   # a way to call FZF with GUI
   visual-fzf = pkgs.writeShellScript "visual-fzf" ''

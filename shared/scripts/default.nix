@@ -16,7 +16,6 @@ stdenvNoCC.mkDerivation {
   name = scriptName;
   src = "${./.}";
   buildInputs = [ bash ];
-  #dontUnpack = true;
   dontBuild = true;
   installPhase = ''
     runHook preInstall
