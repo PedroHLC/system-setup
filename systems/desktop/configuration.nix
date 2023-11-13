@@ -107,7 +107,7 @@
     vkbasalt
     vkshade_git
     yuzu-early-access_git
-    (cfwarp-add.override { gatewayIP = "192.168.18.1"; })
+    (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     virtiofsd # for libvirtd
   ];
 

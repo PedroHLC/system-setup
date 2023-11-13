@@ -294,10 +294,10 @@
           { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
 
         # Script to force XWayland (in case something catches fire).
-        nowl = final.callPackage ../shared/drvs/nowl.nix { };
+        nowl = final.callPackage ../shared/scripts { scriptName = "nowl"; };
 
         # Environment to properly (and force) use wayland.
-        wayland-env = final.callPackage ../shared/drvs/wayland-env.nix { };
+        wayland-env = final.callPackage ../shared/scripts { scriptName = "wayland-env"; };
 
         # Audacious rice
         audacious-skin-winamp-classic = final.callPackage ../shared/drvs/audacious-skin-winamp-classic.nix { };
@@ -312,7 +312,7 @@
         pw-focusrite-mono-input = final.callPackage ../shared/drvs/pw-focusrite-mono-input.nix { };
 
         # helps me adding routes to CF WARP
-        cfwarp-add = final.callPackage ../shared/drvs/cfwarp-add.nix { };
+        cfwarp-add = final.callPackage ../shared/scripts { scriptName = "cfwarp-add"; };
 
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;

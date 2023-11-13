@@ -51,7 +51,7 @@ in
     systemPackages = with pkgs; [
       airgeddon
       nvidia-offload
-      (cfwarp-add.override { wanInterface = "wlan0"; })
+      (cfwarp-add.override { substitutions = { "eno1" = "wlan0"; }; })
     ];
     variables = {
       "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
@@ -119,7 +119,7 @@ in
         };
 
         # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-        nvidia-offload = final.callPackage ../../shared/drvs/nvidia-offload.nix { };
+        nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
       };
     in
     [ thisConfigsOverlay ];

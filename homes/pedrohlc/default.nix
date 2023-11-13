@@ -13,6 +13,7 @@ with utils; {
   home = {
     packages =
       with pkgs; (lists.optionals hasSeat [
+        alternative-session
         firefox-gate
         minidlna-launcher
         mpv-hq-entry
@@ -53,7 +54,7 @@ with utils; {
           # Leave the deattached tmux session we have started inside sway.
           ${tmux} send-keys -t DE 'C-c' 'C-d' || true
           # Alternative sessions I might wanna run
-          exec bash "${../../shared/assets/alternative-session.sh}"
+          exec alternative-session
       '') + ''
         fi
       '';

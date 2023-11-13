@@ -144,7 +144,7 @@
   nixpkgs.overlays =
     let
       thisConfiguration = final: _prev: {
-        nixos-clear = final.callPackage ../shared/drvs/nixos-clear.nix { };
+        nixos-clear = final.callPackage ../shared/scripts { scriptName = "nixos-clear"; };
       };
     in
     [ thisConfiguration ];

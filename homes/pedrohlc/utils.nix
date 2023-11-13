@@ -156,4 +156,12 @@
       --replace "Exec=mpv --" "Exec=mpv --profile=hq --" \
       --replace "Name=mpv" "Name=mpv-hq"
   '';
+
+  # ...
+  alternative-session = pkgs.callPackage ../../shared/scripts {
+    scriptName = "alternative-session";
+    substitutions = {
+      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${pkgs.gamescope}/bin/gamescope";
+    };
+  };
 })
