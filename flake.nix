@@ -23,6 +23,12 @@
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
     };
+
+    # Bleeding-edge Matrix-conduit
+    conduit = {
+      url = "gitlab:famedly/conduit/next";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, impermanence, chaotic, ... }@inputs:

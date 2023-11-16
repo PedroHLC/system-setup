@@ -1,4 +1,4 @@
-{ config, pkgs, ssot, ... }: with ssot;
+{ config, pkgs, ssot, flakes, ... }: with ssot;
 # Adapted from:
 # https://gitlab.com/famedly/conduit/-/blob/3bfdae795d4d9ec9aeaac7465e7535ac88e47756/nix/README.md
 let
@@ -21,7 +21,11 @@ in
 {
   services.matrix-conduit = {
     enable = true;
-    settings.global.server_name = matrix_hostname;
+    package = flakes.conduit.packages.${pkgs.system}.default;
+    settings.global = {
+      server_name = matrix_hostname;
+      allow_registration = true;
+    };
   };
   services.nginx = {
     virtualHosts."${matrix_hostname}" = {
