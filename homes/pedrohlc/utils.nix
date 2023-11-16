@@ -100,7 +100,7 @@
     substitutions = {
       "$(which firefox)" = "${firefox_nightly}/bin/firefox";
       "$(which zenity)" = "${gnome.zenity}/bin/zenity";
-      "$(which zfs)" ="${zfs}/bin/zfs";
+      "$(which zfs)" = "${zfs}/bin/zfs";
     };
   };
 
@@ -108,7 +108,7 @@
   my-wscreensaver = pkgs.callPackage ./drvs/my-wscreensaver.nix { };
 
   # PokeMMO mutable launcher
-  pokemmo-launcher =with pkgs; callPackage ../../shared/scripts {
+  pokemmo-launcher = with pkgs; callPackage ../../shared/scripts {
     scriptName = "pokemmo";
     substitutions = {
       "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsaLib}";

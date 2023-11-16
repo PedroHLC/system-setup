@@ -90,6 +90,7 @@
             ./systems/vps-lab/servers/adguard.nix
             ./systems/vps-lab/servers/journal-remote.nix
             ./systems/vps-lab/servers/libreddit.nix
+            ./systems/vps-lab/servers/matrix.nix
             ./systems/vps-lab/servers/nginx.nix
             ./systems/vps-lab/servers/wireguard.nix
             ./systems/vps-lab/services/mesa-mirror

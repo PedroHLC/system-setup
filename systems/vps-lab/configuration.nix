@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ ssot, lib, ... }: with ssot;
+{ config, ssot, lib, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -17,7 +17,7 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = contact.email;
-    certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr web.libreddit.addr ];
+    certs."${web.lab.addr}".extraDomainNames = [ web.zeta.addr web.libreddit.addr web.dev.addr ];
   };
 
   # Changing the congestion algorithm to bbr in order to reduce packet loss at low throughput

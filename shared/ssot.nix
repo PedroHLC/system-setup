@@ -59,6 +59,9 @@ rec {
       v4 = "144.22.182.122";
       v6 = "2603:c021:c001:4e00:ebff:9275:c660:f6e1";
     };
+    dev = {
+      addr = "ubiquelambda.dev";
+    };
     zeta = {
       addr = "zeta.${contact.domain}";
       inherit (web.lab) v4 v6;

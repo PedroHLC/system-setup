@@ -6,6 +6,12 @@
     recommendedTlsSettings = true;
     package = pkgs.nginxQuic;
     virtualHosts = {
+      "${web.dev.addr}" = {
+        forceSSL = true;
+        useACMEHost = web.lab.addr;
+        http3 = true;
+        locations."/".return = "302 https://github.com/UbiqueLambda";
+      };
       "${web.lab.addr}" = {
         forceSSL = true;
         enableACME = true;
