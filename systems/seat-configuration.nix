@@ -152,10 +152,10 @@
     bluez-tools
     brightnessctl
     btop
-    element-desktop-wayland
     ethtool
     ffmpegthumbnailer
     firefox_nightly
+    fluffychat
     fx_cast_bridge
     google-chrome
     helvum
@@ -464,6 +464,7 @@
         { directory = ".kube"; mode = "0700"; }
         ".local/share/DBeaverData"
         ".local/share/fish"
+        ".local/share/chat.fluffy.fluffychat"
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
         ".local/share/qBittorrent"
