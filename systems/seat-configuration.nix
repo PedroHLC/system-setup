@@ -316,6 +316,11 @@
 
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
+
+        # waiting for nixpkgs#268758 to merge
+        vesktop = prev.vesktop.overrideAttrs (prevAttrs: {
+          nativeBuildInputs = with final; [ cacert ] ++ prevAttrs.nativeBuildInputs;
+        });
       };
     in
     [ thisConfigsOverlay ];
