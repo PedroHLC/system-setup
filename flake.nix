@@ -98,6 +98,7 @@
             ./systems/vps-lab/servers/libreddit.nix
             ./systems/vps-lab/servers/matrix.nix
             ./systems/vps-lab/servers/nginx.nix
+            ./systems/vps-lab/servers/runners.nix
             ./systems/vps-lab/servers/wireguard.nix
             ./systems/vps-lab/services/mesa-mirror
           ] ++ (homeManagerModules ./systems/vps-lab/specs.nix);

@@ -95,7 +95,7 @@
   services.ratbagd.enable = true;
 
   # Limit resources used by nix-daemon.
-  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "4-23";
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "2-23";
 
   # Extra packages
   environment.systemPackages = with pkgs; [
@@ -145,6 +145,9 @@
       ];
     };
   };
+
+  # Allows building v4 packages
+  nix.settings.system-features = [ "big-parallel" "gccarch-x86-64-v3" ];
 
   # Smooth-criminal bleeding-edge Mesa3D
   chaotic.mesa-git = {

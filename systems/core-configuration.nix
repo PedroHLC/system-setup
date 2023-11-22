@@ -125,6 +125,7 @@
     mosh
     neofetch
     nix-index
+    nix-top
     nmap
     p7zip
     pciutils
