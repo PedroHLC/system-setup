@@ -5,7 +5,7 @@ mkIf hasSeat {
     sublimePreferences =
       let
         # This will result in a lot of errors until Catppuccin loads.
-        colorScheme = flavor: "Packages/Catppuccin color schemes/Catppuccin ${flavor}.sublime-color-scheme";
+        colorScheme = flavor: "Catppuccin ${flavor}.sublime-color-scheme";
       in
       {
         target = "sublime-text/Packages/home-manager/Preferences.sublime-settings";
