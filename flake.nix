@@ -4,16 +4,13 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+    nixpkgs.follows = "chaotic/nixpkgs";
 
     # reset rootfs every reboot
     impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.0.tar.gz";
 
     # home-manager for managing my users' home
-    home-manager = {
-      url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.follows = "chaotic/home-manager";
 
     # Smooth-criminal bleeding-edge packages
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.0.tar.gz";

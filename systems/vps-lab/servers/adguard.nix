@@ -49,6 +49,7 @@
           { name = "Vivo"; ids = [ "177.76.0.0/14" "2804:18::/32" "200.176.3.0/24" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
           { name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
+          { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
         ];
         badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
 

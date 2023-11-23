@@ -60,12 +60,12 @@
       fsType = "vfat";
     };
 
-  fileSystems."/mnt" =
-    {
-      device = "/dev/zvol/zroot/data/ext4";
-      fsType = "ext4";
-      options = [ "x-gvfs-hide" ];
-    };
+  #fileSystems."/mnt" =
+  #{
+  #  device = "/dev/zvol/zroot/data/ext4";
+  #  fsType = "ext4";
+  #  options = [ "x-gvfs-hide" ];
+  #};
 
   swapDevices = [
     { device = "/dev/disk/by-uuid/34e7ca32-40da-4742-9bc5-7d055ece3002"; }
