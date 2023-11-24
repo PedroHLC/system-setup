@@ -100,6 +100,7 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-kde
     ];
+    config.common.default = "*";
   };
 
   # XWayland keyboard layout.
