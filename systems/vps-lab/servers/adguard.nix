@@ -44,12 +44,14 @@
           { name = "Velonic"; ids = [ "168.227.216.0/22" ]; tags = [ "user_regular" ]; }
           { name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
-          { name = "Nextel"; ids = [ "191.38.0.0/15" "2804:388::/30" "200.173.0.0/16" "187.24.0.0/14" "179.240.0.0/14" "191.56.0.0/14" ]; tags = [ "user_regular" ]; }
+          { name = "Nextel"; ids = [ "177.56.0.0/14" "179.240.0.0/14" "187.24.0.0/14" "191.38.0.0/15" "191.56.0.0/14" "200.173.0.0/16" "2804:388::/30" ]; tags = [ "user_regular" ]; }
           { name = "THS"; ids = [ "177.223.240.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
-          { name = "Vivo"; ids = [ "177.76.0.0/14" "2804:18::/32" "200.176.3.0/24" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
+          { name = "Vivo"; ids = [ "177.76.0.0/14" "177.102.0.0/15" "200.176.3.0/24" "200.148.0.0/17" "2804:18::/32" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
           { name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
+          { name = "WT Internet"; ids = [ "189.127.192.0/20" ]; tags = [ "user_regular" ]; }
+          { name = "Descalnet"; ids = [ "132.255.216.0/22" ]; tags = [ "user_regular" ]; }
         ];
         badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
 
