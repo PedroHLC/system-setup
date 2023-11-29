@@ -568,6 +568,8 @@
       0.0.0.0 sg-public-data-api.hoyoverse.com
       0.0.0.0 log-upload-os.hoyoverse.com
       0.0.0.0 overseauspider.yuanshen.com
+      0.0.0.0 osuspider.yuanshen.com
+      0.0.0.0 ys-log-upload-os.hoyoverse.com
 
       # Optional Unity proxy/cdn servers
       0.0.0.0 prd-lender.cdp.internal.unity3d.com
