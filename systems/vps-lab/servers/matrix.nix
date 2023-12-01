@@ -24,7 +24,7 @@ in
     package = flakes.conduit.packages.${pkgs.system}.default;
     settings.global = {
       server_name = matrix_hostname;
-      allow_registration = true;
+      allow_registration = false;
     };
   };
   services.nginx = {

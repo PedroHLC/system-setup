@@ -34,16 +34,18 @@
     environmentFile = "/var/persistent/secrets/duckdns.env";
   };
 
-  # Better voltage and temperature
-  boot.extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
+  # Better voltage, temperature, and a module to save me in case everything catches fire
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    zenpower
+    (pkgs.callPackage ../../shared/drvs/ksysrqd.nix { inherit kernel; })
+  ];
   boot.blacklistedKernelModules = [ "k10temp" ];
 
   boot.kernelParams = [
     # nvme1: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0xffff
     #   Unable to change power state from D3cold to D0, device inaccessible
     # nvme1: Disabling device after reset failure: -19
-    "nvme_core.default_ps_max_latency_us=0"
-    "pcie_aspm=off"
+    "pcie_aspm=off" # "nvme_core.default_ps_max_latency_us=0"
     # Let's use AMD P-State
     "amd-pstate=guided"
   ];
