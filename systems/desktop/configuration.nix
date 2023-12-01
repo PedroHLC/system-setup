@@ -41,6 +41,22 @@
   ];
   boot.blacklistedKernelModules = [ "k10temp" ];
 
+  # The service to start ksysrqd with my secret
+  systemd.services.ksysrqd = {
+    description = "Load ksysrqd module at boot";
+    after = ["network.target"];
+
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = pkgs.writeShellScript "ksysrqd-ins" ''
+        ${pkgs.kmod}/bin/modprobe ksysrqd password=$(cat /var/persistent/secrets/ksysrqd.psw)
+      '';
+      RemainAfterExit = true;
+    };
+
+    wantedBy = [ "multi-user.target" ];
+  };
+
   boot.kernelParams = [
     # nvme1: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0xffff
     #   Unable to change power state from D3cold to D0, device inaccessible
