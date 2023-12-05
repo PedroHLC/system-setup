@@ -5,11 +5,12 @@
 , gitKey ? null
 , gpuSensor ? null
 , mainNetworkInterface ? "eno1"
+, nvmeSensors ? []
 , seat ? null
 }:
 { config, lib, pkgs, ssot, flakes, ... }@inputs:
 {
-  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface seat;
+  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat;
   inherit config pkgs flakes;
 } // (lib // ssot // rec {
   # Expand specs

@@ -88,8 +88,19 @@ mkIf hasSeat {
             format = "$icon $average";
             chip = gpuSensor;
             interval = 5;
-          }) ++
-        [
+          }
+        ) ++ (map
+          (sensor: {
+            block = "temperature";
+            format = "$icon $max";
+            chip = sensor;
+            interval = 3;
+            idle = 36;
+            info = 42;
+            warning = 45;
+          })
+          nvmeSensors
+        ) ++ [
           {
             block = "sound";
           }
