@@ -34,7 +34,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     package = nvidiaPackage;
-    open = true;
+    #open = true; # I was having issues with NVRAM
 
     prime = {
       offload.enable = true;
