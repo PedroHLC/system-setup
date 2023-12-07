@@ -182,6 +182,12 @@
   # More Classics' gaming
   chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
 
+  # Experimentation
+  specialisation.sched-ext.configuration = {
+    system.nixos.tags = [ "sched-ext" ];
+    boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-sched-ext;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

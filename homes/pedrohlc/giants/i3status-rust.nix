@@ -95,9 +95,9 @@ mkIf hasSeat {
             format = "$icon $max";
             chip = sensor;
             interval = 3;
-            idle = 36;
-            info = 42;
-            warning = 45;
+            idle = 37;
+            info = 41;
+            warning = 44;
           })
           nvmeSensors
         ) ++ [
