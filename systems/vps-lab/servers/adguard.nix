@@ -105,7 +105,7 @@
           inherit safe_search;
           # In case of fire, break the glass
           # allowed_clients = goodGuysIds;
-          # disallowed_clients = builtins.concatLists (map ({ ids, ... }: ids) badGuys);
+          disallowed_clients = builtins.concatLists (map ({ ids, ... }: ids) badGuys);
         };
         tls = {
           enabled = true;
@@ -131,7 +131,7 @@
         user_rules = [
           # GloboPlay breaks otherwise
           "@@||pubads.g.doubleclick.net^$important"
-          # Blocks most of the amplications I was having
+          # Blocks most of the amplifications I was having
           "|atlassian.com^$important,dnsrewrite=REFUSED;;"
           "|apple.com^$important,dnsrewrite=REFUSED;;"
           "|cisco.com^$important,dnsrewrite=REFUSED;;"
