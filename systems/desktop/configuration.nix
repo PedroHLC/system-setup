@@ -25,6 +25,15 @@
       description = "tsshara";
       port = "/dev/ttyACM0";
     };
+
+    users.first = {
+      passwordFile = "/var/persistent/secrets/ups.psw";
+      upsmon = "master";
+    };
+
+    upsmon.monitor.tsshara = {
+      user = "first";
+    };
   };
 
   # DuckDNS
@@ -143,11 +152,6 @@
       users.pedrohlc.directories = [
         ".local/share/diasurgical"
         ".local/share/vcmi"
-      ];
-      files = [
-        "/etc/nut/upsd.conf"
-        "/etc/nut/upsd.users"
-        "/etc/nut/upsmon.conf"
       ];
     };
     "/var/residues" = {
