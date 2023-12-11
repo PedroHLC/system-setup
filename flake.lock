@@ -10,12 +10,12 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1702301745,
-        "narHash": "sha256-sUCs4SHa1iZTqekehP8n2pXM/Ok9CUi7RiqjJ4tmuUo=",
-        "rev": "479bd96e3825624c18f1709c8945772e7639b82c",
-        "revCount": 772,
+        "lastModified": 1702323173,
+        "narHash": "sha256-G/mhFrlBDV6sgyfZ7fbCMlnH0VLKjk+1m7TXSWXaFdc=",
+        "rev": "29cd0da206e1815af2aa5791016baf2ab7055b15",
+        "revCount": 774,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.772%2Brev-479bd96e3825624c18f1709c8945772e7639b82c/018c591b-8afb-7e1d-b246-703c4af960c3/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.774%2Brev-29cd0da206e1815af2aa5791016baf2ab7055b15/018c5a63-bfde-714d-a3f5-094fa2e1142a/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -46,11 +46,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1694631477,
-        "narHash": "sha256-35SgWnBkWTyyRwVPyUKoShjzXfX0H1+HDdEEjZ/LsXc=",
+        "lastModified": 1702307502,
+        "narHash": "sha256-zZMQO+geViJX3BnqpzNlYLH5tm1pA+YHAUsSe80IFsE=",
         "owner": "famedly",
         "repo": "conduit",
-        "rev": "3bfdae795d4d9ec9aeaac7465e7535ac88e47756",
+        "rev": "30f0871e21cbba3940f711babb431f13496a975d",
         "type": "gitlab"
       },
       "original": {
