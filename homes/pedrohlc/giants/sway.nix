@@ -88,8 +88,9 @@ mkIf hasSeat {
         names = [ "Fira Sans Mono" "monospace" ];
         size = 8.0;
       };
+      floating.border = 1;
       window = {
-        border = 1;
+        border = 0;
         titlebar = false;
         hideEdgeBorders = "both";
 

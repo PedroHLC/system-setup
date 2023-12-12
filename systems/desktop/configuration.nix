@@ -190,6 +190,7 @@
   specialisation.sched-ext.configuration = {
     system.nixos.tags = [ "sched-ext" ];
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-sched-ext;
+    environment.systemPackages =  [ pkgs.scx ];
   };
 
   # This value determines the NixOS release from which the default
