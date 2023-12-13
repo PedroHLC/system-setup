@@ -66,11 +66,6 @@ with utils; {
         # Expect mouse
         set -g mouse off
       '';
-      # OpenMoHAA
-      ".moh/OpenMoHAA" = mkIf hasSeat {
-        recursive = true;
-        source = pkgs.openmohaa_git;
-      };
     };
     # Merge Audacious public config with the secrets
     activation.mergeAudacious = mkIf hasSeat (lib.hm.dag.entryAfter [ "onFilesChange" ] ''

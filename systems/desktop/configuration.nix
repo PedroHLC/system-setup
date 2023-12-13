@@ -130,6 +130,7 @@
     devilutionx
     duckstation
     latencyflex-vulkan
+    openmohaa_git
     openrct2
     vcmi
     vkbasalt
