@@ -90,7 +90,7 @@ mkIf hasSeat {
       };
       floating.border = 1;
       window = {
-        border = 0;
+        border = 1;
         titlebar = false;
         hideEdgeBorders = "both";
 

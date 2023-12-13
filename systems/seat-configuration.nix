@@ -74,7 +74,8 @@
   # LAN discovery.
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
+    nssmdns6 = true;
   };
 
   # Bluetooth.
@@ -157,7 +158,6 @@
     ffmpegthumbnailer
     firefox_nightly
     fluffychat # todo: drop
-    fx_cast_bridge
     google-chrome
     helvum
     keybase-gui
