@@ -130,6 +130,19 @@ in
     hardware.nvidia.open = lib.mkForce false;
   };
 
+  specialisation.nouveau.configuration = {
+    system.nixos.tags = [ "nvidia-nouveau" ];
+    services.xserver.videoDrivers = lib.mkForce [
+      "modesetting"
+      "fbdev"
+    ];
+    boot.blacklistedKernelModules = [ "nvidia" "nvidia_drm" "nvidia_modeset" ];
+    chaotic.mesa-git = {
+      enable = true;
+      fallbackSpecialisation = false;
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
