@@ -173,12 +173,6 @@
   # Allows building v4 packages
   nix.settings.system-features = [ "big-parallel" "gccarch-x86-64-v3" ];
 
-  # Smooth-criminal bleeding-edge Mesa3D
-  chaotic.mesa-git = {
-    enable = true;
-    fallbackSpecialisation = false;
-  };
-
   # Allows HDR gaming (AMD-GPU only).
   chaotic.hdr = {
     enable = true;

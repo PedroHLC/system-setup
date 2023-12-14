@@ -364,6 +364,12 @@
   # For out-of-box gaming with Heroic Game Launcher
   services.flatpak.enable = true;
 
+  # Smooth-criminal bleeding-edge Mesa3D
+  chaotic.mesa-git = {
+    enable = true;
+    fallbackSpecialisation = false;
+  };
+
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
