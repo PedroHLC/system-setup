@@ -87,53 +87,54 @@
   home-manager.extraSpecialArgs.usingNouveau = true;
 
   # Creates a second boot entry with proprietary NVIDIA GPU (PRIME Offloading + Wayland)
-  specialisation.nvidia-proprietary.configuration = {config, pkgs, ...}:# My user-named values.
-  let
-    # Preferred NVIDIA Version.
-    nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.latest;
+  specialisation.nvidia-proprietary.configuration = { config, pkgs, ... }: # My user-named values.
+    let
+      # Preferred NVIDIA Version.
+      nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.latest;
 
-  in {
-    system.nixos.tags = [ "nvidia-proprietary" ];
+    in
+    {
+      system.nixos.tags = [ "nvidia-proprietary" ];
 
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-      package = nvidiaPackage;
-      #open = true; # I was having issues with NVRAM
+      services.xserver.videoDrivers = [ "nvidia" ];
+      hardware.nvidia = {
+        package = nvidiaPackage;
+        #open = true; # I was having issues with NVRAM
 
-      prime = {
-        offload.enable = true;
-        intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
-        nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
-      };
-
-      powerManagement = {
-        enable = true;
-        finegrained = true;
-      };
-    };
-
-    nixpkgs.overlays =
-      let
-        thisConfigsOverlay = final: prev: {
-          # Allow steam to find nvidia-offload script
-          steam = prev.steam.override {
-            extraPkgs = _: [ final.nvidia-offload ];
-          };
-
-          # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-          nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
+        prime = {
+          offload.enable = true;
+          intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
+          nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
         };
-      in
-      [ thisConfigsOverlay ];
 
-    environment = {
-      systemPackages = with pkgs; [ nvidia-offload ];
-      # Prefer intel unless told so
-      variables."VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
+        powerManagement = {
+          enable = true;
+          finegrained = true;
+        };
+      };
+
+      nixpkgs.overlays =
+        let
+          thisConfigsOverlay = final: prev: {
+            # Allow steam to find nvidia-offload script
+            steam = prev.steam.override {
+              extraPkgs = _: [ final.nvidia-offload ];
+            };
+
+            # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
+            nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
+          };
+        in
+        [ thisConfigsOverlay ];
+
+      environment = {
+        systemPackages = with pkgs; [ nvidia-offload ];
+        # Prefer intel unless told so
+        variables."VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
+      };
+
+      home-manager.extraSpecialArgs.nouveau = lib.mkForce false;
     };
-
-    home-manager.extraSpecialArgs.nouveau = lib.mkForce false;
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

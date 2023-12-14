@@ -53,7 +53,7 @@
   # The service to start ksysrqd with my secret
   systemd.services.ksysrqd = {
     description = "Load ksysrqd module at boot";
-    after = ["network.target"];
+    after = [ "network.target" ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -186,7 +186,7 @@
   specialisation.sched-ext.configuration = {
     system.nixos.tags = [ "sched-ext" ];
     boot.kernelPackages = lib.mkForce pkgs.linuxPackages_cachyos-sched-ext;
-    environment.systemPackages =  [ pkgs.scx ];
+    environment.systemPackages = [ pkgs.scx ];
   };
 
   # This value determines the NixOS release from which the default

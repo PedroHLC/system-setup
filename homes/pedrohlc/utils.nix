@@ -5,7 +5,7 @@
 , gitKey ? null
 , gpuSensor ? null
 , mainNetworkInterface ? "eno1"
-, nvmeSensors ? []
+, nvmeSensors ? [ ]
 , seat ? null
 }:
 { config, lib, pkgs, ssot, flakes, usingNouveau, ... }@inputs:
