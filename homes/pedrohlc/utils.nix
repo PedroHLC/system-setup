@@ -21,6 +21,7 @@
   displayBrightness = if hasSeat then seat.displayBrightness else false;
   nvidiaPrime = if hasSeat then seat.nvidiaPrime else false;
   touchpad = if hasSeat then seat.touchpad else null;
+  nvidiaBad = nvidiaPrime && !usingNouveau;
 
   # Preferred executables
   browser = "${firefox-gate}/bin/firefox-gate";
@@ -50,7 +51,7 @@
   # Complex executables
   lock =
     # https://github.com/GhostNaN/mpvpaper/issues/38
-    if nvidiaPrime then
+    if nvidiaBad then
       pkgs.writeShellScript "nvidia-meme" ''
         exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
       ''
@@ -74,7 +75,7 @@
   modeOtherMenus = "[b]luetooth | [n]etwork";
 
   # per-GPU values
-  videoAcceleration = if nvidiaPrime then "nvdec-copy" else "vaapi";
+  videoAcceleration = if nvidiaBad then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
   audaciousConfigGenerator = pkgs.callPackage ../../shared/config/audacious-config-generator.nix { };

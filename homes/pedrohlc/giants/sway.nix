@@ -252,7 +252,7 @@ mkIf hasSeat {
       # Gaming
       export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${env} $GAMEMODERUNEXEC"
     ''));
-    extraOptions = mkIf (nvidiaPrime && !usingNouveau) [
+    extraOptions = mkIf nvidiaBad [
       "--unsupported-gpu"
     ];
   };
