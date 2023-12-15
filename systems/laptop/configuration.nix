@@ -3,8 +3,23 @@
 
 # NixOS-defined options
 {
-  # Force full IOMMU
-  boot.kernelParams = [ "intel_iommu=on" ];
+  # Force full IOMMU and enable GSP usage
+  boot.kernelParams = [ "intel_iommu=on" "nouveau.config=NvGspRm=1" "nouveau.debug=5" ];
+
+  # Bring GSP
+  boot.initrd.kernelModules = [ "nouveau" ];
+  nixpkgs.overlays =
+    let
+      bringGSPOverlay = final: prev: {
+        makeModulesClosure = args: (prev.makeModulesClosure args).overrideAttrs (prevAttrs: {
+          builder = final.runCommand "modules-closure.sh" { } ''
+            substitute ${prevAttrs.builder} $out \
+              --replace 'cd "$firmware"' 'echo nvidia >> closure && cd "$firmware"'
+          '';
+        });
+      };
+    in
+    [ bringGSPOverlay ];
 
   # Disable Intel's stream-paranoid for gaming.
   # (not working - see nixpkgs issue 139182)
@@ -133,7 +148,7 @@
         variables."VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
       };
 
-      home-manager.extraSpecialArgs.nouveau = lib.mkForce false;
+      home-manager.extraSpecialArgs.usingNouveau = false;
     };
 
   # This value determines the NixOS release from which the default
@@ -142,7 +157,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "21.11"; # Did you read the comment?
-  home-manager.users.pedrohlc.home.stateVersion = "21.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
+  home-manager.users.pedrohlc.home.stateVersion = "23.11"; # Did you read the comment?
 }
 
