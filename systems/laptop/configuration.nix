@@ -128,6 +128,8 @@
         };
       };
 
+      chaotic.mesa-git.enable = lib.mkForce false;
+
       nixpkgs.overlays =
         let
           thisConfigsOverlay = final: prev: {
