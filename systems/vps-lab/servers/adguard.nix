@@ -52,6 +52,7 @@
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
           { name = "WT Internet"; ids = [ "189.127.192.0/20" ]; tags = [ "user_regular" ]; }
           { name = "Descalnet"; ids = [ "132.255.216.0/22" ]; tags = [ "user_regular" ]; }
+          { name = "NicNet"; ids = [ "45.4.32.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
         ];
         badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
 
