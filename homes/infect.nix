@@ -13,28 +13,8 @@ let
       modules = [
         chaotic.homeManagerModules.default
         (import ./${username} { seat = null; })
-        {
-          nix = {
-            package = pkgs.nix;
-            extraOptions = ''
-              experimental-features = nix-command flakes
-            '';
-
-            # Always uses system's flakes instead of downloading or updating.
-            registry = {
-              nixpkgs.flake = inputs.nixpkgs;
-              chaotic.flake = inputs.chaotic;
-            };
-          };
-
-          home = {
-            inherit username homeDirectory;
-            stateVersion = "23.11";
-          };
-
-          # save some space
-          manual.manpages.enable = false;
-        }
+        { home = { inherit username homeDirectory; }; }
+        ./non-nixos.nix
       ];
     };
 
