@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-exec ssh "$@" -- nix \
+exec ssh -t "$@" -- nix \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
   --accept-flake-config \
