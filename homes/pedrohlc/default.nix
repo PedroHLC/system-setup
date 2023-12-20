@@ -90,12 +90,12 @@ with utils; {
     };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
   };
-  dconf.settings."org/gtk/settings/file-chooser" = {
+  dconf.settings."org/gtk/settings/file-chooser" = mkIf hasSeat {
     sort-directories-first = true;
   };
 
   # GTK4 Setup
-  dconf.settings."org/gnome/desktop/interface" = {
+  dconf.settings."org/gnome/desktop/interface" = mkIf hasSeat {
     gtk-theme = lib.mkForce "Breeze";
     color-scheme = "prefer-dark";
   };

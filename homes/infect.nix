@@ -8,20 +8,26 @@
 let
   hmConfig =
     home-manager.lib.homeManagerConfiguration {
-      modules = [
-        {
-          nix.package = pkgs.nix;
-          home = {
-            stateVersion = "23.11";
-            inherit username homeDirectory;
-          };
-          programs.dconf.enable = true;
-        }
-        chaotic.homeManagerModules.default
-        (import ./${username} { seat = null; })
-      ];
       inherit pkgs;
       extraSpecialArgs = inputs.self.specialArgs;
+      modules = [
+        chaotic.homeManagerModules.default
+        (import ./${username} { seat = null; })
+        {
+          nix = {
+            package = pkgs.nix;
+            extraOptions = ''
+              experimental-features = nix-command flakes
+            '';
+          };
+          home = {
+            inherit username homeDirectory;
+            stateVersion = "23.11";
+          };
+          # save some space
+          manual.manpages.enable = false;
+        }
+      ];
     };
 
   base =
