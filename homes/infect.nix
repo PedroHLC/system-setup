@@ -22,7 +22,14 @@ let
       inherit pkgs;
       extraSpecialArgs = inputs.self.specialArgs;
     };
+
+  base =
+    pkgs.writeShellScriptBin "activate" ''
+      set -xe
+      ${hmConfig.activationPackage}/activate
+      exec sh -l
+    '';
 in
-hmConfig.activationPackage.overrideAttrs (prevAttrs: {
+base.overrideAttrs (prevAttrs: {
   passthru = (prevAttrs.passthru or { }) // { inherit hmConfig; };
 })

@@ -192,6 +192,7 @@
     # My scripts
     nowl
     wayland-env
+    ssh-to-nix
 
     # Development apps
     bytecode-viewer_git
@@ -314,6 +315,9 @@
 
         # helps me adding routes to CF WARP
         cfwarp-add = final.callPackage ../shared/scripts { scriptName = "cfwarp-add"; };
+
+        # helps me connecting to some VPS
+        ssh-to-nix = final.callPackage ../shared/scripts { scriptName = "ssh-to-nix"; };
 
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;

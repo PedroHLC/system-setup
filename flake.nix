@@ -30,7 +30,7 @@
     };
   };
 
-  outputs = { nixpkgs, yafas, ... }@inputs:
+  outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
     let
       ssot = import ./shared/ssot.nix inputs;
     in
@@ -50,6 +50,8 @@
           inherit ssot;
           flakes = inputs;
         };
+        # When accessing my flake from other computers I need chaotic's cache
+        inherit (chaotic) nixConfig;
       };
 }
 
