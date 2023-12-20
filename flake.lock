@@ -234,7 +234,11 @@
           "chaotic",
           "nixpkgs"
         ],
-        "pedrochrome-css": "pedrochrome-css"
+        "pedrochrome-css": "pedrochrome-css",
+        "yafas": [
+          "chaotic",
+          "yafas"
+        ]
       }
     },
     "rust-analyzer-src": {

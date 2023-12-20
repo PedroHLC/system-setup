@@ -215,9 +215,7 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = {
-    inherit ssot flakes;
-  };
+  home-manager.extraSpecialArgs = flakes.self.specialArgs;
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
