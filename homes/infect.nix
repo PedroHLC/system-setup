@@ -19,11 +19,19 @@ let
             extraOptions = ''
               experimental-features = nix-command flakes
             '';
+
+            # Always uses system's flakes instead of downloading or updating.
+            registry = {
+              nixpkgs.flake = inputs.nixpkgs;
+              chaotic.flake = inputs.chaotic;
+            };
           };
+
           home = {
             inherit username homeDirectory;
             stateVersion = "23.11";
           };
+
           # save some space
           manual.manpages.enable = false;
         }
