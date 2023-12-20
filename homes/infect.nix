@@ -15,6 +15,7 @@ let
             stateVersion = "23.11";
             inherit username homeDirectory;
           };
+          programs.dconf.enable = true;
         }
         chaotic.homeManagerModules.default
         (import ./${username} { seat = null; })

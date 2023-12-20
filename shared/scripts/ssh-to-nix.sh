@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
-exec ssh "$@" -- nix --impure \
+exec ssh "$@" -- nix \
   --extra-experimental-features nix-command \
   --extra-experimental-features flakes \
   --accept-flake-config \
-  run 'github:PedroHLC/system-setup#pedrohlc-hm-infect'
+  run --impure 'github:PedroHLC/system-setup#pedrohlc-hm-infect'
