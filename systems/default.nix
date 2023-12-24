@@ -44,7 +44,7 @@ in
   "${ssot.vpn.lab.hostname}" = mkNixOS {
     system = "aarch64-linux";
     specs = ./vps-lab/specs.nix;
-    modules = commonModules ++ [
+    extraModules = [
       (nixpkgs + "/nixos/modules/profiles/qemu-guest.nix")
       (nixpkgs + "/nixos/modules/virtualisation/oci-common.nix")
       ./vps-lab/configuration.nix
