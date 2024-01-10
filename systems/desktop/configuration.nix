@@ -82,7 +82,7 @@
     rocmPackages.clr
     mesa_git.opencl
   ];
-  environment.variables.RADV_PERFTEST = "sam,video_decode";
+  environment.variables.RADV_PERFTEST = "sam,video_decode,transfer_queue";
 
   # My mono-mic Focusrite
   environment.etc.pw-focusrite-mono-input = {
