@@ -32,15 +32,6 @@
           "/dns-query".proxyPass = "https://127.0.0.1:${toString vpn.lab.adguardPort}/dns-query";
         };
       };
-      "${web.libreddit.addr}" = {
-        forceSSL = true;
-        useACMEHost = web.lab.addr;
-        http3 = true;
-        locations."/" = {
-          recommendedProxySettings = true;
-          proxyPass = "http://127.0.0.1:${toString vpn.lab.libredditPort}/";
-        };
-      };
     };
     appendHttpConfig = ''
       aio threads;

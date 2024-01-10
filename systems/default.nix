@@ -50,7 +50,6 @@ in
       ./vps-lab/configuration.nix
       ./vps-lab/servers/adguard.nix
       ./vps-lab/servers/journal-remote.nix
-      ./vps-lab/servers/libreddit.nix
       ./vps-lab/servers/matrix.nix
       ./vps-lab/servers/nginx.nix
       ./vps-lab/servers/runners.nix

@@ -51,7 +51,7 @@
   # Complex executables
   lock =
     # https://github.com/GhostNaN/mpvpaper/issues/38
-    if nvidiaBad then
+    if nvidiaPrime || usingNouveau then
       pkgs.writeShellScript "nvidia-meme" ''
         exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
       ''
