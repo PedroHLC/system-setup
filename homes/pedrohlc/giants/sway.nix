@@ -246,13 +246,10 @@ mkIf hasSeat {
     extraSessionCommands = ''
       source ${pkgs.wayland-env}/bin/wayland-env
       export STEAM_FORCE_DESKTOPUI_SCALING=1
-    '' + (strings.optionalString nvidiaPrime (if usingNouveau then ''
-      # Gaming
-      export GAMEMODERUNEXEC="DRI_PRIME=1 ${env} $GAMEMODERUNEXEC"
-    '' else ''
+    '' + (strings.optionalString nvidiaPrime ''
       # Gaming
       export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${env} $GAMEMODERUNEXEC"
-    ''));
+    '');
     extraOptions = mkIf nvidiaBad [
       "--unsupported-gpu"
     ];

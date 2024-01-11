@@ -6,24 +6,39 @@
   # Force full IOMMU and enable GSP usage
   boot.kernelParams = [ "intel_iommu=on" "nouveau.config=NvGspRm=1" "nouveau.debug=5" ];
 
-  # Bring GSP
+  # More stuff have GSP
   boot.initrd.kernelModules = [ "nouveau" ];
-  nixpkgs.overlays =
-    let
-      bringGSPOverlay = final: prev: {
-        makeModulesClosure = args: (prev.makeModulesClosure args).overrideAttrs (prevAttrs: {
-          builder = final.runCommand "modules-closure.sh" { } ''
-            substitute ${prevAttrs.builder} $out \
-              --replace 'cd "$firmware"' 'echo nvidia >> closure && cd "$firmware"'
-          '';
-        });
+
+  # Add stuff to pkgs.*
+  nixpkgs.overlays = [
+    (final: prev: {
+      # Bring GSP and related GPU stuff, but without any other GPU
+      makeModulesClosure = args: (prev.makeModulesClosure args).overrideAttrs (prevAttrs: {
+        builder = final.runCommand "modules-closure.sh" { } ''
+          cat ${prevAttrs.builder} > $out
+          chmod +x $out
+          echo 'rm -rf "$out/lib/firmware/nvidia"' >> $out
+          echo 'mkdir -p "$out/lib/firmware/nvidia"' >> $out
+          echo 'cp -r "$firmware/lib/firmware/nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"' >> $out
+        '';
+      });
+
+      # Allow steam to find nvidia-offload script
+      steam = prev.steam.override {
+        extraPkgs = _: [ final.nvidia-offload ];
       };
-    in
-    [ bringGSPOverlay ];
+
+      # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
+      nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
+    })
+  ];
 
   # Disable Intel's stream-paranoid for gaming.
   # (not working - see nixpkgs issue 139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
+
+  # Video Acceleration
+  chaotic.mesa-git.extraPackages = with pkgs; [ intel-media-driver ];
 
   # Network.
   networking = {
@@ -39,12 +54,18 @@
     wireguard.interfaces.wg1.privateKeyFile = "/var/persistent/secrets/wgcf-teams/private";
   };
 
-  # Personal packages
+  # System-wide changes
   environment = {
     systemPackages = with pkgs; [
       airgeddon
       (cfwarp-add.override { substitutions = { "eno1" = "wlan0"; }; })
+      nvidia-offload
     ];
+    # Prefer intel unless told so
+    variables = {
+      "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
+      "LIBVA_DRIVER_NAME" = "iHD";
+    };
   };
 
   # Intel VAAPI (NVIDIA enable its own)
@@ -129,26 +150,6 @@
       };
 
       chaotic.mesa-git.enable = lib.mkForce false;
-
-      nixpkgs.overlays =
-        let
-          thisConfigsOverlay = final: prev: {
-            # Allow steam to find nvidia-offload script
-            steam = prev.steam.override {
-              extraPkgs = _: [ final.nvidia-offload ];
-            };
-
-            # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-            nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
-          };
-        in
-        [ thisConfigsOverlay ];
-
-      environment = {
-        systemPackages = with pkgs; [ nvidia-offload ];
-        # Prefer intel unless told so
-        variables."VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
-      };
 
       home-manager.extraSpecialArgs.usingNouveau = false;
     };
