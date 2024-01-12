@@ -4,7 +4,7 @@
 # NixOS-defined options
 {
   # Force full IOMMU and enable GSP usage
-  boot.kernelParams = [ "intel_iommu=on" "nouveau.config=NvGspRm=1" "nouveau.debug=5" ];
+  boot.kernelParams = [ "intel_iommu=on" "nouveau.config=NvGspRm=1" "nouveau.debug=\"GSP=debug\"" ];
 
   # More stuff have GSP
   boot.initrd.kernelModules = [ "nouveau" ];
@@ -19,7 +19,11 @@
           chmod +x $out
           echo 'rm -rf "$out/lib/firmware/nvidia"' >> $out
           echo 'mkdir -p "$out/lib/firmware/nvidia"' >> $out
-          echo 'cp -r "$firmware/lib/firmware/nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"' >> $out
+          echo 'cp --no-preserve=mode -r "$firmware/lib/firmware/nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"' >> $out
+          echo 'pushd "$out/lib/firmware/nvidia/ga107"' >> $out
+          echo 'rm -rf gsp.xz' >> $out
+          echo 'ln -s ../ga102/gsp ./gsp' >> $out
+          echo 'popd' >> $out
         '';
       });
 
@@ -30,6 +34,15 @@
 
       # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
       nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
+
+      # Latest firmware
+      linux-firmware = prev.linux-firmware.overrideAttrs (_: {
+        src = final.fetchzip {
+          url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-b3132c18d0be905d352dddf554230b14fc7eab5c.tar.gz";
+          hash = "sha256-Mg9BLB3x19wwaIIsydO/jy0hYEUfiZC1xPdRsN7p4WU=";
+        };
+        outputHash = "sha256-xbE/Z0dl2bXMmgwphenfNS9BC/7lMeFoPcTLsk2NCbY=";
+      });
     })
   ];
 
