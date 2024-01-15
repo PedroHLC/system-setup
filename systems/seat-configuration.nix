@@ -46,6 +46,9 @@
     "vm.max_map_count" = 2147483642; # helps with Wine ESYNC/FSYNC
   };
 
+  # I prefer to trim using ZFS' "autotrim"
+  services.zfs.trim.enable = false;
+
   # ZFS-based impermanence
   chaotic.zfs-impermanence-on-shutdown = {
     enable = true;
