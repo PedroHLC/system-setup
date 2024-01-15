@@ -134,7 +134,6 @@
     openrct2
     vcmi
     vkbasalt
-    vkshade_git
     yuzu-early-access_git
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     virtiofsd # for libvirtd
