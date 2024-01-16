@@ -438,7 +438,7 @@
       "/var/lib/bluetooth"
       "/var/lib/containers"
       "/var/lib/cups"
-      "/var/lib/flatpak"
+      "/var/lib/flatpak" # todo: move to residues
       { directory = "/var/lib/iwd"; mode = "u=rwx,g=,o="; }
       "/var/lib/systemd"
       "/var/lib/upower"
@@ -462,7 +462,7 @@
         ".config/asciinema"
         ".config/btop"
         { directory = ".config/cachix"; mode = "0700"; }
-        ".config/discord"
+        ".config/discord" # todo: move to residues
         ".config/Element"
         { directory = ".config/Keybase"; mode = "0700"; }
         { directory = ".config/keybase"; mode = "0700"; }
@@ -482,13 +482,13 @@
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
         ".local/share/qBittorrent"
-        ".local/share/Steam"
+        ".local/share/Steam" # todo: move to residues, but keep saves somehow
         ".local/share/TelegramDesktop"
         ".local/share/Terraria"
         { directory = ".secrets"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
-        ".var/app"
-        ".zoom"
+        ".var/app" # todo: move to residues
+        ".zoom" # todo: move to residues
         "Documents"
         "Downloads"
         "Projects"
@@ -528,10 +528,10 @@
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
         ".kodi"
-        ".local/share/duckstation"
+        ".local/share/duckstation" # todo: backup saves somehow
         ".local/share/Trash"
         ".local/state/wireplumber"
-        ".local/share/yuzu"
+        ".local/share/yuzu" # todo: backup saves somehow
         ".mix"
         ".lyrics"
         ".steam"
