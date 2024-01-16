@@ -66,6 +66,22 @@ rec {
     };
   };
 
+  home = {
+    tld = "house-lan";
+    desktop = {
+      addr = "${vpn.desktop.hostname}.${home.tld}";
+      v4 = "192.168.18.2";
+    };
+    laptop = {
+      addr = "${vpn.laptop.hostname}.${home.tld}";
+      v4 = "192.168.18.3";
+    };
+    beacon = {
+      addr = "${vpn.beacon.hostname}.${home.tld}";
+      v4 = "192.168.18.240";
+    };
+  };
+
   contact = {
     domain = "pedrohlc.com";
     email = "root@${contact.domain}";
