@@ -13,7 +13,7 @@ zpool create -f zroot /dev/nvme0n1p2
 zpool set autotrim=on zroot
 zfs set compression=lz4 zroot
 zfs set mountpoint=none zroot
-zfs create -o refreservation=10G -o mountpoint=none zroot/reserved
+zfs create -o refreservation=8G -o mountpoint=none zroot/reserved
 
 # System volumes.
 zfs create -o mountpoint=none zroot/data
@@ -23,10 +23,10 @@ zfs create -o mountpoint=legacy zroot/ROOT/nix
 zfs create -o mountpoint=legacy zroot/ROOT/residues # TODO: Move to zroot/ROOT
 zfs create -o mountpoint=legacy zroot/data/persistent
 zfs create -o mountpoint=legacy zroot/data/melina
-zfs snapshot zroot/ROOT/empty@start
 
 # Different recordsize
-zfs create -o mountpoint=legacy -o recordsize=16K zroot/data/btdownloads
+zfs create -o mountpoint=legacy -o recordsize=16K \
+	-o compression=off zroot/data/btdownloads
 zfs create -o mountpoint=none -o recordsize=1M zroot/games
 zfs create -o mountpoint=legacy zroot/games/home
 zfs create -o mountpoint=legacy -o recordsize=16K \
@@ -38,17 +38,23 @@ zfs create -o encryption=on -o keyformat=passphrase \
 zfs create -o encryption=on -o keyformat=passphrase \
 	-o mountpoint=/home/pedrohlc/.mozilla zroot/data/mozilla
 
-# Mount & Permissions
+# Init structure
 mount -t zfs zroot/ROOT/empty /mnt
-mkdir -p /mnt/nix /mnt/home/melinapn /mnt/home/pedrohlc /mnt/var/persistent
+mkdir -p /mnt/nix /mnt/var/persistent /mnt/var/residues /mnt/boot \
+	/mnt/home/pedrohlc/Games /mnt/home/pedrohlc/Torrents \
+	/mnt/home/melinapn
+zfs snapshot zroot/ROOT/empty@start
+
+# Mount & Permissions
+mount /dev/nvme0n1p1 /mnt/boot
+chmod 700 /mnt/boot
 mount -t zfs zroot/ROOT/nix /mnt/nix
 mount -t zfs zroot/data/melina /mnt/home/melinapn
 chown 1002:100 /mnt/home/melinapn
 chmod 0700 /mnt/home/melinapn
-mkdir /mnt/home/pedrohlc/Games
 mount -t zfs zroot/games/home /mnt/home/pedrohlc/Games
+mount -t zfs zroot/data/btdownloads /mnt/home/pedrohlc/Torrents
 chown -R 1001:100 /mnt/home/pedrohlc
-chmod 0700 /mnt/home/pedrohlc
 chmod 0750 /mnt/home/pedrohlc/Games
 mount -t zfs zroot/data/persistent /mnt/var/persistent
 mount -t zfs zroot/ROOT/residues /mnt/var/residues

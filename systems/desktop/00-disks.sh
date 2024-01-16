@@ -39,8 +39,8 @@ zfs create -o encryption=on -o keyformat=passphrase \
 
 # Init structure
 mount -t zfs zroot/ROOT/empty /mnt
-mkdir -p /mnt/nix /mnt/home/pedrohlc/Games /mnt/home/pedrohlc/Torrents \
-	/mnt/var/persistent /mnt/var/residues /mnt/boot
+mkdir -p /mnt/nix /mnt/var/persistent /mnt/var/residues /mnt/boot \
+	/mnt/home/pedrohlc/Games /mnt/home/pedrohlc/Torrents
 zfs snapshot zroot/ROOT/empty@start
 
 # Mount & Permissions
