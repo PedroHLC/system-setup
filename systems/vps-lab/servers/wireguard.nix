@@ -61,6 +61,16 @@ in
                 multicastV6
               ];
             }
+            # M54
+            {
+              publicKey = "PIRZl+62B+VvfCy33fhWKBjmmevtmB01qHYzu/W9LX8=";
+              allowedIPs = [
+                "${vpn.prefix.v4}.6/32"
+                "${vpn.prefix.v6}:6/128"
+                multicastV4
+                multicastV6
+              ];
+            }
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
