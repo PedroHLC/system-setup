@@ -47,7 +47,10 @@ with utils; {
       ".profile".text = ''
         if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
           exec ${tmux}
-      '' + (strings.optionalString hasSeat ''
+      '' + (strings.optionalString hasSeat (if steamMachine then ''
+        elif [ "$(${tty})" = '/dev/tty1' ]; then
+          exec steam-gamescope
+      '' else ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
           # It has to be sway from home manager.
           ${config.wayland.windowManager.sway.package}/bin/sway
@@ -55,7 +58,7 @@ with utils; {
           ${tmux} send-keys -t DE 'C-c' 'C-d' || true
           # Alternative sessions I might wanna run
           exec alternative-session
-      '') + ''
+      '')) + ''
         fi
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,

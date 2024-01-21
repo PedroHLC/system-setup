@@ -230,6 +230,9 @@
     vulkan-tools
     winetricks
 
+    # Linux-cachyos
+    scx
+
     # GI
     jq
     xdelta

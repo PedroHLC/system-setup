@@ -20,6 +20,7 @@
   hasTouchpad = touchpad != null;
   displayBrightness = if hasSeat then seat.displayBrightness else false;
   nvidiaPrime = if hasSeat then seat.nvidiaPrime else false;
+  steamMachine = if hasSeat then seat.steamMachine else false;
   touchpad = if hasSeat then seat.touchpad else null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
 
