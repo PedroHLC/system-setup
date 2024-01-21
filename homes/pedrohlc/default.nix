@@ -5,9 +5,10 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
-    (import ./giants/sway.nix utils)
     (import ./giants/i3status-rust.nix utils)
+    (import ./giants/ssh.nix utils)
     (import ./giants/sublime-text.nix utils)
+    (import ./giants/sway.nix utils)
   ];
 
   home = {
@@ -558,105 +559,6 @@ with utils; {
       enableBashIntegration = false;
       enableNushellIntegration = false;
       enableZshIntegration = false;
-    };
-
-    ssh = {
-      enable = true;
-      matchBlocks =
-        let
-          identityFile = "~/.ssh/pedrohlc_id";
-          generic = {
-            inherit identityFile;
-          };
-        in
-        {
-          # VCS
-          "github.com" = {
-            inherit identityFile;
-            user = "git";
-          };
-          "github.com-mindlab" = {
-            host = "github.com-mindlab gist.github.com-mindlab";
-            hostname = "github.com";
-            user = "git";
-            identityFile = "~/.ssh/pedrohlc_mindlab_git";
-          };
-          "gitlab.com" = {
-            inherit identityFile;
-            user = "git";
-          };
-          "bitbucket.com" = {
-            inherit identityFile;
-            user = "git";
-          };
-          "aur.archlinux.org" = {
-            inherit identityFile;
-            user = "aur";
-          };
-          # UFSCar
-          "git.ufscar.br" = {
-            inherit identityFile;
-          };
-          "openhpc.ufscar.br" = {
-            inherit identityFile;
-            user = "u726578";
-          };
-          "*.cluster.infra.ufscar.br" = {
-            inherit identityFile;
-            user = "u726578";
-            proxyJump = "openhpc.ufscar.br";
-          };
-          "wifi-instrucoes.ufscar.br" = {
-            inherit identityFile;
-            hostname = "200.133.224.99";
-            port = 5522;
-            proxyJump = "openhpc.ufscar.br";
-          };
-          "labstatus.ufscar.br" = {
-            inherit identityFile;
-            hostname = "200.133.224.78";
-            port = 29376;
-            proxyJump = "openhpc.ufscar.br";
-          };
-          "*.instrucoes.ufscar.br" = {
-            user = "root";
-            hostname = "192.168.115.202";
-            proxyJump = "candc.labinfo.ufscar.br";
-          };
-          # Chaotic
-          "bangl.de" = {
-            inherit identityFile;
-            user = "chaotic";
-          };
-          "github-runner.garudalinux.org" = {
-            inherit identityFile;
-            hostname = "116.202.208.112";
-            port = 230;
-          };
-          "aur.archlinux.org-chaotic" = {
-            user = "aur";
-            hostname = "aur.archlinux.org";
-            identityFile = "~/Projects/cx.chaotic/aur-sshkey/id_rsa";
-          };
-          # VPN
-          "${vpn.lab.addr}" = generic;
-          "${vpn.desktop.addr}" = generic;
-          "${vpn.laptop.addr}" = generic;
-          "${vpn.beacon.addr}" = generic;
-          # LAN
-          "${home.desktop.addr}" = {
-            inherit identityFile;
-            hostname = home.desktop.v4;
-          };
-          "${home.laptop.addr}" = {
-            inherit identityFile;
-            hostname = home.laptop.v4;
-          };
-          "${home.beacon.addr}" = {
-            inherit identityFile;
-            hostname = home.beacon.v4;
-          };
-        };
     };
   };
 

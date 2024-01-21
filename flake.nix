@@ -49,6 +49,7 @@
         specialArgs = {
           inherit ssot;
           flakes = inputs;
+          myLib = import ./shared/lib.nix;
         };
         # When accessing my flake from other computers I need chaotic's cache
         inherit (chaotic) nixConfig;

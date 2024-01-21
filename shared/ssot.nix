@@ -66,19 +66,17 @@ rec {
     };
   };
 
-  home = {
-    tld = "house-lan";
+  lan = {
     desktop = {
-      addr = "${vpn.desktop.hostname}.${home.tld}";
-      v4 = "192.168.18.2";
+      home-wire.v4 = "192.168.18.2";
+      home-wireless.v4 = "192.168.18.4";
     };
     laptop = {
-      addr = "${vpn.laptop.hostname}.${home.tld}";
-      v4 = "192.168.18.3";
+      home-wireless.v4 = "192.168.18.3";
+      home-wire.v4 = "192.168.18.5";
     };
     beacon = {
-      addr = "${vpn.beacon.hostname}.${home.tld}";
-      v4 = "192.168.18.240";
+      home-wire.v4 = "192.168.18.240";
     };
   };
 

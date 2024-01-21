@@ -8,10 +8,10 @@
 , nvmeSensors ? [ ]
 , seat ? null
 }:
-{ config, lib, pkgs, ssot, flakes, usingNouveau ? false, ... }@inputs:
+{ config, lib, pkgs, ssot, flakes, myLib, usingNouveau ? false, ... }@inputs:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat;
-  inherit config pkgs flakes usingNouveau;
+  inherit config pkgs flakes myLib usingNouveau;
 } // (lib // ssot // rec {
   # Expand specs
   hasBattery = battery != null;
