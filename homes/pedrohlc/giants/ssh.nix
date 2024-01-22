@@ -8,7 +8,7 @@ let
   addMyDevices = base:
     with myLib.attrset; foldl
       (machine: n: a: foldl'
-        (network: { v4, ... }: overwrite
+        (network: { v4, ... }: union
           (singleton "${machine}.${network}" {
             match = ''host ${machine} exec "nc -w 1 -z ${v4} %p"'';
             hostname = v4;

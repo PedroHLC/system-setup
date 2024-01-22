@@ -28,9 +28,12 @@
       url = "gitlab:famedly/conduit/next";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Functional-programming lib
+    fp-lib.url = "git+https://gist.github.com/c49ab29e71d17a396b6b1fe7ee27bac0.git";
   };
 
-  outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
+  outputs = { nixpkgs, yafas, chaotic, fp-lib, ... }@inputs:
     let
       ssot = import ./shared/ssot.nix inputs;
     in
@@ -49,7 +52,6 @@
         specialArgs = {
           inherit ssot;
           flakes = inputs;
-          myLib = import ./shared/lib.nix;
         };
         # When accessing my flake from other computers I need chaotic's cache
         inherit (chaotic) nixConfig;

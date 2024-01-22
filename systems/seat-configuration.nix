@@ -526,7 +526,7 @@
         ".cache/nix-index"
         ".cache/spotify"
         ".cache/sublime-text"
-        ".config/VencordDesktop"
+        ".config/vesktop"
         ".config/Slack"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
