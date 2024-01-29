@@ -65,11 +65,12 @@
 
   # Repeating settings
   modifier = "Mod4";
-  defaultBrowser = "firefox.desktop";
+  defaultBrowser = "firefox${firefoxSuffix}.desktop";
   iconTheme = "Vimix-Doder-dark";
   cursorTheme = "Breeze_Snow";
   cursorSize = 16;
   homePath = config.home.homeDirectory;
+  firefoxSuffix = "-nightly";
 
   # Sway modes
   modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
@@ -102,7 +103,7 @@
   firefox-gate = with pkgs; callPackage ../../shared/scripts {
     scriptName = "firefox-gate";
     substitutions = {
-      "$(which firefox)" = "${firefox_nightly}/bin/firefox";
+      "$(which firefox)" = "${firefox_nightly}/bin/firefox${firefoxSuffix}";
       "$(which zenity)" = "${gnome.zenity}/bin/zenity";
       "$(which zfs)" = "${zfs}/bin/zfs";
     };

@@ -219,7 +219,7 @@ with utils; {
     };
     desktopEntries = mkIf hasSeat {
       # Overwrite Firefox with my encryption-wrapper
-      "firefox" = {
+      "firefox${firefoxSuffix}" = {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
         exec = "${firefox-gate}/bin/firefox-gate %U";
