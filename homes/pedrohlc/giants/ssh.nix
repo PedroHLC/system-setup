@@ -33,6 +33,7 @@ in
       addMyDevices {
         # VCS
         "github.com" = {
+          host = "github.com gist.github.com";
           inherit identityFile;
           user = "git";
         };
