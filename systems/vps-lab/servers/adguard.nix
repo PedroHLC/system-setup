@@ -34,7 +34,7 @@
 
         archive = {
           enabled = true;
-          interval = "2160h";
+          interval = "360h";
           ignored = [ "cisco.com" "apple.com" "atlassian.com" ];
         };
 
@@ -51,7 +51,7 @@
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
           { name = "WT Internet"; ids = [ "189.127.192.0/20" ]; tags = [ "user_regular" ]; }
-          { name = "Descalnet"; ids = [ "132.255.216.0/22" ]; tags = [ "user_regular" ]; }
+          { name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
           { name = "NicNet"; ids = [ "45.4.32.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
           { name = "Tribenet"; ids = [ "200.12.0.0/20" ]; tags = [ "user_regular" ]; }
         ];
