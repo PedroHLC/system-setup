@@ -19,12 +19,15 @@
   hasGitKey = gitKey != null;
   hasSeat = seat != null;
   hasTouchpad = touchpad != null;
+
+  # Expand seat specs
   autoLogin = seat.autoLogin or "sway";
   displayBrightness = seat.displayBrightness or false;
+  kvm = seat.kvm or null;
+  nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = seat.steamMachine or false;
   touchpad = if hasSeat then (seat.touchpad or false) else null;
-  nvidiaBad = nvidiaPrime && !usingNouveau;
 
   # Preferred executables
   browser = "${firefox-gate}/bin/firefox-gate";

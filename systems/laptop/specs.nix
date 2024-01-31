@@ -16,5 +16,6 @@
     nvidiaPrime = true;
     touchpad = "2362:597:UNIW0001:00_093A:0255_Touchpad";
     autoLogin = null;
+    kvm = "host";
   };
 }

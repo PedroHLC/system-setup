@@ -82,6 +82,7 @@
     systemPackages = with pkgs; [
       airgeddon
       (cfwarp-add.override { substitutions = { "eno1" = "wlan0"; }; })
+      input-leap_git
       nvidia-offload
     ];
     # Prefer intel unless told so

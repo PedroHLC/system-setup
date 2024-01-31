@@ -16,6 +16,6 @@
     notificationY = "bottom";
     nvidiaPrime = false;
     touchpad = null;
-    #steamMachine = true;
+    kvm = "guest";
   };
 }

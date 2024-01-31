@@ -160,7 +160,6 @@
     fluffychat # todo: drop
     google-chrome
     helvum
-    input-leap_git
     keybase-gui
     libinput
     libinput-gestures

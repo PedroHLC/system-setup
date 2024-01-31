@@ -125,16 +125,16 @@
 
   # Extra packages
   environment.systemPackages = with pkgs; [
+    (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     devilutionx
     duckstation
     latencyflex-vulkan
     openmohaa_git
     openrct2
     vcmi
+    virtiofsd # for libvirtd
     vkbasalt
     yuzu-early-access_git
-    (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
-    virtiofsd # for libvirtd
   ];
 
   # One-button virtualization for some tests of mine

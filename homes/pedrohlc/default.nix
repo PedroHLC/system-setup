@@ -6,6 +6,7 @@ with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
     (import ./giants/i3status-rust.nix utils)
+    (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
     (import ./giants/sublime-text.nix utils)
     (import ./giants/sway.nix utils)
