@@ -55,7 +55,10 @@
     gnome-initial-setup.enable = false;
   };
   services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager = {
+    gdm.enable = true;
+    defaultSession = "gnome";
+  };
   services.xserver.enable = true;
 
   # Disable Intel's stream-paranoid for gaming.

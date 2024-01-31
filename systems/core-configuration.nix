@@ -109,6 +109,7 @@
   };
   security.sudo.wheelNeedsPassword = false;
   security.polkit.enable = true;
+  environment.shells = [ pkgs.dash ];
 
   # List packages.
   nixpkgs.config.allowUnfree = true;
