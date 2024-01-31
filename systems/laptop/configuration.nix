@@ -50,6 +50,9 @@
   services.gnome = {
     core-shell.enable = true;
     core-os-services.enable = true;
+    core-utilities.enable = false;
+
+    gnome-initial-setup.enable = false;
   };
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
