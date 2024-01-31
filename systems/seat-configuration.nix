@@ -534,6 +534,7 @@
         ".local/state/wireplumber"
         ".local/share/yuzu" # todo: backup saves somehow
         ".mix"
+        ".nyx"
         ".lyrics"
         ".steam"
         ".system.git"

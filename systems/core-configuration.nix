@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ pkgs, lib, ssot, flakes, ... }: with ssot;
+{ pkgs, lib, ssot, flakes, options, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -193,7 +193,10 @@
       PermitRootLogin = "no";
     };
   };
-  programs.ssh.package = pkgs.openssh_hpn;
+  programs.ssh = {
+    package = pkgs.openssh_hpn;
+    askPassword = lib.mkForce options.programs.ssh.askPassword.default;
+  };
 
   # Enable google-authenticator
   security.pam.services.sshd.googleAuthenticator.enable = true;

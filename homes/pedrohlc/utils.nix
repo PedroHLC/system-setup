@@ -19,9 +19,10 @@
   hasGitKey = gitKey != null;
   hasSeat = seat != null;
   hasTouchpad = touchpad != null;
-  displayBrightness = if hasSeat then (seat.displayBrightness or false) else false;
-  nvidiaPrime = if hasSeat then (seat.nvidiaPrime or false) else false;
-  steamMachine = if hasSeat then (seat.steamMachine or false) else false;
+  autoLogin = seat.autoLogin or "sway";
+  displayBrightness = seat.displayBrightness or false;
+  nvidiaPrime = seat.nvidiaPrime or false;
+  steamMachine = seat.steamMachine or false;
   touchpad = if hasSeat then (seat.touchpad or false) else null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
 

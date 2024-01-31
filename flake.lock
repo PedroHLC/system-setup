@@ -33,12 +33,12 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1706715187,
-        "narHash": "sha256-nm7GA7330pKklQmk4EtQS6LcoLo5OCPXdAAMBs01Mlk=",
-        "rev": "cc3b300a87bc0ae0178bb88b80c25d34a504eef7",
-        "revCount": 899,
+        "lastModified": 1706725791,
+        "narHash": "sha256-3xpRyvxdLK99lPyAXzm5GsjRdtSJJ7uwxXQUPPNNlmY=",
+        "rev": "c609893339987d806a36ffac3f70d05daa080879",
+        "revCount": 901,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.899%2Brev-cc3b300a87bc0ae0178bb88b80c25d34a504eef7/018d602b-15b1-7daf-8a76-3163da62271f/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.901%2Brev-c609893339987d806a36ffac3f70d05daa080879/018d60cf-e53b-7289-8ad4-669aa36b1067/source.tar.gz"
       },
       "original": {
         "type": "tarball",
