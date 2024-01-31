@@ -48,7 +48,6 @@
 
   # Only GNOME provides InputCapture right now
   services.gnome = {
-    core-utilities.enable = true;
     core-shell.enable = true;
     core-os-services.enable = true;
   };

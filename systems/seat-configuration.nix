@@ -510,6 +510,7 @@
     hideMounts = true;
     directories = [
       "/var/cache"
+      "/var/lib/AccountsService"
       "/var/log"
       "/var/spool"
     ];
@@ -528,6 +529,7 @@
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
         ".kodi"
+        ".local/share/baloo"
         ".local/share/duckstation" # todo: backup saves somehow
         ".local/share/Trash"
         ".local/state/wireplumber"
