@@ -67,14 +67,12 @@
   };
 
   boot.kernelParams = [
-    # nvme1: controller is down; will reset: CSTS=0xffffffff, PCI_STATUS=0xffff
-    #   Unable to change power state from D3cold to D0, device inaccessible
-    # nvme1: Disabling device after reset failure: -19
-    # "pcie_aspm=off"  "nvme_core.default_ps_max_latency_us=0"
-
     # Let's use AMD P-State
     "amd-pstate=guided"
   ];
+
+  # This was removed from "seat" since laptop uses it from GNOME:
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # OpenCL
   chaotic.mesa-git.extraPackages = with pkgs; [

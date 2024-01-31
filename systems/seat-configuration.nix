@@ -100,10 +100,7 @@
   # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-kde
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
     config.common.default = "*";
   };
 
@@ -163,6 +160,7 @@
     fluffychat # todo: drop
     google-chrome
     helvum
+    input-leap_git
     keybase-gui
     libinput
     libinput-gestures

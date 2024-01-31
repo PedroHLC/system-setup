@@ -46,6 +46,14 @@
     })
   ];
 
+  # Only GNOME provides InputCapture right now
+  services.gnome = {
+    core-utilities.enable = true;
+    core-shell.enable = true;
+    core-os-services.enable = true;
+  };
+  services.xserver.desktopManager.gnome.enable = true;
+
   # Disable Intel's stream-paranoid for gaming.
   # (not working - see nixpkgs issue 139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
