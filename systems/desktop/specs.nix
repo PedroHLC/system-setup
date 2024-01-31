@@ -16,6 +16,5 @@
     notificationY = "bottom";
     nvidiaPrime = false;
     touchpad = null;
-    kvm = "guest";
   };
 }

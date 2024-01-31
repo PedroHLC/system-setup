@@ -100,7 +100,10 @@
   # XDG-Portal (for dialogs & screensharing).
   xdg.portal = {
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-kde
+    ];
     config.common.default = "*";
   };
 

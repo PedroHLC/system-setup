@@ -71,9 +71,6 @@
     "amd-pstate=guided"
   ];
 
-  # This was removed from "seat" since laptop uses it from GNOME:
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
   # OpenCL
   chaotic.mesa-git.extraPackages = with pkgs; [
     rocmPackages.clr.icd

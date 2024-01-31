@@ -113,6 +113,14 @@ with utils; {
         target = "alacritty/alacritty.toml";
         source = (pkgs.formats.toml { }).generate "alacritty.toml" config.programs.alacritty.settings;
       };
+      # Disable this thing that is included with KDE
+      baloofilerc = mkIf hasSeat {
+        text = generators.toINI { } {
+          "Basic Settings" = {
+            "Indexing-Enabled" = false;
+          };
+        };
+      };
       # Allow me to choose which display to share in a list.
       wlrPortal = mkIf hasSeat {
         target = "xdg-desktop-portal-wlr/config";

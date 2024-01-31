@@ -46,21 +46,6 @@
     })
   ];
 
-  # Only GNOME provides InputCapture right now
-  services.gnome = {
-    core-shell.enable = true;
-    core-os-services.enable = true;
-    core-utilities.enable = false;
-
-    gnome-initial-setup.enable = false;
-  };
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager = {
-    gdm.enable = true;
-    defaultSession = "gnome";
-  };
-  services.xserver.enable = true;
-
   # Disable Intel's stream-paranoid for gaming.
   # (not working - see nixpkgs issue 139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
@@ -87,7 +72,6 @@
     systemPackages = with pkgs; [
       airgeddon
       (cfwarp-add.override { substitutions = { "eno1" = "wlan0"; }; })
-      input-leap_git
       nvidia-offload
     ];
     # Prefer intel unless told so
