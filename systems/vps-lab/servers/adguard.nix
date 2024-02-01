@@ -137,6 +137,7 @@
           "|atlassian.com^$important,dnsrewrite=REFUSED;;"
           "|apple.com^$important,dnsrewrite=REFUSED;;"
           "|cisco.com^$important,dnsrewrite=REFUSED;;"
+          "||openresolver.dnslab.cn^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {

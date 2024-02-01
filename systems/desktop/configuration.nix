@@ -125,6 +125,7 @@
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     devilutionx
     duckstation
+    i2pd
     latencyflex-vulkan
     openmohaa_git
     openrct2
