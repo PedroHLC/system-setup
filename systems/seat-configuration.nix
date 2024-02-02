@@ -108,7 +108,7 @@
   };
 
   # XWayland keyboard layout.
-  services.xserver.layout = "br";
+  services.xserver.xkb.layout = "br";
   # Console keyboard layout.
   console.keyMap = "br-abnt2";
 
