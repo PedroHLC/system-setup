@@ -153,6 +153,7 @@
     adbfs-rootless
     alacritty_git
     audacious
+    bat
     bind.dnsutils # "dig"
     bluez-tools
     brightnessctl
@@ -488,6 +489,7 @@
         ".local/share/Steam" # todo: move to residues, but keep saves somehow
         ".local/share/TelegramDesktop"
         ".local/share/Terraria"
+        ".openmohaa"
         { directory = ".secrets"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         ".var/app" # todo: move to residues

@@ -6,7 +6,7 @@
     nixpkgs.follows = "chaotic/nixpkgs";
 
     # reset rootfs every reboot
-    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.0.tar.gz";
+    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.*.tar.gz";
 
     # home-manager for managing my users' home
     home-manager.follows = "chaotic/home-manager";
@@ -15,18 +15,12 @@
     yafas.follows = "chaotic/yafas";
 
     # Smooth-criminal bleeding-edge packages
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.0.tar.gz";
+    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.*.tar.gz";
 
     # My FFx userChrome.css
     pedrochrome-css = {
       url = "git+https://gist.github.com/3c52f40134eeadf689d6269f271c755b.git";
       flake = false;
-    };
-
-    # Bleeding-edge Matrix-conduit
-    conduit = {
-      url = "gitlab:famedly/conduit/next";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Functional-programming lib

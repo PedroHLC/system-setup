@@ -21,7 +21,7 @@ in
 {
   services.matrix-conduit = {
     enable = true;
-    package = flakes.conduit.packages.${pkgs.system}.default;
+    package = pkgs.conduit_git;
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
