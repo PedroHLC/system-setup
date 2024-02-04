@@ -328,6 +328,13 @@
 
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
+
+        # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
+        hostapd_nolar = final.hostapd.overrideAttrs (oa: {
+          patches = [
+            (final.fetchpatch { url = "https://tildearrow.org/storage/hostapd-2.10-lar.patch"; hash = "sha256-USiHBZH5QcUJfZSxGoFwUefq3ARc4S/KliwUm8SqvoI="; })
+          ];
+        });
       };
     in
     [ thisConfigsOverlay ];
@@ -397,6 +404,49 @@
       mountopt = "nodev";
     };
   };
+
+  # An alternative AP with only WiFi 6
+  # Adapted from https://gist.github.com/iffa/290b1b83b17f51355c63a97df7c1cc60
+  services.hostapd = {
+    enable = true;
+    package = pkgs.hostapd_nolar;
+    radios.wlan0 = {
+      channel = 149;
+      networks.wlan0 = {
+        apIsolate = true;
+        ssid = "uaifai";
+        authentication = {
+          wpaPasswordFile = "/var/persistent/secrets/hostapd.psw";
+          mode = "wpa2-sha256";
+        };
+        settings = {
+          beacon_int=100;
+          bridge="br0";
+          country_code="FI";
+          dtim_period=2;
+          fragm_threshold=-1;
+          ieee80211ax=1;
+          ieee80211d=1;
+          ieee80211h=1;
+          ieee80211w=2;
+          local_pwr_constraint=3;
+          max_num_sta=255;
+          rsn_pairwise="CCMP";
+          rsn_preauth=1;
+          rts_threshold=-1;
+          spectrum_mgmt_required=1;
+          wmm_enabled=1;
+        };
+      };
+      # I manually manage 802.11 features above
+      band = "6g";
+      wifi7.enable = false;
+      wifi6.enable = false;
+      wifi5.enable = false;
+      wifi4.enable = false;
+    };
+  };
+  systemd.services.hostapd.wantedBy = lib.mkForce [ ]; # don't start automatically
 
   # For development, but disabled to start service on-demand
   services.postgresql = {
