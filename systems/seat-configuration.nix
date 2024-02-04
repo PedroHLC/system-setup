@@ -477,6 +477,7 @@
         ".config/qBittorrent"
         ".config/spotify"
         ".config/sublime-text"
+        ".config/sunshine"
         ".config/TabNine"
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".kube"; mode = "0700"; }

@@ -9,6 +9,7 @@ with utils; {
     (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
     (import ./giants/sublime-text.nix utils)
+    (import ./giants/sunshine.nix utils)
     (import ./giants/sway.nix utils)
   ];
 

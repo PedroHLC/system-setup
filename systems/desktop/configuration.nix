@@ -174,6 +174,14 @@
     specialisation.enable = false;
   };
 
+  # Allows streaming with KMS
+  security.wrappers.sunshine = {
+    source = "${pkgs.sunshine}/bin/sunshine";
+    capabilities = "cap_sys_admin+pie";
+    owner = "root";
+    group = "root";
+  };
+
   # More Classics' gaming
   chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
 

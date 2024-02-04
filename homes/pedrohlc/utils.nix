@@ -27,6 +27,7 @@
   nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = seat.steamMachine or false;
+  sunshine = seat.sunshine or false;
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
   # Preferred executables

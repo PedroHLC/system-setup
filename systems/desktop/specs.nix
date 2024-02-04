@@ -16,5 +16,6 @@
     notificationY = "bottom";
     nvidiaPrime = false;
     touchpad = null;
+    sunshine = true;
   };
 }
