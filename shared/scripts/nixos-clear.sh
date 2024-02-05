@@ -5,4 +5,6 @@ nix-store --gc --print-roots |\
   awk '{ if($1 ~ /\/(result(-[a-z]+|)?|flake-profile-.+-link)$/) print $1 }' |\
   xargs --no-run-if-empty rm
 
-exec nix-collect-garbage "$@"
+nix-collect-garbage "$@"
+
+exec /run/current-system/bin/switch-to-configuration boot --install-bootloader
