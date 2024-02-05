@@ -5,7 +5,7 @@ let
 
   # This complex block is responsible for adding "Matches *" that search for all my LAN
   # addresses before fallingback to the VPN address
-  addMyDevices = base:
+  addMyLocalDevices = base:
     with myLib.attrset; foldl
       (machine: n: a: foldl'
         (network: { v4, ... }: union
@@ -30,7 +30,9 @@ in
   programs.ssh = {
     enable = true;
     matchBlocks =
-      addMyDevices {
+      addMyLocalDevices {
+        # VPN
+        "vps-lab.vpn" = { inherit identityFile; };
         # VCS
         "github.com" = {
           host = "github.com gist.github.com";
