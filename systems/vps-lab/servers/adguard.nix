@@ -46,13 +46,13 @@
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
           { name = "Nextel"; ids = [ "177.56.0.0/14" "179.240.0.0/14" "187.24.0.0/14" "191.38.0.0/15" "191.56.0.0/14" "200.173.0.0/16" "2804:388::/30" ]; tags = [ "user_regular" ]; }
           { name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
-          { name = "Vivo"; ids = [ "177.24.0.0/14" "187.88.0.0/14" "177.76.0.0/14" "177.102.0.0/15" "189.98.0.0/15" "200.176.3.0/24" "200.148.0.0/17" "2804:18::/32" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
+          { name = "Vivo"; ids = [ "177.24.0.0/14" "187.88.0.0/14" "177.76.0.0/14" "177.102.0.0/15" "189.96.0.0/15" "189.98.0.0/15" "200.176.3.0/24" "200.148.0.0/17" "2804:18::/32" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
           { name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
           { name = "WT Internet"; ids = [ "189.127.192.0/20" ]; tags = [ "user_regular" ]; }
           { name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
-          { name = "NicNet"; ids = [ "45.4.32.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
+          { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
           { name = "Tribenet"; ids = [ "200.12.0.0/20" ]; tags = [ "user_regular" ]; }
         ];
         badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
@@ -138,15 +138,21 @@
           "|apple.com^$important,dnsrewrite=REFUSED;;"
           "|cisco.com^$important,dnsrewrite=REFUSED;;"
           # Stop tons of scanning
+          "|.^$important,dnsrewrite=REFUSED;;"
           "|dnsscan.shadowserver.org^$important,dnsrewrite=REFUSED;;"
-          "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
           "|ip.parrotdns.com^$important,dnsrewrite=REFUSED;;"
           "|jd.com^$important,dnsrewrite=REFUSED;;"
-          "||openresolver.dnslab.cn^$important,dnsrewrite=REFUSED;;"
-          "||open-resolver-scan.research.icann.org^$important,dnsrewrite=REFUSED;;"
+          "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
+          "|www.stage^$important,dnsrewrite=REFUSED;;"
+          "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
-          "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
+          "||open-resolver-scan.research.icann.org^$important,dnsrewrite=REFUSED;;"
+          "||openresolver.dnslab.cn^$important,dnsrewrite=REFUSED;;"
+          "||research.openresolve.rs^$important,dnsrewrite=REFUSED;;"
+          "||research.a10protects.com^$important,dnsrewrite=REFUSED;;"
+          "||root-servers.net^$important,dnsrewrite=REFUSED;;"
+          "||secshow.net^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {
