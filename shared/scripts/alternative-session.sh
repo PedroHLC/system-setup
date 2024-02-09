@@ -10,7 +10,7 @@ GAMESCOPE=${GAMESCOPE:-$(which gamescope)}
 GAMESCOPE_NOWRAP=${GAMESCOPE_NOWRAP:-$(which gamescope)}
 GREP=${GREP:-$(which grep)}
 LSMOD=${LSMOD:-$(which lsmod)}
-STEAM=${STEAM:-$(which steam)}
+STEAM_BIG=${STEAM_BIG:-$(which bigsteam)}
 STEAM_GAMESCOPE=${STEAM_GAMESCOPE:-$(which steam-gamescope)}
 SYSTEMCTL=${SYSTEMCTL:-$(which systemctl)}
 TMUX=${TMUX:-$(which tmux)}
@@ -31,14 +31,12 @@ tmux
 fish
 bash
 poweroff"
-#flatpak-steam-sdr
 
 OPTIONS_HDR=""
 if "$LSMOD" | "$GREP" -wq "amdgpu"; then
   OPTIONS_HDR="nixpkgs-steam-hdr
 flatpak-heroic-hdr
 "
-#flatpak-steam-hdr
 fi
 
 # Helper functions
@@ -65,21 +63,11 @@ while true; do
   case $("$FZF" <<<"${OPTIONS_HDR}${OPTIONS}") in
     nixpkgs-steam-sdr)
       raise-volume
-      ext "$GAMESCOPE_NOWRAP" --steam --disable-color-management -- steam -tenfoot -pipewire-dmabuf
+      ext "$GAMESCOPE_NOWRAP" --steam --immediate-flips --disable-color-management -- "$STEAM_BIG" -pipewire-dmabuf
       ;;
     nixpkgs-steam-hdr)
       raise-volume
-      ext DXVK_HDR=1 "${STEAM_GAMESCOPE}"
-      ;;
-    flatpak-steam-sdr)
-      raise-volume
-      _PRE=("$GAMESCOPE_NOWRAP" --steam --disable-color-management --) \
-        flatpak-steam
-      ;;
-    flatpak-steam-hdr)
-      raise-volume
-      _PRE=(DXVK_HDR=1 gamescope --steam --hdr-enabled --) \
-        flatpak-steam
+      ext DXVK_HDR=1 "$STEAM_GAMESCOPE"
       ;;
     flatpak-heroic-sdr)
       raise-volume

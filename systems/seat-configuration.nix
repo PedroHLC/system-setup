@@ -225,6 +225,7 @@
     vimix-icon-theme
 
     # Gaming
+    bigsteam
     mangohud_git
     mesa-demos
     vulkan-caps-viewer
@@ -252,7 +253,7 @@
     enable = true;
     gamescopeSession = {
       enable = true; # Gamescope session is better for AAA gaming.
-      args = [ "--immediate-flips" ];
+      args = [ "--immediate-flips" "--" "bigsteam" ];
     };
   };
   programs.gamescope = {
@@ -301,6 +302,9 @@
             ] ++ oa.patches;
           }))
           { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
+
+        # Steam in tenfoot + mangoapp
+        bigsteam = final.callPackage ../shared/scripts { scriptName = "bigsteam"; };
 
         # Script to force XWayland (in case something catches fire).
         nowl = final.callPackage ../shared/scripts { scriptName = "nowl"; };
