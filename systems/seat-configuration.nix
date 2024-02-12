@@ -201,7 +201,9 @@
     # Development apps
     bytecode-viewer_git
     dbeaver
+    elixir_1_14
     elmPackages.elm-format # Elm-dev
+    gcc
     gdb # more precious then gcc
     gnumake
     heroku
@@ -209,6 +211,7 @@
     logstalgia # Chaotic
     nixpkgs-fmt # Nix
     python3Minimal
+    rebar3 # Elixir-dev
     sublime4
 
     # Office-stuff
