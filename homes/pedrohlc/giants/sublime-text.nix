@@ -82,7 +82,6 @@ mkIf hasSeat {
           "Color Convert" # RGB to/from HEX
           "Dockerfile Syntax Highlighting" # Dockerfile syntax
           "EditorConfig" # Per-project cross-IDE preferences
-          "ElixirFormatter" # Elixir format-on-save
           "ElixirSyntax" # Elixir syntax
           "Elm Format on Save" # Format Elm
           "Elm Syntax Highlighting" # Elm syntax

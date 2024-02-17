@@ -528,6 +528,7 @@ with utils; {
           "@sys" = "cd /etc/nixos";
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
           "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
+          "@core" = "cd ~/Projects/co.timeline/core";
           "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
         } // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
