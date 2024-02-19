@@ -53,12 +53,12 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1708266612,
-        "narHash": "sha256-DElg9wukAUuGR/5kpoBZud/D88YdflUIf7rnDsd3Ix0=",
-        "rev": "b217bc2f0e351e4c78f79d2d84af58bef02f47cc",
-        "revCount": 938,
+        "lastModified": 1708357944,
+        "narHash": "sha256-AThD6V1zW/iy4niZfKDtyNLEkJOq3pMZXV8t540Lzq4=",
+        "rev": "9e6099315eacc982a56b750fe5bff3b955dac78c",
+        "revCount": 939,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.938%2Brev-b217bc2f0e351e4c78f79d2d84af58bef02f47cc/018dbca2-b18a-78c8-9166-14c13b695bd4/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.939%2Brev-9e6099315eacc982a56b750fe5bff3b955dac78c/018dc214-8ce6-7d8e-84d8-98d0f89b6619/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -299,11 +299,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1708217097,
-        "narHash": "sha256-0RaUUKLpd93qNlE1+9HoOj6u6lnH4KAHsoeSovR/lrc=",
+        "lastModified": 1708310205,
+        "narHash": "sha256-ZYI1RWHO+oM/YIjXMdehDhQ40Buhj95CPHu53/2peYE=",
         "owner": "martinvonz",
         "repo": "jj",
-        "rev": "3c7aa75b9b807509624364209dad2330ffa7e8f6",
+        "rev": "0c0eb37f2e408dce2fe157437f604a3b3d796fa0",
         "type": "github"
       },
       "original": {
