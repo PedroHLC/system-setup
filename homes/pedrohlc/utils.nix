@@ -186,7 +186,7 @@
   alternative-session = pkgs.callPackage ../../shared/scripts {
     scriptName = "alternative-session";
     substitutions = {
-      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${pkgs.gamescope}/bin/gamescope";
+      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${pkgs.gamescope_git}/bin/gamescope";
     };
   };
 })
