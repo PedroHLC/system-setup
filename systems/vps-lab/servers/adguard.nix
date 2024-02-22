@@ -139,13 +139,13 @@
           "|apple.com^$important,dnsrewrite=REFUSED;;"
           "|cisco.com^$important,dnsrewrite=REFUSED;;"
           # Stop tons of scanning
-          "|.^$important,dnsrewrite=REFUSED;;"
           "|dnsscan.shadowserver.org^$important,dnsrewrite=REFUSED;;"
           "|ip.parrotdns.com^$important,dnsrewrite=REFUSED;;"
           "|jd.com^$important,dnsrewrite=REFUSED;;"
           "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
           "|www.stage^$important,dnsrewrite=REFUSED;;"
           "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
+          "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
           "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
@@ -156,6 +156,7 @@
           "||research.a10protects.com^$important,dnsrewrite=REFUSED;;"
           "||root-servers.net^$important,dnsrewrite=REFUSED;;"
           "||secshow.net^$important,dnsrewrite=REFUSED;;"
+          "||whitechun.lol^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {
