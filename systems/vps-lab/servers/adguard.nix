@@ -35,7 +35,7 @@
         archive = {
           enabled = true;
           interval = "360h";
-          ignored = [ "cisco.com" "apple.com" "atlassian.com" ];
+          #ignored = [ "cisco.com" "apple.com" "atlassian.com" ];
         };
 
         goodGuys = [
@@ -47,6 +47,7 @@
           { name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
+          { name = "LinkTel"; ids = [ "201.54.224.0/20" ]; tags = [ "user_regular" ]; }
           { name = "Nextel"; ids = [ "177.56.0.0/14" "179.240.0.0/14" "187.24.0.0/14" "187.68.0.0/14" "189.92.0.0/14" "191.244.0.0/14" "191.38.0.0/15" "191.56.0.0/14" "200.173.0.0/16" "2804:388::/30" ]; tags = [ "user_regular" ]; }
           { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
@@ -56,11 +57,11 @@
           { name = "Vivo"; ids = [ "177.24.0.0/14" "187.88.0.0/14" "177.76.0.0/14" "177.102.0.0/15" "189.96.0.0/15" "189.98.0.0/15" "200.176.3.0/24" "200.148.0.0/17" "2804:18::/32" "2804:7efc::/32" ]; tags = [ "user_regular" ]; }
           { name = "WT Internet"; ids = [ "189.127.192.0/20" ]; tags = [ "user_regular" ]; }
         ];
-        badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; }];
+        badGuys = [{ name = "Bad"; ids = lib.trivial.importJSON ../../../shared/assets/bad-bots.json; tags = [ "user_child" ]; bad = true; }];
 
         goodGuysIds = builtins.concatLists (map ({ ids, ... }: ids) goodGuys);
 
-        normalizeClient = { name, ids, tags }: {
+        normalizeClient = { name, ids, tags, bad ? false }: {
           # Sadly, I didn't find which of this is required which is optional
           inherit safe_search;
           blocked_services = {
@@ -74,7 +75,7 @@
           parental_enabled = false;
           safebrowsing_enabled = false;
           use_global_blocked_services = true;
-          ignore_querylog = false;
+          ignore_querylog = !bad;
           ignore_statistics = false;
         };
       in
