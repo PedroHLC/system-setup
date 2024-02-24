@@ -21,7 +21,7 @@ in
 {
   services.matrix-conduit = {
     enable = true;
-    package = pkgs.conduit_git;
+    package = pkgs.conduwuit_git;
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;

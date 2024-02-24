@@ -40,7 +40,7 @@
 
         goodGuys = [
           { name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
-          { name = "VPS"; ids = [ web.lab.v4 web.lab.v6 ]; tags = [ "user_admin" ]; }
+          { name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" ]; tags = [ "user_admin" ]; }
           { name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
           { name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
           { name = "Andradas"; ids = [ "187.87.112.0/20" "186.193.128.0/20" "168.197.226.0/23" ]; tags = [ "user_regular" ]; }

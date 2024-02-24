@@ -169,6 +169,7 @@
     libinput-gestures
     libnotify
     libsForQt5.kio # Fixes "Unknown protocol 'file'."
+    libsForQt5.kwalletmanager
     libva-utils
     lm_sensors
     lxmenu-data # For lxqt apps' "Open with" dialogs
@@ -180,11 +181,12 @@
     obs-studio-wrapped
     osdlyrics
     pamixer # for avizo
-    qbittorrent
+    qbittorrent-qt5
     slack
     space-cadet-pinball
     spotify
     telegram-desktop_git
+    tuba
     usbutils
     vesktop
     waypipe
@@ -355,7 +357,7 @@
   services.tumbler.enable = true;
   services.dbus = {
     enable = true;
-    packages = with pkgs; [ osdlyrics ];
+    packages = with pkgs; [ osdlyrics libsForQt5.kwallet ];
   };
 
   # Fonts.
@@ -529,6 +531,7 @@
         { directory = ".config/keybase"; mode = "0700"; }
         ".config/nvim"
         { directory = ".config/kdeconnect"; mode = "0700"; }
+        { directory = ".config/kwalletrc"; mode = "0700"; }
         ".config/obs-studio"
         ".config/osdlyrics"
         ".config/qBittorrent"
@@ -543,6 +546,7 @@
         ".local/share/chat.fluffy.fluffychat"
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
+        { directory = ".local/share/kwalletd"; mode = "0700"; }
         ".local/share/qBittorrent"
         ".local/share/Steam" # todo: move to residues, but keep saves somehow
         ".local/share/TelegramDesktop"
