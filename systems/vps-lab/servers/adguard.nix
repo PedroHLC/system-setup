@@ -104,7 +104,7 @@
             "127.0.0.1"
           ];
           filters_update_interval = 1;
-          ratelimit = 20;
+          ratelimit = 7;
           ratelimit_whitelist = goodGuysIds;
           inherit safe_search;
           # In case of fire, break the glass

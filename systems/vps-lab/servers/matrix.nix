@@ -25,6 +25,7 @@ in
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
+      database_backend = "rocksdb";
     };
   };
   services.nginx = {
