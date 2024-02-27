@@ -48,6 +48,7 @@
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
           { name = "G2G"; ids = [ "187.95.80.0/20" ]; tags = [ "user_regular" ]; }
           { name = "LinkTel"; ids = [ "201.54.224.0/20" ]; tags = [ "user_regular" ]; }
+          { name = "NetNZ"; ids = [ "201.130.20.0/22" ]; tags = [ "user_regular" ]; }
           { name = "Nextel"; ids = [ "177.56.0.0/14" "179.240.0.0/14" "187.183.32.0/19" "187.24.0.0/14" "187.68.0.0/14" "189.92.0.0/14" "191.244.0.0/14" "191.38.0.0/15" "191.56.0.0/14" "200.173.0.0/16" "2804:388::/30" ]; tags = [ "user_regular" ]; }
           { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
           { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
@@ -104,7 +105,7 @@
             "127.0.0.1"
           ];
           filters_update_interval = 1;
-          ratelimit = 7;
+          ratelimit = 8;
           ratelimit_whitelist = goodGuysIds;
           inherit safe_search;
           # In case of fire, break the glass

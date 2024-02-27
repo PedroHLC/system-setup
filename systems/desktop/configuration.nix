@@ -79,21 +79,12 @@
   ];
   environment.variables.RADV_PERFTEST = "sam,video_decode,transfer_queue";
 
-  # My mono-mic Focusrite
-  environment.etc.pw-focusrite-mono-input = {
-    source = pkgs.pw-focusrite-mono-input;
-    target = "pipewire/pipewire.conf.d/99-focusrite-mono-input.conf";
-  };
-
   # Up-to 192kHz in the Focusrite
-  environment.etc.pw-96khz = {
-    target = "pipewire/pipewire.conf.d/99-playback-96khz.conf";
-    text = ''
-      context.properties = {
-        default.clock.rate = 96000
-        default.clock.allowed-rates = [ 44100 48000 88200 96000 176400 192000 ]
-      }
-    '';
+  services.pipewire.extraConfig.pipewire."99-playback-96khz" = {
+    "context.properties" = {
+      "default.clock.rate" = 96000;
+      "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
+    };
   };
 
   # Up-to 192kHz in the Focusrite (thanks to https://another.maple4ever.net/archives/2994/)

@@ -25,6 +25,12 @@
   boot.zfs.enableUnstable = true;
   boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
 
+  # New scheduler
+  chaotic.scx = {
+    enable = true;
+    scheduler = "scx_rusty";
+  };
+
   # Kernel Params
   boot.kernelParams = [
     # Disable all mitigations
@@ -237,9 +243,6 @@
     vulkan-tools
     winetricks
 
-    # Linux-cachyos
-    scx
-
     # GI
     jq
     xdelta
@@ -325,9 +328,6 @@
 
         # Allow bluetooth management easily in sway
         fzf-bluetooth = final.callPackage ../shared/drvs/fzf-bluetooth.nix { };
-
-        # Focusire mono-mic
-        pw-focusrite-mono-input = final.callPackage ../shared/drvs/pw-focusrite-mono-input.nix { };
 
         # helps me adding routes to CF WARP
         cfwarp-add = final.callPackage ../shared/scripts { scriptName = "cfwarp-add"; };

@@ -39,11 +39,11 @@ in
           inherit identityFile;
           user = "git";
         };
-        "github.com-mindlab" = {
-          host = "github.com-mindlab gist.github.com-mindlab";
+        "github.com-temeraire" = {
+          host = "github.com-temeraire gist.github.com-temeraire";
           hostname = "github.com";
           user = "git";
-          identityFile = "~/.ssh/pedrohlc_mindlab_git";
+          identityFile = "~/.ssh/id_temeraire";
         };
         "gitlab.com" = {
           inherit identityFile;
