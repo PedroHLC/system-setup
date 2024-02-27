@@ -555,7 +555,6 @@
         { directory = ".secrets"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
         ".var/app" # todo: move to residues
-        ".zoom" # todo: move to residues
         "Documents"
         "Downloads"
         "Projects"
@@ -607,6 +606,11 @@
         ".lyrics"
         ".steam"
         ".system.git"
+        ".zoom"
+      ];
+      files = [
+        ".config/zoom.conf"
+        ".config/zoomus.conf"
       ];
     };
   };
