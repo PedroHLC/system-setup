@@ -27,7 +27,7 @@
 
   # New scheduler
   chaotic.scx = {
-    enable = true;
+    #enable = true;
     scheduler = "scx_rusty";
   };
 

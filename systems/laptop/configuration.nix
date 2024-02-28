@@ -20,10 +20,6 @@
           echo 'rm -rf "$out/lib/firmware/nvidia"' >> $out
           echo 'mkdir -p "$out/lib/firmware/nvidia"' >> $out
           echo 'cp --no-preserve=mode -r "$firmware/lib/firmware/nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"' >> $out
-          echo 'pushd "$out/lib/firmware/nvidia/ga107"' >> $out
-          echo 'rm -rf gsp.xz' >> $out
-          echo 'ln -s ../ga102/gsp ./gsp' >> $out
-          echo 'popd' >> $out
         '';
       });
 
@@ -78,6 +74,17 @@
     variables = {
       "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
       "LIBVA_DRIVER_NAME" = "iHD";
+      # Helps me debugging kernel modules
+      #"HAUNTED_PLACE" =
+      #  let
+      #    kernel-name = config.boot.kernelPackages.kernel.name or "kernel";
+      #  in
+      #  pkgs.makeModulesClosure {
+      #    rootModules = config.boot.initrd.availableKernelModules ++ config.boot.initrd.kernelModules;
+      #    kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
+      #    firmware = config.hardware.firmware;
+      #    allowMissing = false;
+      #  };
     };
   };
 
