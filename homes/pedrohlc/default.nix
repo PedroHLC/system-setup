@@ -5,6 +5,7 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
+    (import ./giants/de-theming.nix utils)
     (import ./giants/i3status-rust.nix utils)
     (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
@@ -26,14 +27,6 @@ with utils; {
         # My scripts
         nrpr
       ]);
-
-    # Cursor setup
-    pointerCursor = mkIf hasSeat {
-      name = cursorTheme;
-      package = pkgs.libsForQt5.breeze-qt5;
-      gtk.enable = true;
-      size = cursorSize;
-    };
 
     # Files that I prefer to just specify
     file = {
@@ -85,27 +78,6 @@ with utils; {
     '');
   };
 
-  # GTK Setup
-  gtk = mkIf hasSeat {
-    enable = true;
-    theme.name = "Breeze-Dark";
-    iconTheme.name = iconTheme;
-    cursorTheme = {
-      size = cursorSize;
-      name = cursorTheme;
-    };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-  };
-  dconf.settings."org/gtk/settings/file-chooser" = mkIf hasSeat {
-    sort-directories-first = true;
-  };
-
-  # GTK4 Setup
-  dconf.settings."org/gnome/desktop/interface" = mkIf hasSeat {
-    gtk-theme = lib.mkForce "Breeze";
-    color-scheme = "prefer-dark";
-  };
-
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
@@ -130,29 +102,6 @@ with utils; {
             chooser_type = "dmenu";
             chooser_cmd = output-chooser;
           };
-        };
-      };
-      # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
-      kdeglobals = mkIf hasSeat {
-        text = generators.toINI { } {
-          General = {
-            ColorScheme = "BreezeDark";
-            Name = "Breeze Dark";
-            shadeSortColumn = true;
-          };
-          Icons = {
-            Theme = iconTheme;
-          };
-          KDE = {
-            LookAndFeelPackage = "org.kde.breezedark.desktop";
-            contrast = 4;
-            widgetStyle = "Breeze";
-          };
-        };
-      };
-      kcminputrc = mkIf hasSeat {
-        text = generators.toINI { } {
-          Mouse = { inherit cursorTheme cursorSize; };
         };
       };
       # Notifications
@@ -424,7 +373,7 @@ with utils; {
         signByDefault = true;
       };
       userEmail = contact.email;
-      userName = "${contact.nickname} ☭";
+      userName = contact.nickname;
       extraConfig = {
         core = {
           editor = "hx"; # I won't specify the full path to re-use the package from system setup

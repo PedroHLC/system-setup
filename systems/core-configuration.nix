@@ -93,7 +93,8 @@
       LC_IDENTIFICATION = "pt_BR.UTF8";
     };
   };
-  console.font = "Lat2-Terminus16";
+  # Broken, issue nixpkgs#257904
+  # console.font = "Lat2-Terminus16";
 
   # User accounts.
   users.users.pedrohlc = {

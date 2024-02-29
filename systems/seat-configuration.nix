@@ -26,10 +26,7 @@
   boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
 
   # New scheduler
-  chaotic.scx = {
-    #enable = true;
-    scheduler = "scx_rusty";
-  };
+  chaotic.scx.scheduler = "scx_rusty";
 
   # Kernel Params
   boot.kernelParams = [
@@ -154,6 +151,12 @@
 
   # List packages.
   environment.systemPackages = with pkgs; [
+    # Common dependencies
+    kdePackages.kio # Fixes "Unknown protocol 'file'."
+    lxmenu-data # For lxqt apps' "Open with" dialogs
+    pamixer # For avizo
+    qt6.qtwayland # For Qt6+Wayland apps
+
     # Desktop apps
     acpi
     adbfs-rootless
@@ -174,11 +177,9 @@
     libinput
     libinput-gestures
     libnotify
-    libsForQt5.kio # Fixes "Unknown protocol 'file'."
-    libsForQt5.kwalletmanager
+    kdePackages.kwalletmanager
     libva-utils
     lm_sensors
-    lxmenu-data # For lxqt apps' "Open with" dialogs
     lxqt.lxqt-sudo
     lxqt.pavucontrol-qt
     lxqt.pcmanfm-qt
@@ -186,8 +187,7 @@
     nomacs
     obs-studio-wrapped
     osdlyrics
-    pamixer # for avizo
-    qbittorrent-qt5
+    qbittorrent
     slack
     space-cadet-pinball
     spotify
@@ -231,6 +231,7 @@
     breeze-gtk
     breeze-icons
     breeze-qt5
+    kdePackages.breeze
     oxygen-icons5
     qqc2-breeze-style
     vimix-icon-theme
@@ -357,7 +358,7 @@
   services.tumbler.enable = true;
   services.dbus = {
     enable = true;
-    packages = with pkgs; [ osdlyrics libsForQt5.kwallet ];
+    packages = with pkgs; [ osdlyrics kdePackages.kwallet ];
   };
 
   # Fonts.
@@ -429,22 +430,22 @@
           mode = "wpa2-sha256";
         };
         settings = {
-          beacon_int=100;
-          bridge="br0";
-          country_code="FI";
-          dtim_period=2;
-          fragm_threshold=-1;
-          ieee80211ax=1;
-          ieee80211d=1;
-          ieee80211h=1;
-          ieee80211w=2;
-          local_pwr_constraint=3;
-          max_num_sta=255;
-          rsn_pairwise="CCMP";
-          rsn_preauth=1;
-          rts_threshold=-1;
-          spectrum_mgmt_required=1;
-          wmm_enabled=1;
+          beacon_int = 100;
+          bridge = "br0";
+          country_code = "FI";
+          dtim_period = 2;
+          fragm_threshold = -1;
+          ieee80211ax = 1;
+          ieee80211d = 1;
+          ieee80211h = 1;
+          ieee80211w = 2;
+          local_pwr_constraint = 3;
+          max_num_sta = 255;
+          rsn_pairwise = "CCMP";
+          rsn_preauth = 1;
+          rts_threshold = -1;
+          spectrum_mgmt_required = 1;
+          wmm_enabled = 1;
         };
       };
       # I manually manage 802.11 features above

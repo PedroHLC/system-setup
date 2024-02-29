@@ -110,7 +110,7 @@
   };
 
   # Plasma for Melina
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
 
   # Autologin (with Melina).
   services.getty.loginOptions =

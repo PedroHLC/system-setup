@@ -224,7 +224,7 @@ mkIf hasSeat {
               "f" = "exec ${browser}; mode default";
               "Shift+f" = "exec ${pkgs.pcmanfm-qt}/bin/pcmanfm-qt; mode default";
               "v" = "exec ${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt; mode default";
-              "b" = "exec ${pkgs.qbittorrent-qt5}/bin/qbittorrent; mode default";
+              "b" = "exec ${pkgs.qbittorrent}/bin/qbittorrent; mode default";
               "e" = "exec ${editor}; mode default";
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
               "shift+o" = "exec ${pkgs.obs-studio-wrapped}/bin/obs; mode default";
