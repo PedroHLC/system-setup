@@ -87,6 +87,7 @@
               "189.96.0.0/15"
               "189.98.0.0/15"
               "200.148.0.0/17"
+              "200.153.128.0/17"
               "200.176.3.0/24"
               "2804:18::/32"
               "2804:431:c000::/37"
@@ -180,6 +181,7 @@
           "|apple.com^$important,dnsrewrite=REFUSED;;"
           "|cisco.com^$important,dnsrewrite=REFUSED;;"
           # Stop tons of scanning
+          "|direct.shodan.io^$important,dnsrewrite=REFUSED;;"
           "|dnsscan.shadowserver.org^$important,dnsrewrite=REFUSED;;"
           "|ip.parrotdns.com^$important,dnsrewrite=REFUSED;;"
           "|jd.com^$important,dnsrewrite=REFUSED;;"

@@ -1,7 +1,26 @@
 utils: with utils;
 
-# My simple and humble bar
+let
+  clients =
+    builtins.mapAttrs
+      (_: hostname: {
+        inherit hostname;
+        activate_on_startup = true;
+        ips = mapAttrsToList (_: { v4, ... }: v4) lan.${hostname};
+      })
+      kvm;
+
+  config = clients // {
+    port = 4242;
+  };
+
+  configFile = (pkgs.formats.toml { }).generate "config.toml" config;
+
+  lan-mouse = pkgs.callPackage flakes.lan-mouse { };
+in
 mkIf (kvm != null) {
+  home.sessionVariables.EXPORT_THIS_SHIT = configFile;
+
   systemd.user.services.my-kvm = {
     Unit = {
       Description = "KVM service";
@@ -10,12 +29,7 @@ mkIf (kvm != null) {
       Requires = [ "xdg-desktop-portal.service" ];
     };
     Service = {
-      ExecStart =
-        if kvm == "host" then
-          "${pkgs.input-leap_git}/bin/input-leaps --config ${../../../shared/assets/input-leap.conf} --use-ei --no-daemon --disable-crypto"
-        else if kvm == "guest" then
-          "${pkgs.waynergy}/bin/waynergy --backend wlr --host ${lan.laptop.home-wire.v4} --disable-crypto"
-        else "Unsupported KVM mode";
+      ExecStart = "${lan-mouse}/bin/lan-mouse -d -c ${configFile}";
       Slice = "session.slice";
       Restart = "on-failure";
       RestartSec = 5;

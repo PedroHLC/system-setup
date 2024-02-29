@@ -17,5 +17,6 @@
     nvidiaPrime = false;
     touchpad = null;
     sunshine = true;
+    kvm = { left = "laptop"; };
   };
 }
