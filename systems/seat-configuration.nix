@@ -228,12 +228,12 @@
     wpsoffice
 
     # Desktop themes
-    breeze-gtk
-    breeze-icons
-    breeze-qt5
+    kdePackages.breeze-gtk
+    kdePackages.breeze-icons
+    kdePackages.breeze.qt5
     kdePackages.breeze
-    oxygen-icons5
-    qqc2-breeze-style
+    kdePackages.oxygen-icons
+    kdePackages.qqc2-breeze-style
     vimix-icon-theme
 
     # Gaming
