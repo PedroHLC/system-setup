@@ -127,7 +127,6 @@
     vcmi
     virtiofsd # for libvirtd
     vkbasalt
-    yuzu-early-access_git
   ];
 
   # One-button virtualization for some tests of mine

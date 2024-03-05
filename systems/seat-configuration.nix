@@ -17,13 +17,13 @@
   hardware.cpu.intel.updateMicrocode = true;
   hardware.cpu.amd.updateMicrocode = true;
 
+  # My preferred kernel
+  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
+
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "ext4" "f2fs" "xfs" "btrfs" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
-
-  # ZFS being out-of-tree is super head-aches
-  boot.zfs.enableUnstable = true;
-  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
+  boot.zfs.package = lib.mkOverride 99 pkgs.zfs_cachyos;
 
   # New scheduler
   chaotic.scx.scheduler = "scx_rusty";
@@ -475,7 +475,7 @@
   specialisation.safe.configuration = {
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
-    boot.zfs.enableUnstable = lib.mkForce false;
+    boot.zfs.package = lib.mkForce pkgs.zfs;
     chaotic.mesa-git.enable = lib.mkForce false;
   };
 
