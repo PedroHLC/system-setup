@@ -25,12 +25,6 @@
 
     # Functional-programming lib
     fp-lib.url = "git+https://gist.github.com/c49ab29e71d17a396b6b1fe7ee27bac0.git";
-
-    # https://github.com/NixOS/nixpkgs/pull/292333
-    lan-mouse = {
-      url = "git+https://gist.github.com/528c7d99419ed25dea206c6887ba8105.git";
-      flake = false;
-    };
   };
 
   outputs = { nixpkgs, yafas, chaotic, fp-lib, ... }@inputs:
