@@ -1,7 +1,7 @@
 {
   services.github-runners = {
     gpl = {
-      enable = true;
+      enable = false; # BROKEN RIGHT NOW
       name = "pedrohlc-lab";
       extraLabels = [ "nixos" ];
       url = "https://github.com/GamingPalaceOrg";
