@@ -6,7 +6,7 @@
   # Nix package-management settings.
   nix = {
     # Latest nix (letting it bump automatically is madness)
-    package = pkgs.nixVersions.nix_2_19;
+    package = pkgs.nixVersions.nix_2_20;
 
     # - Enable flakes
     # - newer CLI features
