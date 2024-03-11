@@ -227,6 +227,7 @@ with utils; {
         "image/png" = "org.nomacs.ImageLounge.desktop";
         "image/webp" = "org.nomacs.ImageLounge.desktop";
         "application/pdf" = "firefox.desktop";
+        "inode/directory" = "pcmanfm-qt.desktop";
 
         "x-scheme-handler/http" = defaultBrowser;
         "x-scheme-handler/https" = defaultBrowser;
