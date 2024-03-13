@@ -165,7 +165,7 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true; # So I can use GPG through SSH
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
   programs.tmux = {
     enable = true;

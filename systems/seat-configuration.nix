@@ -192,6 +192,7 @@
     space-cadet-pinball
     spotify
     telegram-desktop_git
+    tidal-hifi
     tuba
     usbutils
     vesktop
@@ -591,6 +592,7 @@
         ".cache/nix-index"
         ".cache/spotify"
         ".cache/sublime-text"
+        ".config/tidal-hifi"
         ".config/vesktop"
         ".config/Slack"
         ".config/yuzu"
