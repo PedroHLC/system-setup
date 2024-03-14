@@ -1,6 +1,5 @@
 { mpvpaper
 , procps
-, spotify-unwrapped
 , swaylock
 , swaylock-plugin_git
 , writeShellScript
@@ -20,7 +19,7 @@ writeShellScriptBin "my-wscreensaver" ''
     exec ${swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
   else
     PIDOF="${procps}/bin/pidof"
-    _HAS_MUSIC=$("$PIDOF" ${spotify-unwrapped}/share/spotify/.spotify-wrapped)
+    _HAS_MUSIC=$("$PIDOF" tidal-hifi)
 
     cd ~/Videos
 

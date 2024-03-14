@@ -102,7 +102,6 @@ mkIf hasSeat {
           { criteria = { app_id = "telegramdesktop"; title = "TelegramDesktop"; }; command = "floating enable; stick enable"; } # Main window is called "Telegram (N)", popups are called "TelegramDesktop"
           { criteria = { title = "Slack \\| mini panel"; }; command = "floating enable; stick enable"; }
           { criteria = { title = "discord.com is sharing your screen."; }; command = "move scratchpad"; }
-          { criteria = { class = "Spotify"; }; command = "opacity 0.9"; }
           { criteria = { app_id = "zenity"; title = "firefox-gate"; }; command = "floating enable; stick enable"; }
 
           # Don't lock my screen if there is anything fullscreen, I may be gaiming
@@ -229,7 +228,7 @@ mkIf hasSeat {
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
               "shift+o" = "exec ${pkgs.obs-studio-wrapped}/bin/obs; mode default";
               "shift+c" = "exec ${pkgs.google-chrome}/bin/google-chrome-stable; mode default";
-              "Shift+s" = "exec ((pidof ${pkgs.spotify-unwrapped}/share/spotify/.spotify-wrapped) || ${pkgs.spotify}/bin/spotify); mode default";
+              "t" = "exec ${pkgs.tidal-hifi}/bin/tidal-hifi; mode default";
               "Shift+t" = "exec ${pkgs.telegram-desktop_git}/bin/telegram-desktop; mode default";
             };
 

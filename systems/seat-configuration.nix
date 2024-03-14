@@ -190,7 +190,6 @@
     qbittorrent
     slack
     space-cadet-pinball
-    spotify
     telegram-desktop_git
     tidal-hifi
     tuba
@@ -537,7 +536,6 @@
         ".config/obs-studio"
         ".config/osdlyrics"
         ".config/qBittorrent"
-        ".config/spotify"
         ".config/sublime-text"
         ".config/sunshine"
         ".config/TabNine"
@@ -590,7 +588,6 @@
         ".cache/mesa_shader_cache"
         ".cache/mozilla"
         ".cache/nix-index"
-        ".cache/spotify"
         ".cache/sublime-text"
         ".config/tidal-hifi"
         ".config/vesktop"
