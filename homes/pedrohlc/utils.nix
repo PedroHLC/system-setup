@@ -79,7 +79,7 @@
 
   # Sway modes
   modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
-  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [S]potify";
+  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [t]IDAL";
   modeOtherMenus = "[b]luetooth | [n]etwork";
 
   # per-GPU values
