@@ -65,7 +65,7 @@ mkIf hasSeat {
           mode = "2560x1080@75Hz";
         };
         "Samsung Electric Company LU28R55 HX5R701479" = {
-          render_bit_depth = "10";
+          #render_bit_depth = "10";
         };
         "HEADLESS-1" = {
           resolution = "1600x900";
@@ -190,13 +190,6 @@ mkIf hasSeat {
       floating.criteria = [
         { app_id = "firefox"; title = "^moz-extension:"; }
         { app_id = "firefox"; title = "^Password Required"; }
-        # Zoom is messy
-        { app_id = ""; title = "^Settings$"; }
-        { app_id = ""; title = "^[zZ]oom$"; }
-        { app_id = ""; title = "^Zoom "; }
-        { app_id = ""; title = "^Advanced .*Options…$"; }
-        { app_id = ""; title = "^Participants \\(.+\\)$"; }
-        { app_id = ""; title = "^Create Breakout Rooms$"; }
       ];
 
       modes =

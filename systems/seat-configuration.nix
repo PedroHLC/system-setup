@@ -589,6 +589,7 @@
         ".cache/mozilla"
         ".cache/nix-index"
         ".cache/sublime-text"
+        ".config/google-chrome"
         ".config/tidal-hifi"
         ".config/vesktop"
         ".config/Slack"

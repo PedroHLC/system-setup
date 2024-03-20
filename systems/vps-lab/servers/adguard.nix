@@ -198,6 +198,7 @@
           "|jd.com^$important,dnsrewrite=REFUSED;;"
           "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
           "|www.stage^$important,dnsrewrite=REFUSED;;"
+          "||1u1gpup5i8kbtvctq9peakblhhzk.com^$important,dnsrewrite=REFUSED;;"
           "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
