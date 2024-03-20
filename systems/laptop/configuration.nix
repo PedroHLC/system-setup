@@ -100,7 +100,7 @@
   services.upower.enable = true;
 
   # Limit resources used by nix-daemon.
-  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "3-15";
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "2-15";
 
   # Melina may also use this machine
   users.users.melinapn = {
@@ -110,7 +110,7 @@
   };
 
   # Plasma for Melina
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # Autologin (with Melina).
   services.getty.loginOptions =

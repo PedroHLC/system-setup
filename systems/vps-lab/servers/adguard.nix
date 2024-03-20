@@ -54,6 +54,7 @@
             "200.160.192.0/20"
             "201.130.20.0/22"
             "201.54.224.0/20"
+            "2804:868::/32"
           ]; tags = [ "user_regular" ]; }
           { name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
@@ -200,18 +201,22 @@
           "|www.stage^$important,dnsrewrite=REFUSED;;"
           "||1u1gpup5i8kbtvctq9peakblhhzk.com^$important,dnsrewrite=REFUSED;;"
           "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
+          "||astrill4u.com^$important,dnsrewrite=REFUSED;;"
+          "||cyberresilience.io^$important,dnsrewrite=REFUSED;;"
+          "||dnsavailable.xyz^$important,dnsrewrite=REFUSED;;"
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
-          "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
+          "||kohls.com^$important,dnsrewrite=REFUSED;;"
           "||meshtrust.work^$important,dnsrewrite=REFUSED;;"
+          "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
           "||open-resolver-scan.research.icann.org^$important,dnsrewrite=REFUSED;;"
           "||openresolver.dnslab.cn^$important,dnsrewrite=REFUSED;;"
-          "||research.openresolve.rs^$important,dnsrewrite=REFUSED;;"
           "||research.a10protects.com^$important,dnsrewrite=REFUSED;;"
+          "||research.openresolve.rs^$important,dnsrewrite=REFUSED;;"
           "||root-servers.net^$important,dnsrewrite=REFUSED;;"
-          "||ta6.ch^$important,dnsrewrite=REFUSED;;"
           "||secshow.net^$important,dnsrewrite=REFUSED;;"
+          "||ta6.ch^$important,dnsrewrite=REFUSED;;"
           "||whitechun.lol^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
