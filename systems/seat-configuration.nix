@@ -189,7 +189,7 @@
     osdlyrics
     qbittorrent
     slack
-    space-cadet-pinball
+    #space-cadet-pinball
     telegram-desktop_git
     tidal-hifi
     tuba
