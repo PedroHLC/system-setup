@@ -24,7 +24,7 @@
     };
 
     # Functional-programming lib
-    fp-lib.url = "git+https://gist.github.com/c49ab29e71d17a396b6b1fe7ee27bac0.git";
+    fp-lib.url = "github:PedroHLC/nix-ullib";
   };
 
   outputs = { nixpkgs, yafas, chaotic, fp-lib, ... }@inputs:
