@@ -115,9 +115,10 @@ mkIf hasSeat {
           command =
             let
               localDay = "${date} +'%d/%m'";
-              braziliansTime = "TZ='America/Sao_Paulo' ${date} +'BR{%H:%M}'";
+              brTime = "TZ='America/Sao_Paulo' ${date} +'BR{%H:%M}'";
+              ukTime = "TZ='Europe/London' ${date} +'UK{%H:%M}'";
             in
-            "(${localDay}; ${braziliansTime}) | ${tr} '\\n' ' '";
+            "(${localDay}; ${brTime}; ${ukTime}) | ${tr} '\\n' ' '";
           interval = 10;
         }];
       };
