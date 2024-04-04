@@ -82,7 +82,7 @@
             tags = [ "user_regular" ];
           }
           { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
-          { name = "Proxer"; ids = [ "45.231.152.0/22" ]; tags = [ "user_regular" ]; }
+          { name = "Proxer"; ids = [ "45.231.152.0/22" "200.152.27.0/24" ]; tags = [ "user_regular" ]; }
           { name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
           { name = "Velonic"; ids = [ "168.227.216.0/22" "45.167.180.0/22" ]; tags = [ "user_regular" ]; }
           {
@@ -95,6 +95,7 @@
               "177.60.0.0/14"
               "177.68.0.0/16"
               "177.76.0.0/14"
+              "179.112.0.0/14"
               "179.224.0.0/14"
               "179.98.0.0/15"
               "187.56.0.0/15"
@@ -206,6 +207,7 @@
           "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
           "|www.stage^$important,dnsrewrite=REFUSED;;"
           "||1u1gpup5i8kbtvctq9peakblhhzk.com^$important,dnsrewrite=REFUSED;;"
+          "||anictdns.store^$important,dnsrewrite=REFUSED;;"
           "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
           "||astrill4u.com^$important,dnsrewrite=REFUSED;;"
           "||cyberresilience.io^$important,dnsrewrite=REFUSED;;"
@@ -213,6 +215,7 @@
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
+          "||ident.me^$important,dnsrewrite=REFUSED;;"
           "||kohls.com^$important,dnsrewrite=REFUSED;;"
           "||meshtrust.work^$important,dnsrewrite=REFUSED;;"
           "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"

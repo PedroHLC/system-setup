@@ -166,6 +166,7 @@
   chaotic.hdr = {
     enable = true;
     specialisation.enable = false;
+    wsiPackage = pkgs.gamescope-wsi_git;
   };
 
   # Allows streaming with KMS
