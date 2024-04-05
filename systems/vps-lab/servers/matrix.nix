@@ -26,6 +26,9 @@ in
       server_name = matrix_hostname;
       allow_registration = false;
       database_backend = "rocksdb";
+      allow_local_presence = false;
+      allow_incoming_presence = false;
+      allow_outgoing_presence = false;
     };
   };
   services.nginx = {

@@ -53,7 +53,7 @@ in
       ./vps-lab/servers/journal-remote.nix
       ./vps-lab/servers/matrix.nix
       ./vps-lab/servers/nginx.nix
-      ./vps-lab/servers/runners.nix
+      #./vps-lab/servers/runners.nix
       ./vps-lab/servers/wireguard.nix
       ./vps-lab/services/gits-mirror
       ./vps-lab/services/mesa-mirror

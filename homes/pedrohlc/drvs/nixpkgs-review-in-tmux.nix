@@ -16,6 +16,8 @@ let
   interShell = writeShellScript "nrpr-inside" ''
     cd "${nixpkgs}"
     export NIXPKGS_ALLOW_UNFREE=1
+    export NIXPKGS_ALLOW_INSECURE=1
+    export NIXPKGS_ALLOW_BROKEN=1
     source "${gitHubSecrets}"
     ${nixpkgs-review}/bin/nixpkgs-review pr --run "${finishShell}" "$@"
     echo "Exited with code " "$?"
