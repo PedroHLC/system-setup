@@ -71,10 +71,6 @@
     "amd-pstate=guided"
   ];
 
-  # New scheduler
-  # scx_rusty freezes my laptop, but works greatly on my desktop
-  chaotic.scx.enable = true;
-
   # OpenCL
   chaotic.mesa-git.extraPackages = with pkgs; [
     rocmPackages.clr.icd
