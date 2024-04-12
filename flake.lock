@@ -53,12 +53,12 @@
         "yafas": "yafas"
       },
       "locked": {
-        "lastModified": 1712915179,
-        "narHash": "sha256-586fWjlxpV3wV8ofWWq1tWV8GIvUZ7uu/sMRJKgyyJw=",
-        "rev": "3927d7d0f15d4f9181b03070e460599715b1e0ff",
-        "revCount": 1073,
+        "lastModified": 1712934045,
+        "narHash": "sha256-8AJRmvi3aQTHNq18nRIasCga9Uf+BImpEe6slKwy+6E=",
+        "rev": "a086da23290c6d34b2c02e201f47bb26cdaaa6a7",
+        "revCount": 1074,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1073%2Brev-3927d7d0f15d4f9181b03070e460599715b1e0ff/018ed1b6-4517-7566-994e-f24b8e98a945/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1074%2Brev-a086da23290c6d34b2c02e201f47bb26cdaaa6a7/018ed2d6-6996-7381-9a5b-6cfa76cf4cb0/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -272,11 +272,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712521891,
-        "narHash": "sha256-qJRkB7QZo2mdR/nABeHQKi3xkQxUsSGjVVQXTSHQocI=",
+        "lastModified": 1712909442,
+        "narHash": "sha256-D+VrmsPLkEbxNcI7lp9rGFR33RumbQIyhhjJ4PooWBs=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "ec53086c76303dc8880fa7ba06c45abcae8b3398",
+        "rev": "8886e3da78fcefb11935ea85da3d1572bf444c55",
         "type": "github"
       },
       "original": {
@@ -298,11 +298,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1712768022,
-        "narHash": "sha256-wpOfdrywFHjXLzUuNuuHixVZytPkxAUEsYY4GzcE09k=",
+        "lastModified": 1712889400,
+        "narHash": "sha256-9SCLL7Kdi8zEK8feCHJekJjDG9F1/q4fmRPaObOhzFQ=",
         "owner": "martinvonz",
         "repo": "jj",
-        "rev": "a786802b4017f6e20cc3ecde054e249e4f8ec005",
+        "rev": "30984dae4a92fbee0dc0b0cbcbaefab2a93a2aa3",
         "type": "github"
       },
       "original": {
