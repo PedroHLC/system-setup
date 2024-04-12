@@ -190,11 +190,8 @@
     qbittorrent
     slack
     #space-cadet-pinball
-    telegram-desktop_git
     tidal-hifi
-    tuba
     usbutils
-    vesktop
     waypipe
     wl-mirror
     xarchiver
@@ -235,18 +232,6 @@
     kdePackages.oxygen-icons
     kdePackages.qqc2-breeze-style
     vimix-icon-theme
-
-    # Gaming
-    bigsteam
-    mangohud_git
-    mesa-demos
-    vulkan-caps-viewer
-    vulkan-tools
-    winetricks
-
-    # GI
-    jq
-    xdelta
   ];
 
   # The base GUI toolkit in my setup.
@@ -258,23 +243,6 @@
   # Special apps (requires more than their package to work).
   programs.adb.enable = true;
   programs.gamemode.enable = true;
-  programs.steam = {
-    enable = true;
-    gamescopeSession = {
-      enable = true; # Gamescope session is better for AAA gaming.
-      args = [ "--immediate-flips" "--" "bigsteam" ];
-    };
-  };
-  programs.gamescope = {
-    enable = true;
-    capSysNice = false; # capSysNice freezes gamescopeSession for me.
-    args = [ ];
-    env = lib.mkForce {
-      # I set DXVK_HDR in the alternative-sessions script.
-      ENABLE_GAMESCOPE_WSI = "1";
-    };
-    package = pkgs.gamescope_git;
-  };
 
   # Fix swaylock (nixpkgs issue 158025)
   security.pam.services.swaylock = { };
@@ -557,7 +525,6 @@
         ".var/app" # todo: move to residues
         "Documents"
         "Downloads"
-        "Projects"
         "Pictures"
         "Videos"
       ];
@@ -643,28 +610,4 @@
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
   ];
-
-  # Change the allocator in hope it will save me 5 ms everyday.
-  # Bug: jemalloc 5.2.4 seems to break spotify and discord, crashes firefox when exiting and freezes TabNine.
-  # environment.memoryAllocator.provider = "jemalloc";
-
-  # Necessary for playing GI
-  networking.extraHosts =
-    ''
-      # - Required to play GI on Linux without banning.
-
-      # Genshin logging servers (do not remove!)
-      0.0.0.0 sg-public-data-api.hoyoverse.com
-      0.0.0.0 log-upload-os.hoyoverse.com
-      0.0.0.0 overseauspider.yuanshen.com
-      0.0.0.0 osuspider.yuanshen.com
-      0.0.0.0 ys-log-upload-os.hoyoverse.com
-
-      # Optional Unity proxy/cdn servers
-      0.0.0.0 prd-lender.cdp.internal.unity3d.com
-      0.0.0.0 thind-prd-knob.data.ie.unity3d.com
-      0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
-      0.0.0.0 cdp.cloud.unity3d.com
-      0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
-    '';
 }

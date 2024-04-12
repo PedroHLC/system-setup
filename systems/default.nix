@@ -20,6 +20,7 @@ in
       impermanence.nixosModules.impermanence
       ../shared/config/wireguard-client.nix
       ../shared/config/wgcf-teams.nix
+      ../shared/modules/focus.nix
       ./seat-configuration.nix
       ./laptop/hardware-configuration.nix
       ./laptop/configuration.nix
@@ -35,6 +36,7 @@ in
       ../shared/config/journal-upload.nix
       ../shared/config/wireguard-client.nix
       ../shared/config/wgcf-teams.nix
+      ../shared/modules/focus.nix
       ./seat-configuration.nix
       ./desktop/hardware-configuration.nix
       ./desktop/configuration.nix
