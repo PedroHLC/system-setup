@@ -105,6 +105,7 @@
               "189.46.0.0/15"
               "189.96.0.0/15"
               "189.98.0.0/15"
+              "191.254.0.0/15"
               "200.148.0.0/17"
               "200.153.128.0/17"
               "200.176.3.0/24"
@@ -166,7 +167,7 @@
             "127.0.0.1"
           ];
           filters_update_interval = 1;
-          ratelimit = 8;
+          ratelimit = 20;
           ratelimit_whitelist = goodGuysIds;
           inherit safe_search;
           # In case of fire, break the glass
