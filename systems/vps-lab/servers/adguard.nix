@@ -43,21 +43,25 @@
           { name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" ]; tags = [ "user_admin" ]; }
           { name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
           { name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
-          { name = "Viajantes"; ids = [
-            "168.121.96.0/22"
-            "168.197.226.0/23"
-            "186.193.128.0/20"
-            "187.87.112.0/20"
-            "187.95.80.0/20"
-            "189.127.192.0/20"
-            "191.241.160.0/21"
-            "191.5.128.0/20"
-            "200.12.0.0/20"
-            "200.160.192.0/20"
-            "201.130.20.0/22"
-            "201.54.224.0/20"
-            "2804:868::/32"
-          ]; tags = [ "user_regular" ]; }
+          {
+            name = "Viajantes";
+            ids = [
+              "168.121.96.0/22"
+              "168.197.226.0/23"
+              "186.193.128.0/20"
+              "187.87.112.0/20"
+              "187.95.80.0/20"
+              "189.127.192.0/20"
+              "191.241.160.0/21"
+              "191.5.128.0/20"
+              "200.12.0.0/20"
+              "200.160.192.0/20"
+              "201.130.20.0/22"
+              "201.54.224.0/20"
+              "2804:868::/32"
+            ];
+            tags = [ "user_regular" ];
+          }
           { name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
           { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
           {
@@ -219,6 +223,7 @@
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
+          "||ictdns.fun^$important,dnsrewrite=REFUSED;;"
           "||ident.me^$important,dnsrewrite=REFUSED;;"
           "||kohls.com^$important,dnsrewrite=REFUSED;;"
           "||meshtrust.work^$important,dnsrewrite=REFUSED;;"
@@ -231,6 +236,7 @@
           "||secshow.net^$important,dnsrewrite=REFUSED;;"
           "||ta6.ch^$important,dnsrewrite=REFUSED;;"
           "||whitechun.lol^$important,dnsrewrite=REFUSED;;"
+          "||yndx.net^$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {

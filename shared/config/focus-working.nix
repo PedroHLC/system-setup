@@ -7,8 +7,8 @@ lib.mkIf (config.focusMode) {
     0.0.0.0 discord.com
     0.0.0.0 web.whatsapp.com
     0.0.0.0 app.element.io
-    0.0.0.0 youtube.com
-    0.0.0.0 instagram.com
+    0.0.0.0 youtube.com www.youtube.com
+    0.0.0.0 instagram.com www.instagram.com
     0.0.0.0 twitter.com x.com
   '';
 
