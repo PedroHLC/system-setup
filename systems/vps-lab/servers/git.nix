@@ -5,6 +5,16 @@ let
     <meta name="viewport" content="width=device-width initial-scale=1.0"/>
   '';
 
+  adjustedHightlight = pkgs.runCommand "syntax-highlighting.py" { } ''
+    mkdir $out
+    cp ${package}/lib/cgit/filters/.syntax-highlighting.py-wrapped $out/
+    cp ${package}/lib/cgit/filters/syntax-highlighting.py $out/
+    substituteInPlace $out/.syntax-highlighting.py-wrapped \
+      --replace-fail "'pastie'" "'monokai'"
+    substituteInPlace $out/.syntax-highlighting.py-wrapped \
+      --replace-fail '${package}/lib/cgit/filters' "$out"
+  '';
+
   settings = {
     css = "/bucket/cgit.css";
     logo = "/git/cgit.png";
@@ -12,7 +22,7 @@ let
     root-desc = "These are my personal, automated backups of public git repositories.";
     head-include = builtins.toString head;
     section-from-path = "2";
-    source-filter = "${package}/lib/cgit/filters/syntax-highlighting.py";
+    source-filter = "${adjustedHightlight}/syntax-highlighting.py";
   };
 
   package = pkgs.cgit-pink;
