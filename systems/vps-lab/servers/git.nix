@@ -12,6 +12,7 @@ let
     root-desc = "These are my personal, automated backups of public git repositories.";
     head-include = builtins.toString head;
     section-from-path = "2";
+    source-filter = "${package}/lib/cgit/filters/syntax-highlighting.py";
   };
 
   package = pkgs.cgit-pink;
