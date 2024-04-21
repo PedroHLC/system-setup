@@ -481,7 +481,7 @@
     users.root = {
       home = "/root";
       directories = [
-        ".android" # adb keys
+        { directory = ".android"; mode = "0700"; } # adb keys
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
       ];
@@ -531,9 +531,9 @@
       files = [
         ".Bytecode-Viewer/recentfiles.json"
         ".Bytecode-Viewer/settings.bcv"
-        ".cache/keybasekeybase.app.serverConfig"
-        ".google_authenticator"
-        ".netrc"
+        { file = ".cache/keybasekeybase.app.serverConfig"; parentDirectory.mode = "0700"; }
+        { file = ".google_authenticator"; parentDirectory.mode = "0700"; }
+        { file = ".netrc"; parentDirectory.mode = "0700"; }
       ];
     };
   };
@@ -577,8 +577,8 @@
         ".zoom"
       ];
       files = [
-        ".config/zoom.conf"
-        ".config/zoomus.conf"
+        { file = ".config/zoom.conf"; parentDirectory.mode = "0700"; }
+        { file = ".config/zoomus.conf"; parentDirectory.mode = "0700"; }
       ];
     };
   };

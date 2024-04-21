@@ -10,6 +10,7 @@ mkIf hasSeat {
   wayland.windowManager.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    checkConfig = false;
     # TODO: Fix (sway_git is currently breaking mesa_git)
     #package =
     #  let
