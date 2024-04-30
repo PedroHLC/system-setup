@@ -134,6 +134,7 @@
     aria2
     busybox_appletless
     cachix
+    fastfetch
     file
     fzf
     google-authenticator
@@ -141,7 +142,6 @@
     jq
     killall
     mosh
-    neofetch
     nix-index
     nix-top
     nmap

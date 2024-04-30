@@ -27,7 +27,7 @@ mkIf hasSeat {
           light_color_scheme = colorScheme "Latte";
           theme = "auto";
           dark_theme = "Adaptive.sublime-theme";
-          light_theme = "Adaptive.sublime-theme";
+          light_theme = "Default.sublime-theme";
 
           # Constraint NeoVintageous to a much smaller keybindings set
           vintageous_use_ctrl_keys = null;
