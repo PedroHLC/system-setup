@@ -51,14 +51,9 @@ mkIf hasSeat {
       });
       output = {
         "*" = {
-          background = "${aenami.horizon} fill";
           max_render_time = "1";
           # In 60Hz display, "adaptive_sync" makes electron apps laggy
           adaptive_sync = "off";
-        };
-        "Unknown 0x0804 0x00000000" = {
-          # Laptop's display
-          background = "${aenami.lostInBetween} fill";
         };
         "Goldstar Company Ltd LG ULTRAWIDE 0x00000101" = {
           # FreeSync looks good with 75Hz
@@ -85,10 +80,6 @@ mkIf hasSeat {
       focus = {
         followMouse = "yes";
         mouseWarping = "container";
-      };
-      fonts = {
-        names = [ "Fira Sans Mono" "monospace" ];
-        size = 8.0;
       };
       floating.border = 1;
       window = {

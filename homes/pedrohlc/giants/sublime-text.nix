@@ -4,8 +4,9 @@ mkIf hasSeat {
   xdg.configFile = {
     sublimePreferences =
       let
-        # This will result in a lot of errors until Catppuccin loads.
-        colorScheme = flavor: "Packages/Catppuccin color schemes/Catppuccin ${flavor}.sublime-color-scheme";
+        # This will result in a lot of errors until Catppuccin and Colorsublime loads.
+        catppuccinScheme = flavor: "Packages/Catppuccin color schemes/Catppuccin ${flavor}.sublime-color-scheme";
+        colorSublimeThemes = theme: "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes/${theme}.tmTheme";
       in
       {
         target = "sublime-text/Packages/home-manager/Preferences.sublime-settings";
@@ -23,11 +24,11 @@ mkIf hasSeat {
 
           # Have both dark & light themes
           color_scheme = "auto";
-          dark_color_scheme = colorScheme "Mocha";
-          light_color_scheme = colorScheme "Latte";
+          dark_color_scheme = colorSublimeThemes "Rebecca-dark";
+          light_color_scheme = catppuccinScheme "Latte";
           theme = "auto";
-          dark_theme = "Adaptive.sublime-theme";
-          light_theme = "Default.sublime-theme";
+          dark_theme = "Darkmatter.sublime-theme";
+          light_theme = "Adaptive.sublime-theme";
 
           # Constraint NeoVintageous to a much smaller keybindings set
           vintageous_use_ctrl_keys = null;
@@ -80,6 +81,7 @@ mkIf hasSeat {
           "CMake" # CMake syntax
           "Catppuccin color schemes" # Modern color scheme
           "Color Convert" # RGB to/from HEX
+          "Colorsublime" # Extra colorschemes
           "Dockerfile Syntax Highlighting" # Dockerfile syntax
           "EditorConfig" # Per-project cross-IDE preferences
           "ElixirSyntax" # Elixir syntax

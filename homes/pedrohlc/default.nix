@@ -12,7 +12,11 @@ with utils; {
     (import ./giants/sublime-text.nix utils)
     (import ./giants/sunshine.nix utils)
     (import ./giants/sway.nix utils)
+    flakes.stylix.homeManagerModules.stylix
   ];
+
+  # Disable theming when without-seat
+  stylix.autoEnable = hasSeat;
 
   home = {
     packages =
@@ -81,11 +85,6 @@ with utils; {
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
-      # Newer format for Alacritty's config
-      alacritty = mkIf hasSeat {
-        target = "alacritty/alacritty.toml";
-        source = (pkgs.formats.toml { }).generate "alacritty.toml" config.programs.alacritty.settings;
-      };
       # Disable this thing that is included with KDE
       baloofilerc = mkIf hasSeat {
         text = generators.toINI { } {
@@ -344,8 +343,8 @@ with utils; {
         hud_compact = true;
         hud_no_margin = true;
         table_columns = 19;
-        font_size = 16;
-        background_alpha = "0.05";
+        font_size = lib.mkForce 16;
+        background_alpha = lib.mkForce "0.05";
 
         # additional features
         battery = hasBattery;
@@ -409,58 +408,19 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = mkIf hasSeat {
-      enable = false; # Module is using "yml" which isn't compatible with newer version.
-      settings = mkOptionDefault {
-        font = {
-          normal = {
-            family = "Borg Sans Mono";
-          };
-          size = 11.0;
-        };
-
-        window.opacity = 0.9;
+      enable = true;
+      settings = {
+        window.opacity = lib.mkForce 0.9;
 
         shell = {
           program = "${fish}";
           args = [ "--login" ];
         };
-
-        colors = {
-          primary = {
-            background = "#161821";
-            foreground = "#d2d4de";
-          };
-          normal = {
-            black = "#161821";
-            red = "#e27878";
-            green = "#b4be82";
-            yellow = "#e2a478";
-            blue = "#84a0c6";
-            magenta = "#a093c7";
-            cyan = "#89b8c2";
-            white = "#c6c8d1";
-          };
-          bright = {
-            black = "#6b7089";
-            red = "#e98989";
-            green = "#c0ca8e";
-            yellow = "#e9b189";
-            blue = "#91acd1";
-            magenta = "#ada0d3";
-            cyan = "#95c4ce";
-            white = "#d2d4de";
-          };
-        };
       };
     };
 
     # Text editor
-    helix = {
-      enable = true;
-      settings = {
-        theme = "base16_terminal";
-      };
-    };
+    helix.enable = true;
 
     fish = {
       enable = true;

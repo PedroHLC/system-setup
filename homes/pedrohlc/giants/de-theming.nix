@@ -1,62 +1,65 @@
 utils: with utils;
 
-let
-  cursorTheme = "Breeze_Snow";
-  cursorSize = 16;
-in
 mkIf hasSeat {
-  # Cursor setup
-  home.pointerCursor = {
-    name = cursorTheme;
+  stylix.base16Scheme = {
+    # https://github.com/vic/base16-rebecca
+    author = "vic";
+    base00 = "292a44";
+    base01 = "663399";
+    base02 = "383a62";
+    base03 = "666699";
+    base04 = "a0a0c5";
+    base05 = "f1eff8";
+    base06 = "ccccff";
+    base07 = "53495d";
+    base08 = "a0a0c5";
+    base09 = "efe4a1";
+    base0A = "ae81ff";
+    base0B = "6dfedf";
+    base0C = "8eaee0";
+    base0D = "2de0a7";
+    base0E = "7aa5ff";
+    base0F = "ff79c6";
+    scheme = "Rebecca";
+    slug = "rebecca";
+  };
+
+  stylix.image = pkgs.fetchurl {
+    url = privateBucket "Wallpapers/Aenami-Horizon.png";
+    hash = "sha256-3yzQkPRTeYdWV6bAoNZWwiDugywtNrh73k5vGfsHMLw=";
+  };
+
+  stylix.polarity = "dark";
+
+  stylix.cursor.size = 16;
+
+  stylix.fonts = {
+    monospace = {
+      name = "Borg Sans Mono";
+      package = pkgs.borg-sans-mono;
+    };
+    sansSerif = {
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
+    };
+    serif = {
+      name = "Noto Serif";
+      package = pkgs.noto-fonts;
+    };
+    sizes = {
+      applications = 11;
+      desktop = 11;
+    };
+  };
+
+  stylix.cursor = {
+    name = "Breeze_Snow";
     package = pkgs.kdePackages.breeze;
-    gtk.enable = true;
-    size = cursorSize;
   };
 
-  # GTK Setup
-  gtk = {
-    enable = true;
-    theme.name = "Breeze-Dark";
-    iconTheme.name = iconTheme;
-    cursorTheme = {
-      size = cursorSize;
-      name = cursorTheme;
-    };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
-  };
-  dconf.settings."org/gtk/settings/file-chooser" = {
-    sort-directories-first = true;
-  };
-
-  # GTK4 Setup
-  dconf.settings."org/gnome/desktop/interface" = {
-    gtk-theme = mkForce "Breeze";
-    color-scheme = "prefer-dark";
-  };
-
-  xdg.configFile = {
-    # The entire qt module is useless for me as I use Breeze with Plasma's platform-theme.
-    kdeglobals = {
-      text = generators.toINI { } {
-        General = {
-          ColorScheme = "BreezeDark";
-          Name = "Breeze Dark";
-          shadeSortColumn = true;
-        };
-        Icons = {
-          Theme = iconTheme;
-        };
-        KDE = {
-          LookAndFeelPackage = "org.kde.breezedark.desktop";
-          contrast = 4;
-          widgetStyle = "Breeze";
-        };
-      };
-    };
-    kcminputrc = {
-      text = generators.toINI { } {
-        Mouse = { inherit cursorTheme cursorSize; };
-      };
-    };
-  };
+  # Hotfix for https://github.com/danth/stylix/issues/340
+  home.activation.stylixLookAndFeel = mkForce ''
+    PATH=$PATH:/run/current-system/sw/bin
+    plasma-apply-lookandfeel --apply stylix || true
+  '';
 }

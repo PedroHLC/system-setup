@@ -223,15 +223,6 @@
     inkscape
     gimp
     wpsoffice
-
-    # Desktop themes
-    kdePackages.breeze-gtk
-    kdePackages.breeze-icons
-    kdePackages.breeze.qt5
-    kdePackages.breeze
-    kdePackages.oxygen-icons
-    kdePackages.qqc2-breeze-style
-    vimix-icon-theme
   ];
 
   # The base GUI toolkit in my setup.
@@ -425,6 +416,9 @@
     };
   };
   systemd.services.hostapd.wantedBy = lib.mkForce [ ]; # don't start automatically
+
+  # Pull all plasma things, don't had time to separate stuff to extract its LookAndFeel
+  services.desktopManager.plasma6.enable = true;
 
   # For development, but disabled to start service on-demand
   services.postgresql = {

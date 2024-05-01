@@ -85,4 +85,6 @@ rec {
     email = "root@${contact.domain}";
     nickname = "PedroHLC";
   };
+
+  privateBucket = path: "https://lab.pedrohlc.com/bucket/${path}";
 }

@@ -109,9 +109,6 @@
     extraGroups = [ "users" "audio" "video" "input" "networkmanager" ];
   };
 
-  # Plasma for Melina
-  services.desktopManager.plasma6.enable = true;
-
   # Autologin (with Melina).
   services.getty.loginOptions =
     let
