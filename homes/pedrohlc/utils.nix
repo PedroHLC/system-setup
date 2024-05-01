@@ -72,8 +72,6 @@
   modifier = "Mod4";
   defaultBrowser = "firefox${firefoxSuffix}.desktop";
   iconTheme = "Vimix-Doder-dark";
-  cursorTheme = "Breeze_Snow";
-  cursorSize = 16;
   homePath = config.home.homeDirectory;
   firefoxSuffix = "-nightly";
 

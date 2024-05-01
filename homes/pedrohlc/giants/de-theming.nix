@@ -1,5 +1,9 @@
 utils: with utils;
 
+let
+  cursorTheme = "Breeze_Snow";
+  cursorSize = 16;
+in
 mkIf hasSeat {
   # Cursor setup
   home.pointerCursor = {
