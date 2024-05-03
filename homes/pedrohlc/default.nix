@@ -5,18 +5,16 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
-    (import ./giants/de-theming.nix utils)
     (import ./giants/i3status-rust.nix utils)
     (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
     (import ./giants/sublime-text.nix utils)
     (import ./giants/sunshine.nix utils)
     (import ./giants/sway.nix utils)
+  ] ++ optionals hasSeat [ # Disable theming when without a seat
     flakes.stylix.homeManagerModules.stylix
+    (import ./giants/de-theming.nix utils)
   ];
-
-  # Disable theming when without-seat
-  stylix.autoEnable = hasSeat;
 
   home = {
     packages =

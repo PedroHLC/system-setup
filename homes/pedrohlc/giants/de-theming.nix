@@ -57,6 +57,11 @@ mkIf hasSeat {
     package = pkgs.kdePackages.breeze;
   };
 
+  gtk.iconTheme = {
+    name = iconTheme;
+    package = pkgs.vimix-icon-theme;
+  };
+
   # Hotfix for https://github.com/danth/stylix/issues/340
   home.activation.stylixLookAndFeel = mkForce ''
     export PATH=$PATH:/run/current-system/sw/bin

@@ -223,6 +223,7 @@
           "||cnnic.cn^$important,dnsrewrite=REFUSED;;"
           "||cyberresilience.io^$important,dnsrewrite=REFUSED;;"
           "||dnsavailable.xyz^$important,dnsrewrite=REFUSED;;"
+          "||dnsmeasurement.com^$important,dnsrewrite=REFUSED;;"
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
