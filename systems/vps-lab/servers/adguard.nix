@@ -150,8 +150,8 @@
         };
       in
       {
-        bind_host = "0.0.0.0";
-        bind_port = 3000;
+        host = "0.0.0.0";
+        port = 3000;
         users = [{
           name = "admin";
           password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin
@@ -175,10 +175,10 @@
           ];
           filters_update_interval = 1;
           ratelimit = 50;
-          ratelimit_whitelist = goodGuysIds;
+          # ratelimit_whitelist = goodGuysIds;
           inherit safe_search;
           # In case of fire, break the glass
-          # allowed_clients = goodGuysIds;
+          allowed_clients = goodGuysIds;
           disallowed_clients = builtins.concatLists (map ({ ids, ... }: ids) badGuys);
         };
         tls = {
