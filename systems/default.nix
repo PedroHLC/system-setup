@@ -1,8 +1,9 @@
 { ssot, inputs }: with inputs;
 let
-  mkNixOS = { system, specs, extraModules ? [ ] }: nixpkgs.lib.nixosSystem ({
+  mkNixOS = { system, specs, extraModules ? [ ], specialArgs ? { } }: nixpkgs.lib.nixosSystem ({
     inherit system;
-    inherit (inputs.self) specialArgs;
+
+    specialArgs = inputs.self.specialArgs // specialArgs;
 
     modules = [
       chaotic.nixosModules.default
@@ -60,5 +61,10 @@ in
       ./vps-lab/services/gits-mirror
       ./vps-lab/services/mesa-mirror
     ];
+    specialArgs.knownClients = with nixpkgs.lib; rec {
+      goodGuys = import ../shared/config/good-guys.nix ssot;
+      badBotsCIDRs = trivial.importJSON ../shared/assets/bad-bots.json;
+      goodGuysCIDRs = builtins.concatLists (map ({ ids, ... }: ids) goodGuys);
+    };
   };
 }

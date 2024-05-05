@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, ssot, lib, ... }: with ssot;
+{ config, ssot, lib, knownClients, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -24,6 +24,12 @@
   boot.kernel.sysctl = {
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+
+  # Sadly the internet is not a peaceful place
+  services.fail2ban = {
+    # enable = true;
+    ignoreIP = knownClients.goodGuysCIDRs;
   };
 
   # We can trim this one
