@@ -43,9 +43,10 @@
       udp53.settings = {
         enabled = true;
         filter = "adguard-udp53";
-        logpath = "/var/log/adguardhome";
-        action = "iptables[type=allports]";
+        logpath = "/var/log/AdGuardHome/full.log";
+        action = "iptables[type=allports, protocol=all]";
         backend = "auto";
+        maxretry = 1;
       };
       sshd.settings.enabled = false;
     };

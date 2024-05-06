@@ -157,7 +157,7 @@
           persistent = map normalizeClient (knownClients.goodGuys ++ badGuys);
         };
         log = {
-          file = "/var/log/adguardhome";
+          file = "/var/log/AdGuardHome/full.log";
           compress = false;
           local_time = false;
           max_backups = 1;
