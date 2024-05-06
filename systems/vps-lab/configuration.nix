@@ -30,31 +30,20 @@
   networking.firewall = {
     enable = lib.mkOverride 99 true;
     allowedTCPPorts = [ 53 80 443 853 8448 ];
-    allowedUDPPorts = [ 53 443 853 vpn.port 8448 ];
+    allowedUDPPorts = [ 443 853 vpn.port 8448 ];
     trustedInterfaces = [ "wg0" ];
     # ICMP traffic is blocked by default by OCI
     allowPing = true;
+    # Keep UDP Plain DNS between family
+    extraCommands = ''
+      ${builtins.concatStringsSep "\n"
+          (map (cidr: "ip${if lib.strings.hasInfix ":" cidr then "6" else ""}tables -A INPUT -p udp -s ${cidr} --dport 53 -j ACCEPT")
+            knownClients.goodGuysCIDRs)
+      }
+      iptables -A INPUT -p udp --dport 53 -j REJECT
+      ip6tables -A INPUT -p udp --dport 53 -j REJECT
+    '';
   };
-  services.fail2ban = {
-    enable = true;
-    ignoreIP = knownClients.goodGuysCIDRs;
-    bantime = "168h";
-    jails = {
-      udp53.settings = {
-        enabled = true;
-        filter = "adguard-udp53";
-        logpath = "/var/log/AdGuardHome/full.log";
-        action = "iptables[type=allports, protocol=all]";
-        backend = "auto";
-        maxretry = 1;
-      };
-      sshd.settings.enabled = false;
-    };
-  };
-  environment.etc."fail2ban/filter.d/adguard-udp53.local".text = ''
-    [Definition]
-    failregex = dnsproxy: handling new udp packet from <ADDR>:\d+$
-  '';
 
   # We can trim this one
   services.fstrim.enable = true;

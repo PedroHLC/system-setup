@@ -86,7 +86,7 @@
           # ratelimit_whitelist = knownClients.goodGuysCIDRs;
           inherit safe_search;
           # In case of fire, break the glass
-          allowed_clients = knownClients.goodGuysCIDRs;
+          # allowed_clients = knownClients.goodGuysCIDRs;
           disallowed_clients = knownClients.badBotsCIDRs;
         };
         tls = {
