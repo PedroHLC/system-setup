@@ -35,7 +35,6 @@
         archive = {
           enabled = true;
           interval = "360h";
-          #ignored = [ "cisco.com" "apple.com" "atlassian.com" ];
         };
 
         badGuys = [{ name = "Bad"; ids = knownClients.badBotsCIDRs; tags = [ "user_child" ]; bad = true; }];
@@ -114,14 +113,6 @@
         user_rules = [
           # GloboPlay breaks otherwise
           "@@||pubads.g.doubleclick.net^$important"
-          # Blocks most of the amplifications I was having
-          "|atlassian.com^$important,dnsrewrite=REFUSED;;"
-          "|apple.com^$important,dnsrewrite=REFUSED;;"
-          "|autodesk.com^$important,dnsrewrite=REFUSED;;"
-          "|azure.com^$important,dnsrewrite=REFUSED;;"
-          "|cisco.com^$important,dnsrewrite=REFUSED;;"
-          "|salesforce.com^$important,dnsrewrite=REFUSED;;"
-          "|teamviewer.com^$important,dnsrewrite=REFUSED;;"
           # Stop tons of scanning
           "|direct.shodan.io^$important,dnsrewrite=REFUSED;;"
           "|dnsscan.shadowserver.org^$important,dnsrewrite=REFUSED;;"
@@ -164,6 +155,15 @@
             hosts = true;
           };
           persistent = map normalizeClient (knownClients.goodGuys ++ badGuys);
+        };
+        log = {
+          file = "/var/log/adguardhome";
+          compress = false;
+          local_time = false;
+          max_backups = 1;
+          max_size = 50;
+          max_age = 30;
+          verbose = true;
         };
         schema_version = 24;
       };

@@ -27,10 +27,33 @@
   };
 
   # Sadly the internet is not a peaceful place
-  services.fail2ban = {
-    # enable = true;
-    ignoreIP = knownClients.goodGuysCIDRs;
+  networking.firewall = {
+    enable = lib.mkOverride 99 true;
+    allowedTCPPorts = [ 53 80 443 853 8448 ];
+    allowedUDPPorts = [ 53 443 853 vpn.port 8448 ];
+    trustedInterfaces = [ "wg0" ];
+    # ICMP traffic is blocked by default by OCI
+    allowPing = true;
   };
+  services.fail2ban = {
+    enable = true;
+    ignoreIP = knownClients.goodGuysCIDRs;
+    bantime = "168h";
+    jails = {
+      udp53.settings = {
+        enabled = true;
+        filter = "adguard-udp53";
+        logpath = "/var/log/adguardhome";
+        action = "iptables[type=allports]";
+        backend = "auto";
+      };
+      sshd.settings.enabled = false;
+    };
+  };
+  environment.etc."fail2ban/filter.d/adguard-udp53.local".text = ''
+    [Definition]
+    failregex = dnsproxy: handling new udp packet from <ADDR>:\d+$
+  '';
 
   # We can trim this one
   services.fstrim.enable = true;
