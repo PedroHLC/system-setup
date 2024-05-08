@@ -49,7 +49,7 @@ ssot: with ssot;
     ];
     tags = [ "user_regular" ];
   }
-  { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
+  { name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "45.225.168.0/22" "2804:39b0::/32" ]; tags = [ "user_regular" ]; }
   { name = "Proxer"; ids = [ "45.231.152.0/22" "200.152.27.0/24" ]; tags = [ "user_regular" ]; }
   { name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
   { name = "Velonic"; ids = [ "168.227.216.0/22" "45.167.180.0/22" ]; tags = [ "user_regular" ]; }

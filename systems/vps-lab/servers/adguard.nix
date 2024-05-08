@@ -124,6 +124,7 @@
           "||anictdns.store^$important,dnsrewrite=REFUSED;;"
           "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
           "||astrill4u.com^$important,dnsrewrite=REFUSED;;"
+          "||bind^$important,dnsrewrite=REFUSED;;"
           "||cnnic.cn^$important,dnsrewrite=REFUSED;;"
           "||cyberresilience.io^$important,dnsrewrite=REFUSED;;"
           "||dnsavailable.xyz^$important,dnsrewrite=REFUSED;;"
