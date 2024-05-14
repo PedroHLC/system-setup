@@ -134,6 +134,7 @@
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
           "||ictdns.fun^$important,dnsrewrite=REFUSED;;"
           "||ident.me^$important,dnsrewrite=REFUSED;;"
+          "||ki3ednstest.com^$important,dnsrewrite=REFUSED;;"
           "||kohls.com^$important,dnsrewrite=REFUSED;;"
           "||meshtrust.work^$important,dnsrewrite=REFUSED;;"
           "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
