@@ -132,6 +132,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     aria2
+    aria2c-for-wget-curl
     busybox_appletless
     cachix
     fastfetch
@@ -152,7 +153,6 @@
     traceroute
     unrar
     unzip
-    wget
     wireguard-tools
 
     # my scripts
@@ -164,6 +164,7 @@
     let
       thisConfiguration = final: _prev: {
         nixos-clear = final.callPackage ../shared/scripts { scriptName = "nixos-clear"; };
+        aria2c-for-wget-curl = final.callPackage ../shared/drvs/aria2c-for-wget-curl.nix { };
       };
     in
     [ thisConfiguration ];
