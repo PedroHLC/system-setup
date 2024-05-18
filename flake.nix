@@ -25,7 +25,7 @@
 
     # The Crash Team Racing decomp
     ctr = {
-      url = "github:PedroHLC/CTR-ModSDK/claudiobo-linux-port";
+      url = "github:ClaudioBo/CTR-ModSDK";
       inputs.nixpkgs.follows = "chaotic/nixpkgs";
       inputs.yafas.follows = "chaotic/yafas";
       inputs.systems.follows = "chaotic/systems";
