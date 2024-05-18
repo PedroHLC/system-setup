@@ -206,7 +206,6 @@
     # Development apps
     bytecode-viewer_git
     dbeaver
-    elixir_1_14
     elmPackages.elm-format # Elm-dev
     gcc
     gdb # more precious then gcc
@@ -218,6 +217,7 @@
     python3Minimal
     rebar3 # Elixir-dev
     sublime4
+    zed-editor_git
 
     # Office-stuff
     inkscape
@@ -500,6 +500,7 @@
         ".config/sublime-text"
         ".config/sunshine"
         ".config/TabNine"
+        ".config/zed"
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".kube"; mode = "0700"; }
         ".local/share/DBeaverData"
@@ -549,6 +550,7 @@
         ".cache/mozilla"
         ".cache/nix-index"
         ".cache/sublime-text"
+        ".cache/zed"
         ".config/google-chrome"
         ".config/tidal-hifi"
         ".config/vesktop"
@@ -562,6 +564,7 @@
         ".local/share/Trash"
         ".local/state/wireplumber"
         ".local/share/yuzu" # todo: backup saves somehow
+        ".local/share/zed"
         ".mix"
         ".nyx"
         ".lyrics"

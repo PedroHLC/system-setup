@@ -52,6 +52,7 @@ in
       (nixpkgs + "/nixos/modules/virtualisation/oci-common.nix")
       ./vps-lab/configuration.nix
       ./vps-lab/servers/adguard.nix
+      ./vps-lab/servers/ctr.nix
       ./vps-lab/servers/git.nix
       ./vps-lab/servers/journal-remote.nix
       ./vps-lab/servers/matrix.nix

@@ -23,6 +23,14 @@
       flake = false;
     };
 
+    # The Crash Team Racing decomp
+    ctr = {
+      url = "github:PedroHLC/CTR-ModSDK/claudiobo-linux-port";
+      inputs.nixpkgs.follows = "chaotic/nixpkgs";
+      inputs.yafas.follows = "chaotic/yafas";
+      inputs.systems.follows = "chaotic/systems";
+    };
+
     # Functional-programming lib
     fp-lib.url = "github:PedroHLC/nix-ullib";
 
