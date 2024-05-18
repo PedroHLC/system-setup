@@ -293,15 +293,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1716042164,
-        "narHash": "sha256-czbXMq1ICkpzDTaomMJFKGteA7coneHIgutRUxebMk4=",
-        "owner": "ClaudioBo",
+        "lastModified": 1716074515,
+        "narHash": "sha256-8oeXV3MbHMeveStbi6dQVNaQyp0CLm1vBc972+Ebq/M=",
+        "owner": "CTR-tools",
         "repo": "CTR-ModSDK",
-        "rev": "0212d003e9ef6550b0d2d7f5a52cf8663a2ccbc6",
+        "rev": "25d5eab235421a216b47006a44b0e4d43ccf9db8",
         "type": "github"
       },
       "original": {
-        "owner": "ClaudioBo",
+        "owner": "CTR-tools",
         "repo": "CTR-ModSDK",
         "type": "github"
       }
