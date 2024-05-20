@@ -1,0 +1,44 @@
+// https://zed.dev/docs/configuring-zed
+{
+  // Features Preferences
+  "auto_update": false,
+
+  // UI Preferences
+  "theme": "Catppuccin Macchiato",
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 15,
+  "preferred_line_length": 88,
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false
+  },
+  "scrollbar": {
+    "show": "auto"
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "git_status": true
+  },
+
+  // Language preferences
+  "format_on_save": "on",
+  "formatter": "language_server",
+  "languages": {
+    "Elm": {
+      "formatter": {
+        "external": {
+          "command": "elm-format",
+          "arguments": ["--stdin"]
+        }
+      },
+      "language_servers": ["elm-language-server"]
+    },
+    "JSON": {
+      "format_on_save": "off",
+      "language_servers": []
+    }
+  }
+}

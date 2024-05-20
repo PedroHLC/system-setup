@@ -5,6 +5,7 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
+    (import ./giants/audacious.nix utils)
     (import ./giants/i3status-rust.nix utils)
     (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
@@ -69,16 +70,6 @@ with utils; {
         set -g mouse off
       '';
     };
-    # Merge Audacious public config with the secrets
-    activation.mergeAudacious = mkIf hasSeat (lib.hm.dag.entryAfter [ "onFilesChange" ] ''
-      finalFile="$HOME/.config/audacious/config"
-      if [[ ! -e "$finalFile" ]]; then
-        $DRY_RUN_CMD touch "$finalFile"
-        $DRY_RUN_CMD chmod 600 "$finalFile"
-        $DRY_RUN_CMD cat "$HOME/.config/audacious/config.public" > "$finalFile"
-        $DRY_RUN_CMD cat "$HOME/.secrets/audacious.config" >> "$finalFile"
-      fi
-    '');
   };
 
   xdg = {
@@ -111,31 +102,6 @@ with utils; {
           positionY = seat.notificationY;
         };
       };
-      # Audacious rice
-      audacious = mkIf hasSeat {
-        target = "audacious/config.public";
-        onChange = ''
-          [[ -f "$HOME/.config/audacious/config" ]] && rm "$HOME/.config/audacious/config"
-        '';
-        text = audaciousConfigGenerator {
-          audacious = {
-            shuffle = false;
-          };
-          pipewire = {
-            volume_left = 100;
-            volume_right = 100;
-          };
-          resample = {
-            default-rate = 96000;
-            method = 0;
-          };
-          skins = {
-            always_on_top = true;
-            playlist_visible = false;
-            skin = "${homePath}/.local/share/audacious/Skins/135799-winamp_classic";
-          };
-        };
-      };
       # Integrate the filemanager with the rest of the system
       pcmanfm = mkIf hasSeat {
         target = "pcmanfm-qt/default/settings.conf";
@@ -161,14 +127,13 @@ with utils; {
           };
         };
       };
+      zed = mkIf hasSeat {
+        target = "zed/settings.json";
+        source = ../../shared/assets/zed-settings.json;
+      };
     };
     # Other data files
     dataFile = mkIf hasSeat {
-      audaciousSkinWinampClassic = {
-        target = "audacious/Skins/135799-winamp_classic";
-        source = pkgs.audacious-skin-winamp-classic;
-      };
-
       userChromeCss = {
         target = "userChrome.css";
         source = "${flakes.pedrochrome-css}/userChrome.css";

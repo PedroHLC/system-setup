@@ -10,8 +10,6 @@ let
       ExecStart = "${flakes.ctr.packages.${pkgs.system}.online-server.release.native32.gcc}/bin/ctr_srv -p 6500${room}";
       Restart = "always";
       RestartSec = "8";
-      StandardOutput = "syslog";
-      StandardError = "syslog";
     };
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];

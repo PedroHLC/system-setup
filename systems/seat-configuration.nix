@@ -194,6 +194,7 @@
     usbutils
     waypipe
     wl-mirror
+    wl-clipboard-rs
     xarchiver
     xdg-utils
     zoom-us
