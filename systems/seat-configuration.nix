@@ -206,7 +206,7 @@
 
     # Development apps
     bytecode-viewer_git
-    dbeaver
+    dbeaver-bin
     elmPackages.elm-format # Elm-dev
     gcc
     gdb # more precious then gcc
