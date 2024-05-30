@@ -5,15 +5,15 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
-    (import ./giants/audacious.nix utils)
     (import ./giants/i3status-rust.nix utils)
     (import ./giants/kvm.nix utils)
     (import ./giants/ssh.nix utils)
-    (import ./giants/sublime-text.nix utils)
     (import ./giants/sunshine.nix utils)
-    (import ./giants/sway.nix utils)
   ] ++ optionals hasSeat [
-    # Disable theming when without a seat
+    (import ./giants/audacious.nix utils)
+    (import ./giants/sublime-text.nix utils)
+    (import ./giants/sway.nix utils)
+    # Themeing
     flakes.stylix.homeManagerModules.stylix
     (import ./giants/de-theming.nix utils)
   ];
@@ -94,7 +94,8 @@ with utils; {
         };
       };
       # Notifications
-      swaync = mkIf hasSeat {
+      swaync = {
+        enable = hasSeat;
         target = "swaync/config.json";
         text = generators.toJSON { } {
           "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
@@ -103,7 +104,8 @@ with utils; {
         };
       };
       # Integrate the filemanager with the rest of the system
-      pcmanfm = mkIf hasSeat {
+      pcmanfm = {
+        enable = hasSeat;
         target = "pcmanfm-qt/default/settings.conf";
         text = generators.toINI { } {
           Behavior = {
@@ -127,22 +129,26 @@ with utils; {
           };
         };
       };
-      zed = mkIf hasSeat {
+      zed = {
+        enable = hasSeat;
         target = "zed/settings.json";
         source = ../../shared/assets/zed-settings.json;
       };
     };
     # Other data files
-    dataFile = mkIf hasSeat {
+    dataFile = {
       userChromeCss = {
+        enable = hasSeat;
         target = "userChrome.css";
         source = "${flakes.pedrochrome-css}/userChrome.css";
       };
       zedNodeBin = {
+        enable = hasSeat;
         target = "zed/node/node-v18.15.0-linux-x64/bin";
         source = "${pkgs.nodejs_18}/bin";
       };
       zedNodeLib = {
+        enable = hasSeat;
         target = "zed/node/node-v18.15.0-linux-x64/lib";
         source = "${pkgs.nodejs_18}/lib";
       };
@@ -179,8 +185,8 @@ with utils; {
     };
 
     # Default apps per file type
-    mimeApps = mkIf hasSeat {
-      enable = true;
+    mimeApps = {
+      enable = hasSeat;
       associations = {
         added = {
           "application/octet-stream" = "sublime_text.desktop";
@@ -233,6 +239,7 @@ with utils; {
   };
 
   programs = {
+    atuin.enable = hasSeat;
     mpv = mkIf hasSeat {
       enable = true;
       # For watching animes in 60fps
@@ -302,8 +309,8 @@ with utils; {
     };
 
     # Hardware/softwre OSD indicators while gaming
-    mangohud = mkIf hasSeat {
-      enable = true;
+    mangohud = {
+      enable = hasSeat;
       package = pkgs.mangohud_git;
       settings = {
         # functionality
@@ -379,8 +386,8 @@ with utils; {
     };
 
     # My favorite and simple terminal
-    alacritty = mkIf hasSeat {
-      enable = true;
+    alacritty = {
+      enable = hasSeat;
       settings = {
         window.opacity = lib.mkForce 0.9;
 
@@ -436,8 +443,8 @@ with utils; {
     };
 
     # Crunchyroll and SAMSUNG Tizen don't mix, so I have to DLNA-it.
-    yt-dlp = mkIf hasSeat {
-      enable = true;
+    yt-dlp = {
+      enable = hasSeat;
       package = pkgs.yt-dlp_git;
       settings = {
         netrc = true;
@@ -456,8 +463,8 @@ with utils; {
   };
 
   # Color filters for day/night
-  services.gammastep = mkIf hasSeat {
-    enable = true;
+  services.gammastep = {
+    enable = hasSeat;
     provider = "manual";
     temperature.night = 5100;
     latitude = -23.438343565214307;

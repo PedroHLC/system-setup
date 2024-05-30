@@ -1,8 +1,8 @@
 utils: with utils;
 
 # My beloved DE
-mkIf hasSeat {
-  home.packages = with pkgs; lists.optionals hasSeat [
+{
+  home.packages = with pkgs; [
     swaynotificationcenter # Won't work unless here
     sway-launcher-desktop
     fzf-bluetooth

@@ -1,6 +1,6 @@
 utils: with utils;
 
-mkIf hasSeat {
+{
   stylix.base16Scheme = {
     # https://github.com/vic/base16-rebecca
     author = "vic";

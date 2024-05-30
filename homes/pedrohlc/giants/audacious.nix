@@ -1,6 +1,6 @@
 utils: with utils;
 
-mkIf hasSeat {
+{
   # Merge Audacious public config with the secrets
   home.activation.mergeAudacious = hm.dag.entryAfter [ "onFilesChange" ] ''
     audConfig="$HOME/.config/audacious/config"

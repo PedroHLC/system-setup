@@ -1,6 +1,6 @@
 utils: with utils;
 
-mkIf hasSeat {
+{
   xdg.configFile = {
     sublimePreferences =
       let

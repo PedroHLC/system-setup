@@ -1,9 +1,9 @@
 utils: with utils;
 
 # My simple and humble bar
-mkIf hasSeat {
+{
   programs.i3status-rust = {
-    enable = true;
+    enable = hasSeat;
     bars = {
       main = {
         settings = {
