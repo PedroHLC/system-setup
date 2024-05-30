@@ -1,6 +1,6 @@
 utils: with utils;
 
-# My simple and humble bar
+# Broadcast to Living Room's TV
 mkIf sunshine {
   systemd.user.services.my-sunshine = {
     Unit = {
