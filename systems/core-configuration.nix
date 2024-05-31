@@ -238,7 +238,7 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = flakes.self.specialArgs;
+  home-manager.extraSpecialArgs = flakes.self.specialArgs // { nixosConfig = config; };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.

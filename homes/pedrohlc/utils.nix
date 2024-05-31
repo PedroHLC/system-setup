@@ -8,10 +8,10 @@
 , nvmeSensors ? [ ]
 , seat ? null
 }:
-{ config, lib, pkgs, ssot, flakes, usingNouveau ? false, ... }@inputs:
+{ config, lib, pkgs, ssot, flakes, nixosConfig, usingNouveau ? false, ... }@inputs:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat;
-  inherit config pkgs flakes usingNouveau;
+  inherit config pkgs flakes nixosConfig usingNouveau;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
   # Expand specs
@@ -176,7 +176,7 @@
   alternative-session = pkgs.callPackage ../../shared/scripts {
     scriptName = "alternative-session";
     substitutions = {
-      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${pkgs.gamescope_git}/bin/gamescope";
+      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${nixosConfig.programs.gamescope.package}/bin/gamescope";
     };
   };
 })

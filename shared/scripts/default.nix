@@ -2,7 +2,7 @@
 let
   inherit (lib.strings) concatStringsSep escapeShellArg;
   inherit (lib.attrsets) mapAttrsToList;
-  repArg = k: v: "--replace ${escapeShellArg k} ${escapeShellArg v}";
+  repArg = k: v: "--replace-fail ${escapeShellArg k} ${escapeShellArg v}";
 
   install =
     if substitutions != null then ''
@@ -16,6 +16,7 @@ stdenvNoCC.mkDerivation {
   name = scriptName;
   src = "${./.}";
   buildInputs = [ bash ];
+  preferLocalBuild = true;
   dontBuild = true;
   installPhase = ''
     runHook preInstall
