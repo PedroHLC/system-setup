@@ -30,7 +30,7 @@
   networking.firewall = {
     enable = lib.mkOverride 99 true;
     allowedTCPPorts = [ 53 80 443 853 8448 ];
-    allowedUDPPorts = [ 443 853 vpn.port 65001 65002 65003 65004 8448 ];
+    allowedUDPPorts = [ 443 853 vpn.port 64001 8448 ];
     trustedInterfaces = [ "wg0" ];
     # ICMP traffic is blocked by default by OCI
     allowPing = true;
