@@ -19,8 +19,8 @@ in
 {
   systemd.services = {
     ctr1 = ctrService "1";
-    ctr2 = ctrService "2";
-    ctr3 = ctrService "3";
-    ctr4 = ctrService "4";
+    #ctr2 = ctrService "2";
+    #ctr3 = ctrService "3";
+    #ctr4 = ctrService "4";
   };
 }

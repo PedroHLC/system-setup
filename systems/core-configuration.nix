@@ -233,6 +233,16 @@
   # Let's recover our long lost dogs (PR 122547)
   services.dbus.implementation = "broker";
 
+  # Dashboard with data I don't really want to store, but want to check previous values sometimes
+  services.datadog-agent = {
+    enable = true;
+    package = pkgs.datadog-agent.override { buildGoModule = pkgs.buildGo121Module; };
+    apiKeyFile = "/var/persistent/secrets/datadog.key";
+    site = "datadoghq.com";
+    enableLiveProcessCollection = true;
+    enableTraceAgent = true;
+  };
+
   # Help our friends worldwide
   services.snowflake-proxy.enable = true;
 
