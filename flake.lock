@@ -296,11 +296,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1717509893,
-        "narHash": "sha256-BlSLVPZQtTaiPXYPFiDktOiGFYe0uFF9sxEgtPKuahw=",
+        "lastModified": 1717601484,
+        "narHash": "sha256-ssmHwo8nySCr55N82YNZYf7p+FAkFM6X5Sy8z6X6nNY=",
         "owner": "CTR-tools",
         "repo": "CTR-ModSDK",
-        "rev": "fcbabe076624b459e2875591071c5e324b02b94f",
+        "rev": "e8c1d2c03de0ec3dc7109eab6940266218081a2b",
         "type": "github"
       },
       "original": {

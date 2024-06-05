@@ -33,7 +33,7 @@
   # Preferred executables
   browser = "${firefox-gate}/bin/firefox-gate";
   editor = "${pkgs.sublime4}/bin/subl";
-  terminal = "${pkgs.alacritty_git}/bin/alacritty";
+  terminal = "${config.programs.alacritty.package}/bin/alacritty";
 
   # Simple executable shortcuts
   swayncClient = "${pkgs.swaynotificationcenter}/bin/swaync-client";
@@ -41,7 +41,7 @@
   sudo = "${pkgs.sudo}/bin/sudo";
   sed = "${pkgs.gnused}/bin/sed";
   jq = "${pkgs.jq}/bin/jq";
-  swaymsg = "${pkgs.sway}/bin/swaymsg";
+  swaymsg = "${config.wayland.windowManager.sway.package}/bin/swaymsg";
   coreutilsBin = exe: "${pkgs.uutils-coreutils}/bin/uutils-${exe}";
   date = coreutilsBin "date";
   tr = coreutilsBin "tr";
@@ -50,7 +50,7 @@
   env = coreutilsBin "env";
   tty = coreutilsBin "tty";
   tmux = "${pkgs.tmux}/bin/tmux";
-  fish = "${pkgs.fish}/bin/fish";
+  fish = "${config.programs.fish.package}/bin/fish";
   systemctl = "${pkgs.systemd}/bin/systemctl";
   bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
   nmcli = "${pkgs.networkmanager}/bin/nmcli";

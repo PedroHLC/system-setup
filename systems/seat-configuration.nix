@@ -498,6 +498,7 @@
         ".config/obs-studio"
         ".config/osdlyrics"
         ".config/qBittorrent"
+        ".config/StardewValley"
         ".config/sublime-text"
         ".config/sunshine"
         ".config/TabNine"

@@ -17,24 +17,24 @@
     wireguard.interfaces.wg1.privateKeyFile = "/var/persistent/secrets/wgcf-teams/private";
   };
 
-  # UPS (right now needs repairs in the real world)
-  #power.ups = {
-  #  enable = true;
-  #  ups.tsshara = {
-  #    driver = "nutdrv_qx";
-  #    description = "tsshara";
-  #    port = "/dev/ttyACM0";
-  #  };
-  #
-  #  users.first = {
-  #    passwordFile = "/var/persistent/secrets/ups.psw";
-  #    upsmon = "master";
-  #  };
-  #
-  #  upsmon.monitor.tsshara = {
-  #    user = "first";
-  # };
-  #};
+  # UPS monitoring
+  power.ups = {
+    enable = false; # TODO: Update NUT
+    ups.sms-gamer = {
+      driver = "sms_ser";
+      description = "sms-gamer";
+      port = "/dev/ttyUSB0";
+    };
+
+    users.first = {
+      passwordFile = "/var/persistent/secrets/ups.psw";
+      upsmon = "master";
+    };
+
+    upsmon.monitor.sms-gamer = {
+      user = "first";
+   };
+  };
 
   # DuckDNS
   chaotic.duckdns = {
