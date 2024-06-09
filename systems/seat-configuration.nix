@@ -439,6 +439,7 @@
     boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
     boot.zfs.package = lib.mkForce pkgs.zfs;
     chaotic.mesa-git.enable = lib.mkForce false;
+    chaotic.hdr.enable = lib.mkForce false;
   };
 
   # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")
