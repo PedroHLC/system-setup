@@ -37,7 +37,6 @@
     # Experimental flavor
     stylix = {
       url = "github:danth/stylix";
-      inputs.flake-compat.follows = "chaotic/flake-compat";
       inputs.home-manager.follows = "chaotic/home-manager";
       inputs.nixpkgs.follows = "chaotic/nixpkgs";
     };

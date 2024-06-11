@@ -1,6 +1,8 @@
 utils: with utils;
 
 {
+  stylix.enable = true;
+
   stylix.base16Scheme = {
     # https://github.com/vic/base16-rebecca
     author = "vic";
