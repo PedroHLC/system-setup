@@ -1,7 +1,7 @@
 { flakes, pkgs, ... }:
 
 {
-  systemd.services.ctr =  {
+  systemd.services.ctr = {
     enable = true;
     description = "CTR-ModSDK Online Server";
     serviceConfig = {

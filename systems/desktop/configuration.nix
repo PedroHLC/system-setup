@@ -33,7 +33,7 @@
 
     upsmon.monitor.sms-gamer = {
       user = "first";
-   };
+    };
   };
 
   # DuckDNS

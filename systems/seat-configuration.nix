@@ -606,6 +606,9 @@
   # and there is a ".socket" trigger that starts it when opening printing dialogs.
   systemd.services.cups.wantedBy = lib.mkForce [ ];
 
+  # Let's avoid sending sensitive data to cloud
+  services.datadog-agent.enable = lib.mkForce false;
+
   # Some packages have some legacy leftovers
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"

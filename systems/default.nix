@@ -34,7 +34,7 @@ in
     extraModules = [
       impermanence.nixosModules.impermanence
       ../shared/config/4k-nohidpi.nix
-      ../shared/config/journal-upload.nix
+      #../shared/config/journal-upload.nix
       ../shared/config/wireguard-client.nix
       ../shared/config/wgcf-teams.nix
       ../shared/modules/focus.nix
