@@ -8,6 +8,7 @@ mkNixOS {
     "${nixpkgs}/nixos/modules/virtualisation/oci-common.nix"
     ./configuration.nix
     ./servers/adguard.nix
+    ./servers/atuin.nix
     ./servers/ctr.nix
     ./servers/git.nix
     ./servers/journal-remote.nix
