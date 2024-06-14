@@ -139,11 +139,7 @@
     loginProgram = "${pkgs.bash}/bin/sh";
     loginOptions =
       let
-        programScript = pkgs.callPackage ../shared/drvs/login-program.nix {
-          loginsPerTTY = {
-            "/dev/tty1" = "pedrohlc";
-          };
-        };
+        programScript = pkgs.callPackage ../../../packages/login-program.nix { };
       in
       toString programScript;
     extraArgs = [ "--skip-login" ];
@@ -272,28 +268,28 @@
           { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
 
         # Steam in tenfoot + mangoapp
-        bigsteam = final.callPackage ../shared/scripts { scriptName = "bigsteam"; };
+        bigsteam = final.callPackage ../../../packages/scripts { scriptName = "bigsteam"; };
 
         # Script to force XWayland (in case something catches fire).
-        nowl = final.callPackage ../shared/scripts { scriptName = "nowl"; };
+        nowl = final.callPackage ../../../packages/scripts { scriptName = "nowl"; };
 
         # Environment to properly (and force) use wayland.
-        wayland-env = final.callPackage ../shared/scripts { scriptName = "wayland-env"; };
+        wayland-env = final.callPackage ../../../packages/scripts { scriptName = "wayland-env"; };
 
         # Audacious rice
-        audacious-skin-winamp-classic = final.callPackage ../shared/drvs/audacious-skin-winamp-classic.nix { };
+        audacious-skin-winamp-classic = final.callPackage ../../../packages/audacious-skin-winamp-classic.nix { };
 
         # Anime4K shaders
-        anime4k = final.callPackage ../shared/drvs/anime4k.nix { };
+        anime4k = final.callPackage ../../../packages/anime4k.nix { };
 
         # Allow bluetooth management easily in sway
-        fzf-bluetooth = final.callPackage ../shared/drvs/fzf-bluetooth.nix { };
+        fzf-bluetooth = final.callPackage ../../../packages/fzf-bluetooth.nix { };
 
         # helps me adding routes to CF WARP
-        cfwarp-add = final.callPackage ../shared/scripts { scriptName = "cfwarp-add"; };
+        cfwarp-add = final.callPackage ../../../packages/scripts { scriptName = "cfwarp-add"; };
 
         # helps me connecting to some VPS
-        ssh-to-nix = final.callPackage ../shared/scripts { scriptName = "ssh-to-nix"; };
+        ssh-to-nix = final.callPackage ../../../packages/scripts { scriptName = "ssh-to-nix"; };
 
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;

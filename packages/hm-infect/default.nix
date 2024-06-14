@@ -1,6 +1,6 @@
 { pkgs
-, ssot
-, inputs
+, specialArgs
+, specs ? { seat = null; }
 , username ? "pedrohlc"
 , homeDirectory ? "/home/${username}"
 }: with inputs;
@@ -9,10 +9,10 @@ let
   hmConfig =
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = inputs.self.specialArgs;
+      extraSpecialArgs = specialArgs;
       modules = [
         chaotic.homeManagerModules.default
-        (import ./${username} { seat = null; })
+        (import ../../home/configurations/${username} specs)
         { home = { inherit username homeDirectory; }; }
         ./non-nixos.nix
       ];

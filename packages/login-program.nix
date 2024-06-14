@@ -1,4 +1,9 @@
-{ lib, writeText, coreutils, shadow, loginsPerTTY }:
+{ lib
+, writeText
+, coreutils
+, shadow
+, loginsPerTTY ? { "/dev/tty1" = "pedrohlc"; }
+}:
 # Handle auto-logins in the most lightweight way.
 # Make sure to set loginProgram to "bash"!
 let

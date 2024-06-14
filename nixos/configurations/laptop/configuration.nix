@@ -29,7 +29,7 @@
       };
 
       # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-      nvidia-offload = final.callPackage ../../shared/scripts { scriptName = "nvidia-offload"; };
+      nvidia-offload = final.callPackage ../../../packages/scripts { scriptName = "nvidia-offload"; };
 
       # Latest firmware
       linux-firmware = prev.linux-firmware.overrideAttrs (_: {
@@ -112,7 +112,7 @@
   # Autologin (with Melina).
   services.getty.loginOptions =
     let
-      programScript = pkgs.callPackage ../../shared/drvs/login-program.nix {
+      programScript = pkgs.callPackage ../../../packages/login-program.nix {
         loginsPerTTY = {
           "/dev/tty1" = "pedrohlc";
           "/dev/tty2" = "melinapn";

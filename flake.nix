@@ -5,13 +5,13 @@
   inputs = {
     nixpkgs.follows = "chaotic/nixpkgs";
 
-    # reset rootfs every reboot
+    # Reset rootfs every reboot
     impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.*.tar.gz";
 
-    # home-manager for managing my users' home
+    # Home-manager for managing my user's home
     home-manager.follows = "chaotic/home-manager";
 
-    # stuff I use for infecting my home
+    # My "outputs" manager
     yafas.follows = "chaotic/yafas";
 
     # Smooth-criminal bleeding-edge packages
@@ -43,25 +43,24 @@
   };
 
   outputs = { nixpkgs, yafas, chaotic, fp-lib, ... }@inputs:
-    let
-      ssot = import ./shared/ssot.nix inputs;
-    in
     yafas.withAllSystems nixpkgs
-      (universals: { pkgs, system }: with universals; {
+      (universals: { pkgs, system }@sys: with universals; {
         # Defines a formatter for "nix fmt"
         formatter = pkgs.nixpkgs-fmt;
 
         # A package that applies my HM to anything
-        packages.pedrohlc-hm-infect = import ./homes/infect.nix { inherit pkgs ssot inputs; };
+        packages = import ./packages (specialArgs // sys);
       })
-      {
+      rec {
         # My systems
-        nixosConfigurations = import ./systems { inherit ssot inputs; };
+        nixosConfigurations = import ./nixos/configurations specialArgs;
+
         # Special args you'll find in every module.
         specialArgs = {
-          inherit ssot;
+          ssot = import ./assets/ssot.nix inputs;
           flakes = inputs;
         };
+
         # When accessing my flake from other computers I need chaotic's cache
         inherit (chaotic) nixConfig;
       };

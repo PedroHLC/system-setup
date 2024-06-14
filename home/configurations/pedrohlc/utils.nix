@@ -8,7 +8,7 @@
 , nvmeSensors ? [ ]
 , seat ? null
 }:
-{ config, lib, pkgs, ssot, flakes, nixosConfig, usingNouveau ? false, ... }@inputs:
+{ config, lib, pkgs, ssot, flakes, nixosConfig, usingNouveau ? false, ... }:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat;
   inherit config pkgs flakes nixosConfig usingNouveau;
@@ -84,18 +84,18 @@
   videoAcceleration = if nvidiaBad then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = pkgs.callPackage ../../shared/config/audacious-config-generator.nix { };
+  audaciousConfigGenerator = pkgs.callPackage ../../../packages/audacious-config-generator.nix { };
 
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then 60 else 300;
   dpmsTimeout = lockTimeout * 2;
 
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
-  nrpr = pkgs.callPackage ./drvs/nixpkgs-review-in-tmux.nix { };
+  nrpr = pkgs.callPackage ../../../packages/nixpkgs-review-in-tmux.nix { };
 
   # Script to open my encrypted firefox profile.
   # This is a wrapper to run firefox with a zfs-encrypted profile, requires sudo
-  firefox-gate = with pkgs; callPackage ../../shared/scripts {
+  firefox-gate = with pkgs; callPackage ../../../packages/scripts {
     scriptName = "firefox-gate";
     substitutions = {
       "$(which firefox)" = "${firefox_nightly}/bin/firefox${firefoxSuffix}";
@@ -105,10 +105,10 @@
   };
 
   # swaylock with GIFs
-  my-wscreensaver = pkgs.callPackage ./drvs/my-wscreensaver.nix { };
+  my-wscreensaver = pkgs.callPackage ../../../packages/my-wscreensaver.nix { };
 
   # PokeMMO mutable launcher
-  pokemmo-launcher = with pkgs; callPackage ../../shared/scripts {
+  pokemmo-launcher = with pkgs; callPackage ../../../packages/scripts {
     scriptName = "pokemmo";
     substitutions = {
       "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsaLib}";
@@ -173,7 +173,7 @@
   '';
 
   # ...
-  alternative-session = pkgs.callPackage ../../shared/scripts {
+  alternative-session = pkgs.callPackage ../../../packages/scripts {
     scriptName = "alternative-session";
     substitutions = {
       "NOWRAP:-$(which gamescope)" = "NOWRAP:-${nixosConfig.programs.gamescope.package}/bin/gamescope";

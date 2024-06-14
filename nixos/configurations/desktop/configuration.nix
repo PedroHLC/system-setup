@@ -46,7 +46,7 @@
   # Better voltage, temperature, and a module to save me in case everything catches fire
   boot.extraModulePackages = with config.boot.kernelPackages; [
     zenpower
-    (pkgs.callPackage ../../shared/drvs/ksysrqd.nix { inherit kernel; })
+    (callPackage ../../../packages/ksysrqd.nix { })
   ];
   boot.blacklistedKernelModules = [ "k10temp" ];
 

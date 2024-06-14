@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ pkgs, lib, ssot, flakes, options, config, ... }: with ssot;
+{ pkgs, lib, ssot, flakes, options, config, specs, ... }@inputs: with ssot;
 
 # NixOS-defined options
 {
@@ -164,8 +164,8 @@
   nixpkgs.overlays =
     let
       thisConfiguration = final: _prev: {
-        nixos-clear = final.callPackage ../shared/scripts { scriptName = "nixos-clear"; };
-        aria2c-for-wget-curl = final.callPackage ../shared/drvs/aria2c-for-wget-curl.nix { };
+        nixos-clear = final.callPackage ../../../packages/scripts { scriptName = "nixos-clear"; };
+        aria2c-for-wget-curl = final.callPackage ../../../packages/aria2c-for-wget-curl.nix { };
       };
     in
     [ thisConfiguration ];
@@ -198,7 +198,7 @@
   '';
   programs.htop = {
     enable = true;
-    settings = import ../shared/assets/htop-settings.nix;
+    settings = import ../../../assets/htop-settings.nix;
   };
 
   # Put Helix as default editor.
@@ -248,7 +248,7 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = flakes.self.specialArgs // { nixosConfig = config; };
+  home-manager.extraSpecialArgs = flakes.self.specialArgs // { nixosConfig = config; specs = inputs.specs; };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
