@@ -239,9 +239,16 @@ with utils; {
   };
 
   programs = {
-    atuin.enable = hasSeat;
-    mpv = mkIf hasSeat {
+    atuin = {
       enable = true;
+      settings = {
+        auto_sync = true;
+        sync_frequency = "5m";
+        sync_address = "http://${vpn.lab.addr}:${toString vpn.lab.atuinPort}";
+      };
+    };
+    mpv = {
+      enable = hasSeat;
       # For watching animes in 60fps
       package = pkgs.mpv-vapoursynth;
       config = {

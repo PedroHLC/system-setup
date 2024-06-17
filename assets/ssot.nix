@@ -23,6 +23,7 @@ rec {
       v4 = "${vpn.prefix.v4}.1";
       v6 = "${vpn.prefix.v6}:1";
       adguardPort = 3334;
+      atuinPort = 8888;
     };
     zeta = rec {
       addr = "zeta.${vpn.tld}";
