@@ -177,7 +177,7 @@
     libva-utils
     lm_sensors
     lxqt.lxqt-sudo
-    lxqt.pavucontrol-qt
+    pwvucontrol_git
     lxqt.pcmanfm-qt
     mpv
     nomacs

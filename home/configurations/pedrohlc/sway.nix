@@ -207,7 +207,7 @@ utils: with utils;
             withLeaveOptions {
               "f" = "exec ${browser}; mode default";
               "Shift+f" = "exec ${pkgs.pcmanfm-qt}/bin/pcmanfm-qt; mode default";
-              "v" = "exec ${pkgs.lxqt.pavucontrol-qt}/bin/pavucontrol-qt; mode default";
+              "v" = "exec ${pkgs.pwvucontrol_git}/bin/pwvucontrol; mode default";
               "b" = "exec ${pkgs.qbittorrent}/bin/qbittorrent; mode default";
               "e" = "exec ${editor}; mode default";
               "s" = "exec ${pkgs.slack}/bin/slack; mode default";
