@@ -27,7 +27,7 @@ mkIf (kvm != null) {
       Requires = [ "xdg-desktop-portal.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.lan-mouse}/bin/lan-mouse -d -c ${configFile}";
+      ExecStart = "${pkgs.lan-mouse_git}/bin/lan-mouse -d -c ${configFile}";
       Slice = "session.slice";
       Restart = "on-failure";
       RestartSec = 5;
