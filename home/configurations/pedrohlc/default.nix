@@ -243,6 +243,11 @@ with utils; {
       enable = true;
       settings = {
         auto_sync = true;
+        filter_mode_shell_up_key_binding = "directory";
+        inline_height = 20;
+        local_timeout = 10;
+        show_tabs = false;
+        style = "compact";
         sync_frequency = "5m";
         sync_address = "http://${vpn.lab.addr}:${toString vpn.lab.atuinPort}";
       };
