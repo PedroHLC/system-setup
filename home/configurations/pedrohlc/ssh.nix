@@ -54,7 +54,7 @@ in
           user = "git";
         };
         "aur.archlinux.org" = {
-          inherit identityFile;
+          identityFile = "~/.ssh/pedrohlc_common";
           user = "aur";
         };
         # UFSCar
@@ -98,6 +98,7 @@ in
           port = 230;
         };
         "aur.archlinux.org-chaotic" = {
+          host = "aur.archlinux.org-chaotic";
           user = "aur";
           hostname = "aur.archlinux.org";
           identityFile = "~/Projects/cx.chaotic/aur-sshkey/id_rsa";
