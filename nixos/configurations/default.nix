@@ -12,6 +12,7 @@ let
       modules = [
         chaotic.nixosModules.default
         home-manager.nixosModules.home-manager
+        lix-module.nixosModules.default
         ../modules/configs/core.nix
         { home-manager.users.pedrohlc = import ../../home/configurations/pedrohlc; }
       ] ++ extraModules;

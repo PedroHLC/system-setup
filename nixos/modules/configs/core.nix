@@ -5,9 +5,6 @@
 {
   # Nix package-management settings.
   nix = {
-    # Latest nix (letting it bump automatically is madness)
-    package = pkgs.nixVersions.nix_2_20;
-
     # - Enable flakes
     # - newer CLI features
     # - content-aware
@@ -236,7 +233,7 @@
   # Dashboard with data I don't really want to store, but want to check previous values sometimes
   services.datadog-agent = {
     enable = true;
-    package = pkgs.datadog-agent.override { buildGoModule = pkgs.buildGo121Module; };
+    #package = pkgs.datadog-agent.override { buildGoModule = pkgs.buildGo121Module; };
     apiKeyFile = "/var/persistent/secrets/datadog.key";
     site = "datadoghq.com";
     enableLiveProcessCollection = true;
