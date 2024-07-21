@@ -14,13 +14,12 @@
     (final: prev: {
       # Bring GSP and related GPU stuff, but without any other GPU
       makeModulesClosure = args: (prev.makeModulesClosure args).overrideAttrs (prevAttrs: {
-        builder = final.runCommand "modules-closure.sh" { } ''
-          cat ${prevAttrs.builder} > $out
-          chmod +x $out
-          echo 'rm -rf "$out/lib/firmware/nvidia"' >> $out
-          echo 'mkdir -p "$out/lib/firmware/nvidia"' >> $out
-          echo 'cp --no-preserve=mode -r "$firmware/lib/firmware/nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"' >> $out
-        '';
+        builder = final.writeShellScript "modules-closure.sh" ((builtins.readFile prevAttrs.builder) + ''
+          mv "$out/lib/firmware/nvidia" "$out/lib/firmware/_nvidia"
+          mkdir "$out/lib/firmware/nvidia"
+          mv "$out/lib/firmware/_nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"
+          rm -rf "$out/lib/firmware/_nvidia"
+        '');
       });
 
       # Allow steam to find nvidia-offload script
@@ -30,15 +29,6 @@
 
       # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
       nvidia-offload = final.callPackage ../../../packages/scripts { scriptName = "nvidia-offload"; };
-
-      # Latest firmware
-      linux-firmware = prev.linux-firmware.overrideAttrs (_: {
-        src = final.fetchzip {
-          url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/snapshot/linux-firmware-b3132c18d0be905d352dddf554230b14fc7eab5c.tar.gz";
-          hash = "sha256-Mg9BLB3x19wwaIIsydO/jy0hYEUfiZC1xPdRsN7p4WU=";
-        };
-        outputHash = "sha256-xbE/Z0dl2bXMmgwphenfNS9BC/7lMeFoPcTLsk2NCbY=";
-      });
     })
   ];
 
@@ -74,18 +64,18 @@
     variables = {
       "VK_ICD_FILENAMES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
       "LIBVA_DRIVER_NAME" = "iHD";
-      # Helps me debugging kernel modules
-      #"HAUNTED_PLACE" =
-      #  let
-      #    kernel-name = config.boot.kernelPackages.kernel.name or "kernel";
-      #  in
-      #  pkgs.makeModulesClosure {
-      #    rootModules = config.boot.initrd.availableKernelModules ++ config.boot.initrd.kernelModules;
-      #    kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
-      #    firmware = config.hardware.firmware;
-      #    allowMissing = false;
-      #  };
     };
+    # Helps me debugging kernel modules
+    etc.haunted_place.source =
+        let
+          kernel-name = config.boot.kernelPackages.kernel.name or "kernel";
+        in
+        pkgs.makeModulesClosure {
+          rootModules = config.boot.initrd.availableKernelModules ++ config.boot.initrd.kernelModules;
+          kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
+          firmware = config.hardware.firmware;
+          allowMissing = false;
+        };
   };
 
   # Intel VAAPI (NVIDIA enable its own)
@@ -152,7 +142,7 @@
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
         package = nvidiaPackage;
-        #open = true; # I was having issues with NVRAM
+        open = true;
 
         prime = {
           offload.enable = true;

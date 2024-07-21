@@ -105,6 +105,7 @@ utils: with utils;
           "MouseEventListener" # Dependency of some other plugin
           "NeoVintageous" # Vim modes for sublime
           "Nix" # Nix syntax
+          "Nushell" # Nushell syntax
           "Origami" # Easy split windows into panes
           "Package Control" # Required for having all the other
           "PKGBUILD" # Arch's PKGBUILDs syntax

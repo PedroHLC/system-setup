@@ -5,6 +5,9 @@
 {
   # Nix package-management settings.
   nix = {
+    # Too many regressions in Nix nowadays.
+    package = pkgs.lix;
+
     # - Enable flakes
     # - newer CLI features
     # - content-aware
