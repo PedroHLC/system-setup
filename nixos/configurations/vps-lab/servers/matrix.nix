@@ -1,8 +1,10 @@
-{ config, pkgs, ssot, flakes, ... }: with ssot;
+{ config, lib, pkgs, ssot, flakes, ... }: with ssot;
 # Adapted from:
 # https://gitlab.com/famedly/conduit/-/blob/3bfdae795d4d9ec9aeaac7465e7535ac88e47756/nix/README.md
 let
   matrix_hostname = web.dev.addr;
+
+  matrix_hostname_regex = lib.strings.escapeRegex matrix_hostname;
 
   well_known_server = pkgs.writeText "well-known-matrix-server" ''
     {
@@ -87,6 +89,31 @@ in
         servers = {
           "[::1]:${toString config.services.matrix-conduit.settings.global.port}" = { };
         };
+      };
+    };
+  };
+
+  # Telegram bridge
+  services.mautrix-telegram = {
+    enable = true;
+    environmentFile = "/var/persistent/secrets/mautrix-telegram.env";
+    serviceDependencies = [ "conduit.service" ];
+    # https://github.com/mautrix/telegram/blob/v0.15.1/mautrix_telegram/example-config.yaml
+    settings = {
+      appservice = rec {
+        port = 29317;
+        address = "http://localhost:29317";
+        id = "telegram";
+        bot_displayname = "Chaotic-CX Telegram";
+        bot_username = "telegrambot";
+      };
+      homeserver = {
+        address = "https://${matrix_hostname}";
+        domain = matrix_hostname;
+      };
+      bridge.permissions = {
+        "${matrix_hostname}" = "full";
+        "@admin:${matrix_hostname}" = "admin";
       };
     };
   };

@@ -150,8 +150,15 @@
     };
   };
 
-  # Allows building v4 packages
-  nix.settings.system-features = [ "big-parallel" "gccarch-x86-64-v3" ];
+  # Feature set
+  nix.settings.system-features = [
+    # Allows building v4 packages
+    "big-parallel"
+    "gccarch-x86-64-v3"
+    # Allows building Nixpkgs tests
+    "kvm"
+    "nixos-test"
+  ];
 
   # Allows HDR gaming (AMD-GPU only).
   chaotic.hdr = {
