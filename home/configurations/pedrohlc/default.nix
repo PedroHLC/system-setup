@@ -431,6 +431,7 @@ with utils; {
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
           "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
           "@core" = "cd ~/Projects/co.timeline/core";
+          "@calc-rs" = "cd ~/Projects/co.timeline/cacl-rs";
           "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
         } // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
@@ -468,6 +469,10 @@ with utils; {
     # dev env for my projects
     direnv = {
       enable = true;
+      nix-direnv.enable = true;
+      config = {
+        whitelist.prefix = [ "~/Projects" ];
+      };
       # Fish-only
       enableBashIntegration = false;
       enableNushellIntegration = false;
