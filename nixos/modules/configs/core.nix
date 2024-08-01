@@ -5,8 +5,8 @@
 {
   # Nix package-management settings.
   nix = {
-    # Too many regressions in Nix nowadays.
-    package = pkgs.lix;
+    # I actually wanted nixVersions.nix_2_23, but that's not a thing.
+    package = pkgs.nixVersions.latest;
 
     # - Enable flakes
     # - newer CLI features
