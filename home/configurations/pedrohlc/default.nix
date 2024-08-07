@@ -144,13 +144,13 @@ with utils; {
       };
       zedNodeBin = {
         enable = hasSeat;
-        target = "zed/node/node-v18.15.0-linux-x64/bin";
-        source = "${pkgs.nodejs_18}/bin";
+        target = "zed/node/node-v22.5.1-linux-x64/bin";
+        source = "${pkgs.nodejs_22}/bin";
       };
       zedNodeLib = {
         enable = hasSeat;
-        target = "zed/node/node-v18.15.0-linux-x64/lib";
-        source = "${pkgs.nodejs_18}/lib";
+        target = "zed/node/node-v22.5.1-linux-x64/lib";
+        source = "${pkgs.nodejs_22}/lib";
       };
     };
     desktopEntries = mkIf hasSeat {

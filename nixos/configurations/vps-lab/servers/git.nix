@@ -23,9 +23,13 @@ let
     head-include = builtins.toString head;
     section-from-path = "2";
     source-filter = "${adjustedHightlight}/syntax-highlighting.py";
+    enable-http-clone = 1;
+    clone-url =  "https://$HTTP_HOST$SCRIPT_NAME/$CGIT_REPO_URL" ;
   };
 
   package = pkgs.cgit-pink;
+
+  virtualHost = "lab.pedrohlc.com";
 in
 {
   services.cgit = {
@@ -33,8 +37,8 @@ in
       enable = true;
       inherit settings package;
       nginx = {
+        inherit virtualHost;
         location = "/git";
-        virtualHost = "lab.pedrohlc.com";
       };
       scanPath = "/var/public-git";
     };
@@ -46,8 +50,8 @@ in
         root-desc = "These are my private, automated backups of git repositories. Third parties are not allowed to see this! Public archive can be found in https://lab.pedrohlc.com/git";
       };
       nginx = {
+        inherit virtualHost;
         location = "/YOU_ARE_NOT_ALLOWED_TO_VISIT_THIS_URL/git";
-        virtualHost = "lab.pedrohlc.com";
       };
       scanPath = "/var/private-git";
     };
