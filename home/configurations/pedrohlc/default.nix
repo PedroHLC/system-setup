@@ -69,6 +69,11 @@ with utils; {
         # Expect mouse
         set -g mouse off
       '';
+      # Folow child by default
+      ".gdbinit".text = ''
+        set follow-fork-mode child
+        set detach-on-fork off
+      '';
     };
   };
 
