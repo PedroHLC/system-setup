@@ -553,6 +553,7 @@
         ".config/tidal-hifi"
         ".config/vesktop"
         ".config/Slack"
+        ".config/Unknown Organization"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
         ".i2pd"
