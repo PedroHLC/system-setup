@@ -96,7 +96,7 @@
   users.users.melinapn = {
     uid = 1002;
     isNormalUser = true;
-    extraGroups = [ "users" "audio" "video" "input" "networkmanager" ];
+    extraGroups = [ "users" ];
   };
 
   # Autologin (with Melina).
