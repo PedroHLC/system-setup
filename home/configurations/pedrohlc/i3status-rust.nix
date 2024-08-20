@@ -109,8 +109,14 @@ utils: with utils;
             block = "battery";
             interval = 5;
             device = battery;
-          }) ++
-        [{
+          }
+        ) ++ (lists.optional hasUPS
+          {
+            block = "custom";
+            command = "echo -n ' '; ${pkgs.nut}/bin/upsc ${ups} 'ups.load' | ${sed} s/\\.00/%/";
+            interval = 5;
+          }
+        ) ++ [{
           block = "custom";
           command =
             let

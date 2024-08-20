@@ -292,6 +292,9 @@
         # includes newer protocols
         xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
 
+        # newer version
+        nut = final.nut_git;
+
         # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
         hostapd_nolar = final.hostapd.overrideAttrs (oa: {
           patches = [
@@ -547,6 +550,7 @@
     directories = [
       "/var/cache"
       "/var/lib/AccountsService"
+      "/var/lib/nixos"
       "/var/log"
       "/var/spool"
     ];

@@ -7,15 +7,17 @@
 , mainNetworkInterface ? "eno1"
 , nvmeSensors ? [ ]
 , seat ? null
+, ups ? null
 }:
 { config, lib, pkgs, ssot, flakes, nixosConfig, usingNouveau ? false, ... }:
 {
-  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat;
+  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
   inherit config pkgs flakes nixosConfig usingNouveau;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
   # Expand specs
   hasBattery = battery != null;
+  hasUPS = ups != null;
   hasGitKey = gitKey != null;
   hasSeat = seat != null;
   hasTouchpad = touchpad != null;

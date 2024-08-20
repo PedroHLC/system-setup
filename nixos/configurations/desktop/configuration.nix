@@ -19,7 +19,7 @@
 
   # UPS monitoring
   power.ups = {
-    enable = false; # TODO: Update NUT
+    enable = true;
     ups.sms-gamer = {
       driver = "sms_ser";
       description = "sms-gamer";

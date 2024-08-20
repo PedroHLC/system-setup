@@ -6,6 +6,7 @@
   gitKey = "DF4C6898CBDC6DF5";
   gpuSensor = "amdgpu-pci-0900";
   nvmeSensors = [ "nvme-pci-0100" "nvme-pci-0400" ];
+  ups = "sms-gamer";
   seat = {
     displayId = "DP-1";
     displayWidth = 3840;
