@@ -2,11 +2,15 @@
 {
   // Features Preferences
   "auto_update": false,
+  "features": {
+    "inline_completion_provider": "none" // one day: "tabnine"
+  },
 
   // UI Preferences
   "theme": "Catppuccin Macchiato",
   "vim_mode": true,
   "ui_font_size": 14,
+  "buffer_font_family": "Borg Sans Mono",
   "buffer_font_size": 15,
   "preferred_line_length": 88,
   "toolbar": {
@@ -40,5 +44,11 @@
       "format_on_save": "off",
       "language_servers": []
     }
-  }
+  },
+
+  // Disable shit
+  "collaboration_panel": { "button": false },
+  "chat_panel": { "button": false },
+  "notification_panel": { "button": false },
+  "assistant": { "version": "2", "button": false, "enabled": false }
 }

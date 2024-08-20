@@ -165,7 +165,6 @@
     ethtool
     ffmpegthumbnailer
     firefox_nightly
-    fluffychat # todo: drop
     google-chrome
     helvum
     keybase-gui
@@ -298,6 +297,18 @@
           patches = [
             (final.fetchpatch { url = "https://tildearrow.org/storage/hostapd-2.10-lar.patch"; hash = "sha256-USiHBZH5QcUJfZSxGoFwUefq3ARc4S/KliwUm8SqvoI="; })
           ];
+        });
+
+        # Zoom with pw-v4l2
+        zoom-us = prev.zoom-us.overrideAttrs (oa: {
+          postFixup =
+            let
+              anchorPattern = "--prefix LD_LIBRARY_PATH";
+            in
+            builtins.replaceStrings
+              [ anchorPattern ]
+              [ "--prefix LD_PRELOAD ':' '${final.pipewire.out}/lib/pipewire-0.3/v4l2/libpw-v4l2.so' ${anchorPattern}" ]
+              oa.postFixup;
         });
       };
     in

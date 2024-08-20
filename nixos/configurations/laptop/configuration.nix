@@ -67,15 +67,15 @@
     };
     # Helps me debugging kernel modules
     etc.haunted_place.source =
-        let
-          kernel-name = config.boot.kernelPackages.kernel.name or "kernel";
-        in
-        pkgs.makeModulesClosure {
-          rootModules = config.boot.initrd.availableKernelModules ++ config.boot.initrd.kernelModules;
-          kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
-          firmware = config.hardware.firmware;
-          allowMissing = false;
-        };
+      let
+        kernel-name = config.boot.kernelPackages.kernel.name or "kernel";
+      in
+      pkgs.makeModulesClosure {
+        rootModules = config.boot.initrd.availableKernelModules ++ config.boot.initrd.kernelModules;
+        kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
+        firmware = config.hardware.firmware;
+        allowMissing = false;
+      };
   };
 
   # Intel VAAPI (NVIDIA enable its own)

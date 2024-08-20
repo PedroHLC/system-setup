@@ -24,7 +24,7 @@ let
     section-from-path = "2";
     source-filter = "${adjustedHightlight}/syntax-highlighting.py";
     enable-http-clone = 1;
-    clone-url =  "https://$HTTP_HOST$SCRIPT_NAME/$CGIT_REPO_URL" ;
+    clone-url = "https://$HTTP_HOST$SCRIPT_NAME/$CGIT_REPO_URL";
   };
 
   package = pkgs.cgit-pink;
