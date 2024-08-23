@@ -21,12 +21,9 @@
   boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
 
   # Filesytems settings.
-  boot.supportedFilesystems = [ "zfs" "ext4" "f2fs" "xfs" "btrfs" "ntfs3" ];
+  boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.zfs.package = lib.mkOverride 99 pkgs.zfs_cachyos;
-
-  # New scheduler
-  chaotic.scx.scheduler = "scx_rusty";
 
   # Kernel Params
   boot.kernelParams = [
