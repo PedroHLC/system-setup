@@ -377,6 +377,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-old": {
+      "locked": {
+        "lastModified": 1720957393,
+        "narHash": "sha256-oedh2RwpjEa+TNxhg5Je9Ch6d3W1NKi7DbRO1ziHemA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "693bc46d169f5af9c992095736e82c3488bf7dbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "693bc46d169f5af9c992095736e82c3488bf7dbb",
+        "type": "github"
+      }
+    },
     "pedrochrome-css": {
       "flake": false,
       "locked": {
@@ -407,6 +423,7 @@
           "chaotic",
           "nixpkgs"
         ],
+        "nixpkgs-old": "nixpkgs-old",
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
         "yafas": [

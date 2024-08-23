@@ -4,6 +4,7 @@
   # My main channel and extra repositories
   inputs = {
     nixpkgs.follows = "chaotic/nixpkgs";
+    nixpkgs-old.url = "github:NixOS/nixpkgs/693bc46d169f5af9c992095736e82c3488bf7dbb";
 
     # Reset rootfs every reboot
     impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.*.tar.gz";

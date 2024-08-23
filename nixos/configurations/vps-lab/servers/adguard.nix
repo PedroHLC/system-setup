@@ -1,4 +1,4 @@
-{ lib, ssot, knownClients, ... }@inputs: with ssot;
+{ lib, ssot, knownClients, flakes, ... }@inputs: with ssot;
 {
   systemd.services.adguardhome = {
     serviceConfig.User = "adguard";
@@ -18,6 +18,7 @@
 
   services.adguardhome = {
     enable = true;
+    package = flakes.nixpkgs-old.legacyPackages.aarch64-linux.adguardhome;
     mutableSettings = false;
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file
     settings =
