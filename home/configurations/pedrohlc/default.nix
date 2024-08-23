@@ -194,7 +194,7 @@ with utils; {
       enable = hasSeat;
       associations = {
         added = {
-          "application/octet-stream" = "sublime_text.desktop";
+          "application/octet-stream" = "dev.zed.Zed.desktop";
         };
         removed = {
           "image/gif" = "google-chrome.desktop";

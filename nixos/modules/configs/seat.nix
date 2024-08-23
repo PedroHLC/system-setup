@@ -211,7 +211,7 @@
     nixpkgs-fmt # Nix
     python3Minimal
     rebar3 # Elixir-dev
-    sublime4
+    #sublime4 # TODO: drop
     zed-editor_git
 
     # Office-stuff
@@ -302,16 +302,37 @@
           ];
         });
 
-        # Zoom with pw-v4l2
+        # STUPID ZOOM IS STUPID!
         zoom-us = prev.zoom-us.overrideAttrs (oa: {
           postFixup =
             let
-              anchorPattern = "--prefix LD_LIBRARY_PATH";
+              anchorPattern = "--prefix LD_LIBRARY_PATH \":\" ";
+              addPwV4l2 = "--prefix LD_PRELOAD : '${final.pipewire.out}/lib/pipewire-0.3/v4l2/libpw-v4l2.so'";
+              fakeGnome = "--set XDG_CURRENT_DESKTOP gnome";
+
+              mainWrapperTweakedFixup =
+                builtins.replaceStrings
+                  [
+                    anchorPattern
+                    "libpulseaudio-17.0/lib"
+                    "--prefix PATH : "
+                    "/bin \\"
+                  ]
+                  [
+                    "${addPwV4l2} ${fakeGnome} ${anchorPattern} \${APP_LIBS="
+                    "libpulseaudio-17.0/lib}"
+                    "--prefix PATH : \${APP_PATH="
+                    "/bin} \\"
+                  ]
+                  oa.postFixup;
             in
-            builtins.replaceStrings
-              [ anchorPattern ]
-              [ "--prefix LD_PRELOAD ':' '${final.pipewire.out}/lib/pipewire-0.3/v4l2/libpw-v4l2.so' ${anchorPattern}" ]
-              oa.postFixup;
+            mainWrapperTweakedFixup + ''
+              patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/opt/zoom/ZoomWebviewHost
+              wrapProgram $out/opt/zoom/ZoomWebviewHost \
+                 --chdir "$out/opt/zoom" \
+                 --prefix PATH : "$APP_PATH" \
+                 --prefix LD_LIBRARY_PATH : "$APP_LIBS:$out/opt/zoom/cef:$out/opt/zoom/Qt/lib"
+            '';
         });
       };
     in
@@ -328,6 +349,11 @@
     enable = true;
     packages = with pkgs; [ osdlyrics kdePackages.kwallet ];
   };
+
+  # STUPID ZOOM IS STUPID
+  systemd.tmpfiles.rules = [
+    "L+ /usr/libexec/xdg-desktop-portal - - - - ${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal"
+  ];
 
   # Fonts.
   fonts = {
