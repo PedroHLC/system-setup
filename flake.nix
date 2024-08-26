@@ -66,4 +66,3 @@
         inherit (chaotic) nixConfig;
       };
 }
-

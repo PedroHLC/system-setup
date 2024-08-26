@@ -230,13 +230,12 @@
     dockerCompat = true; # Podman provides docker.
   };
 
-  # Let's recover our long lost dogs (PR 122547)
+  # dbus-broker
   services.dbus.implementation = "broker";
 
   # Dashboard with data I don't really want to store, but want to check previous values sometimes
   services.datadog-agent = {
     enable = true;
-    #package = pkgs.datadog-agent.override { buildGoModule = pkgs.buildGo121Module; };
     apiKeyFile = "/var/persistent/secrets/datadog.key";
     site = "datadoghq.com";
     enableLiveProcessCollection = true;
@@ -249,6 +248,12 @@
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = flakes.self.specialArgs // { nixosConfig = config; specs = inputs.specs; };
+
+  # Newer switch
+  system.switch = {
+    enable = false;
+    enableNg = true;
+  };
 
   # Set $NIX_PATH entry for nixpkgs.
   # This is for reusing flakes inputs for old commands.
