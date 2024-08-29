@@ -28,7 +28,7 @@
 
     users.first = {
       passwordFile = "/var/persistent/secrets/ups.psw";
-      upsmon = "master";
+      upsmon = "primary";
     };
 
     upsmon.monitor.sms-gamer = {
@@ -187,4 +187,3 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   home-manager.users.pedrohlc.home.stateVersion = "23.11"; # Did you read the comment?
 }
-
