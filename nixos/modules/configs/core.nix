@@ -139,7 +139,7 @@
     file
     fzf
     google-authenticator
-    helix
+    evil-helix
     jq
     killall
     mosh
