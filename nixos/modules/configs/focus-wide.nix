@@ -9,6 +9,7 @@ lib.mkIf (!config.focusMode) {
 
     # Gaming
     bigsteam
+    mangoapprun
     mangohud_git
     mesa-demos
     vulkan-caps-viewer
