@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ lib, pkgs, ssot, ... }: with ssot;
+{ config, lib, pkgs, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -459,6 +459,11 @@
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql; # always the latest
+    settings = {
+      # log_statement = "all";
+      # logging_collector = true;
+      log_destination = lib.mkForce "syslog";
+    };
   };
   systemd.services.postgresql.wantedBy = lib.mkForce [ ]; # don't start with system
 
@@ -467,6 +472,13 @@
     ""
     "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr"
   ];
+
+  # Bigger internet
+  services.kubo = {
+    enable = true;
+    startWhenNeeded = true;
+  };
+  users.users.pedrohlc.extraGroups = [ config.services.kubo.group ];
 
   # Creates a second boot entry with LTS kernel, stable ZFS, stable Mesa3D.
   specialisation.safe.configuration = {
@@ -576,6 +588,7 @@
     directories = [
       "/var/cache"
       "/var/lib/AccountsService"
+      "/var/lib/ipfs"
       "/var/lib/nixos"
       "/var/log"
       "/var/spool"

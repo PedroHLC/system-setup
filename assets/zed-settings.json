@@ -12,7 +12,8 @@
   "ui_font_size": 14,
   "buffer_font_family": "Borg Sans Mono",
   "buffer_font_size": 15,
-  "preferred_line_length": 88,
+  "preferred_line_length": 100,
+  "wrap_guides": [50, 98, 100, 150],
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
