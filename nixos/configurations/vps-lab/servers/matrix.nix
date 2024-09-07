@@ -28,6 +28,7 @@ in
       server_name = matrix_hostname;
       allow_registration = false;
       database_backend = "rocksdb";
+      trusted_servers = [ "envs.net" ];
     };
   };
   services.nginx = {
