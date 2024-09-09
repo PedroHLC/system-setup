@@ -33,7 +33,7 @@ ssot: with ssot;
   { name = "Real Internet"; ids = [ "177.8.64.0/22" ]; tags = [ "user_regular" ]; }
   { name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
   {
-    name = "Nextel";
+    name = "Claro";
     ids = [
       "177.56.0.0/14"
       "179.224.0.0/15"
@@ -50,6 +50,7 @@ ssot: with ssot;
       "200.173.0.0/16"
       "200.182.0.0/16"
       "2804:14c:100::/40"
+      "2804:14d:8e00::/40"
       "2804:388::/30"
     ];
     tags = [ "user_regular" ];

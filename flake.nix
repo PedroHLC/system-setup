@@ -13,7 +13,7 @@
     home-manager.follows = "chaotic/home-manager";
 
     # My "outputs" manager
-    yafas.follows = "chaotic/yafas";
+    yafas.url = "github:UbiqueLambda/yafas";
 
     # Smooth-criminal bleeding-edge packages
     chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.*.tar.gz";
@@ -28,8 +28,7 @@
     ctr = {
       url = "github:CTR-tools/CTR-ModSDK";
       inputs.nixpkgs.follows = "chaotic/nixpkgs";
-      inputs.yafas.follows = "chaotic/yafas";
-      inputs.systems.follows = "chaotic/systems";
+      inputs.yafas.follows = "yafas";
     };
 
     # Functional-programming lib

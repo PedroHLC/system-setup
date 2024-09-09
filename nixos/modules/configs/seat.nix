@@ -303,37 +303,7 @@
         });
 
         # STUPID ZOOM IS STUPID!
-        zoom-us = prev.zoom-us.overrideAttrs (oa: {
-          postFixup =
-            let
-              anchorPattern = "--prefix LD_LIBRARY_PATH \":\" ";
-              addPwV4l2 = "--prefix LD_PRELOAD : '${final.pipewire.out}/lib/pipewire-0.3/v4l2/libpw-v4l2.so'";
-              fakeGnome = "--set XDG_CURRENT_DESKTOP gnome";
-
-              mainWrapperTweakedFixup =
-                builtins.replaceStrings
-                  [
-                    anchorPattern
-                    "libpulseaudio-17.0/lib"
-                    "--prefix PATH : "
-                    "/bin \\"
-                  ]
-                  [
-                    "${addPwV4l2} ${fakeGnome} ${anchorPattern} \${APP_LIBS="
-                    "libpulseaudio-17.0/lib}"
-                    "--prefix PATH : \${APP_PATH="
-                    "/bin} \\"
-                  ]
-                  oa.postFixup;
-            in
-            mainWrapperTweakedFixup + ''
-              patchelf --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" $out/opt/zoom/ZoomWebviewHost
-              wrapProgram $out/opt/zoom/ZoomWebviewHost \
-                 --chdir "$out/opt/zoom" \
-                 --prefix PATH : "$APP_PATH" \
-                 --prefix LD_LIBRARY_PATH : "$APP_LIBS:$out/opt/zoom/cef:$out/opt/zoom/Qt/lib"
-            '';
-        });
+        zoom-us = import ../../../packages/zoom-us-override.nix { inherit final prev; };
       };
     in
     [ thisConfigsOverlay ];

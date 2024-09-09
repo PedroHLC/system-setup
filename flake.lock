@@ -116,40 +116,23 @@
     },
     "chaotic": {
       "inputs": {
-        "compare-to": "compare-to",
         "fenix": "fenix",
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "jovian": "jovian",
-        "nixpkgs": "nixpkgs",
-        "systems": "systems",
-        "yafas": "yafas"
+        "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1725738693,
-        "narHash": "sha256-nqsRStEB29KcTsMC52NdKFzd0PSudQHY6w6oRrNyLCM=",
-        "rev": "38451822a144faa53a7ee96d4f0478d94945b67a",
-        "revCount": 1392,
+        "lastModified": 1725895114,
+        "narHash": "sha256-bjYcLbnSEqwafQIz7bf1wrjJ7p+JEGGLg4HBIoqU0CA=",
+        "rev": "d5d71ebbbbbd1e0121924969e011f30eba31080c",
+        "revCount": 1395,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1392%2Brev-38451822a144faa53a7ee96d4f0478d94945b67a/0191ce0d-dd9c-78a8-a5b2-d1c9070acb04/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1395%2Brev-d5d71ebbbbbd1e0121924969e011f30eba31080c/0191d761-4c2f-7d41-b309-657a2a8f3e2f/source.tar.gz"
       },
       "original": {
         "type": "tarball",
         "url": "https://flakehub.com/f/chaotic-cx/nyx/0.1.%2A.tar.gz"
-      }
-    },
-    "compare-to": {
-      "locked": {
-        "lastModified": 1695341185,
-        "narHash": "sha256-htO6DSbWyCgaDkxi7foPjXwJFPzGjVt3RRUbPSpNtZY=",
-        "rev": "98b8e330823a3570d328720f87a1153f8a7f2224",
-        "revCount": 2,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nix-empty-flake/0.1.2%2Brev-98b8e330823a3570d328720f87a1153f8a7f2224/018aba35-d228-7fa9-b205-7616c89ef4e0/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/chaotic-cx/nix-empty-flake/%3D0.1.2.tar.gz"
       }
     },
     "ctr": {
@@ -158,12 +141,8 @@
           "chaotic",
           "nixpkgs"
         ],
-        "systems": [
-          "chaotic",
-          "systems"
-        ],
+        "systems": "systems",
         "yafas": [
-          "chaotic",
           "yafas"
         ]
       },
@@ -221,7 +200,20 @@
     },
     "flake-schemas": {
       "locked": {
-        "lastModified": 1693491534,
+        "lastModified": 1721999734,
+        "narHash": "sha256-G5CxYeJVm4lcEtaO87LKzOsVnWeTcHGKbKxNamNWgOw=",
+        "rev": "0a5c42297d870156d9c57d8f99e476b738dcd982",
+        "revCount": 75,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.1.5/0190ef2f-61e0-794b-ba14-e82f225e55e6/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.1.5.tar.gz"
+      }
+    },
+    "flake-schemas_2": {
+      "locked": {
         "narHash": "sha256-ifw8Td8kD08J8DxFbYjeIx5naHcDLz7s2IFP3X42I/U=",
         "rev": "c702cbb663d6d70bbb716584a2ee3aeb35017279",
         "revCount": 21,
@@ -230,7 +222,7 @@
       },
       "original": {
         "type": "tarball",
-        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.1.1.tar.gz"
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/0.1.1.tar.gz"
       }
     },
     "flake-utils": {
@@ -447,10 +439,7 @@
         "nixpkgs-old": "nixpkgs-old",
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
-        "yafas": [
-          "chaotic",
-          "yafas"
-        ]
+        "yafas": "yafas"
       }
     },
     "rust-analyzer-src": {
@@ -536,16 +525,25 @@
         "type": "github"
       }
     },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "yafas": {
       "inputs": {
-        "flake-schemas": [
-          "chaotic",
-          "flake-schemas"
-        ],
-        "systems": [
-          "chaotic",
-          "systems"
-        ]
+        "flake-schemas": "flake-schemas_2",
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1695926485,
