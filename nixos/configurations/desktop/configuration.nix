@@ -176,7 +176,7 @@
   };
 
   # More Classics' gaming
-  chaotic.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
+  programs.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
