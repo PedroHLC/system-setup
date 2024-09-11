@@ -177,8 +177,5 @@
   # ...
   alternative-session = pkgs.callPackage ../../../packages/scripts {
     scriptName = "alternative-session";
-    substitutions = {
-      "NOWRAP:-$(which gamescope)" = "NOWRAP:-${nixosConfig.programs.gamescope.package}/bin/gamescope";
-    };
   };
 })

@@ -20,7 +20,6 @@
       keep-derivations = true
 
       max-substitution-jobs = 48
-      download-buffer-size = 201326592
       http-connections = 100
     '';
 

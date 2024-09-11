@@ -15,6 +15,8 @@ lib.mkIf (!config.focusMode) {
     vulkan-caps-viewer
     vulkan-tools
     winetricks
+    gamescope-wsi_git
+    gamescope-wsi32_git
 
     #devilutionx
     #duckstation
@@ -31,15 +33,28 @@ lib.mkIf (!config.focusMode) {
       args = [ "--immediate-flips" "--" "bigsteam" ];
     };
   };
+
+  # My special gamescope
   programs.gamescope = {
     enable = true;
-    capSysNice = false; # capSysNice freezes gamescopeSession for me.
-    args = [ ];
+    capSysNice = true;
     env = lib.mkForce {
       # I set DXVK_HDR in the alternative-sessions script.
       ENABLE_GAMESCOPE_WSI = "1";
     };
     package = pkgs.gamescope_git;
+  };
+  security.wrappers.valve-gamescope = {
+    owner = "root";
+    group = "root";
+    source = "${pkgs.gamescope_git}/bin/gamescope";
+    capabilities = "cap_sys_nice+pie";
+  };
+  environment.variables.GAMESCOPE_NOWRAP = "${config.security.wrapperDir}/valve-gamescope";
+  fileSystems."/opt/gamescope" = {
+    device = pkgs.gamescope_git.outPath;
+    fsType = "none";
+    options = [ "bind" "ro" "x-gvfs-hide" ];
   };
 
   # Both work and hobby projects
