@@ -387,6 +387,7 @@ with utils; {
           defaultBranch = "main";
         };
         rebase = {
+          autoStash = true;
           # When interactive-rebasing, keep original commiter.
           instructionFormat = "%s%nexec GIT_COMMITTER_DATE=\"%cI\" GIT_COMMITTER_NAME=\"%cN\" GIT_COMMITTER_EMAIL=\"%cE\" git commit --amend --no-edit%n";
         };
