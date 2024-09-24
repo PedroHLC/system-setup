@@ -4,10 +4,10 @@
   # My main channel and extra repositories
   inputs = {
     nixpkgs.follows = "chaotic/nixpkgs";
-    nixpkgs-old.url = "github:NixOS/nixpkgs/693bc46d169f5af9c992095736e82c3488bf7dbb";
 
     # Reset rootfs every reboot
-    impermanence.url = "https://flakehub.com/f/nix-community/impermanence/0.1.*.tar.gz";
+    # NOTE: Pinned due to https://github.com/nix-community/impermanence/pull/214
+    impermanence.url = "github:nix-community/impermanence/7448d149b0489f709aa6841d5d2af0635f14d69f";
 
     # Home-manager for managing my user's home
     home-manager.follows = "chaotic/home-manager";

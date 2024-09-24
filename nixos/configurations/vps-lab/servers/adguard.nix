@@ -1,4 +1,4 @@
-{ lib, ssot, knownClients, flakes, ... }@inputs: with ssot;
+{ lib, ssot, knownClients, config, ... }: with ssot;
 {
   systemd.services.adguardhome = {
     serviceConfig.User = "adguard";
@@ -18,7 +18,6 @@
 
   services.adguardhome = {
     enable = true;
-    package = flakes.nixpkgs-old.legacyPackages.aarch64-linux.adguardhome;
     mutableSettings = false;
     # https://github.com/AdguardTeam/AdGuardHome/wiki/Configuration#configuration-file
     settings =
@@ -173,4 +172,11 @@
         schema_version = 24;
       };
   };
+
+  assertions = [
+    {
+      assertion = config.services.adguardhome.package.passthru.schema_version != config.services.adguardhome.package.passthru.schema_version;
+      message = "AdguardHome settings needs a schema_version bump";
+    }
+  ];
 }
