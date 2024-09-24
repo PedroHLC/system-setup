@@ -81,13 +81,15 @@
           trusted_proxies = [
             "127.0.0.1"
           ];
-          filters_update_interval = 1;
           ratelimit = 50;
           # ratelimit_whitelist = knownClients.goodGuysCIDRs;
-          inherit safe_search;
+          disallowed_clients = knownClients.badBotsCIDRs;
           # In case of fire, break the glass
           # allowed_clients = knownClients.goodGuysCIDRs;
-          disallowed_clients = knownClients.badBotsCIDRs;
+        };
+        filtering = {
+          filters_update_interval = 1;
+          inherit safe_search;
         };
         tls = {
           enabled = true;
@@ -169,7 +171,7 @@
           max_age = 30;
           verbose = true;
         };
-        schema_version = 24;
+        schema_version = 27;
       };
   };
 
