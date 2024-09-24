@@ -6,8 +6,10 @@
     nixpkgs.follows = "chaotic/nixpkgs";
 
     # Reset rootfs every reboot
-    # NOTE: Pinned due to https://github.com/nix-community/impermanence/pull/214
-    impermanence.url = "github:nix-community/impermanence/7448d149b0489f709aa6841d5d2af0635f14d69f";
+    # NOTE: Pinned due to:
+    # - https://github.com/nix-community/impermanence/pull/214
+    # - https://github.com/nix-community/impermanence/issues/216
+    impermanence.url = "github:nix-community/impermanence/63f4d0443e32b0dd7189001ee1894066765d18a5";
 
     # Home-manager for managing my user's home
     home-manager.follows = "chaotic/home-manager";
