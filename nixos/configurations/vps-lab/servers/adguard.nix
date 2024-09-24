@@ -37,11 +37,14 @@
           interval = "360h";
         };
 
-        badGuys = [{ name = "Bad"; ids = knownClients.badBotsCIDRs; tags = [ "user_child" ]; uid = "bad"; }];
+        badGuys =
+          if builtins.length knownClients.badBotsCIDRs > 0 then
+            [{ name = "Bad"; ids = knownClients.badBotsCIDRs; tags = [ "user_child" ]; uid = "bad"; }]
+          else [ ];
 
         normalizeClient = { name, ids, tags, uid }: {
           # Sadly, I didn't find which of this is required which is optional
-          inherit safe_search;
+          inherit uid safe_search;
           blocked_services = {
             schedule.time_zone = "Local";
             ids = [ ];

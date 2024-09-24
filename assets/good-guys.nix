@@ -1,12 +1,12 @@
 ssot: with ssot;
 
 [
-  { uid = "r001"; name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
-  { uid = "r002"; name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" ]; tags = [ "user_admin" ]; }
-  { uid = "w001"; name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
-  { uid = "w002"; name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
+  { uid = "e1d1e0e0-af31-4007-b107-349ffa7cfa00"; name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
+  { uid = "0d43322b-4f5b-48c7-b21c-301d4d89a24c"; name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" ]; tags = [ "user_admin" ]; }
+  { uid = "59e8d5cc-1fec-464a-b142-a03ecbb0168b"; name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
+  { uid = "6f38a558-bb55-470c-9707-022910cdea61"; name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
   {
-    uid = "e001";
+    uid = "afc72ee2-bccb-49e7-933e-8d5371ba57e5";
     name = "Viajantes";
     ids = [
       "160.20.84.0/22"
@@ -30,11 +30,11 @@ ssot: with ssot;
     ];
     tags = [ "user_regular" ];
   }
-  { uid = "w003"; name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
-  { uid = "w004"; name = "Real Internet"; ids = [ "177.8.64.0/22" ]; tags = [ "user_regular" ]; }
-  { uid = "w005"; name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
+  { uid = "a5d7332f-b34f-443c-80b7-a1a88e07432f"; name = "Descalnet"; ids = [ "132.255.216.0/22" "45.191.128.0/22" ]; tags = [ "user_regular" ]; }
+  { uid = "0cb42d0b-3354-4779-ae7d-221e8fb2a0c7"; name = "Real Internet"; ids = [ "177.8.64.0/22" ]; tags = [ "user_regular" ]; }
+  { uid = "6c94d4a0-0735-4aa7-9831-11eaf80162f6"; name = "Fluke"; ids = [ "177.67.24.0/22" "2804:33b0::/32" "189.113.128.0/20" ]; tags = [ "user_regular" ]; }
   {
-    uid = "w006";
+    uid = "2ccc826d-7959-4e9d-a853-5f5b130339f5";
     name = "Claro/NET/Embratel";
     ids = [
       "177.56.0.0/14"
@@ -57,13 +57,13 @@ ssot: with ssot;
     ];
     tags = [ "user_regular" ];
   }
-  { uid = "w007"; name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "45.225.168.0/22" "2804:39b0::/32" "2804:4694::/32" ]; tags = [ "user_regular" ]; }
-  { uid = "w008"; name = "Proxer"; ids = [ "45.231.152.0/22" "200.152.27.0/24" ]; tags = [ "user_regular" ]; }
-  { uid = "w009"; name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
-  { uid = "w010"; name = "Desktop"; ids = [ "186.249.128.0/19" ]; tags = [ "user_regular" ]; }
-  { uid = "w011"; name = "Velonic"; ids = [ "168.227.216.0/22" "45.167.180.0/22" ]; tags = [ "user_regular" ]; }
+  { uid = "60d95f33-e863-40a9-9e26-978505e4ef81"; name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "45.225.168.0/22" "2804:39b0::/32" "2804:4694::/32" ]; tags = [ "user_regular" ]; }
+  { uid = "962bfa01-66db-47be-9e56-d5e80d549471"; name = "Proxer"; ids = [ "45.231.152.0/22" "200.152.27.0/24" ]; tags = [ "user_regular" ]; }
+  { uid = "6ac74c74-1e39-4560-9a29-a5a56fc5cd04"; name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
+  { uid = "6fb84744-83c2-4720-8f45-5fba2da5cfdd"; name = "Desktop"; ids = [ "186.249.128.0/19" ]; tags = [ "user_regular" ]; }
+  { uid = "85381b39-dda5-422d-937b-d21ee21b2ec6"; name = "Velonic"; ids = [ "168.227.216.0/22" "45.167.180.0/22" ]; tags = [ "user_regular" ]; }
   {
-    uid = "w012";
+    uid = "0ba56b98-136f-4cce-967c-c1e9c454d31a";
     name = "Vivo/GVT/Telefonica";
     ids = [
       "152.240.0.0/12"
