@@ -37,9 +37,9 @@
           interval = "360h";
         };
 
-        badGuys = [{ name = "Bad"; ids = knownClients.badBotsCIDRs; tags = [ "user_child" ]; bad = true; }];
+        badGuys = [{ name = "Bad"; ids = knownClients.badBotsCIDRs; tags = [ "user_child" ]; uid = "bad"; }];
 
-        normalizeClient = { name, ids, tags, bad ? false }: {
+        normalizeClient = { name, ids, tags, uid }: {
           # Sadly, I didn't find which of this is required which is optional
           inherit safe_search;
           blocked_services = {
@@ -53,7 +53,7 @@
           parental_enabled = false;
           safebrowsing_enabled = false;
           use_global_blocked_services = true;
-          ignore_querylog = !bad;
+          ignore_querylog = uid != "bad";
           ignore_statistics = false;
         };
       in
@@ -171,13 +171,15 @@
           max_age = 30;
           verbose = true;
         };
-        schema_version = 27;
+        # For bumping, read the "Configuration changes" sections of
+        # https://github.com/AdguardTeam/AdGuardHome/blob/master/CHANGELOG.md
+        schema_version = 28;
       };
   };
 
   assertions = [
     {
-      assertion = config.services.adguardhome.package.passthru.schema_version != config.services.adguardhome.package.passthru.schema_version;
+      assertion = config.services.adguardhome.package.passthru.schema_version == config.services.adguardhome.settings.schema_version;
       message = "AdguardHome settings needs a schema_version bump";
     }
   ];
