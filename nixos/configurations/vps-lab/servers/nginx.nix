@@ -18,6 +18,7 @@
         http3 = true;
         locations."/".root = ../../../../assets/http-root/lab;
         locations."/bucket/".root = "/srv/http";
+        locations."/ical/".root = "/srv/http";
         locations."/shelter" = {
           recommendedProxySettings = true;
           proxyPass = "http://127.0.0.1:8080/graphql";

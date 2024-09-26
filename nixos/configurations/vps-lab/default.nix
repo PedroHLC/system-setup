@@ -17,6 +17,7 @@ mkNixOS {
     #./servers/runners.nix
     ./servers/wireguard.nix
     ./services/gits-mirror
+    ./services/ical-filter
     ./services/mesa-mirror
   ];
   specialArgs.knownClients = with nixpkgs.lib; rec {
