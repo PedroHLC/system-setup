@@ -128,6 +128,11 @@
   };
   users.extraUsers.pedrohlc.extraGroups = [ "libvirtd" ];
 
+  services.tor = {
+    enable = true;
+    client.enable = true;
+  };
+
   # Not important but persistent files
   environment.persistence = {
     "/var/persistent" = {

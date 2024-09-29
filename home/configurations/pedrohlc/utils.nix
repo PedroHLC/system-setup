@@ -34,7 +34,7 @@
 
   # Preferred executables
   browser = "${firefox-gate}/bin/firefox-gate";
-  editor = "${pkgs.zed-editor_git}/bin/zed";
+  editor = "${pkgs.zed-editor_git}/bin/zeditor";
   terminal = "${config.programs.alacritty.package}/bin/alacritty";
 
   # Simple executable shortcuts
