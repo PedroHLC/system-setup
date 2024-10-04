@@ -188,7 +188,6 @@
     wl-clipboard-rs
     xarchiver
     xdg-utils
-    zoom-us
 
     # My scripts
     nowl
@@ -301,9 +300,6 @@
             (final.fetchpatch { url = "https://tildearrow.org/storage/hostapd-2.10-lar.patch"; hash = "sha256-USiHBZH5QcUJfZSxGoFwUefq3ARc4S/KliwUm8SqvoI="; })
           ];
         });
-
-        # STUPID ZOOM IS STUPID!
-        zoom-us = import ../../../packages/zoom-us-override.nix { inherit final prev; };
       };
     in
     [ thisConfigsOverlay ];

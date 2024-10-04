@@ -410,7 +410,7 @@ with utils; {
       settings = {
         window.opacity = lib.mkForce 0.9;
 
-        shell = {
+        terminal.shell = {
           program = "${fish}";
           args = [ "--login" ];
         };
