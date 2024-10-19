@@ -238,20 +238,13 @@
   nixpkgs.overlays =
     let
       thisConfigsOverlay = final: prev: {
-        obs-vkcapture_349081 = final.obs-studio-plugins.obs-vkcapture.override {
-            extra-cmake-modules = final.pkg-config;
-            obs-vkcapture32 = final.pkgsi686Linux.obs-studio-plugins.obs-vkcapture.override {
-                extra-cmake-modules = final.pkgsi686Linux.pkg-config;
-            };
-        };
-
         # Obs with plugins
         obs-studio-wrapped = final.wrapOBS.override { inherit (final) obs-studio; } {
           plugins = with final.obs-studio-plugins; [
             obs-gstreamer
             obs-pipewire-audio-capture
             obs-vaapi
-            (final.obs-vkcapture_349081)
+            obs-vkcapture
             wlrobs
           ];
         };
@@ -307,17 +300,6 @@
             (final.fetchpatch { url = "https://tildearrow.org/storage/hostapd-2.10-lar.patch"; hash = "sha256-USiHBZH5QcUJfZSxGoFwUefq3ARc4S/KliwUm8SqvoI="; })
           ];
         });
-
-        # Waiting nixpkgs#348374
-        minidlna = prev.minidlna.overrideAttrs (prevAttrs: {
-          patches = [
-            (final.fetchpatch2 {
-              url = "https://gitlab.archlinux.org/archlinux/packaging/packages/minidlna/-/raw/affcf0dd1e6f8e33d0ba90b2b0733736fa1aeb71/ffmpeg7.patch";
-              hash = "sha256-MZFPY4FywoMkZ//fKml6o5J1QG5qiScgtI+KFw5hENw=";
-            })
-          ];
-        });
-
       };
     in
     [ thisConfigsOverlay ];
@@ -438,6 +420,24 @@
 
   # Pull all plasma things, don't had time to separate stuff to extract its LookAndFeel
   services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    # (lib.getBin qttools)
+    ark
+    elisa
+    gwenview
+    okular
+    kate
+    khelpcenter
+    dolphin
+    baloo-widgets
+    dolphin-plugins
+    spectacle
+    ffmpegthumbs
+    krdp
+    xwaylandvideobridge
+  ];
 
   # For development, but disabled to start service on-demand
   services.postgresql = {
