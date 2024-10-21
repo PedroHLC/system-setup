@@ -38,15 +38,16 @@
     # ICMP traffic is blocked by default by OCI
     allowPing = true;
     # Keep UDP Plain DNS between family
-    extraCommands = ''
-      ${builtins.concatStringsSep "\n"
-          (map (cidr: "ip${if lib.strings.hasInfix ":" cidr then "6" else ""}tables -A INPUT -p udp -s ${cidr} --dport 53 -j ACCEPT")
+    extraInputRules = ''
+      ${builtins.concatStringsSep "\n  "
+          (map (cidr: "udp dport 53 ip${if lib.strings.hasInfix ":" cidr then "6" else ""} saddr ${cidr} accept")
             knownClients.goodGuysCIDRs)
       }
-      iptables -A INPUT -p udp --dport 53 -j REJECT
-      ip6tables -A INPUT -p udp --dport 53 -j REJECT
     '';
   };
+
+  # Use nftables newer stuff
+  networking.nftables.enable = true;
 
   # We can trim this one
   services.fstrim.enable = true;
