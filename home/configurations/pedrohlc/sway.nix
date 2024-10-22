@@ -1,6 +1,12 @@
 utils: with utils;
 
 # My beloved DE
+let
+  # Modes
+  modePower = "[L]ogoff | [S]hutdown | [R]eboot | [l]ock | [s]uspend";
+  modeFavorites = "[f]irefox | [F]ileMgr | [v]olume | q[b]ittorrent | [T]elegram | [e]ditor | [t]IDAL";
+  modeOtherMenus = "[b]luetooth | [n]etwork";
+in
 {
   home.packages = with pkgs; [
     swaynotificationcenter # Won't work unless here
@@ -23,20 +29,22 @@ utils: with utils;
     #  };
 
     config = {
-      inherit modifier terminal menu;
+      inherit modifier;
+      inherit (bin) terminal menu;
+
       defaultWorkspace = "workspace number 1";
       startup = [
         # Start locked because I use autologin
-        { command = "${lock}"; }
+        { command = "${bin.lock}"; }
         # Notification daemon
         { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
         # Volume and Display-brightness OSD
         { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
-        { command = "${idle-lock-script}"; }
-        { command = "${idle-dpms-script}"; }
+        { command = "${pseudoPkgs.idle-lock-script}"; }
+        { command = "${pseudoPkgs.idle-dpms-script}"; }
         # A tmux session that knows about DE environment
-        { command = "${tmux} new-session -ds DE"; }
+        { command = "${bin.tmux} new-session -ds DE"; }
       ];
       input = {
         # Adjust to Brazilian keyboards
@@ -103,7 +111,7 @@ utils: with utils;
           { criteria = { app_id = "Alacritty"; title = "^launcher$"; }; command = "floating enable; border pixel 4; sticky enable"; }
         ];
       };
-      keybindings = mkOptionDefault ({
+      keybindings = mkOptionDefault (with bin; {
         # Window helpers
         "${modifier}+Shift+f" = "fullscreen toggle global";
         "${modifier}+Shift+t" = "sticky toggle";
@@ -191,7 +199,7 @@ utils: with utils;
             "Escape" = "mode default";
           };
         in
-        mkOptionDefault {
+        mkOptionDefault (with bin; {
           # Power-off menu
           "${modePower}" =
             withLeaveOptions {
@@ -223,7 +231,7 @@ utils: with utils;
               "b" = "exec ${menuBluetooth}; mode default";
               "n" = "exec ${menuNetwork}; mode default";
             };
-        };
+        });
     };
 
     systemd.enable = true;

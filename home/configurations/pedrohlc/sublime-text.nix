@@ -44,7 +44,7 @@ utils: with utils;
         shell_configs = [
           {
             name = "Fish";
-            cmd = [ "${fish}" "--login" ];
+            cmd = [ "${bin.fish}" "--login" ];
             env = { };
             enable = true;
             platforms = [ "linux" "osx" ];
@@ -101,7 +101,7 @@ utils: with utils;
           "LSP-elixir" # ...damm, I really need this dialyzer integration
           "MasmAssembly" # MASM syntax
           "MDX Syntax Highlighting" # MDX (JSX on Markdown) syntax
-          "MIPS Syntax" # MIPS syntax 
+          "MIPS Syntax" # MIPS syntax
           "MouseEventListener" # Dependency of some other plugin
           "NeoVintageous" # Vim modes for sublime
           "Nix" # Nix syntax

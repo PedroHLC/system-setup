@@ -1,6 +1,6 @@
 { config, lib, pkgs, ssot, flakes, specs, ... }@inputs:
 let
-  utils = import ./utils.nix specs inputs;
+  utils = import ./utils.nix specs inputs utils;
 in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
@@ -20,7 +20,7 @@ with utils; {
 
   home = {
     packages =
-      with pkgs; (lists.optionals hasSeat [
+      with pseudoPkgs; with pkgs; (lists.optionals hasSeat [
         alternative-session
         firefox-gate
         minidlna-launcher
@@ -44,7 +44,7 @@ with utils; {
         [[ -f ~/.profile ]] && . ~/.profile
       '';
       # I use autologin and forever in love with tmux sessions.
-      ".profile".text = ''
+      ".profile".text = with bin; ''
         if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
           exec ${tmux}
       '' + (if steamMachine then ''
@@ -63,7 +63,7 @@ with utils; {
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,
       ".tmux.conf".text = ''
-        set-option -g default-shell ${fish}
+        set-option -g default-shell ${bin.fish}
         # Full color range
         set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
         # Expect mouse
@@ -94,7 +94,7 @@ with utils; {
         text = generators.toINI { } {
           screencast = {
             chooser_type = "dmenu";
-            chooser_cmd = output-chooser;
+            chooser_cmd = pseudoPkgs.output-chooser;
           };
         };
       };
@@ -120,7 +120,7 @@ with utils; {
           System = {
             Archiver = "xarchiver";
             FallbackIconThemeName = iconTheme;
-            Terminal = "${terminal}";
+            Terminal = "${bin.terminal}";
             SuCommand = "${pkgs.lxqt.lxqt-sudo}/bin/lxqt-sudo %s";
           };
           Thumbnail = {
@@ -163,7 +163,7 @@ with utils; {
       "firefox${firefoxSuffix}" = {
         name = "Firefox (Wayland)";
         genericName = "Web Browser";
-        exec = "${firefox-gate}/bin/firefox-gate %U";
+        exec = "${pseudoPkgs.firefox-gate}/bin/firefox-gate %U";
         terminal = false;
         categories = [ "Application" "Network" "WebBrowser" ];
         mimeType = [
@@ -180,8 +180,8 @@ with utils; {
       };
       "pokemmo" = {
         name = "PokeMMO";
-        genericName = "MMORPG abou leveling up and discovering new monsters";
-        exec = "${pokemmo-launcher}/bin/pokemmo";
+        genericName = "MMORPG about leveling up and discovering new monsters";
+        exec = "${pseudoPkgs.pokemmo-launcher}/bin/pokemmo";
         terminal = false;
         categories = [ "Game" ];
         type = "Application";
@@ -411,7 +411,7 @@ with utils; {
         window.opacity = lib.mkForce 0.9;
 
         terminal.shell = {
-          program = "${fish}";
+          program = "${bin.fish}";
           args = [ "--login" ];
         };
       };

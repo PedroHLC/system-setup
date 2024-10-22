@@ -10,7 +10,7 @@ utils: with utils;
           theme.theme = "solarized-dark";
           icons.icons = "awesome5";
         };
-        blocks = [
+        blocks = with bin; [
           {
             block = "custom";
             command = ''echo -n ' '; ${swayncClient} -c; [ "x$(${swayncClient} -D)" = 'xtrue' ] && echo " (DND)"'';
