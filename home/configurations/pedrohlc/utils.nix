@@ -113,7 +113,7 @@
   pokemmo-launcher = with pkgs; callPackage ../../../packages/scripts {
     scriptName = "pokemmo";
     substitutions = {
-      "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsaLib}";
+      "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsa-lib}";
       "$(which java)" = "${jdk17}/bin/java";
       "$(which gamemoderun)" = "${gamemode}/bin/gamemoderun";
     };
