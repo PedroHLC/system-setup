@@ -54,6 +54,9 @@
         # My systems
         nixosConfigurations = import ./nixos/configurations specialArgs;
 
+        # Home for HM-installed systems
+        homeConfigurations = import ./home/configurations specialArgs;
+
         # Special args you'll find in every module.
         specialArgs = {
           ssot = import ./assets/ssot.nix inputs;

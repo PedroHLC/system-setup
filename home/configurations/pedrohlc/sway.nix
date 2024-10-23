@@ -240,7 +240,7 @@ in
       export STEAM_FORCE_DESKTOPUI_SCALING=1
     '' + (strings.optionalString nvidiaPrime ''
       # Gaming
-      export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${env} $GAMEMODERUNEXEC"
+      export GAMEMODERUNEXEC="${pkgs.nvidia-offload}/bin/nvidia-offload ${bin.env} $GAMEMODERUNEXEC"
     '');
     extraOptions = mkIf nvidiaBad [
       "--unsupported-gpu"

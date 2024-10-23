@@ -8,11 +8,13 @@
 , nvmeSensors ? [ ]
 , seat ? null
 , ups ? null
+, isLinux ? true
+, isDarwin ? false
 }:
-{ config, lib, pkgs, ssot, flakes, nixosConfig, usingNouveau ? false, ... }:
+{ config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? false, ... }@scope:
 self:
 {
-  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
+  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups isLinux isDarwin;
   inherit config pkgs flakes nixosConfig usingNouveau;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
