@@ -47,6 +47,12 @@ rec {
       v4 = "${vpn.prefix.v4}.5";
       v6 = "${vpn.prefix.v6}:5";
     };
+    foreign = rec {
+      hostname = "foreign";
+      addr = "${hostname}.${vpn.tld}";
+      v4 = "${vpn.prefix.v4}.8";
+      v6 = "${vpn.prefix.v6}:8";
+    };
   };
 
   web = {

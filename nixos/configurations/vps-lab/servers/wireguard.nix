@@ -71,6 +71,16 @@ in
                 multicastV6
               ];
             }
+            # Foreign
+            {
+              publicKey = "UyVKOBmKQJYeHXQmde6QW+g51K3/qH9hl3lInLCKJhI=";
+              allowedIPs = [
+                "${vpn.foreign.v4}/32"
+                "${vpn.foreign.v6}/128"
+                multicastV4
+                multicastV6
+              ];
+            }
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
