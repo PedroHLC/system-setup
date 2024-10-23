@@ -28,7 +28,7 @@ self:
   hasTouchpad = touchpad != null;
 
   # Expand seat specs
-  autoLogin = seat.autoLogin or "sway";
+  autoLogin = seat.autoLogin or (if hasSeat then "sway" else null);
   displayBrightness = seat.displayBrightness or false;
   kvm = seat.kvm or null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
