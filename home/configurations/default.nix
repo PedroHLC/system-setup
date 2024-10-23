@@ -1,6 +1,6 @@
 { flakes, ... }@specialArgs: with flakes;
 {
-  "pedro-at-foreign" = home-manager.lib.homeManagerConfiguration {
+  "pedrohlc-at-foreign" = home-manager.lib.homeManagerConfiguration {
     pkgs = nixpkgs.legacyPackages.aarch64-darwin;
     extraSpecialArgs = specialArgs // { specs = import ./foreign/specs.nix; };
     modules = [
