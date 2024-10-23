@@ -19,4 +19,18 @@
 
   # Unecessary
   programs.command-not-found.enable = false;
+
+  # More packages
+  home.packages = with pkgs; [
+    borg-sans-mono
+    gnupg
+    heroku
+    home-manager
+  ];
+
+  # Borg Sans is good!
+  fonts.fontconfig = {
+    enable = true;
+    defaultFonts.monospace = [ "Borg Sans Mono" ];
+  };
 }

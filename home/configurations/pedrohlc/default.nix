@@ -241,7 +241,7 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = {
-      enable = hasSeat;
+      enable = hasSeat || isDarwin;
       package = pkgs.alacritty_git;
       settings = {
         window.opacity = lib.mkForce 0.9;

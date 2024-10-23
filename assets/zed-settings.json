@@ -5,7 +5,6 @@
   "features": {
     "inline_completion_provider": "none" // one day: "tabnine"
   },
-
   // UI Preferences
   "theme": "Catppuccin Macchiato",
   "vim_mode": true,
@@ -13,7 +12,12 @@
   "buffer_font_family": "Borg Sans Mono",
   "buffer_font_size": 15,
   "preferred_line_length": 100,
-  "wrap_guides": [50, 98, 100, 150],
+  "wrap_guides": [
+    50,
+    98,
+    100,
+    150
+  ],
   "toolbar": {
     "breadcrumbs": false,
     "quick_actions": false
@@ -27,7 +31,6 @@
   "tabs": {
     "git_status": true
   },
-
   // Language preferences
   "format_on_save": "on",
   "formatter": "language_server",
@@ -36,20 +39,33 @@
       "formatter": {
         "external": {
           "command": "elm-format",
-          "arguments": ["--stdin"]
+          "arguments": [
+            "--stdin"
+          ]
         }
       },
-      "language_servers": ["elm-language-server"]
+      "language_servers": [
+        "elm-language-server"
+      ]
     },
     "JSON": {
       "format_on_save": "off",
       "language_servers": []
     }
   },
-
   // Disable shit
-  "collaboration_panel": { "button": false },
-  "chat_panel": { "button": false },
-  "notification_panel": { "button": false },
-  "assistant": { "version": "2", "button": false, "enabled": false }
+  "collaboration_panel": {
+    "button": false
+  },
+  "chat_panel": {
+    "button": false
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "assistant": {
+    "version": "2",
+    "button": false,
+    "enabled": false
+  }
 }

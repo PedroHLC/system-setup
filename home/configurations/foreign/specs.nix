@@ -3,4 +3,5 @@
   seat = null;
   isLinux = false;
   isDarwin = true;
+  gitKey = "8918CACFE3A48BC5";
 }
