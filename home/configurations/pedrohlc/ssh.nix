@@ -17,11 +17,15 @@ let
         n
         a
       // (with vpn.${machine}; {
-        "${addr}" = {
+        "match:${addr}" = {
           match = ''host ${machine}'';
           hostname = v4;
         };
         "${machine}" = { inherit identityFile; };
+        "${machine}.vpn" = {
+          inherit identityFile;
+          hostname = v4;
+        };
       }))
       base
       lan;

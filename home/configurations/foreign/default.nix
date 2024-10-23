@@ -26,6 +26,8 @@
     gnupg
     heroku
     home-manager
+    # Waiting nixpkgs#350035
+    # mosh
   ];
 
   # Borg Sans is good!
