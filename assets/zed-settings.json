@@ -32,6 +32,7 @@
     "git_status": true
   },
   // Language preferences
+  "load_direnv": "shell_hook",
   "format_on_save": "on",
   "formatter": "language_server",
   "languages": {

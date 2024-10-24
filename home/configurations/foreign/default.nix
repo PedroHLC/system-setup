@@ -22,12 +22,14 @@
 
   # More packages
   home.packages = with pkgs; [
+    aria2
     borg-sans-mono
     gnupg
     heroku
     home-manager
     # Waiting nixpkgs#350035
     # mosh
+    ripgrep
   ];
 
   # Borg Sans is good!
