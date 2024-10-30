@@ -10,7 +10,8 @@
 , ups ? null
 , isLinux ? true
 , isDarwin ? false
-}:
+, ...
+}@specs:
 { config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? false, ... }@scope:
 self:
 {
@@ -30,7 +31,7 @@ self:
   # Expand seat specs
   autoLogin = seat.autoLogin or (if hasSeat then "sway" else null);
   displayBrightness = seat.displayBrightness or false;
-  kvm = seat.kvm or null;
+  kvm = seat.kvm or specs.kvm or null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = autoLogin == "steam";

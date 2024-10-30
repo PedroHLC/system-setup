@@ -82,6 +82,9 @@ rec {
       home-wireless.v4 = "192.168.18.3";
       home-wire.v4 = "192.168.18.5";
     };
+    foreign = {
+      home-wireless.v4 = "192.168.18.6";
+    };
     beacon = {
       home-wire.v4 = "192.168.18.240";
     };

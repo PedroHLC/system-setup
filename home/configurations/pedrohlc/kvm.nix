@@ -17,9 +17,9 @@ let
   configFile = (pkgs.formats.toml { }).generate "config.toml" config;
 in
 mkIf (kvm != null) {
-  home.sessionVariables.EXPORT_THIS_SHIT = configFile;
+  home.sessionVariables.LAN_MOUSE_CONFIG = configFile;
 
-  systemd.user.services.my-kvm = {
+  systemd.user.services.my-kvm = mkIf isLinux {
     Unit = {
       Description = "KVM service";
       PartOf = [ "graphical-session.target" ];

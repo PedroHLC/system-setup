@@ -281,6 +281,8 @@
     "${vpn.desktop.v6}" = [ vpn.desktop.addr ];
     "${vpn.laptop.v4}" = [ vpn.laptop.addr ];
     "${vpn.laptop.v6}" = [ vpn.laptop.addr ];
+    "${vpn.foreign.v4}" = [ vpn.foreign.addr ];
+    "${vpn.foreign.v6}" = [ vpn.foreign.addr ];
     "${vpn.beacon.v4}" = [ vpn.beacon.addr ];
     "${vpn.beacon.v6}" = [ vpn.beacon.addr ];
 

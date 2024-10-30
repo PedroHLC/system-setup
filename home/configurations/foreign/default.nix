@@ -27,6 +27,7 @@
     gnupg
     heroku
     home-manager
+    lan-mouse_git
     # Waiting nixpkgs#350035
     # mosh
     ripgrep

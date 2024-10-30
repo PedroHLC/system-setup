@@ -6,9 +6,9 @@ with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
     (import ./ssh.nix utils)
+    (import ./kvm.nix utils)
   ] ++ optionals isLinux [
     (import ./i3status-rust.nix utils)
-    (import ./kvm.nix utils)
     (import ./sunshine.nix utils)
     (import ./xdg.nix utils)
   ] ++ optionals hasSeat [
