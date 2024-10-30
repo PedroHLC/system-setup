@@ -3,17 +3,17 @@
 , specs ? { seat = null; }
 , username ? "pedrohlc"
 , homeDirectory ? "/home/${username}"
-}: with inputs;
+}: with specialArgs.flakes;
 
 let
   hmConfig =
     home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
-      extraSpecialArgs = specialArgs;
+      extraSpecialArgs = specialArgs // { inherit specs; };
       modules = [
         chaotic.homeManagerModules.default
-        (import ../../home/configurations/${username} specs)
         { home = { inherit username homeDirectory; }; }
+        ../../home/configurations/${username}
         ./non-nixos.nix
       ];
     };
