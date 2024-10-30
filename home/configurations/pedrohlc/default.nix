@@ -7,7 +7,7 @@ with utils; {
   imports = [
     (import ./ssh.nix utils)
     (import ./kvm.nix utils)
-  ] ++ optionals isLinux [
+  ] ++ optionals isNixOS [
     (import ./i3status-rust.nix utils)
     (import ./sunshine.nix utils)
     (import ./xdg.nix utils)
@@ -46,13 +46,15 @@ with utils; {
         [[ -f ~/.profile ]] && . ~/.profile
       '';
       # I use autologin and forever in love with tmux sessions.
-      ".profile".text = with bin; ''
+      ".profile".text = with bin; optionalString isMacOS ''
+        source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      '' + ''
         if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
           exec ${tmux}
       '' + (if steamMachine then ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
           exec steam-gamescope
-      '' else if autoLogin == "sway" then ''
+      '' else optionalString (autoLogin == "sway") ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
           # It has to be sway from home manager.
           ${config.wayland.windowManager.sway.package}/bin/sway
@@ -60,7 +62,7 @@ with utils; {
           ${tmux} send-keys -t DE 'C-c' 'C-d' || true
           # Alternative sessions I might wanna run
           exec alternative-session
-      '' else "") + ''
+      '') + ''
         fi
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,
@@ -76,6 +78,12 @@ with utils; {
         set follow-fork-mode child
         set detach-on-fork off
       '';
+      # Boot HM on MacOS without nix-darwin
+      ".zprofile" = mkIf isMacOS {
+        text = ''
+          source "$HOME/.profile"
+        '';
+      };
     };
   };
 
@@ -241,7 +249,7 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = {
-      enable = hasSeat || isDarwin;
+      enable = hasSeat || isMacOS;
       package = pkgs.alacritty_git;
       settings = {
         window.opacity = lib.mkForce 0.9;

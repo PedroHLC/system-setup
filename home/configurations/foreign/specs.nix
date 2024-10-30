@@ -1,8 +1,7 @@
 # For the unique home-manager module
 {
   seat = null;
-  isLinux = false;
-  isDarwin = true;
+  hostOS = "macos";
   gitKey = "8918CACFE3A48BC5";
   kvm = { left = "desktop"; };
 }

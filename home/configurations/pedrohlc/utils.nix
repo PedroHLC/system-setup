@@ -8,15 +8,15 @@
 , nvmeSensors ? [ ]
 , seat ? null
 , ups ? null
-, isLinux ? true
-, isDarwin ? false
+, hostOS ? "nixos" # Distro, not kernel
 , ...
 }@specs:
 { config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? false, ... }@scope:
 self:
 {
-  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups isLinux isDarwin;
+  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
   inherit config pkgs flakes nixosConfig usingNouveau;
+  inherit (lib.strings) optionalString;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./pseudo-packages.nix self;
@@ -27,6 +27,8 @@ self:
   hasGitKey = gitKey != null;
   hasSeat = seat != null;
   hasTouchpad = touchpad != null;
+  isNixOS = hostOS == "nixos";
+  isMacOS = hostOS == "macos";
 
   # Expand seat specs
   autoLogin = seat.autoLogin or (if hasSeat then "sway" else null);

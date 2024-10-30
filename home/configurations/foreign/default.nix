@@ -31,6 +31,7 @@
     # Waiting nixpkgs#350035
     # mosh
     ripgrep
+    tmux
   ];
 
   # Borg Sans is good!

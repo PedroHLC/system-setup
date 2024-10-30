@@ -54,6 +54,21 @@
       "language_servers": []
     }
   },
+  // Remote stuff
+  "ssh_connections": [
+    {
+      "host": "foreign",
+      "projects": [
+        {
+          "paths": [
+            "~/Projects/co.timeline/calc-rs",
+            "~/Projects/co.timeline/core",
+            "~/Projects/co.timeline/devenv-nix"
+          ]
+        }
+      ]
+    }
+  ],
   // Disable shit
   "collaboration_panel": {
     "button": false

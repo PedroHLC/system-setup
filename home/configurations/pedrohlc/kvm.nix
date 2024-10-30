@@ -19,7 +19,7 @@ in
 mkIf (kvm != null) {
   home.sessionVariables.LAN_MOUSE_CONFIG = configFile;
 
-  systemd.user.services.my-kvm = mkIf isLinux {
+  systemd.user.services.my-kvm = mkIf (pkgs.stdenv.hostPlatform.isLinux) {
     Unit = {
       Description = "KVM service";
       PartOf = [ "graphical-session.target" ];

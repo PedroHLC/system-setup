@@ -1,6 +1,6 @@
 { pkgs
 , specialArgs
-, specs ? { seat = null; }
+, specs ? { seat = null; hostOS = null; }
 , username ? "pedrohlc"
 , homeDirectory ? "/home/${username}"
 }: with specialArgs.flakes;
