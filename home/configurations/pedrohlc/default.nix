@@ -66,8 +66,9 @@ with utils; {
         fi
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,
-      ".tmux.conf".text = ''
+      ".tmux.conf".text = optionalString (!isMacOS) ''
         set-option -g default-shell ${bin.fish}
+      '' + ''
         # Full color range
         set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
         # Expect mouse
