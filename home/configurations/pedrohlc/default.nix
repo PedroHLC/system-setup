@@ -47,7 +47,10 @@ with utils; {
       '';
       # I use autologin and forever in love with tmux sessions.
       ".profile".text = with bin; optionalString isMacOS ''
-        source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        if [ -z "$__HM_SESS_VARS_SOURCED" ]; then
+          export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+          source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        fi
       '' + ''
         if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
           exec ${tmux}

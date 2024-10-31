@@ -36,7 +36,10 @@ in
     matchBlocks =
       addMyLocalDevices {
         # VPN
-        "vps-lab.vpn" = { inherit identityFile; };
+        "vps-lab.vpn" = {
+          inherit identityFile;
+          hostname = vpn.lab.v4;
+        };
         # VCS
         "github.com" = {
           host = "github.com gist.github.com";
