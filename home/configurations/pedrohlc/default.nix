@@ -69,9 +69,8 @@ with utils; {
         fi
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,
-      ".tmux.conf".text = optionalString (!isMacOS) ''
+      ".tmux.conf".text = ''
         set-option -g default-shell ${bin.fish}
-      '' + ''
         # Full color range
         set-option -ga terminal-overrides ",*256col*:Tc,alacritty:Tc"
         # Expect mouse
@@ -288,13 +287,14 @@ with utils; {
           "gp@main" = "git fetch origin main && git branch -f main origin/main && git checkout main";
           "gp@master" = "git fetch origin master && git branch -f master origin/master && git checkout master";
           "gp@nixpkgs" = "git fetch upstream nixpkgs-unstable && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
-          "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
-          "@sys" = "cd /etc/nixos";
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
           "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
           "@core" = "cd ~/Projects/co.timeline/core";
           "@calc-rs" = "cd ~/Projects/co.timeline/calc-rs";
-          "nix-roots" = "nix-store --gc --print-roots | grep -v ^/proc";
+          "nix-roots" = "nix-store --gc --print-roots | grep -Pv '^(/proc|{lsof})'";
+        } // attrsets.optionalAttrs isNixOS {
+          "@sys" = "cd /etc/nixos";
+          "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         } // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";
@@ -307,10 +307,24 @@ with utils; {
           name = "local-plugin";
           src = "${../../../assets/fish}";
         }
+      ] ++ optionals isMacOS [
+        {
+          name = "foreign-env";
+          src = toString (with pkgs; runCommand "foreign-env" { } ''
+            mkdir $out
+            ln -s ${fishPlugins.foreign-env}/share/fish/vendor_functions.d $out/functions
+          '');
+        }
       ];
       shellInit = ''
-        set fish_greeting '何でもは知らないわよ。知ってることだけ'
         set -g SHELL "${config.programs.fish.package}/bin/fish"
+      '' + optionalString isMacOS ''
+        fish_add_path -p /nix/var/nix/profiles/default/bin
+        fish_add_path -p "$HOME/.nix-profile/bin"
+        fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      '';
+      interactiveShellInit = ''
+        set fish_greeting '何でもは知らないわよ。知ってることだけ'
       '';
       functions = {
         "ghpr-as" = "git fetch origin pull/$argv[1]/head:$argv[2]";
@@ -318,7 +332,6 @@ with utils; {
       };
     };
 
-    # Crunchyroll and SAMSUNG Tizen don't mix, so I have to DLNA-it.
     yt-dlp = {
       enable = hasSeat;
       package = pkgs.yt-dlp_git;

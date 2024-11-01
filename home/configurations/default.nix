@@ -8,6 +8,6 @@
       { home = { username = "pedrohlc"; homeDirectory = "/Users/pedrohlc"; }; }
       ./pedrohlc
       ./foreign
-      ];
+    ];
   };
 }
