@@ -74,12 +74,12 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1730390431,
-        "narHash": "sha256-M+rMhDB69Y35IlhmAMN4ErDige+wKPwhb6HDqpF14Rw=",
-        "rev": "40388a7427ee32af175c5169ae7587ffd2dec125",
-        "revCount": 1482,
+        "lastModified": 1730555728,
+        "narHash": "sha256-jBr4WUPat+R/79DBdk85hKyqDfoJII4Z+V+GoevYNDY=",
+        "rev": "e734744bc2e9ca9aa577555bf028c5ea51eb5f77",
+        "revCount": 1484,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1482%2Brev-40388a7427ee32af175c5169ae7587ffd2dec125/0192e351-c9ed-704d-866b-eb98e24da6a2/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1484%2Brev-e734744bc2e9ca9aa577555bf028c5ea51eb5f77/0192ed2b-d0c4-7e12-adf1-05ee020b6f8b/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1730335870,
-        "narHash": "sha256-WWCB8wyHwOcrRe4t+wwxZP1VsBWBvNCAwaPy553VyVo=",
+        "lastModified": 1730556486,
+        "narHash": "sha256-wRr605E6cOC59N1fyF5XB1yRCnMqSiDPwQoG3NPd+BY=",
         "owner": "CTR-tools",
         "repo": "CTR-ModSDK",
-        "rev": "efe796e0a29534281d0a56b1978d8a66b17a6000",
+        "rev": "9601b2bff86e320e36fcf4ccec01afd388b0a099",
         "type": "github"
       },
       "original": {
