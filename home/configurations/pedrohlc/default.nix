@@ -57,15 +57,16 @@ with utils; {
       '' + (if steamMachine then ''
         elif [ "$(${tty})" = '/dev/tty1' ]; then
           exec steam-gamescope
-      '' else optionalString (autoLogin == "sway") ''
-        elif [ "$(${tty})" = '/dev/tty1' ]; then
-          # It has to be sway from home manager.
-          ${config.wayland.windowManager.sway.package}/bin/sway
-          # Leave the deattached tmux session we have started inside sway.
-          ${tmux} send-keys -t DE 'C-c' 'C-d' || true
-          # Alternative sessions I might wanna run
-          exec alternative-session
-      '') + ''
+      '' else
+        optionalString (autoLogin == "sway") ''
+          elif [ "$(${tty})" = '/dev/tty1' ]; then
+            # It has to be sway from home manager.
+            ${config.wayland.windowManager.sway.package}/bin/sway
+            # Leave the deattached tmux session we have started inside sway.
+            ${tmux} send-keys -t DE 'C-c' 'C-d' || true
+            # Alternative sessions I might wanna run
+            exec alternative-session
+        '') + ''
         fi
       '';
       # `programs.tmux` looks bloatware nearby this simplist config,

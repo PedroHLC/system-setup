@@ -17,6 +17,23 @@
     };
   };
 
+  # Locale stuff (Must match system)
+  home.language = {
+    base = "en_IE.UTF8";
+    ctype = "en_UK.UTF-8";
+
+    address = "pt_BR.UTF8";
+    collate = "pt_BR.UTF8";
+    measurement = "pt_BR.UTF8";
+    messages = "en_US.UTF-8";
+    monetary = "pt_BR.UTF8";
+    name = "pt_BR.UTF8";
+    numeric = "pt_BR.UTF8";
+    paper = "pt_BR.UTF8";
+    telephone = "pt_BR.UTF8";
+    time = "pt_BR.UTF8";
+  };
+
   # Unecessary
   programs.command-not-found.enable = false;
 
