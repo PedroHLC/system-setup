@@ -166,6 +166,13 @@
     let
       thisConfiguration = final: _prev: {
         nixos-clear = final.callPackage ../../../packages/scripts { scriptName = "nixos-clear"; };
+        nixos-next-shot = final.callPackage ../../../packages/scripts {
+          scriptName = "nixos-next-shot";
+          substitutions = {
+            "$(which bootctl)" = "${pkgs.systemd}/bin/bootctl";
+            "$(which systemctl)" = "${pkgs.systemd}/bin/systemctl";
+          };
+        };
         aria2c-for-wget-curl = final.callPackage ../../../packages/aria2c-for-wget-curl.nix { };
       };
     in
