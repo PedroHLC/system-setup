@@ -74,12 +74,12 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1730767100,
-        "narHash": "sha256-SGkgP2H+i1jewNFBuAs4+grutNrfm5by+JUERUdXIRo=",
-        "rev": "f8969fe1947ed81785a9e52f62622c03d3e58971",
-        "revCount": 1493,
+        "lastModified": 1730892999,
+        "narHash": "sha256-X0xoHNi0yjZ7ZsKITZUu3kJQzAemZifjzkTH4JFau+E=",
+        "rev": "657f519fa6dca780f5802a77c0653918a68d2d49",
+        "revCount": 1499,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1493%2Brev-f8969fe1947ed81785a9e52f62622c03d3e58971/0192f9cd-f19a-770f-a4dc-b034e00a912d/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/chaotic-cx/nyx/0.1.1499%2Brev-657f519fa6dca780f5802a77c0653918a68d2d49/01930146-ca25-7e5b-bc8f-9ca32ab48d46/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -268,11 +268,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1730625581,
-        "narHash": "sha256-vFxtzNCxtUIrmv8tluquZHjNTwMkCGtT0NCoVuwlqd4=",
+        "lastModified": 1730652030,
+        "narHash": "sha256-uTToUpFphR9ywc+DQUD/8hmboOMFV1lBVFf/ztzdn6A=",
         "owner": "Jovian-Experiments",
         "repo": "Jovian-NixOS",
-        "rev": "e6195c6bfc037617e20d6d7d4d6c9cdeee6aba6d",
+        "rev": "e74e57a37de55ecfdc62f49fe5a7463b2a52499a",
         "type": "github"
       },
       "original": {
@@ -306,32 +306,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1730531603,
-        "narHash": "sha256-Dqg6si5CqIzm87sp57j5nTaeBbWhHFaVyG7V6L8k3lY=",
+        "lastModified": 1730785428,
+        "narHash": "sha256-Zwl8YgTVJTEum+L+0zVAWvXAGbWAuXHax3KzuejaDyo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7ffd9ae656aec493492b44d0ddfb28e79a1ea25d",
+        "rev": "4aa36568d413aca0ea84a1684d2d46f55dbabad7",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1730224311,
-        "narHash": "sha256-ScY0SP6whFfXpOaBXxo8j6lr9c92x/i3oZxnHaHzKI4=",
-        "owner": "PedroHLC",
-        "repo": "nixpkgs",
-        "rev": "2f964c7c556390e51cfa24281c0d0195df7db3b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PedroHLC",
-        "ref": "k900-fhs-rewrite-202410",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -362,7 +346,10 @@
           "home-manager"
         ],
         "impermanence": "impermanence",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": [
+          "chaotic",
+          "nixpkgs"
+        ],
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
         "yafas": "yafas"

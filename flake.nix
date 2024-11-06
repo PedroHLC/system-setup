@@ -3,7 +3,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:PedroHLC/nixpkgs/k900-fhs-rewrite-202410";
+    nixpkgs.follows = "chaotic/nixpkgs";
 
     # Reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
