@@ -84,7 +84,7 @@
           trusted_proxies = [
             "127.0.0.1"
           ];
-          ratelimit = 50;
+          ratelimit = 300;
           # ratelimit_whitelist = knownClients.goodGuysCIDRs;
           disallowed_clients = knownClients.badBotsCIDRs;
           # In case of fire, break the glass

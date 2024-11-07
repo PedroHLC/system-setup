@@ -20,4 +20,6 @@ else
   "$BOOTCTL" set-oneshot "$last_id"
 fi
 
-exec "$SYSTEMCTL" reboot
+if [[ "${REBOOT_NOW:-yes}" == "yes" ]]; then
+    exec "$SYSTEMCTL" reboot
+fi
