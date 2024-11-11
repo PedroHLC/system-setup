@@ -12,6 +12,12 @@ let
 
   config = clients // {
     port = 4242;
+
+    "authorized_fingerprints" = {
+      "b7:5e:5d:a3:3e:20:9c:e8:a8:dc:fa:6c:c5:3c:92:a5:a3:4a:35:ae:2e:aa:8a:43:29:d4:da:be:23:34:ec:63" = "desktop";
+      "b5:67:20:e3:71:56:11:e3:0e:80:ff:3f:19:5c:da:12:83:4c:62:5f:7b:f9:24:1d:1b:db:29:ea:22:69:cd:28" = "foreign";
+      # "" = "laptop"; # TODO
+    };
   };
 
   configFile = (pkgs.formats.toml { }).generate "config.toml" config;

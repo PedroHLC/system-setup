@@ -525,6 +525,7 @@
         ".config/Element"
         { directory = ".config/Keybase"; mode = "0700"; }
         { directory = ".config/keybase"; mode = "0700"; }
+        ".config/lan-mouse"
         ".config/nvim"
         { directory = ".config/kdeconnect"; mode = "0700"; }
         { directory = ".config/kwalletrc"; mode = "0700"; }
