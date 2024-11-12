@@ -94,6 +94,7 @@ rec {
   contact = {
     domain = "pedrohlc.com";
     email = "root@${contact.domain}";
+    namespace = "com.pedrohlc";
     nickname = "PedroHLC";
   };
 

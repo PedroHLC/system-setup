@@ -40,4 +40,14 @@ mkIf (kvm != null) {
     };
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
+
+  launchd.agents.my-kvm = mkIf (isMacOS) {
+    enable = true;
+    config = {
+      Label = "${contact.namespace}.my-kvm";
+      ProcessType = "Background";
+      ProgramArguments = [ "${pkgs.lan-mouse_git}/bin/lan-mouse" "-d" "-c" (toString configFile) ];
+      RunAtLoad = true;
+    };
+  };
 }

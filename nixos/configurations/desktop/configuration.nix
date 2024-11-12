@@ -117,6 +117,7 @@
     i2pd
     latencyflex-vulkan
     nixos-next-shot
+    uxplay
     virtiofsd # for libvirtd
     vkbasalt
   ];

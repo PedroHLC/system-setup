@@ -79,6 +79,12 @@
     enable = true;
     nssmdns4 = true;
     nssmdns6 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
   };
 
   # Bluetooth.
@@ -180,7 +186,6 @@
     osdlyrics
     qbittorrent
     slack
-    #space-cadet-pinball
     tidal-hifi
     usbutils
     waypipe
