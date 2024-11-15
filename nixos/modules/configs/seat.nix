@@ -631,6 +631,12 @@
   # More modern stage 1 in boot
   boot.initrd.systemd.enable = true;
 
+  # Service for unblocking some regional restrictions
+  services.tor = {
+    enable = true;
+    client.enable = true;
+  };
+
   # Limit resources used by nix-daemon to fix memleaks in some Python and Java derivations.
   # I always need at least 24G of RAM because of ZFS.
   systemd.services.nix-daemon.serviceConfig = {
