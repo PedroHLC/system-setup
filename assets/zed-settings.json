@@ -3,7 +3,16 @@
   // Features Preferences
   "auto_update": false,
   "features": {
-    "inline_completion_provider": "none" // one day: "tabnine"
+    "inline_completion_provider": "supermaven" // one day: "tabnine"
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2",
+    "button": true,
+    "enabled": true
   },
   // UI Preferences
   "theme": "Catppuccin Macchiato",
@@ -78,10 +87,5 @@
   },
   "notification_panel": {
     "button": false
-  },
-  "assistant": {
-    "version": "2",
-    "button": false,
-    "enabled": false
   }
 }
