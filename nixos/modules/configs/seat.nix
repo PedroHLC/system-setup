@@ -528,6 +528,7 @@
         { directory = ".config/cachix"; mode = "0700"; }
         ".config/discord" # todo: move to residues
         ".config/Element"
+        ".config/github-copilot"
         { directory = ".config/Keybase"; mode = "0700"; }
         { directory = ".config/keybase"; mode = "0700"; }
         ".config/lan-mouse"
@@ -614,6 +615,7 @@
         ".nyx"
         ".lyrics"
         ".steam"
+        ".supermaven"
         ".system.git"
         ".zoom"
       ];

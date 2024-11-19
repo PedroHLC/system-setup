@@ -177,6 +177,12 @@
     group = "root";
   };
 
+  # AI stuff
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+  };
+
   # More Classics' gaming
   programs.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
 

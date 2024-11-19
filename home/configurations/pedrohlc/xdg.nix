@@ -57,8 +57,8 @@ utils: with utils;
           };
         };
       };
-      zed = {
-        enable = hasSeat;
+      zed-settings = {
+        enable = false; # Right now, I prefer to symlink it to /etc/nixos/assets/zed-settings.json
         target = "zed/settings.json";
         source = ../../../assets/zed-settings.json;
       };
