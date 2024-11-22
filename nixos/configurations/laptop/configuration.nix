@@ -135,13 +135,31 @@
       # Preferred NVIDIA Version.
       nvidiaPackage = config.boot.kernelPackages.nvidiaPackages.latest;
 
+      patchedNvidiaPackage = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        version = "565.57.01";
+        sha256_64bit = "sha256-buvpTlheOF6IBPWnQVLfQUiHv4GcwhvZW3Ks0PsYLHo=";
+        sha256_aarch64 = "sha256-buvpTlheOF6IBPWnQVLfQUiHv4GcwhvZW3Ks0PsYLHo=";
+        openSha256 = "sha256-/tM3n9huz1MTE6KKtTCBglBMBGGL/GOHi5ZSUag4zXA=";
+        settingsSha256 = "sha256-kQsvDgnxis9ANFmwIwB7HX5MkIAcpEEAHc8IBOLdXvk=";
+        persistencedSha256 = "sha256-E2J2wYYyRu7Kc3MMZz/8ZIemcZg68rkzvqEwFAL3fFs=";
+        patchesOpen = with pkgs; [
+          (fetchpatch2 {
+            url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/9e488011b51045ff0620bd15ae5bf72cd4f0a6c5/nvidia/nvidia-utils/0006-nvidia-drm-Set-FOP_UNSIGNED_OFFSET-for-nv_drm_fops.f.patch";
+            hash = "sha256-uDhzC2h/4yNVrE97fiXVTY4JNiXWXaIHRChkJnUODCU=";
+          })
+        ];
+      };
+
     in
     {
       system.nixos.tags = [ "nvidia-proprietary" ];
 
       services.xserver.videoDrivers = [ "nvidia" ];
       hardware.nvidia = {
-        package = nvidiaPackage;
+        package =
+          if nvidiaPackage.version == "560.35.03"
+          then patchedNvidiaPackage
+          else nvidiaPackage;
         open = true;
 
         prime = {
@@ -170,4 +188,3 @@
   system.stateVersion = "23.11"; # Did you read the comment?
   home-manager.users.pedrohlc.home.stateVersion = "23.11"; # Did you read the comment?
 }
-
