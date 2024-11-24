@@ -296,9 +296,11 @@ with utils; {
         } // attrsets.optionalAttrs isNixOS {
           "@sys" = "cd /etc/nixos";
           "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
-        } // attrsets.optionalAttrs isMacOS {
+        } // attrsets.optionalAttrs isMacOS (rec {
           "poweroff" = "exec osascript -e 'tell application \"Finder\" to shut down'";
-        } // attrsets.optionalAttrs hasSeat {
+          "firewall" = "/usr/libexec/ApplicationFirewall/socketfilterfw";
+          "firewall-status" = "${firewall} --getglobalstate --getblockall --getallowsigned --getstealthmode --listapps";
+        }) // attrsets.optionalAttrs hasSeat {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";
           # TODO: Move to services
