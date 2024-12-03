@@ -29,6 +29,7 @@
   home.packages = with pkgs; [
     aria2
     borg-sans-mono
+    dbeaver-bin
     gnupg
     heroku
     home-manager
