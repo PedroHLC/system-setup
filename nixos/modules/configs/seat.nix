@@ -332,12 +332,12 @@
     packages = with pkgs; [
       borg-sans-mono
       cantarell-fonts
-      droid-sans-mono-nerdfont
       fira
       fira-code
       fira-code-symbols
       font-awesome_4
       font-awesome_5
+      nerd-fonts.droid-sans-mono
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif

@@ -15,7 +15,7 @@
     yafas.url = "github:UbiqueLambda/yafas";
 
     # Smooth-criminal bleeding-edge packages
-    chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/0.1.*.tar.gz";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # My FFx userChrome.css
     pedrochrome-css = {
