@@ -72,9 +72,8 @@
   ];
 
   # OpenCL
+  hardware.amdgpu.opencl.enable = true;
   chaotic.mesa-git.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
-    rocmPackages.clr
     mesa_git.opencl
   ];
   environment.variables.RADV_PERFTEST = "sam,video_decode,transfer_queue";
@@ -148,6 +147,7 @@
       directories = [
         "/var/lib/nut"
         "/var/lib/libvirt"
+        "/var/lib/ollama"
       ];
     };
   };
@@ -181,7 +181,22 @@
   services.ollama = {
     enable = true;
     acceleration = "rocm";
+    rocmOverrideGfx = "10.3.0";
+    user = "ollama";
+    group = "ai";
+    home = "/var/lib/ollama";
   };
+  systemd.services.ollama.serviceConfig =
+    let
+      cfg = config.services.ollama;
+      ollamaPackage = cfg.package.override { inherit (cfg) acceleration; };
+    in
+    lib.mkForce {
+      Type = "exec";
+      ExecStart = "${lib.getExe ollamaPackage} serve";
+      WorkingDirectory = cfg.home;
+      SupplementaryGroups = [ "render" ];
+    };
 
   # More Classics' gaming
   programs.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];

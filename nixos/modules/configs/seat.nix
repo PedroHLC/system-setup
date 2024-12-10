@@ -490,6 +490,11 @@
       ID_INPUT_KEY=1
       KEYBOARD_KEY_90005=key_pageup
       KEYBOARD_KEY_90004=key_pagedown
+      KEYBOARD_KEY_90004=key_pagedown
+    evdev:name:Logitech USB Receiver Mouse:*
+      ID_INPUT_KEY=1
+      KEYBOARD_KEY_90005=key_pageup
+      KEYBOARD_KEY_90004=key_pagedown
   '';
 
   # Persistent files
