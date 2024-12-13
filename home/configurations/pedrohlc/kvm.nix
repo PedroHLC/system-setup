@@ -48,6 +48,7 @@ mkIf (kvm != null) {
       ProcessType = "Background";
       ProgramArguments = [ "${pkgs.lan-mouse_git}/bin/lan-mouse" "-d" "-c" (toString configFile) ];
       RunAtLoad = true;
+      KeepAlive = true;
     };
   };
 }

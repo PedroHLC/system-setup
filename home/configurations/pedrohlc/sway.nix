@@ -121,6 +121,13 @@ in
         "XF86AudioLowerVolume" = "exec ${pkgs.avizo}/bin/volumectl -u down";
         "XF86AudioMute" = "exec ${pkgs.avizo}/bin/volumectl toggle-mute";
 
+        # Media controls
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+        "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
+
         # Lightweight screenshot to cliboard and temporary file
         "Print" = "exec ${pkgs.grim}/bin/grim -t png - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
         "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
