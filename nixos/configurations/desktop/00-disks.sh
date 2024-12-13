@@ -2,18 +2,20 @@
 set -o errexit
 
 # Create EFI.
-mkfs.vfat -F32 /dev/nvme0n1p1
+mkfs.vfat -F32 /dev/nvme0n1p3
 
 # Swaps.
 mkswap /dev/nvme0n1p2
+mkswap /dev/nvme1n1p2
 swapon /dev/nvme0n1p2
+swapon /dev/nvme1n1p2
 
 # Create pool.
-zpool create -f zroot /dev/nvme0n1p3
+zpool create -f zroot /dev/nvme{0,1}n1p1
 zpool set autotrim=on zroot
 zfs set compression=lz4 zroot
 zfs set mountpoint=none zroot
-zfs create -o refreservation=8G -o mountpoint=none zroot/reserved
+zfs create -o refreservation=10G -o mountpoint=none zroot/reserved
 
 # System volumes.
 zfs create -o mountpoint=none zroot/data
@@ -44,7 +46,7 @@ mkdir -p /mnt/nix /mnt/var/persistent /mnt/var/residues /mnt/boot \
 zfs snapshot zroot/ROOT/empty@start
 
 # Mount & Permissions
-mount /dev/nvme0n1p1 /mnt/boot
+mount /dev/nvme0n1p3 /mnt/boot
 chmod 700 /mnt/boot
 mount -t zfs zroot/ROOT/nix /mnt/nix
 mount -t zfs zroot/games/home /mnt/home/pedrohlc/Games
