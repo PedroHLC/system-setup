@@ -191,7 +191,16 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true; # So I can use GPG through SSH
-    pinentryPackage = lib.mkForce pkgs.pinentry-curses;
+    pinentryPackage =
+    let
+      pkg = pkgs.callPackage ../../../packages/scripts {
+        scriptName = "pinentry";
+        substitutions = {
+          "@PINENTRY@" = "${pkgs.pinentry-gnome3}";
+        };
+      };
+    in
+    lib.mkForce pkg;
   };
   programs.tmux = {
     enable = true;

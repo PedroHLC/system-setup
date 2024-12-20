@@ -35,4 +35,5 @@ stdenvNoCC.mkDerivation {
 
     runHook postCheck
   '';
+  meta.mainProgram = scriptName;
 }

@@ -1,6 +1,9 @@
 utils: with utils;
 
 # My simple and humble bar
+let
+  interval = 4;
+in
 {
   programs.i3status-rust = {
     enable = hasSeat;
@@ -14,12 +17,12 @@ utils: with utils;
           {
             block = "custom";
             command = ''echo -n ' '; ${swayncClient} -c; [ "x$(${swayncClient} -D)" = 'xtrue' ] && echo " (DND)"'';
-            interval = 3;
+            inherit interval;
           }
           {
             block = "custom";
             command = "echo -n ' '; ${who} | ${grep} 'pts/' | ${wc} -l | ${tr} '\\n' '/'; ${who} | ${wc} -l";
-            interval = 3;
+            inherit interval;
           }
           {
             block = "toggle";
@@ -27,7 +30,7 @@ utils: with utils;
             command_state = "${systemctl} is-active -q sshd && echo a";
             command_on = "${sudo} ${systemctl} start sshd";
             command_off = "${sudo} ${systemctl} stop sshd";
-            interval = 5;
+            inherit interval;
           }
           {
             block = "toggle";
@@ -35,7 +38,7 @@ utils: with utils;
             command_state = "${bluetoothctl} show | ${grep} 'Powered: yes'";
             command_on = "${sudo} ${pkgs.util-linux}/bin/rfkill unblock bluetooth && ${sudo} ${systemctl} start bluetooth && ${bluetoothctl} --timeout 4 power on";
             command_off = "${bluetoothctl} --timeout 4 power off; ${sudo} ${systemctl} stop bluetooth && ${sudo} ${pkgs.util-linux}/bin/rfkill block bluetooth";
-            interval = 5;
+            inherit interval;
           }
           {
             block = "toggle";
@@ -43,21 +46,21 @@ utils: with utils;
             command_state = "${nmcli} r wifi | ${grep} '^d'";
             command_on = "${nmcli} r wifi off";
             command_off = "${nmcli} r wifi on";
-            interval = 5;
+            inherit interval;
           }
           {
             block = "net";
             device = "wlan0";
             format = "$icon $ssid ($signal_strength)";
             missing_format = "";
-            interval = 5;
+            inherit interval;
           }
           {
             block = "net";
             device = mainNetworkInterface;
             format = "^icon_net_down $speed_down.eng(prefix:K) ^icon_net_up $speed_up.eng(prefix:K)";
             missing_format = "";
-            interval = 5;
+            inherit interval;
           }
           {
             block = "disk_space";
@@ -70,34 +73,35 @@ utils: with utils;
           {
             block = "memory";
             format = "$icon $mem_used_percents";
+            inherit interval;
           }
           {
             block = "cpu";
-            interval = 2;
+            interval = interval / 2;
           }
         ] ++ (lists.optional (cpuSensor != null)
           {
             block = "temperature";
             format = "$icon $average";
             chip = cpuSensor;
-            interval = 5;
+            inherit interval;
           }
         ) ++ (lists.optional (gpuSensor != null)
           {
             block = "temperature";
             format = "$icon $average";
             chip = gpuSensor;
-            interval = 5;
+            inherit interval;
           }
         ) ++ (map
           (sensor: {
             block = "temperature";
             format = "$icon $max";
             chip = sensor;
-            interval = 3;
+            inherit interval;
             idle = 37;
             info = 41;
-            warning = 44;
+            warning = 50;
           })
           nvmeSensors
         ) ++ [
@@ -107,14 +111,14 @@ utils: with utils;
         ] ++ (lists.optional hasBattery
           {
             block = "battery";
-            interval = 5;
+            inherit interval;
             device = battery;
           }
         ) ++ (lists.optional hasUPS
           {
             block = "custom";
             command = "echo -n ' '; ${pkgs.nut}/bin/upsc ${ups} 'ups.load' | ${sed} s/\\.00/%/";
-            interval = 5;
+            inherit interval;
           }
         ) ++ [{
           block = "custom";
@@ -125,7 +129,7 @@ utils: with utils;
               ukTime = "TZ='Europe/London' ${date} +'UK{%H:%M}'";
             in
             "(${localDay}; ${brTime}; ${ukTime}) | ${tr} '\\n' ' '";
-          interval = 10;
+          interval = interval * 2;
         }];
       };
     };
