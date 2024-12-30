@@ -71,11 +71,7 @@
     "amd-pstate=guided"
   ];
 
-  # OpenCL
-  hardware.amdgpu.opencl.enable = true;
-  chaotic.mesa-git.extraPackages = with pkgs; [
-    mesa_git.opencl
-  ];
+  # GPU
   environment.variables.RADV_PERFTEST = "sam,video_decode,transfer_queue";
 
   # Up-to 192kHz in the Focusrite
@@ -176,28 +172,6 @@
     owner = "root";
     group = "root";
   };
-
-  # AI stuff
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm";
-    rocmOverrideGfx = "10.3.0";
-    host = "0.0.0.0";
-    user = "ollama";
-    group = "ai";
-    home = "/var/lib/ollama";
-  };
-  systemd.services.ollama.serviceConfig =
-    let
-      cfg = config.services.ollama;
-      ollamaPackage = cfg.package.override { inherit (cfg) acceleration; };
-    in
-    lib.mkForce {
-      Type = "exec";
-      ExecStart = "${lib.getExe ollamaPackage} serve";
-      WorkingDirectory = cfg.home;
-      SupplementaryGroups = [ "render" ];
-    };
 
   # More Classics' gaming
   programs.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
