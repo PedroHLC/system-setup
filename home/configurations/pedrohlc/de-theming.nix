@@ -63,13 +63,4 @@ utils: with utils;
     name = iconTheme;
     package = pkgs.vimix-icon-theme;
   };
-
-  # Hotfix for https://github.com/danth/stylix/issues/340
-  home.activation.stylixLookAndFeel = mkForce ''
-    export PATH=$PATH:/run/current-system/sw/bin
-    plasma-apply-lookandfeel --apply stylix || true
-  '';
-  wayland.windowManager.sway.config.startup = [
-    { command = "plasma-apply-lookandfeel --apply stylix"; }
-  ];
 }
