@@ -21,7 +21,7 @@ lib.mkIf (!config.focusMode) {
     #devilutionx
     #duckstation
     #openmohaa_git
-    #openrct2
+    openrct2
     #space-cadet-pinball
     torzu_git
     #vcmi

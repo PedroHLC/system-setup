@@ -129,6 +129,7 @@
   environment.persistence = {
     "/var/persistent" = {
       users.pedrohlc.directories = [
+        ".config/OpenRCT2"
         ".local/share/diasurgical"
         ".local/share/vcmi"
       ];
@@ -136,7 +137,6 @@
     "/var/residues" = {
       users.pedrohlc.directories = [
         ".cache/vcmi"
-        ".config/OpenRCT2"
         ".config/vcmi"
         ".config/VCMI Team"
       ];
