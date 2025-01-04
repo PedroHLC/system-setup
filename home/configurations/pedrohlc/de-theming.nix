@@ -63,4 +63,9 @@ utils: with utils;
     name = iconTheme;
     package = pkgs.vimix-icon-theme;
   };
+
+  # Plasma LookAndFeel for Sway
+  wayland.windowManager.sway.config.startup = [
+    { command = "plasma-apply-lookandfeel --apply stylix"; }
+  ];
 }
