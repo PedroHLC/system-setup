@@ -65,6 +65,16 @@ utils: with utils;
     };
     # Other data files
     dataFile = {
+      gamescopeShaders = {
+        enable = hasSeat;
+        target = "gamescope/reshade";
+        source = pkgs.fetchFromGitHub {
+          owner = "Matsilagi";
+          repo = "RSRetroArch";
+          rev = "b27eb2dd05d3ebf8a1ce2760b51b26caa0e54bbe";
+          hash = "sha256-qT8ERird4KC0WqF+dNfxE9DLQnMOUB0wQKwRCSDIj+s=";
+        };
+      };
       userChromeCss = {
         enable = hasSeat;
         target = "userChrome.css";

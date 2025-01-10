@@ -100,8 +100,8 @@ in
             chip = sensor;
             inherit interval;
             idle = 37;
-            info = 41;
-            warning = 50;
+            info = 49;
+            warning = 60;
           })
           nvmeSensors
         ) ++ [

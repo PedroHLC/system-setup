@@ -127,7 +127,7 @@
 
     wireplumber.enable = true;
   };
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true; # OpenAL likes it, but my pipewire is not configure to rt.
   environment.variables.AE_SINK = "ALSA"; # For Kodi, better latency/volume under pw.
   environment.variables.SDL_AUDIODRIVER = "pipewire";
@@ -552,6 +552,7 @@
         { directory = ".kube"; mode = "0700"; }
         ".local/share/DBeaverData"
         ".local/share/fish"
+        ".local/share/gamescope"
         ".local/share/chat.fluffy.fluffychat"
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }

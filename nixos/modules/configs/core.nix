@@ -276,14 +276,7 @@
   # This is for reusing flakes inputs for old commands.
   nix.nixPath = [
     "nixpkgs=${flakes.nixpkgs}"
-    "chaotic=${flakes.chaotic}"
   ];
-
-  # Always uses system's flakes instead of downloading or updating.
-  nix.registry = {
-    nixpkgs.flake = flakes.nixpkgs;
-    chaotic.flake = flakes.chaotic;
-  };
 
   networking.hosts = {
     # - My Network
