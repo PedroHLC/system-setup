@@ -272,11 +272,11 @@
     enableNg = true;
   };
 
-  # Set $NIX_PATH entry for nixpkgs.
-  # This is for reusing flakes inputs for old commands.
-  nix.nixPath = [
-    "nixpkgs=${flakes.nixpkgs}"
-  ];
+  # This is for reusing the versioned flakes inputs for CLI commands.
+  nixpkgs.flake.setNixPath = true;
+  nixpkgs.flake.setFlakeRegistry = true;
+  chaotic.nyx.registry.enable = true;
+  chaotic.nyx.nixPath.enable = true;
 
   networking.hosts = {
     # - My Network
