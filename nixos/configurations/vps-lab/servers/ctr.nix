@@ -1,5 +1,10 @@
 { flakes, pkgs, ... }:
 
+let
+  pkg = flakes.ctr.packages.${pkgs.system}.online-server.release.native32.gcc.override {
+    stdenv = pkgs.pkgsCross.armv7l-hf-multiplatform.gcc13Stdenv;
+  };
+in
 {
   systemd.services.ctr = {
     enable = true;
@@ -7,7 +12,7 @@
     serviceConfig = {
       User = "pedrohlc";
       Group = "users";
-      ExecStart = "${flakes.ctr.packages.${pkgs.system}.online-server.release.native32.gcc}/bin/ctr_srv -p 64001";
+      ExecStart = "${pkg}/bin/ctr_srv -p 64001";
       Restart = "always";
       RestartSec = "8";
     };

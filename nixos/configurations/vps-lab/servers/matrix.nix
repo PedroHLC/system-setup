@@ -31,6 +31,7 @@ in
       trusted_servers = [ "envs.net" ];
     };
   };
+  systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce "${pkgs.conduwuit_git}/bin/conduwuit";
   services.nginx = {
     virtualHosts."${matrix_hostname}" = {
       listen = [
