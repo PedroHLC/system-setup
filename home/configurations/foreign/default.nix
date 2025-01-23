@@ -1,4 +1,4 @@
-{ pkgs, flakes, ... }: {
+{ pkgs, lib, flakes, ... }: {
   home.stateVersion = "24.05";
 
   nix = {
@@ -27,6 +27,7 @@
 
   # More packages
   home.packages = with pkgs; [
+    aerospace
     aria2
     borg-sans-mono
     dbeaver-bin
@@ -44,4 +45,10 @@
     enable = true;
     defaultFonts.monospace = [ "Borg Sans Mono" ];
   };
+
+  # This is for reusing the versioned flakes inputs for CLI commands.
+  # HomeManager does not provide `nixpkgs.flake.setNixPath`
+  nix.nixPath = lib.mkDefault [ "nixpkgs=flake:nixpkgs" ];
+  chaotic.nyx.registry.enable = true;
+  chaotic.nyx.nixPath.enable = true;
 }
