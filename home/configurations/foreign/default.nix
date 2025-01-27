@@ -46,6 +46,18 @@
     defaultFonts.monospace = [ "Borg Sans Mono" ];
   };
 
+  # Aerospace agent
+  launchd.agents.aerospace = {
+    enable = true;
+    config = {
+      Label = "io.github.nikitabobko.aerospace";
+      ProcessType = "Background";
+      ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/AeroSpace.app/Contents/MacOS/AeroSpace" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
+
   # This is for reusing the versioned flakes inputs for CLI commands.
   # HomeManager does not provide `nixpkgs.flake.setNixPath`
   nix.nixPath = lib.mkDefault [ "nixpkgs=flake:nixpkgs" ];
