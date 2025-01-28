@@ -9,6 +9,7 @@ mkNixOS {
     ./configuration.nix
     ./servers/adguard.nix
     ./servers/atuin.nix
+    ./servers/bsky.nix
     ./servers/ctr.nix
     ./servers/git.nix
     ./servers/journal-remote.nix

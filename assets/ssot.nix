@@ -24,6 +24,7 @@ rec {
       v6 = "${vpn.prefix.v6}:1";
       adguardPort = 3334;
       atuinPort = 8888;
+      bskyPort = 3777;
     };
     zeta = rec {
       addr = "zeta.${vpn.tld}";
@@ -60,6 +61,9 @@ rec {
       addr = "lab.${contact.domain}";
       v4 = "144.22.182.122";
       v6 = "2603:c021:c001:4e00:ebff:9275:c660:f6e1";
+    };
+    bsky = {
+      addr = "bsky.chaotic.cx";
     };
     dev = {
       addr = "ubiquelambda.dev";

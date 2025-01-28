@@ -19,10 +19,6 @@
         locations."/".root = ../../../../assets/http-root/lab;
         locations."/bucket/".root = "/srv/http";
         locations."/ical/".root = "/srv/http";
-        locations."/shelter" = {
-          recommendedProxySettings = true;
-          proxyPass = "http://127.0.0.1:8080/graphql";
-        };
       };
       "${web.zeta.addr}" = {
         forceSSL = true;
@@ -31,6 +27,16 @@
         locations = {
           "/".root = ../../../../assets/http-root/zeta;
           "/dns-query".proxyPass = "https://127.0.0.1:${toString vpn.lab.adguardPort}/dns-query";
+        };
+      };
+      "${web.bsky.addr}" = {
+        forceSSL = true;
+        enableACME = true;
+        http3 = true;
+        serverAliases = [ "pedrohlc.${web.bsky.addr}" ];
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString vpn.lab.bskyPort}/";
+          proxyWebsockets = true;
         };
       };
     };
