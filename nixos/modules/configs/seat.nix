@@ -506,6 +506,25 @@
       KEYBOARD_KEY_90004=key_pagedown
   '';
 
+  # Udev rules
+  # Mostly stolen from https://wiki.cachyos.org/features/cachyos_settings/#udev-rules
+  services.udev.extraRules = ''
+    # NTSync from user-space
+    KERNEL=="ntsync", MODE="0644"
+
+    # HDD scheduler
+    ACTION=="add|change", KERNEL=="sd[a-z]*", ATTR{queue/rotational}=="1", \
+        ATTR{queue/scheduler}="bfq"
+
+    # SSD scheduler
+    ACTION=="add|change", KERNEL=="sd[a-z]*|mmcblk[0-9]*", ATTR{queue/rotational}=="0", \
+        ATTR{queue/scheduler}="mq-deadline"
+
+    # NVMe SSD scheduler
+    ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/rotational}=="0", \
+        ATTR{queue/scheduler}="none"
+  '';
+
   # Persistent files
   environment.persistence."/var/persistent" = {
     hideMounts = true;
