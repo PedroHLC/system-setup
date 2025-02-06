@@ -105,6 +105,9 @@ with utils; {
         sync_address = "http://${vpn.lab.addr}:${toString vpn.lab.atuinPort}";
       };
     };
+
+    btop.enable = hasSeat;
+
     mpv = {
       enable = hasSeat;
       # For watching animes in 60fps
@@ -359,6 +362,9 @@ with utils; {
       enableZshIntegration = false;
     };
   };
+
+  # Volume and Display-brightness OSD
+  services.avizo.enable = hasSeat;
 
   # Color filters for day/night
   services.gammastep = {

@@ -38,8 +38,6 @@ in
         { command = "${bin.lock}"; }
         # Notification daemon
         { command = "${pkgs.swaynotificationcenter}/bin/swaync"; }
-        # Volume and Display-brightness OSD
-        { command = "${pkgs.avizo}/bin/avizo-service"; }
         # "services.swayidle" is missing "sh" in PATH -- besides I prefer having my graphics-session environ here.
         { command = "${pseudoPkgs.idle-lock-script}"; }
         { command = "${pseudoPkgs.idle-dpms-script}"; }
