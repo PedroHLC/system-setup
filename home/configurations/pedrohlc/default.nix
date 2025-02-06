@@ -265,6 +265,11 @@ with utils; {
           program = "${bin.fish}";
           args = [ "--login" ];
         };
+
+        keyboard.bindings =
+          if appleKeyMap
+          then importJSON ../../../assets/alacritty-apple-like-mods.json
+          else [ ];
       };
     };
 

@@ -29,6 +29,7 @@ in
       allow_registration = false;
       database_backend = "rocksdb";
       trusted_servers = [ "envs.net" ];
+      sentry = true;
     };
   };
   systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce "${pkgs.conduwuit_git}/bin/conduwuit";

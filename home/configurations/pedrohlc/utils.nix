@@ -17,6 +17,7 @@ self:
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
   inherit config pkgs flakes nixosConfig usingNouveau;
   inherit (lib.strings) optionalString;
+  inherit (lib.trivial) importJSON;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./pseudo-packages.nix self;
@@ -38,6 +39,7 @@ self:
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = autoLogin == "steam";
   sunshine = seat.sunshine or false;
+  appleKeyMap = seat.appleKeyMap or false;
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
   bin = rec {
@@ -77,7 +79,7 @@ self:
   };
 
   # Repeating settings
-  modifier = "Mod4";
+  modifier = if appleKeyMap then "Mod1" else "Mod4";
   defaultBrowser = "firefox${firefoxSuffix}.desktop";
   iconTheme = "Vimix-Doder-dark";
   homePath = config.home.homeDirectory;

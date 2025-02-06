@@ -1,0 +1,319 @@
+[
+  {
+    "key": "At",
+    "mods": "Control",
+    "chars": "@"
+  },
+  {
+    "key": "A",
+    "mods": "Control",
+    "chars": "a"
+  },
+  {
+    "key": "B",
+    "mods": "Control",
+    "chars": "b"
+  },
+  {
+    "key": "C",
+    "mods": "Control",
+    "action": "Copy"
+  },
+  {
+    "key": "D",
+    "mods": "Control",
+    "chars": "d"
+  },
+  {
+    "key": "E",
+    "mods": "Control",
+    "chars": "e"
+  },
+  {
+    "key": "F",
+    "mods": "Control",
+    "action": "SearchForward"
+  },
+  {
+    "key": "F",
+    "mods": "Control",
+    "mode": "~Search",
+    "action": "SearchForward"
+  },
+  {
+    "key": "F",
+    "mods": "Control|Shift",
+    "action": "SearchBackward"
+  },
+  {
+    "key": "F",
+    "mods": "Control|Shift",
+    "mode": "~Search",
+    "action": "SearchBackward"
+  },
+  {
+    "key": "G",
+    "mods": "Control",
+    "chars": "g"
+  },
+  {
+    "key": "H",
+    "mods": "Control",
+    "chars": "h"
+  },
+  {
+    "key": "I",
+    "mods": "Control",
+    "chars": "i"
+  },
+  {
+    "key": "J",
+    "mods": "Control",
+    "chars": "j"
+  },
+  {
+    "key": "K",
+    "mods": "Control",
+    "chars": "k"
+  },
+  {
+    "key": "L",
+    "mods": "Control",
+    "chars": "l"
+  },
+  {
+    "key": "M",
+    "mods": "Control",
+    "chars": "m"
+  },
+  {
+    "key": "N",
+    "mods": "Control",
+    "action": "CreateNewWindow"
+  },
+  {
+    "key": "O",
+    "mods": "Control",
+    "chars": "o"
+  },
+  {
+    "key": "P",
+    "mods": "Control",
+    "chars": "p"
+  },
+  {
+    "key": "Q",
+    "mods": "Control",
+    "action": "Quit"
+  },
+  {
+    "key": "R",
+    "mods": "Control",
+    "chars": "r"
+  },
+  {
+    "key": "S",
+    "mods": "Control",
+    "chars": "s"
+  },
+  {
+    "key": "T",
+    "mods": "Control",
+    "chars": "t"
+  },
+  {
+    "key": "U",
+    "mods": "Control",
+    "chars": "u"
+  },
+  {
+    "key": "V",
+    "mods": "Control",
+    "action": "Paste"
+  },
+  {
+    "key": "W",
+    "mods": "Control",
+    "action": "Quit"
+  },
+  {
+    "key": "X",
+    "mods": "Control",
+    "chars": "Cut"
+  },
+  {
+    "key": "Y",
+    "mods": "Control",
+    "chars": "y"
+  },
+  {
+    "key": "Z",
+    "mods": "Control",
+    "chars": "z"
+  },
+  {
+    "key": "LBracket",
+    "mods": "Control",
+    "chars": "["
+  },
+  {
+    "key": "Backslash",
+    "mods": "Control",
+    "chars": "\\\\"
+  },
+  {
+    "key": "RBracket",
+    "mods": "Control",
+    "chars": "]"
+  },
+  {
+    "key": "At",
+    "mods": "Super",
+    "chars": "\\u0000"
+  },
+  {
+    "key": "A",
+    "mods": "Super",
+    "chars": "\\u0001"
+  },
+  {
+    "key": "B",
+    "mods": "Super",
+    "chars": "\\u0002"
+  },
+  {
+    "key": "C",
+    "mods": "Super",
+    "chars": "\\u0003"
+  },
+  {
+    "key": "D",
+    "mods": "Super",
+    "chars": "\\u0004"
+  },
+  {
+    "key": "E",
+    "mods": "Super",
+    "chars": "\\u0005"
+  },
+  {
+    "key": "F",
+    "mods": "Super",
+    "chars": "\\u0006"
+  },
+  {
+    "key": "G",
+    "mods": "Super",
+    "chars": "\\u0007"
+  },
+  {
+    "key": "H",
+    "mods": "Super",
+    "chars": "\b"
+  },
+  {
+    "key": "I",
+    "mods": "Super",
+    "chars": "\t"
+  },
+  {
+    "key": "J",
+    "mods": "Super",
+    "chars": "\n"
+  },
+  {
+    "key": "K",
+    "mods": "Super",
+    "chars": "\\u000b"
+  },
+  {
+    "key": "L",
+    "mods": "Super",
+    "chars": "\f"
+  },
+  {
+    "key": "M",
+    "mods": "Super",
+    "chars": "\r"
+  },
+  {
+    "key": "N",
+    "mods": "Super",
+    "chars": "\\u000e"
+  },
+  {
+    "key": "O",
+    "mods": "Super",
+    "chars": "\\u000f"
+  },
+  {
+    "key": "P",
+    "mods": "Super",
+    "chars": "\\u0010"
+  },
+  {
+    "key": "Q",
+    "mods": "Super",
+    "chars": "\\u0011"
+  },
+  {
+    "key": "R",
+    "mods": "Super",
+    "chars": "\\u0012"
+  },
+  {
+    "key": "S",
+    "mods": "Super",
+    "chars": "\\u0013"
+  },
+  {
+    "key": "T",
+    "mods": "Super",
+    "chars": "\\u0014"
+  },
+  {
+    "key": "U",
+    "mods": "Super",
+    "chars": "\\u0015"
+  },
+  {
+    "key": "V",
+    "mods": "Super",
+    "chars": "\\u0016"
+  },
+  {
+    "key": "W",
+    "mods": "Super",
+    "chars": "\\u0017"
+  },
+  {
+    "key": "X",
+    "mods": "Super",
+    "chars": "\\u0018"
+  },
+  {
+    "key": "Y",
+    "mods": "Super",
+    "chars": "\\u0019"
+  },
+  {
+    "key": "Z",
+    "mods": "Super",
+    "chars": "\\u001a"
+  },
+  {
+    "key": "LBracket",
+    "mods": "Super",
+    "chars": "\\u001b"
+  },
+  {
+    "key": "Backslash",
+    "mods": "Super",
+    "chars": "\\u001c"
+  },
+  {
+    "key": "RBracket",
+    "mods": "Super",
+    "chars": "\\u001d"
+  }
+]
