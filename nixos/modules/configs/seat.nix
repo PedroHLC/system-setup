@@ -306,6 +306,7 @@
           ];
         });
 
+        # Contains -srgb parameter
         uxplay = prev.uxplay.overrideAttrs (oa: {
           src = final.fetchFromGitHub {
             owner = "FDH2";
@@ -313,6 +314,11 @@
             rev = "bccc42e4e25c7f79efbb14ac2bf1fcb55718ee64";
             hash = "sha256-46hYjmoiykw/sbjU9+6ZdQNOY2k4pIA7w8TRNrG76ck=";
           };
+        });
+
+        # https://github.com/NixOS/nixpkgs/issues/380439
+        vimix-icon-theme = prev.vimix-icon-theme.overrideAttrs (_oa: {
+          dontCheckForBrokenSymlinks = true;
         });
       };
     in
