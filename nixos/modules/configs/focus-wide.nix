@@ -13,7 +13,7 @@ lib.mkIf (!config.focusMode) {
     mangohud_git
     mesa-demos
     vulkan-caps-viewer
-    vulkan-tools
+    vulkanPackages_latest.vulkan-tools
     winetricks
     gamescope-wsi_git
     gamescope-wsi32_git
