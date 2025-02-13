@@ -58,6 +58,11 @@
     };
   };
 
+  # Make apps indexable
+  home.activation.makeTrampolineApps = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+    builtins.readFile ../../../assets/make-app-trampolines.sh
+  );
+
   # This is for reusing the versioned flakes inputs for CLI commands.
   # HomeManager does not provide `nixpkgs.flake.setNixPath`
   nix.nixPath = lib.mkDefault [ "nixpkgs=flake:nixpkgs" ];

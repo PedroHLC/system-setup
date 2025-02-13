@@ -3,7 +3,7 @@
   // Features Preferences
   "auto_update": false,
   "features": {
-    "inline_completion_provider": "supermaven" // one day: "tabnine"
+    "edit_prediction_provider": "supermaven"
   },
   "assistant": {
     "default_model": {
