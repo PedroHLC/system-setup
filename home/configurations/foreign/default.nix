@@ -1,5 +1,5 @@
 { pkgs, lib, flakes, ... }: {
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
 
   nix = {
     package = pkgs.nixVersions.latest;
