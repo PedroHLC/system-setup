@@ -68,4 +68,7 @@ utils: with utils;
   wayland.windowManager.sway.config.startup = [
     { command = "plasma-apply-lookandfeel --apply stylix"; }
   ];
+
+  # Removes Stylix usage of `nixpkgs.overalys`
+  stylix.targets.gnome-text-editor.enable = false;
 }

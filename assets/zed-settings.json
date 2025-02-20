@@ -3,7 +3,7 @@
   // Features Preferences
   "auto_update": false,
   "features": {
-    "edit_prediction_provider": "supermaven"
+    "edit_prediction_provider": "zed"
   },
   "assistant": {
     "default_model": {
