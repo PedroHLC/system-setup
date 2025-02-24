@@ -308,9 +308,10 @@ with utils; {
           "poweroff" = "exec osascript -e 'tell application \"Finder\" to shut down'";
           "firewall" = "/usr/libexec/ApplicationFirewall/socketfilterfw";
           "firewall-status" = "${firewall} --getglobalstate --getblockall --getallowsigned --getstealthmode --listapps";
-        }) // attrsets.optionalAttrs hasSeat {
+        }) // attrsets.optionalAttrs (hasSeat && !isMacOS) {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";
+          "uxplay-ready" = "uxplay -h265 -as 0 -fps 60 -srgb -vs waylandsink -vd vah265dec";
           # TODO: Move to services
           "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o DP-2";
           "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";

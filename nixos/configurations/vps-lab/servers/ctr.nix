@@ -1,9 +1,7 @@
 { flakes, pkgs, ... }:
 
 let
-  pkg = flakes.ctr.packages.${pkgs.system}.online-server.release.native32.gcc.override {
-    stdenv = pkgs.pkgsCross.armv7l-hf-multiplatform.gcc13Stdenv;
-  };
+  pkg = flakes.ctr.packages.${pkgs.system}.online-server.release.native.gcc;
 in
 {
   systemd.services.ctr = {
