@@ -3,8 +3,7 @@
 
   # My main channel and extra repositories
   inputs = {
-    # nixpkgs.follows = "chaotic/nixpkgs";
-    nixpkgs.url = "github:PedroHLC/nixpkgs/nixos-unstable-with-386738";
+    nixpkgs.follows = "chaotic/nixpkgs";
 
     # Reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
