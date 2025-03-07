@@ -7,7 +7,9 @@
 
 from vapoursynth import core
 
-core.std.LoadPlugin(path="libmvtools.so")
+# When using Nix's `vapoursynth.withPlugins [ vapoursynth-mvtools ]` you don't need the following:
+# core.std.LoadPlugin(path="libmvtools.so")
+
 # ref: http://avisynth.org.ru/mvtools/mvtools2.html#functions
 # default is 400, less means interpolation will only happen when it will work well
 ignore_threshold = 140
