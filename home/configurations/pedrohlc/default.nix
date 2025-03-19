@@ -88,6 +88,8 @@ with utils; {
           source "$HOME/.profile"
         '';
       };
+      # Nixed Zed-editor dev build
+      ".zed_server/zed-remote-server-dev-build".source = "${pkgs.zed-editor_git.remote_server}/bin/zed-remote-server-dev-build";
     };
   };
 

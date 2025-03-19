@@ -80,16 +80,6 @@ utils: with utils;
         target = "userChrome.css";
         source = "${flakes.pedrochrome-css}/userChrome.css";
       };
-      zedNodeBin = {
-        enable = hasSeat;
-        target = "zed/node/node-v22.5.1-linux-x64/bin";
-        source = "${pkgs.nodejs_22}/bin";
-      };
-      zedNodeLib = {
-        enable = hasSeat;
-        target = "zed/node/node-v22.5.1-linux-x64/lib";
-        source = "${pkgs.nodejs_22}/lib";
-      };
     };
     desktopEntries = mkIf hasSeat {
       # Overwrite Firefox with my encryption-wrapper
