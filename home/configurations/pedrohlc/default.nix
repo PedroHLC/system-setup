@@ -90,7 +90,18 @@ with utils; {
         '';
       };
       # Nixed Zed-editor dev build
-      ".zed_server/zed-remote-server-dev-build".source = "${pkgs.zed-editor_git.remote_server}/bin/zed-remote-server-dev-build";
+      ".zed_server/zed-remote-server-dev-build".source =
+        let
+          unwrapped = "${pkgs.zed-editor_git.remote_server}/bin/zed-remote-server-dev-build";
+        in
+        if isMacOS then pkgs.writeScript "zed-remote-server-dev-build" ''
+          if [ -z "$__HM_SESS_VARS_SOURCED" ]; then
+            export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+            source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+          fi
+          exec ${unwrapped} "$@"
+        ''
+        else unwrapped;
     };
   };
 
