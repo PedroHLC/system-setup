@@ -13,7 +13,6 @@ with utils; {
     (import ./xdg.nix utils)
   ] ++ optionals hasSeat [
     (import ./audacious.nix utils)
-    (import ./sublime-text.nix utils)
     (import ./sway.nix utils)
     # Themeing
     flakes.stylix.homeManagerModules.stylix
@@ -29,6 +28,8 @@ with utils; {
         mpv-hq-entry
         my-wscreensaver
         pokemmo-launcher
+      ] ++ lists.optionals (hasSeat || isMacOS) [
+        youtube-music
       ] ++ [
         # My scripts
         nrpr

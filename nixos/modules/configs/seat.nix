@@ -212,7 +212,6 @@
     nixpkgs-fmt # Nix
     python3Minimal
     rebar3 # Elixir-dev
-    #sublime4 # TODO: drop
     zed-editor_git
 
     # Office-stuff
@@ -578,7 +577,6 @@
         ".config/osdlyrics"
         ".config/qBittorrent"
         ".config/StardewValley"
-        ".config/sublime-text"
         ".config/sunshine"
         ".config/TabNine"
         ".config/zed"
@@ -633,7 +631,6 @@
         ".cache/mesa_shader_cache"
         ".cache/mozilla"
         ".cache/nix-index"
-        ".cache/sublime-text"
         ".cache/zed"
         ".config/google-chrome"
         ".config/tidal-hifi"
