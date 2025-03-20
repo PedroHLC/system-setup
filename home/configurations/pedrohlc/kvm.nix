@@ -3,14 +3,17 @@ utils: with utils;
 let
   clients =
     builtins.mapAttrs
-      (_: hostname: {
+      (position: hostname: {
         inherit hostname;
+        inherit position;
         activate_on_startup = true;
         ips = mapAttrsToList (_: { v4, ... }: v4) lan.${hostname};
       })
       kvm;
 
-  config = clients // {
+  config = {
+    clients = builtins.attrValues clients;
+
     port = 4242;
 
     "authorized_fingerprints" = {
@@ -33,7 +36,7 @@ mkIf (kvm != null) {
       Requires = [ "xdg-desktop-portal.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.lan-mouse_git}/bin/lan-mouse -d -c ${configFile}";
+      ExecStart = "${pkgs.lan-mouse_git}/bin/lan-mouse -c ${configFile} daemon";
       Slice = "session.slice";
       Restart = "on-failure";
       RestartSec = 5;
@@ -46,7 +49,7 @@ mkIf (kvm != null) {
     config = {
       Label = "${contact.namespace}.my-kvm";
       ProcessType = "Background";
-      ProgramArguments = [ "${pkgs.lan-mouse_git}/bin/lan-mouse" "-d" "-c" (toString configFile) ];
+      ProgramArguments = [ "${pkgs.lan-mouse_git}/bin/lan-mouse" "-c" (toString configFile) "daemon" ];
       RunAtLoad = true;
       KeepAlive = true;
     };
