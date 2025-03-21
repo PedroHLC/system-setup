@@ -39,7 +39,7 @@ self:
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = autoLogin == "steam";
   sunshine = seat.sunshine or false;
-  appleKeyMap = seat.appleKeyMap or false;
+  appleKeyMap = seat.appleKeyMap or true; # Ctrl | Option | Meta, where Meta+C/V/X does copy/paste/cut
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
   bin = rec {

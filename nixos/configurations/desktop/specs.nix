@@ -19,6 +19,5 @@
     touchpad = null;
     sunshine = true;
     kvm = { left = "laptop"; right = "foreign"; };
-    appleKeyMap = true; # Ctrl | Option | Meta, where Meta+C/V/X does copy/paste/cut
   };
 }
