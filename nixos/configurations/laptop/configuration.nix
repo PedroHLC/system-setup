@@ -126,6 +126,15 @@
   # Proper output to gamescope
   programs.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];
 
+  # Appley key map
+  services.udev.extraHwdb = ''
+    evdev:input:b0011v0001*
+      ID_INPUT_KEY=1
+      KEYBOARD_KEY_0001D=key_leftmeta
+      KEYBOARD_KEY_000DB=key_leftalt
+      KEYBOARD_KEY_00038=key_leftctrl
+  '';
+
   # For me to know what to use inside Home-Manager
   home-manager.extraSpecialArgs.usingNouveau = true;
 
