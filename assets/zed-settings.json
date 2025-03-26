@@ -1,6 +1,14 @@
 // https://zed.dev/docs/configuring-zed
 {
   // Features Preferences
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
   "auto_update": false,
   "features": {
     "edit_prediction_provider": "zed"
