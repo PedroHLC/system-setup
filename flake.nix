@@ -31,7 +31,7 @@
     };
 
     # Functional-programming lib
-    fp-lib.url = "github:PedroHLC/nix-ullib";
+    ullib.url = "github:PedroHLC/nix-ullib";
 
     # Experimental flavor
     stylix = {
@@ -41,7 +41,7 @@
     };
   };
 
-  outputs = { nixpkgs, yafas, chaotic, fp-lib, ... }@inputs:
+  outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
     yafas.withAllSystems nixpkgs
       (universals: { pkgs, system }@sys: with universals; {
         # Defines a formatter for "nix fmt"

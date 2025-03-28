@@ -18,7 +18,7 @@ self:
   inherit config pkgs flakes nixosConfig usingNouveau;
   inherit (lib.strings) optionalString;
   inherit (lib.trivial) importJSON;
-  myLib = flakes.fp-lib;
+  ullib = flakes.ullib;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./derivations.nix self;
 

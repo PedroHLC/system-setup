@@ -238,21 +238,6 @@
         "type": "github"
       }
     },
-    "fp-lib": {
-      "locked": {
-        "lastModified": 1712163851,
-        "narHash": "sha256-cTPzJuAjIk1h/IwkvCPl+itF5bRPw2v861Kb3cwHAxo=",
-        "owner": "PedroHLC",
-        "repo": "nix-ullib",
-        "rev": "78290d2d6b6c7ad2117d1e8bf5785a135c662315",
-        "type": "github"
-      },
-      "original": {
-        "owner": "PedroHLC",
-        "repo": "nix-ullib",
-        "type": "github"
-      }
-    },
     "fromYaml": {
       "flake": false,
       "locked": {
@@ -474,7 +459,6 @@
       "inputs": {
         "chaotic": "chaotic",
         "ctr": "ctr",
-        "fp-lib": "fp-lib",
         "home-manager": [
           "chaotic",
           "home-manager"
@@ -486,6 +470,7 @@
         ],
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
+        "ullib": "ullib",
         "yafas": "yafas"
       }
     },
@@ -693,6 +678,21 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "ullib": {
+      "locked": {
+        "lastModified": 1712163851,
+        "narHash": "sha256-cTPzJuAjIk1h/IwkvCPl+itF5bRPw2v861Kb3cwHAxo=",
+        "owner": "PedroHLC",
+        "repo": "nix-ullib",
+        "rev": "78290d2d6b6c7ad2117d1e8bf5785a135c662315",
+        "type": "github"
+      },
+      "original": {
+        "owner": "PedroHLC",
+        "repo": "nix-ullib",
         "type": "github"
       }
     },

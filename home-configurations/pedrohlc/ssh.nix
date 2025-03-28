@@ -6,7 +6,7 @@ let
   # This complex block is responsible for adding "Matches *" that search for all my LAN
   # addresses before fallingback to the VPN address
   addMyLocalDevices = base:
-    with myLib.attrset; foldl
+    with ullib.attrset; foldl
       (machine: n: a: foldl'
         (network: { v4, ... }: union
           (singleton "${machine}.${network}" {
