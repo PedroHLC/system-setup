@@ -11,7 +11,7 @@
 , hostOS ? "nixos" # Distro, not kernel
 , ...
 }@specs:
-{ config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? false, ... }@scope:
+{ config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? true, ... }@scope:
 self:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
@@ -20,7 +20,7 @@ self:
   inherit (lib.trivial) importJSON;
   myLib = flakes.fp-lib;
 } // (lib // ssot // rec {
-  pseudoPkgs = import ./pseudo-packages.nix self;
+  pseudoPkgs = import ./derivations.nix self;
 
   # Expand specs
   hasBattery = battery != null;
@@ -89,7 +89,7 @@ self:
   videoAcceleration = if nvidiaBad then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = pkgs.callPackage ../../packages/audacious-config-generator.nix { };
+  audaciousConfigGenerator = pkgs.callPackage ../../../packages/audacious-config-generator.nix { };
 
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then 60 else 300;

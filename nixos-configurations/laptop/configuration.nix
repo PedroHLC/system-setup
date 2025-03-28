@@ -135,9 +135,6 @@
       KEYBOARD_KEY_00038=key_leftctrl
   '';
 
-  # For me to know what to use inside Home-Manager
-  home-manager.extraSpecialArgs.usingNouveau = true;
-
   # Creates a second boot entry with proprietary NVIDIA GPU (PRIME Offloading + Wayland)
   specialisation.nvidia-proprietary.configuration = { config, pkgs, ... }: # My user-named values.
     let

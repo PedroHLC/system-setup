@@ -1,6 +1,6 @@
 { config, lib, pkgs, ssot, flakes, specs, ... }@inputs:
 let
-  utils = import ./utils.nix specs inputs utils;
+  utils = import ./utils specs inputs utils;
 in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
