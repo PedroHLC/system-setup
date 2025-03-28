@@ -1,6 +1,4 @@
 # Single source of thruth.
-_:
-
 rec {
   vpn = {
     tld = "vpn";

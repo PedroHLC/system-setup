@@ -5,10 +5,10 @@ mkNixOS {
   specs = ./specs.nix;
   extraModules = [
     flakes.impermanence.nixosModules.impermanence
-    ../../modules/configs/wireguard-client.nix
-    ../../modules/configs/wgcf-teams.nix
-    ../../modules/focus.nix
-    ../../modules/configs/seat.nix
+    ../../nixos-modules/wireguard-client.nix
+    ../../nixos-modules/wgcf-teams.nix
+    ../../nixos-modules/anti-procrastination
+    ../../nixos-modules/seat.nix
     ./hardware-configuration.nix
     ./configuration.nix
   ];

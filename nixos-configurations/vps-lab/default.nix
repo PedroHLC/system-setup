@@ -22,8 +22,8 @@ mkNixOS {
     ./services/mesa-mirror
   ];
   specialArgs.knownClients = with nixpkgs.lib; rec {
-    goodGuys = import ../../../assets/good-guys.nix ssot;
-    badBotsCIDRs = trivial.importJSON ../../../assets/bad-bots.json;
+    goodGuys = import ../../common/good-guys.nix ssot;
+    badBotsCIDRs = trivial.importJSON ../../assets/bad-bots.json;
     goodGuysCIDRs = builtins.concatLists (map ({ ids, ... }: ids) goodGuys);
   };
 }

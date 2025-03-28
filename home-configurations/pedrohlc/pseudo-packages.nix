@@ -2,11 +2,11 @@ utils: with utils;
 
 rec {
   # nixpkgs-review in the right directory, in a tmux session, with a prompt before leaving, notification when it finishes successfully, and fish.
-  nrpr = pkgs.callPackage ../../../packages/nixpkgs-review-in-tmux.nix { };
+  nrpr = pkgs.callPackage ../../packages/nixpkgs-review-in-tmux.nix { };
 
   # Script to open my encrypted firefox profile.
   # This is a wrapper to run firefox with a zfs-encrypted profile, requires sudo
-  firefox-gate = with pkgs; callPackage ../../../packages/scripts {
+  firefox-gate = with pkgs; callPackage ../../packages/scripts {
     scriptName = "firefox-gate";
     substitutions = {
       "$(which firefox)" = "${firefox_nightly}/bin/firefox${firefoxSuffix}";
@@ -16,10 +16,10 @@ rec {
   };
 
   # swaylock with GIFs
-  my-wscreensaver = pkgs.callPackage ../../../packages/my-wscreensaver.nix { };
+  my-wscreensaver = pkgs.callPackage ../../packages/my-wscreensaver.nix { };
 
   # PokeMMO mutable launcher
-  pokemmo-launcher = with pkgs; callPackage ../../../packages/scripts {
+  pokemmo-launcher = with pkgs; callPackage ../../packages/scripts {
     scriptName = "pokemmo";
     substitutions = {
       "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsa-lib}";
@@ -84,7 +84,7 @@ rec {
   '';
 
   # Handles picking another session when leaving sway
-  alternative-session = pkgs.callPackage ../../../packages/scripts {
+  alternative-session = pkgs.callPackage ../../packages/scripts {
     scriptName = "alternative-session";
   };
 

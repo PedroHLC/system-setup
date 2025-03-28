@@ -51,7 +51,7 @@
         hash = "sha256-mEdfVE+qtCSKajordHDWwRo4QeR0mHB7sDE1zw805l8=";
       }) ];
     }))
-    (callPackage ../../../packages/ksysrqd.nix { })
+    (callPackage ../../packages/ksysrqd.nix { })
   ];
   boot.blacklistedKernelModules = [ "k10temp" ];
 

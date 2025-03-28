@@ -52,16 +52,13 @@
       })
       rec {
         # My systems
-        nixosConfigurations = import ./nixos/configurations specialArgs;
+        nixosConfigurations = import ./nixos-configurations specialArgs;
 
         # Home for HM-installed systems
-        homeConfigurations = import ./home/configurations specialArgs;
+        homeConfigurations = import ./home-configurations specialArgs;
 
         # Special args you'll find in every module.
-        specialArgs = {
-          ssot = import ./assets/ssot.nix inputs;
-          flakes = inputs;
-        };
+        specialArgs = import common/nixos-special-args.nix inputs;
 
         # When accessing my flake from other computers I need chaotic's cache
         inherit (chaotic) nixConfig;

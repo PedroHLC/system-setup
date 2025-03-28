@@ -28,7 +28,7 @@
       };
 
       # NVIDIA Offloading (ajusted to work on Wayland and XWayland).
-      nvidia-offload = final.callPackage ../../../packages/scripts { scriptName = "nvidia-offload"; };
+      nvidia-offload = final.callPackage ../../packages/scripts { scriptName = "nvidia-offload"; };
     })
   ];
 
@@ -102,7 +102,7 @@
   # Autologin (with Melina).
   services.getty.loginOptions =
     let
-      programScript = pkgs.callPackage ../../../packages/login-program.nix {
+      programScript = pkgs.callPackage ../../packages/login-program.nix {
         loginsPerTTY = {
           "/dev/tty1" = "pedrohlc";
           "/dev/tty2" = "melinapn";

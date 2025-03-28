@@ -13,7 +13,7 @@ let
       modules = [
         chaotic.homeManagerModules.default
         { home = { inherit username homeDirectory; }; }
-        ../../home/configurations/${username}
+        ../../home-configurations/${username}
         ./non-nixos.nix
       ];
     };

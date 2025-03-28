@@ -177,7 +177,7 @@ with utils; {
         "Alt+4" = "cycle border";
 
         # For watching animes in 60fps
-        "K" = "vf toggle vapoursynth=${../../../assets/motioninterpolation.vpy}";
+        "K" = "vf toggle vapoursynth=${../../assets/motioninterpolation.vpy}";
 
         # For anime 4k
         "CTRL+1" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
@@ -282,7 +282,7 @@ with utils; {
 
         keyboard.bindings =
           if appleKeyMap
-          then importJSON ../../../assets/alacritty-apple-like-mods.json
+          then importJSON ../../assets/alacritty-apple-like-mods.json
           else [ ];
       };
     };
@@ -333,7 +333,7 @@ with utils; {
       plugins = [
         {
           name = "local-plugin";
-          src = "${../../../assets/fish}";
+          src = "${../../assets/fish}";
         }
       ] ++ optionals isMacOS [
         {

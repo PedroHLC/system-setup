@@ -89,7 +89,7 @@ self:
   videoAcceleration = if nvidiaBad then "nvdec-copy" else "vaapi";
 
   # To help with Audacious configs
-  audaciousConfigGenerator = pkgs.callPackage ../../../packages/audacious-config-generator.nix { };
+  audaciousConfigGenerator = pkgs.callPackage ../../packages/audacious-config-generator.nix { };
 
   # Different timeouts for locking screens in desktop/laptop
   lockTimeout = if dangerousAlone then 60 else 300;

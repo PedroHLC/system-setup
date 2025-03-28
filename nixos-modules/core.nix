@@ -162,21 +162,7 @@
   ];
 
   # Override some packages' settings, sources, etc...
-  nixpkgs.overlays =
-    let
-      thisConfiguration = final: _prev: {
-        nixos-clear = final.callPackage ../../../packages/scripts { scriptName = "nixos-clear"; };
-        nixos-next-shot = final.callPackage ../../../packages/scripts {
-          scriptName = "nixos-next-shot";
-          substitutions = {
-            "$(which bootctl)" = "${pkgs.systemd}/bin/bootctl";
-            "$(which systemctl)" = "${pkgs.systemd}/bin/systemctl";
-          };
-        };
-        aria2c-for-wget-curl = final.callPackage ../../../packages/aria2c-for-wget-curl.nix { };
-      };
-    in
-    [ thisConfiguration ];
+  nixpkgs.overlays = [ (import ../overlays/core.nix) ];
 
   # Configurable programs
   programs.command-not-found.enable = false;
@@ -193,7 +179,7 @@
     enableSSHSupport = true; # So I can use GPG through SSH
     pinentryPackage =
       let
-        pkg = pkgs.callPackage ../../../packages/scripts {
+        pkg = pkgs.callPackage ../packages/scripts {
           scriptName = "pinentry";
           substitutions = {
             "@PINENTRY@" = "${pkgs.pinentry-gnome3}";
@@ -215,7 +201,7 @@
   '';
   programs.htop = {
     enable = true;
-    settings = import ../../../assets/htop-settings.nix;
+    settings = import ../common/htop-settings.nix;
   };
 
   # Put Helix as default editor.

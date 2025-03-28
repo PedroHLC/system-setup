@@ -16,7 +16,7 @@
         forceSSL = true;
         enableACME = true;
         http3 = true;
-        locations."/".root = ../../../../assets/http-root/lab;
+        locations."/".root = ../../../assets/http-root/lab;
         locations."/bucket/".root = "/srv/http";
         locations."/ical/".root = "/srv/http";
       };
@@ -25,7 +25,7 @@
         useACMEHost = web.lab.addr;
         http3 = true;
         locations = {
-          "/".root = ../../../../assets/http-root/zeta;
+          "/".root = ../../../assets/http-root/zeta;
           "/dns-query".proxyPass = "https://127.0.0.1:${toString vpn.lab.adguardPort}/dns-query";
         };
       };
