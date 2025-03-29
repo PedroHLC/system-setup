@@ -45,14 +45,7 @@
 
   # Better voltage, temperature, and a module to save me in case everything catches fire
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    (zenpower.overrideAttrs (prevAttrs: {
-      patches = (prevAttrs.patches or [ ]) ++ [
-        (pkgs.fetchpatch2 {
-          url = "https://github.com/AliEmreSenel/zenpower3/commit/cbb35320c4d1605a54c64e0dcd0293b13bc4dbcc.patch";
-          hash = "sha256-mEdfVE+qtCSKajordHDWwRo4QeR0mHB7sDE1zw805l8=";
-        })
-      ];
-    }))
+    zenpower
     (callPackage ../../packages/ksysrqd.nix { })
   ];
   boot.blacklistedKernelModules = [ "k10temp" ];
