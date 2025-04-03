@@ -120,9 +120,4 @@ in
       };
     };
   };
-
-  # Mautrix uses it
-  nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
-  ];
 }

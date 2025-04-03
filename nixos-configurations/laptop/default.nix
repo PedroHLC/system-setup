@@ -12,4 +12,8 @@ mkNixOS {
     ./hardware-configuration.nix
     ./configuration.nix
   ];
+  extraOverlays = [
+    (import ../../overlays/seat.nix)
+    (import ../../overlays/laptop.nix)
+  ];
 }

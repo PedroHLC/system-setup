@@ -1,19 +1,31 @@
 { ssot, flakes, ... }@inputs:
 let
-  mkNixOS = { system, specs, extraModules ? [ ], specialArgs ? { } }: with flakes;
+  mkNixOS = { system, specs, extraModules ? [ ], specialArgs ? { }, extraOverlays ? [ ], extraConfig ? { } }: with flakes;
     let
       joinedSpecialArgs = self.specialArgs // { specs = import specs; } // specialArgs;
     in
     nixpkgs.lib.nixosSystem ({
-      inherit system;
+      # Sets pkgs just once due to nixosModules.readOnlyPkgs
+      pkgs = import flakes.nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+          pedroWatermark = true;
+        } // extraConfig;
+        overlays = [ (import ../overlays/core.nix) chaotic.overlays.default ] ++ extraOverlays;
+      };
 
       specialArgs = joinedSpecialArgs;
 
       modules = [
+        nixpkgs.nixosModules.readOnlyPkgs
         chaotic.nixosModules.default
         home-manager.nixosModules.home-manager
         ../nixos-modules/core.nix
-        { home-manager.users.pedrohlc = import ../home-configurations/pedrohlc; }
+        {
+          home-manager.users.pedrohlc = import ../home-configurations/pedrohlc;
+          chaotic.nyx.overlay.enable = false; # due to nixosModules.readOnlyPkgs
+        }
       ] ++ extraModules;
     });
 

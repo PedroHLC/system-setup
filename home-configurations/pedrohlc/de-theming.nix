@@ -69,6 +69,6 @@ utils: with utils;
     { command = "plasma-apply-lookandfeel --apply stylix"; }
   ];
 
-  # Removes Stylix usage of `nixpkgs.overalys`
-  stylix.targets.gnome-text-editor.enable = false;
+  # Disable stuff with overlays
+  stylix.overlays.enable = false;
 }

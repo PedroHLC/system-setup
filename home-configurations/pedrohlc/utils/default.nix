@@ -11,11 +11,11 @@
 , hostOS ? "nixos" # Distro, not kernel
 , ...
 }@specs:
-{ config, lib, pkgs, ssot, flakes, nixosConfig ? null, usingNouveau ? true, ... }@scope:
+{ config, lib, pkgs, ssot, flakes, osConfig ? null, usingNouveau ? true, ... }@scope:
 self:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
-  inherit config pkgs flakes nixosConfig usingNouveau;
+  inherit config pkgs flakes osConfig usingNouveau;
   inherit (lib.strings) optionalString;
   inherit (lib.trivial) importJSON;
   ullib = flakes.ullib;

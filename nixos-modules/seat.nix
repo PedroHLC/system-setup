@@ -238,9 +238,6 @@
   environment.variables.GAMEMODERUNEXEC = "WINEFSYNC=1 PROTON_WINEDBG_DISABLE=1 DXVK_LOG_PATH=none DXVK_HUD=compiler WINEDEBUG=-all DXVK_LOG_LEVEL=none";
   environment.variables.WINEPREFIX = "/dev/null";
 
-  # Override some packages' settings, sources, etc...
-  nixpkgs.overlays = [ (import ../overlays/seat.nix) ];
-
   # Enable services (automatically includes their apps' packages).
   services.fwupd.enable = true;
   services.gvfs.enable = true;
@@ -612,9 +609,4 @@
 
   # Let's avoid sending sensitive data to cloud
   services.datadog-agent.enable = lib.mkForce false;
-
-  # Some packages have some legacy leftovers
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
 }

@@ -130,7 +130,6 @@
   environment.shells = [ pkgs.dash ];
 
   # List packages.
-  nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     aria2
     busybox_appletless
@@ -160,9 +159,6 @@
     # my scripts
     nixos-clear
   ];
-
-  # Override some packages' settings, sources, etc...
-  nixpkgs.overlays = [ (import ../overlays/core.nix) ];
 
   # Configurable programs
   programs.command-not-found.enable = false;
@@ -250,7 +246,7 @@
 
   # Global adjusts to home-manager
   home-manager.useGlobalPkgs = true;
-  home-manager.extraSpecialArgs = flakes.self.specialArgs // { nixosConfig = config; specs = inputs.specs; };
+  home-manager.extraSpecialArgs = flakes.self.specialArgs // { specs = inputs.specs; };
 
   # Newer switch
   system.switch = {
@@ -258,12 +254,7 @@
     enableNg = true;
   };
 
-  # This is for reusing the versioned flakes inputs for CLI commands.
-  nixpkgs.flake.setNixPath = true;
-  nixpkgs.flake.setFlakeRegistry = true;
-  chaotic.nyx.registry.enable = true;
-  chaotic.nyx.nixPath.enable = true;
-
+  # Local domains
   networking.hosts = {
     # - My Network
     "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];

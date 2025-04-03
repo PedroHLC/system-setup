@@ -21,6 +21,12 @@ mkNixOS {
     ./services/ical-filter
     ./services/mesa-mirror
   ];
+  extraConfig = {
+    # Mautrix uses OLM
+    permittedInsecurePackages = [
+      "olm-3.2.16"
+    ];
+  };
   specialArgs.knownClients = with nixpkgs.lib; rec {
     goodGuys = import ../../common/good-guys.nix ssot;
     badBotsCIDRs = trivial.importJSON ../../assets/bad-bots.json;
