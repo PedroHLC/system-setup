@@ -202,16 +202,13 @@
     # Development apps
     bytecode-viewer_git
     dbeaver-bin
-    elmPackages.elm-format # Elm-dev
     gcc
     gdb # more precious then gcc
     gnumake
     heroku
     inotify-tools # watching files
     logstalgia # Chaotic
-    nixpkgs-fmt # Nix
     python3Minimal
-    rebar3 # Elixir-dev
     zed-editor_git
 
     # Office-stuff
