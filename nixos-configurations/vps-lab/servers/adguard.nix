@@ -26,6 +26,7 @@
           enabled = false;
           bing = false;
           duckduckgo = false;
+          ecosia = false;
           google = false;
           pixabay = false;
           yandex = false;
@@ -87,6 +88,7 @@
           trusted_proxies = [
             "127.0.0.1"
           ];
+          cache_ttl_max = 43200;
           ratelimit = 300;
           # ratelimit_whitelist = knownClients.goodGuysCIDRs;
           disallowed_clients = knownClients.badBotsCIDRs;
