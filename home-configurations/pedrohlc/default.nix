@@ -291,7 +291,7 @@ with utils; {
     # Text editor
     helix = {
       enable = true;
-      package = pkgs.evil-helix;
+      package = pkgs.evil-helix_git;
       settings = {
         keys.normal = {
           V = [ "select_mode" "extend_to_line_bounds" ];
