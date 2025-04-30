@@ -39,8 +39,8 @@
     ];
     # Prefer intel unless told so
     variables = {
-      # Issue: Sway isn't starting when I force Vulkan to Intel here
-      # "VK_DRIVER_FILES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
+      "WLR_DRM_DEVICES" = "/dev/dri/card1";
+      "VK_DRIVER_FILES" = "/run/opengl-driver/share/vulkan/icd.d/intel_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/intel_icd.i686.json";
       "LIBVA_DRIVER_NAME" = "iHD";
     };
     # Helps me debugging kernel modules
