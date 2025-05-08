@@ -1,4 +1,5 @@
 // https://zed.dev/docs/configuring-zed
+// https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
   "edit_predictions": {
@@ -50,7 +51,7 @@
   },
   "restore_on_startup": "none",
   // Language preferences
-  "load_direnv": "shell_hook",
+  //"load_direnv": "shell_hook",
   "format_on_save": "on",
   "formatter": "language_server",
   "languages": {
@@ -62,15 +63,15 @@
             "--stdin"
           ]
         }
-      },
-      "language_servers": [
-        "elm-language-server"
-      ]
+      }
     },
     "JSON": {
       "format_on_save": "off",
       "language_servers": []
     }
+  },
+  "completions": {
+    "lsp_fetch_timeout_ms": 250
   },
   // Remote stuff
   "ssh_connections": [
@@ -92,7 +93,7 @@
     "button": false
   },
   "chat_panel": {
-    "button": false
+    "button": "never"
   },
   "notification_panel": {
     "button": false

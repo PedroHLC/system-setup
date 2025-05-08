@@ -28,6 +28,7 @@
   # More packages
   home.packages = with pkgs; [
     aerospace
+    autoraise
     aria2
     borg-sans-mono
     dbeaver-bin
@@ -57,6 +58,19 @@
       KeepAlive = true;
     };
   };
+
+  # AutoRaise agent
+  launchd.agents.autoraise = {
+    enable = true;
+    config = {
+      Label = "io.github.sbmpost.autoraise";
+      ProcessType = "Background";
+      ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/AutoRaise.app/Contents/MacOS/AutoRaise" "-delay" "2" ];
+      RunAtLoad = true;
+      KeepAlive.OtherJobEnabled."io.github.nikitabobko.aerospace" = true;
+    };
+  };
+
 
   # Make apps indexable
   home.activation.makeTrampolineApps = lib.hm.dag.entryAfter [ "writeBoundary" ] (
