@@ -23,6 +23,7 @@ rec {
     scriptName = "pokemmo";
     substitutions = {
       "ALSALIB:-/run/current-system/sw" = "ALSALIB:-${alsa-lib}";
+      "GLVND:-/run/current-system/sw" = "GLVND:-${libglvnd}";
       "$(which java)" = "${jdk17}/bin/java";
       "$(which gamemoderun)" = "${gamemode}/bin/gamemoderun";
     };
