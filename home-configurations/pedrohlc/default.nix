@@ -15,7 +15,7 @@ with utils; {
     (import ./audacious.nix utils)
     (import ./sway.nix utils)
     # Themeing
-    flakes.stylix.homeManagerModules.stylix
+    flakes.stylix.homeModules.stylix
     (import ./de-theming.nix utils)
   ];
 
