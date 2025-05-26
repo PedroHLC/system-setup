@@ -215,6 +215,31 @@
     inkscape
     gimp
     wpsoffice
+
+    # Social
+    telegram-desktop_git
+    tuba
+    vesktop
+
+    # Gaming tools
+    bigsteam
+    mangoapprun
+    mangohud_git
+    mesa-demos
+    vulkan-caps-viewer
+    vulkanPackages_latest.vulkan-tools
+    winetricks
+    gamescope-wsi_git
+    gamescope-wsi32_git
+
+    # Gaming
+    devilutionx
+    duckstation
+    openmohaa_git
+    openrct2
+    space-cadet-pinball
+    torzu_git
+    vcmi
   ];
 
   # The base GUI toolkit in my setup.
@@ -279,6 +304,42 @@
         monospace = [ "Fira Code" ];
       };
     };
+  };
+
+  # Steam with steam-session
+  programs.steam = {
+    enable = true;
+    gamescopeSession = {
+      enable = true; # Gamescope session is better for AAA gaming.
+      args = [ "--immediate-flips" "--" "bigsteam" ];
+    };
+  };
+
+  # The default's CLI gamescope.
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+    env = lib.mkForce {
+      # I set DXVK_HDR in the alternative-sessions script.
+      ENABLE_GAMESCOPE_WSI = "1";
+    };
+    package = pkgs.gamescope_git;
+  };
+
+  # Gamescope without wrapper, but with right capabilities
+  security.wrappers.valve-gamescope = {
+    owner = "root";
+    group = "root";
+    source = "${pkgs.gamescope_git}/bin/gamescope";
+    capabilities = "cap_sys_nice+pie";
+  };
+  environment.variables.GAMESCOPE_NOWRAP = "${config.security.wrapperDir}/valve-gamescope";
+
+  # Gamescope untouched (no wrapper, no capabilities) in a fixed-path place
+  fileSystems."/opt/gamescope" = {
+    device = pkgs.gamescope_git.outPath;
+    fsType = "none";
+    options = [ "bind" "ro" "x-gvfs-hide" ];
   };
 
   # For out-of-box gaming with Heroic Game Launcher
@@ -512,6 +573,7 @@
         "Documents"
         "Downloads"
         "Pictures"
+        "Projects"
         "Videos"
       ];
       files = [

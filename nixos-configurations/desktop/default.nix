@@ -9,7 +9,6 @@ mkNixOS {
     ../../nixos-modules/journal-upload.nix
     ../../nixos-modules/wireguard-client.nix
     ../../nixos-modules/wgcf-teams.nix
-    ../../nixos-modules/anti-procrastination
     ../../nixos-modules/seat.nix
     ./hardware-configuration.nix
     ./configuration.nix
