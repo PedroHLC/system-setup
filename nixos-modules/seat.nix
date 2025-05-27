@@ -38,8 +38,8 @@
     # https://github.com/NixOS/nixpkgs/issues/35681#issuecomment-370202008
     "systemd.gpt_auto=0"
 
-    # https://www.phoronix.com/news/Linux-Splitlock-Hurts-Gaming
-    "split_lock_detect=off"
+    # https://wiki.cachyos.org/configuration/general_system_tweaks/#disabling-split-lock-mitigate
+    "kernel.split_lock_mitigate=0"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts

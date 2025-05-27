@@ -3,8 +3,19 @@
 
 # NixOS-defined options
 {
-  # Force full IOMMU and enable GSP usage
-  boot.kernelParams = [ "intel_iommu=on" "nouveau.config=NvGspRm=1" "nouveau.debug=\"GSP=debug\"" ];
+  boot.kernelParams = [
+    # Force full IOMMU
+    "intel_iommu=on"
+
+    # enable GSP
+    "nouveau.config=NvGspRm=1"
+
+    # to see GSP loading on dmesg
+    "nouveau.debug=\"GSP=debug\""
+
+    # https://wiki.cachyos.org/configuration/general_system_tweaks/#enable-rcu-lazy
+    "rcutree.enable_rcu_lazy=1"
+  ];
 
   # More stuff have GSP
   boot.initrd.kernelModules = [ "nouveau" ];

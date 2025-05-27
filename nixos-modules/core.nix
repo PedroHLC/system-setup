@@ -253,6 +253,9 @@
     enableNg = true;
   };
 
+  # Editable hosts
+  environment.etc.hosts.mode = "0644";
+
   # Local domains
   networking.hosts = {
     # - My Network
