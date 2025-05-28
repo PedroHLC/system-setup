@@ -26,7 +26,11 @@ let
 
   outerShell =
     writeShellScriptBin "nrpr" ''
-      ${tmux}/bin/tmux new-session ${interShell} "$@"
+      if [ -z ''${TMUX:-} ]; then
+        exec ${tmux}/bin/tmux new-session ${interShell} "$@"
+      else
+        exec ${interShell} "$@"
+      fi
     '';
 in
 outerShell
