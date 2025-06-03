@@ -9,8 +9,9 @@ let
       pkgs = import flakes.nixpkgs {
         inherit system;
         config = {
-          allowUnfree = true;
+          allowUnfree = false;
           pedroWatermark = true;
+          allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) (import ../common/unfree.nix);
         } // extraConfig;
         overlays = [ (import ../overlays/core.nix) chaotic.overlays.default ] ++ extraOverlays;
       };

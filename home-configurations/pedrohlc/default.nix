@@ -256,8 +256,9 @@ with utils; {
         };
         rebase = {
           autoStash = true;
-          # When interactive-rebasing, keep original commiter.
-          instructionFormat = "%s%nexec GIT_COMMITTER_DATE=\"%cI\" GIT_COMMITTER_NAME=\"%cN\" GIT_COMMITTER_EMAIL=\"%cE\" git commit --amend --no-edit%n";
+        };
+        alias = {
+          "cehckout" = "checkout";
         };
         # pull with rebase on everything except main/master
         "branch \"main\"" = {

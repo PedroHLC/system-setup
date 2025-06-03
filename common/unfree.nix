@@ -1,0 +1,11 @@
+[
+  "castlabs-electron"
+  "devilutionx"
+  "google-chrome"
+  "slack"
+  "SpaceCadetPinball"
+  "steam"
+  "steam-unwrapped"
+  "unrar"
+  "wpsoffice"
+]
