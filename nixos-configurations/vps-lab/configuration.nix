@@ -53,6 +53,12 @@
   # We can trim this one
   services.fstrim.enable = true;
 
+  # Add a swapfile
+  swapDevices = [{
+    device = "/var/residues/swapfile";
+    size = 2048;
+  }];
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
