@@ -94,7 +94,6 @@
     settings.General.Experimental = true;
   };
   services.blueman.enable = true;
-  services.joycond.enable = true;
 
   # GPU
   hardware.graphics = {
