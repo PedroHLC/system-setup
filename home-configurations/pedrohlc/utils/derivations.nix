@@ -18,6 +18,17 @@ rec {
   # swaylock with GIFs
   my-wscreensaver = pkgs.callPackage ../../../packages/my-wscreensaver.nix { };
 
+  # check salted sha256 hashes
+  check-sha256 = pkgs.callPackage ../../../packages/scripts {
+    scriptName = "check-sha256";
+    substitutions = {
+      "$(which cat)" = "${pkgs.coreutils}/bin/cat";
+      "$(which cut)" = "${pkgs.coreutils}/bin/cut";
+      "$(which printf)" = "${pkgs.coreutils}/bin/printf";
+      "$(which sha256sum)" = "${pkgs.coreutils}/bin/sha256sum";
+    };
+  };
+
   # PokeMMO mutable launcher
   pokemmo-launcher = with pkgs; callPackage ../../../packages/scripts {
     scriptName = "pokemmo";

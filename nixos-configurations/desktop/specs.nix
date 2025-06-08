@@ -19,5 +19,10 @@
     touchpad = null;
     sunshine = true;
     kvm = { left = "laptop"; right = "foreign"; };
+    steamMachine = {
+      output = "card0-HDMI-A-1";
+      salt = "pedrohlc";
+      sha256 = "65611d1e5e09c51fd4ef90f9da41f7000b41da8ab89ceaf2d89c499922f6f07f";
+    };
   };
 }

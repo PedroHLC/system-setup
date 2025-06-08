@@ -32,12 +32,12 @@ self:
   isMacOS = hostOS == "macos";
 
   # Expand seat specs
-  autoLogin = seat.autoLogin or (if hasSeat then "sway" else null);
+  autoLogin = seat.autoLogin or hasSeat;
   displayBrightness = seat.displayBrightness or false;
   kvm = seat.kvm or specs.kvm or null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
-  steamMachine = autoLogin == "steam";
+  steamMachine = seat.steamMachine or null;
   sunshine = seat.sunshine or false;
   appleKeyMap = seat.appleKeyMap or true; # Ctrl | Option | Meta, where Meta+C/V/X does copy/paste/cut
   touchpad = if hasSeat then (seat.touchpad or false) else null;
@@ -67,6 +67,7 @@ self:
     systemctl = "${pkgs.systemd}/bin/systemctl";
     bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
     nmcli = "${pkgs.networkmanager}/bin/nmcli";
+    check-sha256 = "${pseudoPkgs.check-sha256}/bin/check-sha256";
 
     # Complex executables
     lock =

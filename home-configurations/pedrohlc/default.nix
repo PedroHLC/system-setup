@@ -46,30 +46,55 @@ with utils; {
         [[ -f ~/.bashrc ]] && . ~/.bashrc
         [[ -f ~/.profile ]] && . ~/.profile
       '';
-      # I use autologin and forever in love with tmux sessions.
-      ".profile".text = with bin; optionalString isMacOS ''
-        if [ -z "$__HM_SESS_VARS_SOURCED" ]; then
-          export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-          source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-        fi
-      '' + ''
-        if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-          exec ${tmux}
-      '' + (if steamMachine then ''
-        elif [ "$(${tty})" = '/dev/tty1' ]; then
-          exec steam-gamescope
-      '' else
-        optionalString (autoLogin == "sway") ''
-          elif [ "$(${tty})" = '/dev/tty1' ]; then
-            # It has to be sway from home manager.
-            ${config.wayland.windowManager.sway.package}/bin/sway
-            # Leave the deattached tmux session we have started inside sway.
-            ${tmux} send-keys -t DE 'C-c' 'C-d' || true
-            # Alternative sessions I might wanna run
-            exec alternative-session
-        '') + ''
-        fi
-      '';
+      ".profile".text = with bin;
+        # I use autologin and forever in love with tmux sessions.
+        let
+          sourceHM =
+            optionalString isMacOS ''
+              if [ -z "$__HM_SESS_VARS_SOURCED" ]; then
+                export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
+                source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+              fi
+            '';
+
+          autoStart = ''
+            if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
+              exec ${tmux}
+            ${whenTTY1}
+            fi
+          '';
+
+          whenTTY1 =
+            optionalString autoLogin ''
+              elif [ "$(${tty})" = '/dev/tty1' ]; then
+                ${session}
+            '';
+
+          session =
+            if steamMachine != null then
+              steamSession
+            else
+              deSession;
+
+          deSession =
+            ''
+              # It has to be sway from home manager.
+              ${config.wayland.windowManager.sway.package}/bin/sway
+              # Leave the deattached tmux session we have started inside sway.
+              ${tmux} send-keys -t DE 'C-c' 'C-d' || true
+              # Alternative sessions I might wanna run
+              exec alternative-session
+            '';
+
+          steamSession = with steamMachine; ''
+            if ${check-sha256} '${sha256}' '/sys/class/drm/${output}/edid' ${salt}; then
+              steam-gamescope
+              # it crashed, wait before looping
+              sleep 12
+            fi
+          '';
+        in
+        sourceHM + autoStart;
       # `programs.tmux` looks bloatware nearby this simplist config,
       ".tmux.conf".text = ''
         set-option -g default-shell ${bin.fish}
