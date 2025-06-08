@@ -74,7 +74,11 @@
           bind_hosts = [ "0.0.0.0" ];
           upstream_dns = [
             "https://qx1jz8jm5c.cloudflare-gateway.com/dns-query"
-            "[/gov.br/]tls://dns.google.com" # inmet.gov.br is broken in CF
+            # inmet.gov.br is broken in CF
+            "[/gov.br/]tls://dns.google.com"
+            # ubisoft cross-play save syncthing is broken in CF
+            "[/ubisoft-uplay-savegames.s3.amazonaws.com/]tls://dns.google.com"
+            "[/ubi.com/]tls://dns.google.com"
           ];
           upstream_dns_file = "";
           bootstrap_dns = [
