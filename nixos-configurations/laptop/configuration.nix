@@ -133,6 +133,7 @@
     {
       package = nvidiaPackage;
       open = true;
+      nvidiaSettings = false;
     };
 
   # Creates a second boot entry with proprietary NVIDIA GPU (PRIME Offloading + Wayland)

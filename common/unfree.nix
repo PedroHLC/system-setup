@@ -2,6 +2,7 @@
   "castlabs-electron"
   "devilutionx"
   "google-chrome"
+  "nvidia-x11"
   "slack"
   "SpaceCadetPinball"
   "steam"
