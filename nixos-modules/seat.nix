@@ -40,6 +40,11 @@
 
     # https://wiki.cachyos.org/configuration/general_system_tweaks/#disabling-split-lock-mitigate
     "kernel.split_lock_mitigate=0"
+
+    # Plymouth stuff
+    "quiet"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
@@ -642,6 +647,28 @@
 
   # More modern stage 1 in boot
   boot.initrd.systemd.enable = true;
+
+  # Pedro Pedro Pedro
+  boot.consoleLogLevel = lib.mkForce 3;
+  boot.plymouth = {
+    enable = true;
+    theme = "pedro-raccoon";
+    themePackages = [(
+      pkgs.fetchFromGitHub {
+        owner = "FilaCo";
+        repo = "plymouth-theme-pedro-raccoon";
+        rev = "f7fde1da0dde1ce861dff5617c79de6afbde29cb";
+        hash = "sha256-AT5fiF0hDeb7xqk1Ni04kqE6R88ENQ2k7rlHW3cr+PU=";
+        sparseCheckout = [ "pedro-raccoon" ];
+        postFetch = ''
+          mkdir -p $out/share/plymouth/themes
+          mv $out/pedro-raccoon $out/share/plymouth/themes/
+          substituteInPlace $out/share/plymouth/themes/pedro-raccoon/pedro-raccoon.plymouth \
+            --replace-fail /usr/share/ /etc/
+        '';
+      }
+    )];
+  };
 
   # Service for unblocking some regional restrictions
   services.tor = {
