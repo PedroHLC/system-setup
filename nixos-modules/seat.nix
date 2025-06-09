@@ -45,6 +45,7 @@
     "quiet"
     "udev.log_priority=3"
     "rd.systemd.show_status=auto"
+    "plymouth.use-simpledrm"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
