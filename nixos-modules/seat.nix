@@ -8,6 +8,7 @@
     systemd-boot = {
       enable = true;
       editor = false;
+      consoleMode = "max";
     };
     timeout = 1;
     efi.canTouchEfiVariables = true;
@@ -45,6 +46,7 @@
     "quiet"
     "rd.udev.log_level=3"
     "rd.systemd.show_status=auto"
+    "vt.global_cursor_default=0"
   ];
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
