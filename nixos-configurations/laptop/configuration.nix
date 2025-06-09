@@ -15,6 +15,9 @@
 
     # https://wiki.cachyos.org/configuration/general_system_tweaks/#enable-rcu-lazy
     "rcutree.enable_rcu_lazy=1"
+
+    # Plymouth stuff
+    "i915.fastboot=1"
   ];
 
   # More stuff have GSP
@@ -123,6 +126,9 @@
       KEYBOARD_KEY_000DB=key_leftalt
       KEYBOARD_KEY_00038=key_leftctrl
   '';
+
+  # Loads GPU earlier in boot
+  boot.initrd.availableKernelModules = [ "i915" ];
 
   # Sets the nvidia package globally, but does not enable it
   hardware.nvidia =

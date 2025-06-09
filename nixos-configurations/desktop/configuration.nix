@@ -74,6 +74,9 @@
   # GPU
   environment.variables.RADV_PERFTEST = "sam,video_decode,transfer_queue";
 
+  # Loads GPU earlier in boot
+  boot.initrd.availableKernelModules = [ "amdgpu" ];
+
   # Up-to 192kHz in the Focusrite
   services.pipewire.extraConfig.pipewire."99-playback-96khz" = {
     "context.properties" = {
