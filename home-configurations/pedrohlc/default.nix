@@ -91,6 +91,8 @@ with utils; {
               steam-gamescope
               # it crashed, wait before looping
               sleep 12
+            else
+              ${deSession}
             fi
           '';
         in
