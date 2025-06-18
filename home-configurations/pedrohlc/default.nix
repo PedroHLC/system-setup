@@ -301,7 +301,7 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = {
-      enable = hasSeat;
+      enable = hasSeat || isMacOS;
       package = pkgs.alacritty_git;
       settings = {
         window.opacity = lib.mkForce 0.9;
@@ -358,7 +358,7 @@ with utils; {
           "mpv-hq" = "mpv --profile=hq";
           "uxplay-ready" = "uxplay -h265 -as 0 -fps 60 -srgb -vs waylandsink -vd vah265dec";
           # TODO: Move to services
-          "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o DP-2";
+          "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o ${seat.displayId}";
           "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";
         };
       plugins = [
