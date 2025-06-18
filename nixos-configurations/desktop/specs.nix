@@ -19,6 +19,7 @@
     touchpad = null;
     sunshine = true;
     kvm = { left = "laptop"; right = "foreign"; };
+    emulateMacKeyMap = true;
     steamMachine = {
       output = "card0-HDMI-A-1";
       salt = "pedrohlc";

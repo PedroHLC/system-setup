@@ -307,12 +307,12 @@ with utils; {
         window.opacity = lib.mkForce 0.9;
 
         terminal.shell = {
-          program = "${bin.fish}";
-          args = [ "--login" ];
+          program = "${bin.tmux}";
+          args = [ "-l" ];
         };
 
         keyboard.bindings =
-          if appleKeyMap
+          if emulateMacKeyMap
           then importJSON ../../assets/alacritty-apple-like-mods.json
           else [ ];
       };

@@ -118,7 +118,7 @@
   # Proper output to gamescope
   programs.gamescope.args = [ "--prefer-vk-device 8086:8a60" ];
 
-  # Appley key map
+  # Emulates macbook keyboard mapping
   services.udev.extraHwdb = ''
     evdev:input:b0011v0001*
       ID_INPUT_KEY=1

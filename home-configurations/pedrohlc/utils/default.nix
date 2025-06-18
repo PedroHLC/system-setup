@@ -39,7 +39,7 @@ self:
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = seat.steamMachine or null;
   sunshine = seat.sunshine or false;
-  appleKeyMap = seat.appleKeyMap or true; # Ctrl | Option | Meta, where Meta+C/V/X does copy/paste/cut
+  emulateMacKeyMap = !isMacOS && (seat.emulateMacKeyMap or false); # Ctrl | Option | Meta, where Meta+C/V/X does copy/paste/cut
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
   bin = rec {
@@ -80,7 +80,7 @@ self:
   };
 
   # Repeating settings
-  modifier = if appleKeyMap then "Mod1" else "Mod4";
+  modifier = if emulateMacKeyMap then "Mod1" else "Mod4";
   defaultBrowser = "firefox${firefoxSuffix}.desktop";
   iconTheme = "Vimix-Doder-dark";
   homePath = config.home.homeDirectory;
