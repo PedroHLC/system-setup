@@ -247,12 +247,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = flakes.self.specialArgs // { specs = inputs.specs; };
 
-  # Newer switch
-  system.switch = {
-    enable = false;
-    enableNg = true;
-  };
-
   # Editable hosts
   environment.etc.hosts.mode = "0644";
 
