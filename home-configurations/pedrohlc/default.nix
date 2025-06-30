@@ -350,6 +350,7 @@ with utils; {
           "@sys" = "cd /etc/nixos";
           "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
         } // attrsets.optionalAttrs isMacOS (rec {
+          "@sys" = "cd ~/Projects/com.pedrohlc/system-setup";
           "poweroff" = "exec osascript -e 'tell application \"Finder\" to shut down'";
           "firewall" = "/usr/libexec/ApplicationFirewall/socketfilterfw";
           "firewall-status" = "${firewall} --getglobalstate --getblockall --getallowsigned --getstealthmode --listapps";

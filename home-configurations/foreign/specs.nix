@@ -3,5 +3,5 @@
   seat = null;
   hostOS = "macos";
   gitKey = "8918CACFE3A48BC5";
-  kvm = { left = "desktop"; };
+  kvm = { left = "desktop"; right = "laptop"; };
 }
