@@ -164,6 +164,8 @@
       chaotic.mesa-git.enable = lib.mkForce false;
 
       home-manager.extraSpecialArgs.usingNouveau = false;
+
+      environment.variables."WLR_DRM_DEVICES" = lib.mkForce "/dev/dri/card0";
     };
 
   # This value determines the NixOS release from which the default
