@@ -35,8 +35,7 @@
 
     # Experimental flavor
     stylix = {
-      url = "github:danth/stylix";
-      inputs.home-manager.follows = "chaotic/home-manager";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "chaotic/nixpkgs";
     };
   };
