@@ -186,7 +186,11 @@
   '';
 
   # More Classics' gaming
-  programs.steam.extraCompatPackages = with pkgs; [ luxtorpeda proton-ge-custom ];
+  programs.steam.extraCompatPackages = with pkgs; [
+    luxtorpeda
+    proton-cachyos_x86_64_v3
+    proton-ge-custom
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

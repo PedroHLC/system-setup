@@ -101,7 +101,7 @@ in
         };
         "github-runner.garudalinux.org" = {
           inherit identityFile;
-          hostname = "116.202.208.112";
+          hostname = "157.180.57.51";
           port = 230;
         };
         "aur.archlinux.org-chaotic" = {
