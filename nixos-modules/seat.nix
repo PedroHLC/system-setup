@@ -319,6 +319,11 @@
       enable = true; # Gamescope session is better for AAA gaming.
       args = [ "--immediate-flips" "--" "bigsteam" ];
     };
+
+    extraCompatPackages = with pkgs; [
+      proton-cachyos_x86_64_v3
+      proton-ge-custom
+    ];
   };
 
   # The default's CLI gamescope.
