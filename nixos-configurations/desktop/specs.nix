@@ -23,7 +23,7 @@
     steamMachine = {
       output = "card0-HDMI-A-1";
       salt = "pedrohlc";
-      sha256 = "65611d1e5e09c51fd4ef90f9da41f7000b41da8ab89ceaf2d89c499922f6f07f";
+      sha256 = "8cb5ac55e797e8de225b69020248932d2c9f4317b41f2d4048fc4e04fa77e597";
     };
   };
 }
