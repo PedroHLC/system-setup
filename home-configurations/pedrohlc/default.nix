@@ -88,9 +88,7 @@ with utils; {
 
           steamSession = with steamMachine; ''
             if ${check-sha256} '${sha256}' '/sys/class/drm/${output}/edid' ${salt}; then
-              steam-gamescope
-              # it crashed, wait before looping
-              sleep 12
+              exec env DXVK_HDR=1 steam-gamescope
             else
               ${deSession}
             fi
