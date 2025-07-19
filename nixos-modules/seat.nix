@@ -463,7 +463,7 @@
 
   # Bigger internet
   services.kubo = {
-    enable = true;
+    enable = false; # Needs nixpkgs#425738
     startWhenNeeded = true;
   };
   users.users.pedrohlc.extraGroups = [ config.services.kubo.group ];
