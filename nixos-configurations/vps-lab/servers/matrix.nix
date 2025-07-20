@@ -19,11 +19,15 @@ let
       }
     }
   '';
+
+  package = pkgs.matrix-tuwunel;
+
+  binary = "${package}/bin/tuwunel";
 in
 {
   services.matrix-conduit = {
     enable = true;
-    package = pkgs.conduwuit_git;
+    package = package;
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
@@ -32,7 +36,7 @@ in
       sentry = true;
     };
   };
-  systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce "${pkgs.conduwuit_git}/bin/conduwuit";
+  systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce binary;
   services.nginx = {
     virtualHosts."${matrix_hostname}" = {
       listen = [
