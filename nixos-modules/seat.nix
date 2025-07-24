@@ -210,6 +210,7 @@
     dbeaver-bin
     gcc
     gdb # more precious then gcc
+    gh
     gnumake
     heroku
     inotify-tools # watching files

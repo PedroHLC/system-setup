@@ -32,6 +32,7 @@
     aria2
     borg-sans-mono
     dbeaver-bin
+    gh
     gnupg
     heroku
     home-manager

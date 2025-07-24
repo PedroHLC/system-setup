@@ -19,7 +19,6 @@
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
     },
-    "version": "2",
     "button": true,
     "enabled": true
   },
@@ -55,12 +54,42 @@
   "format_on_save": "on",
   "formatter": "language_server",
   "languages": {
+    "Elixir": {
+      "language_servers": [
+        "next-ls",
+        "!elixir-ls"
+      ],
+      "formatter": {
+        "external": {
+          "command": "mix",
+          "arguments": [
+            "format",
+            "--stdin-filename",
+            "{buffer_path}",
+            "-"
+          ]
+        }
+      }
+    },
     "Elm": {
       "formatter": {
         "external": {
           "command": "elm-format",
           "arguments": [
             "--stdin"
+          ]
+        }
+      }
+    },
+    "HEEX": {
+      "formatter": {
+        "external": {
+          "command": "mix",
+          "arguments": [
+            "format",
+            "--stdin-filename",
+            "{buffer_path}",
+            "-"
           ]
         }
       }
