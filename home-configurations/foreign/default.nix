@@ -17,6 +17,10 @@
     };
   };
 
+  imports = [
+    ./trampolines.nix
+  ];
+
   # Locale stuff
   # I've tried to set everything as I wanted using `home.language`, but locale/mosh/man only seem to accept LANG & LC_ALL.
   home.sessionVariables.LANG = "en_GB.UTF-8";
@@ -71,12 +75,6 @@
       KeepAlive.OtherJobEnabled."io.github.nikitabobko.aerospace" = true;
     };
   };
-
-
-  # Make apps indexable
-  home.activation.makeTrampolineApps = lib.hm.dag.entryAfter [ "writeBoundary" ] (
-    builtins.readFile ../../assets/make-app-trampolines.sh
-  );
 
   # This is for reusing the versioned flakes inputs for CLI commands.
   # HomeManager does not provide `nixpkgs.flake.setNixPath`
