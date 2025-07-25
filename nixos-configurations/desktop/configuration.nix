@@ -19,7 +19,7 @@
 
   # UPS monitoring
   power.ups = {
-    enable = false; # I've removed the cable temporarily
+    enable = true;
     ups.sms-gamer = {
       driver = "sms_ser";
       description = "sms-gamer";
