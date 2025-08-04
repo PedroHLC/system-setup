@@ -153,10 +153,6 @@
     extraArgs = [ "--skip-login" ];
   };
 
-  # https://github.com/NixOS/nixpkgs/pull/428972#issuecomment-3151161713
-  systemd.targets.getty.wants = [ "autovt@tty1.service" ];
-  systemd.services."autovt@tty1".enable = true;
-
   # List packages.
   environment.systemPackages = with pkgs; [
     # Common dependencies
@@ -447,6 +443,7 @@
     krdp
     xwaylandvideobridge
   ];
+  services.orca.enable = false;
 
   # For development, but disabled to start service on-demand
   services.postgresql = {
