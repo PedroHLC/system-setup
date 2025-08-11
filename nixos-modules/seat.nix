@@ -241,7 +241,6 @@
 
     # Gaming
     devilutionx
-    duckstation
     openmohaa_git
     openrct2
     space-cadet-pinball
