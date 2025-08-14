@@ -147,6 +147,7 @@
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
+          "||ednsscankzl.top^$important,dnsrewrite=REFUSED;;"
           "||ictdns.fun^$important,dnsrewrite=REFUSED;;"
           "||ident.me^$important,dnsrewrite=REFUSED;;"
           "||ki3ednstest.com^$important,dnsrewrite=REFUSED;;"
