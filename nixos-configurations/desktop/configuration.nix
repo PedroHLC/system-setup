@@ -156,6 +156,7 @@
     port = vpn.desktop.nextjsOllamaPort;
     ollamaUrl = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
   };
+  environment.variables.OLLAMA_HOST = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
 
   # nixpkgs#427025
   systemd.services.ollama.serviceConfig = {
