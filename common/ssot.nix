@@ -20,6 +20,7 @@ rec {
       addr = "${hostname}.${vpn.tld}";
       v4 = "${vpn.prefix.v4}.1";
       v6 = "${vpn.prefix.v6}:1";
+      adguardAdminPort = 3000;
       adguardPort = 3334;
       atuinPort = 8888;
       bskyPort = 3777;
@@ -33,6 +34,8 @@ rec {
       addr = "${hostname}.${vpn.tld}";
       v4 = "${vpn.prefix.v4}.2";
       v6 = "${vpn.prefix.v6}:2";
+      nextjsOllamaPort = 3000;
+      ollamaPort = 11434;
     };
     laptop = rec {
       hostname = "laptop";

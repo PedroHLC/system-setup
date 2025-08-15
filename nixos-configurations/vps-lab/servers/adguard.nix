@@ -63,7 +63,7 @@
       in
       {
         host = "0.0.0.0";
-        port = 3000;
+        port = vpn.lab.adguardAdminPort;
         users = [{
           name = "admin";
           password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin

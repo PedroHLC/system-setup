@@ -125,6 +125,8 @@
   # AI
   services.ollama = {
     enable = true;
+    host = vpn.desktop.v4;
+    port = vpn.desktop.ollamaPort;
     acceleration = "rocm";
     loadModels = [ "gpt-oss:20b" ];
     user = "ollama";
@@ -148,6 +150,12 @@
     };
   };
   chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+  services.nextjs-ollama-llm-ui = {
+    enable = true;
+    hostname = vpn.desktop.v4;
+    port = vpn.desktop.nextjsOllamaPort;
+    ollamaUrl = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
+  };
 
   # nixpkgs#427025
   systemd.services.ollama.serviceConfig = {

@@ -2,6 +2,19 @@
 // https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
+  "context_servers": {
+    "mcp-nixos": {
+      "source": "custom",
+      "enabled": false,
+      "command": "nix",
+      "args": [
+        "run",
+        "github:utensils/mcp-nixos",
+        "--"
+      ],
+      "env": {}
+    }
+  },
   "edit_predictions": {
     "mode": "subtle",
     "copilot": {
@@ -14,10 +27,27 @@
   "features": {
     "edit_prediction_provider": "zed"
   },
+  "language_models": {
+    "ollama": {
+      "api_url": "http://10.100.0.2:11434",
+      "available_models": [
+        {
+          "name": "gpt-oss:20b",
+          "max_tokens": 131072,
+          "keep_alive": "10m",
+          "supports_tools": true,
+          "supports_thinking": true
+        }
+      ]
+    }
+  },
   "agent": {
+    "default_profile": "write",
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": false,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "ollama",
+      "model": "gpt-oss:20b"
     },
     "button": true,
     "enabled": true
