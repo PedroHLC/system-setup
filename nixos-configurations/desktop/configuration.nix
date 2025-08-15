@@ -115,10 +115,46 @@
     i2pd
     latencyflex-vulkan
     nixos-next-shot
+    rocmPackages.rocminfo
+    rocmPackages.rocm-smi
     uxplay
     virtiofsd # for libvirtd
     vkbasalt
   ];
+
+  # AI
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    loadModels = [ "gpt-oss:20b" ];
+    user = "ollama";
+    group = "agents";
+    package =
+      if pkgs.ollama.version == "0.11.4" then
+      # For OLLAMA_NEW_ESTIMATES
+        pkgs.ollama-rocm.overrideAttrs
+          (_prevAttrs: {
+            src = pkgs.fetchFromGitHub {
+              owner = "ollama";
+              repo = "ollama";
+              tag = "v0.11.5-rc2";
+              hash = "sha256-/uo35G5aWyU/TBPeaCA1muw2hZgOokONW29Ox9vZgg4=";
+            };
+          })
+      else throw "New ollama found!";
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1030"; # not really needed
+      OLLAMA_NEW_ESTIMATES = "1";
+    };
+  };
+  chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+
+  # nixpkgs#427025
+  systemd.services.ollama.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    PrivateUser = lib.mkForce false;
+    RestrictNamespaces = lib.mkForce false;
+  };
 
   # One-button virtualization for some tests of mine
   virtualisation.libvirtd = {
