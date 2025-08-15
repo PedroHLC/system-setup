@@ -33,7 +33,7 @@
       "available_models": [
         {
           "name": "gpt-oss:20b",
-          "max_tokens": 131072,
+          "max_tokens": 7104,
           "keep_alive": "10m",
           "supports_tools": true,
           "supports_thinking": true
