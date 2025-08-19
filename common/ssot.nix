@@ -36,6 +36,7 @@ rec {
       v6 = "${vpn.prefix.v6}:2";
       nextjsOllamaPort = 3000;
       ollamaPort = 11434;
+      llamaCppPort = 11435;
     };
     laptop = rec {
       hostname = "laptop";

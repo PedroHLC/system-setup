@@ -122,7 +122,7 @@
     vkbasalt
   ];
 
-  # AI
+  # AI (Ollama)
   services.ollama = {
     enable = true;
     host = vpn.desktop.v4;
@@ -157,12 +157,36 @@
     ollamaUrl = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
   };
   environment.variables.OLLAMA_HOST = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
-
-  # nixpkgs#427025
   systemd.services.ollama.serviceConfig = {
+    # TODO: Use socket activation
     DynamicUser = lib.mkForce false;
-    PrivateUser = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
     RestrictNamespaces = lib.mkForce false;
+  };
+
+  # AI (llama.cpp)
+  services.llama-cpp = {
+    enable = true;
+    package = pkgs.llama-cpp-vulkan;
+    host = vpn.desktop.v4;
+    port = vpn.desktop.llamaCppPort;
+    model = "${config.users.users.llama-cpp.home}/models/ggml-gpt-oss-20b.gguf";
+    extraFlags = [ "-c" "0" "-fa" "--jinja" ];
+  };
+  users.users.llama-cpp = {
+    home = "/var/lib/llama-cpp";
+    isSystemUser = true;
+    inherit (config.services.ollama) group;
+  };
+  systemd.services.llama-cpp.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    PrivateUsers = lib.mkForce false;
+    RestrictNamespaces = lib.mkForce false;
+    User = "llama-cpp";
+    Group = config.services.ollama.group;
+    WorkingDirectory = config.users.users.llama-cpp.home;
+    StateDirectory = [ "llama-cpp" ];
+    # TODO: Use socket activation
   };
 
   # One-button virtualization for some tests of mine
@@ -191,6 +215,7 @@
       directories = [
         "/var/lib/nut"
         "/var/lib/libvirt"
+        "/var/lib/llama-cpp"
         "/var/lib/ollama"
       ];
     };

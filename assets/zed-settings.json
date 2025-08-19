@@ -39,6 +39,23 @@
           "supports_thinking": true
         }
       ]
+    },
+    "openai_compatible": {
+      "llama.cpp": {
+        "api_url": "http://10.100.0.2:11435",
+        "available_models": [
+          {
+            "name": "gpt-oss-20b",
+            "max_tokens": 7104,
+            "capabilities": {
+              "tools": true,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false
+            }
+          }
+        ]
+      }
     }
   },
   "agent": {
