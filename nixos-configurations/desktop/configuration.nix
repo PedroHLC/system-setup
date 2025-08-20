@@ -2,6 +2,33 @@
 { config, pkgs, lib, ssot, ... }: with ssot;
 
 # NixOS-defined options
+let
+  proxyAddr = "127.0.0.23";
+
+  mkSystemdProxy = unitName: port: moduleInput: {
+    systemd.sockets."proxy-${unitName}" = {
+      wantedBy = [ "sockets.target" ];
+      socketConfig = {
+        ListenStream = [
+          "${vpn.desktop.v4}:${toString port}"
+          "${vpn.desktop.v6}:${toString port}"
+        ];
+        NoDelay = true;
+      };
+    };
+
+    systemd.services."proxy-${unitName}" = {
+      requires = [ "${unitName}.service" "proxy-${unitName}.socket" ];
+      after = [ "${unitName}.service" "proxy-${unitName}.socket" ];
+
+      serviceConfig = {
+        Type = "notify";
+        ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd ${proxyAddr}:${toString port}";
+        PrivateTmp = true;
+      };
+    };
+  };
+in
 {
   # Network.
   networking = {
@@ -125,7 +152,7 @@
   # AI (Ollama)
   services.ollama = {
     enable = true;
-    host = vpn.desktop.v4;
+    host = proxyAddr;
     port = vpn.desktop.ollamaPort;
     acceleration = "rocm";
     loadModels = [ "gpt-oss:20b" ];
@@ -150,25 +177,29 @@
     };
   };
   chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+  systemd.services.ollama = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+      RestrictNamespaces = lib.mkForce false;
+    };
+    wantedBy = lib.mkForce [ ];
+  };
+
+  # AI (ollama chat)
   services.nextjs-ollama-llm-ui = {
     enable = true;
-    hostname = vpn.desktop.v4;
+    hostname = proxyAddr;
     port = vpn.desktop.nextjsOllamaPort;
     ollamaUrl = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
   };
-  environment.variables.OLLAMA_HOST = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
-  systemd.services.ollama.serviceConfig = {
-    # TODO: Use socket activation
-    DynamicUser = lib.mkForce false;
-    PrivateUsers = lib.mkForce false;
-    RestrictNamespaces = lib.mkForce false;
-  };
+  systemd.services.nextjs-ollama-llm-ui.wantedBy = lib.mkForce [ ];
 
   # AI (llama.cpp)
   services.llama-cpp = {
     enable = true;
     package = pkgs.llama-cpp-vulkan;
-    host = vpn.desktop.v4;
+    host = proxyAddr;
     port = vpn.desktop.llamaCppPort;
     model = "${config.users.users.llama-cpp.home}/models/ggml-gpt-oss-20b.gguf";
     extraFlags = [ "-c" "0" "-fa" "--jinja" ];
@@ -178,16 +209,26 @@
     isSystemUser = true;
     inherit (config.services.ollama) group;
   };
-  systemd.services.llama-cpp.serviceConfig = {
-    DynamicUser = lib.mkForce false;
-    PrivateUsers = lib.mkForce false;
-    RestrictNamespaces = lib.mkForce false;
-    User = "llama-cpp";
-    Group = config.services.ollama.group;
-    WorkingDirectory = config.users.users.llama-cpp.home;
-    StateDirectory = [ "llama-cpp" ];
-    # TODO: Use socket activation
+  systemd.services.llama-cpp = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+      RestrictNamespaces = lib.mkForce false;
+      User = "llama-cpp";
+      Group = config.services.ollama.group;
+      WorkingDirectory = config.users.users.llama-cpp.home;
+      StateDirectory = [ "llama-cpp" ];
+    };
+    wantedBy = lib.mkForce [ ];
   };
+
+  # AI (systemd activation sockets)
+  imports =
+    [
+      (mkSystemdProxy "ollama" vpn.desktop.ollamaPort)
+      (mkSystemdProxy "nextjs-ollama-llm-ui" vpn.desktop.nextjsOllamaPort)
+      (mkSystemdProxy "llama-cpp" vpn.desktop.llamaCppPort)
+    ];
 
   # One-button virtualization for some tests of mine
   virtualisation.libvirtd = {

@@ -247,6 +247,9 @@
   home-manager.useGlobalPkgs = true;
   home-manager.extraSpecialArgs = flakes.self.specialArgs // { specs = inputs.specs; };
 
+  # AI (use from desktop)
+  environment.variables.OLLAMA_HOST = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
+
   # Editable hosts
   environment.etc.hosts.mode = "0644";
 
