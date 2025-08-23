@@ -243,6 +243,7 @@ with utils; {
         io_write = true;
         vram = true;
         wine = true;
+        hdr = true;
 
         # cool, but not always necessary
         # keeping here for remembering
