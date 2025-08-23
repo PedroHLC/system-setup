@@ -26,6 +26,7 @@ in
           allowedIPs = [ "0.0.0.0/0" "::/0" ];
           endpoint = "engage.cloudflareclient.com:2408";
           persistentKeepalive = 15;
+          name = "engage";
         }
       ];
       # I have access to all the network through allowedIPs

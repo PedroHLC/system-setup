@@ -8,6 +8,8 @@ let
   mkSystemdProxy = unitName: port: moduleInput: {
     systemd.sockets."proxy-${unitName}" = {
       wantedBy = [ "sockets.target" ];
+      after = [ "wireguard-wg0-peer-lab.service" ];
+
       socketConfig = {
         ListenStream = [
           "${vpn.desktop.v4}:${toString port}"

@@ -11,6 +11,7 @@
         ];
         endpoint = "${web.lab.addr}:${toString vpn.port}";
         persistentKeepalive = 25;
+        name = "lab";
       }
     ];
     # I have access to all the network through allowedIPs
