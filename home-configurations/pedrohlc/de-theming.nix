@@ -55,7 +55,7 @@ utils: with utils;
   };
 
   stylix.cursor = {
-    name = "Breeze_Snow";
+    name = "Breeze_Light";
     package = pkgs.kdePackages.breeze;
   };
 
