@@ -87,7 +87,7 @@ with utils; {
             '';
 
           steamSession = with steamMachine; ''
-            if ${check-sha256} '${sha256}' '/sys/class/drm/${output}/edid' ${salt}; then
+            if ${check-sha256} '${sha256}' '/sys/class/drm/card'*'-${output}/edid' ${salt}; then
               exec env DXVK_HDR=1 steam-gamescope
             else
               ${deSession}
