@@ -67,6 +67,7 @@
         kernel = config.system.modulesTree.override { name = kernel-name + "-modules"; };
         firmware = config.hardware.firmware;
         allowMissing = false;
+        inherit (config.boot.initrd) extraFirmwarePaths;
       };
   };
 
@@ -140,32 +141,6 @@
       package = nvidiaPackage;
       open = true;
       nvidiaSettings = false;
-    };
-
-  # Creates a second boot entry with proprietary NVIDIA GPU (PRIME Offloading + Wayland)
-  specialisation.nvidia-proprietary.configuration = { config, pkgs, ... }: # My user-named values.
-    {
-      system.nixos.tags = [ "nvidia-proprietary" ];
-
-      services.xserver.videoDrivers = [ "nvidia" ];
-      hardware.nvidia = {
-        prime = {
-          offload.enable = true;
-          intelBusId = "PCI:0:2:0"; # Bus ID of the Intel GPU.
-          nvidiaBusId = "PCI:1:0:0"; # Bus ID of the NVIDIA GPU.
-        };
-
-        powerManagement = {
-          enable = true;
-          finegrained = true;
-        };
-      };
-
-      chaotic.mesa-git.enable = lib.mkForce false;
-
-      home-manager.extraSpecialArgs.usingNouveau = false;
-
-      environment.variables."WLR_DRM_DEVICES" = lib.mkForce "/dev/dri/card0";
     };
 
   # This value determines the NixOS release from which the default
