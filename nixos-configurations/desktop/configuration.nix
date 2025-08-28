@@ -161,15 +161,15 @@ in
     user = "ollama";
     group = "agents";
     package =
-      if pkgs.ollama.version == "0.11.4" then
+      if pkgs.ollama.version == "0.11.7" then
       # For OLLAMA_NEW_ESTIMATES
         pkgs.ollama-rocm.overrideAttrs
           (_prevAttrs: {
             src = pkgs.fetchFromGitHub {
               owner = "ollama";
               repo = "ollama";
-              tag = "v0.11.5-rc2";
-              hash = "sha256-/uo35G5aWyU/TBPeaCA1muw2hZgOokONW29Ox9vZgg4=";
+              tag = "v0.11.8-rc0";
+              hash = "sha256-rH60tijPNadI22jwQs6wL4sfp8xgXK2zfRF4Rxhsm3w=";
             };
           })
       else throw "New ollama found!";
