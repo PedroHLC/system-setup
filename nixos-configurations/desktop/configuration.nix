@@ -176,6 +176,8 @@ in
     environmentVariables = {
       HCC_AMDGPU_TARGET = "gfx1030"; # not really needed
       OLLAMA_NEW_ESTIMATES = "1";
+      OLLAMA_KV_CACHE_TYPE = "q4_0";
+      OLLAMA_FLASH_ATTENTION = "1";
     };
   };
   chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
