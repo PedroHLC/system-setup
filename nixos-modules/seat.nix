@@ -208,6 +208,7 @@
     # Development apps
     bytecode-viewer_git
     dbeaver-bin
+    ddcutil # for controlling DisplayPort
     gcc
     gdb # more precious then gcc
     gh
@@ -379,8 +380,12 @@
     };
   };
 
+  # For controlling DisplayPort displays
+  hardware.i2c.enable = true;
+
   # An alternative AP with only WiFi 6
   # Adapted from https://gist.github.com/iffa/290b1b83b17f51355c63a97df7c1cc60
+  # REMEMBER: Needs to `nmcli device set wlan0 managed false && systemctl stop iwd && nmcli c up bridge-br0 && nmcli c up bridge-slave-eno1` before starting.
   services.hostapd = {
     enable = true;
     package = pkgs.hostapd_nolar;
@@ -467,7 +472,12 @@
     enable = false; # Needs nixpkgs#425738
     startWhenNeeded = true;
   };
-  users.users.pedrohlc.extraGroups = [ config.services.kubo.group ];
+
+  # More advanced permissions to my user
+  users.users.pedrohlc.extraGroups = [
+    config.services.kubo.group
+    config.hardware.i2c.group
+  ];
 
   # Creates a second boot entry with LTS kernel, stable ZFS, stable Mesa3D.
   specialisation.safe.configuration = {

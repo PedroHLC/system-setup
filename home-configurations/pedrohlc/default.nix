@@ -360,6 +360,10 @@ with utils; {
           # TODO: Move to services
           "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o ${seat.displayId}";
           "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";
+        } // attrsets.optionalAttrs (hasSeat && seat.displayId == "DP-1") {
+          # Yes, this is a pun with VHF TV
+          "channel-3" = "ddcutils setvcp 60 0x06"; # Changes the display to HDMI-2
+          "channel-4" = "ddcutils setvcp 60 0x0f"; # Changes the display to DP-1
         };
       plugins = [
         {

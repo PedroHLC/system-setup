@@ -56,7 +56,12 @@ final: prev: {
   nut = final.nut_git;
 
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
-  hostapd_nolar = final.hostapd.overrideAttrs (oa: {
+  hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
+    version = "2.10";
+    src = final.fetchurl {
+      url = "https://w1.fi/releases/${oa.pname}-${version}.tar.gz";
+      hash = "sha256-IG58eZtnhXLC49EgMCOHhLxKn4IyOwFWtMlGbxSYkV0=";
+    };
     patches = [
       (final.fetchpatch { url = "https://tildearrow.org/storage/hostapd-2.10-lar.patch"; hash = "sha256-USiHBZH5QcUJfZSxGoFwUefq3ARc4S/KliwUm8SqvoI="; })
     ];
