@@ -8,6 +8,7 @@ let
   mkSystemdProxy = unitName: port: moduleInput: {
     systemd.sockets."proxy-${unitName}" = {
       wantedBy = [ "sockets.target" ];
+      requires = [ "wireguard-wg0-peer-lab.service" ];
       after = [ "wireguard-wg0-peer-lab.service" ];
 
       socketConfig = {
@@ -164,12 +165,13 @@ in
       if pkgs.ollama.version == "0.11.7" then
       # For OLLAMA_NEW_ESTIMATES
         pkgs.ollama-rocm.overrideAttrs
-          (_prevAttrs: {
+          (_prevAttrs: rec {
+            version = "0.11.10";
             src = pkgs.fetchFromGitHub {
               owner = "ollama";
               repo = "ollama";
-              tag = "v0.11.8-rc0";
-              hash = "sha256-rH60tijPNadI22jwQs6wL4sfp8xgXK2zfRF4Rxhsm3w=";
+              tag = "v${version}";
+              hash = "sha256-F5Us1w+QCnWK32noi8vfRwgMofHP9vGiRFfN2UAf1vw=";
             };
           })
       else throw "New ollama found!";
@@ -199,39 +201,11 @@ in
   };
   systemd.services.nextjs-ollama-llm-ui.wantedBy = lib.mkForce [ ];
 
-  # AI (llama.cpp)
-  services.llama-cpp = {
-    enable = true;
-    package = pkgs.llama-cpp-vulkan;
-    host = proxyAddr;
-    port = vpn.desktop.llamaCppPort;
-    model = "${config.users.users.llama-cpp.home}/models/ggml-gpt-oss-20b.gguf";
-    extraFlags = [ "-c" "0" "-fa" "--jinja" ];
-  };
-  users.users.llama-cpp = {
-    home = "/var/lib/llama-cpp";
-    isSystemUser = true;
-    inherit (config.services.ollama) group;
-  };
-  systemd.services.llama-cpp = {
-    serviceConfig = {
-      DynamicUser = lib.mkForce false;
-      PrivateUsers = lib.mkForce false;
-      RestrictNamespaces = lib.mkForce false;
-      User = "llama-cpp";
-      Group = config.services.ollama.group;
-      WorkingDirectory = config.users.users.llama-cpp.home;
-      StateDirectory = [ "llama-cpp" ];
-    };
-    wantedBy = lib.mkForce [ ];
-  };
-
   # AI (systemd activation sockets)
   imports =
     [
       (mkSystemdProxy "ollama" vpn.desktop.ollamaPort)
       (mkSystemdProxy "nextjs-ollama-llm-ui" vpn.desktop.nextjsOllamaPort)
-      (mkSystemdProxy "llama-cpp" vpn.desktop.llamaCppPort)
     ];
 
   # One-button virtualization for some tests of mine
