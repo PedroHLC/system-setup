@@ -1,6 +1,6 @@
-{ stdenv, lib, fetchFromGitHub, kernel, kmod }:
+{ lib, fetchFromGitHub, kernel, kernelModuleMakeFlags, kmod }:
 
-stdenv.mkDerivation {
+kernel.stdenv.mkDerivation {
   pname = "ksysrqd-${kernel.version}";
   version = "unstable-20220129-3e5e740";
 
@@ -16,12 +16,20 @@ stdenv.mkDerivation {
 
   postPatch = ''
     substituteInPlace ksysrqd.c \
-      --replace '"b)' '"o)ff system\n" "b)' \
-      --replace " || letter == 'b'" " || letter == 'b' || letter == 'o'"
+      --replace-fail '"b)' '"o)ff system\n" "b)' \
+      --replace-fail " || letter == 'b'" " || letter == 'b' || letter == 'o'"
+
+    substituteInPlace ksysrqd.c \
+      --replace-fail 'static void sysrqd_accept_handler() {' 'static void sysrqd_accept_handler(void) {' \
+      --replace-fail 'static void sysrqd_manage_client() {' 'static void sysrqd_manage_client(void) {'
   '';
 
+  makeFlags = kernelModuleMakeFlags ++ [
+    "-C${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  ];
+
   buildPhase = ''
-    make "-C${kernel.dev}/lib/modules/${kernel.modDirVersion}/build" M=$(pwd) modules
+    make $makeFlags M=$(pwd) modules
   '';
 
   installPhase = ''
