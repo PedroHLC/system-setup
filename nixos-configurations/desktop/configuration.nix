@@ -161,22 +161,9 @@ in
     loadModels = [ "gpt-oss:20b" ];
     user = "ollama";
     group = "agents";
-    package =
-      if pkgs.ollama.version == "0.11.7" then
-      # For OLLAMA_NEW_ESTIMATES
-        pkgs.ollama-rocm.overrideAttrs
-          (_prevAttrs: rec {
-            version = "0.11.10";
-            src = pkgs.fetchFromGitHub {
-              owner = "ollama";
-              repo = "ollama";
-              tag = "v${version}";
-              hash = "sha256-F5Us1w+QCnWK32noi8vfRwgMofHP9vGiRFfN2UAf1vw=";
-            };
-          })
-      else throw "New ollama found!";
     environmentVariables = {
       HCC_AMDGPU_TARGET = "gfx1030"; # not really needed
+      OLLAMA_NEW_ENGINE = "1"; # not really needed for this model
       OLLAMA_NEW_ESTIMATES = "1";
       OLLAMA_KV_CACHE_TYPE = "q4_0";
       OLLAMA_FLASH_ATTENTION = "1";

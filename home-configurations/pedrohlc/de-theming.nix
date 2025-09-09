@@ -33,7 +33,7 @@ utils: with utils;
 
   stylix.polarity = "dark";
 
-  stylix.cursor.size = 16;
+  stylix.cursor.size = 24;
 
   stylix.fonts = {
     monospace = {
