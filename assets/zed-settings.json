@@ -103,7 +103,8 @@
   "languages": {
     "Elixir": {
       "language_servers": [
-        "next-ls",
+        "expert",
+        "!next-ls",
         "!elixir-ls"
       ],
       "formatter": {
