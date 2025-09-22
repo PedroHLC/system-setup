@@ -92,6 +92,7 @@
           trusted_proxies = [
             "127.0.0.1"
           ];
+          cache_enabled = true;
           cache_ttl_max = 43200;
           ratelimit = 300;
           # ratelimit_whitelist = knownClients.goodGuysCIDRs;
@@ -187,7 +188,7 @@
         };
         # For bumping, read the "Configuration changes" sections of
         # https://github.com/AdguardTeam/AdGuardHome/blob/master/CHANGELOG.md
-        schema_version = 29;
+        schema_version = 30;
       };
   };
 
