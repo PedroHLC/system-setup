@@ -387,7 +387,7 @@
   # Adapted from https://gist.github.com/iffa/290b1b83b17f51355c63a97df7c1cc60
   # REMEMBER: Needs to `nmcli device set wlan0 managed false && systemctl stop iwd && nmcli c up bridge-br0 && nmcli c up bridge-slave-eno1` before starting.
   services.hostapd = {
-    enable = true;
+    enable = false; # TODO: https://github.com/NixOS/nixpkgs/pull/440932#issuecomment-3324144862
     package = pkgs.hostapd_nolar;
     radios.wlan0 = {
       channel = 149;
