@@ -9,4 +9,5 @@
   "steam-unwrapped"
   "unrar"
   "wpsoffice"
+  "zoom"
 ]

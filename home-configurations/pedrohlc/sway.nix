@@ -250,5 +250,14 @@ in
     extraOptions = mkIf nvidiaBad [
       "--unsupported-gpu"
     ];
+
+    extraConfig = ''
+      no_focus [title="Zoom Workplace - Licensed account"]
+      no_focus [title="Zoom - Licensed Account"]
+      no_focus [title="Zoom - Free Account"]
+      no_focus [title="Zoom Meeting"]
+      no_focus [title="Zoom Webinar"]
+      no_focus [title="Meeting"]
+    '';
   };
 }

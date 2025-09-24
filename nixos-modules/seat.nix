@@ -223,6 +223,7 @@
     inkscape
     gimp
     wpsoffice
+    zoom-us
 
     # Social
     telegram-desktop_git
@@ -633,6 +634,7 @@
         ".config/vesktop"
         ".config/Slack"
         ".config/Unknown Organization"
+        ".config/YouTube Music"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
         ".i2pd"
@@ -640,6 +642,7 @@
         ".local/share/atuin"
         ".local/share/baloo"
         ".local/share/duckstation" # todo: backup saves somehow
+        ".local/share/Kingsoft"
         ".local/share/Trash"
         ".local/state/wireplumber"
         ".local/share/yuzu" # todo: backup saves somehow
