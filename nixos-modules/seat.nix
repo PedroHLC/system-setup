@@ -223,7 +223,6 @@
     inkscape
     gimp
     wpsoffice
-    zoom-us
 
     # Social
     telegram-desktop_git
@@ -363,6 +362,9 @@
     enable = true;
     fallbackSpecialisation = false;
   };
+
+  # Zoom is complicated
+  programs.zoom-us.enable = true;
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
