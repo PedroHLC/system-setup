@@ -221,6 +221,7 @@
 
     # Office-stuff
     inkscape
+    figma-linux
     gimp
     wpsoffice
 
@@ -454,7 +455,7 @@
 
   # For development, but disabled to start service on-demand
   services.postgresql = {
-    enable = true;
+    enable = false;
     package = pkgs.postgresql; # always the latest
     settings = {
       # log_statement = "all";
@@ -580,10 +581,10 @@
         ".config/zed"
         { directory = ".gnupg"; mode = "0700"; }
         { directory = ".kube"; mode = "0700"; }
+        ".local/share/chat.fluffy.fluffychat"
         ".local/share/DBeaverData"
         ".local/share/fish"
         ".local/share/gamescope"
-        ".local/share/chat.fluffy.fluffychat"
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
         { directory = ".local/share/kwalletd"; mode = "0700"; }
@@ -631,11 +632,12 @@
         ".cache/mozilla"
         ".cache/nix-index"
         ".cache/zed"
+        ".config/figma-linux"
         ".config/google-chrome"
-        ".config/tidal-hifi"
-        ".config/vesktop"
         ".config/Slack"
+        ".config/tidal-hifi"
         ".config/Unknown Organization"
+        ".config/vesktop"
         ".config/YouTube Music"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
@@ -646,9 +648,9 @@
         ".local/share/duckstation" # todo: backup saves somehow
         ".local/share/Kingsoft"
         ".local/share/Trash"
-        ".local/state/wireplumber"
         ".local/share/yuzu" # todo: backup saves somehow
         ".local/share/zed"
+        ".local/state/wireplumber"
         ".mix"
         ".nyx"
         ".lyrics"

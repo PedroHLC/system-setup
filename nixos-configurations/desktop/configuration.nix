@@ -47,7 +47,7 @@ in
 
   # UPS monitoring
   power.ups = {
-    enable = true;
+    # enable = true;
     ups.sms-gamer = {
       driver = "sms_ser";
       description = "sms-gamer";
@@ -71,12 +71,10 @@ in
     environmentFile = "/var/persistent/secrets/duckdns.env";
   };
 
-  # Better voltage, temperature, and a module to save me in case everything catches fire
+  # A module to save me in case everything catches fire
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    zenpower
     (callPackage ../../packages/ksysrqd.nix { })
   ];
-  boot.blacklistedKernelModules = [ "k10temp" ];
 
   # The service to start ksysrqd with my secret
   systemd.services.ksysrqd = {
