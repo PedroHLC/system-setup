@@ -6,15 +6,11 @@ let
     in
     nixpkgs.lib.nixosSystem ({
       # Sets pkgs just once due to nixosModules.readOnlyPkgs
-      pkgs = import flakes.nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = false;
-          pedroWatermark = true;
-          allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) (import ../common/unfree.nix);
-        } // extraConfig;
-        overlays = [ (import ../overlays/core.nix) chaotic.overlays.default ] ++ extraOverlays;
-      };
+      pkgs = import ../common/pkgs.nix
+        {
+          inherit system extraConfig extraOverlays;
+          inherit (flakes) nixpkgs chaotic;
+        };
 
       specialArgs = joinedSpecialArgs;
 
