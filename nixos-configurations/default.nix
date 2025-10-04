@@ -1,4 +1,4 @@
-{ ssot, flakes, ... }@inputs:
+{ ssot, flakes, ... }@inputs: with ssot;
 let
   mkNixOS = { system, specs, extraModules ? [ ], specialArgs ? { }, extraOverlays ? [ ], extraConfig ? { } }: with flakes;
     let
@@ -34,7 +34,7 @@ let
   params = inputs // { inherit mkNixOS; };
 in
 {
-  "${ssot.vpn.lab.hostname}" = import ./vps-lab params;
-  "${ssot.vpn.desktop.hostname}" = import ./desktop params;
-  "${ssot.vpn.laptop.hostname}" = import ./laptop params;
+  "${machines.lab.hostname}" = import ./vps-lab params;
+  "${machines.desktop.hostname}" = import ./desktop params;
+  "${machines.laptop.hostname}" = import ./laptop params;
 }

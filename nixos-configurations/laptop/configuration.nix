@@ -33,11 +33,11 @@
   # Network.
   networking = {
     hostId = "0f8623ae";
-    hostName = vpn.laptop.hostname;
+    hostName = machines.laptop.hostname;
 
     # Wireguard Client
     wireguard.interfaces.wg0 = {
-      ips = [ "${vpn.laptop.v4}/${vpn.mask.v4}" "${vpn.laptop.v6}/${vpn.mask.v6}" ];
+      ips = [ "${machines.laptop.vpn.v4}/${vpn.mask.v4}" "${machines.laptop.vpn.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
 

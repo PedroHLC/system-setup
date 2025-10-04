@@ -15,7 +15,7 @@
 
     serviceConfig = {
       DynamicUser = "yes";
-      ExecStart = "/run/current-system/systemd/lib/systemd/systemd-journal-upload --save-state -u http://${vpn.lab.addr}:19532";
+      ExecStart = "/run/current-system/systemd/lib/systemd/systemd-journal-upload --save-state -u http://${machines.lab.vpn.addr}:19532";
       LockPersonality = "yes";
       MemoryDenyWriteExecute = "yes";
       PrivateDevices = "yes";

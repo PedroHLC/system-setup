@@ -4,8 +4,8 @@
   services.atuin = {
     enable = true;
 
-    host = vpn.lab.v4;
-    port = vpn.lab.atuinPort;
+    host = machines.lab.vpn.v4;
+    port = machines.lab.vpn.atuinPort;
     openRegistration = true;
     maxHistoryLength = 1175664;
     database.createLocally = true;

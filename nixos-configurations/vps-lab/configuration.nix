@@ -9,7 +9,7 @@
   # Network.
   networking = {
     hostId = "be2568e1";
-    hostName = vpn.lab.hostname;
+    hostName = machines.lab.hostname;
     useNetworkd = lib.mkForce false;
     resolvconf.extraConfig = ''
       name_servers="169.254.169.254 172.64.36.1 172.64.36.2"

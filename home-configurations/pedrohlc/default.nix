@@ -144,7 +144,7 @@ with utils; {
         show_tabs = false;
         style = "compact";
         sync_frequency = "5m";
-        sync_address = "http://${vpn.lab.addr}:${toString vpn.lab.atuinPort}";
+        sync_address = "http://${machines.lab.vpn.addr}:${toString machines.lab.vpn.atuinPort}";
       };
     };
 

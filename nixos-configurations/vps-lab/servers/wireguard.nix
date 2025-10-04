@@ -17,7 +17,7 @@ in
     wireguard = {
       interfaces = {
         "wg0" = {
-          ips = [ "${vpn.lab.v4}/${vpn.mask.v4}" "${vpn.lab.v6}/${vpn.mask.v6}" ];
+          ips = [ "${machines.lab.vpn.v4}/${vpn.mask.v4}" "${machines.lab.vpn.v6}/${vpn.mask.v6}" ];
           listenPort = vpn.port;
           privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
           peers = [
@@ -25,8 +25,8 @@ in
             {
               publicKey = "cU6dpSqyloVRf6Jjb84TygJO94NOCy+LnMYv6/QAbBs=";
               allowedIPs = [
-                "${vpn.desktop.v4}/32"
-                "${vpn.desktop.v6}/128"
+                "${machines.desktop.vpn.v4}/32"
+                "${machines.desktop.vpn.v6}/128"
                 multicastV4
                 multicastV6
               ];
@@ -35,8 +35,8 @@ in
             {
               publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
               allowedIPs = [
-                "${vpn.laptop.v4}/32"
-                "${vpn.laptop.v6}/128"
+                "${machines.laptop.vpn.v4}/32"
+                "${machines.laptop.vpn.v6}/128"
                 multicastV4
                 multicastV6
               ];
@@ -55,8 +55,8 @@ in
             {
               publicKey = "Hsw40VXOzD202Yf/FIoGRd+XdYJjdorPaR7imPy502c=";
               allowedIPs = [
-                "${vpn.beacon.v4}/32"
-                "${vpn.beacon.v6}/128"
+                "${machines.beacon.vpn.v4}/32"
+                "${machines.beacon.vpn.v6}/128"
                 multicastV4
                 multicastV6
               ];
@@ -75,8 +75,8 @@ in
             {
               publicKey = "UyVKOBmKQJYeHXQmde6QW+g51K3/qH9hl3lInLCKJhI=";
               allowedIPs = [
-                "${vpn.foreign.v4}/32"
-                "${vpn.foreign.v6}/128"
+                "${machines.foreign.vpn.v4}/32"
+                "${machines.foreign.vpn.v6}/128"
                 multicastV4
                 multicastV6
               ];

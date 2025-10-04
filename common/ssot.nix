@@ -1,4 +1,13 @@
 # Single source of thruth.
+let
+  addVPNClient = leaf: vpn: machine: machine // {
+    vpn = (machine.vpn or { }) // {
+      addr = "${machine.hostname}.${vpn.tld}";
+      v4 = "${vpn.prefix.v4}.${leaf}";
+      v6 = "${vpn.prefix.v6}:${leaf}";
+    };
+  };
+in
 rec {
   vpn = {
     tld = "vpn";
@@ -15,46 +24,55 @@ rec {
       v4 = "${vpn.prefix.v4}.0/${vpn.mask.v4}";
       v6 = "${vpn.prefix.v6}:/${vpn.mask.v6}";
     };
-    lab = rec {
+    zeta = {
+      addr = "zeta.${contact.domain}";
+      inherit (web.lab) v4 v6;
+    };
+  };
+
+  machines = {
+    lab = addVPNClient "1" vpn {
       hostname = "vps-lab";
-      addr = "${hostname}.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.1";
-      v6 = "${vpn.prefix.v6}:1";
-      adguardAdminPort = 3000;
-      adguardPort = 3334;
-      atuinPort = 8888;
-      bskyPort = 3777;
+      vpn = {
+        adguardAdminPort = 3000;
+        atuinPort = 8888;
+      };
+      loopback = {
+        adguardPort = 3334;
+        bskyPort = 3777;
+      };
     };
-    zeta = rec {
-      addr = "zeta.${vpn.tld}";
-      inherit (vpn.lab) v4 v6;
-    };
-    desktop = rec {
+    desktop = addVPNClient "2" vpn {
       hostname = "desktop";
-      addr = "${hostname}.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.2";
-      v6 = "${vpn.prefix.v6}:2";
-      nextjsOllamaPort = 3000;
-      ollamaPort = 11434;
-      llamaCppPort = 11435;
+      vpn = {
+        nextjsOllamaPort = 3000;
+        ollamaPort = 11434;
+      };
+      lans = {
+        home-wire.v4 = "192.168.18.2";
+        home-wireless.v4 = "192.168.18.4";
+        family-wire.v4 = "192.168.0.10";
+      };
     };
-    laptop = rec {
+    laptop = addVPNClient "3" vpn {
       hostname = "laptop";
-      addr = "${hostname}.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.3";
-      v6 = "${vpn.prefix.v6}:3";
+      lans = {
+        home-wireless.v4 = "192.168.18.3";
+        home-wire.v4 = "192.168.18.5";
+      };
     };
-    beacon = rec {
+    beacon = addVPNClient "5" vpn {
       hostname = "beacon";
-      addr = "${hostname}.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.5";
-      v6 = "${vpn.prefix.v6}:5";
+      lans = {
+        home-wire.v4 = "192.168.18.240";
+      };
     };
-    foreign = rec {
+    foreign = addVPNClient "8" vpn {
       hostname = "foreign";
-      addr = "${hostname}.${vpn.tld}";
-      v4 = "${vpn.prefix.v4}.8";
-      v6 = "${vpn.prefix.v6}:8";
+      lans = {
+        home-wireless.v4 = "192.168.18.6";
+        home-wire.v4 = "192.168.18.7";
+      };
     };
   };
 
@@ -64,37 +82,13 @@ rec {
       v4 = "144.22.182.122";
       v6 = "2603:c021:c001:4e00:ebff:9275:c660:f6e1";
     };
-    bsky = {
-      addr = "bsky.chaotic.cx";
+    zeta = rec {
+      addr = "zeta.${vpn.tld}";
+      inherit (machines.lab.vpn.vpn) v4 v6;
     };
-    dev = {
-      addr = "ubiquelambda.dev";
-    };
-    zeta = {
-      addr = "zeta.${contact.domain}";
-      inherit (web.lab) v4 v6;
-    };
-    desktop = {
-      addr = "desk-pedrohlc.duckdns.org";
-    };
-  };
-
-  lan = {
-    desktop = {
-      home-wire.v4 = "192.168.18.2";
-      home-wireless.v4 = "192.168.18.4";
-    };
-    laptop = {
-      home-wireless.v4 = "192.168.18.3";
-      home-wire.v4 = "192.168.18.5";
-    };
-    foreign = {
-      home-wireless.v4 = "192.168.18.6";
-      home-wire.v4 = "192.168.18.7";
-    };
-    beacon = {
-      home-wire.v4 = "192.168.18.240";
-    };
+    bsky.addr = "bsky.chaotic.cx";
+    dev.addr = "ubiquelambda.dev";
+    desktop.addr = "desk-pedrohlc.duckdns.org";
   };
 
   contact = {

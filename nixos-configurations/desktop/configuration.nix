@@ -11,8 +11,8 @@ let
 
       socketConfig = {
         ListenStream = [
-          "${vpn.desktop.v4}:${toString port}"
-          "${vpn.desktop.v6}:${toString port}"
+          "${machines.desktop.vpn.v4}:${toString port}"
+          "[${machines.desktop.vpn.v6}]:${toString port}"
         ];
         NoDelay = true;
       };
@@ -34,11 +34,11 @@ in
   # Network.
   networking = {
     hostId = "7116ddca";
-    hostName = vpn.desktop.hostname;
+    hostName = machines.desktop.hostname;
 
     # Wireguard Client
     wireguard.interfaces.wg0 = {
-      ips = [ "${vpn.desktop.v4}/${vpn.mask.v4}" "${vpn.desktop.v6}/${vpn.mask.v6}" ];
+      ips = [ "${machines.desktop.vpn.v4}/${vpn.mask.v4}" "${machines.desktop.vpn.v6}/${vpn.mask.v6}" ];
       privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
     };
 
@@ -152,7 +152,7 @@ in
   services.ollama = {
     enable = true;
     host = proxyAddr;
-    port = vpn.desktop.ollamaPort;
+    port = machines.desktop.vpn.ollamaPort;
     acceleration = "rocm";
     loadModels = [ "gpt-oss:20b" ];
     user = "ollama";
@@ -179,16 +179,16 @@ in
   services.nextjs-ollama-llm-ui = {
     enable = true;
     hostname = proxyAddr;
-    port = vpn.desktop.nextjsOllamaPort;
-    ollamaUrl = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
+    port = machines.desktop.vpn.nextjsOllamaPort;
+    ollamaUrl = "http://${machines.desktop.vpn.v4}:${toString machines.desktop.vpn.ollamaPort}";
   };
   systemd.services.nextjs-ollama-llm-ui.wantedBy = lib.mkForce [ ];
 
   # AI (systemd activation sockets)
   imports =
     [
-      (mkSystemdProxy "ollama" vpn.desktop.ollamaPort)
-      (mkSystemdProxy "nextjs-ollama-llm-ui" vpn.desktop.nextjsOllamaPort)
+      (mkSystemdProxy "ollama" machines.desktop.vpn.ollamaPort)
+      (mkSystemdProxy "nextjs-ollama-llm-ui" machines.desktop.vpn.nextjsOllamaPort)
     ];
 
   # One-button virtualization for some tests of mine

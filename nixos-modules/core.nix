@@ -248,7 +248,7 @@
   home-manager.extraSpecialArgs = flakes.self.specialArgs // { specs = inputs.specs; };
 
   # AI (use from desktop)
-  environment.variables.OLLAMA_HOST = "http://${vpn.desktop.v4}:${toString vpn.desktop.ollamaPort}";
+  environment.variables.OLLAMA_HOST = "http://${machines.desktop.vpn.v4}:${toString machines.desktop.vpn.ollamaPort}";
 
   # Editable hosts
   environment.etc.hosts.mode = "0644";
@@ -260,16 +260,16 @@
     "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
 
     # - My VPN
-    "${vpn.lab.v4}" = [ vpn.lab.addr ];
-    "${vpn.lab.v6}" = [ vpn.lab.addr ];
-    "${vpn.desktop.v4}" = [ vpn.desktop.addr ];
-    "${vpn.desktop.v6}" = [ vpn.desktop.addr ];
-    "${vpn.laptop.v4}" = [ vpn.laptop.addr ];
-    "${vpn.laptop.v6}" = [ vpn.laptop.addr ];
-    "${vpn.foreign.v4}" = [ vpn.foreign.addr ];
-    "${vpn.foreign.v6}" = [ vpn.foreign.addr ];
-    "${vpn.beacon.v4}" = [ vpn.beacon.addr ];
-    "${vpn.beacon.v6}" = [ vpn.beacon.addr ];
+    "${machines.lab.vpn.v4}" = [ machines.lab.vpn.addr ];
+    "${machines.lab.vpn.v6}" = [ machines.lab.vpn.addr ];
+    "${machines.desktop.vpn.v4}" = [ machines.desktop.vpn.addr ];
+    "${machines.desktop.vpn.v6}" = [ machines.desktop.vpn.addr ];
+    "${machines.laptop.vpn.v4}" = [ machines.laptop.vpn.addr ];
+    "${machines.laptop.vpn.v6}" = [ machines.laptop.vpn.addr ];
+    "${machines.foreign.vpn.v4}" = [ machines.foreign.vpn.addr ];
+    "${machines.foreign.vpn.v6}" = [ machines.foreign.vpn.addr ];
+    "${machines.beacon.vpn.v4}" = [ machines.beacon.vpn.addr ];
+    "${machines.beacon.vpn.v6}" = [ machines.beacon.vpn.addr ];
 
     # Lock cache to GRU (Brazil)
     "151.101.250.217" = [ "cache.nixos.org" ];

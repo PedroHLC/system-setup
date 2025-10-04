@@ -26,7 +26,7 @@
         http3 = true;
         locations = {
           "/".root = ../../../assets/http-root/zeta;
-          "/dns-query".proxyPass = "https://127.0.0.1:${toString vpn.lab.adguardPort}/dns-query";
+          "/dns-query".proxyPass = "https://127.0.0.1:${toString machines.lab.loopback.adguardPort}/dns-query";
         };
       };
       "${web.bsky.addr}" = {
@@ -35,7 +35,7 @@
         http3 = true;
         serverAliases = [ "pedrohlc.${web.bsky.addr}" ];
         locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString vpn.lab.bskyPort}/";
+          proxyPass = "http://127.0.0.1:${toString machines.lab.loopback.bskyPort}/";
           proxyWebsockets = true;
         };
       };

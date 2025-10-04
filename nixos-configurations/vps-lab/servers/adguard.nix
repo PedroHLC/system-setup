@@ -63,7 +63,7 @@
       in
       {
         host = "0.0.0.0";
-        port = vpn.lab.adguardAdminPort;
+        port = machines.lab.vpn.adguardAdminPort;
         users = [{
           name = "admin";
           password = "$2y$05$KCSHbkp.59SFVvKg9fHn..CwpXPfZ9p/Azfr/.YB64fNHthHdHTZu"; # admin
@@ -108,7 +108,7 @@
           enabled = true;
           server_name = web.zeta.addr;
           force_https = false;
-          port_https = vpn.lab.adguardPort;
+          port_https = machines.lab.loopback.adguardPort;
           port_dns_over_tls = 853;
           port_dns_over_quic = 853;
           allow_unencrypted_doh = true;

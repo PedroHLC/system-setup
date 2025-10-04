@@ -7,16 +7,16 @@ let
   # addresses before fallingback to the VPN address
   addMyLocalDevices = base:
     with ullib.attrset; foldl
-      (machine: n: a: foldl'
+      (machine: details: accu: foldl'
         (network: { v4, ... }: union
           (singleton "${machine}.${network}" {
             match = ''host ${machine} exec "nc -w 1 -z ${v4} %p"'';
             hostname = v4;
           })
         )
-        n
-        a
-      // (with vpn.${machine}; {
+        (details.lans or { })
+        accu
+      // (with details.vpn; {
         "match:${addr}" = {
           match = ''host ${machine}'';
           hostname = v4;
@@ -28,7 +28,7 @@ let
         };
       }))
       base
-      lan;
+      machines;
 in
 {
   programs.ssh = {
@@ -39,7 +39,7 @@ in
         # VPN
         "vps-lab.vpn" = {
           inherit identityFile;
-          hostname = vpn.lab.v4;
+          hostname = machines.lab.vpn.v4;
         };
         # VCS
         "github.com" = {
