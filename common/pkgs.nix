@@ -5,6 +5,7 @@ let
     "devilutionx"
     "google-chrome"
     "nvidia-x11"
+    "postman"
     "slack"
     "SpaceCadetPinball"
     "steam"

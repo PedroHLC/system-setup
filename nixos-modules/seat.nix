@@ -19,7 +19,7 @@
   hardware.cpu.amd.updateMicrocode = true;
 
   # My preferred kernel
-  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos-lto;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
@@ -216,6 +216,7 @@
     heroku
     inotify-tools # watching files
     logstalgia # Chaotic
+    postman
     python3Minimal
     zed-editor_git
 
@@ -365,7 +366,8 @@
   };
 
   # Zoom is complicated
-  programs.zoom-us.enable = true;
+  # TODO: Broken as hell in Nixpkgs, not even using pipewire for audio.
+  programs.zoom-us.enable = false;
 
   # Allow to cross-compile to aarch64
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -634,6 +636,7 @@
         ".cache/zed"
         ".config/figma-linux"
         ".config/google-chrome"
+        ".config/Postman"
         ".config/Slack"
         ".config/tidal-hifi"
         ".config/Unknown Organization"
@@ -641,6 +644,7 @@
         ".config/YouTube Music"
         ".config/yuzu"
         { directory = ".gdfuse"; mode = "0700"; }
+        ".hex"
         ".i2pd"
         ".kodi"
         ".local/share/atuin"
@@ -651,13 +655,14 @@
         ".local/share/yuzu" # todo: backup saves somehow
         ".local/share/zed"
         ".local/state/wireplumber"
+        ".lyrics"
         ".mix"
         ".nyx"
-        ".lyrics"
         ".steam"
         ".supermaven"
         ".system.git"
         ".zoom"
+        "Postman"
       ];
       files = [
         { file = ".config/zoom.conf"; parentDirectory.mode = "0700"; }

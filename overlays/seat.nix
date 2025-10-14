@@ -81,4 +81,20 @@ final: prev: {
       })
     ];
   });
+
+  # https://github.com/NixOS/nixpkgs/pull/451951
+  osdlyrics = (prev.osdlyrics).overrideAttrs (prevAttrs: {
+    nativeBuildInputs = prevAttrs.nativeBuildInputs ++ [
+      final.gobject-introspection
+      final.wrapGAppsNoGuiHook
+    ];
+
+    dontWrapGApps = true;
+
+    preFixup = ''
+      makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
+    '';
+
+    postFixup = builtins.replaceStrings [ "wrapProgram \"$p\"" ] [ "wrapProgram \"$p\" \"\${makeWrapperArgs[@]}\"" ] prevAttrs.postFixup;
+  });
 }
