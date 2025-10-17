@@ -49,30 +49,20 @@ rec {
         ollamaPort = 11434;
       };
       lans = {
-        home-wire.v4 = "192.168.18.2";
-        home-wireless.v4 = "192.168.18.4";
-        family-wire.v4 = "192.168.0.10";
+        home-wire.v4 = "192.168.98.11";
       };
     };
     laptop = addVPNClient "3" vpn {
       hostname = "laptop";
-      lans = {
-        home-wireless.v4 = "192.168.18.3";
-        home-wire.v4 = "192.168.18.5";
-      };
+      lans = { };
     };
     beacon = addVPNClient "5" vpn {
       hostname = "beacon";
-      lans = {
-        home-wire.v4 = "192.168.18.240";
-      };
+      lans = { };
     };
     foreign = addVPNClient "8" vpn {
       hostname = "foreign";
-      lans = {
-        home-wireless.v4 = "192.168.18.6";
-        home-wire.v4 = "192.168.18.7";
-      };
+      lans = { };
     };
   };
 
