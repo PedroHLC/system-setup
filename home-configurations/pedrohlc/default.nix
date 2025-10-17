@@ -311,7 +311,7 @@ with utils; {
         };
 
         keyboard.bindings =
-          if emulateMacKeyMap
+          if ctrlNearSpaceKeyMap
           then importJSON ../../assets/alacritty-apple-like-mods.json
           else [ ];
       };

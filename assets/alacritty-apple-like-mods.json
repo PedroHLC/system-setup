@@ -168,152 +168,152 @@
   },
   {
     "key": "At",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0000"
   },
   {
     "key": "A",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0001"
   },
   {
     "key": "B",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0002"
   },
   {
     "key": "C",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0003"
   },
   {
     "key": "D",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0004"
   },
   {
     "key": "E",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0005"
   },
   {
     "key": "F",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0006"
   },
   {
     "key": "G",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0007"
   },
   {
     "key": "H",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\b"
   },
   {
     "key": "I",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\t"
   },
   {
     "key": "J",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\n"
   },
   {
     "key": "K",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u000b"
   },
   {
     "key": "L",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\f"
   },
   {
     "key": "M",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\r"
   },
   {
     "key": "N",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u000e"
   },
   {
     "key": "O",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u000f"
   },
   {
     "key": "P",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0010"
   },
   {
     "key": "Q",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0011"
   },
   {
     "key": "R",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0012"
   },
   {
     "key": "S",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0013"
   },
   {
     "key": "T",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0014"
   },
   {
     "key": "U",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0015"
   },
   {
     "key": "V",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0016"
   },
   {
     "key": "W",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0017"
   },
   {
     "key": "X",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0018"
   },
   {
     "key": "Y",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u0019"
   },
   {
     "key": "Z",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u001a"
   },
   {
     "key": "LBracket",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u001b"
   },
   {
     "key": "Backslash",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u001c"
   },
   {
     "key": "RBracket",
-    "mods": "Super",
+    "mods": "Alt",
     "chars": "\\u001d"
   }
 ]

@@ -59,12 +59,12 @@
     }
   },
   "agent": {
-    "default_profile": "write",
+    "default_profile": "ask",
     "play_sound_when_agent_done": true,
     "always_allow_tool_actions": false,
     "default_model": {
-      "provider": "ollama",
-      "model": "gpt-oss:20b"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     },
     "button": true,
     "enabled": true
