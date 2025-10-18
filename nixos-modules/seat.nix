@@ -243,9 +243,9 @@
     gamescope-wsi32_git
 
     # Gaming
-    devilutionx
+    # devilutionx (waiting nixpkgs#451749)
     openmohaa_git
-    openrct2
+    # openrct2 (waiting nixpkgs#450853)
     space-cadet-pinball
     torzu_git
     vcmi
