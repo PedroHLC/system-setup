@@ -3,7 +3,7 @@ final: prev: {
   makeModulesClosure = args: (prev.makeModulesClosure args).overrideAttrs (prevAttrs:
     let
       inherit (final.lib.strings) removePrefix versionAtLeast optionalString;
-      kernelVersion = removePrefix "linux-" args.kernel.name;
+      kernelVersion = removePrefix "x86_64-unknown-linux-gnu-" (removePrefix "linux-" args.kernel.name);
       versionToDelete = if versionAtLeast kernelVersion "6.16" then "535" else null;
     in
     {
