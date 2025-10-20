@@ -25,8 +25,8 @@ rec {
       v6 = "${vpn.prefix.v6}:/${vpn.mask.v6}";
     };
     zeta = {
-      addr = "zeta.${contact.domain}";
-      inherit (web.lab) v4 v6;
+      addr = "zeta.${vpn.tld}";
+      inherit (machines.lab.vpn) v4 v6;
     };
   };
 
@@ -73,8 +73,8 @@ rec {
       v6 = "2603:c021:c001:4e00:ebff:9275:c660:f6e1";
     };
     zeta = rec {
-      addr = "zeta.${vpn.tld}";
-      inherit (machines.lab.vpn.vpn) v4 v6;
+      addr = "zeta.${contact.domain}";
+      inherit (web.lab) v4 v6;
     };
     bsky.addr = "bsky.chaotic.cx";
     dev.addr = "ubiquelambda.dev";
