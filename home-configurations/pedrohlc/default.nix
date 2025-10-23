@@ -115,7 +115,8 @@ with utils; {
         '';
       };
       # Nixed Zed-editor dev build
-      ".zed_server/zed-remote-server-dev-build" = mkIf isMacOS {
+      # TODO: Cache it, and then replace `false` with `isMacOS`
+      ".zed_server/zed-remote-server-dev-build" = mkIf false {
         source =
           let
             unwrapped = "${pkgs.zed-editor_git.remote_server}/bin/zed-remote-server-dev-build";
@@ -353,6 +354,7 @@ with utils; {
           "poweroff" = "exec osascript -e 'tell application \"Finder\" to shut down'";
           "firewall" = "/usr/libexec/ApplicationFirewall/socketfilterfw";
           "firewall-status" = "${firewall} --getglobalstate --getblockall --getallowsigned --getstealthmode --listapps";
+          "zeditor" = "/Applications/Zed.app/Contents/MacOS/cli";
         }) // attrsets.optionalAttrs (hasSeat && !isMacOS) {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";

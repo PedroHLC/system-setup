@@ -1,8 +1,15 @@
 { pkgs, lib, flakes, ... }: {
   home.stateVersion = "24.11";
 
+  imports = [
+    ./trampolines.nix
+  ];
+
+  # Nix configuration
   nix = {
+    # NOTE that this is not used to update Nix, it is used to validate the config and only that.
     package = pkgs.nixVersions.latest;
+
     extraOptions = ''
       experimental-features = nix-command flakes
 
@@ -17,9 +24,8 @@
     };
   };
 
-  imports = [
-    ./trampolines.nix
-  ];
+  # Keep "home-manager" installed and updated
+  programs.home-manager.enable = true;
 
   # Locale stuff
   # I've tried to set everything as I wanted using `home.language`, but locale/mosh/man only seem to accept LANG & LC_ALL.
@@ -39,7 +45,6 @@
     gh
     gnupg
     heroku
-    home-manager
     lan-mouse_git
     mosh
     ripgrep
