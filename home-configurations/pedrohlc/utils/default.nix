@@ -84,7 +84,7 @@ self:
   defaultBrowser = "firefox${firefoxSuffix}.desktop";
   iconTheme = "Vimix-Doder-dark";
   homePath = config.home.homeDirectory;
-  firefoxSuffix = "-nightly";
+  firefoxSuffix = "-beta";
 
   # per-GPU values
   videoAcceleration = if nvidiaBad then "nvdec-copy" else "vaapi";

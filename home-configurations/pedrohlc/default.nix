@@ -262,9 +262,9 @@ with utils; {
         key = gitKey;
         signByDefault = true;
       };
-      userEmail = contact.email;
-      userName = contact.nickname;
-      extraConfig = {
+      settings = {
+        user.email = contact.email;
+        user.name = contact.nickname;
         core = {
           editor = "hx"; # I won't specify the full path to re-use the package from system setup
         };

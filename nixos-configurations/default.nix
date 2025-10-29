@@ -22,6 +22,7 @@ let
         {
           home-manager.users.pedrohlc = import ../home-configurations/pedrohlc;
           chaotic.nyx.overlay.enable = false; # due to nixosModules.readOnlyPkgs
+          disabledModules = [ "hardware/facter/system.nix" ]; # due to nixosModules.readOnlyPkgs
         }
       ] ++ extraModules;
     });

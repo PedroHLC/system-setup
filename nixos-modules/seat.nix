@@ -173,7 +173,7 @@
     btop
     ethtool
     ffmpegthumbnailer
-    firefox_nightly
+    firefox-beta
     google-chrome
     helvum
     keybase-gui
@@ -184,7 +184,7 @@
     libva-utils
     lm_sensors
     lxqt.lxqt-sudo
-    pwvucontrol_git
+    pwvucontrol
     lxqt.pcmanfm-qt
     mpv-vapoursynth
     nomacs
@@ -247,7 +247,7 @@
     openmohaa_git
     # openrct2 (waiting nixpkgs#450853)
     space-cadet-pinball
-    torzu_git
+    # torzu_git (dead)
     vcmi
   ];
 
@@ -438,7 +438,6 @@
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     plasma-browser-integration
     konsole
-    # (lib.getBin qttools)
     ark
     elisa
     gwenview
@@ -451,7 +450,6 @@
     spectacle
     ffmpegthumbs
     krdp
-    xwaylandvideobridge
   ];
   services.orca.enable = false;
 
