@@ -303,7 +303,7 @@
       noto-fonts-cjk-serif
       open-fonts
       roboto
-      ubuntu_font_family
+      ubuntu-classic
     ];
     fontconfig = {
       cache32Bit = true;
