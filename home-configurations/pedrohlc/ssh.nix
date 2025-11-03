@@ -7,26 +7,30 @@ let
   # addresses before fallingback to the VPN address
   addMyLocalDevices = base:
     with ullib.attrset; foldl
-      (machine: details: accu: foldl'
-        (network: { v4, ... }: union
-          (singleton "${machine}.${network}" {
-            match = ''host ${machine} exec "nc -w 1 -z ${v4} %p"'';
+      (machine: details: accu:
+        let
+          hostname = details.hostname or machine;
+        in
+        foldl'
+          (network: { v4, ... }: union
+            (singleton "${hostname}.${network}" {
+              match = ''host ${hostname} exec "nc -w 1 -z ${v4} %p"'';
+              hostname = v4;
+            })
+          )
+          (details.lans or { })
+          accu
+        // (with details.vpn; {
+          "match:${addr}" = {
+            match = ''host ${hostname}'';
             hostname = v4;
-          })
-        )
-        (details.lans or { })
-        accu
-      // (with details.vpn; {
-        "match:${addr}" = {
-          match = ''host ${machine}'';
-          hostname = v4;
-        };
-        "${machine}" = { inherit identityFile; };
-        "${machine}.vpn" = {
-          inherit identityFile;
-          hostname = v4;
-        };
-      }))
+          };
+          "${hostname}" = { inherit identityFile; };
+          "${hostname}.vpn" = {
+            inherit identityFile;
+            hostname = v4;
+          };
+        }))
       base
       machines;
 in
