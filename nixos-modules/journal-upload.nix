@@ -36,6 +36,9 @@
       WatchdogSec = "3min";
 
       LimitNOFILE = "524288";
+
+      # The process is weird about SIGTERM and SIGINT
+      TimeoutStopSec = 3;
     };
 
     wantedBy = [ "multi-user.target" ];
