@@ -173,7 +173,7 @@
     btop
     ethtool
     ffmpegthumbnailer
-    firefox_nightly
+    firefox-devedition
     google-chrome
     helvum
     keybase-gui

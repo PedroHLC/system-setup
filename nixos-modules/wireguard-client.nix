@@ -14,6 +14,8 @@
         name = "lab";
       }
     ];
+    # I was having some issues with mlkem768x25519-sha256, apparently I needed a lower MTU.
+    mtu = 1408;
     # I have access to all the network through allowedIPs
     # But by default, I only want routes to the VPN clients and multicast
     allowedIPsAsRoutes = false;
