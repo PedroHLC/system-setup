@@ -1,7 +1,7 @@
 { ssot, ... }: with ssot;
 
 {
-  services.pds = {
+  services.bluesky-pds = {
     enable = true;
     environmentFiles = [ "/var/persistent/secrets/bsky-pds.env" ];
     settings = {

@@ -1,7 +1,7 @@
 { flakes, pkgs, ... }:
 
 let
-  pkg = flakes.ctr.packages.${pkgs.system}.online-server.release.native.gcc;
+  pkg = flakes.ctr.packages.${pkgs.stdenv.hostPlatform.system}.online-server.release.native.gcc;
 in
 {
   systemd.services.ctr = {
