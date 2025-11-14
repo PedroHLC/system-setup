@@ -270,8 +270,5 @@
     "${machines.foreign.vpn.v6}" = [ machines.foreign.vpn.addr ];
     "${machines.beacon.vpn.v4}" = [ machines.beacon.vpn.addr ];
     "${machines.beacon.vpn.v6}" = [ machines.beacon.vpn.addr ];
-
-    # Lock cache to GRU (Brazil)
-    "151.101.250.217" = [ "cache.nixos.org" ];
   };
 }
