@@ -2,34 +2,6 @@
 { config, pkgs, lib, ssot, ... }: with ssot;
 
 # NixOS-defined options
-let
-  proxyAddr = "127.0.0.23";
-
-  mkSystemdProxy = unitName: port: moduleInput: {
-    systemd.sockets."proxy-${unitName}" = {
-      wantedBy = [ "sockets.target" ];
-
-      socketConfig = {
-        ListenStream = [
-          "${machines.desktop.vpn.v4}:${toString port}"
-          "[${machines.desktop.vpn.v6}]:${toString port}"
-        ];
-        NoDelay = true;
-      };
-    };
-
-    systemd.services."proxy-${unitName}" = {
-      requires = [ "${unitName}.service" "proxy-${unitName}.socket" ];
-      after = [ "${unitName}.service" "proxy-${unitName}.socket" ];
-
-      serviceConfig = {
-        Type = "notify";
-        ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd ${proxyAddr}:${toString port}";
-        PrivateTmp = true;
-      };
-    };
-  };
-in
 {
   # Network.
   networking = {
@@ -141,55 +113,10 @@ in
     i2pd
     latencyflex-vulkan
     nixos-next-shot
-    rocmPackages.rocminfo
-    rocmPackages.rocm-smi
     uxplay
     virtiofsd # for libvirtd
     vkbasalt
   ];
-
-  # AI (Ollama)
-  services.ollama = {
-    enable = true;
-    host = proxyAddr;
-    port = machines.desktop.vpn.ollamaPort;
-    acceleration = "rocm";
-    loadModels = [ "gpt-oss:20b" ];
-    user = "ollama";
-    group = "agents";
-    environmentVariables = {
-      HCC_AMDGPU_TARGET = "gfx1030"; # not really needed
-      OLLAMA_NEW_ENGINE = "1"; # not really needed for this model
-      OLLAMA_NEW_ESTIMATES = "1";
-      OLLAMA_KV_CACHE_TYPE = "q4_0";
-      OLLAMA_FLASH_ATTENTION = "1";
-    };
-  };
-  chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
-  systemd.services.ollama = {
-    serviceConfig = {
-      DynamicUser = lib.mkForce false;
-      PrivateUsers = lib.mkForce false;
-      RestrictNamespaces = lib.mkForce false;
-    };
-    wantedBy = lib.mkForce [ ];
-  };
-
-  # AI (ollama chat)
-  services.nextjs-ollama-llm-ui = {
-    enable = true;
-    hostname = proxyAddr;
-    port = machines.desktop.vpn.nextjsOllamaPort;
-    ollamaUrl = "http://${machines.desktop.vpn.v4}:${toString machines.desktop.vpn.ollamaPort}";
-  };
-  systemd.services.nextjs-ollama-llm-ui.wantedBy = lib.mkForce [ ];
-
-  # AI (systemd activation sockets)
-  imports =
-    [
-      (mkSystemdProxy "ollama" machines.desktop.vpn.ollamaPort)
-      (mkSystemdProxy "nextjs-ollama-llm-ui" machines.desktop.vpn.nextjsOllamaPort)
-    ];
 
   # One-button virtualization for some tests of mine
   virtualisation.libvirtd = {
@@ -217,8 +144,6 @@ in
       directories = [
         "/var/lib/nut"
         "/var/lib/libvirt"
-        "/var/lib/llama-cpp"
-        "/var/lib/ollama"
       ];
     };
   };
