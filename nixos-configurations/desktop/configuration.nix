@@ -38,7 +38,7 @@
 
   # DuckDNS
   chaotic.duckdns = {
-    enable = true;
+    enable = false; # I don't need it anymore
     domain = web.desktop.addr;
     environmentFile = "/var/persistent/secrets/duckdns.env";
   };

@@ -166,6 +166,7 @@
           "||ta6.ch^$important,dnsrewrite=REFUSED;;"
           "||whitechun.lol^$important,dnsrewrite=REFUSED;;"
           "||yndx.net^$important,dnsrewrite=REFUSED;;"
+          "/iepa.*\.dccnet\.com\.cn/$important,dnsrewrite=REFUSED;;"
         ];
         clients = {
           runtime_sources = {

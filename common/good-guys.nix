@@ -68,7 +68,7 @@ ssot: with ssot;
   { uid = "60d95f33-e863-40a9-9e26-978505e4ef81"; name = "NicNet"; ids = [ "45.4.32.0/22" "38.41.196.0/22" "45.225.168.0/22" "2804:39b0::/32" "2804:4694::/32" ]; tags = [ "user_regular" ]; }
   { uid = "962bfa01-66db-47be-9e56-d5e80d549471"; name = "Proxer"; ids = [ "45.231.152.0/22" "200.152.27.0/24" ]; tags = [ "user_regular" ]; }
   { uid = "6ac74c74-1e39-4560-9a29-a5a56fc5cd04"; name = "THS"; ids = [ "177.223.240.0/20" "186.209.0.0/20" "2804:174::/32" ]; tags = [ "user_regular" ]; }
-  { uid = "6fb84744-83c2-4720-8f45-5fba2da5cfdd"; name = "Desktop"; ids = [ "186.249.128.0/19" ]; tags = [ "user_regular" ]; }
+  { uid = "6fb84744-83c2-4720-8f45-5fba2da5cfdd"; name = "Desktop"; ids = [ "186.249.128.0/19" "45.175.112.0/22" ]; tags = [ "user_regular" ]; }
   { uid = "85381b39-dda5-422d-937b-d21ee21b2ec6"; name = "Velonic"; ids = [ "168.227.216.0/22" "45.167.180.0/22" ]; tags = [ "user_regular" ]; }
   {
     uid = "0ba56b98-136f-4cce-967c-c1e9c454d31a";
