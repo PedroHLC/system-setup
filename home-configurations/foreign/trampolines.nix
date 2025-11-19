@@ -3,14 +3,15 @@
 
 {
   targets.darwin.linkApps.enable = false;
+  targets.darwin.copyApps.enable = false;
 
   home = {
-    activation.linkApps = lib.hm.dag.entryAfter [ "installPackages" ] (
+    activation.simplerCopyApps = lib.hm.dag.entryAfter [ "installPackages" ] (
       let
         applications = pkgs.buildEnv {
           name = "user-applications";
           paths = config.home.packages;
-          pathsToLink = "/Applications";
+          pathsToLink = [ "/Applications" ];
         };
       in
       ''

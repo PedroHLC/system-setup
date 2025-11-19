@@ -146,6 +146,7 @@
           "||dnscheck.internet-measurement.com^$important,dnsrewrite=REFUSED;;"
           "||dnsmeasurement.com^$important,dnsrewrite=REFUSED;;"
           "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
+          "||doq.dnsmeasure.top^$important,dnsrewrite=REFUSED;;"
           "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
           "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
           "||ednsscankzl.top^$important,dnsrewrite=REFUSED;;"
