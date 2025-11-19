@@ -9,12 +9,13 @@ final: prev: {
     {
       builder = final.writeShellScript "modules-closure.sh" (
         (builtins.readFile prevAttrs.builder) + optionalString (versionToDelete != null) ''
-          rm "$out/lib/firmware/nvidia/ga10"{2,7}/gsp/*-${versionToDelete}*.bin.zst
+          rm "$out/lib/firmware/nvidia/ga107/gsp"/*-${versionToDelete}*.bin.zst
         '' + ''
           mv "$out/lib/firmware/nvidia" "$out/lib/firmware/_nvidia"
           mkdir "$out/lib/firmware/nvidia"
-          mv "$out/lib/firmware/_nvidia/ga10"{2,7} "$out/lib/firmware/nvidia/"
+          mv "$out/lib/firmware/_nvidia/ga107" "$out/lib/firmware/nvidia/"
           rm -rf "$out/lib/firmware/_nvidia"
+          (cd "$out/lib/firmware/nvidia" && ln -s ga107 ga102)
         ''
       );
     });
