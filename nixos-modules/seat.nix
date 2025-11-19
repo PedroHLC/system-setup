@@ -245,7 +245,7 @@
     # Gaming
     # devilutionx (waiting nixpkgs#451749)
     openmohaa_git
-    # openrct2 (waiting nixpkgs#450853)
+    openrct2
     space-cadet-pinball
     # torzu_git (dead)
     vcmi
@@ -261,7 +261,7 @@
   programs.adb.enable = true;
   programs.gamemode.enable = true;
 
-  # Fix swaylock (nixpkgs issue 158025)
+  # Fix swaylock (nixpkgs#158025)
   security.pam.services.swaylock = { };
   security.pam.services.swaylock-plugin = { };
 
@@ -393,7 +393,7 @@
   # Adapted from https://gist.github.com/iffa/290b1b83b17f51355c63a97df7c1cc60
   # REMEMBER: Needs to `nmcli device set wlan0 managed false && systemctl stop iwd && nmcli c up bridge-br0 && nmcli c up bridge-slave-eno1` before starting.
   services.hostapd = {
-    enable = false; # TODO: https://github.com/NixOS/nixpkgs/pull/440932#issuecomment-3324144862
+    enable = true;
     package = pkgs.hostapd_nolar;
     radios.wlan0 = {
       channel = 149;
@@ -473,7 +473,7 @@
 
   # Bigger internet
   services.kubo = {
-    enable = false; # Needs nixpkgs#425738
+    enable = true;
     startWhenNeeded = true;
   };
 

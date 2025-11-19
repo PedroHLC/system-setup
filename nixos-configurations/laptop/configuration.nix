@@ -24,7 +24,7 @@
   boot.initrd.kernelModules = [ "nouveau" ];
 
   # Disable Intel's stream-paranoid for gaming.
-  # (not working - see nixpkgs issue 139182)
+  # (not working - see nixpkgs#139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
 
   # Video Acceleration
