@@ -227,7 +227,7 @@
     wpsoffice
 
     # Social
-    telegram-desktop_git
+    telegram-desktop
     tuba
     vesktop
 
