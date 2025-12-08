@@ -302,7 +302,7 @@ with utils; {
     # My favorite and simple terminal
     alacritty = {
       enable = hasSeat || isMacOS;
-      package = pkgs.alacritty_git;
+      package = pkgs.alacritty;
       settings = {
         window.opacity = lib.mkForce 0.9;
 

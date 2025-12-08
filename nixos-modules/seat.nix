@@ -164,7 +164,7 @@
     # Desktop apps
     acpi
     adbfs-rootless
-    alacritty_git
+    alacritty
     audacious
     bat
     bind.dnsutils # "dig"
