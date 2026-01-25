@@ -81,6 +81,16 @@ in
                 multicastV6
               ];
             }
+            # Astro
+            {
+              publicKey = "wR+ygfXJoy9LBzBh0EZmm4Oqb74Y6RtWxBU+TKEWCC8=";
+              allowedIPs = [
+                "${vpn.prefix.v4}.9/32"
+                "${vpn.prefix.v6}:9/128"
+                multicastV4
+                multicastV6
+              ];
+            }
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
