@@ -4,7 +4,6 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    package = pkgs.nginxQuic;
     virtualHosts = {
       "${web.dev.addr}" = {
         forceSSL = true;

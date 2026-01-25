@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://zeta.pedrohlc.com/dns-query</string>
+            </dict>
+            <key>PayloadDescription</key>
+            <string>Configures DoH for zeta.pedrohlc.com</string>
+            <key>PayloadDisplayName</key>
+            <string>Zeta DNS (DoH)</string>
+            <key>PayloadIdentifier</key>
+            <string>com.pedrohlc.zeta.doh</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>319B4173-189D-4501-98DB-2C65846EFA5D</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Zeta DNS</string>
+    <key>PayloadIdentifier</key>
+    <string>com.pedrohlc.zeta.profile</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>05FF4C5C-4727-49D2-BD6E-6D88EFE8B379</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

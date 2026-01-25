@@ -320,7 +320,7 @@
     enable = true;
     gamescopeSession = {
       enable = true; # Gamescope session is better for AAA gaming.
-      args = [ "--immediate-flips" "--" "bigsteam" ];
+      args = [ "--expose-wayland" "--immediate-flips" "--" "bigsteam" ];
     };
 
     extraCompatPackages = with pkgs; [
