@@ -206,7 +206,6 @@
     ssh-to-nix
 
     # Development apps
-    bytecode-viewer_git
     dbeaver-bin
     ddcutil # for controlling DisplayPort
     gcc
@@ -218,7 +217,7 @@
     logstalgia # Chaotic
     postman
     python3Minimal
-    zed-editor_git
+    zed-editor
 
     # Office-stuff
     inkscape
@@ -234,20 +233,19 @@
     # Gaming tools
     bigsteam
     mangoapprun
-    mangohud_git
+    mangohud
     mesa-demos
     vulkan-caps-viewer
     vulkanPackages_latest.vulkan-tools
     winetricks
-    gamescope-wsi_git
-    gamescope-wsi32_git
+    gamescope-wsi
+    gamescope-wsi32
 
     # Gaming
     # devilutionx (waiting nixpkgs#451749)
     openmohaa_git
     openrct2
     space-cadet-pinball
-    # torzu_git (dead)
     vcmi
   ];
 
@@ -338,21 +336,21 @@
       # I set DXVK_HDR in the alternative-sessions script.
       ENABLE_GAMESCOPE_WSI = "1";
     };
-    package = pkgs.gamescope_git;
+    package = pkgs.gamescope;
   };
 
   # Gamescope without wrapper, but with right capabilities
   security.wrappers.valve-gamescope = {
     owner = "root";
     group = "root";
-    source = "${pkgs.gamescope_git}/bin/gamescope";
+    source = "${pkgs.gamescope}/bin/gamescope";
     capabilities = "cap_sys_nice+pie";
   };
   environment.variables.GAMESCOPE_NOWRAP = "${config.security.wrapperDir}/valve-gamescope";
 
   # Gamescope untouched (no wrapper, no capabilities) in a fixed-path place
   fileSystems."/opt/gamescope" = {
-    device = pkgs.gamescope_git.outPath;
+    device = pkgs.gamescope.outPath;
     fsType = "none";
     options = [ "bind" "ro" "x-gvfs-hide" ];
   };

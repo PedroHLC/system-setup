@@ -45,7 +45,7 @@ self:
   bin = rec {
     # Preferred executables
     browser = "${pseudoPkgs.firefox-gate}/bin/firefox-gate";
-    editor = "${pkgs.zed-editor_git}/bin/zeditor";
+    editor = "${pkgs.zed-editor}/bin/zeditor";
     terminal = "${config.programs.alacritty.package}/bin/alacritty";
 
     # Simple executable shortcuts

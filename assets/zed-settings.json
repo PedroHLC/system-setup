@@ -2,9 +2,13 @@
 // https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
+  "agent_servers": {
+    "claude": {
+      "default_mode": "acceptEdits"
+    }
+  },
   "context_servers": {
     "mcp-nixos": {
-      "source": "custom",
       "enabled": false,
       "command": "nix",
       "args": [
@@ -95,9 +99,9 @@
   "tabs": {
     "git_status": true
   },
-  "restore_on_startup": "none",
+  "restore_on_startup": "launchpad",
   // Language preferences
-  //"load_direnv": "shell_hook",
+  "load_direnv": "shell_hook",
   "format_on_save": "on",
   "formatter": "language_server",
   "languages": {
@@ -168,9 +172,6 @@
   // Disable shit
   "collaboration_panel": {
     "button": false
-  },
-  "chat_panel": {
-    "button": "never"
   },
   "notification_panel": {
     "button": false

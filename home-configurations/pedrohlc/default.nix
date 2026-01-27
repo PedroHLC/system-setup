@@ -114,23 +114,6 @@ with utils; {
           source "$HOME/.profile"
         '';
       };
-      # Nixed Zed-editor dev build
-      # TODO: Cache it, and then replace `false` with `isMacOS`
-      ".zed_server/zed-remote-server-dev-build" = mkIf false {
-        source =
-          let
-            unwrapped = "${pkgs.zed-editor_git.remote_server}/bin/zed-remote-server-dev-build";
-          in
-          if isMacOS then
-            pkgs.writeScript "zed-remote-server-dev-build" ''
-              if [ -z "$__HM_SESS_VARS_SOURCED" ]; then
-                export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-                source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-              fi
-              exec ${unwrapped} "$@"
-            ''
-          else unwrapped;
-      };
     };
   };
 
@@ -222,7 +205,7 @@ with utils; {
     # Hardware/softwre OSD indicators while gaming
     mangohud = {
       enable = hasSeat;
-      package = pkgs.mangohud_git;
+      package = pkgs.mangohud;
       settings = {
         # functionality
         gl_vsync = 0;
@@ -321,7 +304,7 @@ with utils; {
     # Text editor
     helix = {
       enable = true;
-      package = pkgs.evil-helix_git;
+      package = pkgs.evil-helix;
       settings = {
         keys.normal = {
           V = [ "select_mode" "extend_to_line_bounds" ];
@@ -399,7 +382,7 @@ with utils; {
 
     yt-dlp = {
       enable = hasSeat;
-      package = pkgs.yt-dlp_git;
+      package = pkgs.yt-dlp;
       settings = {
         netrc = true;
         extractor-args = "crunchyrollbeta:hardsub=en-US";
@@ -416,7 +399,7 @@ with utils; {
       # Fish-only
       enableBashIntegration = false;
       enableNushellIntegration = false;
-      enableZshIntegration = false;
+      enableZshIntegration = isMacOS;
     };
   };
 

@@ -45,7 +45,7 @@
     gh
     gnupg
     heroku
-    lan-mouse_git
+    lan-mouse
     mosh
     ripgrep
     tmux
