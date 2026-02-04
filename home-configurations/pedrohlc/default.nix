@@ -325,7 +325,6 @@ with utils; {
           "gp@master" = "git fetch origin master && git branch -f master origin/master && git checkout master";
           "gp@nixpkgs" = "git fetch upstream nixpkgs-unstable && git branch -f nixpkgs-unstable upstream/nixpkgs-unstable && git checkout nixpkgs-unstable";
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
-          "@nyx" = "cd ~/Projects/cx.chaotic/nyx";
           "@core" = "cd ~/Projects/co.timeline/core";
           "@calc-rs" = "cd ~/Projects/co.timeline/calc-rs";
           "nix-roots" = "nix-store --gc --print-roots | grep -Pv '^(/proc|{lsof})'";

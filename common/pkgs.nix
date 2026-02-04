@@ -1,4 +1,4 @@
-{ system, nixpkgs, chaotic, extraConfig ? { }, extraOverlays ? [ ] }:
+{ system, nixpkgs, extraConfig ? { }, extraOverlays ? [ ] }:
 let
   unfree = [
     "castlabs-electron"
@@ -22,5 +22,5 @@ import nixpkgs {
     pedroWatermark = true;
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfree;
   } // extraConfig;
-  overlays = [ (import ../overlays/core.nix) chaotic.overlays.default ] ++ extraOverlays;
+  overlays = [ (import ../overlays/core.nix) ] ++ extraOverlays;
 }

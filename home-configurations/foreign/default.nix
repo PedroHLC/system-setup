@@ -20,7 +20,6 @@
     # Always uses system's flakes instead of downloading or updating.
     registry = {
       nixpkgs.flake = flakes.nixpkgs;
-      chaotic.flake = flakes.chaotic;
     };
   };
 
@@ -84,6 +83,4 @@
   # This is for reusing the versioned flakes inputs for CLI commands.
   # HomeManager does not provide `nixpkgs.flake.setNixPath`
   nix.nixPath = lib.mkDefault [ "nixpkgs=flake:nixpkgs" ];
-  chaotic.nyx.registry.enable = true;
-  chaotic.nyx.nixPath.enable = true;
 }

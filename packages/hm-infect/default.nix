@@ -11,7 +11,6 @@ let
       inherit pkgs;
       extraSpecialArgs = specialArgs // { inherit specs; };
       modules = [
-        chaotic.homeManagerModules.default
         { home = { inherit username homeDirectory; }; }
         ../../home-configurations/${username}
         ./non-nixos.nix

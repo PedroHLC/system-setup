@@ -36,13 +36,6 @@
     };
   };
 
-  # DuckDNS
-  chaotic.duckdns = {
-    enable = false; # I don't need it anymore
-    domain = web.desktop.addr;
-    environmentFile = "/var/persistent/secrets/duckdns.env";
-  };
-
   # A module to save me in case everything catches fire
   boot.extraModulePackages = with config.boot.kernelPackages; [
     (callPackage ../../packages/ksysrqd.nix { })
@@ -111,11 +104,12 @@
   environment.systemPackages = with pkgs; [
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     i2pd
-    latencyflex-vulkan
+    # latencyflex-vulkan
     nixos-next-shot
     uxplay
     virtiofsd # for libvirtd
     vkbasalt
+    pkgs.gamescope-wsi # for HDR through XDG_DATA_DIRS
   ];
 
   # One-button virtualization for some tests of mine
@@ -159,10 +153,13 @@
   ];
 
   # Allows HDR gaming (AMD-GPU only).
-  chaotic.hdr = {
-    enable = true;
-    specialisation.enable = false;
-    wsiPackage = pkgs.gamescope-wsi;
+  programs.steam.gamescopeSession.enable = true; # HDR can only be used with headless Gamescope right now...
+  programs.gamescope = {
+    args = [ "--hdr-enabled" ];
+    env = {
+      DXVK_HDR = "1";
+      ENABLE_GAMESCOPE_WSI = "1";
+    };
   };
 
   # Allows streaming with KMS

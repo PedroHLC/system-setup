@@ -144,7 +144,7 @@
     killall
     mosh
     nix-index
-    nix-top_abandoned
+    # nix-top
     nmap
     p7zip
     pciutils

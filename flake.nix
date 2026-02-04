@@ -3,19 +3,16 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.follows = "chaotic/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Reset rootfs every reboot
     impermanence.url = "github:nix-community/impermanence";
 
     # Home-manager for managing my user's home
-    home-manager.follows = "chaotic/home-manager";
+    home-manager.url = "github:nix-community/home-manager";
 
     # My "outputs" manager
     yafas.url = "github:UbiqueLambda/yafas";
-
-    # Smooth-criminal bleeding-edge packages
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     # My FFx userChrome.css
     pedrochrome-css = {
@@ -26,7 +23,7 @@
     # The Crash Team Racing decomp
     ctr = {
       url = "github:CTR-tools/CTR-ModSDK";
-      inputs.nixpkgs.follows = "chaotic/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.yafas.follows = "yafas";
     };
 
@@ -36,11 +33,11 @@
     # Experimental flavor
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "chaotic/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
+  outputs = { nixpkgs, yafas, ... }@inputs:
     yafas.withAllSystems nixpkgs
       (universals: { pkgs, system }@sys: with universals; {
         # Defines a formatter for "nix fmt"
@@ -58,8 +55,5 @@
 
         # Special args you'll find in every module.
         specialArgs = import common/nixos-special-args.nix inputs;
-
-        # When accessing my flake from other computers I need chaotic's cache
-        inherit (chaotic) nixConfig;
       };
 }

@@ -1,4 +1,6 @@
 final: _prev: {
+  busybox_appletless = final.busybox.override { enableAppletSymlinks = false; };
+
   nixos-clear = final.callPackage ../packages/scripts { scriptName = "nixos-clear"; };
   nixos-next-shot = final.callPackage ../packages/scripts {
     scriptName = "nixos-next-shot";
@@ -7,5 +9,6 @@ final: _prev: {
       "$(which systemctl)" = "${final.systemd}/bin/systemctl";
     };
   };
+
   aria2c-for-wget-curl = final.callPackage ../packages/aria2c-for-wget-curl.nix { };
 }

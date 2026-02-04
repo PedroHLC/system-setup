@@ -1,4 +1,4 @@
-{pkgs, ssot, lib, ...}@args: with ssot;
+{ pkgs, ssot, lib, ... }@args: with ssot;
 
 let
   proxyAddr = "127.0.0.23";
@@ -23,7 +23,6 @@ in
       OLLAMA_FLASH_ATTENTION = "1";
     };
   };
-  chaotic.mesa-git.extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   systemd.services.ollama = {
     serviceConfig = {
       DynamicUser = lib.mkForce false;

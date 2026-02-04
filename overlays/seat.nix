@@ -40,6 +40,15 @@ final: prev: {
   # Anime4K shaders
   anime4k = final.callPackage ../packages/anime4k.nix { };
 
+  # for 60fps anime
+  mpv-vapoursynth =
+    (final.mpv-unwrapped.wrapper {
+      mpv = final.mpv-unwrapped.override {
+        vapoursynthSupport = true;
+        vapoursynth = final.vapoursynth.withPlugins [ final.vapoursynth-mvtools ];
+      };
+    });
+
   # Allow bluetooth management easily in sway
   fzf-bluetooth = final.callPackage ../packages/fzf-bluetooth.nix { };
 
@@ -50,7 +59,14 @@ final: prev: {
   ssh-to-nix = final.callPackage ../packages/scripts { scriptName = "ssh-to-nix"; };
 
   # includes newer protocols
-  xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
+  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
+    patches = (prevAttrs.patches or [ ]) ++ [
+      (final.fetchpatch {
+        url = "https://patch-diff.githubusercontent.com/raw/emersion/xdg-desktop-portal-wlr/pull/325.patch";
+        hash = "sha256-LmjdfuBq5f3SxYhmjGCWxUMGAY51cenewDqxOLLq0Gw=";
+      })
+    ];
+  });
 
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
   hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
@@ -81,6 +97,24 @@ final: prev: {
       })
     ];
   });
+
+  # gaming at full speed
+  proton-cachyos = final.callPackage ../packages/proton-bin {
+    toolTitle = "Proton-CachyOS";
+    tarballPrefix = "proton-";
+    tarballSuffix = "-x86_64.tar.xz";
+    toolPattern = "proton-cachyos-.*";
+    releasePrefix = "cachyos-";
+    releaseSuffix = "-slr";
+    versionFilename = "cachyos-version.json";
+    owner = "CachyOS";
+    repo = "proton-cachyos";
+  };
+  proton-cachyos_x86_64_v3 = final.proton-cachyos.override {
+    toolTitle = "Proton-CachyOS x86-64-v3";
+    tarballSuffix = "-x86_64_v3.tar.xz";
+    versionFilename = "cachyos-v3-version.json";
+  };
 
   # https://github.com/NixOS/nixpkgs/pull/451951
   osdlyrics = (prev.osdlyrics).overrideAttrs (prevAttrs: {

@@ -27,9 +27,6 @@
   # (not working - see nixpkgs#139182)
   boot.kernel.sysctl."dev.i915.perf_stream_paranoid" = false;
 
-  # Video Acceleration
-  chaotic.mesa-git.extraPackages = with pkgs; [ intel-media-driver ];
-
   # Network.
   networking = {
     hostId = "0f8623ae";

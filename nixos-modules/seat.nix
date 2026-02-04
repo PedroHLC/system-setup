@@ -18,13 +18,10 @@
   hardware.cpu.intel.updateMicrocode = true;
   hardware.cpu.amd.updateMicrocode = true;
 
-  # My preferred kernel
-  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos-lto;
-
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
-  boot.zfs.package = lib.mkOverride 99 pkgs.zfs_cachyos;
+  boot.zfs.package = pkgs.zfs_unstable;
 
   # Kernel Params
   boot.kernelParams = [
@@ -57,7 +54,7 @@
   services.zfs.trim.enable = false;
 
   # ZFS-based impermanence
-  chaotic.zfs-impermanence-on-shutdown = {
+  pedrohlc.zfs-impermanence-on-shutdown = {
     enable = true;
     volume = "zroot/ROOT/empty";
     snapshot = "start";
@@ -236,14 +233,14 @@
     mangohud
     mesa-demos
     vulkan-caps-viewer
-    vulkanPackages_latest.vulkan-tools
+    vulkan-tools
     winetricks
     gamescope-wsi
-    gamescope-wsi32
+    pkgsi686Linux.gamescope-wsi
 
     # Gaming
     # devilutionx (waiting nixpkgs#451749)
-    openmohaa_git
+    # openmohaa_git
     openrct2
     space-cadet-pinball
     vcmi
@@ -322,9 +319,8 @@
     };
 
     extraCompatPackages = with pkgs; [
-      proton-cachyos_nightly_x86_64_v3
       proton-cachyos_x86_64_v3
-      proton-ge-custom
+      proton-ge-bin
     ];
   };
 
@@ -357,12 +353,6 @@
 
   # For out-of-box gaming with Heroic Game Launcher
   services.flatpak.enable = true;
-
-  # Smooth-criminal bleeding-edge Mesa3D
-  chaotic.mesa-git = {
-    enable = true;
-    fallbackSpecialisation = false;
-  };
 
   # Zoom is complicated
   # TODO: Broken as hell in Nixpkgs, not even using pipewire for audio.
@@ -487,8 +477,6 @@
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
     boot.zfs.package = lib.mkForce pkgs.zfs;
-    chaotic.mesa-git.enable = lib.mkForce false;
-    chaotic.hdr.enable = lib.mkForce false;
   };
 
   # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")

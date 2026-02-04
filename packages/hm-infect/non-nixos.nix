@@ -10,7 +10,6 @@
     # Always uses system's flakes instead of downloading or updating.
     registry = {
       nixpkgs.flake = flakes.nixpkgs;
-      chaotic.flake = flakes.chaotic;
     };
   };
 

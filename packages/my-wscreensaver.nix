@@ -1,7 +1,7 @@
 { mpvpaper
 , procps
 , swaylock
-, swaylock-plugin_git
+, swaylock-plugin
 , writeShellScript
 , writeShellScriptBin
 }:
@@ -26,7 +26,7 @@ writeShellScriptBin "my-wscreensaver" ''
     _MEDIA='horizontal.m3u'
     [[ $_HAS_MUSIC ]] && _MEDIA='with-music.m3u'
 
-    exec ${swaylock-plugin_git}/bin/swaylock-plugin \
+    exec ${swaylock-plugin}/bin/swaylock-plugin \
       --command "${screensaver} \"''$_MEDIA\""
   fi
 ''
