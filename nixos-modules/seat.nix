@@ -75,7 +75,7 @@
   # DNS
   services.resolved = {
     enable = true;
-    fallbackDns = [ vpn.zeta.v4 vpn.zeta.v6 ];
+    settings.Resolve.FallbackDNS = [ vpn.zeta.v4 vpn.zeta.v6 ];
   };
 
   # LAN discovery.
@@ -203,6 +203,7 @@
     ssh-to-nix
 
     # Development apps
+    android-tools
     dbeaver-bin
     ddcutil # for controlling DisplayPort
     gcc
@@ -253,7 +254,6 @@
   };
 
   # Special apps (requires more than their package to work).
-  programs.adb.enable = true;
   programs.gamemode.enable = true;
 
   # Fix swaylock (nixpkgs#158025)
@@ -535,7 +535,6 @@
       "/etc/machine-id"
     ];
     users.root = {
-      home = "/root";
       directories = [
         { directory = ".android"; mode = "0700"; } # adb keys
         { directory = ".gnupg"; mode = "0700"; }

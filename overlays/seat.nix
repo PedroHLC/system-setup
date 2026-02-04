@@ -42,8 +42,8 @@ final: prev: {
 
   # for 60fps anime
   mpv-vapoursynth =
-    (final.mpv-unwrapped.wrapper {
-      mpv = final.mpv-unwrapped.override {
+    (final.mpv.override {
+      mpv-unwrapped = final.mpv-unwrapped.override {
         vapoursynthSupport = true;
         vapoursynth = final.vapoursynth.withPlugins [ final.vapoursynth-mvtools ];
       };

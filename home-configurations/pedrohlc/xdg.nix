@@ -78,7 +78,7 @@ utils: with utils;
       userChromeCss = {
         enable = hasSeat;
         target = "userChrome.css";
-        source = "${flakes.pedrochrome-css}/userChrome.css";
+        source = "${pedrochrome-css}/userChrome.css";
       };
     };
     desktopEntries = mkIf hasSeat {

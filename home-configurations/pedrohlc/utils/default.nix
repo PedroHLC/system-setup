@@ -11,14 +11,16 @@
 , hostOS ? "nixos" # Distro, not kernel
 , ...
 }@specs:
-{ config, lib, pkgs, ssot, flakes, osConfig ? null, usingNouveau ? true, ... }@scope:
+{ config, lib, pkgs, ssot, osConfig ? null, usingNouveau ? true, ... }@scope:
 self:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
-  inherit config pkgs flakes osConfig usingNouveau;
+  inherit config pkgs osConfig usingNouveau;
+  inherit (scope) flakes;
   inherit (lib.strings) optionalString;
   inherit (lib.trivial) importJSON;
-  ullib = flakes.ullib;
+  inherit (lib.debug) traceVal;
+  inherit (scope.flakes) ullib pedrochrome-css;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./derivations.nix self;
 

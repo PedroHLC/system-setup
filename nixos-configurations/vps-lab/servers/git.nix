@@ -27,7 +27,7 @@ let
     clone-url = "https://$HTTP_HOST$SCRIPT_NAME/$CGIT_REPO_URL";
   };
 
-  package = pkgs.cgit-pink;
+  package = pkgs.cgit;
 
   virtualHost = "lab.pedrohlc.com";
 in
@@ -35,6 +35,7 @@ in
   services.cgit = {
     public = {
       enable = true;
+      gitHttpBackend.checkExportOkFiles = false;
       inherit settings package;
       nginx = {
         inherit virtualHost;
@@ -44,6 +45,7 @@ in
     };
     private = {
       enable = true;
+      gitHttpBackend.checkExportOkFiles = false;
       inherit package;
       settings = settings // {
         root-title = "Pedro's Private Git Archive";

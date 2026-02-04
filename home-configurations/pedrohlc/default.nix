@@ -29,7 +29,7 @@ with utils; {
         my-wscreensaver
         pokemmo-launcher
       ] ++ lists.optionals (hasSeat || isMacOS) [
-        youtube-music
+        pear-desktop
       ] ++ [
         # My scripts
         nrpr

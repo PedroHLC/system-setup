@@ -190,7 +190,7 @@
         };
         # For bumping, read the "Configuration changes" sections of
         # https://github.com/AdguardTeam/AdGuardHome/blob/master/CHANGELOG.md
-        schema_version = 31;
+        schema_version = 32;
       };
   };
 
