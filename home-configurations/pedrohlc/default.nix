@@ -134,7 +134,9 @@ with utils; {
 
     btop.enable = hasSeat;
 
-    mpv = {
+    mpv = if isMacOS then {
+      enable = true;
+    } else {
       enable = hasSeat;
       # For watching animes in 60fps
       package = pkgs.mpv-vapoursynth;
