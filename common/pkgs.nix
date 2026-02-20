@@ -2,6 +2,7 @@
 let
   unfree = [
     "castlabs-electron"
+    "claude-code"
     "devilutionx"
     "google-chrome"
     "nvidia-x11"

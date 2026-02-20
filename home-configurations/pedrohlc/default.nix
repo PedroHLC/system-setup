@@ -401,6 +401,26 @@ with utils; {
       enableNushellIntegration = false;
       enableZshIntegration = isMacOS;
     };
+
+    # AI
+    claude-code = {
+      enable = true;
+      memory.text = ''
+        This user has Nix installed, for simple things you can `nix run nixpkgs#pkgname -- args`.
+
+        If the user asks for an encyclopedia-like document, it means to write it in textbook prose style, with dense paragraphs and no markdown formatting.
+
+        Some of his projects are using devenv, triggered from .envrc, but if the environment is missing, run commands within:
+
+            $ devenv shell -- cli args
+
+        If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
+      '';
+      settings = {
+        theme = "dark";
+        includeCoAuthoredBy = true;
+      };
+    };
   };
 
   # Volume and Display-brightness OSD
