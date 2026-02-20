@@ -6,7 +6,7 @@ let
 in
 {
   programs.i3status-rust = {
-    enable = hasSeat;
+    enable = hasLinuxSeat;
     bars = {
       main = {
         settings = {

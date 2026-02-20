@@ -29,19 +29,22 @@ self:
   hasUPS = ups != null;
   hasGitKey = gitKey != null;
   hasSeat = seat != null;
+  hasLinuxSeat = hasSeat && isLinux;
+  hasAppleSeat = hasSeat && isMacOS;
   hasTouchpad = touchpad != null;
   isNixOS = hostOS == "nixos";
   isMacOS = hostOS == "macos";
+  isLinux = !isMacOS;
 
   # Expand seat specs
-  autoLogin = seat.autoLogin or hasSeat;
+  autoLogin = seat.autoLogin or hasLinuxSeat;
   displayBrightness = seat.displayBrightness or false;
   kvm = seat.kvm or specs.kvm or null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
   steamMachine = seat.steamMachine or null;
   sunshine = seat.sunshine or false;
-  ctrlNearSpaceKeyMap = !isMacOS && (seat.ctrlNearSpaceKeyMap or false);
+  ctrlNearSpaceKeyMap = hasLinuxSeat && (seat.ctrlNearSpaceKeyMap or false);
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
   bin = rec {

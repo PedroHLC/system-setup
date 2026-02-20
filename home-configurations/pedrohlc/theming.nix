@@ -1,7 +1,8 @@
 utils: with utils;
 
 {
-  stylix.enable = true;
+  stylix.enable = isLinux;
+  stylix.overlays.enable = false;
 
   stylix.base16Scheme = {
     # https://github.com/vic/base16-rebecca
@@ -25,16 +26,8 @@ utils: with utils;
     scheme = "Rebecca";
     slug = "rebecca";
   };
-
-  stylix.image = pkgs.fetchurl {
-    url = privateBucket "Wallpapers/Aenami-Horizon.png";
-    hash = "sha256-3yzQkPRTeYdWV6bAoNZWwiDugywtNrh73k5vGfsHMLw=";
-  };
-
-  stylix.polarity = "dark";
-
-  stylix.cursor.size = 24;
-
+} //
+(optionalAttrs hasLinuxSeat {
   stylix.fonts = {
     monospace = {
       name = "Borg Sans Mono";
@@ -54,6 +47,14 @@ utils: with utils;
     };
   };
 
+  stylix.image = pkgs.fetchurl {
+    url = privateBucket "Wallpapers/Aenami-Horizon.png";
+    hash = "sha256-3yzQkPRTeYdWV6bAoNZWwiDugywtNrh73k5vGfsHMLw=";
+  };
+
+  stylix.polarity = "dark";
+
+  stylix.cursor.size = 24;
   stylix.cursor = {
     name = "Breeze_Light";
     package = pkgs.kdePackages.breeze;
@@ -68,7 +69,4 @@ utils: with utils;
   wayland.windowManager.sway.config.startup = [
     { command = "plasma-apply-lookandfeel --apply stylix"; }
   ];
-
-  # Disable stuff with overlays
-  stylix.overlays.enable = false;
-}
+})

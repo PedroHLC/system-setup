@@ -44,7 +44,7 @@ mkIf (kvm != null) {
     Install = { WantedBy = [ "graphical-session.target" ]; };
   };
 
-  launchd.agents.my-kvm = mkIf (isMacOS) {
+  launchd.agents.my-kvm = mkIf hasAppleSeat {
     enable = true;
     config = {
       Label = "${contact.namespace}.my-kvm";

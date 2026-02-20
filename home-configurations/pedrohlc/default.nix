@@ -5,30 +5,28 @@ in
 with utils; {
   # I've put the bigger fishes in separate files to help readability.
   imports = [
+    flakes.stylix.homeModules.stylix
     (import ./ssh.nix utils)
     (import ./kvm.nix utils)
-  ] ++ optionals isNixOS [
+    (import ./theming.nix utils)
+  ] ++ optionals hasLinuxSeat [
     (import ./i3status-rust.nix utils)
     (import ./sunshine.nix utils)
     (import ./xdg.nix utils)
-  ] ++ optionals hasSeat [
     (import ./audacious.nix utils)
     (import ./sway.nix utils)
-    # Themeing
-    flakes.stylix.homeModules.stylix
-    (import ./de-theming.nix utils)
   ];
 
   home = {
     packages =
-      with pseudoPkgs; with pkgs; (lists.optionals hasSeat [
+      with pseudoPkgs; with pkgs; (lists.optionals hasLinuxSeat [
         alternative-session
         firefox-gate
         minidlna-launcher
         mpv-hq-entry
         my-wscreensaver
         pokemmo-launcher
-      ] ++ lists.optionals (hasSeat || isMacOS) [
+      ] ++ lists.optionals hasSeat [
         pear-desktop
       ] ++ [
         # My scripts
@@ -132,81 +130,82 @@ with utils; {
       };
     };
 
-    btop.enable = hasSeat;
+    btop.enable = hasLinuxSeat;
 
-    mpv = if isMacOS then {
-      enable = true;
-    } else {
-      enable = hasSeat;
-      # For watching animes in 60fps
-      package = pkgs.mpv-vapoursynth;
-      config = {
-        # Temporary & lossless screenshots
-        screenshot-format = "png";
-        screenshot-directory = "/tmp";
-        # for Pipewire (Let's pray for MPV native solution)
-        ao = "openal";
-        # I don't usually plug my PC in a home-theater
-        audio-channels = "stereo";
-
-        # So dual-audio anime don't go crazy;
-        alang = "jpn,eng";
-        slang = "eng";
-
-        # GPU & Wayland
-        hwdec = "${videoAcceleration}";
-        vo = "gpu";
-        gpu-context = "waylandvk";
-        gpu-api = "vulkan";
-
-        # YouTube quality
-        ytdl-format =
-          if seat.displayHeight <= 1080 then
-            "bestvideo[height<=?1440]+bestaudio/best"
-          else
-            "bestvideo[height<=?2160]+bestaudio/best";
-
-      };
-      profiles = {
-        # For when I plug the optical-cable
-        "toslink" = {
-          audio-channels = "auto";
-          af = "lavcac3enc";
-          audio-spdif = "ac3";
-        };
-        "hq" = {
-          profile = "gpu-hq";
-          scale = "ewa_lanczossharp";
-          cscale = "ewa_lanczossharp";
-          tscale = "oversample";
-        };
-      };
-      bindings = {
-        # Subtitle scalers
-        "P" = "add sub-scale +0.1";
-        "Ctrl+p" = "add sub-scale -0.1";
-
-        # Window helpers
-        "Alt+3" = "set window-scale 0.5";
-        "Alt+4" = "cycle border";
-
+    mpv =
+      if hasAppleSeat then {
+        enable = true;
+      } else {
+        enable = hasLinuxSeat;
         # For watching animes in 60fps
-        "K" = "vf toggle vapoursynth=${../../assets/motioninterpolation.vpy}";
+        package = pkgs.mpv-vapoursynth;
+        config = {
+          # Temporary & lossless screenshots
+          screenshot-format = "png";
+          screenshot-directory = "/tmp";
+          # for Pipewire (Let's pray for MPV native solution)
+          ao = "openal";
+          # I don't usually plug my PC in a home-theater
+          audio-channels = "stereo";
 
-        # For anime 4k
-        "CTRL+1" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
-        "CTRL+2" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"'';
-        "CTRL+3" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C (HQ)"'';
-        "CTRL+4" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_M.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
-        "CTRL+5" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_M.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
-        "CTRL+6" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_M.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
-        "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
+          # So dual-audio anime don't go crazy;
+          alang = "jpn,eng";
+          slang = "eng";
+
+          # GPU & Wayland
+          hwdec = "${videoAcceleration}";
+          vo = "gpu";
+          gpu-context = "waylandvk";
+          gpu-api = "vulkan";
+
+          # YouTube quality
+          ytdl-format =
+            if seat.displayHeight <= 1080 then
+              "bestvideo[height<=?1440]+bestaudio/best"
+            else
+              "bestvideo[height<=?2160]+bestaudio/best";
+
+        };
+        profiles = {
+          # For when I plug the optical-cable
+          "toslink" = {
+            audio-channels = "auto";
+            af = "lavcac3enc";
+            audio-spdif = "ac3";
+          };
+          "hq" = {
+            profile = "gpu-hq";
+            scale = "ewa_lanczossharp";
+            cscale = "ewa_lanczossharp";
+            tscale = "oversample";
+          };
+        };
+        bindings = {
+          # Subtitle scalers
+          "P" = "add sub-scale +0.1";
+          "Ctrl+p" = "add sub-scale -0.1";
+
+          # Window helpers
+          "Alt+3" = "set window-scale 0.5";
+          "Alt+4" = "cycle border";
+
+          # For watching animes in 60fps
+          "K" = "vf toggle vapoursynth=${../../assets/motioninterpolation.vpy}";
+
+          # For anime 4k
+          "CTRL+1" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A (HQ)"'';
+          "CTRL+2" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B (HQ)"'';
+          "CTRL+3" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C (HQ)"'';
+          "CTRL+4" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_M.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode A+A (HQ)"'';
+          "CTRL+5" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_VL.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_Soft_M.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode B+B (HQ)"'';
+          "CTRL+6" = ''no-osd change-list glsl-shaders set "${pkgs.anime4k}/Anime4K_Clamp_Highlights.glsl:${pkgs.anime4k}/Anime4K_Upscale_Denoise_CNN_x2_VL.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x2.glsl:${pkgs.anime4k}/Anime4K_AutoDownscalePre_x4.glsl:${pkgs.anime4k}/Anime4K_Restore_CNN_M.glsl:${pkgs.anime4k}/Anime4K_Upscale_CNN_x2_M.glsl"; show-text "Anime4K: Mode C+A (HQ)"'';
+          "CTRL+0" = ''no-osd change-list glsl-shaders clr ""; show-text "GLSL shaders cleared"'';
+        };
       };
-    };
 
     # Hardware/softwre OSD indicators while gaming
     mangohud = {
-      enable = hasSeat;
+      enable = hasLinuxSeat;
       package = pkgs.mangohud;
       settings = {
         # functionality
@@ -286,7 +285,7 @@ with utils; {
 
     # My favorite and simple terminal
     alacritty = {
-      enable = hasSeat || isMacOS;
+      enable = hasSeat;
       package = pkgs.alacritty;
       settings = {
         window.opacity = lib.mkForce 0.9;
@@ -339,14 +338,14 @@ with utils; {
           "firewall" = "/usr/libexec/ApplicationFirewall/socketfilterfw";
           "firewall-status" = "${firewall} --getglobalstate --getblockall --getallowsigned --getstealthmode --listapps";
           "zeditor" = "/Applications/Zed.app/Contents/MacOS/cli";
-        }) // attrsets.optionalAttrs (hasSeat && !isMacOS) {
+        }) // attrsets.optionalAttrs (hasLinuxSeat) {
           "reboot-to-firmare" = "sudo bootctl set-oneshot auto-reboot-to-firmware-setup && systemctl reboot";
           "mpv-hq" = "mpv --profile=hq";
           "uxplay-ready" = "uxplay -h265 -as 0 -fps 60 -srgb -vs waylandsink -vd vah265dec";
           # TODO: Move to services
           "wayvnc-main" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o ${seat.displayId}";
           "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";
-        } // attrsets.optionalAttrs (hasSeat && seat.displayId == "DP-1") {
+        } // attrsets.optionalAttrs (hasLinuxSeat && seat.displayId == "DP-1") {
           # Yes, this is a pun with VHF TV
           "channel-3" = "ddcutils setvcp 60 0x06"; # Changes the display to HDMI-2
           "channel-4" = "ddcutils setvcp 60 0x0f"; # Changes the display to DP-1
@@ -382,7 +381,7 @@ with utils; {
     };
 
     yt-dlp = {
-      enable = hasSeat;
+      enable = hasLinuxSeat;
       package = pkgs.yt-dlp;
       settings = {
         netrc = true;
@@ -405,11 +404,11 @@ with utils; {
   };
 
   # Volume and Display-brightness OSD
-  services.avizo.enable = hasSeat;
+  services.avizo.enable = hasLinuxSeat;
 
   # Color filters for day/night
   services.gammastep = {
-    enable = hasSeat;
+    enable = hasLinuxSeat;
     provider = "manual";
     temperature.night = 5100;
     latitude = -23.438343565214307;

@@ -4,7 +4,7 @@ utils: with utils;
     # Config files that I prefer to just specify
     configFile = {
       # Disable this thing that is included with KDE
-      baloofilerc = mkIf hasSeat {
+      baloofilerc = mkIf hasLinuxSeat {
         text = generators.toINI { } {
           "Basic Settings" = {
             "Indexing-Enabled" = false;
@@ -12,7 +12,7 @@ utils: with utils;
         };
       };
       # Allow me to choose which display to share in a list.
-      wlrPortal = mkIf hasSeat {
+      wlrPortal = mkIf hasLinuxSeat {
         target = "xdg-desktop-portal-wlr/config";
         text = generators.toINI { } {
           screencast = {
@@ -23,7 +23,7 @@ utils: with utils;
       };
       # Notifications
       swaync = {
-        enable = hasSeat;
+        enable = hasLinuxSeat;
         target = "swaync/config.json";
         text = generators.toJSON { } {
           "$schema" = "${pkgs.swaynotificationcenter}/etc/xdg/swaync/configSchema.json";
@@ -33,7 +33,7 @@ utils: with utils;
       };
       # Integrate the filemanager with the rest of the system
       pcmanfm = {
-        enable = hasSeat;
+        enable = hasLinuxSeat;
         target = "pcmanfm-qt/default/settings.conf";
         text = generators.toINI { } {
           Behavior = {
@@ -66,7 +66,7 @@ utils: with utils;
     # Other data files
     dataFile = {
       gamescopeShaders = {
-        enable = hasSeat;
+        enable = hasLinuxSeat;
         target = "gamescope/reshade";
         source = pkgs.fetchFromGitHub {
           owner = "Matsilagi";
@@ -76,12 +76,12 @@ utils: with utils;
         };
       };
       userChromeCss = {
-        enable = hasSeat;
+        enable = hasLinuxSeat;
         target = "userChrome.css";
         source = "${pedrochrome-css}/userChrome.css";
       };
     };
-    desktopEntries = mkIf hasSeat {
+    desktopEntries = mkIf hasLinuxSeat {
       # Overwrite Firefox with my encryption-wrapper
       "firefox${firefoxSuffix}" = {
         name = "Firefox (Wayland)";
@@ -114,7 +114,7 @@ utils: with utils;
 
     # Default apps per file type
     mimeApps = {
-      enable = hasSeat;
+      enable = hasLinuxSeat;
       associations = {
         added = {
           "application/octet-stream" = "dev.zed.Zed.desktop";
