@@ -347,8 +347,8 @@ with utils; {
           "wayvnc-headless" = "wayvnc -vL trace --config ~/.secrets/wayvnc.config -o HEADLESS-1 -S /run/user/1001/wayvncctl2";
         } // attrsets.optionalAttrs (hasLinuxSeat && seat.displayId == "DP-1") {
           # Yes, this is a pun with VHF TV
-          "channel-3" = "ddcutils setvcp 60 0x06"; # Changes the display to HDMI-2
-          "channel-4" = "ddcutils setvcp 60 0x0f"; # Changes the display to DP-1
+          "channel-3" = "ddcutil setvcp 60 0x06"; # Changes the display to HDMI-2
+          "channel-4" = "ddcutil setvcp 60 0x0f"; # Changes the display to DP-1
         };
       plugins = [
         {
