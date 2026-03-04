@@ -46,6 +46,7 @@
     heroku
     lan-mouse
     mosh
+    postman
     ripgrep
     tmux
   ];

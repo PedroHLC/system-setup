@@ -7,7 +7,8 @@ let
         inherit hostname;
         inherit position;
         activate_on_startup = true;
-        ips = mapAttrsToList (_: { v4, ... }: v4) machines.${hostname}.lans;
+        ips = with machines.${hostname};
+          (mapAttrsToList (_: { v4, ... }: v4) lans) ++ [ vpn.v4 ];
       })
       kvm;
 

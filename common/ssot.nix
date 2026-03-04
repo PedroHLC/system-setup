@@ -48,9 +48,7 @@ rec {
         nextjsOllamaPort = 3000;
         ollamaPort = 11434;
       };
-      lans = {
-        home-wire.v4 = "192.168.98.11";
-      };
+      lans = { };
     };
     laptop = addVPNClient "3" vpn {
       hostname = "laptop";

@@ -135,6 +135,9 @@ with utils; {
     mpv =
       if hasAppleSeat then {
         enable = true;
+        config = {
+          hwdec = "auto";
+        };
       } else {
         enable = hasLinuxSeat;
         # For watching animes in 60fps
