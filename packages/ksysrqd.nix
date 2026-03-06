@@ -17,11 +17,11 @@ kernel.stdenv.mkDerivation {
   postPatch = ''
     substituteInPlace ksysrqd.c \
       --replace-fail '"b)' '"o)ff system\n" "b)' \
-      --replace-fail " || letter == 'b'" " || letter == 'b' || letter == 'o'"
-
-    substituteInPlace ksysrqd.c \
+      --replace-fail " || letter == 'b'" " || letter == 'b' || letter == 'o'" \
       --replace-fail 'static void sysrqd_accept_handler() {' 'static void sysrqd_accept_handler(void) {' \
-      --replace-fail 'static void sysrqd_manage_client() {' 'static void sysrqd_manage_client(void) {'
+      --replace-fail 'static void sysrqd_manage_client() {' 'static void sysrqd_manage_client(void) {' \
+      --replace-fail '(struct sockaddr *)&sysrqd_network' '(void*)&sysrqd_network' \
+      --replace-fail 'sizeof(struct sockaddr)' 'sizeof(sysrqd_network->my_ipv4_addr)'
   '';
 
   makeFlags = kernelModuleMakeFlags ++ [

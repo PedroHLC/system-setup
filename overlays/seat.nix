@@ -59,14 +59,14 @@ final: prev: {
   ssh-to-nix = final.callPackage ../packages/scripts { scriptName = "ssh-to-nix"; };
 
   # includes newer protocols
-  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
-    patches = (prevAttrs.patches or [ ]) ++ [
-      (final.fetchpatch {
-        url = "https://patch-diff.githubusercontent.com/raw/emersion/xdg-desktop-portal-wlr/pull/325.patch";
-        hash = "sha256-LmjdfuBq5f3SxYhmjGCWxUMGAY51cenewDqxOLLq0Gw=";
-      })
-    ];
-  });
+  #xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
+  #  patches = (prevAttrs.patches or [ ]) ++ [
+  #    (final.fetchpatch {
+  #      url = "https://github.com/emersion/xdg-desktop-portal-wlr/compare/0ab4f6f7908db671fa87013914830e5385536c7c...1e397357d451b637f0dc897b12be1e8153d4860f.patch";
+  #      hash = "sha256-LmjdfuBq5f3SxYhmjGCWxUMGAY51cenewDqxOLLq0Gw=";
+  #    })
+  #  ];
+  #});
 
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
   hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
@@ -122,6 +122,8 @@ final: prev: {
       final.gobject-introspection
       final.wrapGAppsNoGuiHook
     ];
+
+    env.NIX_CFLAGS_COMPILE = "-Wno-incompatible-pointer-types";
 
     dontWrapGApps = true;
 

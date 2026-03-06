@@ -18,6 +18,7 @@
     }
   },
   "edit_predictions": {
+    "provider": "zed",
     "mode": "subtle",
     "copilot": {
       "proxy": null,
@@ -26,13 +27,9 @@
     "enabled_in_text_threads": false
   },
   "auto_update": false,
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
   "agent": {
     "default_profile": "ask",
     "play_sound_when_agent_done": true,
-    "always_allow_tool_actions": false,
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-sonnet-4"
