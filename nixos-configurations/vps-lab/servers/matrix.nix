@@ -34,6 +34,7 @@ in
       database_backend = "rocksdb";
       trusted_servers = [ "envs.net" ];
       sentry = true;
+      cache_capacity_modifier = 5.0;
     };
   };
   systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce binary;
