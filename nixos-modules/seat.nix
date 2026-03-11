@@ -172,7 +172,7 @@
     ffmpegthumbnailer
     firefox-devedition
     google-chrome
-    helvum
+    crosspipe
     keybase-gui
     libinput
     libinput-gestures
