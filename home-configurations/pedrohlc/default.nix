@@ -413,9 +413,9 @@ with utils; {
 
         If the user asks for an encyclopedia-like document, it means to write it in textbook prose style, with dense paragraphs and no markdown formatting.
 
-        Some of his projects are using devenv, triggered from .envrc, but if the environment is missing, run commands within:
+        Some of his projects are using devenv, triggered from .envrc, but if the environment is missing, check the .envrc to find the flake reference and run commands within:
 
-            $ devenv shell -- cli args
+            $ nix develop <flake-ref> --impure --accept-flake-config --command bash -c '<cli commands>'
 
         If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
       '';
