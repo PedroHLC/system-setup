@@ -3,19 +3,12 @@
 {
   // Features Preferences
   "agent_servers": {
-    "claude": {}
+    "claude-acp": {
+      "type": "registry"
+    }
   },
   "context_servers": {
-    "mcp-server-figma": {
-      "enabled": true,
-      "remote": false,
-      "settings": {}
-    },
-    "chrome-devtools-mcp-zed": {
-      "enabled": true,
-      "remote": false,
-      "settings": {}
-    }
+    
   },
   "edit_predictions": {
     "provider": "zed",
