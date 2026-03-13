@@ -11,15 +11,14 @@ in
     enable = true;
     host = proxyAddr;
     port = machines.desktop.vpn.ollamaPort;
-    acceleration = "rocm";
-    loadModels = [ "gpt-oss:20b" ];
+    package = pkgs.ollama-vulkan;
+    loadModels = [ "qwen3-coder:30b" "gpt-oss:20b" ];
+    syncModels = true;
     user = "ollama";
     group = "agents";
+    # rocmOverrideGfx = "10.3.0";
     environmentVariables = {
-      HCC_AMDGPU_TARGET = "gfx1030"; # not really needed
-      OLLAMA_NEW_ENGINE = "1"; # not really needed for this model
-      OLLAMA_NEW_ESTIMATES = "1";
-      OLLAMA_KV_CACHE_TYPE = "q4_0";
+      OLLAMA_KV_CACHE_TYPE = "q8_0";
       OLLAMA_FLASH_ATTENTION = "1";
     };
   };
@@ -55,8 +54,8 @@ in
   ];
 
   # ROCm
-  environment.systemPackages = with pkgs; [
-    rocmPackages.rocminfo
-    rocmPackages.rocm-smi
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   rocmPackages.rocminfo
+  #   rocmPackages.rocm-smi
+  # ];
 }

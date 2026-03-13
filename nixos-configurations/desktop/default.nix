@@ -11,6 +11,7 @@ mkNixOS {
     ../../nixos-modules/wgcf-teams.nix
     ../../nixos-modules/seat.nix
     ../../nixos-modules/zfs-impermanence-on-shutdown.nix
+    ../../nixos-modules/local-ai.nix
     ./hardware-configuration.nix
     ./configuration.nix
   ];
