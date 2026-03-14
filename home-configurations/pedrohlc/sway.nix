@@ -117,8 +117,20 @@ in
         "XF86AudioStop" = "exec ${pkgs.playerctl}/bin/playerctl stop";
 
         # Lightweight screenshot to cliboard and temporary file
-        "Print" = "exec ${pkgs.grim}/bin/grim -t png - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
-        "${modifier}+Print" = "exec ${pkgs.grim}/bin/grim -t png -g \"$(${pkgs.slurp}/bin/slurp)\" - | tee /tmp/screenshot.png | ${pkgs.wl-clipboard}/bin/wl-copy -t 'image/png'";
+        "Print" = "exec ${pkgs.grim}/bin/grim -t png - | tee /tmp/screenshot.png | ${copy} -t 'image/png' && ${notify} 'Screenshot captured and copied'";
+        "${modifier}+Print" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | tee /tmp/screenshot.png | ${copy} -t 'image/png' && ${notify} 'Selection captured and copied'";
+
+        # Fullscreen -> File & Clipboard (Like Cmd+Shift+3)
+        "${macCmd}+Shift+3" = "exec ${pkgs.grim}/bin/grim -t png ~/Pictures/$(date +%Y%m%d_%H%M%S).png && ${notify} 'Screenshot captured'";
+
+        # Selection -> File & Clipboard (Like Cmd+Shift+4)
+        "${macCmd}+Shift+4" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - ~/Pictures/$(date +%Y%m%d_%H%M%S).png && ${notify} 'Selection captured'";
+
+        # Fullscreen -> Clipboard Only (Like Cmd+Ctrl+Shift+3)
+        "${macCtrl}+${macCmd}+Shift+3" = "exec ${pkgs.grim}/bin/grim - | ${copy} -t image/png && ${notify} 'Screenshot copied to clipboard'";
+
+        # Selection -> Clipboard Only (Like Cmd+Ctrl+Shift+4)
+        "${macCtrl}+${macCmd}+Shift+4" = "exec ${pkgs.slurp}/bin/slurp | ${pkgs.grim}/bin/grim -g - - | ${copy} -t image/png && ${notify} 'Selection copied to clipboard'";
 
         # Notifications tray
         "${modifier}+Shift+n" = "exec ${swayncClient} -t -sw";

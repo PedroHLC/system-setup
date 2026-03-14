@@ -47,6 +47,9 @@ self:
   ctrlNearSpaceKeyMap = hasLinuxSeat && (seat.ctrlNearSpaceKeyMap or false);
   touchpad = if hasSeat then (seat.touchpad or false) else null;
 
+  macCtrl = if ctrlNearSpaceKeyMap then "Mod1" else "Control";
+  macCmd = if ctrlNearSpaceKeyMap then "Control" else "Mod1";
+
   bin = rec {
     # Preferred executables
     browser = "${pseudoPkgs.firefox-gate}/bin/firefox-gate";
@@ -73,6 +76,10 @@ self:
     bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
     nmcli = "${pkgs.networkmanager}/bin/nmcli";
     check-sha256 = "${pseudoPkgs.check-sha256}/bin/check-sha256";
+    notify = "${pkgs.libnotify}/bin/notify-send";
+
+    copy = if isMacOS then "pbcopy" else "${pkgs.wl-clipboard}/bin/wl-copy";
+    paste = if isMacOS then "pbpaste" else "${pkgs.wl-clipboard}/bin/wl-paste";
 
     # Complex executables
     lock =
