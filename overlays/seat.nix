@@ -58,15 +58,20 @@ final: prev: {
   # helps me connecting to some VPS
   ssh-to-nix = final.callPackage ../packages/scripts { scriptName = "ssh-to-nix"; };
 
-  # includes newer protocols
-  #xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
-  #  patches = (prevAttrs.patches or [ ]) ++ [
-  #    (final.fetchpatch {
-  #      url = "https://github.com/emersion/xdg-desktop-portal-wlr/compare/0ab4f6f7908db671fa87013914830e5385536c7c...1e397357d451b637f0dc897b12be1e8153d4860f.patch";
-  #      hash = "sha256-LmjdfuBq5f3SxYhmjGCWxUMGAY51cenewDqxOLLq0Gw=";
-  #    })
-  #  ];
-  #});
+  # includes https://github.com/emersion/xdg-desktop-portal-wlr/pull/325
+  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
+    buildInputs = prevAttrs.buildInputs ++ [ final.libxkbcommon ];
+    patches =
+      if prevAttrs.src.rev == "v0.8.1" then [
+        (final.fetchpatch2 {
+          url = "https://github.com/${prevAttrs.src.owner}/${prevAttrs.src.repo}/compare/v0.8.1..925dcc3fe681f3e595e9e44eb5372163fc41ad70.diff";
+          hash = "sha256-pHeY0OcT5VMaknRUo1PhkeoHEu4gF8ewklN4IqjCcfs=";
+        })
+      ] else throw "I BELIEVE THEM BONES ARE ME!";
+    postPatch = "
+      substituteInPlace src/core/config.c --replace-fail 'bool is_allowed;' 'bool is_allowed = false;'
+    ";
+  });
 
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
   hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
