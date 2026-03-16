@@ -299,9 +299,23 @@ with utils; {
         };
 
         keyboard.bindings =
-          if ctrlNearSpaceKeyMap
-          then importJSON ../../assets/alacritty-apple-like-mods.json
-          else [ ];
+          let
+            base =
+              if ctrlNearSpaceKeyMap
+              then importJSON ../../assets/alacritty-apple-like-mods.json
+              else [ ];
+
+            newWithoutTmux =
+              {
+                key = "N";
+                mods = if isMacOS then "Command|Shift" else "Control|Shift";
+                command = {
+                  program = bin.terminal;
+                  args = [ "-e" "${pkgs.fish}/bin/fish" "-l" ];
+                };
+              };
+          in
+          base ++ [ newWithoutTmux ];
       };
     };
 
