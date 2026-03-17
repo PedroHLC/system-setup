@@ -1,15 +1,13 @@
-{ pkgs, ssot, lib, ... }@args: with ssot;
+{ pkgs, ssot, lib, config, ... }@args: with ssot;
 
 let
   proxyAddr = "127.0.0.23";
-
-  mkSystemdProxy = import ../common/mk-systemd-proxy.nix proxyAddr args;
 in
 {
   # AI (Ollama)
   services.ollama = {
     enable = true;
-    host = proxyAddr;
+    host = config.services.lazy-proxy.targetAddr;
     port = machines.desktop.vpn.ollamaPort;
     package = pkgs.ollama-vulkan;
     loadModels = [ "qwen3-coder:30b" "gpt-oss:20b" ];
@@ -28,24 +26,33 @@ in
       PrivateUsers = lib.mkForce false;
       RestrictNamespaces = lib.mkForce false;
     };
-    wantedBy = lib.mkForce [ ];
   };
+
+  # I'll call the model loader by hand
+  systemd.services.ollama-model-loader.wantedBy = lib.mkForce [ ];
 
   # AI (ollama chat)
   services.nextjs-ollama-llm-ui = {
     enable = true;
-    hostname = proxyAddr;
+    hostname = config.services.lazy-proxy.targetAddr;
     port = machines.desktop.vpn.nextjsOllamaPort;
     ollamaUrl = "http://${machines.desktop.vpn.v4}:${toString machines.desktop.vpn.ollamaPort}";
   };
-  systemd.services.nextjs-ollama-llm-ui.wantedBy = lib.mkForce [ ];
 
   # AI (systemd activation sockets)
-  imports =
-    [
-      (mkSystemdProxy "ollama" machines.desktop.vpn.ollamaPort)
-      (mkSystemdProxy "nextjs-ollama-llm-ui" machines.desktop.vpn.nextjsOllamaPort)
-    ];
+  imports = [ ./lazy-proxy.nix ];
+
+  services.lazy-proxy = {
+    enable = true;
+
+    bindIPv4 = machines.desktop.vpn.v4;
+    bindIPv6 = machines.desktop.vpn.v6;
+
+    proxies = {
+      ollama.port = ssot.machines.desktop.vpn.ollamaPort;
+      nextjs-ollama-llm-ui.port = ssot.machines.desktop.vpn.nextjsOllamaPort;
+    };
+  };
 
   # Persistence
   environment.persistence."/var/residues".directories = [
