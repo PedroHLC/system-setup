@@ -45,6 +45,7 @@ rec {
     desktop = addVPNClient "2" vpn {
       hostname = "desktop";
       vpn = {
+        llamaCppPort = 11435;
         nextjsOllamaPort = 3000;
         ollamaPort = 11434;
       };

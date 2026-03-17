@@ -1,14 +1,14 @@
-{ pkgs, ssot, lib, config, ... }@args: with ssot;
+{ pkgs, ssot, lib, config, ... }@args: with ssot.machines.desktop.vpn;
 
 let
-  proxyAddr = "127.0.0.23";
+  proxyAddr = config.services.lazy-proxy.targetAddr;
 in
 {
-  # AI (Ollama)
+  # Ollama
   services.ollama = {
     enable = true;
-    host = config.services.lazy-proxy.targetAddr;
-    port = machines.desktop.vpn.ollamaPort;
+    host = proxyAddr;
+    port = ollamaPort;
     package = pkgs.ollama-vulkan;
     loadModels = [ "qwen3-coder:30b" "gpt-oss:20b" ];
     syncModels = true;
@@ -20,6 +20,8 @@ in
       OLLAMA_FLASH_ATTENTION = "1";
     };
   };
+
+  # User-based Ollama home
   systemd.services.ollama = {
     serviceConfig = {
       DynamicUser = lib.mkForce false;
@@ -31,26 +33,70 @@ in
   # I'll call the model loader by hand
   systemd.services.ollama-model-loader.wantedBy = lib.mkForce [ ];
 
-  # AI (ollama chat)
+  # Ollama Web UI
   services.nextjs-ollama-llm-ui = {
     enable = true;
-    hostname = config.services.lazy-proxy.targetAddr;
-    port = machines.desktop.vpn.nextjsOllamaPort;
-    ollamaUrl = "http://${machines.desktop.vpn.v4}:${toString machines.desktop.vpn.ollamaPort}";
+    hostname = proxyAddr;
+    port = nextjsOllamaPort;
+    ollamaUrl = "http://${v4}:${toString ollamaPort}";
   };
 
-  # AI (systemd activation sockets)
+  # Llama-Cpp
+  services.llama-cpp = {
+    enable = true;
+    package = pkgs.llama-cpp-vulkan;
+    host = proxyAddr;
+    port = llamaCppPort;
+    model = "${config.users.users.llama-cpp.home}/models/Qwen3.5-35B-A3B-Q3_K_S.gguf";
+    extraFlags = [
+      "-ngl"
+      "99"
+      "-c"
+      "32768"
+      "--flash-attn"
+      "on"
+      "--cache-type-k"
+      "q8_0"
+      "--cache-type-v"
+      "q8_0"
+      "--parallel"
+      "1"
+      "--chat-template-kwargs"
+      "{\"enable_thinking\":false}"
+    ];
+  };
+
+  # User-based Llama-Cpp home
+  users.users.llama-cpp = {
+    home = "/var/lib/llama-cpp";
+    isSystemUser = true;
+    inherit (config.services.ollama) group;
+  };
+  systemd.services.llama-cpp = {
+    serviceConfig = {
+      DynamicUser = lib.mkForce false;
+      PrivateUsers = lib.mkForce false;
+      RestrictNamespaces = lib.mkForce false;
+      User = "llama-cpp";
+      Group = config.services.ollama.group;
+      WorkingDirectory = config.users.users.llama-cpp.home;
+      StateDirectory = [ "llama-cpp" ];
+    };
+  };
+
+  # Systemd lazy-activated sockets
   imports = [ ./lazy-proxy.nix ];
 
   services.lazy-proxy = {
     enable = true;
 
-    bindIPv4 = machines.desktop.vpn.v4;
-    bindIPv6 = machines.desktop.vpn.v6;
+    bindIPv4 = v4;
+    bindIPv6 = v6;
 
     proxies = {
-      ollama.port = ssot.machines.desktop.vpn.ollamaPort;
-      nextjs-ollama-llm-ui.port = ssot.machines.desktop.vpn.nextjsOllamaPort;
+      ollama.port = ollamaPort;
+      nextjs-ollama-llm-ui.port = nextjsOllamaPort;
+      llama-cpp.port = llamaCppPort;
     };
   };
 

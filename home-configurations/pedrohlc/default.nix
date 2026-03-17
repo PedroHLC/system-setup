@@ -345,7 +345,7 @@ with utils; {
           "@nixpkgs" = "cd ~/Projects/com.pedrohlc/nixpkgs";
           "@core" = "cd ~/Projects/co.timeline/core";
           "@calc-rs" = "cd ~/Projects/co.timeline/calc-rs";
-          "nix-roots" = "nix-store --gc --print-roots | grep -Pv '^(/proc|{lsof})'";
+          "nix-roots" = "nix-store --gc --print-roots | grep -Pv '^\"?(/proc|{lsof})'";
         } // attrsets.optionalAttrs isNixOS {
           "@sys" = "cd /etc/nixos";
           "sys" = "git --git-dir=$HOME/.system.git --work-tree=/etc/nixos";
@@ -419,7 +419,7 @@ with utils; {
       enableZshIntegration = isMacOS;
     };
 
-    # AI
+    # AI (Foreign)
     claude-code = {
       enable = true;
       memory.text = ''

@@ -679,9 +679,9 @@
     enable = true;
     client.enable = true;
     settings = {
-        ExitNodes = "{us},{cl},{ar}";
-        StrictNodes = 1;
-      };
+      ExitNodes = "{us},{cl},{ar}";
+      StrictNodes = 1;
+    };
   };
 
   # Limit resources used by nix-daemon to fix memleaks in some Python and Java derivations.
