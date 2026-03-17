@@ -7,9 +7,7 @@
       "type": "registry"
     }
   },
-  "context_servers": {
-    
-  },
+  "context_servers": {},
   "edit_predictions": {
     "provider": "zed",
     "mode": "subtle",
@@ -29,6 +27,26 @@
     },
     "button": true,
     "enabled": true
+  },
+  "language_models": {
+    "openai_compatible": {
+      "llamacpp": {
+        "api_url": "http://10.100.0.2:11435/v1",
+        "available_models": [
+          {
+            "name": "Qwen3.5-35B-A3B-Q3_K_S.gguf",
+            "display_name": "Qwen 3.5 35B (local)",
+            "max_tokens": 32768,
+            "capabilities": {
+              "tools": true,
+              "images": true,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false
+            }
+          }
+        ]
+      }
+    }
   },
   // UI Preferences
   "theme": "Catppuccin Macchiato",
