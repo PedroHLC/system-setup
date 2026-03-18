@@ -394,6 +394,19 @@ with utils; {
       functions = {
         "ghpr-as" = "git fetch origin pull/$argv[1]/head:$argv[2]";
         "ghupr-as" = "git fetch upstream pull/$argv[1]/head:$argv[2]";
+      } // attrsets.optionalAttrs (hasSeat) {
+        "md-copy" = ''
+          if test (count $argv) -gt 0
+            set input $argv
+          else
+            set input -
+          end
+
+        '' + (if isMacOS then ''
+          ${pkgs.pandoc}/bin/pandoc -s -t rtf $input | pbcopy
+        '' else ''
+          ${pkgs.pandoc}/bin/pandoc -t html --no-highlight $input | ${copy} -t text/html
+        '');
       };
     };
 
