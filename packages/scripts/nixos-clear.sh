@@ -2,8 +2,11 @@
 set -euo pipefail
 
 nix-store --gc --print-roots |\
-  awk '{ if($1 ~ /\/(result(-[a-z0-1]+|)?|flake-profile-.+-link)$/) print $1 }' |\
-  xargs --no-run-if-empty rm
+  awk '{
+    if (match($0, /^"([^"]*\/(result(-[a-z0-9]+|)?|flake-profile-.+-link))"/, m))
+      printf "%s\0", m[1]
+  }' |\
+  xargs -0 --no-run-if-empty rm
 
 nix-collect-garbage "$@"
 

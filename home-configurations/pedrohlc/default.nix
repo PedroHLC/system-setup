@@ -405,7 +405,7 @@ with utils; {
         '' + (if isMacOS then ''
           ${pkgs.pandoc}/bin/pandoc -s -t rtf $input | pbcopy
         '' else ''
-          ${pkgs.pandoc}/bin/pandoc -t html --no-highlight $input | ${copy} -t text/html
+          ${pkgs.pandoc}/bin/pandoc -t html --no-highlight $input | ${bin.copy} -t text/html
         '');
       };
     };
@@ -434,7 +434,7 @@ with utils; {
 
     # AI (Foreign)
     claude-code = {
-      enable = true;
+      enable = isMacOS;
       memory.text = ''
         This user has Nix installed, for simple things you can `nix run nixpkgs#pkgname -- args`.
 

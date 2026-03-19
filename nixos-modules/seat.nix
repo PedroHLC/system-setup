@@ -684,6 +684,9 @@
     };
   };
 
+  # Zed editor needs this to talk with llama.cpp
+  environment.variables.LLAMACPP_API_KEY = "dummy";
+
   # Limit resources used by nix-daemon to fix memleaks in some Python and Java derivations.
   # I always need at least 24G of RAM because of ZFS.
   systemd.services.nix-daemon.serviceConfig = {
