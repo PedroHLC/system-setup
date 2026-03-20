@@ -40,10 +40,12 @@
     autoraise
     aria2
     borg-sans-mono
+    claude-monitor
     dbeaver-bin
     gh
     gnupg
     heroku
+    iproute2mac
     lan-mouse
     mosh
     postman
