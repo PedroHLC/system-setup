@@ -6,10 +6,19 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Reset rootfs every reboot
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
 
     # Home-manager for managing my user's home
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # My "outputs" manager
     yafas.url = "github:UbiqueLambda/yafas";
