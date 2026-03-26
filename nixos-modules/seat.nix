@@ -462,7 +462,7 @@
 
   # Bigger internet
   services.kubo = {
-    enable = true;
+    enable = false; # nixpkgs#502938
     startWhenNeeded = true;
   };
 

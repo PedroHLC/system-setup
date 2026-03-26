@@ -7,13 +7,14 @@ mkNixOS {
     flakes.impermanence.nixosModules.impermanence
     ../../nixos-modules/4k-nohidpi.nix
     ../../nixos-modules/journal-upload.nix
-    ../../nixos-modules/wireguard-client.nix
-    ../../nixos-modules/wgcf-teams.nix
-    ../../nixos-modules/seat.nix
-    ../../nixos-modules/zfs-impermanence-on-shutdown.nix
     ../../nixos-modules/local-ai.nix
-    ./hardware-configuration.nix
+    ../../nixos-modules/monitor-follow-usb.nix
+    ../../nixos-modules/seat.nix
+    ../../nixos-modules/wgcf-teams.nix
+    ../../nixos-modules/wireguard-client.nix
+    ../../nixos-modules/zfs-impermanence-on-shutdown.nix
     ./configuration.nix
+    ./hardware-configuration.nix
   ];
   extraOverlays = [
     (import ../../overlays/seat.nix)
