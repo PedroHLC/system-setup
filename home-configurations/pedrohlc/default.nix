@@ -446,10 +446,17 @@ with utils; {
 
         If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
 
-        ## Push Notifications
-        - Use **Moshi** for mobile push notifications: `curl -s -X POST https://api.getmoshi.app/api/webhook -H "Content-Type: application/json" -d "{\"token\": \"$(cat ~/.secrets/moshi-push.token)\", \"title\": \"...\", \"message\": \"...\"}"`
+        ## Notifications
+        - **macOS desktop**: use heredoc to avoid quote escaping issues:
+          ```
+          osascript <<'AS'
+          display notification "<detail>" with title "<context>" sound name "<sound>"
+          AS
+          ```
+          Sounds: "Glass" for success, "Basso" for failure.
+        - **Moshi push** (mobile): `curl -s -X POST https://api.getmoshi.app/api/webhook -H "Content-Type: application/json" -d "{\"token\": \"$(cat ~/.secrets/moshi-push.token)\", \"title\": \"...\", \"message\": \"...\"}"`
         - Token lives in `~/.secrets/moshi-push.token` — never store it in memory or commit it
-        - Use alongside macOS `display notification` for both desktop + mobile alerts
+        - Always send **both** desktop + push when notifying
       '';
       settings = {
         theme = "dark";
