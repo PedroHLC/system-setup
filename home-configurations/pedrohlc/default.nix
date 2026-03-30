@@ -445,6 +445,11 @@ with utils; {
             $ nix develop <flake-ref> --impure --accept-flake-config --command bash -c '<cli commands>'
 
         If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
+
+        ## Push Notifications
+        - Use **Moshi** for mobile push notifications: `curl -s -X POST https://api.getmoshi.app/api/webhook -H "Content-Type: application/json" -d "{\"token\": \"$(cat ~/.secrets/moshi-push.token)\", \"title\": \"...\", \"message\": \"...\"}"`
+        - Token lives in `~/.secrets/moshi-push.token` — never store it in memory or commit it
+        - Use alongside macOS `display notification` for both desktop + mobile alerts
       '';
       settings = {
         theme = "dark";
