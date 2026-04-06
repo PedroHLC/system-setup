@@ -37,10 +37,10 @@
   # More packages
   home.packages = with pkgs; [
     aerospace
-    autoraise
     aria2
     borg-sans-mono
     claude-monitor
+    csvlens
     dbeaver-bin
     gh
     gnupg
@@ -50,7 +50,9 @@
     mosh
     postman
     ripgrep
+    stats
     tmux
+    xleak
   ];
 
   # Borg Sans is good!
@@ -72,14 +74,14 @@
   };
 
   # AutoRaise agent
-  launchd.agents.autoraise = {
+  launchd.agents.stats = {
     enable = true;
     config = {
-      Label = "io.github.sbmpost.autoraise";
+      Label = "com.mac-stats";
       ProcessType = "Background";
-      ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/AutoRaise.app/Contents/MacOS/AutoRaise" "-delay" "2" ];
+      ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/Stats.app/Contents/MacOS/Stats" ];
       RunAtLoad = true;
-      KeepAlive.OtherJobEnabled."io.github.nikitabobko.aerospace" = true;
+      KeepAlive = true;
     };
   };
 
