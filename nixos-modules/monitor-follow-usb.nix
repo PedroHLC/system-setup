@@ -4,7 +4,8 @@ let
   ddcutil = dest: "${pkgs.ddcutil}/bin/ddcutil setvcp 60 ${dest} --noverify";
   toLinux = ddcutil "0x0f"; # DP-1
   toOther = ddcutil "0x06"; # HDMI-2
-in {
+in
+{
   # Hardware setup
   hardware.i2c.enable = true;
 

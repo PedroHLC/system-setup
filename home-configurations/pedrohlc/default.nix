@@ -249,6 +249,7 @@ with utils; {
       signing = mkIf hasGitKey {
         key = gitKey;
         signByDefault = true;
+        format = "openpgp";
       };
       settings = {
         user.email = contact.email;

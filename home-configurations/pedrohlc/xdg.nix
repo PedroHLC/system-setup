@@ -150,7 +150,8 @@ utils: with utils;
     # Default directories
     userDirs = {
       enable = true;
-      # createDirectories = true; # conflicts with impermanence
+      createDirectories = false; # must disable, it conflicts with impermanence
+      setSessionVariables = true;
 
       # Make sure we're using the english ones.
       desktop = "$HOME/Desktop";
