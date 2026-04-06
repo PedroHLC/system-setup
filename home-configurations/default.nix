@@ -3,7 +3,7 @@
   "pedrohlc-at-foreign" = home-manager.lib.homeManagerConfiguration {
     pkgs = import ../common/pkgs.nix
       {
-        inherit (flakes) nixpkgs;
+        inherit flakes;
         system = "aarch64-darwin";
       };
     extraSpecialArgs = specialArgs // { specs = import ./foreign/specs.nix; };

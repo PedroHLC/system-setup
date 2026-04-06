@@ -218,6 +218,24 @@
         "type": "github"
       }
     },
+    "latest-claude-code": {
+      "flake": false,
+      "locked": {
+        "dir": "pkgs/by-name/cl/claude-code",
+        "lastModified": 1775481516,
+        "narHash": "sha256-L6V9OEQgTCkt2MO5JJkJ+72CsUMIT+Ngy2AM2sxWjFo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "eedf76af8851955fbe0c8d63b60114c4f6284f75",
+        "type": "github"
+      },
+      "original": {
+        "dir": "pkgs/by-name/cl/claude-code",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1775423009,
@@ -280,6 +298,7 @@
         "ctr": "ctr",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "latest-claude-code": "latest-claude-code",
         "nixpkgs": "nixpkgs",
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",

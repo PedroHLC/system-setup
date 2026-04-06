@@ -44,6 +44,12 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Latest Claude
+    latest-claude-code = {
+      url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, yafas, ... }@inputs:

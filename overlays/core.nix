@@ -1,4 +1,4 @@
-final: _prev: {
+flakes: final: _prev: {
   busybox_appletless = final.busybox.override { enableAppletSymlinks = false; };
 
   nixos-clear = final.callPackage ../packages/scripts { scriptName = "nixos-clear"; };
@@ -11,4 +11,6 @@ final: _prev: {
   };
 
   aria2c-for-wget-curl = final.callPackage ../packages/aria2c-for-wget-curl.nix { };
+
+  claude-code = final.callPackage "${flakes.latest-claude-code}/package.nix" { };
 }

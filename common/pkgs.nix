@@ -1,4 +1,4 @@
-{ system, nixpkgs, extraConfig ? { }, extraOverlays ? [ ] }:
+{ system, flakes, extraConfig ? { }, extraOverlays ? [ ] }:
 let
   unfree = [
     "castlabs-electron"
@@ -15,6 +15,8 @@ let
     "wpsoffice"
     "zoom"
   ];
+
+  inherit (flakes) nixpkgs;
 in
 import nixpkgs {
   inherit system;
@@ -23,5 +25,5 @@ import nixpkgs {
     pedroWatermark = true;
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfree;
   } // extraConfig;
-  overlays = [ (import ../overlays/core.nix) ] ++ extraOverlays;
+  overlays = [ (import ../overlays/core.nix flakes) ] ++ extraOverlays;
 }

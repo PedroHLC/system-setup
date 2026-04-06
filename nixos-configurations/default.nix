@@ -8,8 +8,7 @@ let
       # Sets pkgs just once due to nixosModules.readOnlyPkgs
       pkgs = import ../common/pkgs.nix
         {
-          inherit system extraConfig extraOverlays;
-          inherit (flakes) nixpkgs;
+          inherit system flakes extraConfig extraOverlays;
         };
 
       specialArgs = joinedSpecialArgs;
