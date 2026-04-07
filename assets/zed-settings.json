@@ -19,11 +19,11 @@
   },
   "auto_update": false,
   "agent": {
-    "default_profile": "ask",
+    "default_profile": "write",
     "play_sound_when_agent_done": true,
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4"
+      "provider": "llamacpp",
+      "model": "Qwen3.5-35B-A3B-Q3_K_S.gguf"
     },
     "button": true,
     "enabled": true
