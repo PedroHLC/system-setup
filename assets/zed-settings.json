@@ -4,7 +4,13 @@
   // Features Preferences
   "agent_servers": {
     "claude-acp": {
-      "type": "registry"
+      "default_config_options": {
+        "model": "default"
+      },
+      "type": "registry",
+      "env": {
+        "CLAUDE_CODE_EXECUTABLE": "direnv-claude"
+      }
     }
   },
   "context_servers": {},
@@ -104,19 +110,6 @@
           "command": "elm-format",
           "arguments": [
             "--stdin"
-          ]
-        }
-      }
-    },
-    "HEEX": {
-      "formatter": {
-        "external": {
-          "command": "mix",
-          "arguments": [
-            "format",
-            "--stdin-filename",
-            "{buffer_path}",
-            "-"
           ]
         }
       }

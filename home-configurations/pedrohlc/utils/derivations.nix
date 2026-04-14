@@ -104,4 +104,13 @@ rec {
   nvidia-meme = pkgs.writeShellScript "nvidia-meme" ''
     exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
   '';
+
+  # Direnv-forced Claude
+  direnv-claude = pkgs.callPackage ../../../packages/scripts {
+    scriptName = "direnv-claude";
+    substitutions = {
+      "$(which claude)" = "${config.programs.claude-code.package}/bin/claude";
+      "$(which direnv)" = "${config.programs.direnv.package}/bin/direnv";
+    };
+  };
 }

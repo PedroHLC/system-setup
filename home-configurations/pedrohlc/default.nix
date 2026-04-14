@@ -27,6 +27,7 @@ with utils; {
         my-wscreensaver
         pokemmo-launcher
       ] ++ lists.optionals hasSeat [
+        direnv-claude
         pear-desktop
       ] ++ [
         # My scripts
@@ -462,6 +463,14 @@ with utils; {
       settings = {
         theme = "dark";
         includeCoAuthoredBy = true;
+        effortLevel = "high";
+        model = "opus";
+        plansDirectory = "./tmp/plans";
+        env = {
+          "CLAUDE_CODE_DISABLE_1M_CONTEXT" = "1";
+          "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING" = "1";
+          "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
+        };
       };
     };
   };
