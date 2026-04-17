@@ -37,13 +37,9 @@
     # Use all cores for building (defaults to one in PR 199491)
     settings.max-jobs = "auto";
 
-    # github:nix-community/* cache
-    settings.substituters = [
-      "https://nix-community.cachix.org/"
-    ];
-    settings.trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+    # More caches
+    settings.substituters = flakes.nyx-loner.nixConfig.extra-substituters;
+    settings.trusted-public-keys = flakes.nyx-loner.nixConfig.extra-trusted-public-keys;
   };
 
   # Enable all the firmwares
@@ -56,7 +52,7 @@
   };
 
   # Kernel versions.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
 
   # Remove unused features.
   services.lvm.enable = false;

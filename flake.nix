@@ -3,7 +3,11 @@
 
   # My main channel and extra repositories
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Godsent flake
+    nyx-loner.url = "github:lonerOrz/nyx-loner";
+
+    # Mortal-hands flake
+    nixpkgs.follows = "nyx-loner/nixpkgs";
 
     # Reset rootfs every reboot
     impermanence = {
@@ -15,10 +19,7 @@
     };
 
     # Home-manager for managing my user's home
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.follows = "nyx-loner/home-manager";
 
     # My "outputs" manager
     yafas.url = "github:UbiqueLambda/yafas";
@@ -70,5 +71,8 @@
 
         # Special args you'll find in every module.
         specialArgs = import common/nixos-special-args.nix inputs;
+
+        # When accessing my flake from other machines I need nyx-loner's cache
+        inherit (inputs.nyx-loner) nixConfig;
       };
 }

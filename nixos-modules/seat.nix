@@ -21,7 +21,7 @@
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
-  boot.zfs.package = pkgs.zfs_unstable;
+  boot.zfs.package = pkgs.zfs_cachyos;
 
   # Kernel Params
   boot.kernelParams = [
@@ -54,7 +54,7 @@
   services.zfs.trim.enable = false;
 
   # ZFS-based impermanence
-  pedrohlc.zfs-impermanence-on-shutdown = {
+  chaotic.zfs-impermanence-on-shutdown = {
     enable = true;
     volume = "zroot/ROOT/empty";
     snapshot = "start";
@@ -354,6 +354,12 @@
   # For out-of-box gaming with Heroic Game Launcher
   services.flatpak.enable = true;
 
+  # Smooth-criminal bleeding-edge Mesa3D
+  chaotic.mesa-git = {
+    enable = true;
+    fallbackSpecialisation = false;
+  };
+
   # Zoom is complicated
   # TODO: Broken as hell in Nixpkgs, not even using pipewire for audio.
   programs.zoom-us.enable = false;
@@ -477,6 +483,7 @@
     system.nixos.tags = [ "lts" "zfs-stable" ];
     boot.kernelPackages = lib.mkOverride 98 pkgs.linuxPackages;
     boot.zfs.package = lib.mkForce pkgs.zfs;
+    chaotic.mesa-git.enable = lib.mkForce false;
   };
 
   # Change my MOUSE4 and MOUSE5 behavior (found it with "evtest")

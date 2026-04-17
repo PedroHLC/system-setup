@@ -16,10 +16,13 @@ let
       modules = [
         nixpkgs.nixosModules.readOnlyPkgs
         home-manager.nixosModules.home-manager
+        nyx-loner.nixosModules.default
         ../nixos-modules/core.nix
         {
           home-manager.users.pedrohlc = import ../home-configurations/pedrohlc;
-          disabledModules = [ "hardware/facter/system.nix" ]; # due to nixosModules.readOnlyPkgs
+          # due to nixosModules.readOnlyPkgs
+          disabledModules = [ "hardware/facter/system.nix" ];
+          chaotic.nyx.overlay.enable = false;
         }
       ] ++ extraModules;
     });

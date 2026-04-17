@@ -58,21 +58,6 @@ final: prev: {
   # helps me connecting to some VPS
   ssh-to-nix = final.callPackage ../packages/scripts { scriptName = "ssh-to-nix"; };
 
-  # includes https://github.com/emersion/xdg-desktop-portal-wlr/pull/325
-  xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (prevAttrs: {
-    buildInputs = prevAttrs.buildInputs ++ [ final.libxkbcommon ];
-    patches =
-      if prevAttrs.src.rev == "v0.8.1" then [
-        (final.fetchpatch2 {
-          url = "https://github.com/${prevAttrs.src.owner}/${prevAttrs.src.repo}/compare/v0.8.1..925dcc3fe681f3e595e9e44eb5372163fc41ad70.diff";
-          hash = "sha256-pHeY0OcT5VMaknRUo1PhkeoHEu4gF8ewklN4IqjCcfs=";
-        })
-      ] else throw "I BELIEVE THEM BONES ARE ME!";
-    postPatch = "
-      substituteInPlace src/core/config.c --replace-fail 'bool is_allowed;' 'bool is_allowed = false;'
-    ";
-  });
-
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
   hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
     version = "2.10";
@@ -102,24 +87,6 @@ final: prev: {
       })
     ];
   });
-
-  # gaming at full speed
-  proton-cachyos = final.callPackage ../packages/proton-bin {
-    toolTitle = "Proton-CachyOS";
-    tarballPrefix = "proton-";
-    tarballSuffix = "-x86_64.tar.xz";
-    toolPattern = "proton-cachyos-.*";
-    releasePrefix = "cachyos-";
-    releaseSuffix = "-slr";
-    versionFilename = "cachyos-version.json";
-    owner = "CachyOS";
-    repo = "proton-cachyos";
-  };
-  proton-cachyos_x86_64_v3 = final.proton-cachyos.override {
-    toolTitle = "Proton-CachyOS x86-64-v3";
-    tarballSuffix = "-x86_64_v3.tar.xz";
-    versionFilename = "cachyos-v3-version.json";
-  };
 
   # https://github.com/NixOS/nixpkgs/pull/451951
   osdlyrics = (prev.osdlyrics).overrideAttrs (prevAttrs: {

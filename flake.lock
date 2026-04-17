@@ -131,6 +131,20 @@
     },
     "flake-schemas": {
       "locked": {
+        "lastModified": 1721999734,
+        "narHash": "sha256-G5CxYeJVm4lcEtaO87LKzOsVnWeTcHGKbKxNamNWgOw=",
+        "rev": "0a5c42297d870156d9c57d8f99e476b738dcd982",
+        "revCount": 75,
+        "type": "tarball",
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/flake-schemas/0.1.5/0190ef2f-61e0-794b-ba14-e82f225e55e6/source.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://flakehub.com/f/DeterminateSystems/flake-schemas/%3D0.1.5.tar.gz"
+      }
+    },
+    "flake-schemas_2": {
+      "locked": {
         "narHash": "sha256-ifw8Td8kD08J8DxFbYjeIx5naHcDLz7s2IFP3X42I/U=",
         "rev": "c702cbb663d6d70bbb716584a2ee3aeb35017279",
         "revCount": 21,
@@ -178,6 +192,7 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "nyx-loner",
           "nixpkgs"
         ]
       },
@@ -218,21 +233,66 @@
         "type": "github"
       }
     },
+    "jovian": {
+      "inputs": {
+        "nix-github-actions": "nix-github-actions",
+        "nixpkgs": [
+          "nyx-loner",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776428236,
+        "narHash": "sha256-+0SyQglnT2xUiyY07155G+O7aUWISELwqtTnfURufRU=",
+        "owner": "Jovian-Experiments",
+        "repo": "Jovian-NixOS",
+        "rev": "eac78fc379ca47f7e21be8539c405e5fb489a857",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Jovian-Experiments",
+        "repo": "Jovian-NixOS",
+        "type": "github"
+      }
+    },
     "latest-claude-code": {
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1776436991,
-        "narHash": "sha256-Vb08ZcfoUbnXxHPsFEMJG+7L8+lG/ZKLuI/wQ8bKJxw=",
+        "lastModified": 1776448877,
+        "narHash": "sha256-SKGNGiV8R8h3K+YQRu5Go7LecqvK/MnY7XGQh0eQQl0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3e73265ba7d6f615477628fff4607c27e65020b1",
+        "rev": "ff08047cedba058da9ef13632e716e49a72a4211",
         "type": "github"
       },
       "original": {
         "dir": "pkgs/by-name/cl/claude-code",
         "owner": "NixOS",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nix-github-actions": {
+      "inputs": {
+        "nixpkgs": [
+          "nyx-loner",
+          "jovian",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729697500,
+        "narHash": "sha256-VFTWrbzDlZyFHHb1AlKRiD/qqCJIripXKiCSFS8fAOY=",
+        "owner": "zhaofengli",
+        "repo": "nix-github-actions",
+        "rev": "e418aeb728b6aa5ca8c5c71974e7159c2df1d8cf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zhaofengli",
+        "ref": "matrix-name",
+        "repo": "nix-github-actions",
         "type": "github"
       }
     },
@@ -277,6 +337,28 @@
         "type": "github"
       }
     },
+    "nyx-loner": {
+      "inputs": {
+        "flake-schemas": "flake-schemas",
+        "home-manager": "home-manager",
+        "jovian": "jovian",
+        "nixpkgs": "nixpkgs",
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1776445197,
+        "narHash": "sha256-xNQgVUZtcSPcMDLbEuJMMP1M54HWSLCDCGSL85hqIuU=",
+        "owner": "lonerOrz",
+        "repo": "nyx-loner",
+        "rev": "87b1c3c692ee28b93126fd29e8b96f991f121571",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lonerOrz",
+        "repo": "nyx-loner",
+        "type": "github"
+      }
+    },
     "pedrochrome-css": {
       "flake": false,
       "locked": {
@@ -296,14 +378,42 @@
     "root": {
       "inputs": {
         "ctr": "ctr",
-        "home-manager": "home-manager",
+        "home-manager": [
+          "nyx-loner",
+          "home-manager"
+        ],
         "impermanence": "impermanence",
         "latest-claude-code": "latest-claude-code",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": [
+          "nyx-loner",
+          "nixpkgs"
+        ],
+        "nyx-loner": "nyx-loner",
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
         "ullib": "ullib",
         "yafas": "yafas"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "nyx-loner",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776395632,
+        "narHash": "sha256-Mi1uF5f2FsdBIvy+v7MtsqxD3Xjhd0ARJdwoqqqPtJo=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "8087ff1f47fff983a1fba70fa88b759f2fd8ae97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "stylix": {
@@ -465,7 +575,7 @@
     },
     "yafas": {
       "inputs": {
-        "flake-schemas": "flake-schemas",
+        "flake-schemas": "flake-schemas_2",
         "systems": "systems_3"
       },
       "locked": {

@@ -1,6 +1,4 @@
 flakes: final: _prev: {
-  busybox_appletless = final.busybox.override { enableAppletSymlinks = false; };
-
   nixos-clear = final.callPackage ../packages/scripts { scriptName = "nixos-clear"; };
   nixos-next-shot = final.callPackage ../packages/scripts {
     scriptName = "nixos-next-shot";

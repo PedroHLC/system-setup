@@ -12,7 +12,6 @@ mkNixOS {
     ../../nixos-modules/seat.nix
     ../../nixos-modules/wgcf-teams.nix
     ../../nixos-modules/wireguard-client.nix
-    ../../nixos-modules/zfs-impermanence-on-shutdown.nix
     ./configuration.nix
     ./hardware-configuration.nix
   ];

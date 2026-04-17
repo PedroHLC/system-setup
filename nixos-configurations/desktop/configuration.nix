@@ -104,7 +104,6 @@
   environment.systemPackages = with pkgs; [
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
     i2pd
-    # latencyflex-vulkan
     nixos-next-shot
     uxplay
     virtiofsd # for libvirtd
