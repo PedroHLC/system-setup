@@ -58,6 +58,9 @@ final: prev: {
   # helps me connecting to some VPS
   ssh-to-nix = final.callPackage ../packages/scripts { scriptName = "ssh-to-nix"; };
 
+  # includes newer protocols
+  xdg-desktop-portal-wlr = final.xdg-desktop-portal-wlr_git;
+
   # https://tildearrow.org/?p=post&month=7&year=2022&item=lar
   hostapd_nolar = final.hostapd.overrideAttrs (oa: rec {
     version = "2.10";
