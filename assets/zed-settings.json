@@ -2,6 +2,7 @@
 // https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
+  "icon_theme": "Catppuccin Latte",
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
@@ -26,13 +27,14 @@
   "auto_update": false,
   "agent": {
     "default_profile": "write",
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": "always",
     "default_model": {
       "provider": "llamacpp",
       "model": "Qwen3.5-35B-A3B-Q3_K_S.gguf"
     },
     "button": true,
-    "enabled": true
+    "enabled": true,
+    "max_content_width": 3840
   },
   "language_models": {
     "openai_compatible": {
@@ -55,7 +57,7 @@
     }
   },
   // UI Preferences
-  "theme": "Catppuccin Macchiato",
+  "theme": "Fleet Dark Purple",
   "vim_mode": true,
   "ui_font_size": 14,
   "buffer_font_family": "Borg Sans Mono",
