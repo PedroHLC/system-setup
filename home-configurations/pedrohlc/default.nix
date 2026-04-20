@@ -26,6 +26,8 @@ with utils; {
         mpv-hq-entry
         my-wscreensaver
         pokemmo-launcher
+      ] ++ lists.optionals hasAppleSeat [
+        apple-notify
       ] ++ lists.optionals hasSeat [
         direnv-claude
         pear-desktop
@@ -437,7 +439,7 @@ with utils; {
     # AI (Foreign)
     claude-code = {
       enable = isMacOS;
-      memory.text = ''
+      context = ''
         This user has Nix installed, for simple things you can `nix run nixpkgs#pkgname -- args`.
 
         If the user asks for an encyclopedia-like document, it means to write it in textbook prose style, with dense paragraphs and no markdown formatting.
@@ -449,16 +451,8 @@ with utils; {
         If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
 
         ## Notifications
-        - **macOS desktop**: use heredoc to avoid quote escaping issues:
-          ```
-          osascript <<'AS'
-          display notification "<detail>" with title "<context>" sound name "<sound>"
-          AS
-          ```
-          Sounds: "Glass" for success, "Basso" for failure.
-        - **Moshi push** (mobile): `curl -s -X POST https://api.getmoshi.app/api/webhook -H "Content-Type: application/json" -d "{\"token\": \"$(cat ~/.secrets/moshi-push.token)\", \"title\": \"...\", \"message\": \"...\"}"`
-        - Token lives in `~/.secrets/moshi-push.token` — never store it in memory or commit it
-        - Always send **both** desktop + push when notifying
+        - `echo "<message>" | "apple-notify" "<title>" [sound]` — sends desktop + mobile push in one shot.
+        - Sounds: `Glass` (success, default), `Basso` (failure).
       '';
       settings = {
         theme = "dark";
@@ -471,7 +465,32 @@ with utils; {
           "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING" = "1";
           "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
         };
+        hooks = {
+          "PostCompact" = [
+            {
+              matcher = "*";
+              hooks = [
+                {
+                  type = "command";
+                  command = "$HOME/.claude/hooks/post-compact.sh";
+                }
+              ];
+            }
+          ];
+          "SessionStart" = [
+            {
+              matcher = "compact";
+              hooks = [
+                {
+                  type = "command";
+                  command = "$HOME/.claude/hooks/session-start.sh";
+                }
+              ];
+            }
+          ];
+        };
       };
+      hooksDir = ../../assets/claude-hooks;
     };
   };
 

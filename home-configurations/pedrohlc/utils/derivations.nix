@@ -113,4 +113,9 @@ rec {
       "$(which direnv)" = "${config.programs.direnv.package}/bin/direnv";
     };
   };
+
+  # MacOS+iOS notification
+  apple-notify = pkgs.callPackage ../../../packages/scripts {
+    scriptName = "apple-notify";
+  };
 }
