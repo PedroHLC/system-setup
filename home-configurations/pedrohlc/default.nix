@@ -465,32 +465,7 @@ with utils; {
           "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING" = "1";
           "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
         };
-        hooks = {
-          "PostCompact" = [
-            {
-              matcher = "*";
-              hooks = [
-                {
-                  type = "command";
-                  command = "$HOME/.claude/hooks/post-compact.sh";
-                }
-              ];
-            }
-          ];
-          "SessionStart" = [
-            {
-              matcher = "compact";
-              hooks = [
-                {
-                  type = "command";
-                  command = "$HOME/.claude/hooks/session-start.sh";
-                }
-              ];
-            }
-          ];
-        };
       };
-      hooksDir = ../../assets/claude-hooks;
     };
   };
 

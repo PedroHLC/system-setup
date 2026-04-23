@@ -2,6 +2,15 @@
 // https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
+  "project_panel": {
+    "dock": "right"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "git_panel": {
+    "dock": "right"
+  },
   "icon_theme": "Catppuccin Latte",
   "agent_servers": {
     "claude-acp": {
@@ -26,6 +35,7 @@
   },
   "auto_update": false,
   "agent": {
+    "dock": "left",
     "default_profile": "write",
     "play_sound_when_agent_done": "always",
     "default_model": {
@@ -153,6 +163,7 @@
   ],
   // Disable shit
   "collaboration_panel": {
+    "dock": "right",
     "button": false
   },
   "notification_panel": {
