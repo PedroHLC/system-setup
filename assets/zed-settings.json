@@ -2,6 +2,7 @@
 // https://github.com/zed-industries/zed/blob/main/assets/settings/default.json
 {
   // Features Preferences
+  "cli_default_open_behavior": "new_window",
   "project_panel": {
     "dock": "right"
   },
@@ -15,6 +16,7 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
+        "mode": "auto",
         "model": "default"
       },
       "type": "registry",

@@ -49,6 +49,7 @@
     lan-mouse
     mosh
     postman
+    procps
     ripgrep
     stats
     tmux
