@@ -104,6 +104,9 @@
           filters_update_interval = 1;
           inherit safe_search;
         };
+        http = {
+          insecure_enabled = true;
+        };
         tls = {
           enabled = true;
           server_name = web.zeta.addr;
@@ -111,7 +114,6 @@
           port_https = machines.lab.loopback.adguardPort;
           port_dns_over_tls = 853;
           port_dns_over_quic = 853;
-          allow_unencrypted_doh = true;
           certificate_path = "/var/lib/acme/${web.lab.addr}/cert.pem";
           private_key_path = "/var/lib/acme/${web.lab.addr}/key.pem";
         };
@@ -190,7 +192,7 @@
         };
         # For bumping, read the "Configuration changes" sections of
         # https://github.com/AdguardTeam/AdGuardHome/blob/master/CHANGELOG.md
-        schema_version = 33;
+        schema_version = 34;
       };
   };
 
