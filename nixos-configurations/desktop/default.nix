@@ -14,8 +14,10 @@ mkNixOS {
     ../../nixos-modules/wireguard-client.nix
     ./configuration.nix
     ./hardware-configuration.nix
+    "${flakes.jovian}/modules/steamos/cec.nix"
   ];
   extraOverlays = [
     (import ../../overlays/seat.nix)
+    (import ../../overlays/desktop.nix flakes)
   ];
 }

@@ -107,8 +107,6 @@
     nixos-next-shot
     uxplay
     virtiofsd # for libvirtd
-    vkbasalt
-    pkgs.gamescope-wsi # for HDR through XDG_DATA_DIRS
   ];
 
   # One-button virtualization for some tests of mine
@@ -157,9 +155,11 @@
     args = [ "--hdr-enabled" ];
     env = {
       DXVK_HDR = "1";
-      ENABLE_GAMESCOPE_WSI = "1";
     };
   };
+
+  # HDMI CEC
+  jovian.steamos.enableHdmiCecIntegration = true;
 
   # Allows streaming with KMS
   security.wrappers.sunshine = {

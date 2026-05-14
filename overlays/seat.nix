@@ -22,12 +22,6 @@ final: prev: {
     }))
     { plugins = with final.kubernetes-helmPlugins; [ helm-diff ]; };
 
-  # Steam in tenfoot + mangoapp
-  bigsteam = final.callPackage ../packages/scripts { scriptName = "bigsteam"; };
-
-  # Gamemoderun + mangoapp (to run withing gamescope)
-  mangoapprun = final.callPackage ../packages/scripts { scriptName = "mangoapprun"; };
-
   # Script to force XWayland (in case something catches fire).
   nowl = final.callPackage ../packages/scripts { scriptName = "nowl"; };
 

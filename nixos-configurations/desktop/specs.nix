@@ -18,7 +18,6 @@
     nvidiaPrime = false;
     touchpad = null;
     sunshine = true;
-    kvm = { left = "laptop"; right = "foreign"; };
     ctrlNearSpaceKeyMap = true;
     steamMachine = {
       output = "HDMI-A-1";

@@ -54,6 +54,7 @@
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
     "vm.max_map_count" = 2147483642; # helps with Wine ESYNC/FSYNC
+    "net.ipv4.tcp_mtu_probing" = true; # helps with Ubisoft Launcher connection lost
   };
 
   # I prefer to trim using ZFS' "autotrim"
@@ -235,14 +236,12 @@
     vesktop
 
     # Gaming tools
-    bigsteam
-    mangoapprun
     mangohud
     mesa-demos
     vulkan-caps-viewer
     vulkan-tools
     winetricks
-    gamescope-wsi
+    gamescope-wsi # for HDR through XDG_DATA_DIRS
     pkgsi686Linux.gamescope-wsi
 
     # Gaming
@@ -320,7 +319,7 @@
     enable = true;
     gamescopeSession = {
       enable = true; # Gamescope session is better for AAA gaming.
-      args = [ "--expose-wayland" "--immediate-flips" "--" "bigsteam" ];
+      args = [ "--immediate-flips" "--mangoapp" ];
     };
 
     extraCompatPackages = with pkgs; [
@@ -333,28 +332,26 @@
   programs.gamescope = {
     enable = true;
     capSysNice = true;
-    env = lib.mkForce {
-      # I set DXVK_HDR in the alternative-sessions script.
+    env = {
+      # I set DXVK_HDR per-device
       ENABLE_GAMESCOPE_WSI = "1";
     };
     package = pkgs.gamescope;
   };
 
-  # Gamescope without wrapper, but with right capabilities
-  security.wrappers.valve-gamescope = {
-    owner = "root";
-    group = "root";
-    source = "${pkgs.gamescope}/bin/gamescope";
-    capabilities = "cap_sys_nice+pie";
-  };
-  environment.variables.GAMESCOPE_NOWRAP = "${config.security.wrapperDir}/valve-gamescope";
-
-  # Gamescope untouched (no wrapper, no capabilities) in a fixed-path place
-  fileSystems."/opt/gamescope" = {
-    device = pkgs.gamescope.outPath;
-    fsType = "none";
-    options = [ "bind" "ro" "x-gvfs-hide" ];
-  };
+  # Wifi management inside Steam (taken from Jovian)
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        action.id.indexOf("org.freedesktop.NetworkManager") == 0 &&
+        subject.isInGroup("users") &&
+        subject.local &&
+        subject.active
+      ) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 
   # For out-of-box gaming with Heroic Game Launcher
   services.flatpak.enable = true;

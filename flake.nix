@@ -46,6 +46,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    jovian.follows = "nyx-loner/jovian";
+
     # Latest Claude
     latest-claude-code = {
       url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";

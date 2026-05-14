@@ -383,6 +383,10 @@
           "home-manager"
         ],
         "impermanence": "impermanence",
+        "jovian": [
+          "nyx-loner",
+          "jovian"
+        ],
         "latest-claude-code": "latest-claude-code",
         "nixpkgs": [
           "nyx-loner",

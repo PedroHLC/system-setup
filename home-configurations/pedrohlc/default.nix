@@ -20,7 +20,6 @@ with utils; {
   home = {
     packages =
       with pseudoPkgs; with pkgs; (lists.optionals hasLinuxSeat [
-        alternative-session
         firefox-gate
         minidlna-launcher
         mpv-hq-entry
@@ -83,13 +82,13 @@ with utils; {
               ${config.wayland.windowManager.sway.package}/bin/sway
               # Leave the deattached tmux session we have started inside sway.
               ${tmux} send-keys -t DE 'C-c' 'C-d' || true
-              # Alternative sessions I might wanna run
-              exec alternative-session
+              # Leave to shell
+              exec fish
             '';
 
           steamSession = with steamMachine; ''
             if ${check-sha256} '${sha256}' '/sys/class/drm/card'*'-${output}/edid' ${salt}; then
-              exec env DXVK_HDR=1 steam-gamescope
+              exec steam-gamescope
             else
               ${deSession}
             fi

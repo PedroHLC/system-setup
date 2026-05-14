@@ -95,11 +95,6 @@ rec {
       --replace "Name=mpv" "Name=mpv-hq"
   '';
 
-  # Handles picking another session when leaving sway
-  alternative-session = pkgs.callPackage ../../../packages/scripts {
-    scriptName = "alternative-session";
-  };
-
   # Meme when around nvidia-proprietary because of https://github.com/GhostNaN/mpvpaper/issues/38
   nvidia-meme = pkgs.writeShellScript "nvidia-meme" ''
     exec ${pkgs.swaylock}/bin/swaylock -s fit -i ~/Pictures/nvidia-meme.jpg
