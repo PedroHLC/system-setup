@@ -19,7 +19,7 @@
 
   # UPS monitoring
   power.ups = {
-    enable = true;
+    enable = false;
     ups.sms-gamer = {
       driver = "sms_ser";
       description = "sms-gamer";

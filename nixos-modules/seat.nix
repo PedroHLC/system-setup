@@ -3,6 +3,9 @@
 
 # NixOS-defined options
 {
+  # Disable the man index cache, too slow, crashes often
+  documentation.man.cache.enable = false;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     systemd-boot = {
@@ -17,6 +20,9 @@
   # Microcode updates.
   hardware.cpu.intel.updateMicrocode = true;
   hardware.cpu.amd.updateMicrocode = true;
+
+  # God-blessed kernel
+  boot.kernelPackages = lib.mkOverride 99 pkgs.linuxPackages_cachyos-lto;
 
   # Filesytems settings.
   boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
@@ -244,7 +250,6 @@
     # openmohaa_git
     openrct2
     space-cadet-pinball
-    vcmi
   ];
 
   # The base GUI toolkit in my setup.
@@ -356,7 +361,7 @@
 
   # Smooth-criminal bleeding-edge Mesa3D
   chaotic.mesa-git = {
-    enable = true;
+    enable = lib.strings.versionAtLeast pkgs.libdrm.version "2.4.133";
     fallbackSpecialisation = false;
   };
 

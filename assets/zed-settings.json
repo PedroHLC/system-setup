@@ -41,8 +41,9 @@
     "default_profile": "write",
     "play_sound_when_agent_done": "always",
     "default_model": {
-      "provider": "llamacpp",
-      "model": "Qwen3.5-35B-A3B-Q3_K_S.gguf"
+      "enable_thinking": true,
+      "provider": "openrouter",
+      "model": "moonshotai/kimi-k2.6"
     },
     "button": true,
     "enabled": true,

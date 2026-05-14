@@ -306,7 +306,7 @@ with utils; {
           let
             base =
               if ctrlNearSpaceKeyMap
-              then importJSON ../../assets/alacritty-apple-like-mods.json
+              then import ../../common/alacritty-apple-mods.nix
               else [ ];
 
             newWithoutTmux =
