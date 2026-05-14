@@ -46,7 +46,6 @@
     gnupg
     heroku
     iproute2mac
-    lan-mouse
     mosh
     postman
     procps
