@@ -48,6 +48,11 @@
 
     jovian.follows = "nyx-loner/jovian";
 
+    moraxyc = {
+      url = "github:Moraxyc/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Latest Claude
     latest-claude-code = {
       url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";

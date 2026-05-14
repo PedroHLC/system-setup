@@ -11,6 +11,7 @@ mkNixOS {
     ./servers/atuin.nix
     ./servers/bsky.nix
     ./servers/ctr.nix
+    ./servers/ghostfolio.nix
     ./servers/git.nix
     ./servers/journal-remote.nix
     ./servers/matrix.nix

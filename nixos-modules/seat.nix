@@ -450,18 +450,6 @@
   ];
   services.orca.enable = false;
 
-  # For development, but disabled to start service on-demand
-  services.postgresql = {
-    enable = false;
-    package = pkgs.postgresql; # always the latest
-    settings = {
-      # log_statement = "all";
-      # logging_collector = true;
-      log_destination = lib.mkForce "syslog";
-    };
-  };
-  systemd.services.postgresql.wantedBy = lib.mkForce [ ]; # don't start with system
-
   # Have my portal settings created through users' files
   systemd.user.services.xdg-desktop-portal-wlr.serviceConfig.ExecStart = lib.mkForce [
     ""

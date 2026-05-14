@@ -36,6 +36,7 @@ rec {
       vpn = {
         adguardAdminPort = 3000;
         atuinPort = 8888;
+        ghostfolioPort = 3333;
       };
       loopback = {
         adguardPort = 3334;
