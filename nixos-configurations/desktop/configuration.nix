@@ -58,6 +58,9 @@
   };
 
   boot.kernelParams = [
+    "amdgpu.gpu_recovery=1"
+    "amdgpu.lockup_timeout=5000"
+    "amdgpu.runpm=0"
     # Let's use AMD P-State
     "amd-pstate=guided"
   ];

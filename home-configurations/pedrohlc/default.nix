@@ -231,7 +231,9 @@ with utils; {
         # additional features
         battery = hasBattery;
         cpu_temp = true;
+        cpu_power = true;
         gpu_junction_temp = true;
+        gpu_power = true;
         io_read = true;
         io_write = true;
         vram = true;
