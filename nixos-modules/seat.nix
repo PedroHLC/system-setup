@@ -320,6 +320,7 @@
     gamescopeSession = {
       enable = true; # Gamescope session is better for AAA gaming.
       args = [ "--immediate-flips" "--mangoapp" ];
+      env.MANGOHUD_CONFIGFILE = "/home/pedrohlc/.config/MangoHud/MangoHud.conf";
     };
 
     extraCompatPackages = with pkgs; [

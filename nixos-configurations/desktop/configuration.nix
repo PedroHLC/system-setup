@@ -158,9 +158,6 @@
     };
   };
 
-  # HDMI CEC
-  jovian.steamos.enableHdmiCecIntegration = true;
-
   # Allows streaming with KMS
   security.wrappers.sunshine = {
     source = "${pkgs.sunshine}/bin/sunshine";

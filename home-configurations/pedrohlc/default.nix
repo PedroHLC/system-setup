@@ -88,7 +88,10 @@ with utils; {
 
           steamSession = with steamMachine; ''
             if ${check-sha256} '${sha256}' '/sys/class/drm/card'*'-${output}/edid' ${salt}; then
-              exec steam-gamescope
+              MANGOHUD_CONFIGFILE=$HOME/.config/MangoHud/MangoHud.conf \
+              exec gamescope --steam --mangoapp -r 120 \
+                --hdr-enabled --hdr-sdr-content-nits 400 --hdr-itm-enabled --hdr-itm-sdr-nits 100 --hdr-itm-target-nits 1500 \
+                -- steam -tenfoot -pipewire-dmabuf
             else
               ${deSession}
             fi
