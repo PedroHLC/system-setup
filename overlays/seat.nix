@@ -84,4 +84,32 @@ final: prev: {
       })
     ];
   });
+
+  # until nixpkgs#518535
+  tidal-hifi =
+    if prev.tidal-hifi.version == "6.3.1-Mavy" then
+      (prev.tidal-hifi.overrideAttrs (prevAttrs: rec {
+        version = "7.0.1";
+        src = final.fetchFromGitHub {
+          owner = "Mastermindzh";
+          repo = "tidal-hifi";
+          tag = version;
+          hash = "sha256-6RKGSXWe3YP52bv03kEX60RLE+WRBEsou6yHLZGEVPs=";
+        };
+        npmDepsHash = "sha256-8uDzikiVGLjhpba6HpSHcvlNghRtmugqjazoAYP1M98=";
+        npmDeps = final.fetchNpmDeps {
+          inherit src;
+          hash = npmDepsHash;
+          forceGitDeps = true;
+          makeCacheWritable = true;
+        };
+      })).override
+        {
+          castlabs-electron = prev.tidal-hifi.passthru.castlabs-electron.overrideAttrs (prevAttrs: rec {
+            version = "41.5.0";
+            urls = [ "https://github.com/castlabs/electron-releases/releases/download/v${version}+wvcus/electron-v${version}+wvcus-linux-x64.zip" ];
+            hash = "sha256-LjM80c48AzEwoU8h07qUELTV5jjQeApanaoPZ/szdag=";
+          });
+        }
+    else throw "Newer tida-hifi in Nixpkgs";
 }

@@ -57,22 +57,6 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  # Up-to 192kHz in the Focusrite
-  services.pipewire.extraConfig.pipewire."99-playback-96khz" = {
-    "context.properties" = {
-      "default.clock.rate" = 96000;
-      "default.clock.allowed-rates" = [ 44100 48000 88200 96000 176400 192000 ];
-    };
-  };
-
-  # Up-to 192kHz in the Focusrite (thanks to https://another.maple4ever.net/archives/2994/)
-  # and virtualization MSRS
-  boot.extraModprobeConfig = ''
-    options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1 quirk_flags=0x1
-    options kvm ignore_msrs=1
-  '';
-
-
   # B550I AORUS PRO AX issue with suspension
   systemd.services.fix-b550i-acpi-wakeup = {
     description = "Disable misbehaving device from waking-up computer from sleep.";
