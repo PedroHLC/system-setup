@@ -13,6 +13,7 @@
     displayHeight = 2160;
     displayRefresh = 60;
     displayBrightness = false;
+    displayInputSource = "0x0f";
     notificationX = "center";
     notificationY = "bottom";
     nvidiaPrime = false;

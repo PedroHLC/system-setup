@@ -7,6 +7,7 @@ mkNixOS {
     flakes.impermanence.nixosModules.impermanence
     ../../nixos-modules/wireguard-client.nix
     ../../nixos-modules/wgcf-teams.nix
+    ../../nixos-modules/monitor-follow-usb.nix
     ../../nixos-modules/seat.nix
     ./hardware-configuration.nix
     ./configuration.nix

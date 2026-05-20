@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, specs, ... }:
 
 let
   ddcutil = dest: "${pkgs.ddcutil}/bin/ddcutil setvcp 60 ${dest} --noverify";
-  toLinux = ddcutil "0x0f"; # DP-1
+  toLinux = ddcutil specs.seat.displayInputSource; # DP-1 (0x0f) or HDMI-1 (0x05)
   toOther = ddcutil "0x06"; # HDMI-2
 in
 {
@@ -11,7 +11,7 @@ in
 
   # Service: Switch TO Linux
   systemd.services.monitor-to-linux = {
-    description = "Monitor Switch: Pull to Linux (DP-1)";
+    description = "Monitor Switch: Pull to Linux";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = toLinux;
@@ -21,7 +21,7 @@ in
 
   # Service: Switch AWAY from Linux
   systemd.services.monitor-to-other = {
-    description = "Monitor Switch: Push to Other (HDMI-2)";
+    description = "Monitor Switch: Push to Other";
     serviceConfig = {
       Type = "oneshot";
       ExecStart = toOther;
