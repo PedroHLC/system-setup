@@ -6,6 +6,9 @@ mkNixOS {
   extraModules = [
     flakes.impermanence.nixosModules.impermanence
     ../../nixos-modules/4k-nohidpi.nix
+    ../../nixos-modules/amd-common.nix
+    ../../nixos-modules/ctrl-near-space-key.nix
+    ../../nixos-modules/hdr-display.nix
     ../../nixos-modules/journal-upload.nix
     ../../nixos-modules/local-ai.nix
     ../../nixos-modules/monitor-follow-usb.nix

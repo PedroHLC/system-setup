@@ -8,7 +8,7 @@
   nvmeSensors = [ "nvme-pci-0100" ];
   mainNetworkInterface = "enp2s0";
   seat = {
-    displayId = "HDMI-A-2";
+    displayId = "HDMI-A-1";
     displayWidth = 38400;
     displayHeight = 2160;
     displayRefresh = 60;
