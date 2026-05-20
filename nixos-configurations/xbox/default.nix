@@ -13,6 +13,5 @@ mkNixOS {
   ];
   extraOverlays = [
     (import ../../overlays/seat.nix)
-    (import ../../overlays/laptop.nix)
   ];
 }

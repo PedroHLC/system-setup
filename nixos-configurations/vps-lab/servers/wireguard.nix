@@ -35,8 +35,8 @@ in
             {
               publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
               allowedIPs = [
-                "${machines.laptop.vpn.v4}/32"
-                "${machines.laptop.vpn.v6}/128"
+                "${machines.xbox.vpn.v4}/32"
+                "${machines.xbox.vpn.v6}/128"
                 multicastV4
                 multicastV6
               ];

@@ -51,8 +51,8 @@ rec {
       };
       lans = { };
     };
-    laptop = addVPNClient "3" vpn {
-      hostname = "laptop";
+    xbox = addVPNClient "3" vpn {
+      hostname = "xbox";
       lans = { };
     };
     beacon = addVPNClient "5" vpn {

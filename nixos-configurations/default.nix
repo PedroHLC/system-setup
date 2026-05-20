@@ -33,5 +33,5 @@ in
 {
   "${machines.lab.hostname}" = import ./vps-lab params;
   "${machines.desktop.hostname}" = import ./desktop params;
-  "${machines.laptop.hostname}" = import ./laptop params;
+  "${machines.xbox.hostname}" = import ./xbox params;
 }

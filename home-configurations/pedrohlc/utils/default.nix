@@ -104,7 +104,7 @@ self:
   # To help with Audacious configs
   audaciousConfigGenerator = pkgs.callPackage ../../../packages/audacious-config-generator.nix { };
 
-  # Different timeouts for locking screens in desktop/laptop
+  # Different timeouts for locking screens in desktop/xbox
   lockTimeout = if dangerousAlone then 60 else 300;
   dpmsTimeout = lockTimeout * 2;
 })
