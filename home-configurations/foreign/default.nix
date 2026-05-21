@@ -36,7 +36,6 @@
 
   # More packages
   home.packages = with pkgs; [
-    aerospace
     aria2
     borg-sans-mono
     claude-monitor
@@ -50,9 +49,12 @@
     postman
     procps
     ripgrep
-    stats
     tmux
     xleak
+    # used within launchad agents
+    aerospace
+    monitorcontrol
+    stats
   ];
 
   # Borg Sans is good!
@@ -80,6 +82,18 @@
       Label = "com.mac-stats";
       ProcessType = "Background";
       ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/Stats.app/Contents/MacOS/Stats" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+    };
+  };
+
+  # AutoRaise agent
+  launchd.agents.monitorcontrol = {
+    enable = true;
+    config = {
+      Label = "app.monitorcontrol";
+      ProcessType = "Background";
+      ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/MonitorControl.app/Contents/MacOS/MonitorControl" ];
       RunAtLoad = true;
       KeepAlive = true;
     };
