@@ -36,10 +36,6 @@
 
     # Use all cores for building (defaults to one in PR 199491)
     settings.max-jobs = "auto";
-
-    # More caches
-    settings.substituters = flakes.nyx-loner.nixConfig.extra-substituters;
-    settings.trusted-public-keys = flakes.nyx-loner.nixConfig.extra-trusted-public-keys;
   };
 
   # Enable all the firmwares
