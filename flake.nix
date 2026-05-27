@@ -4,10 +4,10 @@
   # My main channel and extra repositories
   inputs = {
     # Godsent flake
-    nyx-loner.url = "github:lonerOrz/nyx-loner";
+    chaotic.url = "github:chaotic-cx/nyx/main"; # TODO: Change to nyxpkgs-unstable
 
     # Mortal-hands flake
-    nixpkgs.follows = "nyx-loner/nixpkgs";
+    nixpkgs.follows = "chaotic/nixpkgs";
 
     # Reset rootfs every reboot
     impermanence = {
@@ -19,7 +19,7 @@
     };
 
     # Home-manager for managing my user's home
-    home-manager.follows = "nyx-loner/home-manager";
+    home-manager.follows = "chaotic/home-manager";
 
     # My "outputs" manager
     yafas.url = "github:UbiqueLambda/yafas";
@@ -46,7 +46,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jovian.follows = "nyx-loner/jovian";
+    jovian.follows = "chaotic/jovian";
 
     # Latest Claude
     latest-claude-code = {
@@ -74,7 +74,7 @@
         # Special args you'll find in every module.
         specialArgs = import common/nixos-special-args.nix inputs;
 
-        # When accessing my flake from other machines I need nyx-loner's cache
-        inherit (inputs.nyx-loner) nixConfig;
+        # When accessing my flake from other machines I need chaotic's cache
+        inherit (inputs.chaotic) nixConfig;
       };
 }

@@ -16,7 +16,7 @@ let
       modules = [
         nixpkgs.nixosModules.readOnlyPkgs
         home-manager.nixosModules.home-manager
-        nyx-loner.nixosModules.default
+        chaotic.nixosModules.default
         ../nixos-modules/core.nix
         {
           home-manager.users.pedrohlc = import ../home-configurations/pedrohlc;

@@ -25,5 +25,5 @@ import nixpkgs {
     pedroWatermark = true;
     allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfree;
   } // extraConfig;
-  overlays = [ (import ../overlays/core.nix flakes) flakes.nyx-loner.overlays.cache-friendly ] ++ extraOverlays;
+  overlays = [ (import ../overlays/core.nix flakes) flakes.chaotic.overlays.cache-friendly ] ++ extraOverlays;
 }
