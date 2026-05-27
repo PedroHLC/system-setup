@@ -1,7 +1,11 @@
-{ ssot, ... }: with ssot;
+{ ssot, config, ... }: with ssot;
 {
   imports = [
     ../../../nixos-modules/postgres.nix
+  ];
+
+  environment.systemPackages = [
+    config.services.niks3.package
   ];
 
   services.niks3 = {

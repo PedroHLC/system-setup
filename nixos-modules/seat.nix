@@ -1,5 +1,5 @@
 # The top lambda and it super set of parameters.
-{ config, lib, pkgs, ssot, ... }: with ssot;
+{ config, lib, flakes, pkgs, ssot, ... }: with ssot;
 
 # NixOS-defined options
 {
@@ -223,6 +223,7 @@
     postman
     python3Minimal
     zed-editor
+    flakes.niks3.packages.${stdenv.hostPlatform.system}.niks3
 
     # Office-stuff
     inkscape

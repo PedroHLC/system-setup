@@ -53,7 +53,10 @@
     };
 
     # Nix cache
-    niks3.url = "github:Mic92/niks3/v1.6.0";
+    niks3 = {
+      url = "github:Mic92/niks3/v1.6.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, yafas, ... }@inputs:
