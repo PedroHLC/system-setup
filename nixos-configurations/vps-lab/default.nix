@@ -6,6 +6,7 @@ mkNixOS {
   extraModules = [
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     "${nixpkgs}/nixos/modules/virtualisation/oci-common.nix"
+    niks3.nixosModules.default
     ./configuration.nix
     ./servers/adguard.nix
     ./servers/atuin.nix
@@ -15,6 +16,7 @@ mkNixOS {
     ./servers/journal-remote.nix
     ./servers/matrix.nix
     ./servers/nginx.nix
+    ./servers/niks3.nix
     #./servers/runners.nix
     ./servers/wireguard.nix
     ./services/gits-mirror

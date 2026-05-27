@@ -46,13 +46,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    jovian.follows = "chaotic/jovian";
-
     # Latest Claude
     latest-claude-code = {
       url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";
       flake = false;
     };
+
+    # Nix cache
+    niks3.url = "github:Mic92/niks3/v1.6.0";
   };
 
   outputs = { nixpkgs, yafas, ... }@inputs:

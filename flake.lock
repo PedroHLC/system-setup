@@ -282,17 +282,37 @@
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1779844309,
-        "narHash": "sha256-13fVYlB5JkUe59lNMCFn+SIMCBwh0CsFYOHqz3mjSFk=",
+        "lastModified": 1779845118,
+        "narHash": "sha256-xpFNtfnavvYcx08lcTFoF25Ct5dXZbBnMXP9nqk3+CA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a8bdc096a8cb9832a86cbecb56414e66d32d47dd",
+        "rev": "2364b834d8a5c80fd302f295aff24db3087f21c7",
         "type": "github"
       },
       "original": {
         "dir": "pkgs/by-name/cl/claude-code",
         "owner": "NixOS",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "niks3": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2",
+        "treefmt-nix": "treefmt-nix"
+      },
+      "locked": {
+        "lastModified": 1778839878,
+        "narHash": "sha256-S2nSP6YWUz8I2uRZuAY93FoAAUa9TiZetLzjBv1n5vk=",
+        "owner": "Mic92",
+        "repo": "niks3",
+        "rev": "c29f3641de064545d75f00318cd45bea2b4ea1d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "ref": "v1.6.0",
+        "repo": "niks3",
         "type": "github"
       }
     },
@@ -331,6 +351,22 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1778491576,
+        "narHash": "sha256-9YOHDS9ANGbRmf3DSQ9UCvas3CyYNIBwBkKGQZTLXGY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1174f92bf37f1a5914be77e1b44482d6fbc75ecc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -385,11 +421,8 @@
           "home-manager"
         ],
         "impermanence": "impermanence",
-        "jovian": [
-          "chaotic",
-          "jovian"
-        ],
         "latest-claude-code": "latest-claude-code",
+        "niks3": "niks3",
         "nixpkgs": [
           "chaotic",
           "nixpkgs"
@@ -560,6 +593,27 @@
       "original": {
         "owner": "tinted-theming",
         "repo": "base16-zed",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "niks3",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775636079,
+        "narHash": "sha256-pc20NRoMdiar8oPQceQT47UUZMBTiMdUuWrYu2obUP0=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "790751ff7fd3801feeaf96d7dc416a8d581265ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
         "type": "github"
       }
     },
