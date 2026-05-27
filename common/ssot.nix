@@ -77,6 +77,7 @@ rec {
       inherit (web.lab) v4 v6;
     };
     bsky.addr = "bsky.chaotic.cx";
+    niks3.addr = "nyx-niks3.chaotic.cx";
     dev.addr = "ubiquelambda.dev";
     desktop.addr = "desk-pedrohlc.duckdns.org";
   };

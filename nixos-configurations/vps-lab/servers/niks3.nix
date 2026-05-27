@@ -29,6 +29,9 @@
       randomizedDelaySec = 1800;
     };
 
-    nginx.enable = false;
+    nginx = {
+      enable = true;
+      domain = web.niks3.addr;
+    };
   };
 }
