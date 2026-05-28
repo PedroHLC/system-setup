@@ -8,7 +8,11 @@
       };
     extraSpecialArgs = specialArgs // { specs = import ./foreign/specs.nix; };
     modules = [
-      { home = { username = "pedrohlc"; homeDirectory = "/Users/pedrohlc"; }; }
+      chaotic.homeModules.default
+      {
+        home = { username = "pedrohlc"; homeDirectory = "/Users/pedrohlc"; };
+        chaotic.nyx.overlay.enable = false;
+      }
       ./pedrohlc
       ./foreign
     ];

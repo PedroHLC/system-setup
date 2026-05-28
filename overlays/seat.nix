@@ -84,4 +84,12 @@ final: prev: {
       })
     ];
   });
+
+  # Drop CAP_SYS_NICE for children
+  gamescope = prev.gamescope.overrideAttrs (oa: {
+    postPatch = (oa.postPatch or "") + ''
+      substituteInPlace src/Utils/Process.cpp \
+        --replace-fail 'RestoreFdLimit();' 'prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_LOWER, 23, 0, 0); RestoreFdLimit();'
+    '';
+  });
 }
