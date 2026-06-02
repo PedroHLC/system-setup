@@ -370,6 +370,18 @@ with utils; {
       functions = {
         "ghpr-as" = "git fetch origin pull/$argv[1]/head:$argv[2]";
         "ghupr-as" = "git fetch upstream pull/$argv[1]/head:$argv[2]";
+        "tmux-a" = ''
+          tmux set-option -g prefix C-a
+          tmux unbind-key C-b
+          tmux bind-key C-a send-prefix
+          echo "tmux prefix set to Ctrl+A"
+        '';
+        "tmux-b" = ''
+          tmux set-option -g prefix C-b
+          tmux unbind-key C-a
+          tmux bind-key C-b send-prefix
+          echo "tmux prefix set to Ctrl+B"
+        '';
       } // attrsets.optionalAttrs (hasSeat) {
         "md-copy" = ''
           if test (count $argv) -gt 0
