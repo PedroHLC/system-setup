@@ -9,6 +9,7 @@ with utils; {
     (import ./ssh.nix utils)
     (import ./kvm.nix utils)
     (import ./theming.nix utils)
+    (import ./alacritty.nix utils)
   ] ++ optionals hasLinuxSeat [
     (import ./i3status-rust.nix utils)
     (import ./sunshine.nix utils)
@@ -291,39 +292,6 @@ with utils; {
           rebase = false;
           ff-only = true;
         };
-      };
-    };
-
-    # My favorite and simple terminal
-    alacritty = {
-      enable = hasSeat;
-      package = pkgs.alacritty;
-      settings = {
-        window.opacity = lib.mkForce 0.9;
-
-        terminal.shell = {
-          program = "${bin.tmux}";
-          args = [ "-l" ];
-        };
-
-        keyboard.bindings =
-          let
-            base =
-              if ctrlNearSpaceKeyMap
-              then import ../../common/alacritty-apple-mods.nix
-              else [ ];
-
-            newWithoutTmux =
-              {
-                key = "N";
-                mods = if isMacOS then "Command|Shift" else "Control|Shift";
-                command = {
-                  program = bin.terminal;
-                  args = [ "-e" "${pkgs.fish}/bin/fish" "-l" ];
-                };
-              };
-          in
-          base ++ [ newWithoutTmux ];
       };
     };
 
