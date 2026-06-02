@@ -5,6 +5,7 @@ utils: with utils;
     mkMerge [{
       stylix.enable = isLinux;
       stylix.overlays.enable = false;
+      stylix.enableReleaseChecks = false;
 
       stylix.base16Scheme = {
         # https://github.com/vic/base16-rebecca

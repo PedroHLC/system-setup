@@ -13,22 +13,20 @@ let
         in
         foldl'
           (network: { v4, ... }: union
-            (singleton "${hostname}.${network}" {
-              match = ''host ${hostname} exec "nc -w 1 -z ${v4} %p"'';
-              hostname = v4;
+            (singleton "Match host ${hostname} exec \"nc -w 1 -z ${v4} %p\"" {
+              HostName = v4;
             })
           )
           (details.lans or { })
           accu
         // (with details.vpn; {
-          "match:${addr}" = {
-            match = ''host ${hostname}'';
-            hostname = v4;
+          "Match host ${hostname}" = {
+            HostName = v4;
           };
-          "${hostname}" = { inherit identityFile; };
+          "${hostname}" = { IdentityFile = identityFile; };
           "${hostname}.vpn" = {
-            inherit identityFile;
-            hostname = v4;
+            IdentityFile = identityFile;
+            HostName = v4;
           };
         }))
       base
@@ -38,82 +36,81 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks =
+    settings =
       addMyLocalDevices {
         # VPN
         "vps-lab.vpn" = {
-          inherit identityFile;
-          hostname = machines.lab.vpn.v4;
+          IdentityFile = identityFile;
+          HostName = machines.lab.vpn.v4;
         };
         # VCS
         "github.com" = {
-          host = "github.com gist.github.com";
-          inherit identityFile;
-          user = "git";
+          Host = "github.com gist.github.com";
+          IdentityFile = identityFile;
+          User = "git";
         };
         "github.com-temeraire" = {
-          host = "github.com-temeraire gist.github.com-temeraire";
-          hostname = "github.com";
-          user = "git";
-          identityFile = "~/.ssh/id_temeraire";
+          Host = "github.com-temeraire gist.github.com-temeraire";
+          HostName = "github.com";
+          User = "git";
+          IdentityFile = "~/.ssh/id_temeraire";
         };
         "gitlab.com" = {
-          inherit identityFile;
-          user = "git";
+          IdentityFile = identityFile;
+          User = "git";
         };
         "bitbucket.com" = {
-          inherit identityFile;
-          user = "git";
+          IdentityFile = identityFile;
+          User = "git";
         };
         "aur.archlinux.org" = {
-          identityFile = "~/.ssh/pedrohlc_common";
-          user = "aur";
+          IdentityFile = "~/.ssh/pedrohlc_common";
+          User = "aur";
         };
         # UFSCar
         "git.ufscar.br" = {
-          inherit identityFile;
+          IdentityFile = identityFile;
         };
         "openhpc.ufscar.br" = {
-          inherit identityFile;
-          user = "u726578";
+          IdentityFile = identityFile;
+          User = "u726578";
         };
         "*.cluster.infra.ufscar.br" = {
-          inherit identityFile;
-          user = "u726578";
-          proxyJump = "openhpc.ufscar.br";
+          IdentityFile = identityFile;
+          User = "u726578";
+          ProxyJump = "openhpc.ufscar.br";
         };
         "wifi-instrucoes.ufscar.br" = {
-          inherit identityFile;
-          hostname = "200.133.224.99";
-          port = 5522;
-          proxyJump = "openhpc.ufscar.br";
+          IdentityFile = identityFile;
+          HostName = "200.133.224.99";
+          Port = 5522;
+          ProxyJump = "openhpc.ufscar.br";
         };
         "labstatus.ufscar.br" = {
-          inherit identityFile;
-          hostname = "200.133.224.78";
-          port = 29376;
-          proxyJump = "openhpc.ufscar.br";
+          IdentityFile = identityFile;
+          HostName = "200.133.224.78";
+          Port = 29376;
+          ProxyJump = "openhpc.ufscar.br";
         };
         "*.instrucoes.ufscar.br" = {
-          user = "root";
-          hostname = "192.168.115.202";
-          proxyJump = "candc.labinfo.ufscar.br";
+          User = "root";
+          HostName = "192.168.115.202";
+          ProxyJump = "candc.labinfo.ufscar.br";
         };
         # Chaotic
         "bangl.de" = {
-          inherit identityFile;
-          user = "chaotic";
+          IdentityFile = identityFile;
+          User = "chaotic";
         };
         "github-runner.garudalinux.org" = {
-          inherit identityFile;
-          hostname = "157.180.57.51";
-          port = 230;
+          IdentityFile = identityFile;
+          HostName = "157.180.57.51";
+          Port = 230;
         };
         "aur.archlinux.org-chaotic" = {
-          host = "aur.archlinux.org-chaotic";
-          user = "aur";
-          hostname = "aur.archlinux.org";
-          identityFile = "~/Projects/cx.chaotic/aur-sshkey/id_rsa";
+          User = "aur";
+          HostName = "aur.archlinux.org";
+          IdentityFile = "~/Projects/cx.chaotic/aur-sshkey/id_rsa";
         };
       };
   };

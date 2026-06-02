@@ -28,6 +28,7 @@
   boot.supportedFilesystems = [ "zfs" "vfat" "ntfs3" ];
   boot.zfs.requestEncryptionCredentials = false;
   boot.zfs.package = lib.mkOverride 99 pkgs.zfs_cachyos;
+  boot.zfs.forceImportRoot = false;
 
   # Kernel Params
   boot.kernelParams = [
