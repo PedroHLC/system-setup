@@ -1,3 +1,6 @@
+let
+  unicode = code: builtins.fromJSON ''"\u${code}"'';
+in
 [
   {
     key = "At";
@@ -166,45 +169,45 @@
     mods = "Control";
     chars = "]";
   }
-  {
-    key = "At";
-    mods = "Alt";
-    chars = "\\u0000";
-  }
+  #{
+  #  key = "At";
+  #  mods = "Alt";
+  #  chars = unicode "0000";
+  #}
   {
     key = "A";
     mods = "Alt";
-    chars = "\\u0001";
+    chars = unicode "0001";
   }
   {
     key = "B";
     mods = "Alt";
-    chars = "\\u0002";
+    chars = unicode "0002";
   }
   {
     key = "C";
     mods = "Alt";
-    chars = "\\u0003";
+    chars = unicode "0003";
   }
   {
     key = "D";
     mods = "Alt";
-    chars = "\\u0004";
+    chars = unicode "0004";
   }
   {
     key = "E";
     mods = "Alt";
-    chars = "\\u0005";
+    chars = unicode "0005";
   }
   {
     key = "F";
     mods = "Alt";
-    chars = "\\u0006";
+    chars = unicode "0006";
   }
   {
     key = "G";
     mods = "Alt";
-    chars = "\\u0007";
+    chars = unicode "0007";
   }
   {
     key = "H";
@@ -224,7 +227,7 @@
   {
     key = "K";
     mods = "Alt";
-    chars = "\\u000b";
+    chars = unicode "000b";
   }
   {
     key = "L";
@@ -239,81 +242,81 @@
   {
     key = "N";
     mods = "Alt";
-    chars = "\\u000e";
+    chars = unicode "000e";
   }
   {
     key = "O";
     mods = "Alt";
-    chars = "\\u000f";
+    chars = unicode "000f";
   }
   {
     key = "P";
     mods = "Alt";
-    chars = "\\u0010";
+    chars = unicode "0010";
   }
   {
     key = "Q";
     mods = "Alt";
-    chars = "\\u0011";
+    chars = unicode "0011";
   }
   {
     key = "R";
     mods = "Alt";
-    chars = "\\u0012";
+    chars = unicode "0012";
   }
   {
     key = "S";
     mods = "Alt";
-    chars = "\\u0013";
+    chars = unicode "0013";
   }
   {
     key = "T";
     mods = "Alt";
-    chars = "\\u0014";
+    chars = unicode "0014";
   }
   {
     key = "U";
     mods = "Alt";
-    chars = "\\u0015";
+    chars = unicode "0015";
   }
   {
     key = "V";
     mods = "Alt";
-    chars = "\\u0016";
+    chars = unicode "0016";
   }
   {
     key = "W";
     mods = "Alt";
-    chars = "\\u0017";
+    chars = unicode "0017";
   }
   {
     key = "X";
     mods = "Alt";
-    chars = "\\u0018";
+    chars = unicode "0018";
   }
   {
     key = "Y";
     mods = "Alt";
-    chars = "\\u0019";
+    chars = unicode "0019";
   }
   {
     key = "Z";
     mods = "Alt";
-    chars = "\\u001a";
+    chars = unicode "001a";
   }
   {
     key = "LBracket";
     mods = "Alt";
-    chars = "\\u001b";
+    chars = unicode "001b";
   }
   {
     key = "Backslash";
     mods = "Alt";
-    chars = "\\u001c";
+    chars = unicode "001c";
   }
   {
     key = "RBracket";
     mods = "Alt";
-    chars = "\\u001d";
+    chars = unicode "001d";
   }
 ]

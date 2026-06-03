@@ -42,11 +42,7 @@ utils: with utils;
       tomlFormat = pkgs.formats.toml { };
     in
     mkIf hasSeat {
-      source = mkForce ((tomlFormat.generate "alacritty.toml" cfg.settings).overrideAttrs (_finalAttrs: prevAttrs: {
-        # https://github.com/NixOS/nixpkgs/pull/513796#issuecomment-4607461838
-        buildCommand = prevAttrs.buildCommand + ''
-          substituteInPlace $out --replace-quiet "'" '"'
-        '';
-      }));
+      # https://github.com/NixOS/nixpkgs/pull/513796#issuecomment-4608008199
+      source = mkForce (tomlFormat.generate "alacritty.toml" cfg.settings);
     };
 }
