@@ -5,12 +5,12 @@ let
   multicastV4 = "224.0.0.251/32";
   multicastV6 = "ff02::fb/128";
 
-  vpnClient = hostname:
+  vpnClient = {wgKey, vpn, ...}:
     {
-      publicKey = machines.${hostname}.wgKey;
+      publicKey = wgKey;
       allowedIPs = [
-        "${machines.${hostname}.vpn.v4}/32"
-        "${machines.${hostname}.vpn.v6}/128"
+        "${vpn.v4}/32"
+        "${vpn.v6}/128"
         multicastV4
         multicastV6
       ];

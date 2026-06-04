@@ -46,6 +46,7 @@ rec {
       sshKeys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDMpd+pMBDgignXPtc202e2ESjDORnzd85jtljuPPfy5PEiRRdWPIYRSETx5bihD74tyH7u27CeAJgt5tl9ig7z4dHBIs+6kn7A6SkFannt7nkQn5CGV44TzsZ4HfZpiH3H7PLuWqDhcceV8A3+P387k4uJwqqN39hH56GgspCcfMAMcg4TZxQRrkp5q32mckSqB9YfNCzUbdafIQKdHuZKA2lnU6lLO+BPXOU/W3u7TsmaCSTI2g4/b80o3eHeApNVYGSHtWSDrnl+smdk24lsJdwGPCixS+x/nqiuLuEM+FWTCb7soovZOlyzHtqTXNNjOA0pg7uEtzNy9qKykE5mznuMNjkVFrfHREOrbyihlcKV87QiIlGJu/kBpF7yY8hL7jR1knyTHD8bluwczKPiE9f9yehgQtW0AjSyEvs1MUyASyNBo+ImAf47SvFqF2E6JEWNAoy0LgYjwjWt1gaP+9dCXVe7YZO4r5pcdLmRUN6Pcb2aiU4+IGVh9jgV5hk= pedrohlc"
       ];
+      wgKey = "kjVAAeIGsN0r3StYDQ2vnYg6MbclMrPALdm07qZtRCE=";
     };
     desktop = addVPNClient "2" vpn {
       hostname = "desktop";
@@ -80,6 +81,7 @@ rec {
       sshKeys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDyrnJw0jEN3OnAHPzMW1eUwNRk03Ba0bU1sLpRh51f+4M1LwLAraQtkg1bKe01cQGWWvNe1NUW0jGFywuvV2jwxcXb5bWSun9FpXfd0B9EMC/+uOCMBlEKflSkbzIGnLNbxWsVgAzzas+RbgyiFIlZ58qpUlhw2Iqp6eUGdH2ZtEm6WwU3PYB21UmEvthiDwfHImiWllpevfCmARMMndZy6/A6ygUrUQ4CBinya5K9SgxSDU20wo8ae4pQERtFIpYoW4HZ3iug/k+RW00Z9ofNN5YAFQYl+kS3jFQVH7Yz2PBbjbhF0qrKWwxg7pSn5gu+YRbZpZhZcqPzkuoZuTTq3/agNcH7nSOGtYFU9Mqx6BU/hRneUWUyLBO2qduHXBHATGvColuO9rMdu6EeVFpeSmVFXnTHkwisaBomQLwQn81aWKsWBPPJ9IbZur4t8SVBWxRunpz05cmgW9xCirzQbF68Uxw6qxG787CDF0aS8r0f/tj5o1Ef2DJhr4w+QV8= pedrohlc"
       ];
+      wgKey = "UyVKOBmKQJYeHXQmde6QW+g51K3/qH9hl3lInLCKJhI=";
     };
     telefono = addVPNClient "6" vpn {
       hostname = "telefono";

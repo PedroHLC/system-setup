@@ -4,7 +4,7 @@
     # In the configuration add `ips` and `privateKeyFile`.
     peers = [
       {
-        publicKey = "kjVAAeIGsN0r3StYDQ2vnYg6MbclMrPALdm07qZtRCE=";
+        publicKey = machines.lab.wgKey;
         allowedIPs = [
           "0.0.0.0/0"
           "::/0"
