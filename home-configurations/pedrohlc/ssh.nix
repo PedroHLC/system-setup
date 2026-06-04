@@ -114,4 +114,17 @@ in
         };
       };
   };
+
+  home.file.".ssh/authorized_keys.hm" = mkIf (!isNixOS) {
+    text = concatStringsSep "\n" keyring.ssh;
+  };
+
+  home.activation.mergeAudacious = mkIf (!isNixOS) (hm.dag.entryAfter [ "onFilesChange" ] ''
+    authorizedKeys="$HOME/.ssh/authorized_keys"
+    if [[ ! -e "$authorizedKeys" ]]; then
+      $DRY_RUN_CMD touch "$authorizedKeys"
+      $DRY_RUN_CMD chmod 600 "$authorizedKeys"
+      $DRY_RUN_CMD cat "$authorizedKeys.hm" > "$authorizedKeys"
+    fi
+  '');
 }

@@ -4,6 +4,20 @@ let
 
   multicastV4 = "224.0.0.251/32";
   multicastV6 = "ff02::fb/128";
+
+  vpnClient = hostname:
+    {
+      publicKey = machines.${hostname}.wgKey;
+      allowedIPs = [
+        "${machines.${hostname}.vpn.v4}/32"
+        "${machines.${hostname}.vpn.v6}/128"
+        multicastV4
+        multicastV6
+      ];
+    };
+
+  vpnClients =
+    builtins.map vpnClient (builtins.filter (x: x.vpn.leaf != "1") (builtins.attrValues ssot.machines));
 in
 {
   networking = {
@@ -20,77 +34,7 @@ in
           ips = [ "${machines.lab.vpn.v4}/${vpn.mask.v4}" "${machines.lab.vpn.v6}/${vpn.mask.v6}" ];
           listenPort = vpn.port;
           privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
-          peers = [
-            # Desktop
-            {
-              publicKey = "cU6dpSqyloVRf6Jjb84TygJO94NOCy+LnMYv6/QAbBs=";
-              allowedIPs = [
-                "${machines.desktop.vpn.v4}/32"
-                "${machines.desktop.vpn.v6}/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # Laptop
-            {
-              publicKey = "sS6SMVRPPvTGdjVBUScWkYqT8jjT8PIWy0kzMklwITM=";
-              allowedIPs = [
-                "${machines.xbox.vpn.v4}/32"
-                "${machines.xbox.vpn.v6}/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # POCO X3
-            {
-              publicKey = "j6bZsZZoWfN4SaJuCxP2ndqWGc75A2JH3gxNwSbIDEM=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.4/32"
-                "${vpn.prefix.v6}:4/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # Beacon
-            {
-              publicKey = "Hsw40VXOzD202Yf/FIoGRd+XdYJjdorPaR7imPy502c=";
-              allowedIPs = [
-                "${machines.beacon.vpn.v4}/32"
-                "${machines.beacon.vpn.v6}/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # M54
-            {
-              publicKey = "PIRZl+62B+VvfCy33fhWKBjmmevtmB01qHYzu/W9LX8=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.6/32"
-                "${vpn.prefix.v6}:6/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # Foreign
-            {
-              publicKey = "UyVKOBmKQJYeHXQmde6QW+g51K3/qH9hl3lInLCKJhI=";
-              allowedIPs = [
-                "${machines.foreign.vpn.v4}/32"
-                "${machines.foreign.vpn.v6}/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            # Astro
-            {
-              publicKey = "wR+ygfXJoy9LBzBh0EZmm4Oqb74Y6RtWxBU+TKEWCC8=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.9/32"
-                "${vpn.prefix.v6}:9/128"
-                multicastV4
-                multicastV6
-              ];
-            }
+          peers = vpnClients ++ [
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";

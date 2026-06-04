@@ -8,7 +8,6 @@
 , nvmeSensors ? [ ]
 , seat ? null
 , ups ? null
-, hostOS ? "nixos" # Distro, not kernel
 , ...
 }@specs:
 { config, lib, pkgs, ssot, osConfig ? null, usingNouveau ? true, ... }@scope:
@@ -17,7 +16,7 @@ self:
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
   inherit config pkgs osConfig usingNouveau;
   inherit (scope) flakes;
-  inherit (lib.strings) optionalString;
+  inherit (lib.strings) optionalString concatStringsSep;
   inherit (lib.trivial) importJSON;
   inherit (lib.debug) traceVal;
   inherit (scope.flakes) ullib pedrochrome-css;
@@ -32,6 +31,7 @@ self:
   hasLinuxSeat = hasSeat && isLinux;
   hasAppleSeat = hasSeat && isMacOS;
   hasTouchpad = touchpad != null;
+  hostOS = specs.hostOS or (if osConfig != null then "nixos" else throw "Unsupported system");
   isNixOS = hostOS == "nixos";
   isMacOS = hostOS == "macos";
   isLinux = !isMacOS;
@@ -73,6 +73,7 @@ self:
     herdr = lib.getExe pkgs.herdr;
     tmux = lib.getExe pkgs.tmux;
     fish = lib.getExe config.programs.fish.package;
+    fzf = lib.getExe pkgs.fzf;
     systemctl = "${pkgs.systemd}/bin/systemctl";
     bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
     nmcli = "${pkgs.networkmanager}/bin/nmcli";
