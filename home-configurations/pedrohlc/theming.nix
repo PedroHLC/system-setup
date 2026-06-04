@@ -68,7 +68,7 @@ utils: with utils;
           package = pkgs.vimix-icon-theme;
         };
 
-        gtk.gtk4.theme = config.gtk.theme;
+        gtk.gtk4.theme = mkForce config.gtk.theme;
 
         # Plasma LookAndFeel for Sway
         wayland.windowManager.sway.config.startup = [
