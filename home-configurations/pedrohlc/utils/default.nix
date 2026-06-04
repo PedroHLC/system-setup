@@ -54,7 +54,7 @@ self:
     # Preferred executables
     browser = "${pseudoPkgs.firefox-gate}/bin/firefox-gate";
     editor = "${pkgs.zed-editor}/bin/zeditor";
-    terminal = "${config.programs.alacritty.package}/bin/alacritty";
+    terminal = lib.getExe config.programs.alacritty.package;
 
     # Simple executable shortcuts
     swayncClient = "${pkgs.swaynotificationcenter}/bin/swaync-client";
@@ -70,8 +70,9 @@ self:
     who = coreutilsBin "who";
     env = coreutilsBin "env";
     tty = coreutilsBin "tty";
-    tmux = "${pkgs.tmux}/bin/tmux";
-    fish = "${config.programs.fish.package}/bin/fish";
+    herdr = lib.getExe pkgs.herdr;
+    tmux = lib.getExe pkgs.tmux;
+    fish = lib.getExe config.programs.fish.package;
     systemctl = "${pkgs.systemd}/bin/systemctl";
     bluetoothctl = "${pkgs.bluez}/bin/bluetoothctl";
     nmcli = "${pkgs.networkmanager}/bin/nmcli";

@@ -10,7 +10,7 @@ utils: with utils;
         window.opacity = mkForce 0.9;
 
         terminal.shell = {
-          program = "${bin.tmux}";
+          program = bin.tmux;
           args = [ "-l" ];
         };
 
@@ -27,7 +27,7 @@ utils: with utils;
                 mods = if isMacOS then "Command|Shift" else "Control|Shift";
                 command = {
                   program = bin.terminal;
-                  args = [ "-e" "${pkgs.fish}/bin/fish" "-l" ];
+                  args = [ "-e" bin.fish "-l" ];
                 };
               };
           in

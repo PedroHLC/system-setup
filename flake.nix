@@ -57,6 +57,12 @@
       url = "github:Mic92/niks3/v1.6.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Modern terminal multiplexer
+    herdr = {
+      url = "github:ogulcancelik/herdr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, yafas, ... }@inputs:

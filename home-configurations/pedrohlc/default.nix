@@ -20,7 +20,8 @@ with utils; {
 
   home = {
     packages =
-      with pseudoPkgs; with pkgs; (lists.optionals hasLinuxSeat [
+      with pseudoPkgs; with pkgs;
+      (lists.optionals hasLinuxSeat [
         firefox-gate
         minidlna-launcher
         mpv-hq-entry
@@ -32,6 +33,7 @@ with utils; {
         direnv-claude
         pear-desktop
       ] ++ [
+        herdr
         # My scripts
         nrpr
       ]);
@@ -60,7 +62,7 @@ with utils; {
 
           autoStart = ''
             if [ -z "$TMUX" ] &&  [ "$SSH_CLIENT" != "" ]; then
-              exec ${tmux}
+              cmd=$(printf '%s\n' tmux herdr fish | fzf) && exec "$cmd"
             ${whenTTY1}
             fi
           '';
