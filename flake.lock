@@ -77,16 +77,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781032244,
-        "narHash": "sha256-kzdhHIMyuhten+dj3/l5CRV0yruoqACmU+JoNUG+9LM=",
+        "lastModified": 1781022841,
+        "narHash": "sha256-FG3G0wDm5kWJdH9nDqOxxy1NjsUccUI8P1wBbnO2Mb4=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "c8ea2a699504a8c2cac1a39e04af89c466c10fbc",
+        "rev": "e952d8879094a0aadc716e99f2503efc3197db6a",
         "type": "github"
       },
       "original": {
         "owner": "chaotic-cx",
-        "ref": "main",
+        "ref": "nyxpkgs-unstable",
         "repo": "nyx",
         "type": "github"
       }
@@ -333,8 +333,8 @@
       },
       "original": {
         "owner": "Mic92",
-        "ref": "main",
         "repo": "niks3",
+        "rev": "c74d275536d9a38ff279b498612fae0fd68cfe85",
         "type": "github"
       }
     },
