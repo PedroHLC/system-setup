@@ -62,7 +62,11 @@ with utils; {
 
           autoStart = ''
             if [ -z "$TMUX" ] && [ -z "$HERDR_ENV" ] && [ "$SSH_CLIENT" != "" ]; then
-              cmd=$(printf '%s\n' 'tmux -l' herdr 'fish -l' | ${bin.fzf}) && exec sh -c "exec $cmd"
+              cmd=$(
+                printf '%s\n' 'tmux -l' 'tmux a' 'herdr' 'fish -l' |\
+                ${bin.fzf} --print-query |\
+                tail -n1
+              ) && exec sh -c "exec $cmd"
             ${whenTTY1}
             fi
           '';
