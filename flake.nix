@@ -53,10 +53,7 @@
     };
 
     # Nix cache
-    niks3 = {
-      url = "github:Mic92/niks3/c74d275536d9a38ff279b498612fae0fd68cfe85";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    niks3.follows = "chaotic/niks3";
 
     # Modern terminal multiplexer
     herdr = {

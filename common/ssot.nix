@@ -8,6 +8,8 @@ let
       v6 = "${vpn.prefix.v6}:${leaf}";
     };
   };
+
+  homeAddr = leaf: "192.168.98.${leaf}";
 in
 rec {
   vpn = {
@@ -55,7 +57,10 @@ rec {
         nextjsOllamaPort = 3000;
         ollamaPort = 11434;
       };
-      lans = { };
+      lans = {
+        home-wired.v4 = homeAddr "26";
+        home-wireless.v4 = homeAddr "21";
+      };
       sshKeys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+XO1v27sZQO2yV8q2AfYS/I/l9pHK33a4IjjrNDhV+YBlLbR2iB+L5iNu7x8tKDXYscynxJPHB3vWwerZXOh35SXdh5TE9Lez02Ck466fJnTjNxX63FvppXmMx8HaVYzymojDi+xTXMO4DxNFFrJTUIagWs8WNxEbYdGAaIKRQHB0ZWMSsyaY2XkR9RkV3I9QwKNrTnkC5h8bVn63LvTuORlTvY/Iu202M2toxOKWDQ5qdSrLfNaPl7kxWUVTCpyZ8Hza75sH3SB3/m8Queeq+E48nqjL7s9ZyO1TGf6ojaf2EGfx6H8jFwycXUD2QNLvsZcWmamyLPNbHY63jjOb pedrohlc"
       ];
@@ -63,7 +68,10 @@ rec {
     };
     xbox = addVPNClient "3" vpn {
       hostname = "xbox";
-      lans = { };
+      lans = {
+        home-wired.v4 = homeAddr "20";
+        home-wireless.v4 = homeAddr "19";
+      };
       sshKeys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDe+j0odZ7Mk0p8Q9lv0HWFt62ZW6uN4wi+pp7YD8BquU8cKYlh1yk5kQxzwhEpsrIgyiOYU5CxYWkdblh+h/oLBk7seCzYF+ZZnhR5AJdbUvz8FNPbDqd81tphjntRphNArYVgdpIz0pwvYz9yvDwNXaaPfJuLTIecmIM1PaVnQOTKR6zNhwWad9bXWr4NdS2LN5rl8Yg083BKu36kcdnj8bQi7viNhbpHrwYhDUiMuysUdAd/atNJGwyFehmRckhC/Jv65eJtwR/asXTsEB9KaRAqnuThAR9bGwlMdHP/zZOhB3Bb/M+HTafOlVvBv30iJXg426EUpoMg+X0C0ZOM+wddSDRTmf2z6m/tOxguG0DNwfug1lWjZUlLeevkauBywKo1TlqQEZ9BDFgI/J34YGELJV6hUYe+rQfzcTZwQ9nLx2bcZA877Sf7sAu4ajw+p2Vcz4gypwpdT6vNfDt15w9HKJM/PCAl9Y2OxXOqogrwL1zG9P7tX5adiXp3QW8= pedrohlc"
       ];
@@ -77,7 +85,10 @@ rec {
     };
     foreign = addVPNClient "8" vpn {
       hostname = "foreign";
-      lans = { };
+      lans = {
+        home-wired.v4 = homeAddr "17";
+        home-wireless.v4 = homeAddr "23";
+      };
       sshKeys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDyrnJw0jEN3OnAHPzMW1eUwNRk03Ba0bU1sLpRh51f+4M1LwLAraQtkg1bKe01cQGWWvNe1NUW0jGFywuvV2jwxcXb5bWSun9FpXfd0B9EMC/+uOCMBlEKflSkbzIGnLNbxWsVgAzzas+RbgyiFIlZ58qpUlhw2Iqp6eUGdH2ZtEm6WwU3PYB21UmEvthiDwfHImiWllpevfCmARMMndZy6/A6ygUrUQ4CBinya5K9SgxSDU20wo8ae4pQERtFIpYoW4HZ3iug/k+RW00Z9ofNN5YAFQYl+kS3jFQVH7Yz2PBbjbhF0qrKWwxg7pSn5gu+YRbZpZhZcqPzkuoZuTTq3/agNcH7nSOGtYFU9Mqx6BU/hRneUWUyLBO2qduHXBHATGvColuO9rMdu6EeVFpeSmVFXnTHkwisaBomQLwQn81aWKsWBPPJ9IbZur4t8SVBWxRunpz05cmgW9xCirzQbF68Uxw6qxG787CDF0aS8r0f/tj5o1Ef2DJhr4w+QV8= pedrohlc"
       ];
@@ -125,7 +136,7 @@ rec {
   };
 
   keyring.ssh =
-    builtins.concatMap ({hostname, sshKeys, ...}: builtins.map (key: "${key}@${hostname}") sshKeys) (builtins.attrValues machines);
+    builtins.concatMap ({ hostname, sshKeys, ... }: builtins.map (key: "${key}@${hostname}") sshKeys) (builtins.attrValues machines);
 
   privateBucket = path: "https://lab.pedrohlc.com/bucket/${path}";
 }

@@ -73,15 +73,16 @@
         "flake-schemas": "flake-schemas",
         "home-manager": "home-manager",
         "jovian": "jovian",
+        "niks3": "niks3",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781022841,
-        "narHash": "sha256-FG3G0wDm5kWJdH9nDqOxxy1NjsUccUI8P1wBbnO2Mb4=",
+        "lastModified": 1781097547,
+        "narHash": "sha256-kmngoMAUsOOnobkVhBFWdNdLuzKdwp0dl7luqjv9R2A=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "e952d8879094a0aadc716e99f2503efc3197db6a",
+        "rev": "65484713d962e7f1ddd42ce5012350b3b0298552",
         "type": "github"
       },
       "original": {
@@ -219,11 +220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780937346,
-        "narHash": "sha256-D0aOByT6ZV5URcN88RqO2jNu3mqeHM0WKYPH0D6EYBk=",
+        "lastModified": 1781094825,
+        "narHash": "sha256-+34RsCNa+l3q4KNiM0FLsrEPw+pVjodJasHAtWLbC/U=",
         "owner": "ogulcancelik",
         "repo": "herdr",
-        "rev": "a7cd7806f2fa0251e2dca41ffec61ceafb6f0e18",
+        "rev": "36a1b7f86444871f0c38ff36510a6e3c2eec48c6",
         "type": "github"
       },
       "original": {
@@ -302,11 +303,11 @@
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1780952769,
-        "narHash": "sha256-lu1F6rPHN9KXkSbnTHImEK8EcnQa+d7EJ7mqU41vUkA=",
+        "lastModified": 1781100609,
+        "narHash": "sha256-N5N7IiIlfuQsUrYQNhookEkps7Essr8NHeLoiY85IPs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9c8bfc47e07f9e455e806680299e6f1eee2000e5",
+        "rev": "cace41aaa4d7d43afe42e55b92866bf04f59bef2",
         "type": "github"
       },
       "original": {
@@ -319,6 +320,7 @@
     "niks3": {
       "inputs": {
         "nixpkgs": [
+          "chaotic",
           "nixpkgs"
         ],
         "treefmt-nix": "treefmt-nix"
@@ -429,7 +431,10 @@
         ],
         "impermanence": "impermanence",
         "latest-claude-code": "latest-claude-code",
-        "niks3": "niks3",
+        "niks3": [
+          "chaotic",
+          "niks3"
+        ],
         "nixpkgs": [
           "chaotic",
           "nixpkgs"
@@ -481,11 +486,11 @@
         "tinted-zed": "tinted-zed"
       },
       "locked": {
-        "lastModified": 1780701809,
-        "narHash": "sha256-u7AUNs6U6eD1os4+ghbr1gH4QjPWzOdKvpeM+E+XRKM=",
+        "lastModified": 1781018772,
+        "narHash": "sha256-C+cGIUaC6dqfwTbI+BwCd572PbESGA3WYxR1sLTqxkY=",
         "owner": "nix-community",
         "repo": "stylix",
-        "rev": "3a02d9f73608641b28e08b26acb0b0b47c05f14b",
+        "rev": "a378e4c09031fb15a4d65da88aa628f71fc52f6b",
         "type": "github"
       },
       "original": {
@@ -606,6 +611,7 @@
     "treefmt-nix": {
       "inputs": {
         "nixpkgs": [
+          "chaotic",
           "niks3",
           "nixpkgs"
         ]

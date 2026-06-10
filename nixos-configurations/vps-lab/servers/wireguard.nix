@@ -5,7 +5,7 @@ let
   multicastV4 = "224.0.0.251/32";
   multicastV6 = "ff02::fb/128";
 
-  vpnClient = {wgKey, vpn, ...}:
+  vpnClient = { wgKey, vpn, ... }:
     {
       publicKey = wgKey;
       allowedIPs = [
