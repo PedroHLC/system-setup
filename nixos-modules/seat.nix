@@ -417,6 +417,14 @@
   };
   systemd.services.hostapd.wantedBy = lib.mkForce [ ]; # don't start automatically
 
+  # Sway is fully configured on my home-manager, but I only want the sway-session
+  # let it explode when other users try to run it!
+  programs.sway = {
+    enable = true;
+    package = config.home-manager.users.pedrohlc.wayland.windowManager.sway.package;
+    extraPackages = [ ];
+  };
+
   # Pull all plasma things, don't had time to separate stuff to extract its LookAndFeel
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [

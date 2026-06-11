@@ -5,7 +5,7 @@
     enable = true;
     autoStart = true;
     user = "pedrohlc";
-    desktopSession = "gamescope-wayland";
+    desktopSession = "sway";
   };
   programs.gamescope.enable = lib.mkForce false;
 }
