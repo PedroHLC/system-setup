@@ -10,12 +10,13 @@ mkNixOS {
     ../../nixos-modules/amdgpu.nix
     ../../nixos-modules/ctrl-near-space-key.nix
     ../../nixos-modules/focusrite-hifi.nix
-    ../../nixos-modules/hdr-display.nix
     ../../nixos-modules/journal-upload.nix
+    ../../nixos-modules/jovian.nix
     ../../nixos-modules/local-ai.nix
     ../../nixos-modules/monitor-follow-usb.nix
     ../../nixos-modules/pw-hifi.nix
     ../../nixos-modules/seat.nix
+    ../../nixos-modules/tv-display.nix
     ../../nixos-modules/wgcf-teams.nix
     ../../nixos-modules/wireguard-client.nix
     ./configuration.nix
@@ -23,5 +24,6 @@ mkNixOS {
   ];
   extraOverlays = [
     (import ../../overlays/seat.nix)
+    (import "${flakes.jovian}/overlay.nix")
   ];
 }

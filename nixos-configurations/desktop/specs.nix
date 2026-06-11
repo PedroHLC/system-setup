@@ -8,6 +8,7 @@
   nvmeSensors = [ "nvme-pci-0100" "nvme-pci-0400" ];
   ups = "sms-gamer";
   seat = {
+    autoLogin = false; # disable .profile auto-starting DE
     displayId = "DP-1";
     displayWidth = 3840;
     displayHeight = 2160;
@@ -20,10 +21,5 @@
     touchpad = null;
     sunshine = true;
     ctrlNearSpaceKeyMap = true;
-    steamMachine = {
-      output = "HDMI-A-1";
-      salt = "pedrohlc";
-      sha256 = "ede8637cc02db75bd5af3f5df40b87bd1677b8bf48effaa2ade5e9db37274c28";
-    };
   };
 }

@@ -42,7 +42,6 @@ self:
   kvm = seat.kvm or specs.kvm or null;
   nvidiaBad = nvidiaPrime && !usingNouveau;
   nvidiaPrime = seat.nvidiaPrime or false;
-  steamMachine = seat.steamMachine or null;
   sunshine = seat.sunshine or false;
   ctrlNearSpaceKeyMap = hasLinuxSeat && (seat.ctrlNearSpaceKeyMap or false);
   touchpad = if hasSeat then (seat.touchpad or false) else null;

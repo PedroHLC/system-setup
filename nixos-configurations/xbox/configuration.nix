@@ -31,16 +31,20 @@
   users.users."melinapn".hashedPasswordFile = "/var/persistent/secrets/shadow/melinapn";
 
   # Autologin (with Melina).
-  services.getty.loginOptions =
-    let
-      programScript = pkgs.callPackage ../../packages/login-program.nix {
-        loginsPerTTY = {
-          "/dev/tty1" = "pedrohlc";
-          "/dev/tty2" = "melinapn";
+  services.getty = {
+    loginProgram = "${pkgs.bash}/bin/sh";
+    loginOptions =
+      let
+        programScript = pkgs.callPackage ../../packages/login-program.nix {
+          loginsPerTTY = {
+            "/dev/tty1" = "pedrohlc";
+            "/dev/tty2" = "melinapn";
+          };
         };
-      };
-    in
-    lib.mkForce (toString programScript);
+      in
+      toString programScript;
+    extraArgs = [ "--skip-login" ];
+  };
 
   # Extra packages
   environment.systemPackages = with pkgs; [

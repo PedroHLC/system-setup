@@ -60,6 +60,9 @@
       url = "github:ogulcancelik/herdr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # I got tired of tweaking my gamescope session
+    jovian.follows = "chaotic/jovian";
   };
 
   outputs = { nixpkgs, yafas, ... }@inputs:

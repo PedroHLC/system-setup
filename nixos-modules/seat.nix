@@ -55,7 +55,7 @@
   boot.kernel.sysctl = {
     "kernel.sysrq" = 1; # Enable ALL SysRq shortcuts
     "vm.max_map_count" = 2147483642; # helps with Wine ESYNC/FSYNC
-    "net.ipv4.tcp_mtu_probing" = true; # helps with Ubisoft Launcher connection lost
+    "net.ipv4.tcp_mtu_probing" = lib.mkForce true; # helps with Ubisoft Launcher connection lost
   };
 
   # I prefer to trim using ZFS' "autotrim"
@@ -146,17 +146,6 @@
 
   # Workaround for nixpkgs#238025.
   environment.variables.TZ = ":/etc/localtime";
-
-  # Autologin.
-  services.getty = {
-    loginProgram = "${pkgs.bash}/bin/sh";
-    loginOptions =
-      let
-        programScript = pkgs.callPackage ../packages/login-program.nix { };
-      in
-      toString programScript;
-    extraArgs = [ "--skip-login" ];
-  };
 
   # List packages.
   environment.systemPackages = with pkgs; [
@@ -319,11 +308,6 @@
   # Steam with steam-session
   programs.steam = {
     enable = true;
-    gamescopeSession = {
-      enable = true; # Gamescope session is better for AAA gaming.
-      args = [ "--immediate-flips" "--mangoapp" ];
-      env.MANGOHUD_CONFIGFILE = "/home/pedrohlc/.config/MangoHud/MangoHud.conf";
-    };
 
     extraCompatPackages = with pkgs; [
       proton-cachyos_x86_64_v3

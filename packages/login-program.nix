@@ -2,7 +2,7 @@
 , writeText
 , coreutils
 , shadow
-, loginsPerTTY ? { "/dev/tty1" = "pedrohlc"; }
+, loginsPerTTY
 }:
 # Handle auto-logins in the most lightweight way.
 # Make sure to set loginProgram to "bash"!
