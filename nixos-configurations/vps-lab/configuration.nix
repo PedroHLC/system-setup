@@ -53,11 +53,19 @@
   # We can trim this one
   services.fstrim.enable = true;
 
+  # Extra disk
+  fileSystems."/media/bucket" =
+    {
+      device = "/dev/disk/by-uuid/96236eaa-c015-43ed-ae26-f8c2df164904";
+      fsType = "ext4";
+      options = [ "x-gvfs-hide" ];
+    };
+
   # Add a swapfile
-  swapDevices = [{
-    device = "/var/residues/swapfile";
-    size = 2048;
-  }];
+  swapDevices = [
+    { device = "/var/residues/swapfile"; size = 2048; }
+    { device = "/dev/disk/by-uuid/03b087e3-0855-4032-91f8-9780ff948e8e"; }
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
