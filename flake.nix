@@ -30,13 +30,6 @@
       flake = false;
     };
 
-    # The Crash Team Racing decomp
-    ctr = {
-      url = "github:CTR-tools/CTR-ModSDK";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.yafas.follows = "yafas";
-    };
-
     # Functional-programming lib
     ullib.url = "github:PedroHLC/nix-ullib";
 
@@ -57,7 +50,7 @@
 
     # Modern terminal multiplexer
     herdr = {
-      url = "github:ogulcancelik/herdr";
+      url = "github:ogulcancelik/herdr?tag=v0.7.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

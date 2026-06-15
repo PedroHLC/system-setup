@@ -45,25 +45,18 @@ in
   services.llama-cpp = {
     enable = true;
     package = pkgs.llama-cpp-vulkan;
-    host = proxyAddr;
-    port = llamaCppPort;
-    model = "${config.users.users.llama-cpp.home}/models/Qwen3.5-35B-A3B-Q3_K_S.gguf";
-    extraFlags = [
-      "-ngl"
-      "99"
-      "-c"
-      "32768"
-      "--flash-attn"
-      "on"
-      "--cache-type-k"
-      "q8_0"
-      "--cache-type-v"
-      "q8_0"
-      "--parallel"
-      "1"
-      "--chat-template-kwargs"
-      "{\"enable_thinking\":false}"
-    ];
+    settings = {
+      host = proxyAddr;
+      port = llamaCppPort;
+      model = "${config.users.users.llama-cpp.home}/models/Qwen3.5-35B-A3B-Q3_K_S.gguf";
+      "ngl" = 99;
+      "ctx-size" = 32768;
+      "flash-attn" = "on";
+      "cache-type-k" = "q8_0";
+      "cache-type-v" = "q8_0";
+      "parallel" = 1;
+      "chat-template-kwargs" = "{\"enable_thinking\":false}";
+    };
   };
 
   # User-based Llama-Cpp home
