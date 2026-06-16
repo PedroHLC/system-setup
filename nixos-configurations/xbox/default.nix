@@ -6,6 +6,7 @@ mkNixOS {
   extraModules = [
     flakes.impermanence.nixosModules.impermanence
     ../../nixos-modules/4k-nohidpi.nix
+    ../../nixos-modules/airplay-speaker.nix
     ../../nixos-modules/amdcpu.nix
     ../../nixos-modules/amdgpu.nix
     ../../nixos-modules/ctrl-near-space-key.nix
