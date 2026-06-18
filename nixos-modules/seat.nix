@@ -611,6 +611,7 @@
         ".cache/nix-index"
         ".cache/zed"
         ".config/figma-linux"
+        ".config/gamescope"
         ".config/google-chrome"
         ".config/Postman"
         ".config/Slack"
