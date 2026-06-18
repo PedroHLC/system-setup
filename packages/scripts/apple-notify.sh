@@ -7,10 +7,6 @@ title="${1:?title required as first argument}"
 sound="${2:-Glass}"
 message=$(cat)
 
-osascript <<AS
-display notification "$(printf '%s' "$message" | sed 's/["\\]/\\&/g')" with title "$(printf '%s' "$title" | sed 's/["\\]/\\&/g')" sound name "$sound"
-AS
-
 jq -n \
       --rawfile token "$HOME/.secrets/moshi-push.token" \
       --arg    title   "$title" \
@@ -20,3 +16,7 @@ jq -n \
       -H "Content-Type: application/json" \
       --data-binary @- \
   >/dev/null
+
+exec osascript <<AS
+display notification "$(printf '%s' "$message" | sed 's/["\\]/\\&/g')" with title "$(printf '%s' "$title" | sed 's/["\\]/\\&/g')" sound name "$sound"
+AS
