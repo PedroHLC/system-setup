@@ -10,21 +10,28 @@ let
       (machine: details: accu:
         let
           hostname = details.hostname or machine;
+
+          matchIP = v4: "Match host ${hostname} exec \"nc -w 1 -z ${v4} %p\"";
+
+          lanMatches =
+            foldl'
+              (network: { v4, ... }: lanAccu:
+                union lanAccu
+                  (singleton (matchIP v4) (dag.entryBetween [ "Match host ${hostname}" ] (attrNames lanAccu) {
+                    HostName = v4;
+                  }))
+              )
+              (details.lans or { })
+              { };
         in
-        foldl'
-          (network: { v4, ... }: union
-            (singleton "Match host ${hostname} exec \"nc -w 1 -z ${v4} %p\"" {
-              HostName = v4;
-            })
-          )
-          (details.lans or { })
-          accu
+        accu
+        // lanMatches
         // (with details.vpn; {
-          "Match host ${hostname}" = {
+          "Match host ${hostname}" = dag.entryBefore [ "${hostname}" ] {
             HostName = v4;
           };
-          "${hostname}" = { IdentityFile = identityFile; };
-          "${hostname}.vpn" = {
+          "${hostname}" = dag.entryBefore [ "${hostname}.vpn" ] { IdentityFile = identityFile; };
+          "${hostname}.vpn" = dag.entryAnywhere {
             IdentityFile = identityFile;
             HostName = v4;
           };

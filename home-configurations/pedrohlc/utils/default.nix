@@ -19,6 +19,7 @@ self:
   inherit (lib.strings) optionalString concatStringsSep;
   inherit (lib.trivial) importJSON;
   inherit (lib.debug) traceVal;
+  inherit (lib.hm) dag;
   inherit (scope.flakes) ullib pedrochrome-css;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./derivations.nix self;
