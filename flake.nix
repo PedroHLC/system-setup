@@ -45,20 +45,17 @@
       flake = false;
     };
 
-    # Nix cache
-    niks3.follows = "chaotic/niks3";
-
     # Modern terminal multiplexer
     herdr = {
-      url = "github:ogulcancelik/herdr?tag=v0.7.0";
+      url = "github:ogulcancelik/herdr/0bf9bb58eb9c9495f660aed1bd9336121b953fdc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # I got tired of tweaking my gamescope session
-    jovian.follows = "chaotic/jovian";
   };
 
-  outputs = { nixpkgs, yafas, ... }@inputs:
+  outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
+    let
+      flakes = inputs // { inherit (chaotic.vendored) jovian niks3; };
+    in
     yafas.withAllSystems nixpkgs
       (universals: { pkgs, system }@sys: with universals; {
         # Defines a formatter for "nix fmt"
@@ -75,7 +72,7 @@
         homeConfigurations = import ./home-configurations specialArgs;
 
         # Special args you'll find in every module.
-        specialArgs = import common/nixos-special-args.nix inputs;
+        specialArgs = import common/nixos-special-args.nix flakes;
 
         # When accessing my flake from other machines I need chaotic's cache
         inherit (inputs.chaotic) nixConfig;
