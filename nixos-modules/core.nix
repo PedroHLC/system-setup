@@ -5,7 +5,6 @@
 {
   # Nix package-management settings.
   nix = {
-    # I actually wanted nixVersions.nix_2_23, but that's not a thing.
     package = pkgs.nixVersions.latest;
 
     # - Enable flakes
@@ -256,21 +255,26 @@
   environment.etc.hosts.mode = "0644";
 
   # Local domains
-  networking.hosts = {
-    # - My Network
-    "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
-    "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
+  networking.hosts = with flakes.ullib.attrset;
+  let
+    essentials =
+      {
+        # - My Network
+        "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
+        "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
+      };
 
-    # - My VPN
-    "${machines.lab.vpn.v4}" = [ machines.lab.vpn.addr ];
-    "${machines.lab.vpn.v6}" = [ machines.lab.vpn.addr ];
-    "${machines.desktop.vpn.v4}" = [ machines.desktop.vpn.addr ];
-    "${machines.desktop.vpn.v6}" = [ machines.desktop.vpn.addr ];
-    "${machines.xbox.vpn.v4}" = [ machines.xbox.vpn.addr ];
-    "${machines.xbox.vpn.v6}" = [ machines.xbox.vpn.addr ];
-    "${machines.foreign.vpn.v4}" = [ machines.foreign.vpn.addr ];
-    "${machines.foreign.vpn.v6}" = [ machines.foreign.vpn.addr ];
-    "${machines.beacon.vpn.v4}" = [ machines.beacon.vpn.addr ];
-    "${machines.beacon.vpn.v6}" = [ machines.beacon.vpn.addr ];
-  };
+    addLan =
+      hostname: network: lan: union {
+        "${lan.v4}" = [ "${hostname}.${network}.internal" ];
+      };
+
+    addFromSSOT =
+       hostname: {vpn, lans ? { }, ...}: accu:
+        {
+          "${vpn.v4}" = [ vpn.addr ];
+          "${vpn.v6}" = [ vpn.addr ];
+        } // (foldl' (addLan hostname) lans accu);
+  in
+  foldl' addFromSSOT machines essentials;
 }

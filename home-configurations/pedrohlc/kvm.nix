@@ -1,19 +1,17 @@
 utils: with utils;
 
 let
-  clients =
-    builtins.mapAttrs
-      (position: hostname: {
-        inherit hostname;
-        inherit position;
-        activate_on_startup = true;
-        ips = with machines.${hostname};
-          (mapAttrsToList (_: { v4, ... }: v4) lans) ++ [ vpn.v4 ];
-      })
-      kvm;
-
   config = {
-    clients = builtins.attrValues clients;
+    clients =
+      mapAttrsToList
+        (position: hostname: {
+          inherit hostname;
+          inherit position;
+          activate_on_startup = false;
+          ips = with machines.${hostname};
+            (mapAttrsToList (_: { v4, ... }: v4) lans);
+        })
+        kvm;
 
     port = 4242;
 

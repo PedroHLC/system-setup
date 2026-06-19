@@ -13,7 +13,7 @@ let
 in
 rec {
   vpn = {
-    tld = "vpn";
+    tld = "vpn.internal";
     port = 51820;
     prefix = {
       v4 = "10.100.0";
