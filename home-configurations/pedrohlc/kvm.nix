@@ -35,7 +35,7 @@ mkIf (kvm != null) {
       Requires = [ "xdg-desktop-portal.service" ];
     };
     Service = {
-      ExecStart = "${pkgs.lan-mouse}/bin/lan-mouse -c ${configFile} daemon";
+      ExecStart = "${pkgs.lan-mouse}/bin/lan-mouse -d -c ${configFile}";
       Slice = "session.slice";
       Restart = "on-failure";
       RestartSec = 5;
@@ -48,7 +48,7 @@ mkIf (kvm != null) {
     config = {
       Label = "${contact.namespace}.my-kvm";
       ProcessType = "Background";
-      ProgramArguments = [ "${pkgs.lan-mouse}/bin/lan-mouse" "-c" (toString configFile) "daemon" ];
+      ProgramArguments = [ "${pkgs.lan-mouse}/bin/lan-mouse" "-d" "-c" (toString configFile) ];
       RunAtLoad = true;
       KeepAlive = true;
     };
