@@ -21,6 +21,5 @@
     touchpad = null;
     sunshine = true;
     ctrlNearSpaceKeyMap = true;
-    kvm = { "left" = "foreign" };
   };
 }
