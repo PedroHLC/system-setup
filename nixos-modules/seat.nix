@@ -612,6 +612,7 @@
         ".cache/zed"
         ".config/figma-linux"
         ".config/gamescope"
+        ".config/gh"
         ".config/google-chrome"
         ".config/Postman"
         ".config/Slack"
