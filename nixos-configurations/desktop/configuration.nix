@@ -3,6 +3,9 @@
 
 # NixOS-defined options
 {
+  services.shairport-sync.settings.pipewire.sink_target = lib.mkForce
+  "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra3";
+
   # Network.
   networking = {
     hostId = "7116ddca";
