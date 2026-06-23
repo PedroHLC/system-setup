@@ -30,6 +30,12 @@
   # Shadow can't be added to persistent
   users.users."melinapn".hashedPasswordFile = "/var/persistent/secrets/shadow/melinapn";
 
+  # Airplay speaker
+  services.shairport-sync.settings = {
+     general.interface = "enp2s0";
+     pipewire.sink_target = "alsa_output.pci-0000_04_00.6.analog-stereo";
+  };
+
   # Autologin (with Melina).
   services.getty = {
     loginProgram = "${pkgs.bash}/bin/sh";

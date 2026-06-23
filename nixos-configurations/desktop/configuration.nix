@@ -3,9 +3,6 @@
 
 # NixOS-defined options
 {
-  services.shairport-sync.settings.pipewire.sink_target = lib.mkForce
-  "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra3";
-
   # Network.
   networking = {
     hostId = "7116ddca";
@@ -84,6 +81,12 @@
     uxplay
     virtiofsd # for libvirtd
   ];
+
+  # Airplay right speaker and network
+  services.shairport-sync.settings = {
+    general.interface = "eno1";
+    pipewire.sink_target = "alsa_output.pci-0000_09_00.1.hdmi-stereo-extra3";
+  };
 
   # One-button virtualization for some tests of mine
   virtualisation.libvirtd = {

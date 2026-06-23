@@ -6,9 +6,10 @@
       general = {
         output_backend = "pipewire";
         mdns_backend = "avahi";
+        audio_backend_buffer_desired_length_in_seconds = 0.15;
+        audio_decoded_buffer_desired_length_in_seconds = 0.25;
       };
       pipewire = {
-        sink_target = "alsa_output.pci-0000_04_00.6.analog-stereo";
         output_channels = 2;
       };
     };
