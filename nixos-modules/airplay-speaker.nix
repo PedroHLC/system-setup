@@ -6,6 +6,7 @@
       general = {
         output_backend = "pipewire";
         mdns_backend = "avahi";
+        audio_backend_latency_offset_in_seconds = -1.85;
         audio_backend_buffer_desired_length_in_seconds = 0.15;
         audio_decoded_buffer_desired_length_in_seconds = 0.25;
       };
