@@ -281,7 +281,7 @@
     enableDefaultPackages = true; # Those fonts you expect every distro to have.
     packages = with pkgs; [
       borg-sans-mono
-      cantarell-fonts
+      # cantarell-fonts # broken as seen in nixpkgs#535887
       fira
       fira-code
       fira-code-symbols
