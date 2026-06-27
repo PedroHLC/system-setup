@@ -50,6 +50,35 @@ utils: with utils;
           cscale = "ewa_lanczossharp";
           tscale = "oversample";
         };
+        "live" = {
+          profile = "low-latency";
+
+          cache = "no";
+          cache-secs = 0;
+          demuxer-max-back-bytes = 0;
+          demuxer-max-bytes = "1000KiB";
+          demuxer-readahead-secs = 0;
+          stream-buffer-size = "4KiB";
+          framedrop = "vo";
+          untimed = "yes";
+
+          demuxer-lavf-o = "live_start_index=-1";
+          hls-bitrate = "max";
+
+          rtsp-transport = "udp";
+
+          ytdl-raw-options = "cookies-from-browser=firefox";
+          #ytdl-format = "bestvideo[protocol^=m3u8_native]+bestaudio[protocol^=m3u8_native]/best";
+          ytdl-format = "bestvideo[protocol^=http_dash_segments]+bestaudio[protocol^=http_dash_segments]/best";
+
+          speed = 1.2;
+          audio-buffer = 0.01;
+
+          ao-mute-on-ambience-volume = "no";
+          ad-lavc-downmix = "no";
+          video-sync = "display-desync";
+          audio-stream-silence = "yes";
+        };
       };
       bindings = {
         # Subtitle scalers

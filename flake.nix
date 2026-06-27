@@ -47,7 +47,7 @@
 
     # Modern terminal multiplexer
     herdr = {
-      url = "github:ogulcancelik/herdr/0bf9bb58eb9c9495f660aed1bd9336121b953fdc";
+      url = "github:ogulcancelik/herdr/dbc45f6306bda3eee681d73a14b48ffbb39f3fcc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
