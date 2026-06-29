@@ -256,25 +256,25 @@
 
   # Local domains
   networking.hosts = with flakes.ullib.attrset;
-  let
-    essentials =
-      {
-        # - My Network
-        "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
-        "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
-      };
+    let
+      essentials =
+        {
+          # - My Network
+          "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
+          "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
+        };
 
-    addLan =
-      hostname: network: lan: union {
-        "${lan.v4}" = [ "${hostname}.${network}.internal" ];
-      };
+      addLan =
+        hostname: network: lan: union {
+          "${lan.v4}" = [ "${hostname}.${network}.internal" ];
+        };
 
-    addFromSSOT =
-       hostname: {vpn, lans ? { }, ...}: accu:
+      addFromSSOT =
+        hostname: { vpn, lans ? { }, ... }: accu:
         {
           "${vpn.v4}" = [ vpn.addr ];
           "${vpn.v6}" = [ vpn.addr ];
         } // (foldl' (addLan hostname) lans accu);
-  in
-  foldl' addFromSSOT machines essentials;
+    in
+    foldl' addFromSSOT machines essentials;
 }

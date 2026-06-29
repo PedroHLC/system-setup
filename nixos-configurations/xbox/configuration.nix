@@ -32,8 +32,8 @@
 
   # Airplay speaker
   services.shairport-sync.settings = {
-     general.interface = "enp2s0";
-     pipewire.sink_target = "alsa_output.pci-0000_04_00.6.analog-stereo";
+    general.interface = "enp2s0";
+    pipewire.sink_target = "alsa_output.pci-0000_04_00.6.analog-stereo";
   };
 
   # Autologin (with Melina).
