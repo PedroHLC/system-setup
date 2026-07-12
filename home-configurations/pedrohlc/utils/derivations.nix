@@ -9,7 +9,7 @@ rec {
   firefox-gate = with pkgs; callPackage ../../../packages/scripts {
     scriptName = "firefox-gate";
     substitutions = {
-      "$(which firefox)" = "${firefox-devedition}/bin/firefox${firefoxSuffix}";
+      "$(which firefox)" = "${firefox_nightly}/bin/firefox${firefoxSuffix}";
       "$(which zenity)" = "${pkgs.zenity}/bin/zenity";
       "$(which zfs)" = "${zfs}/bin/zfs";
     };

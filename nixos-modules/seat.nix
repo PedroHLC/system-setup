@@ -167,7 +167,7 @@
     btop
     ethtool
     ffmpegthumbnailer
-    firefox-devedition
+    firefox_nightly
     google-chrome
     crosspipe
     keybase-gui
