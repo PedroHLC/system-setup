@@ -125,18 +125,17 @@
   environment.systemPackages = with pkgs; [
     aria2
     busybox_appletless
-    cachix
     curl
+    evil-helix
     fastfetch
     file
     fzf
     google-authenticator
-    evil-helix
     jq
     killall
     mosh
     nix-index
-    # nix-top
+    nix-top
     nmap
     p7zip
     pciutils
@@ -147,6 +146,7 @@
     unzip
     wget
     wireguard-tools
+    xleak
 
     # my scripts
     nixos-clear

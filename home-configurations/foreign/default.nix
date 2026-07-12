@@ -46,7 +46,6 @@
     aria2
     borg-sans-mono
     claude-monitor
-    csvlens
     dbeaver-bin
     gh
     gnupg
@@ -57,7 +56,6 @@
     procps
     ripgrep
     tmux
-    xleak
     # used within launchad agents
     aerospace
     monitorcontrol

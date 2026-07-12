@@ -83,7 +83,7 @@ rec {
       };
     in
     pkgs.writeShellScriptBin "minidlna-start" ''
-      exec ${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v
+      exec ${pkgs.minidlna}/sbin/minidlnad -d -f ${minidlnaConf} -v "$@"
     '';
 
   # I want to pick this with file managers
