@@ -29,6 +29,7 @@ in
       database_backend = "rocksdb";
       trusted_servers = [ "envs.net" "matrix.org" ];
       sentry = true;
+      dns_servers = [ "::1" "127.0.0.1" ];
     };
     # migrated
     group = "conduit";
@@ -66,6 +67,9 @@ in
         extraConfig = ''
           proxy_set_header Host $host;
           proxy_buffering off;
+          proxy_read_timeout 600s;
+          proxy_send_timeout 600s;
+          client_max_body_size 100m;
         '';
       };
       locations."=/.well-known/matrix/server" = {
