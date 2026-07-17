@@ -105,6 +105,25 @@
         "type": "github"
       }
     },
+    "fixed-mautrix-telegram": {
+      "flake": false,
+      "locked": {
+        "dir": "pkgs/by-name/cl/claude-code",
+        "lastModified": 1784210345,
+        "narHash": "sha256-IsGD3LJRmwOn+913qCZ5LPuw/GcHSSkYLTpuGaw/LBU=",
+        "owner": "luochen1990",
+        "repo": "nixpkgs",
+        "rev": "3068460c4fd8a185b7a4c1d08235898476eb3225",
+        "type": "github"
+      },
+      "original": {
+        "dir": "pkgs/by-name/cl/claude-code",
+        "owner": "luochen1990",
+        "ref": "mautrix-telegram-importlib-resources",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -308,6 +327,7 @@
     "root": {
       "inputs": {
         "chaotic": "chaotic",
+        "fixed-mautrix-telegram": "fixed-mautrix-telegram",
         "home-manager": [
           "chaotic",
           "home-manager"

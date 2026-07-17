@@ -25,16 +25,20 @@ let
   binary = "${package}/bin/tuwunel";
 in
 {
-  services.matrix-conduit = {
+  services.matrix-tuwunel = {
     enable = true;
     package = package;
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
       database_backend = "rocksdb";
-      trusted_servers = [ "envs.net" ];
+      trusted_servers = [ "envs.net" "matrix.org" ];
       sentry = true;
     };
+    # migrated
+    group = "conduit";
+    user = "conduit";
+    stateDirectory = "matrix-conduit";
   };
   systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce binary;
   services.nginx = {
@@ -100,11 +104,22 @@ in
     };
   };
 
+  users.users."conduit" = {
+    group = "conduit";
+    home = "/var/lib/matrix-conduit";
+    description = "Matrix home-server";
+    createHome = false;
+    isSystemUser = true;
+  };
+  users.groups.conduit = { };
+
   # Telegram bridge
   services.mautrix-telegram = {
     enable = true;
     environmentFile = "/var/persistent/secrets/mautrix-telegram.env";
     serviceDependencies = [ "conduit.service" ];
+    # nixpkgs#542747
+    package = pkgs.callPackage "${flakes.fixed-mautrix-telegram}/package.nix" { };
     # https://github.com/mautrix/telegram/blob/v0.15.1/mautrix_telegram/example-config.yaml
     settings = {
       appservice = rec {

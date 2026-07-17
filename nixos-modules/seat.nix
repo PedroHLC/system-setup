@@ -224,7 +224,7 @@
     # Social
     telegram-desktop
     tuba
-    vesktop
+    # vesktop # broken nixpkgs#542512
 
     # Gaming tools
     mangohud
