@@ -19,15 +19,10 @@ let
       }
     }
   '';
-
-  package = pkgs.matrix-tuwunel;
-
-  binary = "${package}/bin/tuwunel";
 in
 {
   services.matrix-tuwunel = {
     enable = true;
-    package = package;
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
@@ -40,7 +35,6 @@ in
     user = "conduit";
     stateDirectory = "matrix-conduit";
   };
-  systemd.services.conduit.serviceConfig.ExecStart = lib.mkForce binary;
   services.nginx = {
     virtualHosts."${matrix_hostname}" = {
       listen = [
@@ -98,7 +92,7 @@ in
     upstreams = {
       "backend_conduit" = {
         servers = {
-          "[::1]:${toString config.services.matrix-conduit.settings.global.port}" = { };
+          "[::1]:${toString config.services.matrix-tuwunel.settings.global.port}" = { };
         };
       };
     };
@@ -117,7 +111,7 @@ in
   services.mautrix-telegram = {
     enable = true;
     environmentFile = "/var/persistent/secrets/mautrix-telegram.env";
-    serviceDependencies = [ "conduit.service" ];
+    serviceDependencies = [ "tuwunel.service" ];
     # nixpkgs#542747
     package = pkgs.callPackage "${flakes.fixed-mautrix-telegram}/package.nix" { };
     # https://github.com/mautrix/telegram/blob/v0.15.1/mautrix_telegram/example-config.yaml
