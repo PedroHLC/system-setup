@@ -108,7 +108,7 @@
     "fixed-mautrix-telegram": {
       "flake": false,
       "locked": {
-        "dir": "pkgs/by-name/cl/claude-code",
+        "dir": "pkgs/by-name/ma/mautrix-telegram",
         "lastModified": 1784210345,
         "narHash": "sha256-IsGD3LJRmwOn+913qCZ5LPuw/GcHSSkYLTpuGaw/LBU=",
         "owner": "luochen1990",
@@ -117,7 +117,7 @@
         "type": "github"
       },
       "original": {
-        "dir": "pkgs/by-name/cl/claude-code",
+        "dir": "pkgs/by-name/ma/mautrix-telegram",
         "owner": "luochen1990",
         "ref": "mautrix-telegram-importlib-resources",
         "repo": "nixpkgs",
