@@ -3,7 +3,9 @@
   # For development, but disabled to start service on-demand
   services.postgresql = {
     enable = true;
-    package = pkgs.postgresql; # always the latest
+    package = pkgs.postgresql_18; # always pinned
+    # Avoid auto initializing a DB after updates
+    initdbArgs = [ "--simply-dont" ];
     settings = {
       # log_statement = "all";
       # logging_collector = true;
