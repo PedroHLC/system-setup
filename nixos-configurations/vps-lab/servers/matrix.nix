@@ -116,8 +116,6 @@ in
     enable = true;
     environmentFile = "/var/persistent/secrets/mautrix-telegram.env";
     serviceDependencies = [ "tuwunel.service" ];
-    # nixpkgs#542747
-    package = pkgs.callPackage "${flakes.fixed-mautrix-telegram}/package.nix" { };
     # https://github.com/mautrix/telegram/blob/v0.15.1/mautrix_telegram/example-config.yaml
     settings = {
       appservice = rec {

@@ -44,12 +44,6 @@
       url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";
       flake = false;
     };
-
-    # nixpkgs#542747
-    fixed-mautrix-telegram = {
-      url = "github:luochen1990/nixpkgs/mautrix-telegram-importlib-resources?dir=pkgs/by-name/ma/mautrix-telegram";
-      flake = false;
-    };
   };
 
   outputs = { nixpkgs, yafas, chaotic, ... }@inputs:

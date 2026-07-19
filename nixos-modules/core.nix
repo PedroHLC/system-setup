@@ -91,23 +91,6 @@
   };
   console.font = "Lat2-Terminus16";
 
-  # Earlier adoption of nixpkgs#299456
-  boot.initrd.systemd.contents."/etc/kbd/consolefonts" =
-    let
-      cfg = config.console;
-      consoleEnv = kbd: pkgs.buildEnv {
-        name = "console-env";
-        paths = [ kbd ] ++ cfg.packages;
-        pathsToLink = [
-          "/share/consolefonts"
-          "/share/consoletrans"
-          "/share/keymaps"
-          "/share/unimaps"
-        ];
-      };
-    in
-    lib.mkIf (!cfg.earlySetup && cfg.font != null) { source = "${consoleEnv config.boot.initrd.systemd.package.kbd}/share/consolefonts"; };
-
   # User accounts.
   users.users.pedrohlc = {
     uid = 1001;

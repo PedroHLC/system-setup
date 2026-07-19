@@ -224,7 +224,7 @@
     # Social
     telegram-desktop
     tuba
-    # vesktop # broken nixpkgs#542512
+    vesktop
 
     # Gaming tools
     mangohud
@@ -236,8 +236,8 @@
     pkgsi686Linux.gamescope-wsi
 
     # Gaming
-    # devilutionx (waiting nixpkgs#451749)
-    # openmohaa_git
+    devilutionx
+    openmohaa_git
     openrct2
     space-cadet-pinball
   ];
@@ -281,7 +281,7 @@
     enableDefaultPackages = true; # Those fonts you expect every distro to have.
     packages = with pkgs; [
       borg-sans-mono
-      # cantarell-fonts # broken as seen in nixpkgs#535887
+      cantarell-fonts
       fira
       fira-code
       fira-code-symbols
@@ -451,9 +451,9 @@
     "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr"
   ];
 
-  # Bigger internet
+  # IPFS
   services.kubo = {
-    enable = false; # nixpkgs#502938
+    enable = true;
     startWhenNeeded = true;
   };
 
