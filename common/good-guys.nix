@@ -2,7 +2,7 @@ ssot: with ssot;
 
 [
   { uid = "e1d1e0e0-af31-4007-b107-349ffa7cfa00"; name = "VPN"; ids = [ vpn.subnet.v4 vpn.subnet.v6 ]; tags = [ "user_admin" ]; }
-  { uid = "0d43322b-4f5b-48c7-b21c-301d4d89a24c"; name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" ]; tags = [ "user_admin" ]; }
+  { uid = "0d43322b-4f5b-48c7-b21c-301d4d89a24c"; name = "VPS"; ids = [ web.lab.v4 web.lab.v6 "127.0.0.1/8" "::1/128" ]; tags = [ "user_admin" ]; }
   { uid = "59e8d5cc-1fec-464a-b142-a03ecbb0168b"; name = "CLOUDFLAREWARP"; ids = [ "2a09:bac0::/29" "104.16.0.0/12" ]; tags = [ "user_regular" ]; }
   { uid = "6f38a558-bb55-470c-9707-022910cdea61"; name = "AmericaNet"; ids = [ "186.236.110.0/23" "186.236.122.0/23" "186.236.96.0/19" "187.121.192.0/19" ]; tags = [ "user_regular" ]; }
   {
