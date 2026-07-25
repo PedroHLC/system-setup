@@ -78,7 +78,7 @@ rec {
           media_dir=V,/home/pedrohlc/Torrents
           friendly_name=${dlnaName}
           inotify=yes
-          db_dir=/tmp
+          db_dir=/tmp/minidlna
         '';
       };
     in

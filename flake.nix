@@ -44,6 +44,12 @@
       url = "github:NixOS/nixpkgs?dir=pkgs/by-name/cl/claude-code";
       flake = false;
     };
+
+    # multilib for nix-ld
+    # nix-ld-32bit = {
+    #   url = "github:KoviRobi/nixpkgs/nix-ld-32bit?dir=nixos/modules/programs";
+    #   flake = false;
+    # };
   };
 
   outputs = { nixpkgs, yafas, chaotic, ... }@inputs:

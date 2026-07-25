@@ -15,6 +15,7 @@ mkNixOS {
     ../../nixos-modules/monitor-follow-usb.nix
     ../../nixos-modules/pw-hifi.nix
     ../../nixos-modules/seat.nix
+    # ../../nixos-modules/steam-rt-ld.nix
     ../../nixos-modules/wgcf-teams.nix
     ../../nixos-modules/wireguard-client.nix
     ./configuration.nix
