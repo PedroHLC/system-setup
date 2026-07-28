@@ -19,32 +19,10 @@ let
       }
     }
   '';
-
-  tuwunel_1_8_2 =
-    pkgs.fetchFromGitHub {
-      owner = "matrix-construct";
-      repo = "tuwunel";
-      tag = "v1.8.2";
-      hash = "sha256-mfdX5HmuXf6s7zyT9AJUoz4v5v9Km+VX8z6KvRGq8F8=";
-    };
 in
 {
   services.matrix-tuwunel = {
     enable = true;
-    package =
-      if pkgs.matrix-tuwunel.version == "1.8.1" then
-        pkgs.matrix-tuwunel.overrideAttrs (prevAttrs: {
-          version = "1.8.2";
-          src = tuwunel_1_8_2;
-          cargoHash = "sha256-jIgL/4i17H216goZ8DiFvIJTCKyjEHGiky3MTO5sQoY=";
-          cargoDeps = prevAttrs.cargoDeps.overrideAttrs (prevCargoAttrs: {
-            src = tuwunel_1_8_2;
-            vendorStaging = prevCargoAttrs.vendorStaging.overrideAttrs (_prevVendorAttrs: {
-              outputHash = "sha256-jIgL/4i17H216goZ8DiFvIJTCKyjEHGiky3MTO5sQoY=";
-            });
-          });
-        })
-      else throw "Matrix-tuwunel bumped";
     settings.global = {
       server_name = matrix_hostname;
       allow_registration = false;
