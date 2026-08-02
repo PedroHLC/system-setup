@@ -315,6 +315,9 @@
     ];
   };
 
+  # Wireshark
+  programs.wireshark.enable = true;
+
   # The default's CLI gamescope.
   programs.gamescope = {
     enable = true;
@@ -461,6 +464,7 @@
   users.users.pedrohlc.extraGroups = [
     config.services.kubo.group
     config.hardware.i2c.group
+    "wireshark"
   ];
 
   # Creates a second boot entry with LTS kernel, stable ZFS, stable Mesa3D.
