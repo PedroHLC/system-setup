@@ -258,19 +258,19 @@ with utils; {
 
         If new ad-hoc environments are interesting, check https://devenv.sh/ad-hoc-developer-environments/
 
+        NEVER use Python for your scripts!
+
         ## Notifications
         - `echo "<message>" | "apple-notify" "<title>" [sound]` — sends desktop + mobile push in one shot.
         - Sounds: `Glass` (success, default), `Basso` (failure).
       '';
       settings = {
         theme = "dark";
-        includeCoAuthoredBy = true;
         effortLevel = "high";
         model = "opus";
         plansDirectory = "./tmp/plans";
         env = {
           "CLAUDE_CODE_DISABLE_1M_CONTEXT" = "1";
-          "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING" = "1";
           "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
         };
       };

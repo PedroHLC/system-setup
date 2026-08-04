@@ -76,6 +76,7 @@
       ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/AeroSpace.app/Contents/MacOS/AeroSpace" ];
       RunAtLoad = true;
       KeepAlive = true;
+      Nice = -10;
     };
   };
 
@@ -88,6 +89,7 @@
       ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/Stats.app/Contents/MacOS/Stats" ];
       RunAtLoad = true;
       KeepAlive = true;
+      Nice = 15;
     };
   };
 
@@ -100,6 +102,7 @@
       ProgramArguments = [ "/Users/pedrohlc/Applications/Home Manager Apps/MonitorControl.app/Contents/MacOS/MonitorControl" ];
       RunAtLoad = true;
       KeepAlive = true;
+      Nice = 10;
     };
   };
 
