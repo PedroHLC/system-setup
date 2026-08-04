@@ -49,6 +49,7 @@
     gh
     gnupg
     heroku
+    htop
     iproute2mac
     mosh
     postman
