@@ -11,4 +11,6 @@ flakes: final: _prev: {
   aria2c-for-wget-curl = final.callPackage ../packages/aria2c-for-wget-curl.nix { };
 
   claude-code = final.callPackage "${flakes.latest-claude-code}/package.nix" { };
+
+  inherit (flakes.paseo.packages.${final.stdenv.hostPlatform.system}) paseo;
 }

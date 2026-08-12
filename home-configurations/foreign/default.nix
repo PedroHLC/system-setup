@@ -52,11 +52,12 @@
     htop
     iproute2mac
     mosh
+    paseo
     postman
     procps
     ripgrep
     tmux
-    # used within launchad agents
+    # used within launchd agents
     aerospace
     monitorcontrol
     stats

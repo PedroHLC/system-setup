@@ -45,6 +45,11 @@
       flake = false;
     };
 
+    paseo = {
+      url = "github:getpaseo/paseo/fc1cb82e023f652eccac6b69e91e4482b7b55a67";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # multilib for nix-ld
     # nix-ld-32bit = {
     #   url = "github:KoviRobi/nixpkgs/nix-ld-32bit?dir=nixos/modules/programs";

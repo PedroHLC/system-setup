@@ -291,6 +291,27 @@
         "type": "github"
       }
     },
+    "paseo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1786560511,
+        "narHash": "sha256-zlsoap2aUH40dBGdW5QVsXzQ7Bx564nFjqprVhNYB00=",
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "rev": "fc1cb82e023f652eccac6b69e91e4482b7b55a67",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "rev": "fc1cb82e023f652eccac6b69e91e4482b7b55a67",
+        "type": "github"
+      }
+    },
     "pedrochrome-css": {
       "flake": false,
       "locked": {
@@ -320,6 +341,7 @@
           "chaotic",
           "nixpkgs"
         ],
+        "paseo": "paseo",
         "pedrochrome-css": "pedrochrome-css",
         "stylix": "stylix",
         "ullib": "ullib",
