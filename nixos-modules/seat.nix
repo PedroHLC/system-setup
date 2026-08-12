@@ -400,7 +400,7 @@
           ieee80211ax = 1;
           ieee80211d = 1;
           ieee80211h = 1;
-          ieee80211w = 2;
+          ieee80211w = lib.mkForce 2;
           local_pwr_constraint = 3;
           max_num_sta = 255;
           rsn_pairwise = "CCMP";

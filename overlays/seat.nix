@@ -92,4 +92,13 @@ final: prev: {
         --replace-fail 'RestoreFdLimit();' 'prctl(PR_CAP_AMBIENT, PR_CAP_AMBIENT_LOWER, 23, 0, 0); RestoreFdLimit();'
     '';
   });
+
+  # Unsafe, but TIDAL needs --no-sandbox
+  tidal-hifi = prev.tidal-hifi.overrideAttrs (oa: {
+    postFixup =
+      builtins.replaceStrings
+        [ "--add-flags" ]
+        [ "--add-flags '--no-sandbox' --add-flags" ]
+        oa.postFixup;
+  });
 }
