@@ -126,7 +126,7 @@ in
     text = concatStringsSep "\n" keyring.ssh;
   };
 
-  home.activation.mergeAudacious = mkIf (!isNixOS) (hm.dag.entryAfter [ "onFilesChange" ] ''
+  home.activation.mergeSshAuthorizedKeys = mkIf (!isNixOS) (hm.dag.entryAfter [ "onFilesChange" ] ''
     authorizedKeys="$HOME/.ssh/authorized_keys"
     if [[ ! -e "$authorizedKeys" ]]; then
       $DRY_RUN_CMD touch "$authorizedKeys"

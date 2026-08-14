@@ -640,6 +640,7 @@
         ".steam"
         ".supermaven"
         ".system.git"
+        ".themes"
         ".zoom"
         "Postman"
       ];
