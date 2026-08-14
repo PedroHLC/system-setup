@@ -75,19 +75,7 @@ utils: with utils;
           { command = "plasma-apply-lookandfeel --apply stylix"; }
         ];
 
-        # Allow stylix+flatpak when theme is hardcoded as well
-        home.file.".themes/${config.gtk.theme.name}".enable = false;
-        home.activation.readWriteGtkTheme = hm.dag.entryAfter [ "onFilesChange" ] ''
-          _GTK_THEME_SOURCE=${config.home.file.".themes/${config.gtk.theme.name}".source}
-          _GTK_THEME_DEST=$HOME/.themes/${config.gtk.theme.name}
-
-          mkdir -p "$_GTK_THEME_DEST"
-          if [ "$(cat "$_GTK_THEME_DEST/last")" != '$_GTK_THEME_SOURCE' ]; then
-            mkdir -p "$_GTK_THEME_DEST"
-            cp -r "$_GTK_THEME_SOURCE"/* "$_GTK_THEME_DEST/"
-            chmod -R +w "$_GTK_THEME_DEST/"
-            printf "%s" '$_GTK_THEME_SOURCE' > "$_GTK_THEME_DEST/last"
-          fi
-        '';
+        # Flatpak writing to ~/.themes is headache
+        stylix.targets.gtk.flatpakSupport.enable = false;
       })];
 }
