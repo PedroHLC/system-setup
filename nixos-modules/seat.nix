@@ -236,9 +236,6 @@
     pkgsi686Linux.gamescope-wsi
 
     # Gaming
-    devilutionx
-    openmohaa_git
-    openrct2
     space-cadet-pinball
   ];
 

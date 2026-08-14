@@ -80,6 +80,9 @@
     nixos-next-shot
     uxplay
     virtiofsd # for libvirtd
+
+    # Gaming
+    openrct2
   ];
 
   # Airplay right speaker and network

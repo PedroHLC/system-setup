@@ -101,4 +101,9 @@ final: prev: {
         [ "--add-flags '--no-sandbox' --add-flags" ]
         oa.postFixup;
   });
+
+  # nixpkgs#552268
+  waypipe = prev.waypipe.override {
+    ffmpeg = final.ffmpeg_8;
+  };
 }
