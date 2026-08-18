@@ -46,7 +46,7 @@
     };
 
     paseo = {
-      url = "github:getpaseo/paseo/fc1cb82e023f652eccac6b69e91e4482b7b55a67";
+      url = "github:getpaseo/paseo/d7f892251f77851508af3b3ae2effa296157f98a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
