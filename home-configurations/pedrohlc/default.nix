@@ -269,9 +269,15 @@ with utils; {
         effortLevel = "high";
         model = "opus";
         plansDirectory = "./tmp/plans";
+        autoCompactEnabled = false;
+        switchModelsOnFlag = false;
+        editorMode = "vim";
         env = {
           "CLAUDE_CODE_DISABLE_1M_CONTEXT" = "1";
           "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
+        };
+        permissions  = {
+          defaultMode = "acceptEdits";
         };
       };
     };
