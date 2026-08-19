@@ -1,12 +1,14 @@
 config-version = 2
 
-after-startup-command = []
+after-startup-command = ['workspace 1']
 start-at-login = false
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
 
 automatically-unhide-macos-hidden-apps = true
+
+persistent-workspaces = ['1']
 
 focus-follows-mouse.enabled = true
 
