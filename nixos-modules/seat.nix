@@ -165,6 +165,7 @@
     bluez-tools
     brightnessctl
     btop
+    cutty_git
     ethtool
     ffmpegthumbnailer
     firefox_nightly
@@ -428,22 +429,41 @@
   # Pull all plasma things, don't had time to separate stuff to extract its LookAndFeel
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
     ark
-    elisa
-    gwenview
-    okular
-    kate
-    khelpcenter
-    dolphin
+    aurorae
     baloo-widgets
+    dolphin
     dolphin-plugins
-    spectacle
+    elisa
     ffmpegthumbs
+    gwenview
+    kate
+    kconfig
+    khelpcenter
+    konsole
     krdp
+    ktexteditor
+    kwin-x11
+    okular
+    plasma-browser-integration
+    plasma-keyboard
+    qtvirtualkeyboard
+    spectacle
+    #plasma-workspace-wallpapers
+    #qtbase
+    #qttools
   ];
   services.orca.enable = false;
+
+  # Let's give this a chance as well
+  services.desktopManager.cosmic.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-edit
+    cosmic-player
+    cosmic-reader
+    cosmic-store
+    cosmic-term
+  ];
 
   # Have my portal settings created through users' files
   systemd.user.services.xdg-desktop-portal-wlr.serviceConfig.ExecStart = lib.mkForce [

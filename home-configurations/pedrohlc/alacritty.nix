@@ -1,11 +1,19 @@
 utils: with utils;
 
+let
+  cfg = config.programs.alacritty;
+  tomlFormat = pkgs.formats.toml { };
+
+  configFile =
+    # https://github.com/NixOS/nixpkgs/pull/513796#issuecomment-4608008199
+    tomlFormat.generate "tty.toml" cfg.settings;
+in
 {
   programs = {
     # My favorite and simple terminal
     alacritty = {
       enable = hasSeat;
-      package = pkgs.alacritty;
+      package = pkgs.cutty_git;
       settings = {
         window.opacity = mkForce 0.9;
 
@@ -36,13 +44,8 @@ utils: with utils;
     };
   };
 
-  xdg.configFile."alacritty/alacritty.toml" =
-    let
-      cfg = config.programs.alacritty;
-      tomlFormat = pkgs.formats.toml { };
-    in
-    mkIf hasSeat {
-      # https://github.com/NixOS/nixpkgs/pull/513796#issuecomment-4608008199
-      source = mkForce (tomlFormat.generate "alacritty.toml" cfg.settings);
-    };
+  xdg.configFile = mkIf hasSeat {
+    "alacritty/alacritty.toml".source = mkForce configFile;
+    "cutty/cutty.toml".source = configFile;
+  };
 }
