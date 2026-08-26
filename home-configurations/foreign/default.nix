@@ -42,6 +42,7 @@
 
   # More packages
   home.packages = with pkgs; [
+    alacritty
     aria2
     borg-sans-mono
     claude-monitor
