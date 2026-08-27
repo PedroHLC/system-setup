@@ -464,6 +464,7 @@
     cosmic-store
     cosmic-term
   ];
+  services.gnome.gnome-keyring.enable = false;
 
   # Have my portal settings created through users' files
   systemd.user.services.xdg-desktop-portal-wlr.serviceConfig.ExecStart = lib.mkForce [
