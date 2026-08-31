@@ -290,14 +290,13 @@ with utils; {
   services.gammastep = {
     enable = hasLinuxSeat;
     provider = "manual";
-    temperature.night = 5100;
+    temperature.night = 5800;
     latitude = -23.438343565214307;
     longitude = -47.06493998075002;
     settings = {
       general = {
         adjustment-method = "wayland";
-        brightness-night = 0.8;
-        gamma-night = 0.9;
+        brightness-night = 0.84;
         location-provider = "manual";
       };
     };
