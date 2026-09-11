@@ -101,4 +101,31 @@ final: prev: {
         [ "--add-flags '--no-sandbox' --add-flags" ]
         oa.postFixup;
   });
+
+  # taken from https://github.com/BJSummerfield/nixcfg/blob/339bb8f2ae4d77c4c49a2a1598b3b1f579d267c0/modules/keybase/nixos.nix
+  keybase = prev.keybase.overrideAttrs (old: {
+    version = "6.6.3";
+    src = old.src.override {
+      tag = "v6.6.3";
+      hash = "sha256-TRDJINzuObgn6JWZ9CoHWxKO23I9sceDlB4MmnqlOvw=";
+    };
+    vendorHash = "sha256-OGavtp0vYqK0D4P+ypVyEF8GsvDvfIDQXsjlKmpKJJ4=";
+  });
+
+  # taken from https://github.com/BJSummerfield/nixcfg/blob/339bb8f2ae4d77c4c49a2a1598b3b1f579d267c0/modules/keybase/nixos.nix
+  keybase-gui =
+    final.lib.warnIf (final.lib.versionAtLeast prev.keybase-gui.version "6.6.3")
+      "modules/keybase/nixos.nix: nixpkgs now has keybase-gui ${prev.keybase-gui.version}; delete this overlay"
+      (
+        prev.keybase-gui.overrideAttrs (old: rec {
+          version = "6.6.3";
+          src = final.fetchurl {
+            url = "https://s3.amazonaws.com/prerelease.keybase.io/linux_binaries/deb/keybase_${version}-20260603142455.f60f2ff97e_amd64.deb";
+            hash = "sha256-4OqjEc2kLJpJ7FC7WR0DAfsmsrvoKHrm4RtBdGpkti4=";
+          };
+          meta = old.meta // {
+            knownVulnerabilities = [ ];
+          };
+        })
+      );
 }
