@@ -10,7 +10,7 @@ in
     host = proxyAddr;
     port = ollamaPort;
     package = pkgs.ollama-vulkan;
-    loadModels = [ "qwen3-coder:30b" "gpt-oss:20b" ];
+    loadModels = [ "gpt-oss:20b" ];
     syncModels = true;
     user = "ollama";
     group = "agents";
@@ -50,11 +50,18 @@ in
       port = llamaCppPort;
       model = "${config.users.users.llama-cpp.home}/models/Qwen3.5-35B-A3B-Q3_K_S.gguf";
       "ngl" = 99;
-      "ctx-size" = 32768;
+      "ctx-size" = 20480;
+      "batch-size" = 2048;
+      "ubatch-size" = 512;
+      "cont-batching" = 1;
       "flash-attn" = "on";
       "cache-type-k" = "q8_0";
       "cache-type-v" = "q8_0";
+      "kv-unified" = 1;
       "parallel" = 1;
+      "mmap" = 1;
+      "fit" = "on";
+      "fit-target" = 512;
       "chat-template-kwargs" = "{\"enable_thinking\":false}";
     };
   };
