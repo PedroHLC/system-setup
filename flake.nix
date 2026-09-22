@@ -46,7 +46,12 @@
     };
 
     paseo = {
-      url = "github:getpaseo/paseo/d7f892251f77851508af3b3ae2effa296157f98a";
+      url = "github:getpaseo/paseo/81865852011df86aa0ad0ae411cb2f5e4078153f";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    punktfunk = {
+      url = "git+https://git.unom.io/unom/punktfunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

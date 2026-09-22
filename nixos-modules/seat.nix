@@ -572,6 +572,7 @@
         ".config/nvim"
         { directory = ".config/kdeconnect"; mode = "0700"; }
         { directory = ".config/kwalletrc"; mode = "0700"; }
+        ".config/punktfunk"
         ".config/obs-studio"
         ".config/osdlyrics"
         ".config/qBittorrent"

@@ -5,6 +5,7 @@ mkNixOS {
   specs = ./specs.nix;
   extraModules = [
     flakes.impermanence.nixosModules.impermanence
+    flakes.punktfunk.nixosModules.default
     ../../nixos-modules/4k-nohidpi.nix
     ../../nixos-modules/amdcpu.nix
     ../../nixos-modules/airplay-speaker.nix

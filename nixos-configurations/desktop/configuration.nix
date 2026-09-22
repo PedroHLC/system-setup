@@ -121,6 +121,16 @@
     };
   };
 
+  services.punktfunk.host = {
+    enable = true;
+    users = [ "pedrohlc" ];
+    gamescopeHdr = true;
+    desktopSession = false; # Should be off for a gamescope box.
+    gamestream = true;
+    # autoStart = true;
+    environmentFile = "/var/persistent/secrets/punktfunk-host.env";
+  };
+
   # Allows streaming with KMS
   security.wrappers.sunshine = {
     source = "${pkgs.sunshine}/bin/sunshine";

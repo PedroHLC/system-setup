@@ -57,6 +57,8 @@
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
   ];
 
+  services.punktfunk.client.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
