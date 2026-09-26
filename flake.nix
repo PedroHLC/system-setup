@@ -51,7 +51,7 @@
     };
 
     punktfunk = {
-      url = "git+https://git.unom.io/unom/punktfunk";
+      url = "git+https://git.unom.io/unom/punktfunk?ref=nix-stable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

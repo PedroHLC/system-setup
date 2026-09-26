@@ -127,7 +127,7 @@
     gamescopeHdr = true;
     desktopSession = false; # Should be off for a gamescope box.
     gamestream = true;
-    # autoStart = true;
+    autoStart = true;
     environmentFile = "/var/persistent/secrets/punktfunk-host.env";
   };
 
