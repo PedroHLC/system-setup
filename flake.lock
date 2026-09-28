@@ -298,11 +298,11 @@
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1790448801,
-        "narHash": "sha256-nAq6wML4elZMHNi/29VVZSEnptPMSo9JwhacZnLVPZU=",
+        "lastModified": 1790594702,
+        "narHash": "sha256-g/5aJ5SxaC2btC81pyL6u8/FApM/E9QvjfnB3Cjvs2E=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f9bce96a417afbb9c64725f8727e42efafeafc21",
+        "rev": "01578902bef53daa6f964378821810d920a7bf38",
         "type": "github"
       },
       "original": {
@@ -357,17 +357,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1790102053,
-        "narHash": "sha256-5pjFV28DmKsptnAajWEWeOAvkur3QkJAHSJZyfiqRh4=",
+        "lastModified": 1790102667,
+        "narHash": "sha256-Wpv5Zp6oICdhgZNnpw5eU22b5mwNTUrgOAC0DmcTbaU=",
         "owner": "getpaseo",
         "repo": "paseo",
-        "rev": "81865852011df86aa0ad0ae411cb2f5e4078153f",
+        "rev": "bc5bc969c852936b114463114c05c0b3ef354459",
         "type": "github"
       },
       "original": {
         "owner": "getpaseo",
         "repo": "paseo",
-        "rev": "81865852011df86aa0ad0ae411cb2f5e4078153f",
+        "rev": "bc5bc969c852936b114463114c05c0b3ef354459",
         "type": "github"
       }
     },
