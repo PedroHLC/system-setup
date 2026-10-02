@@ -314,6 +314,13 @@
     ];
   };
 
+  # dwproton to use with Heroic
+  fileSystems."/opt/dwproton" = {
+    device = pkgs.dwproton-bin.src.outPath;
+    fsType = "none";
+    options = [ "bind" "ro" "x-gvfs-hide" ];
+  };
+
   # Wireshark
   programs.wireshark.enable = true;
 
