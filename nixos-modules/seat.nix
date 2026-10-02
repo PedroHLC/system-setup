@@ -308,6 +308,7 @@
     enable = true;
 
     extraCompatPackages = with pkgs; [
+      dwproton-bin
       proton-cachyos_x86_64_v3
       proton-ge-bin
     ];
