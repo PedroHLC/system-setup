@@ -10,17 +10,15 @@
     # - Enable flakes
     # - newer CLI features
     # - content-aware
-    # - keep sources around for offline-building
-    # - tank more of my internet connection
-    extraOptions = ''
-      experimental-features = nix-command flakes ca-derivations
+    settings.experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
 
-      keep-outputs = true
-      keep-derivations = true
+    # keep sources around for offline-building
+    settings.keep-outputs = true;
+    settings.keep-derivations = true;
 
-      max-substitution-jobs = 48
-      http-connections = 100
-    '';
+    # tank more of my internet connection
+    settings.max-substitution-jobs = 48;
+    settings.http-connections = 100;
 
     # Allow my user to use nix
     settings.trusted-users = [ "root" "pedrohlc" ];
@@ -43,10 +41,15 @@
     settings.max-jobs = "auto";
   };
 
+  # Nix 2.30 made all builds write to disk because "users are dumb", let's revert that
+  systemd.tmpfiles.rules = [
+    "d ${config.settings.build-dir or "/nix/var/nix/builds"} 0770 root nixbld - -"
+  ];
+
   # Enable all the firmwares
   hardware.enableRedistributableFirmware = true;
 
-  # I like /tmp on RAM.
+  # I like /tmp to fill my RAM.
   boot.tmp = {
     useTmpfs = true;
     tmpfsSize = "100%";
