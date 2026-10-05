@@ -100,11 +100,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1791147644,
-        "narHash": "sha256-nqSwGQydFpYoywJ7QGzB8P0eNdHkHZLZwOks3+eVcFA=",
+        "lastModified": 1791199517,
+        "narHash": "sha256-8EiWigtpwymLaWuENLsMYglf5w6URAqt7iH/nz9xH+E=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "d27ebab4b3199c9b4e184e80901b0351176b1a45",
+        "rev": "87d4bcada61afb9bad18cbf320ad8ce1d9542d70",
         "type": "github"
       },
       "original": {
@@ -298,11 +298,11 @@
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1791207251,
-        "narHash": "sha256-NBSkXIjgu0P1vmr0TRbF5FK233shB2nSZYAQ+BNsCPc=",
+        "lastModified": 1791207618,
+        "narHash": "sha256-IQUtwxTvUZo0+OylIaeH6LHpOOL2Jr+MILZhvKzV6QM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "76293d4e03ce74290dc1437112cca86a81ed0b2e",
+        "rev": "b6c78d2738e5f9147ac5a9c67924f880f989f4db",
         "type": "github"
       },
       "original": {
