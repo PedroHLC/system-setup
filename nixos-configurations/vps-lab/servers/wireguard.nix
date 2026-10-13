@@ -35,6 +35,16 @@ in
           listenPort = vpn.port;
           privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
           peers = vpnClients ++ [
+            # Mel
+            {
+              publicKey = "EBBn0i3SdqM9KUpYsl2vGs8oV3hmEy+cPkGNSep4RCQ=";
+              allowedIPs = [
+                "${vpn.prefix.v4}.102/32"
+                "${vpn.prefix.v6}:102/128"
+                multicastV4
+                multicastV6
+              ];
+            }
             # JurosComposto (atila)
             {
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
