@@ -129,6 +129,19 @@
         "type": "github"
       }
     },
+    "ctr-online": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791971014,
+        "narHash": "sha256-cVHzTNqZ5KY99u1DkaP30m29Mg6ea833xYD7bSljGTA=",
+        "type": "tarball",
+        "url": "https://github.com/OnlineCTR/server/archive/refs/tags/v1103.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/OnlineCTR/server/archive/refs/tags/v1103.tar.gz"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -393,6 +406,7 @@
     "root": {
       "inputs": {
         "chaotic": "chaotic",
+        "ctr-online": "ctr-online",
         "home-manager": [
           "chaotic",
           "home-manager"
