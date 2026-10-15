@@ -85,7 +85,16 @@ in
                 multicastV6
               ];
             }
-
+            # christian
+            {
+              publicKey = "eQQHkO0cxZ3t94JlWSDzfHZgApU2ObdW4Uj2jQ8fPFw=";
+              allowedIPs = [
+                "${vpn.prefix.v4}.222/32"
+                "${vpn.prefix.v6}:222/128"
+                multicastV4
+                multicastV6
+              ];
+            }
           ];
           postSetup = ''
             ip link set wg0 multicast on
