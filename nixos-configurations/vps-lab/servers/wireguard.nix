@@ -46,47 +46,6 @@ in
                 multicastV6
               ];
             }
-            # atila
-            {
-              name = "juroscomposto";
-              publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.202/32"
-                "${vpn.prefix.v6}:202/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            {
-              name = "kojiro";
-              publicKey = "kBVBMFXlj9m6TTy0nBeKBOyaqo5ulBUaPddFTTA2CFc=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.203/32"
-                "${vpn.prefix.v6}:203/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            {
-              name = "kotaro";
-              publicKey = "sJgsAYeBx0aE8es0Yfps0f7fBRpUvcxgyB19EM7wi1M=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.204/32"
-                "${vpn.prefix.v6}:204/128"
-                multicastV4
-                multicastV6
-              ];
-            }
-            {
-              name = "sabrina";
-              publicKey = "4BtCrkUKDU5MAgUk3PFtnvxvT8KUNztaexej0eKjuks=";
-              allowedIPs = [
-                "${vpn.prefix.v4}.205/32"
-                "${vpn.prefix.v6}:205/128"
-                multicastV4
-                multicastV6
-              ];
-            }
             # christian
             {
               name = "christian";
