@@ -5,7 +5,7 @@ let
   multicastV4 = "224.0.0.251/32";
   multicastV6 = "ff02::fb/128";
 
-  vpnClient = { wgKey, vpn, ... }:
+  vpnClient = { wgKey, vpn, hostname, ... }:
     {
       publicKey = wgKey;
       allowedIPs = [
@@ -14,6 +14,7 @@ let
         multicastV4
         multicastV6
       ];
+      name = hostname;
     };
 
   vpnClients =
@@ -35,8 +36,8 @@ in
           listenPort = vpn.port;
           privateKeyFile = "/var/persistent/secrets/wireguard-keys/private";
           peers = vpnClients ++ [
-            # Mel
             {
+              name = "mel";
               publicKey = "EBBn0i3SdqM9KUpYsl2vGs8oV3hmEy+cPkGNSep4RCQ=";
               allowedIPs = [
                 "${vpn.prefix.v4}.102/32"
@@ -45,8 +46,9 @@ in
                 multicastV6
               ];
             }
-            # JurosComposto (atila)
+            # atila
             {
+              name = "juroscomposto";
               publicKey = "tIQzW4+qfv2V8aCLwxJnWRnF+pjV3yRxTRuCPnA2CEA=";
               allowedIPs = [
                 "${vpn.prefix.v4}.202/32"
@@ -55,8 +57,8 @@ in
                 multicastV6
               ];
             }
-            # kojiro (atila)
             {
+              name = "kojiro";
               publicKey = "kBVBMFXlj9m6TTy0nBeKBOyaqo5ulBUaPddFTTA2CFc=";
               allowedIPs = [
                 "${vpn.prefix.v4}.203/32"
@@ -65,8 +67,8 @@ in
                 multicastV6
               ];
             }
-            # kotaro (atila)
             {
+              name = "kotaro";
               publicKey = "sJgsAYeBx0aE8es0Yfps0f7fBRpUvcxgyB19EM7wi1M=";
               allowedIPs = [
                 "${vpn.prefix.v4}.204/32"
@@ -75,8 +77,8 @@ in
                 multicastV6
               ];
             }
-            # notebook de sabrina (atila)
             {
+              name = "sabrina";
               publicKey = "4BtCrkUKDU5MAgUk3PFtnvxvT8KUNztaexej0eKjuks=";
               allowedIPs = [
                 "${vpn.prefix.v4}.205/32"
@@ -87,6 +89,7 @@ in
             }
             # christian
             {
+              name = "christian";
               publicKey = "eQQHkO0cxZ3t94JlWSDzfHZgApU2ObdW4Uj2jQ8fPFw=";
               allowedIPs = [
                 "${vpn.prefix.v4}.222/32"
