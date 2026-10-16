@@ -144,9 +144,6 @@
   environment.variables.SDL_AUDIODRIVER = "pipewire";
   environment.variables.ALSOFT_DRIVERS = "pipewire";
 
-  # Workaround for nixpkgs#238025.
-  environment.variables.TZ = ":/etc/localtime";
-
   # List packages.
   environment.systemPackages = with pkgs; [
     # Common dependencies
