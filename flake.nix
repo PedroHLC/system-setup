@@ -51,7 +51,7 @@
     };
 
     ctr-online = {
-      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/tags/v1103.tar.gz";
+      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/tags/v1104.tar.gz";
       flake = false;
     };
 
