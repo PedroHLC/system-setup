@@ -70,6 +70,7 @@
 
   # Default time zone.
   time.timeZone = "America/Sao_Paulo";
+  environment.variables.TZ = config.time.timeZone;
 
   # Internationalisation.
   i18n = {
