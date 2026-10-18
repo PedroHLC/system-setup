@@ -50,8 +50,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ctr-online = {
-      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/tags/v1104.tar.gz";
+    onlineCTR = {
+      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/heads/stable.tar.gz";
       flake = false;
     };
 

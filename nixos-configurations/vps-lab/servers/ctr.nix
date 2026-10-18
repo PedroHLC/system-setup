@@ -1,7 +1,7 @@
 { flakes, pkgs, ... }:
 
 let
-  pkg = pkgs.pkgsCross.armv7l-hf-multiplatform.callPackage "${flakes.ctr-online}/" { };
+  pkg = pkgs.pkgsCross.armv7l-hf-multiplatform.callPackage "${flakes.onlineCTR}/" { };
 in
 {
   systemd.services.ctr = {
