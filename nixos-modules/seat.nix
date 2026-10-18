@@ -448,7 +448,6 @@
     konsole
     krdp
     ktexteditor
-    kwin-x11
     okular
     plasma-browser-integration
     plasma-keyboard

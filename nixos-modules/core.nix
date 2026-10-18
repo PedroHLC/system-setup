@@ -70,7 +70,7 @@
 
   # Default time zone.
   time.timeZone = "America/Sao_Paulo";
-  environment.variables.TZ = config.time.timeZone;
+  environment.variables.TZ = ":/etc/localtime";
 
   # Internationalisation.
   i18n = {
