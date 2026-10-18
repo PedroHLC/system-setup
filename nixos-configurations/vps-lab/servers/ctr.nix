@@ -1,14 +1,13 @@
-{ flakes, pkgs, ... }:
+{ pkgs, ... }:
 
-let
-  pkg = pkgs.pkgsCross.armv7l-hf-multiplatform.callPackage "${flakes.ctr-online}/" { };
-in
 {
   systemd.services.ctr = {
     enable = true;
     description = "CTR-ModSDK Online Server";
     serviceConfig = {
-      ExecStart = "${pkg}/bin/ctr_srv -p 64001";
+      ExecStart = pkgs.writeScript "build-and-run-online-ctr" ''
+        nix run --refresh --impure -f ${../../../common/impure-onlinectr.nix} -- -p 64001
+      '';
       Restart = "always";
       RestartSec = "8";
 

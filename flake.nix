@@ -50,11 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ctr-online = {
-      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/tags/v1104.tar.gz";
-      flake = false;
-    };
-
     # multilib for nix-ld
     # nix-ld-32bit = {
     #   url = "github:KoviRobi/nixpkgs/nix-ld-32bit?dir=nixos/modules/programs";
