@@ -9,7 +9,7 @@
     };
     path = with pkgs; [ git util-linux config.nix.package nixos-rebuild-ng ];
     script = ''
-      runuser -u pedrohlc -- nix flake update onlinectr
+      runuser -u pedrohlc -- nix flake update onlineCTR
       exec nixos-rebuild switch
     '';
   };
