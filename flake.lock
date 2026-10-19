@@ -353,14 +353,18 @@
     "onlineCTR": {
       "flake": false,
       "locked": {
-        "lastModified": 1792299803,
-        "narHash": "sha256-B5zhctLNbjerFEvm/9gftmvnqhbGa9iR0T/qnERmdkk=",
-        "type": "tarball",
-        "url": "https://github.com/OnlineCTR/server/archive/refs/heads/stable.tar.gz"
+        "lastModified": 1792429706,
+        "narHash": "sha256-nRoiuCfduxDl4pTScT7eSBS7ZUrKMRhqk4avIoo/vgM=",
+        "owner": "OnlineCTR",
+        "repo": "server",
+        "rev": "9382090f06b3d613220f85ccbe7a4053417fff34",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://github.com/OnlineCTR/server/archive/refs/heads/stable.tar.gz"
+        "owner": "OnlineCTR",
+        "ref": "stable",
+        "repo": "server",
+        "type": "github"
       }
     },
     "pedrochrome-css": {

@@ -51,7 +51,7 @@
     };
 
     onlineCTR = {
-      url = "tarball+https://github.com/OnlineCTR/server/archive/refs/heads/stable.tar.gz";
+      url = "github:OnlineCTR/server/stable";
       flake = false;
     };
 
