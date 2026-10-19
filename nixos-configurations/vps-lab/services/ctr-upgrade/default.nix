@@ -7,7 +7,7 @@
       Type = "oneshot";
       WorkingDirectory = "/etc/nixos";
     };
-    path = with pkgs; [ git util-linux config.nix.package ];
+    path = with pkgs; [ git util-linux config.nix.package nixos-rebuild-ng ];
     script = ''
       runuser -u pedrohlc -- nix flake update onlinectr
       exec nixos-rebuild switch
