@@ -22,6 +22,7 @@ mkNixOS {
     ./services/gits-mirror
     ./services/ical-filter
     ./services/mesa-mirror
+    ./services/ctr-upgrade
   ];
   extraConfig = {
     # Mautrix uses OLM
