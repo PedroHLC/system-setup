@@ -13,6 +13,7 @@ mkNixOS {
     ../../nixos-modules/focusrite-hifi.nix
     ../../nixos-modules/journal-upload.nix
     ../../nixos-modules/jovian.nix
+    ../../nixos-modules/ksysrqd.nix
     ../../nixos-modules/local-ai.nix
     ../../nixos-modules/monitor-follow-usb.nix
     ../../nixos-modules/pw-hifi.nix

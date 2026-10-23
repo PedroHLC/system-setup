@@ -13,6 +13,7 @@ mkNixOS {
     ../../nixos-modules/ctrl-near-space-key.nix
     ../../nixos-modules/focusrite-hifi.nix
     ../../nixos-modules/hdr-display.nix
+    ../../nixos-modules/ksysrqd.nix
     ../../nixos-modules/monitor-follow-usb.nix
     ../../nixos-modules/pw-hifi.nix
     ../../nixos-modules/seat.nix

@@ -32,8 +32,10 @@ kernel.stdenv.mkDerivation {
     make $makeFlags M=$(pwd) modules
   '';
 
+  # I guess I'll have to drop this once we use SecureBoot anyway, so "touch" is fine
   installPhase = ''
     install -D ksysrqd.ko -t "$out/lib/modules/${kernel.modDirVersion}/kernel/extra/"
+    touch "$out/lib/modules/${kernel.modDirVersion}/kernel/extra/ksysrqd.ko.cer"
   '';
 
   meta = with lib; {
