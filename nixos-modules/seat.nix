@@ -91,11 +91,11 @@
     enable = true;
     nssmdns4 = true;
     nssmdns6 = true;
-    publish = {
-      enable = true;
-      addresses = true;
-      workstation = true;
-      userServices = true;
+    settings.publish = {
+      publish-addresses = true;
+      publish-workstation = true;
+      disable-publishing = false;
+      disable-user-service-publishing  = false;
     };
   };
 
@@ -681,12 +681,8 @@
   users.users."root".hashedPasswordFile = "/var/persistent/secrets/shadow/root";
   users.users."pedrohlc".hashedPasswordFile = "/var/persistent/secrets/shadow/pedrohlc";
 
-  # More modern stage 1 in boot
-  boot.initrd.systemd.enable = true;
-
   # Pedro Pedro Pedro on Plymouth on boot
   console.earlySetup = true;
-  boot.initrd.verbose = false;
   boot.consoleLogLevel = lib.mkForce 3;
   boot.plymouth = {
     enable = true;
