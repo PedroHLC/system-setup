@@ -154,7 +154,6 @@
 
     # Desktop apps
     acpi
-    adbfs-rootless
     alacritty
     audacious
     bat

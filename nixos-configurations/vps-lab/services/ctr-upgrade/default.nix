@@ -18,7 +18,7 @@
     description = "Timer running onlinectr-upgrade every 10 minutes";
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnCalendar = "*:0/10";
+      OnCalendar = "*:0/5";
       Persistent = true;
     };
   };
