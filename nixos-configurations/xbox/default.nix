@@ -12,6 +12,7 @@ mkNixOS {
     ../../nixos-modules/amdgpu.nix
     ../../nixos-modules/ctrl-near-space-key.nix
     ../../nixos-modules/focusrite-hifi.nix
+    ../../nixos-modules/gitlab-runner.nix
     ../../nixos-modules/hdr-display.nix
     ../../nixos-modules/ksysrqd.nix
     ../../nixos-modules/monitor-follow-usb.nix

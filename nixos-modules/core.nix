@@ -213,7 +213,9 @@
   virtualisation.podman = {
     enable = true;
     dockerCompat = true; # Podman provides docker.
+    dockerSocket.enable = true;
   };
+  virtualisation.docker.enable = false;
 
   # dbus-broker
   services.dbus.implementation = "broker";
