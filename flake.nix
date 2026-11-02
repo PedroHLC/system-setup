@@ -47,7 +47,6 @@
 
     punktfunk = {
       url = "git+https://git.unom.io/unom/punktfunk?ref=nix-stable";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     onlineCTR = {

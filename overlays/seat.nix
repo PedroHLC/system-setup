@@ -93,4 +93,17 @@ final: prev: {
         [ "--add-flags '--no-sandbox' --add-flags" ]
         oa.postFixup;
   });
+
+  osdlyrics = (prev.osdlyrics.override { gtk2 = final.gtk3; }).overrideAttrs (prevAttrs: {
+    version = "0.6.0";
+
+    src = final.fetchFromGitHub {
+      owner = "osdlyrics";
+      repo = "osdlyrics";
+      rev = "0.6.0";
+      hash = "sha256-9/yl7UHd8fx/8IofeGRFQBCTIhKKYFZDV1zoQ6aikDA=";
+    };
+
+    buildInputs = prevAttrs.buildInputs ++ [ final.libayatana-appindicator ];
+  });
 }

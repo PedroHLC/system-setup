@@ -100,11 +100,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793207859,
-        "narHash": "sha256-5kvzu3BjgDw/nH1WEPGVpOF3rYDPIh+i1y5z3glj29U=",
+        "lastModified": 1793629330,
+        "narHash": "sha256-Gg64ffq+Ys+2pnd1O7K+QsrCJh1ryhook8w+zZnQw4A=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "a4259cd3032088fcbde2c4a9273697b7a5ca354a",
+        "rev": "77a41eca4447d2b5ed0bab43757157705a13cd28",
         "type": "github"
       },
       "original": {
@@ -258,11 +258,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793124281,
-        "narHash": "sha256-KdGTOgYXgMDA/ymTV10yLMt9tOjz9EmTgnTvaD+bhe4=",
+        "lastModified": 1793193205,
+        "narHash": "sha256-X6xa6sGA7RnJQuZGbFMC+K+KToWAlBDCCjJXfTwEPsw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1e3ebeb683d055d1675d3f64e6d2b186cb2ee504",
+        "rev": "095fef2f265c3c0da4fe315efba8f8a04495ab34",
         "type": "github"
       },
       "original": {
@@ -298,11 +298,11 @@
       "flake": false,
       "locked": {
         "dir": "pkgs/by-name/cl/claude-code",
-        "lastModified": 1793281061,
-        "narHash": "sha256-gf8wqaklvF+uvbLOjc0sEFtqLhPn1ylkOTK9Z4gKx8k=",
+        "lastModified": 1793654202,
+        "narHash": "sha256-h81mxi3Zs3RHFxqssZrltHeUbc8Vy2f71RGbzNyDmKI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "151e9d606d3e631753a4760a62c0c9e07672d4dd",
+        "rev": "bebacbf9c873ee3f1f1b38fbf0b541401005565c",
         "type": "github"
       },
       "original": {
@@ -314,15 +314,31 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1793110635,
-        "narHash": "sha256-yXRSdZdZZqccEL+j11lc1gFG1f7V5j8N7oPBTHwf7n4=",
-        "rev": "31ecbaca1bdefa45dffc409f0250bd8039ea0010",
+        "lastModified": 1793540411,
+        "narHash": "sha256-us2GRWGXbOQpN1blyJGvmdx+g4bv9GoFYq5iiOHRiZ8=",
+        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1103272.31ecbaca1bde/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1106360.0bb2eedc20e4/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1793540411,
+        "narHash": "sha256-fiPJ88izTVucjeo2EQ3jk4aWmLg03I1D4vxnX2QjEgE=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nur": {
@@ -353,11 +369,11 @@
     "onlineCTR": {
       "flake": false,
       "locked": {
-        "lastModified": 1793200651,
-        "narHash": "sha256-SDIfN2f27gJdMdMSnmOMjQAJulu+8CpBrbFPhyB4qiE=",
+        "lastModified": 1793489469,
+        "narHash": "sha256-s/DsYuFnMO3AzEFpn5+r7SePUUW+q4TsHXHWNYwatjY=",
         "owner": "OnlineCTR",
         "repo": "server",
-        "rev": "01e8f7cd61b4db577f403453021b5823f890f2d7",
+        "rev": "94fbae37692f2270c6d14a7abc2a24495b0b2914",
         "type": "github"
       },
       "original": {
@@ -387,17 +403,15 @@
       "inputs": {
         "bun2nix": "bun2nix",
         "crane": "crane",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1792891216,
-        "narHash": "sha256-7Zy3CrHXD6wbj5gRfcfeFyxu08J5/hHN5ER2W6XMQZ4=",
+        "lastModified": 1793527866,
+        "narHash": "sha256-ULjQPmgzHwzc8KnU4I9OJglyJSdBBfX0OxGxKemAEmQ=",
         "ref": "nix-stable",
-        "rev": "9a230631e9867b02fb5298a8cc6f6feb544b274f",
-        "revCount": 11236,
+        "rev": "62039e748cb58fd3bc0f1eb132696a5df5b48103",
+        "revCount": 11913,
         "type": "git",
         "url": "https://git.unom.io/unom/punktfunk"
       },

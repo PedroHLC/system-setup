@@ -99,6 +99,12 @@
     };
   };
 
+  # More caches
+  nix.settings.substituters = [ "https://nix.unom.io" ];
+  nix.settings.trusted-public-keys = [
+    "punktfunk-cache-1:yhOJmHxzg6tzXpxSFzlYn6Pc6r0jHprsWqt8MZC654o="
+  ];
+
   # Bluetooth.
   hardware.bluetooth = {
     enable = true;
