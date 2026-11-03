@@ -273,8 +273,13 @@ with utils; {
         switchModelsOnFlag = false;
         editorMode = "vim";
         env = {
-          # "CLAUDE_CODE_DISABLE_1M_CONTEXT" = "1";
           "CLAUDE_CODE_SUBAGENT_MODEL" = "opus";
+          # disable telemetry
+          "DISABLE_TELEMETRY" = "1";
+          "DISABLE_ERROR_REPORTING" = "1";
+          "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC" = "1";
+          # fix 2.1.316 bug skipping non-system certificates
+          "CLAUDE_CODE_CERT_STORE" = "bundled";
         };
         permissions = {
           defaultMode = "acceptEdits";
