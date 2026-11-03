@@ -370,9 +370,8 @@
   # Virtualisation / Containerization.
   virtualisation.containers.storage.settings = {
     storage = {
-      driver = lib.mkForce "zfs";
-      graphroot = "/var/lib/containers/storage";
-      runroot = "/run/containers/storage";
+      # driver = "zfs"; # Needs ZFS 2.5+
+      driver = "overlay";
     };
 
     storage.options.zfs = {

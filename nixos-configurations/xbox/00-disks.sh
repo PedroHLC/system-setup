@@ -62,4 +62,9 @@ mount -t zfs zroot/ROOT/residues /mnt/var/residues
 # Podman
 sudo zfs create -o mountpoint=none -o canmount=on zroot/containers
 
+# Podman rootless (needs ZFS 2.5+)
+# sudo zfs create -o mountpoint=none -o canmount=on zroot/containers/u-pedrohlc
+# sudo zfs allow -u pedrohlc create,destroy,mount,mountpoint,snapshot,clone,promote,rollback zroot/containers/u-pedrohlc
+# sudo zfs set zoned_uid=1001 zroot/containers/u-pedrohlc
+
 echo "Finished. But you\'ll need to set the postgresql volume permission and ownership eventually."

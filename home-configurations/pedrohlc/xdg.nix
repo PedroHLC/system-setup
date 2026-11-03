@@ -1,18 +1,39 @@
 utils: with utils;
+let
+  tomlFormat = pkgs.formats.toml { };
+in
 {
   xdg = {
     # Config files that I prefer to just specify
     configFile = {
       # Disable this thing that is included with KDE
-      baloofilerc = mkIf hasLinuxSeat {
+      baloofilerc = {
+        enable = hasLinuxSeat;
         text = generators.toINI { } {
           "Basic Settings" = {
             "Indexing-Enabled" = false;
           };
         };
       };
+      # Overwrite system-level podman's container storage
+      containersStorage = {
+        enable = hasLinuxSeat;
+        target = "containers/storage.conf.d/99-zfs.conf";
+        source = tomlFormat.generate "storage-zfs.conf" {
+          storage = {
+            # driver = "zfs"; # Needs ZFS 2.5+
+            driver = "overlay";
+          };
+
+          storage.options.zfs = {
+            fsname = "zroot/containers/u-${config.home.username}";
+            mountopt = "nodev";
+          };
+        };
+      };
       # Allow me to choose which display to share in a list.
-      wlrPortal = mkIf hasLinuxSeat {
+      wlrPortal = {
+        enable = hasLinuxSeat;
         target = "xdg-desktop-portal-wlr/config";
         text = generators.toINI { } {
           screencast = {

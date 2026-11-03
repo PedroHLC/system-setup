@@ -75,7 +75,7 @@ rec {
       minidlnaConf = pkgs.writeTextFile {
         name = "minidlna.conf";
         text = ''
-          media_dir=V,/home/pedrohlc/Torrents
+          media_dir=V,${config.home.homeDirectory}/Torrents
           friendly_name=${dlnaName}
           inotify=yes
           db_dir=/tmp/minidlna
