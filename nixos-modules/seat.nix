@@ -641,6 +641,7 @@
         ".cache/mozilla"
         ".cache/nix-index"
         ".cache/zed"
+        { directory = ".config/.wrangler"; mode = "0700"; }
         ".config/figma-linux"
         ".config/gamescope"
         ".config/gh"
