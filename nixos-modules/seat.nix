@@ -167,7 +167,6 @@
     bluez-tools
     brightnessctl
     btop
-    cutty_git
     ethtool
     ffmpegthumbnailer
     firefox_nightly

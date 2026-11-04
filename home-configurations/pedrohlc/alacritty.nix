@@ -13,7 +13,6 @@ in
     # My favorite and simple terminal
     alacritty = {
       enable = hasSeat;
-      package = pkgs.cutty_git;
       settings = {
         window.opacity = mkForce 0.9;
 
