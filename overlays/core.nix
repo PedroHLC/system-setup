@@ -14,8 +14,9 @@ flakes: final: prev: {
 
   # nixpkgs#570938
   matrix-tuwunel = prev.matrix-tuwunel.overrideAttrs (prevAttrs: {
-    buildInputs = prevAttrs.buildInputs ++ [
-      final.aws-lc
-    ];
+    buildInputs = prevAttrs.buildInputs ++ (with final; [
+      aws-lc
+      jemalloc
+    ]);
   });
 }
