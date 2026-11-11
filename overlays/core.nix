@@ -16,7 +16,7 @@ flakes: final: prev: {
   matrix-tuwunel = prev.matrix-tuwunel.overrideAttrs (prevAttrs: {
     buildInputs = prevAttrs.buildInputs ++ (with final; [
       aws-lc
-      jemalloc
+      (rust-jemalloc-sys.override { unprefixed = true; })
     ]);
   });
 }
