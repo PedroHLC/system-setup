@@ -60,6 +60,15 @@
           ignore_querylog = uid != "bad";
           ignore_statistics = false;
         };
+
+        vpnRule =
+          _hostname: { vpn, ... }:
+          "||${vpn.addr}^$dnsrewrite=${vpn.v4},client='VPS|VPN";
+
+        internal_rules = [
+          "||zeta.pedrohlc.com^$dnsrewrite=127.0.0.1,client='VPS'"
+          "||zeta.pedrohlc.com^$dnsrewrite=10.100.0.1,client='VPN'"
+        ] ++ (lib.attrsets.mapAttrsToList vpnRule machines);
       in
       {
         host = "0.0.0.0";
@@ -127,7 +136,7 @@
             id = 1;
           }
         ];
-        user_rules = [
+        user_rules = internal_rules ++ [
           # GloboPlay breaks otherwise
           "@@||pubads.g.doubleclick.net^$important"
           # Stop tons of scanning
