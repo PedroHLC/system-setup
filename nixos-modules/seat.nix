@@ -603,7 +603,6 @@
         ".openmohaa"
         { directory = ".secrets"; mode = "0700"; }
         { directory = ".ssh"; mode = "0700"; }
-        ".var/app" # todo: move to residues
         "Documents"
         "Downloads"
         "Pictures"
@@ -659,6 +658,7 @@
         ".local/share/atuin"
         ".local/share/baloo"
         ".local/share/duckstation" # todo: backup saves somehow
+        ".local/share/flatpak"
         ".local/share/Kingsoft"
         ".local/share/Trash"
         ".local/share/yuzu" # todo: backup saves somehow
@@ -671,6 +671,7 @@
         ".supermaven"
         ".system.git"
         ".themes"
+        ".var/app"
         ".zoom"
         "Postman"
       ];
