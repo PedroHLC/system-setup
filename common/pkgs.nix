@@ -22,10 +22,14 @@ let
 in
 import nixpkgs {
   inherit system;
-  config = {
-    allowUnfree = false;
+  config = extraConfig // {
+    allowUnfree = extraConfig.allowUnfree or false;
     pedroWatermark = true;
-    allowUnfreePredicate = pkg: builtins.elem (nixpkgs.lib.getName pkg) unfree;
-  } // extraConfig;
+    allowUnfreePredicate =
+      if builtins.hasAttr "allowUnfreePredicate" extraConfig then
+        (pkg: (extraConfig.allowUnfreePredicate pkg) || (builtins.elem (nixpkgs.lib.getName pkg) unfree))
+      else
+        (pkg: builtins.elem (nixpkgs.lib.getName pkg) unfree);
+  };
   overlays = [ (import ../overlays/core.nix flakes) flakes.chaotic.overlays.cache-friendly ] ++ extraOverlays;
 }

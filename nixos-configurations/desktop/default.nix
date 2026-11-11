@@ -24,6 +24,11 @@ mkNixOS {
     ./configuration.nix
     ./hardware-configuration.nix
   ];
+  extraConfig = {
+    permittedInsecurePackages = [
+      "keybase-gui-6.6.3"
+    ];
+  };
   extraOverlays = [
     (import ../../overlays/seat.nix)
     (import "${flakes.jovian}/overlay.nix")

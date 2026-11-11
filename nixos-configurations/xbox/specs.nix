@@ -19,6 +19,6 @@
     nvidiaPrime = false;
     touchpad = null;
     ctrlNearSpaceKeyMap = true;
-    kvm = { "left" = "foreign"; };
+    # kvm = { "left" = "foreign"; };
   };
 }

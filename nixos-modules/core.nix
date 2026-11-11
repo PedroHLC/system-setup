@@ -248,8 +248,8 @@
       essentials =
         {
           # - My Network
-          "${web.lab.v4}" = [ web.lab.addr web.zeta.addr ];
-          "${web.lab.v6}" = [ web.lab.addr web.zeta.addr ];
+          "${web.lab.v4}" = [ web.lab.addr ];
+          "${web.lab.v6}" = [ web.lab.addr ];
         };
 
       addLan =
