@@ -350,7 +350,7 @@
     });
   '';
 
-  # For out-of-box gaming with Heroic Game Launcher
+  # For shit stuff
   services.flatpak.enable = true;
 
   # Smooth-criminal bleeding-edge Mesa3D
@@ -644,6 +644,8 @@
         ".config/gamescope"
         ".config/gh"
         ".config/google-chrome"
+        ".config/heroic"
+        ".config/legendary"
         ".config/Postman"
         ".config/Slack"
         ".config/tidal-hifi"
@@ -661,6 +663,7 @@
         ".local/share/flatpak"
         ".local/share/Kingsoft"
         ".local/share/Trash"
+        ".local/share/umu"
         ".local/share/yuzu" # todo: backup saves somehow
         ".local/share/zed"
         ".local/state/wireplumber"

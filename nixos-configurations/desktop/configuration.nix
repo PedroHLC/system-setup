@@ -61,6 +61,7 @@
     virtiofsd # for libvirtd
 
     # Gaming
+    heroic
     openrct2
   ];
 
