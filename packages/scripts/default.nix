@@ -1,4 +1,4 @@
-{ scriptName, substitutions ? null, lib, stdenvNoCC, bash }:
+{ scriptName, sourceName ? scriptName, substitutions ? null, lib, stdenvNoCC, bash }:
 let
   inherit (lib.strings) concatStringsSep escapeShellArg;
   inherit (lib.attrsets) mapAttrsToList;
@@ -6,10 +6,10 @@ let
 
   install =
     if substitutions != null then ''
-      substitute "${scriptName}.sh" "$out/bin/${scriptName}" \
+      substitute "${sourceName}.sh" "$out/bin/${scriptName}" \
         ${concatStringsSep " " (mapAttrsToList repArg substitutions)}
     '' else ''
-      cp "${scriptName}.sh" "$out/bin/${scriptName}"
+      cp "${sourceName}.sh" "$out/bin/${scriptName}"
     '';
 in
 stdenvNoCC.mkDerivation {

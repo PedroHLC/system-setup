@@ -103,8 +103,9 @@ rec {
   # Direnv-forced Claude
   direnv-claude = pkgs.callPackage ../../../packages/scripts {
     scriptName = "direnv-claude";
+    sourceName = "direnv-exec";
     substitutions = {
-      "$(which claude)" = "${config.programs.claude-code.package}/bin/claude";
+      "$(which program)" = "${config.programs.claude-code.package}/bin/claude";
       "$(which direnv)" = "${config.programs.direnv.package}/bin/direnv";
     };
   };

@@ -1,4 +1,4 @@
-{ pkgs, lib, flakes, ... }: {
+{ config, pkgs, lib, flakes, ... }: {
   home.stateVersion = "24.11";
 
   imports = [
@@ -105,6 +105,33 @@
       RunAtLoad = true;
       KeepAlive = true;
       Nice = 10;
+    };
+  };
+
+  # Paseo daemon, inside Timeline Core's dev shell
+  launchd.agents.paseo = {
+    enable = true;
+    config = {
+      Label = "sh.paseo.daemon";
+      ProcessType = "Interactive";
+      WorkingDirectory = "/Users/pedrohlc/Projects/co.timeline/core";
+      ProgramArguments = [
+        (lib.getExe (pkgs.callPackage ../../packages/scripts {
+          scriptName = "direnv-paseo";
+          sourceName = "direnv-exec";
+          substitutions = {
+            "$(which program)" = "${pkgs.paseo}/bin/paseo";
+            "$(which direnv)" = "${config.programs.direnv.package}/bin/direnv";
+          };
+        }))
+        "daemon"
+        "run"
+      ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      ThrottleInterval = 30;
+      StandardOutPath = "/Users/pedrohlc/.paseo/launchd.log";
+      StandardErrorPath = "/Users/pedrohlc/.paseo/launchd.log";
     };
   };
 
