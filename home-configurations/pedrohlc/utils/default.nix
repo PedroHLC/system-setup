@@ -4,6 +4,7 @@
 , dlnaName ? null
 , gitKey ? null
 , gpuSensor ? null
+, hasCodex ? false
 , mainNetworkInterface ? "eno1"
 , nvmeSensors ? [ ]
 , seat ? null
@@ -13,14 +14,14 @@
 { config, lib, pkgs, ssot, osConfig ? null, usingNouveau ? true, ... }@scope:
 self:
 {
-  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor mainNetworkInterface nvmeSensors seat ups;
+  inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor hasCodex mainNetworkInterface nvmeSensors seat ups;
   inherit config pkgs osConfig usingNouveau;
   inherit (scope) flakes;
   inherit (lib.strings) optionalString concatStringsSep;
   inherit (lib.trivial) importJSON;
   inherit (lib.debug) traceVal;
   inherit (lib.hm) dag;
-  inherit (scope.flakes) ullib pedrochrome-css;
+  inherit (scope.flakes) ai-memory ullib pedrochrome-css;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./derivations.nix self;
 

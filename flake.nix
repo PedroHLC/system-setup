@@ -63,7 +63,7 @@
 
   outputs = { nixpkgs, yafas, chaotic, ... }@inputs:
     let
-      flakes = inputs // { inherit (chaotic.vendored) jovian niks3; };
+      flakes = inputs // { inherit (chaotic.vendored) ai-memory jovian niks3; };
     in
     yafas.withAllSystems nixpkgs
       (universals: { pkgs, system }@sys: with universals; {

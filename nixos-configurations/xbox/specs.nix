@@ -5,6 +5,7 @@
   dlnaName = "pedrohlc@xbox";
   gitKey = "F5BFC029DA9A28CE";
   gpuSensor = "amdgpu-pci-0400";
+  hasCodex = true;
   nvmeSensors = [ "nvme-pci-0100" ];
   mainNetworkInterface = "enp2s0";
   seat = {

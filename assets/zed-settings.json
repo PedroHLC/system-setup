@@ -19,6 +19,18 @@
   },
   "agent_servers": {
     "codex-acp": {
+      "favorite_config_option_values": {
+        "mode": [
+          "workspace-write"
+        ],
+        "model": [
+          "gpt-6.1-terra"
+        ]
+      },
+      "default_config_options": {
+        "mode": "agent-full-access",
+        "model": "gpt-6.1-terra"
+      },
       "type": "registry"
     },
     "claude-acp": {

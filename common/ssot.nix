@@ -38,6 +38,7 @@ rec {
       hostname = "vps-lab";
       vpn = {
         adguardAdminPort = 3000;
+        aiMemoryPort = 49374;
         atuinPort = 8888;
         niks3Port = 5751;
       };

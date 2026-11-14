@@ -55,8 +55,11 @@
   # Extra packages
   environment.systemPackages = with pkgs; [
     (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.98.1"; }; })
-    codex
     paseo
+  ];
+
+  environment.persistence."/var/persistent".users.pedrohlc.directories = [
+    { directory = ".local/share/ai-memory"; mode = "0700"; }
   ];
 
   services.punktfunk.client.enable = true;

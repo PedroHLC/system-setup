@@ -7,8 +7,10 @@ mkNixOS {
     "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
     "${nixpkgs}/nixos/modules/virtualisation/oci-common.nix"
     niks3.nixosModules.default
+    ai-memory.nixosModules.default
     ./configuration.nix
     ./servers/adguard.nix
+    ./servers/ai-memory.nix
     ./servers/atuin.nix
     ./servers/bsky.nix
     ./servers/ctr.nix

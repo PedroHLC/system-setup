@@ -12,6 +12,8 @@ with utils; {
     (import ./mpv.nix utils)
     (import ./ssh.nix utils)
     (import ./theming.nix utils)
+  ] ++ optionals hasCodex [
+    (import ./codex.nix utils)
   ] ++ optionals hasLinuxSeat [
     (import ./audacious.nix utils)
     (import ./i3status-rust.nix utils)
