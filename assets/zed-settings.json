@@ -18,6 +18,9 @@
     "dark": "Catppuccin Latte"
   },
   "agent_servers": {
+    "codex-acp": {
+      "type": "registry"
+    },
     "claude-acp": {
       "default_config_options": {
         "agent": "default",

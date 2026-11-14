@@ -54,7 +54,9 @@
 
   # Extra packages
   environment.systemPackages = with pkgs; [
-    (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.18.1"; }; })
+    (cfwarp-add.override { substitutions = { "192.168.0.1" = "192.168.98.1"; }; })
+    codex
+    paseo
   ];
 
   services.punktfunk.client.enable = true;

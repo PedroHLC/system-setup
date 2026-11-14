@@ -639,6 +639,7 @@
         ".cache/mozilla"
         ".cache/nix-index"
         ".cache/zed"
+        ".codex"
         { directory = ".config/.wrangler"; mode = "0700"; }
         ".config/figma-linux"
         ".config/gamescope"
@@ -670,6 +671,7 @@
         ".lyrics"
         ".mix"
         ".nyx"
+        ".paseo"
         ".steam"
         ".supermaven"
         ".system.git"

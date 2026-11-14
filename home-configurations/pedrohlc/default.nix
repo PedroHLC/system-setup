@@ -198,6 +198,7 @@ with utils; {
         };
         alias = {
           "cehckout" = "checkout";
+          "comit" = "commit";
         };
         # pull with rebase on everything except main/master
         "branch \"main\"" = {
