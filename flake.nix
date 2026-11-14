@@ -21,6 +21,11 @@
     # Home-manager for managing my user's home
     home-manager.follows = "chaotic/home-manager";
 
+    caveman = {
+      url = "github:JuliusBrussee/caveman";
+      flake = false;
+    };
+
     # My "outputs" manager
     yafas.url = "github:UbiqueLambda/yafas";
 

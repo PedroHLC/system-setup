@@ -21,7 +21,7 @@ self:
   inherit (lib.trivial) importJSON;
   inherit (lib.debug) traceVal;
   inherit (lib.hm) dag;
-  inherit (scope.flakes) ai-memory ullib pedrochrome-css;
+  inherit (scope.flakes) ai-memory caveman ullib pedrochrome-css;
 } // (lib // ssot // rec {
   pseudoPkgs = import ./derivations.nix self;
 
