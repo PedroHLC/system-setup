@@ -1,9 +1,17 @@
 { pkgs, specs, ... }:
 
 let
-  ddcutil = dest: "${pkgs.ddcutil}/bin/ddcutil setvcp 60 ${dest} --noverify";
-  toLinux = ddcutil specs.seat.displayInputSource; # DP-1 (0x0f) or HDMI-1 (0x05)
-  toOther = ddcutil "0x06"; # HDMI-2
+  script = pkgs.resholve.writeScript "change-display-source.sh"
+    {
+      inputs = [ pkgs.ddcutil pkgs.coreutils ];
+      interpreter = "${pkgs.bash}/bin/bash";
+      execer = [
+        "cannot:${pkgs.ddcutil}/bin/ddcutil"
+      ];
+    }
+    (builtins.readFile ../packages/scripts/change-display-source.sh);
+  toLinux = "${script} ${specs.seat.displayInputSource}"; # DP-1 (0x0f) or HDMI-1 (0x05)
+  toOther = "${script} 0x06"; # HDMI-2
 in
 {
   # Hardware setup
