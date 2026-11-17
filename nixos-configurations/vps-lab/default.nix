@@ -18,6 +18,7 @@ mkNixOS {
     ./servers/journal-remote.nix
     ./servers/matrix.nix
     ./servers/nginx.nix
+    ./servers/nihongo.nix
     ./servers/niks3.nix
     #./servers/runners.nix
     ./servers/wireguard.nix
@@ -27,6 +28,7 @@ mkNixOS {
     ./services/ctr-upgrade
   ];
   extraConfig = {
+    services.nihongo.enable = true;
     # Mautrix uses OLM
     permittedInsecurePackages = [
       "olm-3.2.16"

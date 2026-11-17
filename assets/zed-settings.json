@@ -28,9 +28,9 @@
         ]
       },
       "default_config_options": {
-        "reasoning_effort": "max",
+        "reasoning_effort": "medium",
         "mode": "agent-full-access",
-        "model": "gpt-6-luna"
+        "model": "gpt-6.1-terra"
       },
       "type": "registry"
     },
