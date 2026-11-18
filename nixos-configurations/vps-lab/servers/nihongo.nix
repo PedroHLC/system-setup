@@ -1,4 +1,3 @@
-# Import this module into vps-lab; activation is a separate operator step.
 { config, lib, pkgs, ... }:
 let
   cfg = config.services.nihongo;
@@ -31,7 +30,7 @@ let
   };
 in {
   options.services.nihongo = {
-    enable = lib.mkEnableOption "Japanese travel practice";
+    enable = lib.mkEnableOption "Japanese travel practice" // { default = true; };
     hostName = lib.mkOption { type = lib.types.str; default = "lab.pedrohlc.com"; };
     webRoot = lib.mkOption { type = lib.types.str; default = "/srv/http/nihongo"; };
     stateDirectory = lib.mkOption { type = lib.types.str; default = "/var/lib/nihongo"; };

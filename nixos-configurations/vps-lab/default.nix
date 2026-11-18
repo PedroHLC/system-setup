@@ -28,7 +28,6 @@ mkNixOS {
     ./services/ctr-upgrade
   ];
   extraConfig = {
-    services.nihongo.enable = true;
     # Mautrix uses OLM
     permittedInsecurePackages = [
       "olm-3.2.16"
