@@ -1,7 +1,11 @@
-{ pkgs, ssot, ... }: with ssot;
+{ flakes, pkgs, ssot, ... }: with ssot;
+let
+  inherit (pkgs.stdenv.hostPlatform) system;
+in
 {
   services.nginx = {
     enable = true;
+    package = if pkgs.nginx.version == "1.30.6" then flakes.nixpkgs-small.legacyPackages.${system}.nginx else throw "Nginx updated";
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
