@@ -1,9 +1,10 @@
 { lib, ssot, knownClients, config, ... }: with ssot;
 {
-  systemd.services.adguardhome = {
-    serviceConfig.User = "adguard";
-    serviceConfig.Group = "adguard";
-    serviceConfig.DynamicUser = lib.mkForce false;
+  systemd.services.adguardhome.serviceConfig = {
+    User = "adguard";
+    Group = "adguard";
+    DynamicUser = lib.mkForce false;
+    Nice = -9;
   };
 
   users.users."adguard" = {
