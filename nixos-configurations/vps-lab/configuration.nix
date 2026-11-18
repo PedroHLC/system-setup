@@ -16,6 +16,9 @@
     '';
   };
 
+  # Limit resources used by nix-daemon.
+  systemd.services.nix-daemon.serviceConfig.AllowedCPUs = "2-5";
+
   # Let's Encrypt
   security.acme = {
     acceptTerms = true;
