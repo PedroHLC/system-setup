@@ -8,7 +8,6 @@
 
     # Mortal-hands flake
     nixpkgs.follows = "chaotic/nixpkgs";
-    nixpkgs-small.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.zst";
 
     # Reset rootfs every reboot
     impermanence = {

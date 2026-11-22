@@ -30,7 +30,7 @@
       "default_config_options": {
         "reasoning_effort": "medium",
         "mode": "agent-full-access",
-        "model": "gpt-6.1-terra"
+        "model": "gpt-6.2-sol"
       },
       "type": "registry"
     },
