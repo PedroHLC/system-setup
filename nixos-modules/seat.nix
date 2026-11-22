@@ -660,6 +660,7 @@
         ".kodi"
         ".local/share/atuin"
         ".local/share/baloo"
+        ".local/share/com.recomplauncher.app"
         ".local/share/duckstation" # todo: backup saves somehow
         ".local/share/flatpak"
         ".local/share/Kingsoft"
