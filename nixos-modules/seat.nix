@@ -571,6 +571,7 @@
         ".config/btop"
         { directory = ".config/cachix"; mode = "0700"; }
         ".config/discord" # todo: move to residues
+        ".local/share/DW3Recomp"
         ".config/Element"
         ".config/github-copilot"
         { directory = ".config/Keybase"; mode = "0700"; }
@@ -595,6 +596,7 @@
         ".local/share/gamescope"
         ".local/share/heroku"
         { directory = ".local/share/keybase"; mode = "0700"; }
+        ".local/share/heylisten"
         { directory = ".local/share/kwalletd"; mode = "0700"; }
         ".local/share/qBittorrent"
         ".local/share/Steam" # todo: move to residues, but keep saves somehow
