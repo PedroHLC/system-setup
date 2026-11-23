@@ -70,6 +70,8 @@
           "||zeta.pedrohlc.com^$dnsrewrite=127.0.0.1,client='VPS'"
           "||zeta.pedrohlc.com^$dnsrewrite=10.100.0.1,client='VPN'"
         ] ++ (lib.attrsets.mapAttrsToList vpnRule machines);
+
+        refused_domains = map (pattern: "${pattern}$important,dnsrewrite=REFUSED;;") (import ../../../common/refused-domains.nix);
       in
       {
         host = "0.0.0.0";
@@ -140,47 +142,7 @@
         user_rules = internal_rules ++ [
           # GloboPlay breaks otherwise
           "@@||pubads.g.doubleclick.net^$important"
-          # Stop tons of scanning
-          "|direct.shodan.io^$important,dnsrewrite=REFUSED;;"
-          "|dnsscan.shadowserver.org^$important,dnsrewrite=REFUSED;;"
-          "|ip.parrotdns.com^$important,dnsrewrite=REFUSED;;"
-          "|jd.com^$important,dnsrewrite=REFUSED;;"
-          "|testip.internet-census.org^$important,dnsrewrite=REFUSED;;"
-          "|www.stage^$important,dnsrewrite=REFUSED;;"
-          "||1u1gpup5i8kbtvctq9peakblhhzk.com^$important,dnsrewrite=REFUSED;;"
-          "||anictdns.store^$important,dnsrewrite=REFUSED;;"
-          "||asertdnsresearch.com^$important,dnsrewrite=REFUSED;;"
-          "||astrill4u.com^$important,dnsrewrite=REFUSED;;"
-          "||bind^$important,dnsrewrite=REFUSED;;"
-          "||cnnic.cn^$important,dnsrewrite=REFUSED;;"
-          "||cyberresilience.io^$important,dnsrewrite=REFUSED;;"
-          "||dnsavailable.xyz^$important,dnsrewrite=REFUSED;;"
-          "||dnscheck.internet-measurement.com^$important,dnsrewrite=REFUSED;;"
-          "||dnsmeasurement.com^$important,dnsrewrite=REFUSED;;"
-          "||dnsresearch.cymru.com^$important,dnsrewrite=REFUSED;;"
-          "||doq.dnsmeasure.top^$important,dnsrewrite=REFUSED;;"
-          "||drakkarns.com^$important,dnsrewrite=REFUSED;;"
-          "||echodns.xyz^$important,dnsrewrite=REFUSED;;"
-          "||ednsscankzl.top^$important,dnsrewrite=REFUSED;;"
-          "||ictdns.fun^$important,dnsrewrite=REFUSED;;"
-          "||ident.me^$important,dnsrewrite=REFUSED;;"
-          "||ki3ednstest.com^$important,dnsrewrite=REFUSED;;"
-          "||kohls.com^$important,dnsrewrite=REFUSED;;"
-          "||meshtrust.work^$important,dnsrewrite=REFUSED;;"
-          "||norahdoe.online^$important,dnsrewrite=REFUSED;;"
-          "||odns.m.dnsscan.top^$important,dnsrewrite=REFUSED;;"
-          "||open-resolver-scan.research.icann.org^$important,dnsrewrite=REFUSED;;"
-          "||openresolver.dnslab.cn^$important,dnsrewrite=REFUSED;;"
-          "||research.a10protects.com^$important,dnsrewrite=REFUSED;;"
-          "||research.nawrocki.berlin^$important,dnsrewrite=REFUSED;;"
-          "||research.openresolve.rs^$important,dnsrewrite=REFUSED;;"
-          "||root-servers.net^$important,dnsrewrite=REFUSED;;"
-          "||secshow.net^$important,dnsrewrite=REFUSED;;"
-          "||ta6.ch^$important,dnsrewrite=REFUSED;;"
-          "||whitechun.lol^$important,dnsrewrite=REFUSED;;"
-          "||yndx.net^$important,dnsrewrite=REFUSED;;"
-          "/iepa.*\.dccnet\.com\.cn/$important,dnsrewrite=REFUSED;;"
-        ];
+        ] ++ refused_domains;
         clients = {
           runtime_sources = {
             whois = true;
