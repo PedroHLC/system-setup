@@ -91,12 +91,17 @@ in
           {
             block = "custom";
             shell = "${pkgs.dash}/bin/dash";
+            json = true;
+            theme_overrides = {
+              critical_bg = "#dc322f";
+              critical_fg = "#ffffff";
+            };
             command = ''
               profile=$(${powerprofilesctl} get) || exit 1
               case "$profile" in
-                power-saver) echo Economy ;;
-                balanced) echo Power ;;
-                *) echo "$profile" ;;
+                power-saver) echo '{"text":"Economy","state":"Critical"}' ;;
+                balanced) echo '{"text":"Power"}' ;;
+                *) ${jq} -cn --arg profile "$profile" '{text: $profile}' ;;
               esac
             '';
             click = [{
