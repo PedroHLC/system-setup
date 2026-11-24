@@ -3,6 +3,7 @@ utils: with utils;
 # My simple and humble bar
 let
   interval = 4;
+  powerprofilesctl = "${pkgs.power-profiles-daemon}/bin/powerprofilesctl";
 in
 {
   programs.i3status-rust = {
@@ -84,6 +85,32 @@ in
             block = "temperature";
             format = "$icon $average";
             chip = cpuSensor;
+            inherit interval;
+          }
+        ) ++ (lists.optional powerProfilePicker
+          {
+            block = "custom";
+            shell = "${pkgs.dash}/bin/dash";
+            command = ''
+              profile=$(${powerprofilesctl} get) || exit 1
+              case "$profile" in
+                power-saver) echo Economy ;;
+                balanced) echo Power ;;
+                *) echo "$profile" ;;
+              esac
+            '';
+            click = [{
+              button = "left";
+              cmd = ''
+                profile=$(${powerprofilesctl} get) || exit 1
+                case "$profile" in
+                  power-saver) ${powerprofilesctl} set balanced ;;
+                  *) ${powerprofilesctl} set power-saver ;;
+                esac
+              '';
+              sync = true;
+              update = true;
+            }];
             inherit interval;
           }
         ) ++ (lists.optional (gpuSensor != null)

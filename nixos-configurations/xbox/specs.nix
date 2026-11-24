@@ -8,6 +8,7 @@
   hasCodex = true;
   nvmeSensors = [ "nvme-pci-0100" ];
   mainNetworkInterface = "enp2s0";
+  powerProfilePicker = true;
   seat = {
     displayId = "HDMI-A-1";
     displayWidth = 38400;

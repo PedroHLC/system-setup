@@ -8,6 +8,7 @@
 , mainNetworkInterface ? "eno1"
 , nvmeSensors ? [ ]
 , seat ? null
+, powerProfilePicker ? false
 , ups ? null
 , ...
 }@specs:
@@ -15,6 +16,7 @@
 self:
 {
   inherit battery cpuSensor dangerousAlone dlnaName gitKey gpuSensor hasCodex mainNetworkInterface nvmeSensors seat ups;
+  inherit powerProfilePicker;
   inherit config pkgs osConfig usingNouveau;
   inherit (scope) flakes;
   inherit (lib.strings) optionalString concatStringsSep;
